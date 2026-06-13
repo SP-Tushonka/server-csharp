@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <!--  SPT specific  -->
-    <SptVersion Condition="'$(SptVersion)' == ''">4.1.3</SptVersion>
-    <SptCommit Condition="'$(SptCommit)' == ''">T10NVR</SptCommit>
+    <SptVersion Condition="'$(SptVersion)' == ''">5.0.0</SptVersion>
+    <SptCommit Condition="'$(SptCommit)' == ''">T10MBY</SptCommit>
     <SptBuildTime Condition="'$(SptBuildTime)' == ''">0000000000</SptBuildTime>
     <SptBuildType Condition="'$(SptBuildType)' == ''">LOCAL</SptBuildType>
     <!--  BuildType options - LOCAL, DEBUG, RELEASE, BLEEDINGEDGE, BLEEDINGEDGEMODS - *must be all caps*-->
