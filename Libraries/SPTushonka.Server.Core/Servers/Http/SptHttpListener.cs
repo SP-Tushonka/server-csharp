@@ -25,6 +25,7 @@ public class SptHttpListener(
     ISptLogger<RequestLogger> requestsLogger,
     JsonUtil jsonUtil,
     HttpResponseUtil httpResponseUtil,
+    RequestEncryptionUtil requestEncryptionUtil,
     HttpConfig? httpConfig = null
 ) : IHttpListener
 {
@@ -75,18 +76,23 @@ public class SptHttpListener(
                 var requestIsCompressed =
                     !context.Request.Headers.TryGetValue("requestcompressed", out var compressHeader) || compressHeader != "0";
                 var requestCompressed = context.Request.Method == "PUT" || requestIsCompressed;
+                var bodyStream = await requestEncryptionUtil.DeShuffleAsync(
+                    context.Request.Body,
+                    ShouldShuffleRequest(context.Request.Path),
+                    cancellationToken
+                );
 
                 string body;
 
                 if (requestCompressed)
                 {
-                    await using var deflateStream = new ZLibStream(context.Request.Body, CompressionMode.Decompress);
+                    await using var deflateStream = new ZLibStream(bodyStream, CompressionMode.Decompress);
                     using var reader = new StreamReader(deflateStream, Encoding.UTF8);
                     body = await reader.ReadToEndAsync(cancellationToken);
                 }
                 else
                 {
-                    using var reader = new StreamReader(context.Request.Body, Encoding.UTF8);
+                    using var reader = new StreamReader(bodyStream, Encoding.UTF8);
                     body = await reader.ReadToEndAsync(cancellationToken);
                 }
 
@@ -174,7 +180,7 @@ public class SptHttpListener(
         else
         // No serializer can handle the request (majority of requests don't), zlib the output and send response back
         {
-            await SendZlibJsonAsync(resp, output, sessionID, cancellationToken);
+            await SendZlibJsonAsync(req, resp, output, sessionID, cancellationToken);
         }
 
         LogRequest(req, output);
@@ -290,30 +296,60 @@ public class SptHttpListener(
         }
     }
 
-    public async Task SendZlibJsonAsync(HttpResponse resp, string output, MongoId sessionID, CancellationToken cancellationToken = default)
+    public async Task SendZlibJsonAsync(
+        HttpRequest req,
+        HttpResponse resp,
+        string output,
+        MongoId sessionID,
+        CancellationToken cancellationToken = default
+    )
     {
         resp.StatusCode = 200;
         resp.ContentType = "application/json";
         resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
 
-        await using var deflateStream = new ZLibStream(resp.Body, CompressionLevel.SmallestSize);
+        byte[] compressedBytes;
 
-        var encoder = Encoding.UTF8.GetEncoder();
-        var buffer = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetMaxByteCount(ChunkChars));
-        try
+        await using (var compressedStream = new MemoryStream())
         {
-            for (var offset = 0; offset < output.Length; offset += ChunkChars)
+            await using (var deflateStream = new ZLibStream(compressedStream, CompressionLevel.SmallestSize, leaveOpen: true))
             {
-                var take = Math.Min(ChunkChars, output.Length - offset);
-                var written = encoder.GetBytes(output.AsSpan(offset, take), buffer, offset + take == output.Length);
+                var encoder = Encoding.UTF8.GetEncoder();
+                var buffer = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetMaxByteCount(ChunkChars));
+                try
+                {
+                    for (var offset = 0; offset < output.Length; offset += ChunkChars)
+                    {
+                        var take = Math.Min(ChunkChars, output.Length - offset);
+                        var written = encoder.GetBytes(output.AsSpan(offset, take), buffer, offset + take == output.Length);
 
-                await deflateStream.WriteAsync(buffer.AsMemory(0, written), cancellationToken);
+                        await deflateStream.WriteAsync(buffer.AsMemory(0, written), cancellationToken);
+                    }
+                }
+                finally
+                {
+                    ArrayPool<byte>.Shared.Return(buffer);
+                }
             }
+
+            compressedBytes = compressedStream.ToArray();
         }
-        finally
-        {
-            ArrayPool<byte>.Shared.Return(buffer);
-        }
+
+        var responseBytes = ShouldShuffleResponse(req.Path) ? requestEncryptionUtil.Shuffle(compressedBytes) : compressedBytes;
+
+        await resp.Body.WriteAsync(responseBytes, cancellationToken);
+    }
+
+    private static bool ShouldShuffleRequest(PathString path)
+    {
+        return !path.StartsWithSegments("/launcher")
+            && !path.StartsWithSegments("/client/metadata")
+            && !path.StartsWithSegments("/files");
+    }
+
+    private static bool ShouldShuffleResponse(PathString path)
+    {
+        return !path.StartsWithSegments("/launcher") && !path.StartsWithSegments("/files");
     }
 
     private record Response(string Method, string jsonData);
