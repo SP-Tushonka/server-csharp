@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Controllers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Dialog;
+using SPTarkov.Server.Core.Models.Eft.Quests;
 using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services;
@@ -172,5 +173,24 @@ public class DataCallbacks(
     public ValueTask<StreamedJsonBody> GetDialogue(string url, EmptyRequestData _, MongoId sessionID)
     {
         return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Dialogue));
+    }
+
+    // TODO: These are base implementations to get the game loading.
+
+    /// <summary>
+    /// Handle /client/quest/getMainQuestNotesList
+    /// </summary>
+    public ValueTask<string> GetMainQuestNoteList(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.MainQuestNotes));
+    }
+
+    /// <summary>
+    /// Handle /client/quest/getMainQuestsList
+    /// </summary>
+    public ValueTask<string> GetMainQuestsList(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        // TODO: Implement me! Seems to only send chapters you have unlocked
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new MainQuestsList { Chapters = [] }));
     }
 }

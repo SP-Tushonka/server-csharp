@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
+using SPTarkov.Server.Core.Models.Eft.Quests;
 
 namespace SPTarkov.Server.Core.Models.Spt.Tables;
 
@@ -15,6 +16,9 @@ public record TemplateTable
 
     [JsonPropertyName("items")]
     public required Dictionary<MongoId, TemplateItem> Items { get; init; }
+
+    [JsonPropertyName("mainQuestNotes")]
+    public required List<MainQuestNotes> MainQuestNotes { get; init; }
 
     [JsonPropertyName("prestige")]
     public required Prestige Prestige { get; init; }

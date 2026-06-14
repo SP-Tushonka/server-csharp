@@ -61,5 +61,13 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
                 "/client/dialogue",
                 async (url, info, sessionID, cancellationToken) => await dataCallbacks.GetDialogue(url, info, sessionID)
             ),
+            new RouteAction<EmptyRequestData>(
+                "/client/quest/getMainQuestNotesList",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetMainQuestNoteList(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/quest/getMainQuestsList",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetMainQuestsList(url, info, sessionID)
+            ),
         ]
     ) { }
