@@ -169,7 +169,7 @@ public class DataCallbacks(
     /// <summary>
     /// Handle /client/dialogue
     /// </summary>
-    public ValueTask<StreamedJsonBody> GetDialogue(string url, GetClientDialogueRequestData request, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetDialogue(string url, EmptyRequestData _, MongoId sessionID)
     {
         return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Dialogue));
     }

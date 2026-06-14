@@ -57,7 +57,7 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
                 "/client/hideout/qte/list",
                 async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetQteList(url, info, sessionID)
             ),
-            new StreamedRouteAction<GetClientDialogueRequestData>(
+            new StreamedRouteAction<EmptyRequestData>(
                 "/client/dialogue",
                 async (url, info, sessionID, cancellationToken) => await dataCallbacks.GetDialogue(url, info, sessionID)
             ),
