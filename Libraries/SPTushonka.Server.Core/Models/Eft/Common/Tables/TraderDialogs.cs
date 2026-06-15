@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Utils.Json.Converters;
 
 namespace SPTarkov.Server.Core.Models.Eft.Common.Tables;
 
@@ -16,6 +17,9 @@ public record TraderDialogElement
 
     [JsonPropertyName("Id")]
     public required MongoId Id { get; set; }
+
+    [JsonPropertyName("IsStart")]
+    public required bool IsStart { get; set; }
 
     [JsonPropertyName("MainVariable")]
     public required MongoId MainVariable { get; set; }
@@ -34,5 +38,6 @@ public record TraderDialogElement
     public required Dictionary<MongoId, int> StartPoints { get; set; }
 
     [JsonPropertyName("localization")]
-    public required Dictionary<string, Dictionary<string, string>> LocalizationDictionary { get; set; }
+    [JsonConverter(typeof(EmptyArrayAsDictionaryConverter<string, Dictionary<MongoId, string>>))]
+    public required Dictionary<string, Dictionary<MongoId, string>> LocalizationDictionary { get; set; }
 }

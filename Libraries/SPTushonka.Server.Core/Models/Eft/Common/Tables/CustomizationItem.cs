@@ -100,4 +100,10 @@ public class CustomizationProperties
 
     [JsonPropertyName("HideGarbage")]
     public bool? HideGarbage { get; set; }
+
+    [JsonPropertyName("HiddenByDefault")]
+    public bool? HiddenByDefault { get; set; }
+
+    [JsonPropertyName("ProfileVersionsIgnoresSide")]
+    public IEnumerable<string>? ProfileVersionsIgnoresSide { get; set; }
 }

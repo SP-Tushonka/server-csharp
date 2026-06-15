@@ -338,6 +338,9 @@ public record QuestCondition
 
     [JsonPropertyName("questNoteId")]
     public MongoId? QuestNoteId { get; set; }
+
+    [JsonPropertyName("isFinisher")]
+    public bool? IsFinisher { get; set; }
 }
 
 public record QuestConditionProperties

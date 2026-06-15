@@ -30,6 +30,9 @@ public record HandbookCategory
 
     [JsonPropertyName("Order")]
     public string Order { get; set; }
+
+    [JsonPropertyName("RagfairLevelToTrade")]
+    public int? RagfairLevelToTrade { get; set; }
 }
 
 public record HandbookItem
