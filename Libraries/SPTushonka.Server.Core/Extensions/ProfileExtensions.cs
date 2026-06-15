@@ -6,6 +6,7 @@ using SPTarkov.Server.Core.Models.Eft.Ragfair;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Models.Spt.Tables.Globals;
 
 namespace SPTarkov.Server.Core.Extensions;
 
@@ -199,7 +200,7 @@ public static class ProfileExtensions
     ///     The calculated level of the player as an integer, or null if the level cannot be determined.
     ///     This value is also assigned to <see cref="Info.Level" /> within the provided profile.
     /// </returns>
-    public static int? CalculateLevel(this PmcData pmcData, ExpTable[] expTable)
+    public static int? CalculateLevel(this PmcData pmcData, ExperienceTable[] expTable)
     {
         var accExp = 0;
         for (var i = 0; i < expTable.Length; i++)

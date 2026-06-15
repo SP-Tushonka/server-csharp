@@ -4,6 +4,7 @@ using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Hideout;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Tables.Globals;
 
 namespace SPTarkov.Server.Core.Models.Spt.Tables;
 
@@ -39,10 +40,13 @@ public record PlayerSettings
     public double IndoorRolloffMultiplier { get; set; }
 
     [JsonPropertyName("MinStepSoundRolloffMult")]
-    public double MinStepSoundRolloffMultiplier { get; set; }
+    public PointOfViewSoundValue MinStepSoundRolloffMultiplier { get; set; }
 
     [JsonPropertyName("MinStepSoundVolumeMult")]
-    public double MinStepSoundVolumeMultiplier { get; set; }
+    public PointOfViewSoundValue MinStepSoundVolumeMultiplier { get; set; }
+
+    [JsonPropertyName("MinStepSoundVolumeSpeedMult")]
+    public PointOfViewSoundValue MinStepSoundVolumeSpeedMultiplier { get; set; }
 
     [JsonPropertyName("MovementRolloffMultipliers")]
     public IEnumerable<MovementRolloffMultiplier> MovementRolloffMultipliers { get; set; }
@@ -188,6 +192,12 @@ public record ShellingZone
 
     [JsonPropertyName("IsActive")]
     public bool IsActive { get; set; }
+
+    [JsonPropertyName("TriggerExclude")]
+    public string TriggerExclude { get; set; }
+
+    [JsonPropertyName("TriggerInclude")]
+    public string TriggerInclude { get; set; }
 }
 
 public record AlarmStage
@@ -237,9 +247,12 @@ public record ProjectileExplosionParams
     [JsonPropertyName("ArmorDistanceDistanceDamage")]
     public Vector3 ArmorDistanceDistanceDamage { get; set; }
 
+    [JsonPropertyName("DeadlyDistance")]
+    public float DeadlyDistance { get; set; }
+
     // Checked in client
     [JsonPropertyName("MinExplosionDistance")]
-    public double MinExplosionDistance { get; set; }
+    public float MinExplosionDistance { get; set; }
 
     [JsonPropertyName("MaxExplosionDistance")]
     public float MaxExplosionDistance { get; set; }
@@ -249,31 +262,43 @@ public record ProjectileExplosionParams
     public int FragmentsCount { get; set; }
 
     [JsonPropertyName("Strength")]
-    public double Strength { get; set; }
+    public float Strength { get; set; }
+
+    [JsonPropertyName("FragmentType")]
+    public string FragmentType { get; set; } = string.Empty;
 
     // Checked in client
     [JsonPropertyName("ArmorDamage")]
-    public double ArmorDamage { get; set; }
+    public float ArmorDamage { get; set; }
 
     // Checked in client
     [JsonPropertyName("StaminaBurnRate")]
-    public double StaminaBurnRate { get; set; }
+    public float StaminaBurnRate { get; set; }
 
     // Checked in client
     [JsonPropertyName("PenetrationPower")]
-    public double PenetrationPower { get; set; }
+    public float PenetrationPower { get; set; }
 
     [JsonPropertyName("DirectionalDamageAngle")]
-    public double DirectionalDamageAngle { get; set; }
+    public float DirectionalDamageAngle { get; set; }
 
     [JsonPropertyName("DirectionalDamageMultiplier")]
-    public double DirectionalDamageMultiplier { get; set; }
+    public float DirectionalDamageMultiplier { get; set; }
 
-    [JsonPropertyName("FragmentType")]
-    public string FragmentType { get; set; }
+    [JsonPropertyName("MaxShakeEffectDistance")]
+    public float MaxShakeEffectDistance { get; set; }
 
-    [JsonPropertyName("DeadlyDistance")]
-    public double DeadlyDistance { get; set; }
+    [JsonPropertyName("ShakeEffectExponentValue")]
+    public float ShakeEffectExponentValue { get; set; }
+
+    [JsonPropertyName("CameraPositionShakeStrength")]
+    public float CameraPositionShakeStrength { get; set; }
+
+    [JsonPropertyName("CameraRotationShakeStrength")]
+    public float CameraRotationShakeStrength { get; set; }
+
+    [JsonPropertyName("ShakeTime")]
+    public float ShakeTime { get; set; }
 }
 
 public record GlobalConfig
@@ -297,7 +322,7 @@ public record GlobalConfig
     public bool SkillAtrophy { get; set; }
 
     [JsonPropertyName("exp")]
-    public Exp Exp { get; set; }
+    public required ExpGlobals Exp { get; set; }
 
     [JsonPropertyName("t_base_looting")]
     public double TBaseLooting { get; set; }
@@ -316,6 +341,8 @@ public record GlobalConfig
 
     [JsonPropertyName("MaxBotsAliveOnMapPvE")]
     public double MaxBotsAliveOnMapPvE { get; set; }
+
+    public required int MaxMatchingTimeInSeconds { get; set; }
 
     [JsonPropertyName("RunddansSettings")]
     public RunddansSettings RunddansSettings { get; set; }
@@ -445,7 +472,7 @@ public record GlobalConfig
     public double StomachOverdamage { get; set; }
 
     [JsonPropertyName("Health")]
-    public Health Health { get; set; }
+    public required HealthGlobals Health { get; set; }
 
     [JsonPropertyName("rating")]
     public Rating Rating { get; set; }
@@ -457,7 +484,7 @@ public record GlobalConfig
     public QuestSettings QuestSettings { get; set; }
 
     [JsonPropertyName("RagFair")]
-    public RagFair RagFair { get; set; }
+    public RagfairGlobals RagFair { get; set; }
 
     [JsonPropertyName("handbook")]
     public Handbook Handbook { get; set; }
@@ -592,11 +619,18 @@ public record GlobalConfig
     public Ballistic Ballistic { get; set; }
 
     [JsonPropertyName("RepairSettings")]
-    public RepairSettings RepairSettings { get; set; }
-
-    public CoopSettings CoopSettings { get; set; }
-
-    public PveSettings PveSettings { get; set; }
+    public required RepairSettings RepairSettings { get; set; }
+    public required CoopSettings CoopSettings { get; set; }
+    public required PveSettings PveSettings { get; set; }
+    public required ExtensionsSettings ExtensionsSettings { get; set; }
+    public required IEnumerable<FinalConsequencesSettings> FinalConsequenceSettings { get; set; }
+    public required FinalMissionSettings FinalMissionSettings { get; set; }
+    public required KolotunSettings KolotunSettings { get; set; }
+    public required MatchMakerEstimateSettings MatchMakerEstimateSettings { get; set; }
+    public required PasscodeSettings PasscodeSettings { get; set; }
+    public required SteamStatusSettings SteamStatusSettings { get; set; }
+    public required TutorialGlobals Tutorial { get; set; }
+    public required WishlistSettings WishlistSettings { get; set; }
 }
 
 public record GlobalAudioSettings
@@ -607,10 +641,18 @@ public record GlobalAudioSettings
 
 public record Triggers
 {
-    public Dictionary<string, List<DamageData>> HandlerDamage { get; set; }
+    public required List<HandlerChance> HandlerChance { get; set; }
+    public required Dictionary<string, List<HandlerDamage>> HandlerDamage { get; set; }
 }
 
-public record DamageData
+public record HandlerChance
+{
+    public required double Chance { get; set; }
+
+    public required string Name { get; set; }
+}
+
+public record HandlerDamage
 {
     public int Amount { get; set; }
 
@@ -878,44 +920,73 @@ public record EventWeather
 
 public record TransitSettings
 {
-    [JsonPropertyName("BearPriceMod")]
-    public double BearPriceMod { get; set; }
+    public required double BearPriceMod { get; set; }
 
-    [JsonPropertyName("ClearAllPlayerEffectsOnTransit")]
-    public bool ClearAllPlayerEffectsOnTransit { get; set; }
+    public required bool ClearAllPlayerEffectsOnTransit { get; set; }
 
-    [JsonPropertyName("CoefficientDiscountCharisma")]
-    public double CoefficientDiscountCharisma { get; set; }
+    public required double CoefficientDiscountCharisma { get; set; }
 
-    [JsonPropertyName("DeliveryMinPrice")]
-    public double DeliveryMinPrice { get; set; }
+    public required double DeliveryMinPrice { get; set; }
 
-    [JsonPropertyName("DeliveryPrice")]
-    public double DeliveryPrice { get; set; }
+    public required double DeliveryPrice { get; set; }
 
-    [JsonPropertyName("ModDeliveryCost")]
-    public double ModDeliveryCost { get; set; }
+    public required double ModDeliveryCost { get; set; }
 
-    [JsonPropertyName("PercentageOfMissingEnergyRestore")]
-    public double PercentageOfMissingEnergyRestore { get; set; }
+    public required double PercentageOfMissingEnergyRestore { get; set; }
 
-    [JsonPropertyName("PercentageOfMissingHealthRestore")]
-    public double PercentageOfMissingHealthRestore { get; set; }
+    public required double PercentageOfMissingHealthRestore { get; set; }
 
-    [JsonPropertyName("PercentageOfMissingWaterRestore")]
-    public double PercentageOfMissingWaterRestore { get; set; }
+    public required double PercentageOfMissingWaterRestore { get; set; }
 
-    [JsonPropertyName("RestoreHealthOnDestroyedParts")]
-    public bool RestoreHealthOnDestroyedParts { get; set; }
+    public required bool RestoreHealthOnDestroyedParts { get; set; }
 
-    [JsonPropertyName("ScavPriceMod")]
-    public double ScavPriceMod { get; set; }
+    public required double ScavPriceMod { get; set; }
 
-    [JsonPropertyName("UsecPriceMod")]
-    public double UsecPriceMod { get; set; }
+    public required Dictionary<string, TransitRequirementReference> TransitRequirementsReferences { get; set; } = [];
+
+    public required double UsecPriceMod { get; set; }
 
     [JsonPropertyName("active")]
-    public bool Active { get; set; }
+    public required bool Active { get; set; }
+}
+
+public record TransitRequirementReference
+{
+    public required bool CanPassParties { get; set; }
+
+    public required string CanPassPartiesTip { get; set; }
+
+    public required string ConditionalTipKey { get; set; }
+
+    public required string ConfirmWindowTipKey { get; set; }
+
+    public required int EndHour { get; set; }
+
+    public required string FirstItemID { get; set; }
+
+    public required bool NeedConditionalItemCondition { get; set; }
+
+    public required bool NeedConfirmWindowCondition { get; set; }
+
+    public required bool NeedQuestRequirement { get; set; }
+
+    public required bool NeedTimeWindowCondition { get; set; }
+
+    public required string QuestRequirementTipKey { get; set; }
+
+    public required List<TransitQuestTemplateId> QuestTemplateIds { get; set; } = [];
+
+    public required string SecondItemID { get; set; }
+
+    public required int StartHour { get; set; }
+
+    public required string TimeTipKey { get; set; }
+}
+
+public record TransitQuestTemplateId
+{
+    [JsonPropertyName("questId")]
+    public required string QuestId { get; set; }
 }
 
 public record TripwiresSettings
@@ -1152,172 +1223,6 @@ public record Content
     public string Root { get; set; }
 }
 
-public record Exp
-{
-    [JsonPropertyName("heal")]
-    public Heal Heal { get; set; }
-
-    [JsonPropertyName("match_end")]
-    public MatchEnd MatchEnd { get; set; }
-
-    [JsonPropertyName("kill")]
-    public Kill Kill { get; set; }
-
-    [JsonPropertyName("level")]
-    public Level Level { get; set; }
-
-    [JsonPropertyName("loot_attempts")]
-    public IEnumerable<LootAttempt> LootAttempts { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("expForLevelOneDogtag")]
-    public double ExpForLevelOneDogtag { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("expForLockedDoorOpen")]
-    public int ExpForLockedDoorOpen { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("expForLockedDoorBreach")]
-    public int ExpForLockedDoorBreach { get; set; }
-
-    [JsonPropertyName("triggerMult")]
-    public double TriggerMult { get; set; }
-}
-
-public record Heal
-{
-    [JsonPropertyName("expForHeal")]
-    public double ExpForHeal { get; set; }
-
-    [JsonPropertyName("expForHydration")]
-    public double ExpForHydration { get; set; }
-
-    [JsonPropertyName("expForEnergy")]
-    public double ExpForEnergy { get; set; }
-}
-
-public record MatchEnd
-{
-    [JsonPropertyName("README")]
-    public string ReadMe { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("survived_exp_requirement")]
-    public int SurvivedExperienceRequirement { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("survived_seconds_requirement")]
-    public int SurvivedSecondsRequirement { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("survived_exp_reward")]
-    public int SurvivedExperienceReward { get; set; }
-
-    // Confirmed in client
-    [JsonPropertyName("mia_exp_reward")]
-    public int MiaExperienceReward { get; set; }
-
-    [JsonPropertyName("runner_exp_reward")]
-    public int RunnerExperienceReward { get; set; }
-
-    [JsonPropertyName("leftMult")]
-    public double LeftMultiplier { get; set; }
-
-    [JsonPropertyName("miaMult")]
-    public double MiaMultiplier { get; set; }
-
-    [JsonPropertyName("survivedMult")]
-    public double SurvivedMultiplier { get; set; }
-
-    [JsonPropertyName("runnerMult")]
-    public double RunnerMultiplier { get; set; }
-
-    [JsonPropertyName("killedMult")]
-    public double KilledMultiplier { get; set; }
-
-    [JsonPropertyName("transit_exp_reward")]
-    public double TransitExperienceReward { get; set; }
-
-    [JsonPropertyName("transit_mult")]
-    public IEnumerable<Dictionary<string, double>> TransitMultiplier { get; set; }
-}
-
-public record Kill
-{
-    [JsonPropertyName("combo")]
-    public required Combo[] Combos { get; set; }
-
-    [JsonPropertyName("victimLevelExp")]
-    public double VictimLevelExperience { get; set; }
-
-    [JsonPropertyName("headShotMult")]
-    public double HeadShotMultiplier { get; set; }
-
-    [JsonPropertyName("expOnDamageAllHealth")]
-    public double ExperienceOnDamageAllHealth { get; set; }
-
-    [JsonPropertyName("longShotDistance")]
-    public double LongShotDistance { get; set; }
-
-    [JsonPropertyName("bloodLossToLitre")]
-    public double BloodLossToLitre { get; set; }
-
-    [JsonPropertyName("botExpOnDamageAllHealth")]
-    public double BotExperienceOnDamageAllHealth { get; set; }
-
-    [JsonPropertyName("botHeadShotMult")]
-    public double BotHeadShotMultiplier { get; set; }
-
-    [JsonPropertyName("victimBotLevelExp")]
-    public double VictimBotLevelExperience { get; set; }
-
-    [JsonPropertyName("pmcExpOnDamageAllHealth")]
-    public double PmcExperienceOnDamageAllHealth { get; set; }
-
-    [JsonPropertyName("pmcHeadShotMult")]
-    public double PmcHeadShotMultiplier { get; set; }
-}
-
-public record Combo
-{
-    [JsonPropertyName("percent")]
-    public double Percentage { get; set; }
-}
-
-public record Level
-{
-    [JsonPropertyName("exp_table")]
-    public required ExpTable[] ExperienceTable { get; set; }
-
-    [JsonPropertyName("trade_level")]
-    public double TradeLevel { get; set; }
-
-    [JsonPropertyName("savage_level")]
-    public double SavageLevel { get; set; }
-
-    [JsonPropertyName("clan_level")]
-    public double ClanLevel { get; set; }
-
-    [JsonPropertyName("mastering1")]
-    public double Mastering1 { get; set; }
-
-    [JsonPropertyName("mastering2")]
-    public double Mastering2 { get; set; }
-}
-
-public record ExpTable
-{
-    [JsonPropertyName("exp")]
-    public int Experience { get; set; }
-}
-
-public record LootAttempt
-{
-    [JsonPropertyName("k_exp")]
-    public double ExperiencePoints { get; set; }
-}
-
 public record Armor
 {
     [JsonPropertyName("class")]
@@ -1367,6 +1272,9 @@ public record Customization
 
     [JsonPropertyName("BodyParts")]
     public BodyParts BodyParts { get; set; }
+
+    [JsonPropertyName("ProfileVersionsBothFactionsSuitsInterface")]
+    public IEnumerable<string> ProfileVersionsBothFactionsSuitsInterface { get; set; }
 }
 
 public record WildHead
@@ -1519,596 +1427,6 @@ public record ArmorType
     public double MaxRepairKitDegradation { get; set; }
 }
 
-public record Health
-{
-    [JsonPropertyName("Falling")]
-    public Falling Falling { get; set; }
-
-    [JsonPropertyName("Effects")]
-    public Effects Effects { get; set; }
-
-    [JsonPropertyName("HealPrice")]
-    public HealPrice HealPrice { get; set; }
-
-    [JsonPropertyName("ProfileHealthSettings")]
-    public ProfileHealthSettings ProfileHealthSettings { get; set; }
-}
-
-public record Falling
-{
-    [JsonPropertyName("DamagePerMeter")]
-    public double DamagePerMeter { get; set; }
-
-    [JsonPropertyName("SafeHeight")]
-    public double SafeHeight { get; set; }
-}
-
-public record Effects
-{
-    [JsonPropertyName("Existence")]
-    public Existence Existence { get; set; }
-
-    [JsonPropertyName("Dehydration")]
-    public Dehydration Dehydration { get; set; }
-
-    [JsonPropertyName("BreakPart")]
-    public BreakPart BreakPart { get; set; }
-
-    [JsonPropertyName("Contusion")]
-    public Contusion Contusion { get; set; }
-
-    [JsonPropertyName("Disorientation")]
-    public Disorientation Disorientation { get; set; }
-
-    [JsonPropertyName("Exhaustion")]
-    public Exhaustion Exhaustion { get; set; }
-
-    [JsonPropertyName("LowEdgeHealth")]
-    public LowEdgeHealth LowEdgeHealth { get; set; }
-
-    [JsonPropertyName("RadExposure")]
-    public RadExposure RadExposure { get; set; }
-
-    [JsonPropertyName("Stun")]
-    public Stun Stun { get; set; }
-
-    [JsonPropertyName("Intoxication")]
-    public Intoxication Intoxication { get; set; }
-
-    [JsonPropertyName("Regeneration")]
-    public Regeneration Regeneration { get; set; }
-
-    [JsonPropertyName("Wound")]
-    public Wound Wound { get; set; }
-
-    [JsonPropertyName("Berserk")]
-    public Berserk Berserk { get; set; }
-
-    [JsonPropertyName("Flash")]
-    public Flash Flash { get; set; }
-
-    [JsonPropertyName("MedEffect")]
-    public MedEffect MedEffect { get; set; }
-
-    [JsonPropertyName("Pain")]
-    public Pain Pain { get; set; }
-
-    [JsonPropertyName("PainKiller")]
-    public PainKiller PainKiller { get; set; }
-
-    [JsonPropertyName("SandingScreen")]
-    public SandingScreen SandingScreen { get; set; }
-
-    [JsonPropertyName("MildMusclePain")]
-    public MusclePainEffect MildMusclePain { get; set; }
-
-    [JsonPropertyName("SevereMusclePain")]
-    public MusclePainEffect SevereMusclePain { get; set; }
-
-    [JsonPropertyName("Stimulator")]
-    public Stimulator Stimulator { get; set; }
-
-    [JsonPropertyName("Tremor")]
-    public Tremor Tremor { get; set; }
-
-    [JsonPropertyName("ChronicStaminaFatigue")]
-    public ChronicStaminaFatigue ChronicStaminaFatigue { get; set; }
-
-    [JsonPropertyName("Fracture")]
-    public Fracture Fracture { get; set; }
-
-    [JsonPropertyName("HeavyBleeding")]
-    public HeavyBleeding HeavyBleeding { get; set; }
-
-    [JsonPropertyName("LightBleeding")]
-    public LightBleeding LightBleeding { get; set; }
-
-    [JsonPropertyName("BodyTemperature")]
-    public BodyTemperature BodyTemperature { get; set; }
-
-    [JsonPropertyName("ZombieInfection")]
-    public ZombieInfection ZombieInfection { get; set; }
-}
-
-public record ZombieInfection
-{
-    [JsonPropertyName("Dehydration")]
-    public double Dehydration { get; set; }
-
-    [JsonPropertyName("HearingDebuffPercentage")]
-    public double HearingDebuffPercentage { get; set; }
-
-    // The C on the Cumulatie down here is the russian C, its encoded differently, I THINK
-    // Just in case, dont change it
-    [JsonPropertyName("СumulativeTime")]
-    public double CumulativeTime { get; set; }
-}
-
-public record Existence
-{
-    [JsonPropertyName("EnergyLoopTime")]
-    public double EnergyLoopTime { get; set; }
-
-    [JsonPropertyName("HydrationLoopTime")]
-    public double HydrationLoopTime { get; set; }
-
-    [JsonPropertyName("EnergyDamage")]
-    public double EnergyDamage { get; set; }
-
-    [JsonPropertyName("HydrationDamage")]
-    public double HydrationDamage { get; set; }
-
-    [JsonPropertyName("DestroyedStomachEnergyTimeFactor")]
-    public double DestroyedStomachEnergyTimeFactor { get; set; }
-
-    [JsonPropertyName("DestroyedStomachHydrationTimeFactor")]
-    public double DestroyedStomachHydrationTimeFactor { get; set; }
-}
-
-public record Dehydration
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("BleedingHealth")]
-    public double BleedingHealth { get; set; }
-
-    [JsonPropertyName("BleedingLoopTime")]
-    public double BleedingLoopTime { get; set; }
-
-    [JsonPropertyName("BleedingLifeTime")]
-    public double BleedingLifeTime { get; set; }
-
-    [JsonPropertyName("DamageOnStrongDehydration")]
-    public double DamageOnStrongDehydration { get; set; }
-
-    [JsonPropertyName("StrongDehydrationLoopTime")]
-    public double StrongDehydrationLoopTime { get; set; }
-}
-
-public record BreakPart
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("HealExperience")]
-    public double HealExperience { get; set; }
-
-    [JsonPropertyName("OfflineDurationMin")]
-    public double OfflineDurationMin { get; set; }
-
-    [JsonPropertyName("OfflineDurationMax")]
-    public double OfflineDurationMax { get; set; }
-
-    [JsonPropertyName("RemovePrice")]
-    public double RemovePrice { get; set; }
-
-    [JsonPropertyName("RemovedAfterDeath")]
-    public bool RemovedAfterDeath { get; set; }
-
-    [JsonPropertyName("BulletHitProbability")]
-    public Probability BulletHitProbability { get; set; }
-
-    [JsonPropertyName("FallingProbability")]
-    public Probability FallingProbability { get; set; }
-}
-
-public record Contusion
-{
-    [JsonPropertyName("Dummy")]
-    public double Dummy { get; set; }
-}
-
-public record Disorientation
-{
-    [JsonPropertyName("Dummy")]
-    public double Dummy { get; set; }
-}
-
-public record Exhaustion
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("Damage")]
-    public double Damage { get; set; }
-
-    [JsonPropertyName("DamageLoopTime")]
-    public double DamageLoopTime { get; set; }
-}
-
-public record LowEdgeHealth
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("StartCommonHealth")]
-    public double StartCommonHealth { get; set; }
-}
-
-public record RadExposure
-{
-    [JsonPropertyName("Damage")]
-    public double Damage { get; set; }
-
-    [JsonPropertyName("DamageLoopTime")]
-    public double DamageLoopTime { get; set; }
-}
-
-public record Stun
-{
-    [JsonPropertyName("Dummy")]
-    public double Dummy { get; set; }
-}
-
-public record Intoxication
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("DamageHealth")]
-    public double DamageHealth { get; set; }
-
-    [JsonPropertyName("HealthLoopTime")]
-    public double HealthLoopTime { get; set; }
-
-    [JsonPropertyName("OfflineDurationMin")]
-    public double OfflineDurationMin { get; set; }
-
-    [JsonPropertyName("OfflineDurationMax")]
-    public double OfflineDurationMax { get; set; }
-
-    [JsonPropertyName("RemovedAfterDeath")]
-    public bool RemovedAfterDeath { get; set; }
-
-    [JsonPropertyName("HealExperience")]
-    public double HealExperience { get; set; }
-
-    [JsonPropertyName("RemovePrice")]
-    public double RemovePrice { get; set; }
-}
-
-public record Regeneration
-{
-    [JsonPropertyName("LoopTime")]
-    public double LoopTime { get; set; }
-
-    [JsonPropertyName("MinimumHealthPercentage")]
-    public double MinimumHealthPercentage { get; set; }
-
-    [JsonPropertyName("Energy")]
-    public double Energy { get; set; }
-
-    [JsonPropertyName("Hydration")]
-    public double Hydration { get; set; }
-
-    [JsonPropertyName("BodyHealth")]
-    public BodyHealth BodyHealth { get; set; }
-
-    [JsonPropertyName("Influences")]
-    public Influences Influences { get; set; }
-}
-
-public record BodyHealth
-{
-    [JsonPropertyName("Head")]
-    public BodyHealthValue Head { get; set; }
-
-    [JsonPropertyName("Chest")]
-    public BodyHealthValue Chest { get; set; }
-
-    [JsonPropertyName("Stomach")]
-    public BodyHealthValue Stomach { get; set; }
-
-    [JsonPropertyName("LeftArm")]
-    public BodyHealthValue LeftArm { get; set; }
-
-    [JsonPropertyName("RightArm")]
-    public BodyHealthValue RightArm { get; set; }
-
-    [JsonPropertyName("LeftLeg")]
-    public BodyHealthValue LeftLeg { get; set; }
-
-    [JsonPropertyName("RightLeg")]
-    public BodyHealthValue RightLeg { get; set; }
-}
-
-public record BodyHealthValue
-{
-    [JsonPropertyName("Value")]
-    public double Value { get; set; }
-}
-
-public record Influences
-{
-    [JsonPropertyName("LightBleeding")]
-    public Influence LightBleeding { get; set; }
-
-    [JsonPropertyName("HeavyBleeding")]
-    public Influence HeavyBleeding { get; set; }
-
-    [JsonPropertyName("Fracture")]
-    public Influence Fracture { get; set; }
-
-    [JsonPropertyName("RadExposure")]
-    public Influence RadExposure { get; set; }
-
-    [JsonPropertyName("Intoxication")]
-    public Influence Intoxication { get; set; }
-}
-
-public record Influence
-{
-    [JsonPropertyName("HealthSlowDownPercentage")]
-    public double HealthSlowDownPercentage { get; set; }
-
-    [JsonPropertyName("EnergySlowDownPercentage")]
-    public double EnergySlowDownPercentage { get; set; }
-
-    [JsonPropertyName("HydrationSlowDownPercentage")]
-    public double HydrationSlowDownPercentage { get; set; }
-}
-
-public record Wound
-{
-    [JsonPropertyName("WorkingTime")]
-    public double WorkingTime { get; set; }
-
-    [JsonPropertyName("ThresholdMin")]
-    public double ThresholdMin { get; set; }
-
-    [JsonPropertyName("ThresholdMax")]
-    public double ThresholdMax { get; set; }
-}
-
-public record Berserk
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("WorkingTime")]
-    public double WorkingTime { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-}
-
-public record Flash
-{
-    [JsonPropertyName("Dummy")]
-    public double Dummy { get; set; }
-}
-
-public record MedEffect
-{
-    [JsonPropertyName("LoopTime")]
-    public double LoopTime { get; set; }
-
-    [JsonPropertyName("StartDelay")]
-    public double StartDelay { get; set; }
-
-    [JsonPropertyName("DrinkStartDelay")]
-    public double DrinkStartDelay { get; set; }
-
-    [JsonPropertyName("FoodStartDelay")]
-    public double FoodStartDelay { get; set; }
-
-    [JsonPropertyName("DrugsStartDelay")]
-    public double DrugsStartDelay { get; set; }
-
-    [JsonPropertyName("MedKitStartDelay")]
-    public double MedKitStartDelay { get; set; }
-
-    [JsonPropertyName("MedicalStartDelay")]
-    public double MedicalStartDelay { get; set; }
-
-    [JsonPropertyName("StimulatorStartDelay")]
-    public double StimulatorStartDelay { get; set; }
-}
-
-public record Pain
-{
-    [JsonPropertyName("TremorDelay")]
-    public double TremorDelay { get; set; }
-
-    [JsonPropertyName("HealExperience")]
-    public double HealExperience { get; set; }
-}
-
-public record PainKiller
-{
-    public double Dummy { get; set; }
-}
-
-public record SandingScreen
-{
-    public double Dummy { get; set; }
-}
-
-public record MusclePainEffect
-{
-    public double GymEffectivity { get; set; }
-
-    public double OfflineDurationMax { get; set; }
-
-    public double OfflineDurationMin { get; set; }
-
-    public double TraumaChance { get; set; }
-}
-
-public record Stimulator
-{
-    public double BuffLoopTime { get; set; }
-
-    public Dictionary<string, IEnumerable<Buff>> Buffs { get; set; }
-}
-
-public record Buff
-{
-    [JsonPropertyName("BuffType")]
-    public string BuffType { get; set; }
-
-    [JsonPropertyName("Chance")]
-    public double Chance { get; set; }
-
-    [JsonPropertyName("Delay")]
-    public double Delay { get; set; }
-
-    [JsonPropertyName("Duration")]
-    public double Duration { get; set; }
-
-    [JsonPropertyName("Value")]
-    public double Value { get; set; }
-
-    [JsonPropertyName("AbsoluteValue")]
-    public bool AbsoluteValue { get; set; }
-
-    [JsonPropertyName("SkillName")]
-    public string SkillName { get; set; }
-
-    public IEnumerable<string> AppliesTo { get; set; }
-}
-
-public record Tremor
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-}
-
-public record ChronicStaminaFatigue
-{
-    [JsonPropertyName("EnergyRate")]
-    public double EnergyRate { get; set; }
-
-    [JsonPropertyName("WorkingTime")]
-    public double WorkingTime { get; set; }
-
-    [JsonPropertyName("TicksEvery")]
-    public double TicksEvery { get; set; }
-
-    [JsonPropertyName("EnergyRatePerStack")]
-    public double EnergyRatePerStack { get; set; }
-}
-
-public record Fracture
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("HealExperience")]
-    public double HealExperience { get; set; }
-
-    [JsonPropertyName("OfflineDurationMin")]
-    public double OfflineDurationMin { get; set; }
-
-    [JsonPropertyName("OfflineDurationMax")]
-    public double OfflineDurationMax { get; set; }
-
-    [JsonPropertyName("RemovePrice")]
-    public double RemovePrice { get; set; }
-
-    [JsonPropertyName("RemovedAfterDeath")]
-    public bool RemovedAfterDeath { get; set; }
-
-    [JsonPropertyName("BulletHitProbability")]
-    public Probability BulletHitProbability { get; set; }
-
-    [JsonPropertyName("FallingProbability")]
-    public Probability FallingProbability { get; set; }
-}
-
-public record HeavyBleeding
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("DamageEnergy")]
-    public double DamageEnergy { get; set; }
-
-    [JsonPropertyName("DamageHealth")]
-    public double DamageHealth { get; set; }
-
-    [JsonPropertyName("EnergyLoopTime")]
-    public double EnergyLoopTime { get; set; }
-
-    [JsonPropertyName("HealthLoopTime")]
-    public double HealthLoopTime { get; set; }
-
-    [JsonPropertyName("DamageHealthDehydrated")]
-    public double DamageHealthDehydrated { get; set; }
-
-    [JsonPropertyName("HealthLoopTimeDehydrated")]
-    public double HealthLoopTimeDehydrated { get; set; }
-
-    [JsonPropertyName("LifeTimeDehydrated")]
-    public double LifeTimeDehydrated { get; set; }
-
-    [JsonPropertyName("EliteVitalityDuration")]
-    public double EliteVitalityDuration { get; set; }
-
-    [JsonPropertyName("HealExperience")]
-    public double HealExperience { get; set; }
-
-    [JsonPropertyName("OfflineDurationMin")]
-    public double OfflineDurationMin { get; set; }
-
-    [JsonPropertyName("OfflineDurationMax")]
-    public double OfflineDurationMax { get; set; }
-
-    [JsonPropertyName("RemovePrice")]
-    public double RemovePrice { get; set; }
-
-    [JsonPropertyName("RemovedAfterDeath")]
-    public bool RemovedAfterDeath { get; set; }
-
-    [JsonPropertyName("Probability")]
-    public Probability Probability { get; set; }
-}
-
 public record Probability
 {
     [JsonPropertyName("FunctionType")]
@@ -2122,171 +1440,6 @@ public record Probability
 
     [JsonPropertyName("Threshold")]
     public double Threshold { get; set; }
-}
-
-public record LightBleeding
-{
-    [JsonPropertyName("DefaultDelay")]
-    public double DefaultDelay { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("DamageEnergy")]
-    public double DamageEnergy { get; set; }
-
-    [JsonPropertyName("DamageHealth")]
-    public double DamageHealth { get; set; }
-
-    [JsonPropertyName("EnergyLoopTime")]
-    public double EnergyLoopTime { get; set; }
-
-    [JsonPropertyName("HealthLoopTime")]
-    public double HealthLoopTime { get; set; }
-
-    [JsonPropertyName("DamageHealthDehydrated")]
-    public double DamageHealthDehydrated { get; set; }
-
-    [JsonPropertyName("HealthLoopTimeDehydrated")]
-    public double HealthLoopTimeDehydrated { get; set; }
-
-    [JsonPropertyName("LifeTimeDehydrated")]
-    public double LifeTimeDehydrated { get; set; }
-
-    [JsonPropertyName("EliteVitalityDuration")]
-    public double EliteVitalityDuration { get; set; }
-
-    [JsonPropertyName("HealExperience")]
-    public double HealExperience { get; set; }
-
-    [JsonPropertyName("OfflineDurationMin")]
-    public double OfflineDurationMin { get; set; }
-
-    [JsonPropertyName("OfflineDurationMax")]
-    public double OfflineDurationMax { get; set; }
-
-    [JsonPropertyName("RemovePrice")]
-    public double RemovePrice { get; set; }
-
-    [JsonPropertyName("RemovedAfterDeath")]
-    public bool RemovedAfterDeath { get; set; }
-
-    [JsonPropertyName("Probability")]
-    public Probability Probability { get; set; }
-}
-
-public record BodyTemperature
-{
-    [JsonPropertyName("DefaultBuildUpTime")]
-    public double DefaultBuildUpTime { get; set; }
-
-    [JsonPropertyName("DefaultResidueTime")]
-    public double DefaultResidueTime { get; set; }
-
-    [JsonPropertyName("LoopTime")]
-    public double LoopTime { get; set; }
-}
-
-public record HealPrice
-{
-    [JsonPropertyName("HealthPointPrice")]
-    public double HealthPointPrice { get; set; }
-
-    [JsonPropertyName("HydrationPointPrice")]
-    public double HydrationPointPrice { get; set; }
-
-    [JsonPropertyName("EnergyPointPrice")]
-    public double EnergyPointPrice { get; set; }
-
-    [JsonPropertyName("TrialLevels")]
-    public double TrialLevels { get; set; }
-
-    [JsonPropertyName("TrialRaids")]
-    public double TrialRaids { get; set; }
-}
-
-public record ProfileHealthSettings
-{
-    [JsonPropertyName("BodyPartsSettings")]
-    public BodyPartsSettings BodyPartsSettings { get; set; }
-
-    [JsonPropertyName("HealthFactorsSettings")]
-    public HealthFactorsSettings HealthFactorsSettings { get; set; }
-
-    [JsonPropertyName("DefaultStimulatorBuff")]
-    public string DefaultStimulatorBuff { get; set; }
-}
-
-public record BodyPartsSettings
-{
-    [JsonPropertyName("Head")]
-    public BodyPartsSetting Head { get; set; }
-
-    [JsonPropertyName("Chest")]
-    public BodyPartsSetting Chest { get; set; }
-
-    [JsonPropertyName("Stomach")]
-    public BodyPartsSetting Stomach { get; set; }
-
-    [JsonPropertyName("LeftArm")]
-    public BodyPartsSetting LeftArm { get; set; }
-
-    [JsonPropertyName("RightArm")]
-    public BodyPartsSetting RightArm { get; set; }
-
-    [JsonPropertyName("LeftLeg")]
-    public BodyPartsSetting LeftLeg { get; set; }
-
-    [JsonPropertyName("RightLeg")]
-    public BodyPartsSetting RightLeg { get; set; }
-}
-
-public record BodyPartsSetting
-{
-    [JsonPropertyName("Minimum")]
-    public double Minimum { get; set; }
-
-    [JsonPropertyName("Maximum")]
-    public double Maximum { get; set; }
-
-    [JsonPropertyName("Default")]
-    public double Default { get; set; }
-
-    [JsonPropertyName("EnvironmentDamageMultiplier")]
-    public float EnvironmentDamageMultiplier { get; set; }
-
-    [JsonPropertyName("OverDamageReceivedMultiplier")]
-    public float OverDamageReceivedMultiplier { get; set; }
-}
-
-public record HealthFactorsSettings
-{
-    [JsonPropertyName("Energy")]
-    public HealthFactorSetting Energy { get; set; }
-
-    [JsonPropertyName("Hydration")]
-    public HealthFactorSetting Hydration { get; set; }
-
-    [JsonPropertyName("Temperature")]
-    public HealthFactorSetting Temperature { get; set; }
-
-    [JsonPropertyName("Poisoning")]
-    public HealthFactorSetting Poisoning { get; set; }
-
-    [JsonPropertyName("Radiation")]
-    public HealthFactorSetting Radiation { get; set; }
-}
-
-public record HealthFactorSetting
-{
-    [JsonPropertyName("Minimum")]
-    public double Minimum { get; set; }
-
-    [JsonPropertyName("Maximum")]
-    public double Maximum { get; set; }
-
-    [JsonPropertyName("Default")]
-    public double Default { get; set; }
 }
 
 public record Rating
@@ -2352,170 +1505,6 @@ public record TournamentCategories
     public bool Dogtags { get; set; }
 }
 
-public record RagFair
-{
-    [JsonPropertyName("enabled")]
-    public bool Enabled { get; set; }
-
-    [JsonPropertyName("priceStabilizerEnabled")]
-    public bool PriceStabilizerEnabled { get; set; }
-
-    [JsonPropertyName("includePveTraderSales")]
-    public bool IncludePveTraderSales { get; set; }
-
-    [JsonPropertyName("priceStabilizerStartIntervalInHours")]
-    public double PriceStabilizerStartIntervalInHours { get; set; }
-
-    // Checked in client
-    [JsonPropertyName("minUserLevel")]
-    public int MinUserLevel { get; set; }
-
-    [JsonPropertyName("communityTax")]
-    public float CommunityTax { get; set; }
-
-    [JsonPropertyName("communityItemTax")]
-    public float CommunityItemTax { get; set; }
-
-    // Checked in client
-    [JsonPropertyName("communityRequirementTax")]
-    public double CommunityRequirementTax { get; set; }
-
-    [JsonPropertyName("offerPriorityCost")]
-    public float OfferPriorityCost { get; set; }
-
-    [JsonPropertyName("offerDurationTimeInHour")]
-    public double OfferDurationTimeInHour { get; set; }
-
-    [JsonPropertyName("offerDurationTimeInHourAfterRemove")]
-    public double OfferDurationTimeInHourAfterRemove { get; set; }
-
-    [JsonPropertyName("priorityTimeModifier")]
-    public float PriorityTimeModifier { get; set; }
-
-    [JsonPropertyName("maxRenewOfferTimeInHour")]
-    public double MaxRenewOfferTimeInHour { get; set; }
-
-    [JsonPropertyName("renewPricePerHour")]
-    public float RenewPricePerHour { get; set; }
-
-    [JsonPropertyName("maxActiveOfferCount")]
-    public IEnumerable<MaxActiveOfferCount> MaxActiveOfferCount { get; set; }
-
-    [JsonPropertyName("balancerRemovePriceCoefficient")]
-    public float BalancerRemovePriceCoefficient { get; set; }
-
-    [JsonPropertyName("balancerMinPriceCount")]
-    public float BalancerMinPriceCount { get; set; }
-
-    [JsonPropertyName("balancerAveragePriceCoefficient")]
-    public float BalancerAveragePriceCoefficient { get; set; }
-
-    [JsonPropertyName("delaySinceOfferAdd")]
-    public int DelaySinceOfferAdd { get; set; }
-
-    [JsonPropertyName("uniqueBuyerTimeoutInDays")]
-    public double UniqueBuyerTimeoutInDays { get; set; }
-
-    [JsonPropertyName("userRatingChangeFrequencyMultiplayer")]
-    public float UserRatingChangeFrequencyMultiplayer { get; set; }
-
-    [JsonPropertyName("RagfairTurnOnTimestamp")]
-    public long RagfairTurnOnTimestamp { get; set; }
-
-    [JsonPropertyName("ratingSumForIncrease")]
-    public double RatingSumForIncrease { get; set; }
-
-    [JsonPropertyName("ratingIncreaseCount")]
-    public double RatingIncreaseCount { get; set; }
-
-    [JsonPropertyName("ratingSumForDecrease")]
-    public double RatingSumForDecrease { get; set; }
-
-    [JsonPropertyName("ratingDecreaseCount")]
-    public double RatingDecreaseCount { get; set; }
-
-    [JsonPropertyName("maxSumForIncreaseRatingPerOneSale")]
-    public double MaxSumForIncreaseRatingPerOneSale { get; set; }
-
-    [JsonPropertyName("maxSumForDecreaseRatingPerOneSale")]
-    public double MaxSumForDecreaseRatingPerOneSale { get; set; }
-
-    [JsonPropertyName("maxSumForRarity")]
-    public MaxSumForRarity MaxSumForRarity { get; set; }
-
-    [JsonPropertyName("ChangePriceCoef")]
-    public double ChangePriceCoef { get; set; }
-
-    [JsonPropertyName("ItemRestrictions")]
-    public IEnumerable<ItemGlobalRestrictions> ItemRestrictions { get; set; }
-
-    [JsonPropertyName("balancerUserItemSaleCooldownEnabled")]
-    public bool BalancerUserItemSaleCooldownEnabled { get; set; }
-
-    [JsonPropertyName("balancerUserItemSaleCooldown")]
-    public float BalancerUserItemSaleCooldown { get; set; }
-
-    [JsonPropertyName("youSellOfferMaxStorageTimeInHour")]
-    public double YouSellOfferMaxStorageTimeInHour { get; set; }
-
-    [JsonPropertyName("yourOfferDidNotSellMaxStorageTimeInHour")]
-    public double YourOfferDidNotSellMaxStorageTimeInHour { get; set; }
-
-    [JsonPropertyName("isOnlyFoundInRaidAllowed")]
-    public bool IsOnlyFoundInRaidAllowed { get; set; }
-
-    [JsonPropertyName("sellInOnePiece")]
-    public double SellInOnePiece { get; set; }
-}
-
-public record ItemGlobalRestrictions
-{
-    [JsonPropertyName("MaxFlea")]
-    public double MaxFlea { get; set; }
-
-    [JsonPropertyName("MaxFleaStacked")]
-    public double MaxFleaStacked { get; set; }
-
-    [JsonPropertyName("TemplateId")]
-    public MongoId TemplateId { get; set; }
-}
-
-public record MaxActiveOfferCount
-{
-    [JsonPropertyName("from")]
-    public double From { get; set; }
-
-    [JsonPropertyName("to")]
-    public double To { get; set; }
-
-    [JsonPropertyName("count")]
-    public double Count { get; set; }
-
-    [JsonPropertyName("countForSpecialEditions")]
-    public double CountForSpecialEditions { get; set; }
-}
-
-public record MaxSumForRarity
-{
-    [JsonPropertyName("Common")]
-    public RarityMaxSum Common { get; set; }
-
-    [JsonPropertyName("Rare")]
-    public RarityMaxSum Rare { get; set; }
-
-    [JsonPropertyName("Superrare")]
-    public RarityMaxSum Superrare { get; set; }
-
-    [JsonPropertyName("Not_exist")]
-    public RarityMaxSum NotExist { get; set; }
-}
-
-public record RarityMaxSum
-{
-    [JsonPropertyName("value")]
-    public double Value { get; set; }
-}
-
 public record Handbook
 {
     [JsonPropertyName("defaultCategory")]
@@ -2524,162 +1513,68 @@ public record Handbook
 
 public record Stamina
 {
-    [JsonPropertyName("Capacity")]
-    public double Capacity { get; set; }
+    public required Vector3 AimConsumptionByPose { get; set; }
+    public required double AimDrainRate { get; set; }
+    public required double AimRangeFinderDrainRate { get; set; }
+    public required double AimingSpeedMultiplier { get; set; }
+    public required double BaseHoldBreathConsumption { get; set; }
+    public required Vector3 BaseOverweightLimits { get; set; }
+    public required double BaseRestorationRate { get; set; }
+    public required double BipodAimDrainRateMultiplier { get; set; }
+    public required double Capacity { get; set; }
+    public required Vector3 ClimbLegsConsumption { get; set; }
+    public required Vector3 ClimbOneHandConsumption { get; set; }
+    public required Vector3 ClimbTwoHandsConsumption { get; set; }
+    public required Vector3 CrouchConsumption { get; set; }
+    public required List<CrouchLevelConsumptionMultiplier> CrouchLevelConsumptionMultipliers { get; set; }
+    public required double ExhaustedMeleeDamageMultiplier { get; set; }
+    public required double ExhaustedMeleeSpeed { get; set; }
+    public required double FallDamageMultiplier { get; set; }
+    public required double FatigueAmountToCreateEffect { get; set; }
+    public required double FatigueRestorationRate { get; set; }
+    public required double GrenadeHighThrow { get; set; }
+    public required double GrenadeLowThrow { get; set; }
+    public required double HandsCapacity { get; set; }
+    public required double HandsRestoration { get; set; }
+    public required Vector3 HoldBreathStaminaMultiplier { get; set; }
+    public required double JumpConsumption { get; set; }
+    public required double MountingHorizontalAimDrainRateMultiplier { get; set; }
+    public required double MountingVerticalAimDrainRateMultiplier { get; set; }
+    public required Vector3 OverweightConsumptionByPose { get; set; }
+    public required double OxygenCapacity { get; set; }
+    public required double OxygenRestoration { get; set; }
+    public required Vector3 PoseLevelConsumptionPerNotch { get; set; }
+    public required Vector3 PoseLevelDecreaseSpeed { get; set; }
+    public required Vector3 PoseLevelIncreaseSpeed { get; set; }
+    public required double ProneConsumption { get; set; }
+    public required Vector3 RestorationMultiplierByPose { get; set; }
+    public required double SafeHeightOverweight { get; set; }
+    public required double SitToStandConsumption { get; set; }
+    public required Vector3 SoundRadius { get; set; }
+    public required double SprintAccelerationLowerLimit { get; set; }
+    public required double SprintDrainRate { get; set; }
+    public required Vector3 SprintOverweightLimits { get; set; }
+    public required double SprintSensitivityLowerLimit { get; set; }
+    public required double SprintSpeedLowerLimit { get; set; }
+    public required bool StaminaExhaustionCausesJiggle { get; set; }
+    public required bool StaminaExhaustionRocksCamera { get; set; }
+    public required bool StaminaExhaustionStartsBreathSound { get; set; }
+    public required Vector3 StandupConsumption { get; set; }
+    public required Vector3 TransitionSpeed { get; set; }
+    public required Vector3 VaultLegsConsumption { get; set; }
+    public required Vector3 VaultOneHandConsumption { get; set; }
+    public required Vector3 WalkConsumption { get; set; }
+    public required Vector3 WalkOverweightLimits { get; set; }
+    public required Vector3 WalkSpeedOverweightLimits { get; set; }
+    public required double WalkVisualEffectMultiplier { get; set; }
+    public required double WeaponFastSwitchConsumption { get; set; }
+}
 
-    [JsonPropertyName("SprintDrainRate")]
-    public double SprintDrainRate { get; set; }
+public record CrouchLevelConsumptionMultiplier
+{
+    public required double PoseLevel { get; set; }
 
-    [JsonPropertyName("BaseRestorationRate")]
-    public double BaseRestorationRate { get; set; }
-
-    [JsonPropertyName("BipodAimDrainRateMultiplier")]
-    public double BipodAimDrainRateMultiplier { get; set; }
-
-    [JsonPropertyName("JumpConsumption")]
-    public double JumpConsumption { get; set; }
-
-    [JsonPropertyName("MountingHorizontalAimDrainRateMultiplier")]
-    public double MountingHorizontalAimDrainRateMultiplier { get; set; }
-
-    [JsonPropertyName("MountingVerticalAimDrainRateMultiplier")]
-    public double MountingVerticalAimDrainRateMultiplier { get; set; }
-
-    [JsonPropertyName("GrenadeHighThrow")]
-    public double GrenadeHighThrow { get; set; }
-
-    [JsonPropertyName("GrenadeLowThrow")]
-    public double GrenadeLowThrow { get; set; }
-
-    [JsonPropertyName("AimDrainRate")]
-    public double AimDrainRate { get; set; }
-
-    [JsonPropertyName("AimRangeFinderDrainRate")]
-    public double AimRangeFinderDrainRate { get; set; }
-
-    [JsonPropertyName("OxygenCapacity")]
-    public double OxygenCapacity { get; set; }
-
-    [JsonPropertyName("OxygenRestoration")]
-    public double OxygenRestoration { get; set; }
-
-    [JsonPropertyName("WalkOverweightLimits")]
-    public Vector3 WalkOverweightLimits { get; set; }
-
-    [JsonPropertyName("BaseOverweightLimits")]
-    public Vector3 BaseOverweightLimits { get; set; }
-
-    [JsonPropertyName("SprintOverweightLimits")]
-    public Vector3 SprintOverweightLimits { get; set; }
-
-    [JsonPropertyName("WalkSpeedOverweightLimits")]
-    public Vector3 WalkSpeedOverweightLimits { get; set; }
-
-    [JsonPropertyName("CrouchConsumption")]
-    public Vector3 CrouchConsumption { get; set; }
-
-    [JsonPropertyName("WalkConsumption")]
-    public Vector3 WalkConsumption { get; set; }
-
-    [JsonPropertyName("StandupConsumption")]
-    public Vector3 StandupConsumption { get; set; }
-
-    [JsonPropertyName("TransitionSpeed")]
-    public Vector3 TransitionSpeed { get; set; }
-
-    [JsonPropertyName("SprintAccelerationLowerLimit")]
-    public double SprintAccelerationLowerLimit { get; set; }
-
-    [JsonPropertyName("SprintSpeedLowerLimit")]
-    public double SprintSpeedLowerLimit { get; set; }
-
-    [JsonPropertyName("SprintSensitivityLowerLimit")]
-    public double SprintSensitivityLowerLimit { get; set; }
-
-    [JsonPropertyName("AimConsumptionByPose")]
-    public Vector3 AimConsumptionByPose { get; set; }
-
-    [JsonPropertyName("RestorationMultiplierByPose")]
-    public Vector3 RestorationMultiplierByPose { get; set; }
-
-    [JsonPropertyName("OverweightConsumptionByPose")]
-    public Vector3 OverweightConsumptionByPose { get; set; }
-
-    [JsonPropertyName("AimingSpeedMultiplier")]
-    public double AimingSpeedMultiplier { get; set; }
-
-    [JsonPropertyName("WalkVisualEffectMultiplier")]
-    public double WalkVisualEffectMultiplier { get; set; }
-
-    [JsonPropertyName("WeaponFastSwitchConsumption")]
-    public double WeaponFastSwitchConsumption { get; set; }
-
-    [JsonPropertyName("HandsCapacity")]
-    public double HandsCapacity { get; set; }
-
-    [JsonPropertyName("HandsRestoration")]
-    public double HandsRestoration { get; set; }
-
-    [JsonPropertyName("ProneConsumption")]
-    public double ProneConsumption { get; set; }
-
-    [JsonPropertyName("BaseHoldBreathConsumption")]
-    public double BaseHoldBreathConsumption { get; set; }
-
-    [JsonPropertyName("SoundRadius")]
-    public Vector3 SoundRadius { get; set; }
-
-    [JsonPropertyName("ExhaustedMeleeSpeed")]
-    public double ExhaustedMeleeSpeed { get; set; }
-
-    [JsonPropertyName("FatigueRestorationRate")]
-    public double FatigueRestorationRate { get; set; }
-
-    [JsonPropertyName("FatigueAmountToCreateEffect")]
-    public double FatigueAmountToCreateEffect { get; set; }
-
-    [JsonPropertyName("ExhaustedMeleeDamageMultiplier")]
-    public double ExhaustedMeleeDamageMultiplier { get; set; }
-
-    [JsonPropertyName("FallDamageMultiplier")]
-    public double FallDamageMultiplier { get; set; }
-
-    [JsonPropertyName("SafeHeightOverweight")]
-    public double SafeHeightOverweight { get; set; }
-
-    [JsonPropertyName("SitToStandConsumption")]
-    public double SitToStandConsumption { get; set; }
-
-    [JsonPropertyName("StaminaExhaustionCausesJiggle")]
-    public bool StaminaExhaustionCausesJiggle { get; set; }
-
-    [JsonPropertyName("StaminaExhaustionStartsBreathSound")]
-    public bool StaminaExhaustionStartsBreathSound { get; set; }
-
-    [JsonPropertyName("StaminaExhaustionRocksCamera")]
-    public bool StaminaExhaustionRocksCamera { get; set; }
-
-    [JsonPropertyName("HoldBreathStaminaMultiplier")]
-    public Vector3 HoldBreathStaminaMultiplier { get; set; }
-
-    [JsonPropertyName("PoseLevelIncreaseSpeed")]
-    public Vector3 PoseLevelIncreaseSpeed { get; set; }
-
-    [JsonPropertyName("PoseLevelDecreaseSpeed")]
-    public Vector3 PoseLevelDecreaseSpeed { get; set; }
-
-    [JsonPropertyName("PoseLevelConsumptionPerNotch")]
-    public Vector3 PoseLevelConsumptionPerNotch { get; set; }
-
-    public Vector3 ClimbLegsConsumption { get; set; }
-
-    public Vector3 ClimbOneHandConsumption { get; set; }
-
-    public Vector3 ClimbTwoHandsConsumption { get; set; }
-
-    public Vector3 VaultLegsConsumption { get; set; }
-
-    public Vector3 VaultOneHandConsumption { get; set; }
+    public required double StaminaMultiplier { get; set; }
 }
 
 public record StaminaRestoration
@@ -3523,8 +2418,11 @@ public record StressResistance
 
 public record Throwing
 {
-    [JsonPropertyName("ThrowAction")]
-    public double ThrowAction { get; set; }
+    public required double AdditiveThrowSpeedPerLevel { get; set; }
+
+    public required double MaxThrowSpeed { get; set; }
+
+    public required double ThrowAction { get; set; }
 }
 
 public record RecoilControl
@@ -4423,9 +3321,173 @@ public record Preset
 
 public record QuestSettings
 {
-    [JsonPropertyName("GlobalRewardRepModifierDailyQuestPvE")]
-    public double GlobalRewardRepModifierDailyQuestPvE { get; set; }
+    public required List<QuestChapter> Chapters { get; set; }
 
-    [JsonPropertyName("GlobalRewardRepModifierQuestPvE")]
-    public double GlobalRewardRepModifierQuestPvE { get; set; }
+    public required double GlobalRewardRepModifierDailyQuestPvE { get; set; }
+
+    public required double GlobalRewardRepModifierQuestPvE { get; set; }
+}
+
+public record QuestChapter
+{
+    public required string ChapterId { get; set; }
+}
+
+public record ExtensionsSettings
+{
+    public required bool Enabled { get; set; }
+    public required string ApparelUrl { get; set; }
+    public required string PveUrl { get; set; }
+    public required string StashRowsUrl { get; set; }
+    public required int MaxStashRows { get; set; }
+}
+
+public record FinalConsequencesSettings
+{
+    public required string LocalizationKeyCaptionPVE { get; set; }
+    public required string LocalizationKeyCaptionPVP { get; set; }
+    public required string QuestTemplateId { get; set; }
+    public required string ViewID { get; set; }
+}
+
+public record FinalMissionSettings
+{
+    public required int EvacuateTime { get; set; }
+    public required List<FinalCutsceneByQuest> FinalCutscenesByQuest { get; set; }
+    public required int LagTimeCompensation { get; set; }
+    public required int MinPlayersToEvac { get; set; }
+    public required Vector2 SeatsRandom { get; set; }
+    public required int TimeOutTimer { get; set; }
+    public required int WaitingRoomTime { get; set; }
+    public required FinalMissionWeatherConfig WeatherConfig { get; set; }
+}
+
+public record KolotunSettings
+{
+    [JsonPropertyName("active")]
+    public required bool Active { get; set; }
+
+    [JsonPropertyName("applyFrozenEverySec")]
+    public required double ApplyFrozenEverySec { get; set; }
+
+    [JsonPropertyName("buffStage1")]
+    public required string BuffStage1 { get; set; }
+
+    [JsonPropertyName("buffStage2")]
+    public required string BuffStage2 { get; set; }
+
+    [JsonPropertyName("damageBodyParts")]
+    public required List<string> DamageBodyParts { get; set; }
+
+    [JsonPropertyName("damageIntervalSec")]
+    public required double DamageIntervalSec { get; set; }
+
+    [JsonPropertyName("damagePerTickMax")]
+    public required double DamagePerTickMax { get; set; }
+
+    [JsonPropertyName("damagePerTickMin")]
+    public required double DamagePerTickMin { get; set; }
+
+    [JsonPropertyName("drunkImmunitySec")]
+    public required double DrunkImmunitySec { get; set; }
+
+    [JsonPropertyName("enableDamage")]
+    public required bool EnableDamage { get; set; }
+
+    [JsonPropertyName("eventStage")]
+    public required int EventStage { get; set; }
+
+    [JsonPropertyName("fireDistanceToHeat")]
+    public required double FireDistanceToHeat { get; set; }
+
+    [JsonPropertyName("initialFrozenDelaySec")]
+    public required double InitialFrozenDelaySec { get; set; }
+
+    [JsonPropertyName("minHealthAfterDamage")]
+    public required double MinHealthAfterDamage { get; set; }
+
+    [JsonPropertyName("protectiveClothes")]
+    public required List<string> ProtectiveClothes { get; set; }
+
+    [JsonPropertyName("soundTicksPerPlay")]
+    public required int SoundTicksPerPlay { get; set; }
+}
+
+public record MatchMakerEstimateSettings
+{
+    [JsonPropertyName("locationLoadTime")]
+    public required List<object> LocationLoadTime { get; set; } = [];
+
+    [JsonPropertyName("pmcPercentile")]
+    public required double PmcPercentile { get; set; }
+
+    [JsonPropertyName("pmcStatisticTime")]
+    public required double PmcStatisticTime { get; set; }
+
+    [JsonPropertyName("pvePercentile")]
+    public required double PvePercentile { get; set; }
+
+    [JsonPropertyName("pveStatisticTime")]
+    public required double PveStatisticTime { get; set; }
+
+    [JsonPropertyName("savagePercentile")]
+    public required double SavagePercentile { get; set; }
+
+    [JsonPropertyName("savageStatisticTime")]
+    public required double SavageStatisticTime { get; set; }
+}
+
+public record SteamStatusSettings
+{
+    public required bool Enabled { get; set; }
+
+    public required int IdleStatusChangeDelaySeconds { get; set; }
+}
+
+public record PasscodeSettings
+{
+    [JsonPropertyName("lists")]
+    public required List<PasscodeList> Lists { get; set; } = [];
+}
+
+public record PasscodeList
+{
+    [JsonPropertyName("listId")]
+    public required string ListId { get; set; }
+
+    [JsonPropertyName("passcodeFormats")]
+    public required string PasscodeFormats { get; set; }
+
+    [JsonPropertyName("passcodes")]
+    public required string Passcodes { get; set; }
+}
+
+public record WishlistSettings
+{
+    public required int MaxItems { get; set; }
+}
+
+public record FinalCutsceneByQuest
+{
+    [JsonPropertyName("finalCutsceneId")]
+    public required string FinalCutsceneId { get; set; }
+
+    [JsonPropertyName("questId")]
+    public required string QuestId { get; set; }
+}
+
+public record FinalMissionWeatherConfig
+{
+    public required float AtmospherePressure { get; set; }
+    public required float Cloudness { get; set; }
+    public required float LyingWater { get; set; }
+    public required float Rain { get; set; }
+    public required float RainRandomness { get; set; }
+    public required float ScaterringFogDensity { get; set; }
+    public required float Temperature { get; set; }
+    public required int TimeHour { get; set; }
+    public required int TimeMinute { get; set; }
+    public required float Turbulence { get; set; }
+    public required float Wind { get; set; }
+    public required float WindDirection { get; set; }
 }
