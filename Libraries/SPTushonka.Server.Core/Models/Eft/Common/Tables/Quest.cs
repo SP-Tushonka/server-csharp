@@ -175,6 +175,9 @@ public record QuestCondition
     [JsonPropertyName("id")]
     public required MongoId Id { get; set; }
 
+    [JsonPropertyName("dialogId")]
+    public MongoId? DialogId { get; set; }
+
     [JsonPropertyName("index")]
     public int? Index { get; set; }
 
@@ -319,6 +322,49 @@ public record QuestCondition
 
     [JsonPropertyName("width")]
     public ValueCompare? Width { get; set; }
+
+    //Todo: doesn't exist in client?
+    [JsonPropertyName("entryPoint")]
+    public object? EntryPoint { get; set; }
+
+    /// <summary>
+    /// Doesn't exist in the client, unsure if read? still exists in models
+    /// </summary>
+    [JsonPropertyName("props")]
+    public QuestConditionProperties? Properties { get; set; }
+
+    [JsonPropertyName("fromTraderId")]
+    public MongoId? FromTraderId { get; set; }
+
+    [JsonPropertyName("questNoteId")]
+    public MongoId? QuestNoteId { get; set; }
+}
+
+public record QuestConditionProperties
+{
+    [JsonPropertyName("index")]
+    public int Index { get; set; }
+
+    [JsonPropertyName("dynamicLocale")]
+    public bool DynamicLocale { get; set; }
+
+    [JsonPropertyName("visibilityConditions")]
+    public List<object>? VisibilityConditions { get; set; }
+
+    [JsonPropertyName("globalQuestCounterId")]
+    public string? GlobalQuestCounterId { get; set; }
+
+    [JsonPropertyName("parentId")]
+    public string? ParentId { get; set; }
+
+    [JsonPropertyName("entryPoint")]
+    public object? EntryPoint { get; set; }
+
+    [JsonPropertyName("dialogId")]
+    public string? DialogId { get; set; }
+
+    [JsonPropertyName("fromTraderId")]
+    public string? FromTraderId { get; set; }
 }
 
 public record QuestConditionCounter

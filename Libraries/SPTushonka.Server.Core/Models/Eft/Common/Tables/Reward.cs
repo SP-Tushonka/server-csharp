@@ -74,6 +74,12 @@ public record Reward
     /// </summary>
     [JsonPropertyName("message")]
     public MongoId? Message { get; set; }
+
+    [JsonPropertyName("isImportant")]
+    public bool? IsImportant { get; set; }
+
+    [JsonPropertyName("isDeliverByMail")]
+    public bool? IsDeliverByMail { get; set; }
 }
 
 public record IllustrationConfig
