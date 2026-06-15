@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using SPTarkov.Server.Core.Models.Eft.Common;
 
 namespace SPTarkov.Server.Core.Models.Spt.Tables;
 
@@ -10,684 +11,707 @@ public record SettingsTable
 
 public record Settings
 {
-    [JsonPropertyName("AFKTimeoutSeconds")]
-    public int AFKTimeoutSeconds { get; set; }
+    public required int AdditionalRandomDelaySeconds { get; set; }
 
-    [JsonPropertyName("AdditionalRandomDelaySeconds")]
-    public int AdditionalRandomDelaySeconds { get; set; }
+    public required int AFKTimeoutSeconds { get; set; }
 
-    [JsonPropertyName("AudioSettings")]
-    public AudioSettings AudioSettings { get; set; }
+    public required AudioSettings AudioSettings { get; set; }
 
-    [JsonPropertyName("ClientSendRateLimit")]
-    public int ClientSendRateLimit { get; set; }
+    public required int ClientSendRateLimit { get; set; }
 
-    [JsonPropertyName("CriticalRetriesCount")]
-    public int CriticalRetriesCount { get; set; }
+    public required bool CollectLoadTimeMetrics { get; set; }
 
-    [JsonPropertyName("DefaultRetriesCount")]
-    public int DefaultRetriesCount { get; set; }
+    public required int CriticalRetriesCount { get; set; }
 
-    [JsonPropertyName("FirstCycleDelaySeconds")]
-    public int FirstCycleDelaySeconds { get; set; }
+    public required int DefaultRetriesCount { get; set; }
 
-    [JsonPropertyName("FramerateLimit")]
-    public FramerateLimit FramerateLimit { get; set; }
+    public required int FirstCycleDelaySeconds { get; set; }
 
-    [JsonPropertyName("GroupStatusInterval")]
-    public int GroupStatusInterval { get; set; }
+    public required FramerateLimit FramerateLimit { get; set; }
 
-    [JsonPropertyName("GroupStatusButtonInterval")]
-    public int GroupStatusButtonInterval { get; set; }
+    public required int GroupStatusButtonInterval { get; set; }
 
-    [JsonPropertyName("KeepAliveInterval")]
-    public int KeepAliveInterval { get; set; }
+    public required int GroupStatusInterval { get; set; }
 
-    [JsonPropertyName("LobbyKeepAliveInterval")]
-    public int LobbyKeepAliveInterval { get; set; }
+    public required int KeepAliveInterval { get; set; }
 
-    [JsonPropertyName("Mark502and504AsNonImportant")]
-    public bool Mark502and504AsNonImportant { get; set; }
+    public required int LobbyConnectionPercentage { get; set; }
 
-    [JsonPropertyName("MemoryManagementSettings")]
-    public MemoryManagementSettings MemoryManagementSettings { get; set; }
+    public required int LobbyKeepAliveInterval { get; set; }
 
-    [JsonPropertyName("NVidiaHighlights")]
-    public bool NVidiaHighlights { get; set; }
+    public required bool Mark502and504AsNonImportant { get; set; }
 
-    [JsonPropertyName("NextCycleDelaySeconds")]
-    public int NextCycleDelaySeconds { get; set; }
+    public required MemoryManagementSettings MemoryManagementSettings { get; set; }
 
-    // TODO: this property currently is an empty array on json
-    [JsonPropertyName("NotifierLobbyAidsForce")]
-    public object[] NotifierLobbyAidsForce { get; set; }
+    public required NetworkStateView NetworkStateView { get; set; }
 
-    [JsonPropertyName("NotifierLobbyPercentage")]
-    public int NotifierLobbyPercentage { get; set; }
+    public required int NextCycleDelaySeconds { get; set; }
 
-    [JsonPropertyName("NotifierUseLobby")]
-    public bool NotifierUseLobby { get; set; }
+    public required List<int> NotifierLobbyAidsForce { get; set; } = [];
 
-    [JsonPropertyName("PingServerResultSendInterval")]
-    public int PingServerResultSendInterval { get; set; }
+    public required int NotifierLobbyPercentage { get; set; }
 
-    [JsonPropertyName("PingServersInterval")]
-    public int PingServersInterval { get; set; }
+    public required bool NotifierUseLobby { get; set; }
 
-    [JsonPropertyName("ReleaseProfiler")]
-    public ReleaseProfiler ReleaseProfiler { get; set; }
+    public required bool NVidiaHighlights { get; set; }
 
-    [JsonPropertyName("RequestConfirmationTimeouts")]
-    public List<double> RequestConfirmationTimeouts { get; set; }
+    public required int PingServerResultSendInterval { get; set; }
 
-    [JsonPropertyName("RequestsMadeThroughLobby")]
-    public List<string> RequestsMadeThroughLobby { get; set; }
+    public required int PingServersInterval { get; set; }
 
-    [JsonPropertyName("SecondCycleDelaySeconds")]
-    public int SecondCycleDelaySeconds { get; set; }
+    public required ReleaseProfiler ReleaseProfiler { get; set; }
 
-    [JsonPropertyName("ShouldEstablishLobbyConnection")]
-    public bool ShouldEstablishLobbyConnection { get; set; }
+    public required List<double> RequestConfirmationTimeouts { get; set; } = [];
 
-    [JsonPropertyName("TurnOffLogging")]
-    public bool TurnOffLogging { get; set; }
+    public required List<string> RequestsMadeThroughLobby { get; set; } = [];
 
-    [JsonPropertyName("WeaponOverlapDistanceCulling")]
-    public int WeaponOverlapDistanceCulling { get; set; }
+    public required int SecondCycleDelaySeconds { get; set; }
 
-    [JsonPropertyName("WebDiagnosticsEnabled")]
-    public bool WebDiagnosticsEnabled { get; set; }
+    public required bool ShouldEstablishLobbyConnection { get; set; }
 
-    [JsonPropertyName("NetworkStateView")]
-    public NetworkStateView NetworkStateView { get; set; }
+    public required int SteamSyncCooldownSeconds { get; set; }
 
-    [JsonPropertyName("WsReconnectionDelays")]
-    public List<int> WsReconnectionDelays { get; set; }
+    public required bool TurnOffLogging { get; set; }
+
+    public required int WeaponOverlapDistanceCulling { get; set; }
+
+    public required bool WebDiagnosticsEnabled { get; set; }
+
+    public required List<int> WsReconnectionDelays { get; set; } = [];
 }
 
 public record AudioSettings
 {
-    [JsonPropertyName("AudioGroupPresets")]
-    public List<AudioGroupPreset> AudioGroupPresets { get; set; }
+    public required List<AudioGroupPreset> AudioGroupPresets { get; set; } = [];
 
-    [JsonPropertyName("EnvironmentSettings")]
-    public EnvironmentSettings EnvironmentSettings { get; set; }
+    public required EnvironmentSettings EnvironmentSettings { get; set; }
 
-    [JsonPropertyName("HeadphonesSettings")]
-    public HeadphoneSettings HeadphonesSettings { get; set; }
+    public required HeadphonesSettings HeadphonesSettings { get; set; }
 
-    [JsonPropertyName("MetaXRAudioPluginSettings")]
-    public MetaXRAudioPluginSettings MetaXRAudioPluginSettings { get; set; }
+    public required MasterMixerSettings MasterMixerSettings { get; set; }
 
-    [JsonPropertyName("OcclusionSettings")]
-    public AudioOcclusionSettings OcclusionSettings { get; set; }
+    public required MetaXRAudioPluginSettings MetaXRAudioPluginSettings { get; set; }
 
-    [JsonPropertyName("PlayerSettings")]
-    public PlayerSettings PlayerSettings { get; set; }
-}
+    public required OcclusionSettings OcclusionSettings { get; set; }
 
-public record FramerateLimit
-{
-    [JsonPropertyName("MaxFramerateGameLimit")]
-    public int MaxFramerateGameLimit { get; set; }
+    public required PlayerSettings PlayerSettings { get; set; }
 
-    [JsonPropertyName("MaxFramerateLobbyLimit")]
-    public int MaxFramerateLobbyLimit { get; set; }
-
-    [JsonPropertyName("MinFramerateLimit")]
-    public int MinFramerateLimit { get; set; }
-}
-
-public record MemoryManagementSettings
-{
-    [JsonPropertyName("AggressiveGC")]
-    public bool AggressiveGC { get; set; }
-
-    [JsonPropertyName("GigabytesRequiredToDisableGCDuringRaid")]
-    public int GigabytesRequiredToDisableGCDuringRaid { get; set; }
-
-    [JsonPropertyName("HeapPreAllocationEnabled")]
-    public bool HeapPreAllocationEnabled { get; set; }
-
-    [JsonPropertyName("HeapPreAllocationMB")]
-    public int HeapPreAllocationMB { get; set; }
-
-    [JsonPropertyName("OverrideRamCleanerSettings")]
-    public bool OverrideRamCleanerSettings { get; set; }
-
-    [JsonPropertyName("RamCleanerEnabled")]
-    public bool RamCleanerEnabled { get; set; }
-}
-
-public record ReleaseProfiler
-{
-    [JsonPropertyName("Enabled")]
-    public bool Enabled { get; set; }
-
-    [JsonPropertyName("MaxRecords")]
-    public int MaxRecords { get; set; }
-
-    [JsonPropertyName("RecordTriggerValue")]
-    public int RecordTriggerValue { get; set; }
-}
-
-public record NetworkStateView
-{
-    [JsonPropertyName("LossThreshold")]
-    public int LossThreshold { get; set; }
-
-    [JsonPropertyName("RttThreshold")]
-    public int RttThreshold { get; set; }
+    public required WeaponSettings WeaponSettings { get; set; }
 }
 
 public record AudioGroupPreset
 {
-    [JsonPropertyName("AngleToAllowBinaural")]
-    public double? AngleToAllowBinaural { get; set; }
+    public required int AngleToAllowBinaural { get; set; }
 
-    [JsonPropertyName("DisabledBinauralByDistance")]
-    public bool? DisabledBinauralByDistance { get; set; }
+    public required bool DisabledBinauralByDistance { get; set; }
 
-    [JsonPropertyName("DistanceToAllowBinaural")]
-    public double? DistanceToAllowBinaural { get; set; }
+    public required int DistanceToAllowBinaural { get; set; }
 
-    [JsonPropertyName("GroupType")]
-    public double? GroupType { get; set; }
+    public required int GroupType { get; set; }
 
-    [JsonPropertyName("HeightToAllowBinaural")]
-    public double? HeightToAllowBinaural { get; set; }
+    public required int HeightToAllowBinaural { get; set; }
 
-    [JsonPropertyName("Name")]
-    public string? Name { get; set; }
+    public required string Name { get; set; } = string.Empty;
 
-    [JsonPropertyName("OcclusionEnabled")]
-    public bool? OcclusionEnabled { get; set; }
+    public required bool OcclusionEnabled { get; set; }
 
-    [JsonPropertyName("OcclusionIntensity")]
-    public double? OcclusionIntensity { get; set; }
+    public required int OcclusionIntensity { get; set; }
 
-    [JsonPropertyName("OcclusionRolloffScale")]
-    public double? OcclusionRolloffScale { get; set; }
+    public required double OcclusionRolloffScale { get; set; }
 
-    [JsonPropertyName("OverallVolume")]
-    public double? OverallVolume { get; set; }
+    public required double OverallVolume { get; set; }
 }
 
 public record EnvironmentSettings
 {
-    [JsonPropertyName("AutumnLateSettings")]
-    public SeasonEnvironmentSettings AutumnLateSettings { get; set; }
+    public required AutumnLateSettings AutumnLateSettings { get; set; }
 
-    [JsonPropertyName("AutumnSettings")]
-    public SeasonEnvironmentSettings AutumnSettings { get; set; }
+    public required AutumnLateSettings AutumnSettings { get; set; }
 
-    [JsonPropertyName("SpringEarlySettings")]
-    public SeasonEnvironmentSettings SpringEarlySettings { get; set; }
+    public required AutumnLateSettings SpringEarlySettings { get; set; }
 
-    [JsonPropertyName("SpringSettings")]
-    public SeasonEnvironmentSettings SpringSettings { get; set; }
+    public required AutumnLateSettings SpringSettings { get; set; }
 
-    [JsonPropertyName("StormSettings")]
-    public SeasonEnvironmentSettings StormSettings { get; set; }
+    public required AutumnLateSettings StormSettings { get; set; }
 
-    [JsonPropertyName("SummerSettings")]
-    public SeasonEnvironmentSettings SummerSettings { get; set; }
+    public required AutumnLateSettings SummerSettings { get; set; }
 
-    [JsonPropertyName("WinterSettings")]
-    public SeasonEnvironmentSettings WinterSettings { get; set; }
+    public required List<SurfaceMultiplier> SurfaceMultipliers { get; set; } = [];
 
-    [JsonPropertyName("SurfaceMultipliers")]
-    public List<SurfaceMultiplier>? SurfaceMultipliers { get; set; }
+    public required AutumnLateSettings WinterSettings { get; set; }
 }
 
-public record SeasonEnvironmentSettings
+public record AutumnLateSettings
 {
-    [JsonPropertyName("RainSettings")]
-    public List<RainSetting> RainSettings { get; set; }
+    public required List<RainSettingsItem> RainSettings { get; set; } = [];
 
-    [JsonPropertyName("StepsVolumeMultiplier")]
-    public double StepsVolumeMultiplier { get; set; }
+    public required double StepsVolumeMultiplier { get; set; }
 
-    [JsonPropertyName("WindMultipliers")]
-    public List<WindMultiplier> WindMultipliers { get; set; }
+    public required List<WindMultiplier> WindMultipliers { get; set; } = [];
 }
 
-public record SurfaceMultiplier
+public record RainSettingsItem
 {
-    public string SurfaceType { get; set; }
+    public required float IndoorVolumeMult { get; set; }
 
-    public double VolumeMult { get; set; }
+    public required float OutdoorVolumeMult { get; set; }
+
+    public required string RainIntensity { get; set; } = string.Empty;
 }
 
 public record WindMultiplier
 {
-    [JsonPropertyName("VolumeMult")]
-    public double VolumeMult { get; set; }
+    public required double VolumeMult { get; set; }
 
-    [JsonPropertyName("WindSpeed")]
-    public string WindSpeed { get; set; }
+    public required string WindSpeed { get; set; } = string.Empty;
 }
 
-public record RainSetting
+public record SurfaceMultiplier
 {
-    [JsonPropertyName("IndoorVolumeMult")]
-    public double IndoorVolumeMult { get; set; }
+    public required string SurfaceType { get; set; } = string.Empty;
 
-    [JsonPropertyName("OutdoorVolumeMult")]
-    public double OutdoorVolumeMult { get; set; }
-
-    [JsonPropertyName("RainIntensity")]
-    public string RainIntensity { get; set; }
+    public required double VolumeMult { get; set; }
 }
 
-public record HeadphoneSettings
+public record HeadphonesSettings
 {
-    public double FadeDuration { get; set; }
+    public required double FadeDuration { get; set; }
 
-    public string FadeIn { get; set; }
+    public required string FadeIn { get; set; } = string.Empty;
 
-    public string FadeOut { get; set; }
+    public required string FadeOut { get; set; } = string.Empty;
+}
+
+public record MasterMixerSettings
+{
+    public required List<ExposedParameterValue> ExposedParameters { get; set; } = [];
+}
+
+public record ExposedParameterValue
+{
+    public required string ExposedParameter { get; set; } = string.Empty;
+
+    public required double Value { get; set; }
 }
 
 public record MetaXRAudioPluginSettings
 {
-    public bool EnabledPluginErrorChecker { get; set; }
-
-    public double OutputVolumeCheckCooldown { get; set; }
-
     [JsonPropertyName("audioGroupAcousticSettings")]
-    public List<AudioGroupAcousticSetting> AudioGroupAcousticSettings { get; set; }
+    public required List<AudioGroupAcousticSettingsItem> AudioGroupAcousticSettings { get; set; } = [];
+
+    public required bool EnabledPluginErrorChecker { get; set; }
+
+    public required bool HardResetEnabled { get; set; }
+
+    public required double OutputVolumeCheckCooldown { get; set; }
+
+    public required double ResetWaitTime { get; set; }
 }
 
-public record AudioGroupAcousticSetting
+public record AudioGroupAcousticSettingsItem
 {
     [JsonPropertyName("acousticSettings")]
-    public AcousticSettings AcousticSettings { get; set; }
+    public required AcousticSettings? AcousticSettings { get; set; }
 
     [JsonPropertyName("groupType")]
-    public string GroupType { get; set; }
+    public required string GroupType { get; set; } = string.Empty;
 }
 
 public record AcousticSettings
 {
     [JsonPropertyName("enabledPrewarm")]
-    public bool enabledPrewarm { get; set; }
+    public required bool EnabledPrewarm { get; set; }
 
     [JsonPropertyName("mono")]
-    public AudioProperties Mono { get; set; }
+    public required Mono Mono { get; set; }
 
     [JsonPropertyName("stereo")]
-    public AudioProperties Stereo { get; set; }
+    public required Mono Stereo { get; set; }
 }
 
-public record AudioProperties
+public record Mono
 {
     [JsonPropertyName("earlyReflectionsSendDb")]
-    public int EarlyReflectionsSendDb { get; set; }
+    public required int EarlyReflectionsSendDb { get; set; }
 
     [JsonPropertyName("enabledReverb")]
-    public bool EnabledReverb { get; set; }
+    public required bool EnabledReverb { get; set; }
 
     [JsonPropertyName("reverbReach")]
-    public double ReverbReach { get; set; }
+    public required double ReverbReach { get; set; }
 
     [JsonPropertyName("reverbSendDb")]
-    public int ReverbSendDb { get; set; }
+    public required int ReverbSendDb { get; set; }
 }
 
-public record AudioOcclusionSettings
+public record PlayerSettings
 {
-    [JsonPropertyName("audioGroupOcclusionSettings")]
-    public List<AudioGroupOcclusionSetting> AudioGroupOcclusionSettings { get; set; }
+    public required int BaseMaxMovementRolloff { get; set; }
 
-    [JsonPropertyName("locationOcclusionSettings")]
-    public LocationOcclusionSettings LocationOcclusionSettings { get; set; }
+    public required int IndoorRolloffMult { get; set; }
+
+    public required ItemInHandsSettings ItemInHandsSettings { get; set; }
+
+    public required PointOfViewSoundValue MinStepSoundRolloffSpeedMult { get; set; }
+
+    public required PointOfViewSoundValue MinStepSoundVolumeMult { get; set; }
+
+    public required PointOfViewSoundValue MinStepSoundVolumeSpeedMult { get; set; }
+
+    public required List<MovementRolloffMultiplier> MovementRolloffMultipliers { get; set; } = [];
+
+    public required double OutdoorRolloffMult { get; set; }
+
+    public required PointOfViewSoundValue SearchSoundVolume { get; set; }
+
+    public required TinnitusEffectConfig TinnitusEffectConfig { get; set; }
 }
 
-public record AudioGroupOcclusionSetting
+public record MovementRolloffMultiplier
 {
-    [JsonPropertyName("groupType")]
-    public string GroupType { get; set; }
+    public required string MovementState { get; set; }
 
-    [JsonPropertyName("occlusionSettings")]
-    public OcclusionSettings OcclusionSettings { get; set; }
+    public required double RolloffMultiplier { get; set; }
 }
 
 public record OcclusionSettings
 {
+    [JsonPropertyName("audioGroupOcclusionSettings")]
+    public required List<AudioGroupOcclusionSettingsItem> AudioGroupOcclusionSettings { get; set; } = [];
+
+    [JsonPropertyName("locationOcclusionSettings")]
+    public required LocationOcclusionSettings LocationOcclusionSettings { get; set; }
+}
+
+public record AudioGroupOcclusionSettingsItem
+{
+    [JsonPropertyName("groupType")]
+    public required string GroupType { get; set; } = string.Empty;
+
+    [JsonPropertyName("occlusionSettings")]
+    public required OcclusionSettings2 OcclusionSettings { get; set; }
+}
+
+public record OcclusionSettings2
+{
     [JsonPropertyName("indoorToOutdoorFactor")]
-    public double IndoorToOutdoorFactor { get; set; }
+    public required double IndoorToOutdoorFactor { get; set; }
 
     [JsonPropertyName("maxQualityFactor")]
-    public double MaxQualityFactor { get; set; }
+    public required double MaxQualityFactor { get; set; }
 
     [JsonPropertyName("obstructionEQPreset")]
-    public EQPreset ObstructionEQPreset { get; set; }
+    public required PropagationEQPreset ObstructionEQPreset { get; set; }
+
+    [JsonPropertyName("obstructionInSameIndoorRoom")]
+    public required bool ObstructionInSameIndoorRoom { get; set; }
 
     [JsonPropertyName("occlusionEnabled")]
-    public bool OcclusionEnabled { get; set; }
+    public required bool OcclusionEnabled { get; set; }
 
     [JsonPropertyName("occlusionIntensity")]
-    public int OcclusionIntensity { get; set; }
+    public required int OcclusionIntensity { get; set; }
 
     [JsonPropertyName("outdoorToIndoorFactor")]
-    public double OutdoorToIndoorFactor { get; set; }
+    public required double OutdoorToIndoorFactor { get; set; }
 
     [JsonPropertyName("propagationEQPreset")]
-    public EQPreset PropagationEQPreset { get; set; }
+    public required PropagationEQPreset PropagationEQPreset { get; set; }
 
     [JsonPropertyName("rolloffScale")]
-    public double RolloffScale { get; set; }
+    public required double RolloffScale { get; set; }
 
     [JsonPropertyName("stairsHeightCurve")]
-    public VolumeCurve StairsHeightCurve { get; set; }
+    public required StairsHeightCurve StairsHeightCurve { get; set; }
 
     [JsonPropertyName("useQualityCompression")]
-    public bool UseQualityCompression { get; set; }
+    public required bool UseQualityCompression { get; set; }
 }
 
-public record EQPreset
-{
-    [JsonPropertyName("distanceCoefficient")]
-    public double DistanceCoefficient { get; set; }
-
-    [JsonPropertyName("environmentVolumeThresholds")]
-    public EnvironmentVolumeThresholds EnvironmentVolumeThresholds { get; set; }
-
-    [JsonPropertyName("heightVolumeCurve")]
-    public VolumeCurve HeightVolumeCurve { get; set; }
-
-    [JsonPropertyName("hpfSettings")]
-    public PfSettings HpfSettings { get; set; }
-
-    [JsonPropertyName("lpfSettings")]
-    public PfSettings LpfSettings { get; set; }
-
-    [JsonPropertyName("rotationCoefficient")]
-    public double RotationCoefficient { get; set; }
-
-    [JsonPropertyName("volumeCurve")]
-    public VolumeCurve VolumeCurve { get; set; }
-}
-
-public record EnvironmentVolumeThresholds
-{
-    [JsonPropertyName("baseValue")]
-    public double BaseValue { get; set; }
-
-    [JsonPropertyName("diffEnvironmentIsolated")]
-    public double DiffEnvironmentIsolated { get; set; }
-
-    [JsonPropertyName("diffRoomsTypeIsolated")]
-    public double DiffRoomsTypeIsolated { get; set; }
-
-    [JsonPropertyName("indoorIsolated")]
-    public double IndoorIsolated { get; set; }
-
-    [JsonPropertyName("indoorToOutdoor")]
-    public double IndoorToOutdoor { get; set; }
-
-    [JsonPropertyName("outdoorToIndoor")]
-    public double OutdoorToIndoor { get; set; }
-}
-
-public record PfSettings
-{
-    [JsonPropertyName("distanceCurve")]
-    public VolumeCurve DistanceCurve { get; set; }
-
-    [JsonPropertyName("environmentEqThresholds")]
-    public EnvironmentEqThresholds EnvironmentEqThresholds { get; set; }
-
-    [JsonPropertyName("frequencyCurve")]
-    public VolumeCurve FrequencyCurve { get; set; }
-
-    [JsonPropertyName("heightCurve")]
-    public VolumeCurve HeightCurve { get; set; }
-
-    [JsonPropertyName("positionEqThresholds")]
-    public PositionEqThresholds PositionEqThresholds { get; set; }
-
-    [JsonPropertyName("resonanceCurve")]
-    public VolumeCurve ResonanceCurve { get; set; }
-}
-
-public record VolumeCurve
+public record StairsHeightCurve
 {
     [JsonPropertyName("m_Curve")]
-    public List<MCurve> MCurve { get; set; }
+    public required List<MCurveItem> MCurve { get; set; } = [];
 
     [JsonPropertyName("m_PostInfinity")]
-    public int MPostInfinity { get; set; }
+    public required int MPostInfinity { get; set; }
 
     [JsonPropertyName("m_PreInfinity")]
-    public int MPreInfinity { get; set; }
+    public required int MPreInfinity { get; set; }
 
     [JsonPropertyName("m_RotationOrder")]
-    public int MRotationOrder { get; set; }
+    public required int MRotationOrder { get; set; }
 
     [JsonPropertyName("serializedVersion")]
-    public string SerializedVersion { get; set; }
+    public required string SerializedVersion { get; set; } = string.Empty;
 }
 
-public class EnvironmentEqThresholds
-{
-    [JsonPropertyName("baseValue")]
-    public double BaseValue { get; set; }
-
-    [JsonPropertyName("diffEnvironmentIsolated")]
-    public int DiffEnvironmentIsolated { get; set; }
-
-    [JsonPropertyName("diffRoomsTypeIsolated")]
-    public double DiffRoomsTypeIsolated { get; set; }
-
-    [JsonPropertyName("indoorIsolated")]
-    public double IndoorIsolated { get; set; }
-
-    [JsonPropertyName("indoorToOutdoor")]
-    public double IndoorToOutdoor { get; set; }
-
-    [JsonPropertyName("outdoorToIndoor")]
-    public double OutdoorToIndoor { get; set; }
-}
-
-public class PositionEqThresholds
-{
-    [JsonPropertyName("aboveFreq")]
-    public int AboveFreq { get; set; }
-
-    [JsonPropertyName("behindFreq")]
-    public int BehindFreq { get; set; }
-
-    [JsonPropertyName("belowFreq")]
-    public int BelowFreq { get; set; }
-
-    [JsonPropertyName("levelFreq")]
-    public int LevelFreq { get; set; }
-}
-
-public class MCurve
+public record MCurveItem
 {
     [JsonPropertyName("inSlope")]
-    public double InSlope { get; set; }
+    public required double InSlope { get; set; }
 
     [JsonPropertyName("inWeight")]
-    public double InWeight { get; set; }
+    public required double InWeight { get; set; }
 
     [JsonPropertyName("outSlope")]
-    public double OutSlope { get; set; }
+    public required double OutSlope { get; set; }
 
     [JsonPropertyName("outWeight")]
-    public double OutWeight { get; set; }
+    public required double OutWeight { get; set; }
 
     [JsonPropertyName("serializedVersion")]
-    public string SerializedVersion { get; set; }
+    public required string SerializedVersion { get; set; } = string.Empty;
 
     [JsonPropertyName("tangentMode")]
-    public int TangentMode { get; set; }
+    public required int TangentMode { get; set; }
 
     [JsonPropertyName("time")]
-    public double Time { get; set; }
+    public required double Time { get; set; }
 
     [JsonPropertyName("value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 
     [JsonPropertyName("weightedMode")]
-    public int WeightedMode { get; set; }
+    public required int WeightedMode { get; set; }
+}
+
+public record PropagationEQPreset
+{
+    [JsonPropertyName("distanceCoefficient")]
+    public required double DistanceCoefficient { get; set; }
+
+    [JsonPropertyName("environmentVolumeThresholds")]
+    public required EnvironmentEqThresholds EnvironmentVolumeThresholds { get; set; }
+
+    [JsonPropertyName("heightVolumeCurve")]
+    public required StairsHeightCurve HeightVolumeCurve { get; set; }
+
+    [JsonPropertyName("hpfSettings")]
+    public required HpfSettings HpfSettings { get; set; }
+
+    [JsonPropertyName("lpfSettings")]
+    public required HpfSettings LpfSettings { get; set; }
+
+    [JsonPropertyName("rotationCoefficient")]
+    public required double RotationCoefficient { get; set; }
+
+    [JsonPropertyName("volumeCurve")]
+    public required StairsHeightCurve VolumeCurve { get; set; }
+}
+
+public record HpfSettings
+{
+    [JsonPropertyName("distanceCurve")]
+    public required StairsHeightCurve DistanceCurve { get; set; }
+
+    [JsonPropertyName("environmentEqThresholds")]
+    public required EnvironmentEqThresholds EnvironmentEqThresholds { get; set; }
+
+    [JsonPropertyName("frequencyCurve")]
+    public required StairsHeightCurve FrequencyCurve { get; set; }
+
+    [JsonPropertyName("heightCurve")]
+    public required StairsHeightCurve HeightCurve { get; set; }
+
+    [JsonPropertyName("positionEqThresholds")]
+    public required PositionEqThresholds PositionEqThresholds { get; set; }
+
+    [JsonPropertyName("resonanceCurve")]
+    public required StairsHeightCurve ResonanceCurve { get; set; }
+}
+
+public record EnvironmentEqThresholds
+{
+    [JsonPropertyName("baseValue")]
+    public required float BaseValue { get; set; }
+
+    [JsonPropertyName("diffEnvironmentIsolated")]
+    public required float DiffEnvironmentIsolated { get; set; }
+
+    [JsonPropertyName("diffRoomsTypeIsolated")]
+    public required float DiffRoomsTypeIsolated { get; set; }
+
+    [JsonPropertyName("indoorIsolated")]
+    public required float IndoorIsolated { get; set; }
+
+    [JsonPropertyName("indoorToOutdoor")]
+    public required float IndoorToOutdoor { get; set; }
+
+    [JsonPropertyName("outdoorToIndoor")]
+    public required float OutdoorToIndoor { get; set; }
+}
+
+public record PositionEqThresholds
+{
+    [JsonPropertyName("aboveFreq")]
+    public required int AboveFreq { get; set; }
+
+    [JsonPropertyName("behindFreq")]
+    public required int BehindFreq { get; set; }
+
+    [JsonPropertyName("belowFreq")]
+    public required int BelowFreq { get; set; }
+
+    [JsonPropertyName("levelFreq")]
+    public required int LevelFreq { get; set; }
 }
 
 public record LocationOcclusionSettings
 {
     [JsonPropertyName("commonSettings")]
-    public CommonSettings CommonSettings { get; set; }
+    public required CommonSettings CommonSettings { get; set; }
 
     [JsonPropertyName("diffractionSettings")]
-    public DiffractionSettings DiffractionSettings { get; set; }
+    public required DiffractionSettings DiffractionSettings { get; set; }
 
     [JsonPropertyName("propagationSettings")]
-    public PropagationSettings PropagationSettings { get; set; }
+    public required PropagationSettings PropagationSettings { get; set; }
 
     [JsonPropertyName("reflectionSettings")]
-    public ReflectionSettings ReflectionSettings { get; set; }
+    public required ReflectionSettings ReflectionSettings { get; set; }
 
     [JsonPropertyName("transmissionSettings")]
-    public TransmissionSettings TransmissionSettings { get; set; }
+    public required TransmissionSettings TransmissionSettings { get; set; }
 }
 
-public class CommonSettings
+public record CommonSettings
 {
     [JsonPropertyName("diffractionThreshold")]
-    public double DiffractionThreshold { get; set; }
+    public required double DiffractionThreshold { get; set; }
 
     [JsonPropertyName("effectChangeThreshold")]
-    public double EffectChangeThreshold { get; set; }
+    public required double EffectChangeThreshold { get; set; }
 
     [JsonPropertyName("floorHeight")]
-    public double FloorHeight { get; set; }
+    public required double FloorHeight { get; set; }
 
     [JsonPropertyName("maxDistance")]
-    public int MaxDistance { get; set; }
+    public required int MaxDistance { get; set; }
 
     [JsonPropertyName("playerObstructionYOffset")]
-    public double PlayerObstructionYOffset { get; set; }
+    public required double PlayerObstructionYOffset { get; set; }
 
     [JsonPropertyName("positionChangeThreshold")]
-    public List<ChangeThreshold> PositionChangeThreshold { get; set; }
+    public required List<PositionChangeThresholdItem> PositionChangeThreshold { get; set; } = [];
 
     [JsonPropertyName("smoothingFactor")]
-    public int SmoothingFactor { get; set; }
+    public required int SmoothingFactor { get; set; }
 
     [JsonPropertyName("transmissionThreshold")]
-    public double TransmissionThreshold { get; set; }
+    public required double TransmissionThreshold { get; set; }
 }
 
-public class ChangeThreshold
+public record PositionChangeThresholdItem
 {
     [JsonPropertyName("audioQuality")]
-    public string AudioQuality { get; set; }
+    public required string AudioQuality { get; set; } = string.Empty;
 
     [JsonPropertyName("value")]
-    public double Value { get; set; }
+    public required double Value { get; set; }
 }
 
-public class DiffractionSettings
+public record DiffractionSettings
 {
     [JsonPropertyName("edgeSearchRayCount")]
-    public List<ChangeThreshold> EdgeSearchRayCount { get; set; }
+    public required List<PositionChangeThresholdItem> EdgeSearchRayCount { get; set; } = [];
 
     [JsonPropertyName("edgeSearchRayLength")]
-    public double EdgeSearchRayLength { get; set; }
+    public required int EdgeSearchRayLength { get; set; }
 
     [JsonPropertyName("edgeValidationRayOffset")]
-    public double EdgeValidationRayOffset { get; set; }
+    public required double EdgeValidationRayOffset { get; set; }
 
     [JsonPropertyName("maxEdgeDist")]
-    public double MaxEdgeDist { get; set; }
+    public required int MaxEdgeDist { get; set; }
 
     [JsonPropertyName("maxPathFactor")]
-    public int MaxPathFactor { get; set; }
+    public required int MaxPathFactor { get; set; }
 }
 
-public class PropagationSettings
+public record PropagationSettings
 {
     [JsonPropertyName("absoluteHeightWeight")]
-    public double AbsoluteHeightWeight { get; set; }
+    public required double AbsoluteHeightWeight { get; set; }
 
     [JsonPropertyName("diffractionExponent")]
-    public double DiffractionExponent { get; set; }
+    public required double DiffractionExponent { get; set; }
 
     [JsonPropertyName("distanceWeight")]
-    public double DistanceWeight { get; set; }
+    public required double DistanceWeight { get; set; }
 
     [JsonPropertyName("heightExponent")]
-    public double HeightExponent { get; set; }
+    public required double HeightExponent { get; set; }
 
     [JsonPropertyName("maxSegmentLength")]
-    public int MaxSegmentLength { get; set; }
+    public required int MaxSegmentLength { get; set; }
 
     [JsonPropertyName("minPortalCostPercent")]
-    public double MinPortalCostPercent { get; set; }
+    public required double MinPortalCostPercent { get; set; }
 
     [JsonPropertyName("relaxationIterations")]
-    public int RelaxationIterations { get; set; }
+    public required int RelaxationIterations { get; set; }
 
     [JsonPropertyName("routesCompressionFactorByQuality")]
-    public List<ChangeThreshold> RoutesCompressionFactorByQuality { get; set; }
+    public required List<PositionChangeThresholdItem> RoutesCompressionFactorByQuality { get; set; } = [];
 
     [JsonPropertyName("segmentHeightWeightDown")]
-    public double SegmentHeightWeightDown { get; set; }
+    public required double SegmentHeightWeightDown { get; set; }
 
     [JsonPropertyName("segmentHeightWeightUp")]
-    public double SegmentHeightWeightUp { get; set; }
+    public required double SegmentHeightWeightUp { get; set; }
 
     [JsonPropertyName("typicalRoomHeight")]
-    public double TypicalRoomHeight { get; set; }
+    public required double TypicalRoomHeight { get; set; }
 }
 
-public class ReflectionSettings
+public record ReflectionSettings
 {
     [JsonPropertyName("energyLossFactorPerReflection")]
-    public double EnergyLossFactorPerReflection { get; set; }
+    public required double EnergyLossFactorPerReflection { get; set; }
 
     [JsonPropertyName("initialRaysCount")]
-    public List<ChangeThreshold> InitialRaysCount { get; set; }
+    public required List<PositionChangeThresholdItem> InitialRaysCount { get; set; } = [];
 
     [JsonPropertyName("maxReflections")]
-    public int MaxReflections { get; set; }
+    public required int MaxReflections { get; set; }
 
     [JsonPropertyName("minEnergyAtMaxDistance")]
-    public double MinEnergyAtMaxDistance { get; set; }
+    public required double MinEnergyAtMaxDistance { get; set; }
 }
 
-public class TransmissionSettings
+public record TransmissionSettings
 {
     [JsonPropertyName("absorptionPerUnit")]
-    public double AbsorptionPerUnit { get; set; }
+    public required double AbsorptionPerUnit { get; set; }
 
     [JsonPropertyName("initialRaysCount")]
-    public List<ChangeThreshold> InitialRaysCount { get; set; }
+    public required List<PositionChangeThresholdItem> InitialRaysCount { get; set; } = [];
 
     [JsonPropertyName("listenerHeightSamplingOffset")]
-    public double ListenerHeightSamplingOffset { get; set; }
+    public required double ListenerHeightSamplingOffset { get; set; }
 
     [JsonPropertyName("minClearPathScore")]
-    public double MinClearPathScore { get; set; }
+    public required double MinClearPathScore { get; set; }
 
     [JsonPropertyName("minEnergyThreshold")]
-    public double MinEnergyThreshold { get; set; }
+    public required double MinEnergyThreshold { get; set; }
 
     [JsonPropertyName("obstacleMaxThickness")]
-    public double ObstacleMaxThickness { get; set; }
+    public required int ObstacleMaxThickness { get; set; }
 
     [JsonPropertyName("obstacleMinThickness")]
-    public double ObstacleMinThickness { get; set; }
+    public required double ObstacleMinThickness { get; set; }
 
     [JsonPropertyName("raysWideningRadius")]
-    public double RaysWideningRadius { get; set; }
+    public required double RaysWideningRadius { get; set; }
 
     [JsonPropertyName("sourceHeightSamplingOffset")]
-    public double SourceHeightSamplingOffset { get; set; }
+    public required double SourceHeightSamplingOffset { get; set; }
 
     [JsonPropertyName("useRaycast")]
-    public bool UseRaycast { get; set; }
+    public required bool UseRaycast { get; set; }
+}
+
+public record ItemInHandsSettings
+{
+    public required PointOfViewSoundValue ItemOperationsSpatialBlend { get; set; }
+
+    public required PointOfViewSoundValue ItemOperationsVolumeMult { get; set; }
+
+    public required PointOfViewSoundValue WeaponOperationsSpatialBlend { get; set; }
+
+    public required PointOfViewSoundValue WeaponOperationsVolumeMult { get; set; }
+}
+
+public record TinnitusEffectConfig
+{
+    public required double EffectBaseDurationMultiplier { get; set; }
+
+    public required int MaxEffectDuration { get; set; }
+}
+
+public record WeaponSettings
+{
+    public required PlaybackSettings PlaybackSettings { get; set; }
+
+    public required PoolSettings PoolSettings { get; set; }
+}
+
+public record PlaybackSettings
+{
+    public required bool AdaptiveFadeEnabled { get; set; }
+
+    public required double AdaptiveFadeLeadBeatsThreshold { get; set; }
+
+    public required int AdaptiveFadeMaxMultiplier { get; set; }
+
+    public required double AdaptiveFadeMaxSeconds { get; set; }
+
+    public required int BurstFireFadeMultiplier { get; set; }
+
+    public required int FireLoopBreakMultiplier { get; set; }
+
+    public required int IndoorMaxDistance { get; set; }
+
+    public required int IndoorSilencedMaxDistance { get; set; }
+
+    public required double MaxClampPitch { get; set; }
+
+    public required double MaxRandomPitch { get; set; }
+
+    public required double MinClampPitch { get; set; }
+
+    public required double MinRandomPitch { get; set; }
+
+    public required double OcclusionThreshold { get; set; }
+}
+
+public record PoolSettings
+{
+    public required int DefaultPoolSize { get; set; }
+
+    public required int MaxPoolSize { get; set; }
+
+    public required int MinPoolSize { get; set; }
+}
+
+public record FramerateLimit
+{
+    public required int MaxFramerateGameLimit { get; set; }
+
+    public required int MaxFramerateLobbyLimit { get; set; }
+
+    public required int MinFramerateLimit { get; set; }
+}
+
+public record MemoryManagementSettings
+{
+    public required bool AggressiveGC { get; set; }
+
+    public required int GigabytesRequiredToDisableGCDuringRaid { get; set; }
+
+    public required bool HeapPreAllocationEnabled { get; set; }
+
+    public required int HeapPreAllocationMB { get; set; }
+
+    public required bool OverrideRamCleanerSettings { get; set; }
+
+    public required bool RamCleanerEnabled { get; set; }
+}
+
+public record NetworkStateView
+{
+    public required int LossThreshold { get; set; }
+
+    public required int RttThreshold { get; set; }
+}
+
+public record ReleaseProfiler
+{
+    public required bool Enabled { get; set; }
+
+    public required int MaxRecords { get; set; }
+
+    public required int RecordTriggerValue { get; set; }
 }

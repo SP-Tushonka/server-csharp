@@ -28,52 +28,6 @@ public record GlobalTable
 
 //Todo: Most of this stuff needs moved out of this and into a globals namespace or something
 
-public record PlayerSettings
-{
-    [JsonPropertyName("BaseMaxMovementRolloff")]
-    public double BaseMaxMovementRolloff { get; set; }
-
-    [JsonPropertyName("EnabledOcclusionDynamicRolloff")]
-    public bool IsEnabledOcclusionDynamicRolloff { get; set; }
-
-    [JsonPropertyName("IndoorRolloffMult")]
-    public double IndoorRolloffMultiplier { get; set; }
-
-    [JsonPropertyName("MinStepSoundRolloffMult")]
-    public PointOfViewSoundValue MinStepSoundRolloffMultiplier { get; set; }
-
-    [JsonPropertyName("MinStepSoundVolumeMult")]
-    public PointOfViewSoundValue MinStepSoundVolumeMultiplier { get; set; }
-
-    [JsonPropertyName("MinStepSoundVolumeSpeedMult")]
-    public PointOfViewSoundValue MinStepSoundVolumeSpeedMultiplier { get; set; }
-
-    [JsonPropertyName("MovementRolloffMultipliers")]
-    public IEnumerable<MovementRolloffMultiplier> MovementRolloffMultipliers { get; set; }
-
-    [JsonPropertyName("OutdoorRolloffMult")]
-    public double OutdoorRolloffMultiplier { get; set; }
-
-    [JsonPropertyName("SearchSoundVolume")]
-    public SearchSoundVolumeSettings SearchSoundVolume { get; set; }
-}
-
-public record SearchSoundVolumeSettings
-{
-    public double FpVolume { get; set; }
-
-    public double TpVolume { get; set; }
-}
-
-public record MovementRolloffMultiplier
-{
-    [JsonPropertyName("MovementState")]
-    public string MovementState { get; set; }
-
-    [JsonPropertyName("RolloffMultiplier")]
-    public double RolloffMultiplier { get; set; }
-}
-
 public record RadioBroadcastSettings
 {
     [JsonPropertyName("EnabledBroadcast")]
