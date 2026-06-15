@@ -191,6 +191,9 @@ public record TemplateItemProperties
     [JsonPropertyName("IsLockedafterEquip")]
     public bool? IsLockedAfterEquip { get; set; }
 
+    [JsonPropertyName("IsNotDeletableFromQuestStashAfterQuestComplete")]
+    public bool? IsNotDeletableFromQuestStashAfterQuestComplete { get; set; }
+
     [JsonPropertyName("IsSecretExitRequirement")]
     public bool? IsSecretExitRequirement { get; set; }
 
@@ -313,6 +316,9 @@ public record TemplateItemProperties
     [JsonPropertyName("RagFairCommissionModifier")]
     public double? RagFairCommissionModifier { get; set; }
 
+    [JsonPropertyName("RagfairLevelToTrade")]
+    public int? RagfairLevelToTrade { get; set; }
+
     [JsonPropertyName("RarityPvE")]
     public string? RarityPvE
     {
@@ -394,7 +400,9 @@ public record TemplateItemProperties
     public bool? ToolModdable { get; set; }
 
     [JsonPropertyName("UniqueAnimationModID")]
-    public double? UniqueAnimationModID { get; set; }
+    public int? UniqueAnimationModID { get; set; }
+
+    public int? CategoryAnimationModId { get; set; }
 
     [JsonPropertyName("BlocksFolding")]
     public bool? BlocksFolding { get; set; }
@@ -470,6 +478,10 @@ public record TemplateItemProperties
 
     [JsonPropertyName("MaskSize")]
     public double? MaskSize { get; set; }
+
+    [JsonPropertyName("FaceCoverMask")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public FaceCoverMask? FaceCoverMask { get; set; }
 
     [JsonPropertyName("IsMagazineForStationaryWeapon")]
     public bool? IsMagazineForStationaryWeapon { get; set; }
@@ -1056,11 +1068,26 @@ public record TemplateItemProperties
     [JsonPropertyName("EnvTechnicalCompressorSendLevel")]
     public double? EnvTechnicalCompressorSendLevel { get; set; }
 
+    [JsonPropertyName("GunsCompressorAttack")]
+    public float? GunsCompressorAttack { get; set; }
+
+    [JsonPropertyName("GunsCompressorThreshold")]
+    public float? GunsCompressorThreshold { get; set; }
+
+    [JsonPropertyName("GunsCompressorRelease")]
+    public float? GunsCompressorRelease { get; set; }
+
+    [JsonPropertyName("GunsCompressorGain")]
+    public float? GunsCompressorGain { get; set; }
+
     [JsonPropertyName("GunsCompressorSendLevel")]
     public double? GunsCompressorSendLevel { get; set; }
 
     [JsonPropertyName("HeadphonesMixerVolume")]
     public double? HeadphonesMixerVolume { get; set; }
+
+    [JsonPropertyName("PrecipitationVolume")]
+    public float? PrecipitationVolume { get; set; }
 
     [JsonPropertyName("HighpassFreq")]
     public double? HighpassFreq { get; set; }
@@ -1567,6 +1594,78 @@ public record TemplateItemProperties
 
     [JsonPropertyName("AdjustableOpticSensitivityMax")]
     public double? AdjustableOpticSensitivityMax { get; set; }
+
+    [JsonPropertyName("CollisionEventInterval")]
+    public float? CollisionEventInterval { get; set; }
+
+    [JsonPropertyName("GrenadeShiftThreshold")]
+    public float? GrenadeShiftThreshold { get; set; }
+
+    [JsonPropertyName("HorizontalSpreadEnabled")]
+    public bool? HorizontalSpreadEnabled { get; set; }
+
+    [JsonPropertyName("HorizontalSpreadWeightThreshold")]
+    public float? HorizontalSpreadWeightThreshold { get; set; }
+
+    [JsonPropertyName("UnitSize")]
+    public float? UnitSize { get; set; }
+
+    [JsonPropertyName("VolumeGrowTime")]
+    public float? VolumeGrowTime { get; set; }
+
+    [JsonPropertyName("VolumeLifetime")]
+    public float? VolumeLifetime { get; set; }
+
+    [JsonPropertyName("VolumeMaxRadius")]
+    public float? VolumeMaxRadius { get; set; }
+
+    [JsonPropertyName("VolumePresetId")]
+    public int? VolumePresetId { get; set; }
+
+    [JsonPropertyName("VoxelRenderPercentage")]
+    public int? VoxelRenderPercentage { get; set; }
+
+    [JsonPropertyName("AllowBear")]
+    public bool? AllowBear { get; set; }
+
+    [JsonPropertyName("AllowSavage")]
+    public bool? AllowSavage { get; set; }
+
+    [JsonPropertyName("AllowUsec")]
+    public bool? AllowUsec { get; set; }
+
+    [JsonPropertyName("Personal")]
+    public bool? Personal { get; set; }
+
+    [JsonPropertyName("RequiredLevel")]
+    public int? RequiredLevel { get; set; }
+
+    [JsonPropertyName("NoteTemplatePrefab")]
+    public string? NoteTemplatePrefab { get; set; }
+
+    [JsonPropertyName("NotificationDuration")]
+    public float? NotificationDuration { get; set; }
+
+    [JsonPropertyName("TapeID")]
+    public string? TapeID { get; set; }
+
+    [JsonPropertyName("Transcript")]
+    public string? Transcript { get; set; }
+
+    [JsonPropertyName("Subtitles")]
+    public string? Subtitles { get; set; }
+
+    [JsonPropertyName("AudioSettings")]
+    public WeaponTemplateAudioSettings? AudioSettings { get; set; }
+
+    [JsonPropertyName("WeaponAimSettings")]
+    public WeaponAimSettings? WeaponAimSettings { get; set; }
+
+    [JsonPropertyName("CompletableConditions")]
+    public IEnumerable<CompletableCondition>? CompletableConditions { get; set; }
+
+    [JsonPropertyName("QuestConditions")]
+    public IEnumerable<QuestStatusCondition>? QuestConditions { get; set; }
 }
 
 public record WeaponRecoilSettings
@@ -1593,7 +1692,7 @@ public record WeaponRecoilSettingValues
 public record WeaponRecoilProcess
 {
     [JsonPropertyName("ComponentType")]
-    public string? ComponentType { get; set; }
+    public ComponentType ComponentType { get; set; }
 
     [JsonPropertyName("CurveAimingValueMultiply")]
     public double? CurveAimingValueMultiply { get; set; }
@@ -1863,4 +1962,118 @@ public record ShotsGroupSettings
 
     [JsonPropertyName("StartShotIndex")]
     public double? StartShotIndex { get; set; }
+}
+
+public record WeaponTemplateAudioSettings
+{
+    [JsonPropertyName("IndoorConfig")]
+    public required WeaponEmitterConfig IndoorConfig { get; set; }
+
+    [JsonPropertyName("OutdoorConfig")]
+    public required WeaponEmitterConfig OutdoorConfig { get; set; }
+
+    [JsonPropertyName("IndoorSilencedConfig")]
+    public required WeaponEmitterConfig IndoorSilencedConfig { get; set; }
+
+    [JsonPropertyName("OutdoorSilencedConfig")]
+    public required WeaponEmitterConfig OutdoorSilencedConfig { get; set; }
+}
+
+public record WeaponEmitterConfig
+{
+    [JsonPropertyName("MaxDistance")]
+    public required float MaxDistance { get; set; }
+
+    [JsonPropertyName("Volume")]
+    public required float Volume { get; set; }
+}
+
+public record WeaponAimSettings
+{
+    [JsonPropertyName("Enable")]
+    public bool? Enable { get; set; }
+
+    [JsonPropertyName("InSpeedMultiplier")]
+    public float? InSpeedMultiplier { get; set; }
+
+    [JsonPropertyName("OutSpeedMultiplier")]
+    public float? OutSpeedMultiplier { get; set; }
+
+    [JsonPropertyName("ValuesIn")]
+    public List<WeaponAimValue>? ValuesIn { get; set; }
+
+    [JsonPropertyName("ValuesOut")]
+    public List<WeaponAimValue>? ValuesOut { get; set; }
+}
+
+public record WeaponAimValue
+{
+    [JsonPropertyName("Enable")]
+    public bool Enable { get; set; }
+
+    [JsonPropertyName("Target")]
+    public WeaponTarget Target { get; set; }
+
+    [JsonPropertyName("Process")]
+    public WeaponAimProcessBase? Process { get; set; }
+}
+
+public record WeaponAimProcessBase
+{
+    [JsonPropertyName("ComponentType")]
+    public ComponentType ComponentType { get; set; }
+
+    [JsonPropertyName("CurveTimeMultiply")]
+    public float CurveTimeMultiply { get; set; }
+
+    [JsonPropertyName("CurveValueMultiply")]
+    public float CurveValueMultiply { get; set; }
+
+    [JsonPropertyName("TransformationCurve")]
+    public AnimationCurveModel? TransformationCurve { get; set; }
+}
+
+public record AnimationCurveModel
+{
+    [JsonPropertyName("Keys")]
+    public List<AnimationCurveKey> Keys { get; set; } = [];
+}
+
+public record AnimationCurveKey
+{
+    [JsonPropertyName("time")]
+    public float Time { get; set; }
+
+    [JsonPropertyName("value")]
+    public float Value { get; set; }
+
+    [JsonPropertyName("inTangent")]
+    public float InTangent { get; set; }
+
+    [JsonPropertyName("outTangent")]
+    public float OutTangent { get; set; }
+}
+
+public record CompletableCondition
+{
+    [JsonPropertyName("CompletableItem")]
+    public MongoId? CompletableItem { get; set; }
+
+    [JsonPropertyName("IsCompleted")]
+    public bool? IsCompleted { get; set; }
+}
+
+public record QuestStatusCondition
+{
+    [JsonPropertyName("QuestId")]
+    public string? QuestId { get; set; }
+
+    [JsonPropertyName("Started")]
+    public bool? Started { get; set; }
+
+    [JsonPropertyName("Completed")]
+    public bool? Completed { get; set; }
+
+    [JsonPropertyName("Failed")]
+    public bool? Failed { get; set; }
 }
