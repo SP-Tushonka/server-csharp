@@ -193,4 +193,40 @@ public class DataCallbacks(
         // TODO: Implement me! Seems to only send chapters you have unlocked
         return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new MainQuestsList { Chapters = [] }));
     }
+
+    /// <summary>
+    /// Handle /client/variable/group
+    /// </summary>
+    public ValueTask<string> GetVariableGroup(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        // TODO: Implement me! No idea what this does, seems related to the story
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new List<VariableGroupData>()));
+    }
+
+    /// <summary>
+    /// Handle /client/subtitle-track/list
+    /// </summary>
+    public ValueTask<string> GetSubtitleTrackList(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        // TODO: Implement me! No Idea
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new List<SubtitleGroupData>()));
+    }
+
+    /// <summary>
+    /// Handle /client/tape/list
+    /// </summary>
+    public ValueTask<string> GetTapeList(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        // TODO: Implement me! No idea, but same model as /client/subtitle-track/list
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new List<SubtitleGroupData>()));
+    }
+
+    /// <summary>
+    /// Handle /client/ending/list
+    /// </summary>
+    public ValueTask<string> GetEndingList(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        // TODO: Implement me! Needs model, looks achievement/quest like, but doesn't fit any current model
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new { elements = new List<object>() }));
+    }
 }

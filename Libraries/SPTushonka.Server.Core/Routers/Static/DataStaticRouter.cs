@@ -2,7 +2,6 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Callbacks;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common;
-using SPTarkov.Server.Core.Models.Eft.Dialog;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Routers.Static;
@@ -68,6 +67,22 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
             new RouteAction<EmptyRequestData>(
                 "/client/quest/getMainQuestsList",
                 async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetMainQuestsList(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/variable/group",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetVariableGroup(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/subtitle-track/list",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetSubtitleTrackList(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/tape/list",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetTapeList(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/ending/list",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetEndingList(url, info, sessionID)
             ),
         ]
     ) { }

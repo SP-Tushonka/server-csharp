@@ -65,5 +65,13 @@ public class ProfileStaticRouter(ProfileCallbacks profileCallbacks, JsonUtil jso
                 "/launcher/profiles",
                 async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetAllMiniProfiles(url, info, sessionID)
             ),
+            new RouteAction<EmptyRequestData>(
+                "/client/friends",
+                async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetFriends(url, info, sessionID)
+            ),
+            new RouteAction<TutorGameCheckRequest>(
+                "/client/tutor-game/check",
+                async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetTutorGameCheck(url, info, sessionID)
+            ),
         ]
     ) { }

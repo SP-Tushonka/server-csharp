@@ -2,7 +2,6 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Callbacks;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common;
-using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Routers.Static;
@@ -12,7 +11,7 @@ public class AchievementStaticRouter(JsonUtil jsonUtil, AchievementCallbacks ach
     : StaticRouter(
         jsonUtil,
         [
-            new StreamedRouteAction<GetAchievementListRequest>(
+            new StreamedRouteAction<EmptyRequestData>(
                 "/client/achievement/list",
                 async (url, info, sessionID, cancellationToken) =>
                     await achievementCallbacks.GetAchievements(url, info, sessionID)

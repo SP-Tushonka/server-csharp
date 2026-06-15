@@ -15,7 +15,7 @@ public class AchievementCallbacks(AchievementController achievementController, H
     ///     Handle client/achievement/list
     /// </summary>
     /// <returns></returns>
-    public ValueTask<StreamedJsonBody> GetAchievements(string url, GetAchievementListRequest _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetAchievements(string url, EmptyRequestData _, MongoId sessionID)
     {
         return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(achievementController.GetAchievements(sessionID)));
     }

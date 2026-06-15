@@ -18,6 +18,7 @@ public class ProfileCallbacks(
     HttpResponseUtil httpResponse,
     TimeUtil timeUtil,
     ProfileController profileController,
+    DialogueController dialogueController,
     ProfileHelper profileHelper
 )
 {
@@ -171,5 +172,24 @@ public class ProfileCallbacks(
     public ValueTask<string> GetAllMiniProfiles(string url, EmptyRequestData _, MongoId sessionID)
     {
         return new ValueTask<string>(httpResponse.NoBody(profileController.GetMiniProfiles()));
+    }
+
+    /// <summary>
+    ///     Handle /client/friends
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<string> GetFriends(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponse.GetBody(dialogueController.GetFriendList(sessionID)));
+    }
+
+    /// <summary>
+    ///     Handle /client/tutor-game/check
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<string> GetTutorGameCheck(string url, TutorGameCheckRequest _, MongoId sessionID)
+    {
+        // TODO: Implement me!
+        return new ValueTask<string>(httpResponse.GetBody(new TutorGameCheckResponse { LaunchTutorGame = false }));
     }
 }
