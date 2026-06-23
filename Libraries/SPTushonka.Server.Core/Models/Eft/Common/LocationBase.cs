@@ -190,6 +190,12 @@ public record LocationBase
     [JsonPropertyName("Locked")]
     public bool? Locked { get; set; }
 
+    [JsonPropertyName("LockedByQuest")]
+    public bool? LockedByQuest { get; set; }
+
+    [JsonPropertyName("HiddenWhenLockedByQuest")]
+    public bool? HiddenWhenLockedByQuest { get; set; }
+
     [JsonPropertyName("Loot")]
     public IEnumerable<SpawnpointTemplate>? Loot { get; set; }
 
@@ -262,6 +268,9 @@ public record LocationBase
     [JsonPropertyName("ScavMaxPlayersInGroup")]
     public int? ScavMaxPlayersInGroup { get; set; }
 
+    [JsonPropertyName("MinGroupSize")]
+    public int? MinGroupSize { get; set; }
+
     [JsonPropertyName("Rules")]
     public string? Rules { get; set; }
 
@@ -315,6 +324,15 @@ public record LocationBase
     [JsonPropertyName("ForceOnlineRaidInPVE")]
     public bool? ForceOnlineRaidInPVE { get; set; }
 
+    [JsonPropertyName("ForceOfflineRaidInPVE")]
+    public bool? ForceOfflineRaidInPVE { get; set; }
+
+    [JsonPropertyName("SavageForceOnlineRaidInPVE")]
+    public bool? SavageForceOnlineRaidInPVE { get; set; }
+
+    [JsonPropertyName("SavageForceOfflineRaidInPVE")]
+    public bool? SavageForceOfflineRaidInPVE { get; set; }
+
     [JsonPropertyName("ExitZones")]
     public string? ExitZones { get; set; }
 
@@ -341,6 +359,9 @@ public record LocationBase
 
     [JsonPropertyName("matching_min_seconds")]
     public int? MatchingMinSeconds { get; set; }
+
+    [JsonPropertyName("session_duration_minutes")]
+    public int? SessionDurationMinutes { get; set; }
 
     [JsonPropertyName("GenerateLocalLootCache")]
     public bool? GenerateLocalLootCache { get; set; }
@@ -371,6 +392,138 @@ public record LocationBase
 
     [JsonPropertyName("waves")]
     public List<Wave> Waves { get; set; }
+
+    [JsonPropertyName("access")]
+    public AccessRequirementsByUsage? Access { get; set; }
+
+    [JsonPropertyName("PasscodeLocationSettings")]
+    public PasscodeLocationSettings? PasscodeLocationSettings { get; set; }
+
+    [JsonPropertyName("FixedLocationWeatherSettings")]
+    public FixedWeatherLocationConfig? FixedWeatherLocationConfig { get; set; }
+
+    [JsonPropertyName("ProfileProgressOptions")]
+    public ProfileProgressOptions? ProfileProgressOptions { get; set; }
+}
+
+public record ProfileProgressOptions
+{
+    [JsonPropertyName("removeItemListBeforeRaidStart")]
+    public IEnumerable<ProfileProgressTemplateId>? RemoveItemListBeforeRaidStart { get; set; }
+
+    [JsonPropertyName("saveAchievementList")]
+    public IEnumerable<ProfileProgressAchievementId>? SaveAchievementList { get; set; }
+
+    [JsonPropertyName("saveEncyclopedia")]
+    public bool? SaveEncyclopedia { get; set; }
+
+    [JsonPropertyName("saveHealth")]
+    public bool? SaveHealth { get; set; }
+
+    [JsonPropertyName("saveItems")]
+    public bool? SaveItems { get; set; }
+
+    [JsonPropertyName("saveQuestList")]
+    public IEnumerable<ProfileProgressQuestId>? SaveQuestList { get; set; }
+
+    [JsonPropertyName("saveSkill")]
+    public bool? SaveSkill { get; set; }
+
+    [JsonPropertyName("saveStatistics")]
+    public bool? SaveStatistics { get; set; }
+}
+
+public record ProfileProgressTemplateId
+{
+    [JsonPropertyName("templateId")]
+    public string? TemplateId { get; set; }
+}
+
+public record ProfileProgressAchievementId
+{
+    [JsonPropertyName("achievementId")]
+    public string? AchievementId { get; set; }
+}
+
+public record ProfileProgressQuestId
+{
+    [JsonPropertyName("questId")]
+    public string? QuestId { get; set; }
+}
+
+public record AccessRequirementsByUsage
+{
+    [JsonPropertyName("menu_PVP")]
+    public Dictionary<string, AccessRequirement>? MenuPvP { get; set; }
+
+    [JsonPropertyName("menu_PVE")]
+    public Dictionary<string, AccessRequirement>? MenuPvE { get; set; }
+
+    [JsonPropertyName("transit_PVP")]
+    public Dictionary<string, AccessRequirement>? TransitPvP { get; set; }
+
+    [JsonPropertyName("transit_PVE")]
+    public Dictionary<string, AccessRequirement>? TransitPvE { get; set; }
+}
+
+public record AccessRequirement
+{
+    [JsonPropertyName("count")]
+    public int? Count { get; set; }
+}
+
+public record PasscodeLocationSettings
+{
+    [JsonPropertyName("passcodeEntries")]
+    public IEnumerable<PasscodeEntry>? PasscodeEntries { get; set; }
+}
+
+public record PasscodeEntry
+{
+    [JsonPropertyName("passcodeId")]
+    public string? PasscodeId { get; set; }
+
+    [JsonPropertyName("passcodeListId")]
+    public string? PasscodeListId { get; set; }
+}
+
+public record FixedWeatherLocationConfig
+{
+    [JsonPropertyName("TimeHour")]
+    public int? TimeHour { get; set; }
+
+    [JsonPropertyName("TimeMinute")]
+    public int? TimeMinute { get; set; }
+
+    [JsonPropertyName("Cloudness")]
+    public double? Cloudness { get; set; }
+
+    [JsonPropertyName("Wind")]
+    public double? Wind { get; set; }
+
+    [JsonPropertyName("WindDirection")]
+    public int? WindDirection { get; set; }
+
+    [JsonPropertyName("Rain")]
+    public double? Rain { get; set; }
+
+    [JsonPropertyName("RainRandomness")]
+    public double? RainRandomness { get; set; }
+
+    [JsonPropertyName("ScaterringFogDensity")]
+    public double? ScaterringFogDensity { get; set; }
+
+    [JsonPropertyName("Temperature")]
+    public double? Temperature { get; set; }
+
+    [JsonPropertyName("AtmospherePressure")]
+    public double? AtmospherePressure { get; set; }
+
+    [JsonPropertyName("LyingWater")]
+    public double? LyingWater { get; set; }
+
+    [JsonPropertyName("Turbulence")]
+    public double? Turbulence { get; set; }
 }
 
 public record EventTrapsData
@@ -418,6 +571,18 @@ public record Transit
 
     [JsonPropertyName("time")]
     public long? Time { get; set; }
+
+    [JsonPropertyName("referenceConditions")]
+    public string? ReferenceConditions { get; set; }
+
+    [JsonPropertyName("waitForAllParty")]
+    public bool? WaitForAllParty { get; set; }
+
+    [JsonPropertyName("maxGroupSize")]
+    public int? MaxGroupSize { get; set; }
+
+    [JsonPropertyName("completedQuestId")]
+    public string? CompletedQuestId { get; set; }
 }
 
 public record NonWaveGroupScenario
@@ -605,6 +770,9 @@ public record BotLocationModifier
 
     [JsonPropertyName("GainSight")]
     public double? GainSight { get; set; }
+
+    [JsonPropertyName("IgnoreGreenAcidFollowPlayerEvent")]
+    public bool? IgnoreGreenAcidFollowPlayerEvent { get; set; }
 
     [JsonPropertyName("KhorovodChance")]
     public double? KhorovodChance { get; set; }
