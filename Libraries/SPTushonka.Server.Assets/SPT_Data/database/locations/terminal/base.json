@@ -1,32 +1,6822 @@
 {
+  "AirdropParameters": [
+    {
+      "AirdropPointDeactivateDistance": 100,
+      "MinPlayersCountToSpawnAirdrop": 6,
+      "PlaneAirdropChance": 0.125,
+      "PlaneAirdropCooldownMax": 800,
+      "PlaneAirdropCooldownMin": 700,
+      "PlaneAirdropEnd": 2700,
+      "PlaneAirdropMax": 2,
+      "PlaneAirdropStartMax": 900,
+      "PlaneAirdropStartMin": 300,
+      "UnsuccessfulTryPenalty": 400
+    }
+  ],
+  "BossLocationSpawn": [
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1PortAmbush1",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": true,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 5820,
+      "TriggerId": "TB1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1PortAmbush1",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 5860,
+      "TriggerId": "TB1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BDGateAmbush13",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "Supports": null,
+      "Time": 950,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRFSniper",
+      "BossName": "vsRFSniper",
+      "BossZone": "Zone1VSRFSnipeRoofPort2",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "Supports": null,
+      "Time": 600,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "4",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone1VSRF1Spawn3",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone1VSRF1Spawn3",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 40,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "4",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone1VSRFStoreAmbush10",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 750,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone1VSRFStoreAmbush10",
+      "Delay": 10,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 770,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1HangarAmbush11",
+      "Delay": 30,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 835,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1HangarAmbush11",
+      "Delay": 22,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 890,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1HangarAmbush11",
+      "Delay": 18,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 810,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 0,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "easy",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1HangarAmbush11",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 845,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "4",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone2VSRFPassMiddle15",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": true,
+      "ShowOnTarkovMapPvE": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 1700,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDWarehouse18",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 1800,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDWarehouse19",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 1810,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone2VSRFColumns22",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 1850,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "easy",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDColumns23",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "Supports": null,
+      "Time": 1840,
+      "TriggerId": "T3",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone2VSRFContainers24",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "0"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 1880,
+      "TriggerId": "T2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDPort28",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 1890,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDPort30",
+      "Delay": 10,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 1900,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDPort31",
+      "Delay": 15,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 1920,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone2BDPort32",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "0"
+        }
+      ],
+      "Time": 2000,
+      "TriggerId": "T5",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "4",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "vsRF",
+      "BossName": "vsRF",
+      "BossZone": "Zone2VSRFExit33",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "impossible"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "2"
+        },
+        {
+          "BossEscortType": "vsRF",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 2100,
+      "TriggerId": "T5",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavEnterStorm4",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavEnterStorm4",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 250,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavEnterStorm4",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 400,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush5",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 600,
+      "TriggerId": "TB2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush5",
+      "Delay": 5,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 650,
+      "TriggerId": "TB2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush5",
+      "Delay": 14,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 730,
+      "TriggerId": "TB2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush5",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 790,
+      "TriggerId": "TB2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavPortStorm6",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 920,
+      "TriggerId": "TB5",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavPortStorm6",
+      "Delay": 15,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 950,
+      "TriggerId": "TB5",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavPortStorm6",
+      "Delay": 18,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 990,
+      "TriggerId": "TB5",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavEnterStorm7",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavEnterStorm7",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 245,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavEnterStorm7",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 420,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush8",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 620,
+      "TriggerId": "TB3",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush8",
+      "Delay": 1,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 650,
+      "TriggerId": "TB3",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush8",
+      "Delay": 19,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 740,
+      "TriggerId": "TB3",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavMiddleAmbush8",
+      "Delay": 8,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 860,
+      "TriggerId": "TB3",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavStoreStorm9",
+      "Delay": 5,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 980,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavStoreStorm9",
+      "Delay": 12,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1005,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavStoreStorm9",
+      "Delay": 21,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1105,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavStoreStorm9",
+      "Delay": 28,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1111,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavHangarStorm14",
+      "Delay": 50,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 940,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavHangarStorm14",
+      "Delay": 55,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1285,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone1ScavHangarStorm14",
+      "Delay": 65,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1395,
+      "TriggerId": "TB4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsWarehouse16",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1900,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsWarehouse16",
+      "Delay": 10,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2100,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsWarehouse16",
+      "Delay": 20,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2400,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavContainers17",
+      "Delay": 18,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1950,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavContainers17",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2200,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsColumns20",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2000,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsColumns20",
+      "Delay": 15,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2150,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsColumns20",
+      "Delay": 3,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2400,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsColumns21",
+      "Delay": 10,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2250,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavsColumns21",
+      "Delay": 20,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2500,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavContainers25",
+      "Delay": 17,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2300,
+      "TriggerId": "T2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavContainers25",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2650,
+      "TriggerId": "T2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavContainers26",
+      "Delay": 0,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2800,
+      "TriggerId": "T2",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavPort29",
+      "Delay": 30,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 3500,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavPort29",
+      "Delay": 38,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2680,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 75,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "2",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "assault",
+      "BossName": "assault",
+      "BossZone": "Zone2ScavPort29",
+      "Delay": 45,
+      "ForceSpawn": false,
+      "IgnoreMaxBots": false,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 2850,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 0,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "easy",
+      "BossEscortType": "civilian",
+      "BossName": "civilian",
+      "BossZone": "Zone2CivShip34",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1777,
+      "TriggerId": "T5",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "easy",
+      "BossEscortType": "civilian",
+      "BossName": "civilian",
+      "BossZone": "Zone2CivPump35",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1677,
+      "TriggerId": "T1",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "easy",
+      "BossEscortType": "civilian",
+      "BossName": "civilian",
+      "BossZone": "Zone2CivGate36",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 1577,
+      "TriggerId": "T0",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "impossible",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "impossible",
+      "BossEscortType": "blackDivision",
+      "BossName": "blackDivision",
+      "BossZone": "Zone1BD1HangarBD11",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": [
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "hard"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "normal"
+          ],
+          "BossEscortAmount": "1"
+        },
+        {
+          "BossEscortType": "blackDivision",
+          "BossEscortDifficult": [
+            "easy"
+          ],
+          "BossEscortAmount": "1"
+        }
+      ],
+      "Time": 2845,
+      "TriggerId": "TB8",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "followerSanitar",
+      "BossName": "bossSanitar",
+      "BossZone": "Zone2ScavPort29",
+      "Delay": 40,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": true,
+      "ShowOnTarkovMapPvE": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "Supports": null,
+      "Time": 5690,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    }
+  ],
+  "BotLocationModifier": {
+    "AccuracySpeed": 1,
+    "AdditionalHostilitySettings": [
+      {
+        "BotRole": "pmcBEAR",
+        "AlwaysEnemies": [
+          "pmcBot",
+          "exUsec",
+          "bossBully",
+          "bossBoar",
+          "bossTagilla",
+          "bossKilla",
+          "bossKojaniy",
+          "bossSanitar",
+          "bossKolontay",
+          "bossGluhar",
+          "bossKnight",
+          "bossBoarSniper",
+          "bossPartisan",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBoar",
+          "followerBoarClose1",
+          "followerBoarClose2",
+          "followerBully",
+          "followerGluharAssault",
+          "followerGluharScout",
+          "followerGluharSecurity",
+          "followerGluharSnipe",
+          "followerKojaniy",
+          "followerKolontayAssault",
+          "followerKolontaySecurity",
+          "followerSanitar",
+          "followerTagilla",
+          "assaultGroup"
+        ],
+        "ChancedEnemies": [
+          {
+            "EnemyChance": 100,
+            "Role": "assault"
+          },
+          {
+            "EnemyChance": 100,
+            "Role": "marksman"
+          },
+          {
+            "EnemyChance": 75,
+            "Role": "pmcUSEC"
+          }
+        ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
+        "Neutral": [
+          "sectantPriest",
+          "sectantWarrior"
+        ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "civilian"
+        ],
+        "SavagePlayerBehaviour": "Warn",
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 75,
+        "UsecPlayerBehaviour": "ChancedEnemies",
+        "UsecEnemyChance": 90
+      },
+      {
+        "BotRole": "pmcUSEC",
+        "AlwaysEnemies": [
+          "pmcBot",
+          "bossBully",
+          "bossBoar",
+          "bossTagilla",
+          "bossKilla",
+          "bossKojaniy",
+          "bossSanitar",
+          "bossKolontay",
+          "bossGluhar",
+          "bossBoarSniper",
+          "bossPartisan",
+          "followerBoar",
+          "followerBoarClose1",
+          "followerBoarClose2",
+          "followerBully",
+          "followerGluharAssault",
+          "followerGluharScout",
+          "followerGluharSecurity",
+          "followerGluharSnipe",
+          "followerKojaniy",
+          "followerKolontayAssault",
+          "followerKolontaySecurity",
+          "followerSanitar",
+          "followerTagilla",
+          "assaultGroup"
+        ],
+        "ChancedEnemies": [
+          {
+            "EnemyChance": 100,
+            "Role": "assault"
+          },
+          {
+            "EnemyChance": 100,
+            "Role": "marksman"
+          },
+          {
+            "EnemyChance": 75,
+            "Role": "pmcBEAR"
+          },
+          {
+            "EnemyChance": 15,
+            "Role": "exUsec"
+          },
+          {
+            "EnemyChance": 15,
+            "Role": "bossKnight"
+          }
+        ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
+        "Neutral": [
+          "sectantPriest",
+          "sectantWarrior"
+        ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "civilian"
+        ],
+        "SavagePlayerBehaviour": "Warn",
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 90,
+        "UsecPlayerBehaviour": "ChancedEnemies",
+        "UsecEnemyChance": 75
+      },
+      {
+        "BotRole": "assault",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC",
+          "blackDivision",
+          "vsRF",
+          "vsRFSniper"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "civilian"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assaultGroup",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC",
+          "blackDivision",
+          "vsRF",
+          "vsRFSniper"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "civilian"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "blackDivision",
+        "AlwaysEnemies": [
+          "pmcBot",
+          "bossBully",
+          "bossBoar",
+          "bossTagilla",
+          "bossKilla",
+          "bossKojaniy",
+          "bossSanitar",
+          "bossKolontay",
+          "bossGluhar",
+          "bossBoarSniper",
+          "bossPartisan",
+          "followerBoar",
+          "followerBoarClose1",
+          "followerBoarClose2",
+          "followerBully",
+          "followerGluharAssault",
+          "followerGluharScout",
+          "followerGluharSecurity",
+          "followerGluharSnipe",
+          "followerKojaniy",
+          "followerKolontayAssault",
+          "followerKolontaySecurity",
+          "followerSanitar",
+          "followerTagilla",
+          "vsRF",
+          "vsRFSniper",
+          "assault",
+          "marksman"
+        ],
+        "ChancedEnemies": [
+          {
+            "EnemyChance": 100,
+            "Role": "exUsec"
+          }
+        ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
+        "Neutral": [
+          "sectantPriest",
+          "sectantWarrior"
+        ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 100,
+        "UsecPlayerBehaviour": "ChancedEnemies",
+        "UsecEnemyChance": 100
+      },
+      {
+        "BotRole": "vsRF",
+        "AlwaysEnemies": [
+          "pmcBot",
+          "exUsec",
+          "bossBully",
+          "bossBoar",
+          "bossTagilla",
+          "bossKilla",
+          "bossKojaniy",
+          "bossSanitar",
+          "bossKolontay",
+          "bossGluhar",
+          "bossBoarSniper",
+          "bossPartisan",
+          "followerBoar",
+          "followerBoarClose1",
+          "followerBoarClose2",
+          "followerBully",
+          "followerGluharAssault",
+          "followerGluharScout",
+          "followerGluharSecurity",
+          "followerGluharSnipe",
+          "followerKojaniy",
+          "followerKolontayAssault",
+          "followerKolontaySecurity",
+          "followerSanitar",
+          "followerTagilla",
+          "blackDivision",
+          "assault",
+          "marksman"
+        ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
+        "Neutral": [
+          "sectantPriest",
+          "sectantWarrior"
+        ],
+        "AlwaysFriends": [
+          "vsRFSniper",
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "civilian"
+        ]
+      },
+      {
+        "BotRole": "vsRFSniper",
+        "AlwaysEnemies": [
+          "pmcBot",
+          "exUsec",
+          "bossBully",
+          "bossBoar",
+          "bossTagilla",
+          "bossKilla",
+          "bossKojaniy",
+          "bossSanitar",
+          "bossKolontay",
+          "bossGluhar",
+          "bossBoarSniper",
+          "bossPartisan",
+          "followerBoar",
+          "followerBoarClose1",
+          "followerBoarClose2",
+          "followerBully",
+          "followerGluharAssault",
+          "followerGluharScout",
+          "followerGluharSecurity",
+          "followerGluharSnipe",
+          "followerKojaniy",
+          "followerKolontayAssault",
+          "followerKolontaySecurity",
+          "followerSanitar",
+          "followerTagilla",
+          "blackDivision",
+          "assault",
+          "marksman"
+        ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
+        "Neutral": [
+          "sectantPriest",
+          "sectantWarrior"
+        ],
+        "AlwaysFriends": [
+          "vsRF",
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "civilian"
+        ]
+      }
+    ],
+    "DistToActivate": 265,
+    "DistToActivatePvE": 265,
+    "DistToPersueAxemanCoef": 1.1,
+    "DistToSleep": 300,
+    "DistToSleepPvE": 300,
+    "FogVisibilityDistanceCoef": 0,
+    "FogVisibilitySpeedCoef": 0,
+    "GainSight": 1,
+    "IgnoreGreenAcidFollowPlayerEvent": true,
+    "KhorovodChance": 0,
+    "LockSpawnCheckRadius": 0,
+    "LockSpawnCheckRadiusPvE": 0,
+    "LockSpawnStartTime": 0,
+    "LockSpawnStartTimePvE": 0,
+    "LockSpawnStepTime": 0,
+    "LockSpawnStepTimePvE": 0,
+    "MagnetPower": 44,
+    "MarksmanAccuratyCoef": 1,
+    "MaxExfiltrationTime": 1800,
+    "MinExfiltrationTime": 1200,
+    "NonWaveSpawnBotsLimitPerPlayer": 120,
+    "NonWaveSpawnBotsLimitPerPlayerPvE": 120,
+    "RainVisibilityDistanceCoef": 0.35,
+    "RainVisibilitySpeedCoef": 0,
+    "Scattering": 1,
+    "VisibleDistance": 1
+  },
+  "DisabledForScav": true,
+  "Events": {
+    "Halloween2024": {
+      "CrowdAttackBlockRadius": 100,
+      "CrowdAttackSpawnParams": [
+        {
+          "Difficulty": "easy",
+          "Role": "infectedAssault",
+          "Weight": 20
+        },
+        {
+          "Difficulty": "normal",
+          "Role": "infectedAssault",
+          "Weight": 80
+        },
+        {
+          "Difficulty": "hard",
+          "Role": "infectedAssault",
+          "Weight": 40
+        },
+        {
+          "Difficulty": "easy",
+          "Role": "infectedPmc",
+          "Weight": 5
+        },
+        {
+          "Difficulty": "normal",
+          "Role": "infectedPmc",
+          "Weight": 35
+        },
+        {
+          "Difficulty": "hard",
+          "Role": "infectedPmc",
+          "Weight": 20
+        },
+        {
+          "Difficulty": "easy",
+          "Role": "infectedCivil",
+          "Weight": 15
+        },
+        {
+          "Difficulty": "normal",
+          "Role": "infectedCivil",
+          "Weight": 60
+        },
+        {
+          "Difficulty": "hard",
+          "Role": "infectedCivil",
+          "Weight": 0
+        },
+        {
+          "Difficulty": "easy",
+          "Role": "infectedLaborant",
+          "Weight": 0
+        },
+        {
+          "Difficulty": "normal",
+          "Role": "infectedLaborant",
+          "Weight": 0
+        },
+        {
+          "Difficulty": "hard",
+          "Role": "infectedLaborant",
+          "Weight": 0
+        }
+      ],
+      "CrowdCooldownPerPlayerSec": 300,
+      "CrowdsLimit": 2,
+      "InfectedLookCoeff": 2,
+      "MaxCrowdAttackSpawnLimit": 18,
+      "MinInfectionPercentage": 0,
+      "MinSpawnDistToPlayer": 50,
+      "TargetPointSearchRadiusLimit": 200,
+      "ZombieCallDeltaRadius": 20,
+      "ZombieCallPeriodSec": 1,
+      "ZombieCallRadiusLimit": 200,
+      "ZombieMultiplier": 5
+    }
+  },
+  "ExitZones": "5c82534488a45046451a2386",
+  "MinMaxBots": [],
+  "NonWaveGroupScenario": {
+    "Chance": 75,
+    "Enabled": true,
+    "MaxToBeGroup": 3,
+    "MinToBeGroup": 3
+  },
+  "ProfileProgressOptions": {
+    "removeItemListBeforeRaidStart": [
+      {
+        "templateId": "68f213f8ea61d1803707cf7a"
+      },
+      {
+        "templateId": "67c04dac9320f644db06f45c"
+      },
+      {
+        "templateId": "67c04a6f9152fbdfa306cc66"
+      },
+      {
+        "templateId": "67c033fd0610e91bea056998"
+      },
+      {
+        "templateId": "67c033719dacd7c19f0f9f46"
+      }
+    ],
+    "saveAchievementList": [
+      {
+        "achievementId": "68e8f02ff3a1196d1a05f2cb"
+      },
+      {
+        "achievementId": "68e8f042b8efa2bbeb009d89"
+      },
+      {
+        "achievementId": "68e8f04eb841bc8ac305350a"
+      },
+      {
+        "achievementId": "68e8f0575eb7e5ce5000ba0a"
+      },
+      {
+        "achievementId": "68f76335c3f68167b8029c18"
+      },
+      {
+        "achievementId": "68f76344bc0e8927900279f0"
+      },
+      {
+        "achievementId": "68f76353c152253a5b01a612"
+      },
+      {
+        "achievementId": "68f7635e006f73031b0336fa"
+      }
+    ],
+    "saveEncyclopedia": true,
+    "saveHealth": false,
+    "saveItems": false,
+    "saveQuestList": [
+      {
+        "questId": "67c08f0268e50a07b10d25a6"
+      },
+      {
+        "questId": "67c862bd9f9b7ef9090651d8"
+      },
+      {
+        "questId": "67c9877aff0329206209cb67"
+      },
+      {
+        "questId": "67bdf8c066ca1d79a202463a"
+      }
+    ],
+    "saveSkill": false,
+    "saveStatistics": false
+  },
+  "SpawnPointParams": [
+    {
+      "BotZoneName": "Zone1BD1PortAmbush1",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 7,
+      "DelayToCanSpawnSec": 4,
+      "Id": "08564644-6e26-47f0-ae4f-e0171295dba1",
+      "Infiltration": "",
+      "Position": {
+        "x": 21.77002,
+        "y": -60.42134,
+        "z": -353.929962
+      },
+      "Rotation": 7.716724,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm7",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "0b417e77-8338-463e-ab19-f3756d831f13",
+      "Infiltration": "",
+      "Position": {
+        "x": 221.25,
+        "y": -60.02134,
+        "z": -350.97998
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 50
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "0e020a9c-77eb-4f9a-85b4-ebf9a534245c",
+      "Infiltration": "Old Station",
+      "Position": {
+        "x": 125.918,
+        "y": -60.073,
+        "z": -419.363953
+      },
+      "Rotation": 68.9,
+      "Sides": [
+        "Pmc"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavHangarStorm14",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "0f761d4a-8d5f-4677-b27c-4389551634b2",
+      "Infiltration": "",
+      "Position": {
+        "x": 290.680054,
+        "y": -60.28134,
+        "z": -298.149963
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavPort29",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 11,
+      "DelayToCanSpawnSec": 4,
+      "Id": "117ecb43-ac66-4304-a539-4cccb9c6fa69",
+      "Infiltration": "",
+      "Position": {
+        "x": -73.276,
+        "y": -60.24734,
+        "z": 190.63
+      },
+      "Rotation": 351.773834,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers17",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 8,
+      "DelayToCanSpawnSec": 4,
+      "Id": "11f9853d-27c9-4250-95f7-9fece9e49bc0",
+      "Infiltration": "",
+      "Position": {
+        "x": -74.41992,
+        "y": -60.44134,
+        "z": -12.6699829
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsColumns21",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 16,
+      "DelayToCanSpawnSec": 4,
+      "Id": "12f34226-1c1b-417d-8ac1-617ed5bde60a",
+      "Infiltration": "",
+      "Position": {
+        "x": 172.290039,
+        "y": -61.53134,
+        "z": 159.470032
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1PortAmbush1",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 7,
+      "DelayToCanSpawnSec": 4,
+      "Id": "13c29856-5b7b-4d51-8e01-3fb76aec44b4",
+      "Infiltration": "",
+      "Position": {
+        "x": 20.01001,
+        "y": -60.4313431,
+        "z": -347.089966
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivGate36",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 19,
+      "DelayToCanSpawnSec": 4,
+      "Id": "1817e847-5267-4549-9d5d-25f335c070c2",
+      "Infiltration": "",
+      "Position": {
+        "x": 79.71008,
+        "y": -60.2513428,
+        "z": -101.949951
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFPassMiddle15",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 6,
+      "DelayToCanSpawnSec": 4,
+      "Id": "1de95e7e-a349-4cb1-a3d9-dfa95db7097b",
+      "Infiltration": "",
+      "Position": {
+        "x": -18.7698975,
+        "y": -60.2513428,
+        "z": -113.259949
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1PortAmbush1",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 25,
+      "DelayToCanSpawnSec": 4,
+      "Id": "2475fa7c-2ae5-43ef-b614-4ecf3d568d02",
+      "Infiltration": "",
+      "Position": {
+        "x": -1.33996582,
+        "y": -60.3913422,
+        "z": -313.309967
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRFSnipeRoofPort2",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 24,
+      "DelayToCanSpawnSec": 4,
+      "Id": "27071e5c-902d-41df-9751-8d27be2dfca2",
+      "Infiltration": "",
+      "Position": {
+        "x": 9.070068,
+        "y": -51.8413429,
+        "z": -212.47998
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort28",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 11,
+      "DelayToCanSpawnSec": 4,
+      "Id": "28b2d4d6-dbfa-4fe6-8257-57380cbfbef5",
+      "Infiltration": "",
+      "Position": {
+        "x": -6.75097656,
+        "y": -60.413002,
+        "z": 202.569031
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 50
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "2a0506f3-9435-4c1a-8071-2f0a00d4d50b",
+      "Infiltration": "Old Station",
+      "Position": {
+        "x": 127.574005,
+        "y": -60.067,
+        "z": -417.348938
+      },
+      "Rotation": 68.9,
+      "Sides": [
+        "Pmc"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsColumns21",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "2d632192-1324-4c8d-94e6-c531275773c5",
+      "Infiltration": "",
+      "Position": {
+        "x": 175.52002,
+        "y": -61.53134,
+        "z": 237.56
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 50
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "2e52ceb4-5491-4a44-bfe4-a658f87271ff",
+      "Infiltration": "Old Station",
+      "Position": {
+        "x": 125.011017,
+        "y": -60.07,
+        "z": -418.758972
+      },
+      "Rotation": 68.9,
+      "Sides": [
+        "Pmc"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavMiddleAmbush8",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 25
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "345e6a91-37f1-4edc-b69b-3eeb43822dec",
+      "Infiltration": "",
+      "Position": {
+        "x": 181.790039,
+        "y": -60.4313431,
+        "z": -318.789978
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort31",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 13,
+      "DelayToCanSpawnSec": 4,
+      "Id": "392d2a97-51f4-4a6e-8a1d-bc0f8278d231",
+      "Infiltration": "",
+      "Position": {
+        "x": -181.161011,
+        "y": -60.4330025,
+        "z": 293.239
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers25",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "3a94078e-a71a-44d8-bf08-4e31adc4a7aa",
+      "Infiltration": "",
+      "Position": {
+        "x": -127.639893,
+        "y": -60.3913422,
+        "z": 109.720032
+      },
+      "Rotation": 155.473938,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRFStoreAmbush10",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "3b7125d9-5e54-4d39-8bcf-fa1a1794a2e5",
+      "Infiltration": "",
+      "Position": {
+        "x": 186.764038,
+        "y": -60.2443428,
+        "z": -240.268982
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers26",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 13,
+      "DelayToCanSpawnSec": 4,
+      "Id": "3dfd0d40-340f-4372-ab55-9da1e94097c1",
+      "Infiltration": "",
+      "Position": {
+        "x": -122.530029,
+        "y": -60.44134,
+        "z": 198.48999
+      },
+      "Rotation": 171.250336,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFExit33",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 2,
+      "DelayToCanSpawnSec": 4,
+      "Id": "405d2d64-b799-4526-8a8d-d83473fa3d0c",
+      "Infiltration": "",
+      "Position": {
+        "x": -289.436035,
+        "y": -61.36434,
+        "z": 58.88501
+      },
+      "Rotation": 347.959229,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivShip34",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 2,
+      "DelayToCanSpawnSec": 4,
+      "Id": "405f283d-b760-4aea-adf2-fd47b1dea6e3",
+      "Infiltration": "",
+      "Position": {
+        "x": -295.579956,
+        "y": -61.35134,
+        "z": 58.77002
+      },
+      "Rotation": 117.546188,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDWarehouse18",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 18,
+      "DelayToCanSpawnSec": 4,
+      "Id": "40ba8216-eba1-4d0d-ab89-6a7989d88efb",
+      "Infiltration": "",
+      "Position": {
+        "x": 189.5,
+        "y": -60.40134,
+        "z": -41.3199463
+      },
+      "Rotation": 21.7497749,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavHangarStorm14",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 30
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "40ce6564-5e58-42e0-825b-fbcaaac683f7",
+      "Infiltration": "",
+      "Position": {
+        "x": 292.25,
+        "y": -60.28134,
+        "z": -308.539978
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavPortStorm6",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 30
+        }
+      },
+      "CorePointId": 30,
+      "DelayToCanSpawnSec": 4,
+      "Id": "42721f9a-8705-4ebd-b47e-438224feed18",
+      "Infiltration": "",
+      "Position": {
+        "x": 74.79004,
+        "y": -60.46134,
+        "z": -239.639984
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavStoreStorm9",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 27,
+      "DelayToCanSpawnSec": 4,
+      "Id": "42c4d181-c51d-49ec-b845-d83c21368950",
+      "Infiltration": "",
+      "Position": {
+        "x": 118.400024,
+        "y": -60.37134,
+        "z": -168.099976
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDWarehouse18",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 18,
+      "DelayToCanSpawnSec": 4,
+      "Id": "49a6e5b0-2671-4211-8be0-e12521213b92",
+      "Infiltration": "",
+      "Position": {
+        "x": 182.800049,
+        "y": -60.40134,
+        "z": -34.27997
+      },
+      "Rotation": 21.7497749,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivGate36",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 19,
+      "DelayToCanSpawnSec": 4,
+      "Id": "4a1ed661-b0b3-406c-ae53-247930a17fe6",
+      "Infiltration": "",
+      "Position": {
+        "x": 82,
+        "y": -60.2513428,
+        "z": -114.97998
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFContainers24",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "4ddd864b-197e-4814-a246-8aa5e07dcb75",
+      "Infiltration": "",
+      "Position": {
+        "x": -161.97998,
+        "y": -60.19134,
+        "z": 44.9100342
+      },
+      "Rotation": 351.773834,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivPump35",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "57044305-3957-4ae7-b2b3-ead320f57d6d",
+      "Infiltration": "",
+      "Position": {
+        "x": 132.38208,
+        "y": -60.320343,
+        "z": 235.450012
+      },
+      "Rotation": 117.546188,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1HangarAmbush11",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "58077f3c-db3f-4e6f-90f5-00aa4a71b307",
+      "Infiltration": "",
+      "Position": {
+        "x": 275.63,
+        "y": -60.28134,
+        "z": -170.159973
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivGate36",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 19,
+      "DelayToCanSpawnSec": 4,
+      "Id": "58efcc2a-5ec6-4946-9afc-d36c2dd22cc9",
+      "Infiltration": "",
+      "Position": {
+        "x": 78.48999,
+        "y": -60.2513428,
+        "z": -90.91998
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BDGateAmbush13",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 27,
+      "DelayToCanSpawnSec": 4,
+      "Id": "5b423cad-7a8d-4d07-afd0-263d7940e9aa",
+      "Infiltration": "",
+      "Position": {
+        "x": 38.1929932,
+        "y": -60.4313431,
+        "z": -144.871948
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFColumns22",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "5c974c3d-2a75-4c6a-a5a2-a52e21e34cb4",
+      "Infiltration": "",
+      "Position": {
+        "x": 132.290039,
+        "y": -60.37134,
+        "z": 235.790039
+      },
+      "Rotation": 155.473938,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers25",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "600028be-2605-4650-b582-e2ad01528b71",
+      "Infiltration": "",
+      "Position": {
+        "x": -134.569946,
+        "y": -60.3213425,
+        "z": 131.180054
+      },
+      "Rotation": 155.473938,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFColumns22",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "625a0629-db16-4063-bcf4-36157d3e40ee",
+      "Infiltration": "",
+      "Position": {
+        "x": 141.070068,
+        "y": -60.37134,
+        "z": 247.790039
+      },
+      "Rotation": 155.473938,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort30",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 12,
+      "DelayToCanSpawnSec": 4,
+      "Id": "63a43a9a-d40a-4788-b8c4-cf39e084e781",
+      "Infiltration": "",
+      "Position": {
+        "x": -85.96802,
+        "y": -60.421,
+        "z": 396.534
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFContainers24",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "64f11987-c7d1-4669-b1f9-885e4cd7dca2",
+      "Infiltration": "",
+      "Position": {
+        "x": -155.199951,
+        "y": -60.40134,
+        "z": 38.9000244
+      },
+      "Rotation": 351.773834,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRFStoreAmbush10",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "64f12bce-db2f-4976-824b-43f0d15b93c7",
+      "Infiltration": "",
+      "Position": {
+        "x": 196.693,
+        "y": -60.2163429,
+        "z": -241.826965
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavMiddleAmbush5",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 25
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "64f49ed5-5c11-4273-b86a-c2e965615b9c",
+      "Infiltration": "",
+      "Position": {
+        "x": 128.700073,
+        "y": -60.38134,
+        "z": -293.58
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1HangarAmbush11",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "67758a64-0568-4588-bc7a-7cbaf5f29cee",
+      "Infiltration": "",
+      "Position": {
+        "x": 281.62,
+        "y": -60.20134,
+        "z": -189.549988
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDWarehouse19",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 18,
+      "DelayToCanSpawnSec": 4,
+      "Id": "6866b586-eab2-420f-b38a-7a1f22271cea",
+      "Infiltration": "",
+      "Position": {
+        "x": 210.25,
+        "y": -60.46134,
+        "z": 40.0900269
+      },
+      "Rotation": 200.161133,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm7",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 29,
+      "DelayToCanSpawnSec": 4,
+      "Id": "69ca0c0b-4aac-4af2-be7d-f67648a15d2c",
+      "Infiltration": "",
+      "Position": {
+        "x": 193.960083,
+        "y": -60.15134,
+        "z": -352.529968
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm4",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 29,
+      "DelayToCanSpawnSec": 4,
+      "Id": "6ddfa840-6425-47ed-b688-b6cf9cc78380",
+      "Infiltration": "",
+      "Position": {
+        "x": 112.210083,
+        "y": -60.4113426,
+        "z": -322.659973
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFContainers24",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "6fac676e-ed7c-4b45-a935-0e8632c23d39",
+      "Infiltration": "",
+      "Position": {
+        "x": -136.079956,
+        "y": -60.40134,
+        "z": 34.4100342
+      },
+      "Rotation": 351.773834,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDWarehouse18",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 18,
+      "DelayToCanSpawnSec": 4,
+      "Id": "738953c1-a044-4c4d-bc99-ea0536a8cb74",
+      "Infiltration": "",
+      "Position": {
+        "x": 176.650024,
+        "y": -60.40134,
+        "z": -34.69995
+      },
+      "Rotation": 21.7497749,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRF1Spawn3",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 23,
+      "DelayToCanSpawnSec": 4,
+      "Id": "76fe1452-d1f9-4511-adda-c4ed98b46950",
+      "Infiltration": "",
+      "Position": {
+        "x": 133.810059,
+        "y": -60.46134,
+        "z": -392.249969
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort32",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 10,
+      "DelayToCanSpawnSec": 4,
+      "Id": "7ab9788e-3ced-4094-a291-435ae50f3f9c",
+      "Infiltration": "",
+      "Position": {
+        "x": -372.021,
+        "y": -60.373,
+        "z": 328.85907
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1HangarBD11",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "7e5d19eb-61a7-4020-8239-24b413c33d61",
+      "Infiltration": "",
+      "Position": {
+        "x": 274.13,
+        "y": -60.2933426,
+        "z": -218.766968
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm7",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 23,
+      "DelayToCanSpawnSec": 4,
+      "Id": "7fdc5fcd-13d1-4b18-bd0c-1ae2615b9342",
+      "Infiltration": "",
+      "Position": {
+        "x": 197.76001,
+        "y": -60.051342,
+        "z": -365.839966
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivShip34",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 2,
+      "DelayToCanSpawnSec": 4,
+      "Id": "8187ab81-462b-4201-8b67-e2c50934fad1",
+      "Infiltration": "",
+      "Position": {
+        "x": -299.12,
+        "y": -61.35134,
+        "z": 71.11005
+      },
+      "Rotation": 117.546188,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsColumns20",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 16,
+      "DelayToCanSpawnSec": 4,
+      "Id": "855df45d-2130-4222-83e6-5d05f38d724e",
+      "Infiltration": "",
+      "Position": {
+        "x": 181.320068,
+        "y": -61.2513428,
+        "z": 80.35004
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 50
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "89aafce3-54ce-46e9-b7e9-349b8aee8752",
+      "Infiltration": "Old Station",
+      "Position": {
+        "x": 127.623016,
+        "y": -60.066,
+        "z": -419.16394
+      },
+      "Rotation": 68.9,
+      "Sides": [
+        "Pmc"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BDGateAmbush13",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 27,
+      "DelayToCanSpawnSec": 4,
+      "Id": "8a74f69d-9b38-4e46-9f35-1a223c7b3dc8",
+      "Infiltration": "",
+      "Position": {
+        "x": 41.5,
+        "y": -60.4113426,
+        "z": -154.112976
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort31",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 9,
+      "DelayToCanSpawnSec": 4,
+      "Id": "8cc78764-dfb4-4c82-9598-4bdec4ea85e3",
+      "Infiltration": "",
+      "Position": {
+        "x": -176.671021,
+        "y": -60.3830032,
+        "z": 299.219
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFExit33",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 2,
+      "DelayToCanSpawnSec": 4,
+      "Id": "8f3ebd59-47a7-49db-ba5c-b32055334dac",
+      "Infiltration": "",
+      "Position": {
+        "x": -283.4099,
+        "y": -61.36434,
+        "z": 60.1500244
+      },
+      "Rotation": 347.959229,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivPump35",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9053b96f-a4c8-4af6-87f5-eade402c04ad",
+      "Infiltration": "",
+      "Position": {
+        "x": 129.741089,
+        "y": -60.320343,
+        "z": 231.988037
+      },
+      "Rotation": 117.546188,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers26",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 13,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9099badc-6316-482b-bb85-67c34c2ff63d",
+      "Infiltration": "",
+      "Position": {
+        "x": -134.630127,
+        "y": -60.29134,
+        "z": 199.420044
+      },
+      "Rotation": 159.233185,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsWarehouse16",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 20,
+      "DelayToCanSpawnSec": 4,
+      "Id": "91512397-ec2c-4ff2-8dcb-3b07b4cbb563",
+      "Infiltration": "",
+      "Position": {
+        "x": 85.75,
+        "y": -60.3913422,
+        "z": -13.7599487
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BDGateAmbush13",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 25
+        }
+      },
+      "CorePointId": 27,
+      "DelayToCanSpawnSec": 4,
+      "Id": "924bf559-f136-4720-a128-4382585b93fd",
+      "Infiltration": "",
+      "Position": {
+        "x": 40.01001,
+        "y": -60.4473419,
+        "z": -156.48999
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1HangarAmbush11",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "92c32a02-1050-4a9e-a8d2-3a82eda81f0a",
+      "Infiltration": "",
+      "Position": {
+        "x": 269.26,
+        "y": -60.20134,
+        "z": -171.179962
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm4",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 29,
+      "DelayToCanSpawnSec": 4,
+      "Id": "950e379c-a3b8-43e5-b5a1-2b6e257d644d",
+      "Infiltration": "",
+      "Position": {
+        "x": 127.890015,
+        "y": -60.4113426,
+        "z": -317.869965
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1HangarBD11",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "96c819bb-c911-41f5-a4df-ae97ea427263",
+      "Infiltration": "",
+      "Position": {
+        "x": 273.957031,
+        "y": -60.3259048,
+        "z": -266.977966
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFPassMiddle15",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 6,
+      "DelayToCanSpawnSec": 4,
+      "Id": "99bd43d0-ba19-4989-9f9d-a4a5bda6dfa8",
+      "Infiltration": "",
+      "Position": {
+        "x": -14.5360107,
+        "y": -60.24034,
+        "z": -147.060974
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFColumns22",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9b2c1125-16f3-4efb-bfba-d0691343fe50",
+      "Infiltration": "",
+      "Position": {
+        "x": 129.7301,
+        "y": -60.37134,
+        "z": 241.100037
+      },
+      "Rotation": 155.473938,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers26",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 13,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9c197423-e224-4774-a5d0-bb20153fe80c",
+      "Infiltration": "",
+      "Position": {
+        "x": -124.840088,
+        "y": -60.4113426,
+        "z": 206.569946
+      },
+      "Rotation": 174.6893,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDColumns23",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 15,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9ec7b689-f774-40d4-b861-302c946a299d",
+      "Infiltration": "",
+      "Position": {
+        "x": 86.39905,
+        "y": -60.263,
+        "z": 105.468994
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRFStoreAmbush10",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 28,
+      "DelayToCanSpawnSec": 4,
+      "Id": "a13b2d1f-0b98-460d-9450-dcd36014c0f3",
+      "Infiltration": "",
+      "Position": {
+        "x": 168.710083,
+        "y": -60.27134,
+        "z": -213.269989
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort28",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 3,
+      "DelayToCanSpawnSec": 4,
+      "Id": "a3586118-2e07-4f4e-82e1-bc2fdeb80acf",
+      "Infiltration": "",
+      "Position": {
+        "x": -12.72998,
+        "y": -59.373,
+        "z": 235.841
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDWarehouse19",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 18,
+      "DelayToCanSpawnSec": 4,
+      "Id": "a5746b20-a27e-4fa8-8dfe-cb75274c116d",
+      "Infiltration": "",
+      "Position": {
+        "x": 197.77002,
+        "y": -60.46134,
+        "z": 43.54004
+      },
+      "Rotation": 200.161133,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers25",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "a6475c25-885c-4a59-893b-f509911f21f6",
+      "Infiltration": "",
+      "Position": {
+        "x": -125.73999,
+        "y": -60.38134,
+        "z": 132.800049
+      },
+      "Rotation": 268.891541,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsColumns21",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "aa68dccd-d8be-4441-ad55-25dbd4c6d9fd",
+      "Infiltration": "",
+      "Position": {
+        "x": 173.280029,
+        "y": -61.53134,
+        "z": 198.57
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavPort29",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 11,
+      "DelayToCanSpawnSec": 4,
+      "Id": "acc12080-d0df-4d6e-82d2-0fa51b791701",
+      "Infiltration": "",
+      "Position": {
+        "x": -77.77991,
+        "y": -60.4113426,
+        "z": 197.920044
+      },
+      "Rotation": 351.773834,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRFSnipeRoofPort2",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 24,
+      "DelayToCanSpawnSec": 4,
+      "Id": "b24f8cdb-15d6-4475-ab8e-c26c2178fd3b",
+      "Infiltration": "",
+      "Position": {
+        "x": 20.1600342,
+        "y": -51.8413429,
+        "z": -211.719971
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivShip34",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 2,
+      "DelayToCanSpawnSec": 4,
+      "Id": "b4ccf8a0-c7a2-4b06-9b39-38a2d3d06398",
+      "Infiltration": "",
+      "Position": {
+        "x": -279.928955,
+        "y": -61.39534,
+        "z": 60.5320435
+      },
+      "Rotation": 117.546188,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavPort29",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 11,
+      "DelayToCanSpawnSec": 4,
+      "Id": "b4e1ec4e-bdf6-465a-8f34-7f48c1593f30",
+      "Infiltration": "",
+      "Position": {
+        "x": -60.98999,
+        "y": -60.39234,
+        "z": 181.900024
+      },
+      "Rotation": 351.773834,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1HangarAmbush11",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "b7c6c7ec-6611-4d4c-bc25-9ae95d6293d2",
+      "Infiltration": "",
+      "Position": {
+        "x": 283.710083,
+        "y": -60.20134,
+        "z": -171.779968
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort30",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 12,
+      "DelayToCanSpawnSec": 4,
+      "Id": "b99604e4-a075-4a45-98ed-34269a12e5a0",
+      "Infiltration": "",
+      "Position": {
+        "x": -88.06091,
+        "y": -60.421,
+        "z": 406.079041
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDWarehouse19",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 18,
+      "DelayToCanSpawnSec": 4,
+      "Id": "bc9a293f-8826-438c-bd45-f8fe68f64815",
+      "Infiltration": "",
+      "Position": {
+        "x": 211,
+        "y": -60.46134,
+        "z": 29.2300415
+      },
+      "Rotation": 200.161133,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm7",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 29,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c19937e3-7ec9-4df6-9d37-adb209d0a13a",
+      "Infiltration": "",
+      "Position": {
+        "x": 217.080078,
+        "y": -60.02134,
+        "z": -354.569977
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm4",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 29,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c52d708c-f761-42ad-a761-ef90bb43e788",
+      "Infiltration": "",
+      "Position": {
+        "x": 133.26001,
+        "y": -60.38134,
+        "z": -326.349976
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort32",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 10,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c5b9522e-10ec-4afe-b198-f7002f31e943",
+      "Infiltration": "",
+      "Position": {
+        "x": -349.68103,
+        "y": -60.373,
+        "z": 337.84906
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2VSRFExit33",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 2,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c6a803cc-ef57-483a-b936-f4d051f66c55",
+      "Infiltration": "",
+      "Position": {
+        "x": -282.194946,
+        "y": -61.36034,
+        "z": 76.5150146
+      },
+      "Rotation": 347.959229,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRFStoreAmbush10",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 28,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c6b07bf8-f55a-4c62-885a-e811b1005291",
+      "Infiltration": "",
+      "Position": {
+        "x": 164.7201,
+        "y": -60.2513428,
+        "z": -217.999969
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDColumns23",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c6ddc7c1-edba-4cb4-b1f2-e87295560179",
+      "Infiltration": "",
+      "Position": {
+        "x": 87.58899,
+        "y": -60.263,
+        "z": 133.889038
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsWarehouse16",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 19,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c6f78677-a705-48df-a28b-06c651c48621",
+      "Infiltration": "",
+      "Position": {
+        "x": 80.6700439,
+        "y": -60.4723,
+        "z": -79.67999
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort32",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 10,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c7dd9055-c363-42d6-baad-5d4cab32b5e0",
+      "Infiltration": "",
+      "Position": {
+        "x": -361.261,
+        "y": -60.373,
+        "z": 326.289
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavPortStorm6",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 30
+        }
+      },
+      "CorePointId": 30,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c98322da-72bb-4298-a9d7-af80bdefc05f",
+      "Infiltration": "",
+      "Position": {
+        "x": 81.28003,
+        "y": -60.47134,
+        "z": -250.059967
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavStoreStorm9",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 5,
+      "DelayToCanSpawnSec": 4,
+      "Id": "c9b6eb43-b612-4d5c-ab4a-acaad887a8c2",
+      "Infiltration": "",
+      "Position": {
+        "x": 119.390015,
+        "y": -60.28134,
+        "z": -243.23999
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2CivPump35",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "cecf7861-5f1a-43b8-a9ea-f974e479aeec",
+      "Infiltration": "",
+      "Position": {
+        "x": 139.666016,
+        "y": -60.320343,
+        "z": 228.555054
+      },
+      "Rotation": 117.546188,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavEnterStorm4",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 29,
+      "DelayToCanSpawnSec": 4,
+      "Id": "cfb8f630-ec83-41c1-b848-ce00b4148619",
+      "Infiltration": "",
+      "Position": {
+        "x": 125.660034,
+        "y": -60.38134,
+        "z": -331.169983
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1BD1PortAmbush1",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 7,
+      "DelayToCanSpawnSec": 4,
+      "Id": "d1d73c98-b3fa-4917-8f56-f6cec66d8c09",
+      "Infiltration": "",
+      "Position": {
+        "x": 20.3800049,
+        "y": -60.22134,
+        "z": -348.459961
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavMiddleAmbush8",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 25
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "d24d4361-2fe5-447a-ac1a-e16b31f97586",
+      "Infiltration": "",
+      "Position": {
+        "x": 181.52002,
+        "y": -60.4313431,
+        "z": -323.61
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRF1Spawn3",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 23,
+      "DelayToCanSpawnSec": 4,
+      "Id": "d44c600c-d070-4a80-a628-7bfd958f4485",
+      "Infiltration": "",
+      "Position": {
+        "x": 135.530029,
+        "y": -60.02134,
+        "z": -387.869965
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavStoreStorm9",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 27,
+      "DelayToCanSpawnSec": 4,
+      "Id": "d59b0058-c9bf-470b-b63e-0704fa72f466",
+      "Infiltration": "",
+      "Position": {
+        "x": 121.029053,
+        "y": -60.48534,
+        "z": -176.577972
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsWarehouse16",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 20,
+      "DelayToCanSpawnSec": 4,
+      "Id": "d6cbad71-6264-44d0-bf03-97105e28890b",
+      "Infiltration": "",
+      "Position": {
+        "x": 82.04004,
+        "y": -60.36134,
+        "z": -27.5699463
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers17",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 8,
+      "DelayToCanSpawnSec": 4,
+      "Id": "d736ede6-64cc-4d98-8a65-eec5ee58552b",
+      "Infiltration": "",
+      "Position": {
+        "x": -86.01001,
+        "y": -60.40134,
+        "z": 4.24005127
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsColumns20",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 15,
+      "DelayToCanSpawnSec": 4,
+      "Id": "db9dc773-1f4e-43cd-b2cb-eb40d4fb1418",
+      "Infiltration": "",
+      "Position": {
+        "x": 175.700073,
+        "y": -61.38134,
+        "z": 54.0900269
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort28",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 11,
+      "DelayToCanSpawnSec": 4,
+      "Id": "def2e10a-b6ac-4f35-9573-1896c4dd1fab",
+      "Infiltration": "",
+      "Position": {
+        "x": 3.24902344,
+        "y": -60.413002,
+        "z": 204.669
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavPortStorm6",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 30
+        }
+      },
+      "CorePointId": 30,
+      "DelayToCanSpawnSec": 4,
+      "Id": "df10c44a-ade3-4357-8c8f-195c8700671a",
+      "Infiltration": "",
+      "Position": {
+        "x": 65.6001,
+        "y": -60.37134,
+        "z": -240.48999
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavMiddleAmbush5",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 25
+        }
+      },
+      "CorePointId": 1,
+      "DelayToCanSpawnSec": 4,
+      "Id": "e0be38f9-6a45-4403-be3b-eb9fe6ce7cad",
+      "Infiltration": "",
+      "Position": {
+        "x": 128.960083,
+        "y": -60.38134,
+        "z": -298.24
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1VSRF1Spawn3",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20.35
+        }
+      },
+      "CorePointId": 23,
+      "DelayToCanSpawnSec": 4,
+      "Id": "e4de4650-66b5-4dc3-8b56-d5b30f1d5dde",
+      "Infiltration": "",
+      "Position": {
+        "x": 136.63,
+        "y": -60.45134,
+        "z": -402.659973
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavContainers17",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 35
+        }
+      },
+      "CorePointId": 8,
+      "DelayToCanSpawnSec": 4,
+      "Id": "e614e03b-6779-446c-ac08-85c8ed284294",
+      "Infiltration": "",
+      "Position": {
+        "x": -67.73999,
+        "y": -60.419342,
+        "z": 5.330017
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone1ScavHangarStorm14",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 20
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "e854a957-70bf-4606-a2e4-ed9893561dea",
+      "Infiltration": "",
+      "Position": {
+        "x": 279.2301,
+        "y": -60.28134,
+        "z": -304.179962
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 50
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "eb593d7d-ce9c-4a4a-abad-07e66f5204ee",
+      "Infiltration": "Old Station",
+      "Position": {
+        "x": 128.899017,
+        "y": -60.067,
+        "z": -420.03595
+      },
+      "Rotation": 68.9,
+      "Sides": [
+        "Pmc"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2ScavsColumns20",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 15,
+      "DelayToCanSpawnSec": 4,
+      "Id": "f75fe6ef-4caa-451c-84f0-cea11c727895",
+      "Infiltration": "",
+      "Position": {
+        "x": 164.01001,
+        "y": -60.0713425,
+        "z": 30.5500488
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDColumns23",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 17,
+      "DelayToCanSpawnSec": 4,
+      "Id": "fb6445bd-de11-44b1-9e90-c226f6bd8757",
+      "Infiltration": "",
+      "Position": {
+        "x": 82.35901,
+        "y": -60.303,
+        "z": 140.639038
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "Zone2BDPort30",
+      "Categories": [
+        "Bot",
+        "Boss"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 40
+        }
+      },
+      "CorePointId": 12,
+      "DelayToCanSpawnSec": 4,
+      "Id": "fc8f6387-3bd1-4286-88e7-85f0d2b4e07a",
+      "Infiltration": "",
+      "Position": {
+        "x": -77.19092,
+        "y": -60.421,
+        "z": 400.289
+      },
+      "Rotation": 236.87,
+      "Sides": [
+        "Savage"
+      ]
+    }
+  ],
+  "areas": {
+    "SPAWNS/ScavPMCspawn (1)": {
+      "center": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "infiltrationZone": "Factory",
+      "orientation": 100.615387,
+      "position": {
+        "x": 0.16,
+        "y": 1.36,
+        "z": 137.41
+      },
+      "sides": [
+        "Usec",
+        "Bear",
+        "Savage"
+      ],
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    "SPAWNS/ScavPMCspawn (2)": {
+      "center": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "infiltrationZone": "Factory",
+      "orientation": 97.28231,
+      "position": {
+        "x": 2.08,
+        "y": 1.42,
+        "z": 142.93
+      },
+      "sides": [
+        "Usec",
+        "Bear",
+        "Savage"
+      ],
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    }
+  },
+  "doors": [],
+  "exits": [
+    {
+      "Chance": 0,
+      "ChancePVE": 0,
+      "Count": 0,
+      "CountPVE": 0,
+      "EntryPoints": "east",
+      "ExfiltrationTime": 0,
+      "ExfiltrationTimePVE": 0,
+      "ExfiltrationType": "Individual",
+      "Id": "",
+      "MaxTime": 0,
+      "MaxTimePVE": 0,
+      "MinTime": 0,
+      "MinTimePVE": 0,
+      "Name": "Unity_free_exit",
+      "PassageRequirement": "None",
+      "PlayersCount": 0,
+      "PlayersCountPVE": 0,
+      "RequiredSlot": "FirstPrimaryWeapon",
+      "RequirementTip": ""
+    },
+    {
+      "Chance": 0,
+      "ChancePVE": 0,
+      "Count": 0,
+      "CountPVE": 0,
+      "EntryPoints": "west,east",
+      "ExfiltrationTime": 0,
+      "ExfiltrationTimePVE": 0,
+      "ExfiltrationType": "SharedTimer",
+      "Id": "5449016a4bdc2d6f028b456f",
+      "MaxTime": 0,
+      "MaxTimePVE": 0,
+      "MinTime": 0,
+      "MinTimePVE": 0,
+      "Name": "Sandbox_VExit",
+      "PassageRequirement": "TransferItem",
+      "PlayersCount": 0,
+      "PlayersCountPVE": 0,
+      "RequiredSlot": "FirstPrimaryWeapon",
+      "RequirementTip": "EXFIL_Item"
+    },
+    {
+      "Chance": 0,
+      "ChancePVE": 0,
+      "Count": 0,
+      "CountPVE": 0,
+      "EntryPoints": "west,east",
+      "ExfiltrationTime": 0,
+      "ExfiltrationTimePVE": 0,
+      "ExfiltrationType": "Individual",
+      "Id": "",
+      "MaxTime": 0,
+      "MaxTimePVE": 0,
+      "MinTime": 0,
+      "MinTimePVE": 0,
+      "Name": "Sniper_exit",
+      "PassageRequirement": "None",
+      "PlayersCount": 0,
+      "PlayersCountPVE": 0,
+      "RequiredSlot": "FirstPrimaryWeapon",
+      "RequirementTip": ""
+    },
+    {
+      "Chance": 0,
+      "ChancePVE": 0,
+      "Count": 0,
+      "CountPVE": 0,
+      "EntryPoints": "west,east",
+      "ExfiltrationTime": 0,
+      "ExfiltrationTimePVE": 0,
+      "ExfiltrationType": "SharedTimer",
+      "Id": "",
+      "MaxTime": 0,
+      "MaxTimePVE": 0,
+      "MinTime": 0,
+      "MinTimePVE": 0,
+      "Name": "Scav_coop_exit",
+      "PassageRequirement": "ScavCooperation",
+      "PlayersCount": 0,
+      "PlayersCountPVE": 0,
+      "RequiredSlot": "FirstPrimaryWeapon",
+      "RequirementTip": "EXFIL_Cooperate"
+    },
+    {
+      "Chance": 0,
+      "ChancePVE": 0,
+      "Count": 0,
+      "CountPVE": 0,
+      "EntryPoints": "west",
+      "ExfiltrationTime": 0,
+      "ExfiltrationTimePVE": 0,
+      "ExfiltrationType": "Individual",
+      "Id": "",
+      "MaxTime": 0,
+      "MaxTimePVE": 0,
+      "MinTime": 0,
+      "MinTimePVE": 0,
+      "Name": "Nakatani_stairs_free_exit",
+      "PassageRequirement": "None",
+      "PlayersCount": 0,
+      "PlayersCountPVE": 0,
+      "RequiredSlot": "FirstPrimaryWeapon",
+      "RequirementTip": ""
+    }
+  ],
+  "limits": [
+    {
+      "items": [
+        "64d4b23dc1b37504b41ac2b6"
+      ],
+      "max": 1,
+      "min": 1
+    }
+  ],
+  "maxItemCountInLocation": [],
+  "waves": [
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavEnterStorm4",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavEnterStorm4",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavEnterStorm4",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush5",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 3,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": true,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush5",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 280,
+      "time_min": 280
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": true,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush5",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush5",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 3,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavPortStorm6",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavPortStorm6",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavPortStorm6",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavEnterStorm7",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 3,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavEnterStorm7",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavEnterStorm7",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush8",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush8",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 3,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush8",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavMiddleAmbush8",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavStoreStorm9",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavStoreStorm9",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 3,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "pve",
+        "regular"
+      ],
+      "SpawnPoints": "Zone1ScavStoreStorm9",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavStoreStorm9",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavHangarStorm14",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 1,
+      "slots_min": 1,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavHangarStorm14",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 300,
+      "time_min": 300
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone1ScavHangarStorm14",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 1,
+      "time_max": 600,
+      "time_min": 600
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsWarehouse16",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsWarehouse16",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 500,
+      "time_min": 500
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsWarehouse16",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 800,
+      "time_min": 800
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavContainers17",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavContainers17",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 2,
+      "slots_min": 1,
+      "time_max": 800,
+      "time_min": 800
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsColumns20",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 4,
+      "slots_min": 3,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsColumns20",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 500,
+      "time_min": 500
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsColumns20",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 800,
+      "time_min": 800
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsColumns21",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavsColumns21",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 800,
+      "time_min": 800
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavContainers25",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavContainers25",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 2,
+      "slots_min": 1,
+      "time_max": 800,
+      "time_min": 800
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavContainers26",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 1,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavPort29",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 4,
+      "slots_min": 3,
+      "time_max": -1,
+      "time_min": -1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavPort29",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 500,
+      "time_min": 500
+    },
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [
+        "regular",
+        "pve"
+      ],
+      "SpawnPoints": "Zone2ScavPort29",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 3,
+      "slots_min": 2,
+      "time_max": 900,
+      "time_min": 900
+    }
+  ],
   "AccessKeys": [],
   "AccessKeysPvE": [],
   "Area": 0,
-  "AveragePlayTime": 100,
-  "AveragePlayerLevel": 10,
-  "BotAssault": 0,
+  "AveragePlayTime": 45,
+  "AveragePlayerLevel": 50,
+  "BotAssault": 100,
   "BotEasy": 0,
-  "BotHard": 0,
+  "BotHard": 100,
   "BotImpossible": 0,
   "BotMarksman": 0,
-  "BotMax": 0,
-  "BotMaxPvE": 0,
+  "BotMax": 30,
+  "BotMaxPvE": 30,
   "BotNormal": 0,
   "BotSpawnCountStep": 3,
-  "BotSpawnPeriodCheck": 15,
-  "BotSpawnTimeOffMax": 0,
-  "BotSpawnTimeOffMin": 0,
-  "BotSpawnTimeOnMax": 0,
-  "BotSpawnTimeOnMin": 0,
-  "BotStart": 0,
+  "BotSpawnPeriodCheck": 14,
+  "BotSpawnTimeOffMax": 390,
+  "BotSpawnTimeOffMin": 240,
+  "BotSpawnTimeOnMax": 20,
+  "BotSpawnTimeOnMin": 10,
+  "BotStart": 420,
   "BotStartPlayer": 0,
-  "BotStop": 0,
+  "BotStop": 2800,
   "DisabledScavExits": "",
-  "EnableCoop": true,
-  "Enabled": true,
-  "EscapeTimeLimit": 0,
-  "EscapeTimeLimitCoop": 0,
-  "ForceOnlineRaidInPVE": false,
+  "EnableCoop": false,
+  "Enabled": false,
+  "EscapeTimeLimit": 50,
+  "EscapeTimeLimitCoop": 50,
+  "ForceOfflineRaidInPVE": false,
+  "ForceOnlineRaidInPVE": true,
   "GlobalContainerChanceModifier": 1,
   "HeatmapCellSize": {
     "x": 1,
@@ -57,105 +6847,70 @@
     "BotsDamageSources",
     "LootPositions"
   ],
+  "HiddenWhenLockedByQuest": false,
   "IconX": 280,
   "IconY": 160,
   "IsSecret": false,
-  "Locked": true,
-  "MaxBotPerZone": 0,
-  "MaxCoopGroup": 9,
-  "MaxDistToFreePoint": 900,
-  "MaxPlayers": 9,
-  "MinDistToFreePoint": 10,
+  "Locked": false,
+  "LockedByQuest": false,
+  "MaxBotPerZone": 15,
+  "MaxCoopGroup": 20,
+  "MaxDistToFreePoint": 220,
+  "MaxPlayers": 5,
+  "MinDistToFreePoint": 60,
   "MinPlayerLvlAccessKeys": 0,
-  "MinPlayers": 6,
+  "MinPlayers": 1,
   "Name": "Terminal",
-  "NewSpawn": false,
+  "NewSpawn": true,
   "NewSpawnForPlayers": false,
-  "NonWaveGroupScenario": {
-    "Chance": 50,
-    "Enabled": true,
-    "MaxToBeGroup": 3,
-    "MinToBeGroup": 2
-  },
   "OcculsionCullingEnabled": false,
   "OfflineNewSpawn": true,
-  "OfflineOldSpawn": true,
-  "OldSpawn": true,
+  "OfflineOldSpawn": false,
+  "OldSpawn": false,
   "OpenZones": "",
   "PlayersRequestCount": -1,
   "PmcMaxPlayersInGroup": 5,
-  "RequiredPlayerLevelMax": 100,
+  "RequiredPlayerLevelMax": 99,
   "RequiredPlayerLevelMin": 0,
   "Rules": "Normal",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": true,
   "ScavMaxPlayersInGroup": 4,
   "Scene": {
-    "path": "",
-    "rcid": ""
+    "path": "maps/terminal_preset.bundle",
+    "rcid": "terminal.scenespreset.asset"
   },
-  "UnixDateTime": 0,
-  "doors": [],
-  "limits": [],
-  "waves": [
+  "UnixDateTime": 1621511450,
+  "Id": "Terminal",
+  "_Id": "65cc8f81a9aac3e77d0cfd3e",
+  "Loot": [],
+  "Banners": [
     {
-      "BotPreset": "easy",
-      "BotSide": "Savage",
-      "KeepZoneOnSpawn": false,
-      "SpawnMode": [],
-      "SpawnPoints": "",
-      "WildSpawnType": "assault",
-      "isPlayers": false,
-      "number": 0,
-      "slots_max": 6,
-      "slots_min": 3,
-      "time_max": 2,
-      "time_min": 1
+      "id": "6901f52709598eae190be134",
+      "pic": {
+        "path": "banners/6901f4be499c695f6e03247c.jpg",
+        "rcid": "",
+        "file": "6901f4be499c695f6e03247c.jpg",
+        "type": "banners"
+      }
     },
     {
-      "BotPreset": "easy",
-      "BotSide": "Savage",
-      "KeepZoneOnSpawn": false,
-      "SpawnMode": [],
-      "SpawnPoints": "",
-      "WildSpawnType": "assault",
-      "isPlayers": false,
-      "number": 1,
-      "slots_max": 5,
-      "slots_min": 3,
-      "time_max": 12,
-      "time_min": 10
+      "id": "64c0acf85174e095610734a0",
+      "pic": {
+        "path": "banners/67e404c722d6081b78031de0.jpg",
+        "rcid": "",
+        "file": "67e404c722d6081b78031de0.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0ad6af99768b777048f4e",
+      "pic": {
+        "path": "banners/67e4047d22d6081b78031ddb.jpg",
+        "rcid": "",
+        "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
     }
-  ],
-  "BotLocationModifier": {
-    "AccuracySpeed": 0,
-    "DistToActivatePvE": 0,
-    "DistToSleepPvE": 0,
-    "FogVisibilityDistanceCoef": 0,
-    "FogVisibilitySpeedCoef": 0,
-    "GainSight": 0,
-    "LockSpawnCheckRadius": 150,
-    "LockSpawnCheckRadiusPvE": 150,
-    "LockSpawnStartTime": 10,
-    "LockSpawnStartTimePvE": 10,
-    "LockSpawnStepTime": 50,
-    "LockSpawnStepTimePvE": 50,
-    "MarksmanAccuratyCoef": 0,
-    "NonWaveSpawnBotsLimitPerPlayer": 10,
-    "NonWaveSpawnBotsLimitPerPlayerPvE": 15,
-    "RainVisibilityDistanceCoef": 0,
-    "RainVisibilitySpeedCoef": 0,
-    "Scattering": 0,
-    "VisibleDistance": 0,
-    "DistToActivate": 0,
-    "DistToSleep": 0
-  },
-  "DisabledForScav": false,
-  "MinMaxBots": [],
-  "SpawnPointParams": [],
-  "exits": [],
-  "maxItemCountInLocation": [],
-  "Id": "Terminal",
-  "_Id": "5704e5a4d2720bb45b8b4567",
-  "Loot": [],
-  "Banners": [],
-  "BossLocationSpawn": []
+  ]
 }

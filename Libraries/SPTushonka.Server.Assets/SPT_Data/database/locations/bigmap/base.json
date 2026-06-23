@@ -1,11 +1,9 @@
 {
-  "AccessKeys": [],
-  "AccessKeysPvE": [],
   "AirdropParameters": [
     {
       "AirdropPointDeactivateDistance": 50,
-      "MinPlayersCountToSpawnAirdrop": 6,
-      "PlaneAirdropChance": 0.2,
+      "MinPlayersCountToSpawnAirdrop": 1,
+      "PlaneAirdropChance": 0.9,
       "PlaneAirdropCooldownMax": 700,
       "PlaneAirdropCooldownMin": 600,
       "PlaneAirdropEnd": 1200,
@@ -15,104 +13,9 @@
       "UnsuccessfulTryPenalty": 600
     }
   ],
-  "Area": 0,
-  "AveragePlayTime": 25,
-  "AveragePlayerLevel": 20,
-  "Banners": [
-    {
-      "id": "67d135bc9e0d93daf71d555e",
-      "pic": {
-        "file": "67e4046922d6081b78031dda.png",
-        "path": "banners/67e4046922d6081b78031dda.png",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5464e0404bdc2d2a708b4567",
-      "pic": {
-        "file": "67e404de22d6081b78031de2.jpg",
-        "path": "banners/67e404de22d6081b78031de2.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5464e0454bdc2d06708b4567",
-      "pic": {
-        "file": "67e4045225a1aca9270117e7.jpg",
-        "path": "banners/67e4045225a1aca9270117e7.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5803a58524597710ca36fcb2",
-      "pic": {
-        "file": "67e404d9bec96f5d8e097331.jpg",
-        "path": "banners/67e404d9bec96f5d8e097331.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5807bfe124597742a92e0a4c",
-      "pic": {
-        "file": "67e404ffbec96f5d8e097333.jpg",
-        "path": "banners/67e404ffbec96f5d8e097333.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5807c3f124597746bf2db2ce",
-      "pic": {
-        "file": "67e404c222d6081b78031ddf.jpg",
-        "path": "banners/67e404c222d6081b78031ddf.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5807be8924597742c603fa19",
-      "pic": {
-        "file": "67e4046dbec96f5d8e09732a.jpg",
-        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5805f617245977100b2c1f41",
-      "pic": {
-        "file": "67e404d9bec96f5d8e097331.jpg",
-        "path": "banners/67e404d9bec96f5d8e097331.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5c1b857086f77465f465faa4",
-      "pic": {
-        "file": "67e404c5bec96f5d8e09732f.jpg",
-        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "64c0ad6af99768b777048f4e",
-      "pic": {
-        "file": "67e4047d22d6081b78031ddb.jpg",
-        "path": "banners/67e4047d22d6081b78031ddb.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    }
-  ],
   "BossLocationSpawn": [
     {
-      "BossChance": 39,
+      "BossChance": 75,
       "BossDifficult": "normal",
       "BossEscortAmount": "4",
       "BossEscortDifficult": "normal",
@@ -138,7 +41,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 20,
+      "BossChance": 30,
       "BossDifficult": "normal",
       "BossEscortAmount": "2",
       "BossEscortDifficult": "normal",
@@ -160,25 +63,25 @@
       ],
       "Supports": [
         {
-          "BossEscortAmount": "1",
+          "BossEscortType": "followerBigPipe",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerBigPipe"
+          "BossEscortAmount": "1"
         },
         {
-          "BossEscortAmount": "1",
+          "BossEscortType": "followerBirdEye",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerBirdEye"
+          "BossEscortAmount": "1"
         },
         {
-          "BossEscortAmount": "0",
+          "BossEscortType": "followerGluharScout",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerGluharScout"
+          "BossEscortAmount": "0"
         }
       ],
       "Time": -1,
@@ -212,7 +115,7 @@
       "TriggerName": "botEvent"
     },
     {
-      "BossChance": 20,
+      "BossChance": 25,
       "BossDifficult": "normal",
       "BossEscortAmount": "4",
       "BossEscortDifficult": "normal",
@@ -377,71 +280,22 @@
       "ForceSpawn": false,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve"
       ],
       "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 0,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "gifter",
-      "BossName": "gifter",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "DependKarma": false,
-      "DependKarmaPVE": false,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "regular",
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 5,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "3,4",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "arenaFighterEvent",
-      "BossName": "arenaFighterEvent",
-      "BossPlayer": false,
-      "BossZone": "ZoneFactoryCenter,ZoneScavBase",
-      "Delay": 0,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "regular",
-        "pve"
-      ],
-      "Supports": [],
       "Time": -1,
       "TriggerId": "",
       "TriggerName": ""
     }
   ],
-  "BotAssault": 80,
-  "BotEasy": 10,
-  "BotHard": 40,
-  "BotImpossible": 0,
   "BotLocationModifier": {
     "AccuracySpeed": 1,
     "AdditionalHostilitySettings": [
       {
+        "BotRole": "pmcBEAR",
         "AlwaysEnemies": [
           "pmcBot",
           "exUsec",
@@ -470,18 +324,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 75,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcBEAR",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -496,18 +341,28 @@
             "Role": "pmcUSEC"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 90,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 75,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 90
       },
       {
+        "BotRole": "pmcUSEC",
         "AlwaysEnemies": [
           "pmcBot",
           "bossBully",
@@ -532,18 +387,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 90,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcUSEC",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -566,18 +412,28 @@
             "Role": "bossKnight"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 75,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 90,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 75
       },
       {
+        "BotRole": "bossBully",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -598,10 +454,10 @@
           "bossSanitar",
           "bossTagilla",
           "bossZryachiy"
-        ],
-        "BotRole": "bossBully"
+        ]
       },
       {
+        "BotRole": "assault",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -627,7 +483,35 @@
           "followerBirdEye",
           "followerBully"
         ],
-        "BotRole": "assault",
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assaultGroup",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully"
+        ],
         "SavagePlayerBehaviour": "Neutral"
       }
     ],
@@ -657,29 +541,7 @@
     "Scattering": 1,
     "VisibleDistance": 1
   },
-  "BotMarksman": 20,
-  "BotMax": 19,
-  "BotMaxPlayer": 9,
-  "BotMaxPvE": 30,
-  "BotMaxTimePlayer": 1200,
-  "BotNormal": 50,
-  "BotSpawnCountStep": 4,
-  "BotSpawnPeriodCheck": 15,
-  "BotSpawnTimeOffMax": 30,
-  "BotSpawnTimeOffMin": 20,
-  "BotSpawnTimeOnMax": 320,
-  "BotSpawnTimeOnMin": 260,
-  "BotStart": 20,
-  "BotStartPlayer": 720,
-  "BotStop": 1500,
-  "Description": "Very Big Map",
   "DisabledForScav": false,
-  "DisabledScavExits": "",
-  "EnableCoop": true,
-  "Enabled": true,
-  "EscapeTimeLimit": 40,
-  "EscapeTimeLimitCoop": 25,
-  "EscapeTimeLimitPVE": 40,
   "Events": {
     "Halloween2024": {
       "CrowdAttackBlockRadius": 100,
@@ -755,81 +617,13 @@
       "ZombieCallDeltaRadius": 20,
       "ZombieCallPeriodSec": 1,
       "ZombieCallRadiusLimit": 200,
-      "ZombieMultiplier": 5
+      "ZombieMultiplier": 5,
+      "InfectionPercentage": 0
     },
     "Khorovod": {
       "Chance": 0
     }
   },
-  "ForceOnlineRaidInPVE": false,
-  "GenerateLocalLootCache": true,
-  "GlobalContainerChanceModifier": 1,
-  "GlobalLootChanceModifier": 0.4,
-  "GlobalLootChanceModifierPvE": 0.9,
-  "HeatmapCellSize": {
-    "x": 1,
-    "y": 2,
-    "z": 1
-  },
-  "HeatmapLayers": [
-    "AllCharactersPositions",
-    "AllBotsPositions",
-    "AllRealPlayersPositions",
-    "RealPlayersSavagesPositions",
-    "RealPlayersSavagesDeads",
-    "RealPlayersSavagesDamages",
-    "RealPlayersPmcPositions",
-    "RealPlayersPmcDeads",
-    "RealPlayersPmcDamages",
-    "RealPlayersPmcLaydownPositions",
-    "RealPlayersPmcEquipmentDropPositions",
-    "RealPlayersPmcHealingPositions",
-    "BotsBossPositions",
-    "BotsBossDeads",
-    "BotsBossDamages",
-    "BotsSavagesPositions",
-    "BotsSavagesDeads",
-    "BotsSavagesDamages",
-    "AllCharactersDamageSources",
-    "RealPlayerDamageSources",
-    "BotsDamageSources",
-    "LootPositions"
-  ],
-  "IconX": 550,
-  "IconY": 460,
-  "Id": "bigmap",
-  "Insurance": true,
-  "IsSecret": false,
-  "Locked": false,
-  "Loot": [],
-  "MatchMakerMinPlayersByWaitTime": [
-    {
-      "minPlayers": 11,
-      "time": 240
-    },
-    {
-      "minPlayers": 8,
-      "time": 300
-    },
-    {
-      "minPlayers": 5,
-      "time": 360
-    },
-    {
-      "minPlayers": 2,
-      "time": 420
-    },
-    {
-      "minPlayers": 1,
-      "time": 450
-    }
-  ],
-  "MaxBotPerZone": 4,
-  "MaxCoopGroup": 12,
-  "MaxDistToFreePoint": 200,
-  "MaxPlayers": 12,
-  "MinDistToExitPoint": 30,
-  "MinDistToFreePoint": 60,
   "MinMaxBots": [
     {
       "WildSpawnType": "marksman",
@@ -837,36 +631,11 @@
       "min": 2
     }
   ],
-  "MinPlayerLvlAccessKeys": 0,
-  "MinPlayers": 10,
-  "Name": "Customs",
-  "NewSpawn": true,
-  "NewSpawnForPlayers": true,
   "NonWaveGroupScenario": {
     "Chance": 50,
     "Enabled": true,
     "MaxToBeGroup": 3,
     "MinToBeGroup": 2
-  },
-  "OcculsionCullingEnabled": false,
-  "OfflineNewSpawn": true,
-  "OfflineOldSpawn": true,
-  "OldSpawn": true,
-  "OpenZones": "ZoneBrige,ZoneCrossRoad,ZoneDormitory,ZoneGasStation,ZoneFactoryCenter,ZoneFactorySide,ZoneOldAZS,ZoneSnipeBrige,ZoneSnipeTower,ZoneSnipeFactory,ZoneBlockPost,ZoneBlockPostSniper,ZoneBlockPostSniper3,ZoneBlockPost,ZoneTankSquare,ZoneWade,ZoneCustoms",
-  "PlayersRequestCount": -1,
-  "PmcMaxPlayersInGroup": 5,
-  "Preview": {
-    "path": "",
-    "rcid": ""
-  },
-  "RequiredPlayerLevelMax": 100,
-  "RequiredPlayerLevelMin": 0,
-  "Rules": "AvoidAllPmc",
-  "SafeLocation": false,
-  "ScavMaxPlayersInGroup": 4,
-  "Scene": {
-    "path": "maps/customs_preset.bundle",
-    "rcid": "bigmap.scenespreset.asset"
   },
   "SpawnPointParams": [
     {
@@ -2729,7 +2498,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 3,
       "Id": "295048b1-140d-47c3-85f8-ab5bdaaafa67",
       "Infiltration": "",
@@ -3282,7 +3051,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 6,
       "Id": "38c06e8d-5715-44f2-a638-aabc9203d904",
       "Infiltration": "",
@@ -3467,7 +3236,7 @@
           "Radius": 77.17
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 6,
       "Id": "3e77537e-62aa-4336-bd18-b2ee924460d3",
       "Infiltration": "",
@@ -3591,7 +3360,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 2,
       "DelayToCanSpawnSec": 6,
       "Id": "40aef173-0f80-430a-8882-ea64ccb93594",
       "Infiltration": "",
@@ -5796,7 +5565,7 @@
           "Radius": 114.7
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 6,
       "Id": "75c4714c-1d9f-411a-8a42-e9d5ee16a77a",
       "Infiltration": "",
@@ -5827,7 +5596,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 13,
       "DelayToCanSpawnSec": 6,
       "Id": "785e4aeb-03eb-45f8-a521-2a870204a7d3",
       "Infiltration": "",
@@ -7819,7 +7588,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 2,
       "DelayToCanSpawnSec": 6,
       "Id": "ae0f2712-f51f-4576-943e-aec0c9c3d0b3",
       "Infiltration": "",
@@ -8768,7 +8537,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 2,
       "DelayToCanSpawnSec": 6,
       "Id": "caa78aec-ecbd-4420-9e7b-54f7435de639",
       "Infiltration": "",
@@ -9414,7 +9183,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 5,
       "Id": "dd28bf37-44a2-4407-a30b-2b0e9ed732eb",
       "Infiltration": "",
@@ -10634,12 +10403,7 @@
       ]
     }
   ],
-  "UnixDateTime": 1636382469,
-  "_Id": "56f40101d2720b2a4d8b45d6",
   "doors": [],
-  "exit_access_time": 60,
-  "exit_count": 2,
-  "exit_time": 1,
   "exits": [
     {
       "Chance": 100,
@@ -10873,9 +10637,7 @@
       "RequirementTip": "EXFIL_Cooperate"
     }
   ],
-  "filter_ex": [],
   "limits": [],
-  "matching_min_seconds": 60,
   "maxItemCountInLocation": [
     {
       "TemplateId": "634959225289190e5e773b3b",
@@ -10890,11 +10652,38 @@
       "Value": 0
     },
     {
+      "TemplateId": "5c1d0f4986f7744bb01837fa",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0c5f86f7744bb2683cf0",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0dc586f7744baf2e7b79",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0efb86f7744baf2e7b7b",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0d6d86f7744bb2683e1f",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1e495a86f7743109743dfb",
+      "Value": 1
+    },
+    {
       "TemplateId": "689f6f33b3b8c90a1c0545b8",
       "Value": 1
+    },
+    {
+      "TemplateId": "69dd0de23dfe95d9e70b5ebb",
+      "Value": 29
     }
   ],
-  "sav_summon_seconds": 60,
   "secretExits": [
     {
       "EligibleForPMC": true,
@@ -10911,7 +10700,6 @@
       "Name": "customs_secret_voron_bunker"
     }
   ],
-  "tmp_location_field_remove_me": 0,
   "transits": [
     {
       "activateAfterSec": 60,
@@ -10962,10 +10750,6 @@
       "time": 20
     }
   ],
-  "users_gather_seconds": 0,
-  "users_spawn_seconds_n": 120,
-  "users_spawn_seconds_n2": 200,
-  "users_summon_seconds": 0,
   "waves": [
     {
       "BotPreset": "hard",
@@ -11258,6 +11042,194 @@
       "slots_min": 1,
       "time_max": -1,
       "time_min": -1
+    }
+  ],
+  "AccessKeys": [],
+  "AccessKeysPvE": [],
+  "Area": 0,
+  "AveragePlayTime": 25,
+  "AveragePlayerLevel": 20,
+  "BotAssault": 80,
+  "BotEasy": 10,
+  "BotHard": 40,
+  "BotImpossible": 0,
+  "BotMarksman": 20,
+  "BotMax": 30,
+  "BotMaxPvE": 30,
+  "BotNormal": 50,
+  "BotSpawnCountStep": 4,
+  "BotSpawnPeriodCheck": 15,
+  "BotSpawnTimeOffMax": 30,
+  "BotSpawnTimeOffMin": 20,
+  "BotSpawnTimeOnMax": 320,
+  "BotSpawnTimeOnMin": 260,
+  "BotStart": 20,
+  "BotStartPlayer": 0,
+  "BotStop": 1500,
+  "DisabledScavExits": "",
+  "EnableCoop": true,
+  "Enabled": true,
+  "EscapeTimeLimit": 35,
+  "EscapeTimeLimitCoop": 25,
+  "ForceOfflineRaidInPVE": false,
+  "ForceOnlineRaidInPVE": false,
+  "GlobalContainerChanceModifier": 1,
+  "HeatmapCellSize": {
+    "x": 1,
+    "y": 2,
+    "z": 1
+  },
+  "HeatmapLayers": [
+    "AllCharactersPositions",
+    "AllBotsPositions",
+    "AllRealPlayersPositions",
+    "RealPlayersSavagesPositions",
+    "RealPlayersSavagesDeads",
+    "RealPlayersSavagesDamages",
+    "RealPlayersPmcPositions",
+    "RealPlayersPmcDeads",
+    "RealPlayersPmcDamages",
+    "RealPlayersPmcLaydownPositions",
+    "RealPlayersPmcEquipmentDropPositions",
+    "RealPlayersPmcHealingPositions",
+    "BotsBossPositions",
+    "BotsBossDeads",
+    "BotsBossDamages",
+    "BotsSavagesPositions",
+    "BotsSavagesDeads",
+    "BotsSavagesDamages",
+    "AllCharactersDamageSources",
+    "RealPlayerDamageSources",
+    "BotsDamageSources",
+    "LootPositions"
+  ],
+  "HiddenWhenLockedByQuest": false,
+  "IconX": 550,
+  "IconY": 460,
+  "IsSecret": false,
+  "Locked": false,
+  "LockedByQuest": true,
+  "MaxBotPerZone": 4,
+  "MaxCoopGroup": 12,
+  "MaxDistToFreePoint": 200,
+  "MaxPlayers": 12,
+  "MinDistToFreePoint": 60,
+  "MinPlayerLvlAccessKeys": 0,
+  "MinPlayers": 10,
+  "Name": "Customs",
+  "NewSpawn": true,
+  "NewSpawnForPlayers": true,
+  "OcculsionCullingEnabled": false,
+  "OfflineNewSpawn": true,
+  "OfflineOldSpawn": true,
+  "OldSpawn": true,
+  "OpenZones": "ZoneBrige,ZoneCrossRoad,ZoneDormitory,ZoneGasStation,ZoneFactoryCenter,ZoneFactorySide,ZoneOldAZS,ZoneSnipeBrige,ZoneSnipeTower,ZoneSnipeFactory,ZoneBlockPost,ZoneBlockPostSniper,ZoneBlockPostSniper3,ZoneBlockPost,ZoneTankSquare,ZoneWade,ZoneCustoms",
+  "PlayersRequestCount": -1,
+  "PmcMaxPlayersInGroup": 5,
+  "RequiredPlayerLevelMax": 100,
+  "RequiredPlayerLevelMin": 0,
+  "Rules": "AvoidAllPmc",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": false,
+  "ScavMaxPlayersInGroup": 4,
+  "Scene": {
+    "path": "maps/customs_preset.bundle",
+    "rcid": "bigmap.scenespreset.asset"
+  },
+  "UnixDateTime": 1636382469,
+  "Id": "bigmap",
+  "_Id": "56f40101d2720b2a4d8b45d6",
+  "Loot": [],
+  "Banners": [
+    {
+      "id": "67d135bc9e0d93daf71d555e",
+      "pic": {
+        "path": "banners/67e4046922d6081b78031dda.png",
+        "rcid": "",
+        "file": "67e4046922d6081b78031dda.png",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5464e0404bdc2d2a708b4567",
+      "pic": {
+        "path": "banners/67e404de22d6081b78031de2.jpg",
+        "rcid": "",
+        "file": "67e404de22d6081b78031de2.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5464e0454bdc2d06708b4567",
+      "pic": {
+        "path": "banners/67e4045225a1aca9270117e7.jpg",
+        "rcid": "",
+        "file": "67e4045225a1aca9270117e7.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5803a58524597710ca36fcb2",
+      "pic": {
+        "path": "banners/67e404d9bec96f5d8e097331.jpg",
+        "rcid": "",
+        "file": "67e404d9bec96f5d8e097331.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5807bfe124597742a92e0a4c",
+      "pic": {
+        "path": "banners/67e404ffbec96f5d8e097333.jpg",
+        "rcid": "",
+        "file": "67e404ffbec96f5d8e097333.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5807c3f124597746bf2db2ce",
+      "pic": {
+        "path": "banners/67e404c222d6081b78031ddf.jpg",
+        "rcid": "",
+        "file": "67e404c222d6081b78031ddf.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5807be8924597742c603fa19",
+      "pic": {
+        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
+        "rcid": "",
+        "file": "67e4046dbec96f5d8e09732a.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5805f617245977100b2c1f41",
+      "pic": {
+        "path": "banners/67e404d9bec96f5d8e097331.jpg",
+        "rcid": "",
+        "file": "67e404d9bec96f5d8e097331.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5c1b857086f77465f465faa4",
+      "pic": {
+        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
+        "rcid": "",
+        "file": "67e404c5bec96f5d8e09732f.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0ad6af99768b777048f4e",
+      "pic": {
+        "path": "banners/67e4047d22d6081b78031ddb.jpg",
+        "rcid": "",
+        "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
     }
   ]
 }

@@ -1,15 +1,9 @@
 {
-  "AccessKeys": [
-    "679b9819a2f2dd4da9023512"
-  ],
-  "AccessKeysPvE": [
-    "679b9819a2f2dd4da9023512"
-  ],
   "AirdropParameters": [
     {
       "AirdropPointDeactivateDistance": 50,
-      "MinPlayersCountToSpawnAirdrop": 6,
-      "PlaneAirdropChance": 0.25,
+      "MinPlayersCountToSpawnAirdrop": 1,
+      "PlaneAirdropChance": 0,
       "PlaneAirdropCooldownMax": 800,
       "PlaneAirdropCooldownMin": 700,
       "PlaneAirdropEnd": 1200,
@@ -17,38 +11,6 @@
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
-    }
-  ],
-  "Area": 0,
-  "AveragePlayTime": 25,
-  "AveragePlayerLevel": 15,
-  "Banners": [
-    {
-      "id": "67e3f71e445e18765a052687",
-      "pic": {
-        "file": "67eac08e7364605a61079cc8.png",
-        "path": "banners/67eac08e7364605a61079cc8.png",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "67e3f72fdb783364cd0a4b63",
-      "pic": {
-        "file": "67eac0afef0822d52d09f6a5.jpg",
-        "path": "banners/67eac0afef0822d52d09f6a5.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "64c0ad6af99768b777048f4e",
-      "pic": {
-        "file": "67e4047d22d6081b78031ddb.jpg",
-        "path": "banners/67e4047d22d6081b78031ddb.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
     }
   ],
   "BossLocationSpawn": [
@@ -313,14 +275,11 @@
       "TriggerName": "botEvent"
     }
   ],
-  "BotAssault": 80,
-  "BotEasy": 10,
-  "BotHard": 40,
-  "BotImpossible": 0,
   "BotLocationModifier": {
     "AccuracySpeed": 1,
     "AdditionalHostilitySettings": [
       {
+        "BotRole": "pmcBEAR",
         "AlwaysEnemies": [
           "pmcBot",
           "exUsec",
@@ -349,18 +308,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 75,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcBEAR",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -375,18 +325,28 @@
             "Role": "pmcUSEC"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 90,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 75,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 90
       },
       {
+        "BotRole": "pmcUSEC",
         "AlwaysEnemies": [
           "pmcBot",
           "bossBully",
@@ -411,18 +371,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 90,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcUSEC",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -445,39 +396,49 @@
             "Role": "bossKnight"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 75,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 90,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 75
       },
       {
+        "BotRole": "bossTagillaAgro",
         "AlwaysFriends": [
           "bossKillaAgro",
           "tagillaHelperAgro"
-        ],
-        "BotRole": "bossTagillaAgro"
+        ]
       },
       {
+        "BotRole": "bossKillaAgro",
         "AlwaysFriends": [
           "bossTagillaAgro",
           "tagillaHelperAgro"
-        ],
-        "BotRole": "bossKillaAgro"
+        ]
       },
       {
+        "BotRole": "tagillaHelperAgro",
         "AlwaysFriends": [
           "bossTagillaAgro",
           "bossKillaAgro"
-        ],
-        "BotRole": "tagillaHelperAgro"
+        ]
       },
       {
+        "BotRole": "assault",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -503,7 +464,35 @@
           "followerBirdEye",
           "followerBully"
         ],
-        "BotRole": "assault",
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assaultGroup",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully"
+        ],
         "SavagePlayerBehaviour": "Neutral"
       }
     ],
@@ -525,29 +514,7 @@
     "Scattering": 1,
     "VisibleDistance": 1
   },
-  "BotMarksman": 20,
-  "BotMax": 30,
-  "BotMaxPlayer": 0,
-  "BotMaxPvE": 30,
-  "BotMaxTimePlayer": 0,
-  "BotNormal": 50,
-  "BotSpawnCountStep": 4,
-  "BotSpawnPeriodCheck": 15,
-  "BotSpawnTimeOffMax": 30,
-  "BotSpawnTimeOffMin": 20,
-  "BotSpawnTimeOnMax": 320,
-  "BotSpawnTimeOnMin": 260,
-  "BotStart": 10,
-  "BotStartPlayer": 0,
-  "BotStop": 1900,
-  "Description": "The Priozersk Natural Reserve was recently included into the list of state-protected wildlife reserves of the North-Western Federal District.",
   "DisabledForScav": false,
-  "DisabledScavExits": "",
-  "EnableCoop": true,
-  "Enabled": false,
-  "EscapeTimeLimit": 40,
-  "EscapeTimeLimitCoop": 30,
-  "EscapeTimeLimitPVE": 40,
   "EventTrapsData": {
     "MaxBarbedWires": 20,
     "MaxTrapDoors": 9,
@@ -635,77 +602,7 @@
       "Chance": 0
     }
   },
-  "ForceOnlineRaidInPVE": true,
-  "GenerateLocalLootCache": true,
-  "GlobalContainerChanceModifier": 1,
-  "GlobalLootChanceModifier": 0.2,
-  "GlobalLootChanceModifierPvE": 0.2,
-  "HeatmapCellSize": {
-    "x": 1,
-    "y": 2,
-    "z": 1
-  },
-  "HeatmapLayers": [
-    "AllCharactersPositions",
-    "AllBotsPositions",
-    "AllRealPlayersPositions",
-    "RealPlayersSavagesPositions",
-    "RealPlayersSavagesDeads",
-    "RealPlayersSavagesDamages",
-    "RealPlayersPmcPositions",
-    "RealPlayersPmcDeads",
-    "RealPlayersPmcDamages",
-    "RealPlayersPmcLaydownPositions",
-    "RealPlayersPmcEquipmentDropPositions",
-    "RealPlayersPmcHealingPositions",
-    "BotsBossPositions",
-    "BotsBossDeads",
-    "BotsBossDamages",
-    "BotsSavagesPositions",
-    "BotsSavagesDeads",
-    "BotsSavagesDamages",
-    "AllCharactersDamageSources",
-    "RealPlayerDamageSources",
-    "BotsDamageSources",
-    "LootPositions"
-  ],
-  "IconX": 245,
-  "IconY": 325,
-  "Id": "Labyrinth",
-  "Insurance": false,
-  "IsSecret": false,
-  "Locked": false,
-  "Loot": [],
-  "MatchMakerMinPlayersByWaitTime": [
-    {
-      "minPlayers": 4,
-      "time": 240
-    },
-    {
-      "minPlayers": 3,
-      "time": 300
-    },
-    {
-      "minPlayers": 2,
-      "time": 360
-    },
-    {
-      "minPlayers": 1,
-      "time": 420
-    }
-  ],
-  "MaxBotPerZone": 4,
-  "MaxCoopGroup": 14,
-  "MaxDistToFreePoint": 200,
-  "MaxPlayers": 5,
-  "MinDistToExitPoint": 30,
-  "MinDistToFreePoint": 50,
   "MinMaxBots": [],
-  "MinPlayerLvlAccessKeys": 0,
-  "MinPlayers": 5,
-  "Name": "Labyrinth",
-  "NewSpawn": false,
-  "NewSpawnForPlayers": false,
   "NoGroupSpawn": true,
   "NonWaveGroupScenario": {
     "Chance": 50,
@@ -713,30 +610,10 @@
     "MaxToBeGroup": 3,
     "MinToBeGroup": 2
   },
-  "OcculsionCullingEnabled": false,
-  "OfflineNewSpawn": false,
-  "OfflineOldSpawn": true,
-  "OldSpawn": true,
   "OneTimeSpawn": true,
-  "OpenZones": "BotZone",
-  "PlayersRequestCount": -1,
-  "PmcMaxPlayersInGroup": 5,
-  "Preview": {
-    "path": "",
-    "rcid": ""
-  },
-  "RequiredPlayerLevelMax": 100,
-  "RequiredPlayerLevelMin": 0,
-  "Rules": "Normal",
-  "SafeLocation": false,
-  "ScavMaxPlayersInGroup": 4,
-  "Scene": {
-    "path": "maps/labyrinth_preset.bundle",
-    "rcid": "Labyrinth.scenespreset.asset"
-  },
   "SpawnPointParams": [
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -752,22 +629,22 @@
           "Radius": 8
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 3,
       "DelayToCanSpawnSec": 4,
       "Id": "11ef32ab-7715-492c-9d58-f0ce32bba21f",
       "Infiltration": "",
       "Position": {
-        "x": 7.54,
-        "y": 0.11,
-        "z": 36.93
+        "x": 10.974,
+        "y": 0.258,
+        "z": 43.039
       },
-      "Rotation": 327.8234,
+      "Rotation": 37.882885,
       "Sides": [
         "Savage"
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -798,7 +675,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -829,7 +706,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -950,7 +827,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -1041,7 +918,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -1054,17 +931,17 @@
             "y": 0,
             "z": 0
           },
-          "Radius": 14
+          "Radius": 12
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 3,
       "DelayToCanSpawnSec": 4,
       "Id": "b99646de-9ffe-472f-af36-de2e20db2360",
       "Infiltration": "",
       "Position": {
-        "x": -9.92,
+        "x": -14.304,
         "y": 0.108,
-        "z": 23.92
+        "z": 31.324
       },
       "Rotation": 327.8234,
       "Sides": [
@@ -1072,7 +949,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -1103,7 +980,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -1134,7 +1011,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "BotZone",
       "Categories": [
         "Bot",
         "Boss"
@@ -1147,7 +1024,7 @@
             "y": 0,
             "z": 0
           },
-          "Radius": 13
+          "Radius": 15
         }
       },
       "CorePointId": 3,
@@ -1166,12 +1043,29 @@
     }
   ],
   "SpawnSafeDistanceMeters": 10,
-  "UnixDateTime": 1621511450,
-  "_Id": "6733700029c367a3d40b02af",
+  "access": {
+    "menu_PVE": {
+      "679b9819a2f2dd4da9023512": {
+        "count": 1
+      }
+    },
+    "menu_PVP": {
+      "679b9819a2f2dd4da9023512": {
+        "count": 1
+      }
+    },
+    "transit_PVE": {
+      "679b9819a2f2dd4da9023512": {
+        "count": 1
+      }
+    },
+    "transit_PVP": {
+      "679b9819a2f2dd4da9023512": {
+        "count": 1
+      }
+    }
+  },
   "doors": [],
-  "exit_access_time": 10,
-  "exit_count": 1,
-  "exit_time": 90,
   "exits": [
     {
       "Chance": 100,
@@ -1195,7 +1089,6 @@
       "RequirementTip": ""
     }
   ],
-  "filter_ex": [],
   "limits": [
     {
       "items": [
@@ -1205,7 +1098,6 @@
       "min": 0
     }
   ],
-  "matching_min_seconds": 60,
   "maxItemCountInLocation": [
     {
       "TemplateId": "634959225289190e5e773b3b",
@@ -1246,9 +1138,32 @@
     {
       "TemplateId": "676bf44c5539167c3603e869",
       "Value": 0
+    },
+    {
+      "TemplateId": "5c1d0f4986f7744bb01837fa",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0c5f86f7744bb2683cf0",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0dc586f7744baf2e7b79",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0efb86f7744baf2e7b7b",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1e495a86f7743109743dfb",
+      "Value": 1
+    },
+    {
+      "TemplateId": "69dd0de23dfe95d9e70b5ebb",
+      "Value": 33
     }
   ],
-  "sav_summon_seconds": 60,
   "secretExits": [
     {
       "EligibleForPMC": true,
@@ -1258,7 +1173,6 @@
       "Name": "labyrinth_secret_tagilla_key"
     }
   ],
-  "tmp_location_field_remove_me": 0,
   "transits": [
     {
       "activateAfterSec": 60,
@@ -1309,10 +1223,6 @@
       "time": 20
     }
   ],
-  "users_gather_seconds": 0,
-  "users_spawn_seconds_n": 120,
-  "users_spawn_seconds_n2": 200,
-  "users_summon_seconds": 0,
   "waves": [
     {
       "BotPreset": "normal",
@@ -1377,6 +1287,135 @@
       "slots_min": 0,
       "time_max": -1,
       "time_min": -1
+    }
+  ],
+  "AccessKeys": [
+    "679b9819a2f2dd4da9023512"
+  ],
+  "AccessKeysPvE": [
+    "679b9819a2f2dd4da9023512"
+  ],
+  "Area": 0,
+  "AveragePlayTime": 25,
+  "AveragePlayerLevel": 15,
+  "BotAssault": 80,
+  "BotEasy": 10,
+  "BotHard": 40,
+  "BotImpossible": 0,
+  "BotMarksman": 20,
+  "BotMax": 30,
+  "BotMaxPvE": 30,
+  "BotNormal": 50,
+  "BotSpawnCountStep": 4,
+  "BotSpawnPeriodCheck": 15,
+  "BotSpawnTimeOffMax": 30,
+  "BotSpawnTimeOffMin": 20,
+  "BotSpawnTimeOnMax": 320,
+  "BotSpawnTimeOnMin": 260,
+  "BotStart": 10,
+  "BotStartPlayer": 0,
+  "BotStop": 1900,
+  "DisabledScavExits": "",
+  "EnableCoop": true,
+  "Enabled": false,
+  "EscapeTimeLimit": 30,
+  "EscapeTimeLimitCoop": 30,
+  "ForceOfflineRaidInPVE": false,
+  "ForceOnlineRaidInPVE": true,
+  "GlobalContainerChanceModifier": 1,
+  "HeatmapCellSize": {
+    "x": 1,
+    "y": 2,
+    "z": 1
+  },
+  "HeatmapLayers": [
+    "AllCharactersPositions",
+    "AllBotsPositions",
+    "AllRealPlayersPositions",
+    "RealPlayersSavagesPositions",
+    "RealPlayersSavagesDeads",
+    "RealPlayersSavagesDamages",
+    "RealPlayersPmcPositions",
+    "RealPlayersPmcDeads",
+    "RealPlayersPmcDamages",
+    "RealPlayersPmcLaydownPositions",
+    "RealPlayersPmcEquipmentDropPositions",
+    "RealPlayersPmcHealingPositions",
+    "BotsBossPositions",
+    "BotsBossDeads",
+    "BotsBossDamages",
+    "BotsSavagesPositions",
+    "BotsSavagesDeads",
+    "BotsSavagesDamages",
+    "AllCharactersDamageSources",
+    "RealPlayerDamageSources",
+    "BotsDamageSources",
+    "LootPositions"
+  ],
+  "HiddenWhenLockedByQuest": false,
+  "IconX": 245,
+  "IconY": 325,
+  "IsSecret": false,
+  "Locked": false,
+  "LockedByQuest": false,
+  "MaxBotPerZone": 4,
+  "MaxCoopGroup": 14,
+  "MaxDistToFreePoint": 200,
+  "MaxPlayers": 5,
+  "MinDistToFreePoint": 50,
+  "MinPlayerLvlAccessKeys": 0,
+  "MinPlayers": 5,
+  "Name": "Labyrinth",
+  "NewSpawn": false,
+  "NewSpawnForPlayers": false,
+  "OcculsionCullingEnabled": false,
+  "OfflineNewSpawn": false,
+  "OfflineOldSpawn": true,
+  "OldSpawn": true,
+  "OpenZones": "BotZone",
+  "PlayersRequestCount": -1,
+  "PmcMaxPlayersInGroup": 5,
+  "RequiredPlayerLevelMax": 100,
+  "RequiredPlayerLevelMin": 0,
+  "Rules": "Normal",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": true,
+  "ScavMaxPlayersInGroup": 4,
+  "Scene": {
+    "path": "maps/labyrinth_preset.bundle",
+    "rcid": "Labyrinth.scenespreset.asset"
+  },
+  "UnixDateTime": 1621511450,
+  "Id": "Labyrinth",
+  "_Id": "6733700029c367a3d40b02af",
+  "Loot": [],
+  "Banners": [
+    {
+      "id": "67e3f71e445e18765a052687",
+      "pic": {
+        "path": "banners/67eac08e7364605a61079cc8.png",
+        "rcid": "",
+        "file": "67eac08e7364605a61079cc8.png",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "67e3f72fdb783364cd0a4b63",
+      "pic": {
+        "path": "banners/67eac0afef0822d52d09f6a5.jpg",
+        "rcid": "",
+        "file": "67eac0afef0822d52d09f6a5.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0ad6af99768b777048f4e",
+      "pic": {
+        "path": "banners/67e4047d22d6081b78031ddb.jpg",
+        "rcid": "",
+        "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
     }
   ]
 }

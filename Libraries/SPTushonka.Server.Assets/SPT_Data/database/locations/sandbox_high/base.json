@@ -1,11 +1,9 @@
 {
-  "AccessKeys": [],
-  "AccessKeysPvE": [],
   "AirdropParameters": [
     {
       "AirdropPointDeactivateDistance": 50,
-      "MinPlayersCountToSpawnAirdrop": 6,
-      "PlaneAirdropChance": 0.1,
+      "MinPlayersCountToSpawnAirdrop": 1,
+      "PlaneAirdropChance": 0.9,
       "PlaneAirdropCooldownMax": 800,
       "PlaneAirdropCooldownMin": 700,
       "PlaneAirdropEnd": 1500,
@@ -13,38 +11,6 @@
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
-    }
-  ],
-  "Area": 0,
-  "AveragePlayTime": 35,
-  "AveragePlayerLevel": 40,
-  "Banners": [
-    {
-      "id": "67d1ac822b87c1a5a30e5ae8",
-      "pic": {
-        "file": "67e404a9bec96f5d8e09732e.jpg",
-        "path": "banners/67e404a9bec96f5d8e09732e.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "63a9c1f5662a5b0a2c7fbde5",
-      "pic": {
-        "file": "67e4046dbec96f5d8e09732a.jpg",
-        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "64c0acf85174e095610734a0",
-      "pic": {
-        "file": "67e404c722d6081b78031de0.jpg",
-        "path": "banners/67e404c722d6081b78031de0.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
     }
   ],
   "BossLocationSpawn": [
@@ -71,7 +37,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 44,
+      "BossChance": 2,
       "BossDifficult": "normal",
       "BossEscortAmount": "3,4",
       "BossEscortDifficult": "normal",
@@ -219,14 +185,11 @@
       "TriggerName": ""
     }
   ],
-  "BotAssault": 100,
-  "BotEasy": 0,
-  "BotHard": 50,
-  "BotImpossible": 0,
   "BotLocationModifier": {
     "AccuracySpeed": 1,
     "AdditionalHostilitySettings": [
       {
+        "BotRole": "pmcBEAR",
         "AlwaysEnemies": [
           "pmcBot",
           "exUsec",
@@ -255,18 +218,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 75,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcBEAR",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -281,18 +235,28 @@
             "Role": "pmcUSEC"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 90,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 75,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 90
       },
       {
+        "BotRole": "pmcUSEC",
         "AlwaysEnemies": [
           "pmcBot",
           "bossBully",
@@ -317,18 +281,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 90,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcUSEC",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -351,18 +306,28 @@
             "Role": "bossKnight"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 75,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 90,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 75
       },
       {
+        "BotRole": "assault",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -388,7 +353,35 @@
           "followerBirdEye",
           "followerBully"
         ],
-        "BotRole": "assault",
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assaultGroup",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully"
+        ],
         "SavagePlayerBehaviour": "Neutral"
       }
     ],
@@ -415,29 +408,7 @@
     "Scattering": 1,
     "VisibleDistance": 1
   },
-  "BotMarksman": 0,
-  "BotMax": 24,
-  "BotMaxPlayer": 0,
-  "BotMaxPvE": 24,
-  "BotMaxTimePlayer": 0,
-  "BotNormal": 50,
-  "BotSpawnCountStep": 3,
-  "BotSpawnPeriodCheck": 14,
-  "BotSpawnTimeOffMax": 25,
-  "BotSpawnTimeOffMin": 20,
-  "BotSpawnTimeOnMax": 380,
-  "BotSpawnTimeOnMin": 290,
-  "BotStart": 120,
-  "BotStartPlayer": 0,
-  "BotStop": 1800,
-  "Description": "The downtown Tarkov with banks, malls, hotels and all the other things a striving modern city could have needed.",
-  "DisabledForScav": true,
-  "DisabledScavExits": "",
-  "EnableCoop": true,
-  "Enabled": true,
-  "EscapeTimeLimit": 35,
-  "EscapeTimeLimitCoop": 30,
-  "EscapeTimeLimitPVE": 35,
+  "DisabledForScav": false,
   "Events": {
     "Halloween2024": {
       "CrowdAttackBlockRadius": 100,
@@ -513,110 +484,17 @@
       "ZombieCallDeltaRadius": 20,
       "ZombieCallPeriodSec": 1,
       "ZombieCallRadiusLimit": 100,
-      "ZombieMultiplier": 5
+      "ZombieMultiplier": 5,
+      "InfectionPercentage": 0
     }
   },
   "ExitZones": "5c82534488a45046451a2386",
-  "ForceOnlineRaidInPVE": false,
-  "GenerateLocalLootCache": true,
-  "GlobalContainerChanceModifier": 1,
-  "GlobalLootChanceModifier": 0.65,
-  "GlobalLootChanceModifierPvE": 0.95,
-  "HeatmapCellSize": {
-    "x": 1,
-    "y": 2,
-    "z": 1
-  },
-  "HeatmapLayers": [
-    "AllCharactersPositions",
-    "AllBotsPositions",
-    "AllRealPlayersPositions",
-    "RealPlayersSavagesPositions",
-    "RealPlayersSavagesDeads",
-    "RealPlayersSavagesDamages",
-    "RealPlayersPmcPositions",
-    "RealPlayersPmcDeads",
-    "RealPlayersPmcDamages",
-    "RealPlayersPmcLaydownPositions",
-    "RealPlayersPmcEquipmentDropPositions",
-    "RealPlayersPmcHealingPositions",
-    "BotsBossPositions",
-    "BotsBossDeads",
-    "BotsBossDamages",
-    "BotsSavagesPositions",
-    "BotsSavagesDeads",
-    "BotsSavagesDamages",
-    "AllCharactersDamageSources",
-    "RealPlayerDamageSources",
-    "BotsDamageSources",
-    "LootPositions"
-  ],
-  "IconX": 760,
-  "IconY": 735,
-  "Id": "Sandbox_high",
-  "Insurance": true,
-  "IsSecret": false,
-  "Locked": false,
-  "Loot": [],
-  "MatchMakerMinPlayersByWaitTime": [
-    {
-      "minPlayers": 11,
-      "time": 240
-    },
-    {
-      "minPlayers": 8,
-      "time": 300
-    },
-    {
-      "minPlayers": 5,
-      "time": 360
-    },
-    {
-      "minPlayers": 2,
-      "time": 420
-    },
-    {
-      "minPlayers": 1,
-      "time": 450
-    }
-  ],
-  "MaxBotPerZone": 5,
-  "MaxCoopGroup": 20,
-  "MaxDistToFreePoint": 220,
-  "MaxPlayers": 12,
-  "MinDistToExitPoint": 10,
-  "MinDistToFreePoint": 60,
   "MinMaxBots": [],
-  "MinPlayerLvlAccessKeys": 0,
-  "MinPlayers": 9,
-  "Name": "Sandbox",
-  "NewSpawn": true,
-  "NewSpawnForPlayers": true,
   "NonWaveGroupScenario": {
     "Chance": 50,
     "Enabled": true,
     "MaxToBeGroup": 3,
     "MinToBeGroup": 2
-  },
-  "OcculsionCullingEnabled": false,
-  "OfflineNewSpawn": true,
-  "OfflineOldSpawn": true,
-  "OldSpawn": true,
-  "OpenZones": "",
-  "PlayersRequestCount": -1,
-  "PmcMaxPlayersInGroup": 5,
-  "Preview": {
-    "path": "",
-    "rcid": ""
-  },
-  "RequiredPlayerLevelMax": 100,
-  "RequiredPlayerLevelMin": 0,
-  "Rules": "Normal",
-  "SafeLocation": false,
-  "ScavMaxPlayersInGroup": 4,
-  "Scene": {
-    "path": "maps/sandbox_high_preset.bundle",
-    "rcid": "sandbox_high.scenespreset.asset"
   },
   "SpawnPointParams": [
     {
@@ -916,7 +794,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "0c6ee215-44ea-4d0c-86db-d41fc3f1dcd5",
       "Infiltration": "",
@@ -1722,7 +1600,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "29b786d2-477a-446f-94e4-8ef2499338ca",
       "Infiltration": "",
@@ -2036,7 +1914,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "3b2a53d6-d10b-4b9a-a5d1-3f542929029c",
       "Infiltration": "",
@@ -2495,7 +2373,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "47f63417-d22b-4745-bc7e-aed33fc2669b",
       "Infiltration": "",
@@ -2926,7 +2804,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "569a942c-1810-47f8-9bcc-fe8bcc29e4e5",
       "Infiltration": "",
@@ -4334,7 +4212,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "8972f9d6-b1e8-46d5-b0d3-a917842fba6b",
       "Infiltration": "",
@@ -4517,7 +4395,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "8c4bf710-be6a-41cd-ae26-2b30e27dfa07",
       "Infiltration": "",
@@ -4767,7 +4645,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "931ff5b2-e338-44bc-9e9f-0d9ebdbd91d6",
       "Infiltration": "",
@@ -4892,7 +4770,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "96dddcc9-e06c-45cc-8d1f-d604b0760081",
       "Infiltration": "",
@@ -5110,7 +4988,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "9b6faee0-b636-4079-9ef2-bac9ea54aedf",
       "Infiltration": "",
@@ -6497,7 +6375,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "cf4cec4b-6467-4a79-ad58-2ab0d4a0125e",
       "Infiltration": "",
@@ -7729,7 +7607,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "fe7ea278-ae88-410b-ab43-5efa569913c3",
       "Infiltration": "",
@@ -7805,8 +7683,6 @@
       ]
     }
   ],
-  "UnixDateTime": 1621511450,
-  "_Id": "65b8d6f5cdde2479cb2a3125",
   "areas": {
     "SPAWNS/ScavPMCspawn (1)": {
       "center": {
@@ -7858,9 +7734,6 @@
     }
   },
   "doors": [],
-  "exit_access_time": 35,
-  "exit_count": 1,
-  "exit_time": 2,
   "exits": [
     {
       "Chance": 100,
@@ -7968,7 +7841,6 @@
       "RequirementTip": ""
     }
   ],
-  "filter_ex": [],
   "limits": [
     {
       "items": [
@@ -7979,7 +7851,6 @@
       "min": 0
     }
   ],
-  "matching_min_seconds": 60,
   "maxItemCountInLocation": [
     {
       "TemplateId": "57347ca924597744596b4e71",
@@ -7996,9 +7867,12 @@
     {
       "TemplateId": "676bf44c5539167c3603e869",
       "Value": 0
+    },
+    {
+      "TemplateId": "69dd0de23dfe95d9e70b5ebb",
+      "Value": 28
     }
   ],
-  "sav_summon_seconds": 60,
   "secretExits": [
     {
       "EligibleForPMC": true,
@@ -8008,7 +7882,6 @@
       "Name": "groundzero_secret_adaptation"
     }
   ],
-  "tmp_location_field_remove_me": 0,
   "transits": [
     {
       "activateAfterSec": 60,
@@ -8033,10 +7906,6 @@
       "time": 20
     }
   ],
-  "users_gather_seconds": 0,
-  "users_spawn_seconds_n": 120,
-  "users_spawn_seconds_n2": 200,
-  "users_summon_seconds": 0,
   "waves": [
     {
       "BotPreset": "normal",
@@ -8117,6 +7986,131 @@
       "slots_min": 1,
       "time_max": -1,
       "time_min": -1
+    }
+  ],
+  "AccessKeys": [],
+  "AccessKeysPvE": [],
+  "Area": 0,
+  "AveragePlayTime": 35,
+  "AveragePlayerLevel": 40,
+  "BotAssault": 100,
+  "BotEasy": 0,
+  "BotHard": 50,
+  "BotImpossible": 0,
+  "BotMarksman": 0,
+  "BotMax": 24,
+  "BotMaxPvE": 24,
+  "BotNormal": 50,
+  "BotSpawnCountStep": 3,
+  "BotSpawnPeriodCheck": 14,
+  "BotSpawnTimeOffMax": 25,
+  "BotSpawnTimeOffMin": 20,
+  "BotSpawnTimeOnMax": 380,
+  "BotSpawnTimeOnMin": 290,
+  "BotStart": 120,
+  "BotStartPlayer": 0,
+  "BotStop": 1800,
+  "DisabledScavExits": "",
+  "EnableCoop": true,
+  "Enabled": true,
+  "EscapeTimeLimit": 30,
+  "EscapeTimeLimitCoop": 30,
+  "ForceOfflineRaidInPVE": false,
+  "ForceOnlineRaidInPVE": false,
+  "GlobalContainerChanceModifier": 1,
+  "HeatmapCellSize": {
+    "x": 1,
+    "y": 2,
+    "z": 1
+  },
+  "HeatmapLayers": [
+    "AllCharactersPositions",
+    "AllBotsPositions",
+    "AllRealPlayersPositions",
+    "RealPlayersSavagesPositions",
+    "RealPlayersSavagesDeads",
+    "RealPlayersSavagesDamages",
+    "RealPlayersPmcPositions",
+    "RealPlayersPmcDeads",
+    "RealPlayersPmcDamages",
+    "RealPlayersPmcLaydownPositions",
+    "RealPlayersPmcEquipmentDropPositions",
+    "RealPlayersPmcHealingPositions",
+    "BotsBossPositions",
+    "BotsBossDeads",
+    "BotsBossDamages",
+    "BotsSavagesPositions",
+    "BotsSavagesDeads",
+    "BotsSavagesDamages",
+    "AllCharactersDamageSources",
+    "RealPlayerDamageSources",
+    "BotsDamageSources",
+    "LootPositions"
+  ],
+  "HiddenWhenLockedByQuest": false,
+  "IconX": 760,
+  "IconY": 735,
+  "IsSecret": false,
+  "Locked": false,
+  "LockedByQuest": false,
+  "MaxBotPerZone": 5,
+  "MaxCoopGroup": 20,
+  "MaxDistToFreePoint": 220,
+  "MaxPlayers": 12,
+  "MinDistToFreePoint": 60,
+  "MinPlayerLvlAccessKeys": 0,
+  "MinPlayers": 9,
+  "Name": "Sandbox",
+  "NewSpawn": true,
+  "NewSpawnForPlayers": true,
+  "OcculsionCullingEnabled": false,
+  "OfflineNewSpawn": true,
+  "OfflineOldSpawn": true,
+  "OldSpawn": true,
+  "OpenZones": "",
+  "PlayersRequestCount": -1,
+  "PmcMaxPlayersInGroup": 5,
+  "RequiredPlayerLevelMax": 100,
+  "RequiredPlayerLevelMin": 0,
+  "Rules": "Normal",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": false,
+  "ScavMaxPlayersInGroup": 4,
+  "Scene": {
+    "path": "maps/sandbox_high_preset.bundle",
+    "rcid": "sandbox_high.scenespreset.asset"
+  },
+  "UnixDateTime": 1621511450,
+  "Id": "Sandbox_high",
+  "_Id": "65b8d6f5cdde2479cb2a3125",
+  "Loot": [],
+  "Banners": [
+    {
+      "id": "67d1ac822b87c1a5a30e5ae8",
+      "pic": {
+        "path": "banners/67e404a9bec96f5d8e09732e.jpg",
+        "rcid": "",
+        "file": "67e404a9bec96f5d8e09732e.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "63a9c1f5662a5b0a2c7fbde5",
+      "pic": {
+        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
+        "rcid": "",
+        "file": "67e4046dbec96f5d8e09732a.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0acf85174e095610734a0",
+      "pic": {
+        "path": "banners/67e404c722d6081b78031de0.jpg",
+        "rcid": "",
+        "file": "67e404c722d6081b78031de0.jpg",
+        "type": "banners"
+      }
     }
   ]
 }

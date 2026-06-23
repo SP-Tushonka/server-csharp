@@ -1,4 +1,56 @@
 {
+  "BotLocationModifier": {
+    "AccuracySpeed": 0,
+    "DistToActivatePvE": 0,
+    "DistToSleepPvE": 0,
+    "FogVisibilityDistanceCoef": 0,
+    "FogVisibilitySpeedCoef": 0,
+    "GainSight": 0,
+    "MarksmanAccuratyCoef": 0,
+    "RainVisibilityDistanceCoef": 0,
+    "RainVisibilitySpeedCoef": 0,
+    "Scattering": 0,
+    "VisibleDistance": 0,
+    "DistToActivate": 0,
+    "DistToSleep": 0
+  },
+  "DisabledForScav": false,
+  "MinMaxBots": [],
+  "SpawnPointParams": [],
+  "doors": [],
+  "exits": [],
+  "limits": [],
+  "maxItemCountInLocation": [],
+  "waves": [
+    {
+      "BotPreset": "normal",
+      "BotSide": "Savage",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [],
+      "SpawnPoints": "",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 0,
+      "slots_max": 6,
+      "slots_min": 3,
+      "time_max": 2,
+      "time_min": 1
+    },
+    {
+      "BotPreset": "hard",
+      "BotSide": "Usec",
+      "KeepZoneOnSpawn": false,
+      "SpawnMode": [],
+      "SpawnPoints": "",
+      "WildSpawnType": "assault",
+      "isPlayers": false,
+      "number": 1,
+      "slots_max": 5,
+      "slots_min": 3,
+      "time_max": 12,
+      "time_min": 10
+    }
+  ],
   "AccessKeys": [],
   "AccessKeysPvE": [],
   "Area": 0,
@@ -26,6 +78,7 @@
   "Enabled": false,
   "EscapeTimeLimit": 0,
   "EscapeTimeLimitCoop": 0,
+  "ForceOfflineRaidInPVE": false,
   "ForceOnlineRaidInPVE": false,
   "GlobalContainerChanceModifier": 1,
   "HeatmapCellSize": {
@@ -57,10 +110,12 @@
     "BotsDamageSources",
     "LootPositions"
   ],
+  "HiddenWhenLockedByQuest": false,
   "IconX": 224,
   "IconY": 646,
   "IsSecret": true,
   "Locked": true,
+  "LockedByQuest": false,
   "MaxBotPerZone": 0,
   "MaxCoopGroup": 9,
   "MaxDistToFreePoint": 900,
@@ -87,64 +142,14 @@
   "RequiredPlayerLevelMax": 100,
   "RequiredPlayerLevelMin": 0,
   "Rules": "Normal",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": false,
   "ScavMaxPlayersInGroup": 4,
   "Scene": {
     "path": "",
     "rcid": ""
   },
   "UnixDateTime": 0,
-  "doors": [],
-  "limits": [],
-  "waves": [
-    {
-      "BotPreset": "normal",
-      "BotSide": "Savage",
-      "KeepZoneOnSpawn": false,
-      "SpawnMode": [],
-      "SpawnPoints": "",
-      "WildSpawnType": "assault",
-      "isPlayers": false,
-      "number": 0,
-      "slots_max": 6,
-      "slots_min": 3,
-      "time_max": 2,
-      "time_min": 1
-    },
-    {
-      "BotPreset": "hard",
-      "BotSide": "Usec",
-      "KeepZoneOnSpawn": false,
-      "SpawnMode": [],
-      "SpawnPoints": "",
-      "WildSpawnType": "assault",
-      "isPlayers": false,
-      "number": 1,
-      "slots_max": 5,
-      "slots_min": 3,
-      "time_max": 12,
-      "time_min": 10
-    }
-  ],
-  "BotLocationModifier": {
-    "AccuracySpeed": 0,
-    "DistToActivatePvE": 0,
-    "DistToSleepPvE": 0,
-    "FogVisibilityDistanceCoef": 0,
-    "FogVisibilitySpeedCoef": 0,
-    "GainSight": 0,
-    "MarksmanAccuratyCoef": 0,
-    "RainVisibilityDistanceCoef": 0,
-    "RainVisibilitySpeedCoef": 0,
-    "Scattering": 0,
-    "VisibleDistance": 0,
-    "DistToActivate": 0,
-    "DistToSleep": 0
-  },
-  "DisabledForScav": false,
-  "MinMaxBots": [],
-  "SpawnPointParams": [],
-  "exits": [],
-  "maxItemCountInLocation": [],
   "Id": "Private Area",
   "_Id": "5704e64ad2720bb55b8b456e",
   "Loot": [],
@@ -152,18 +157,18 @@
     {
       "id": "5803a58524597710ca36fcb2",
       "pic": {
-        "file": "67e404d9bec96f5d8e097331.jpg",
         "path": "banners/67e404d9bec96f5d8e097331.jpg",
         "rcid": "",
+        "file": "67e404d9bec96f5d8e097331.jpg",
         "type": "banners"
       }
     },
     {
       "id": "5c1b857086f77465f465faa4",
       "pic": {
-        "file": "67e404c5bec96f5d8e09732f.jpg",
         "path": "banners/67e404c5bec96f5d8e09732f.jpg",
         "rcid": "",
+        "file": "67e404c5bec96f5d8e09732f.jpg",
         "type": "banners"
       }
     }

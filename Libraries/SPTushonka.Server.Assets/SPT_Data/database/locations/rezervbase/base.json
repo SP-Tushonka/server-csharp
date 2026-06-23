@@ -1,11 +1,9 @@
 {
-  "AccessKeys": [],
-  "AccessKeysPvE": [],
   "AirdropParameters": [
     {
       "AirdropPointDeactivateDistance": 50,
-      "MinPlayersCountToSpawnAirdrop": 6,
-      "PlaneAirdropChance": 0.1,
+      "MinPlayersCountToSpawnAirdrop": 1,
+      "PlaneAirdropChance": 0.9,
       "PlaneAirdropCooldownMax": 800,
       "PlaneAirdropCooldownMin": 700,
       "PlaneAirdropEnd": 1500,
@@ -13,47 +11,6 @@
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
-    }
-  ],
-  "Area": 0,
-  "AveragePlayTime": 27,
-  "AveragePlayerLevel": 35,
-  "Banners": [
-    {
-      "id": "67d1ac705df2d64de808e1d2",
-      "pic": {
-        "file": "67e404a022d6081b78031dde.jpg",
-        "path": "banners/67e404a022d6081b78031dde.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5807bfe124597742a92e0a4c",
-      "pic": {
-        "file": "67e404ffbec96f5d8e097333.jpg",
-        "path": "banners/67e404ffbec96f5d8e097333.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5c1b857086f77465f465faa4",
-      "pic": {
-        "file": "67e404c5bec96f5d8e09732f.jpg",
-        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "64c0ad6af99768b777048f4e",
-      "pic": {
-        "file": "67e4047d22d6081b78031ddb.jpg",
-        "path": "banners/67e4047d22d6081b78031ddb.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
     }
   ],
   "BossLocationSpawn": [
@@ -78,25 +35,25 @@
       ],
       "Supports": [
         {
-          "BossEscortAmount": "2",
+          "BossEscortType": "followerGluharAssault",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerGluharAssault"
+          "BossEscortAmount": "2"
         },
         {
-          "BossEscortAmount": "2",
+          "BossEscortType": "followerGluharSecurity",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerGluharSecurity"
+          "BossEscortAmount": "2"
         },
         {
-          "BossEscortAmount": "2",
+          "BossEscortType": "followerGluharScout",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerGluharScout"
+          "BossEscortAmount": "2"
         }
       ],
       "Time": -1,
@@ -338,14 +295,11 @@
       "TriggerName": ""
     }
   ],
-  "BotAssault": 100,
-  "BotEasy": 10,
-  "BotHard": 40,
-  "BotImpossible": 0,
   "BotLocationModifier": {
     "AccuracySpeed": 0.6,
     "AdditionalHostilitySettings": [
       {
+        "BotRole": "pmcBEAR",
         "AlwaysEnemies": [
           "pmcBot",
           "exUsec",
@@ -374,18 +328,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 75,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcBEAR",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -400,18 +345,28 @@
             "Role": "pmcUSEC"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 90,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 75,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 90
       },
       {
+        "BotRole": "pmcUSEC",
         "AlwaysEnemies": [
           "pmcBot",
           "bossBully",
@@ -436,18 +391,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 90,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcUSEC",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -470,18 +416,52 @@
             "Role": "bossKnight"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 75,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 90,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
+        "UsecEnemyChance": 75
+      },
+      {
+        "BotRole": "bossGluhar",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "assault",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossKilla",
+          "bossBully",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy"
         ]
       },
       {
+        "BotRole": "pmcBot",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -502,34 +482,10 @@
           "bossSanitar",
           "bossTagilla",
           "bossZryachiy"
-        ],
-        "BotRole": "bossGluhar"
+        ]
       },
       {
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
-        "AlwaysFriends": [
-          "assault",
-          "marksman",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter",
-          "bossBoar",
-          "bossKilla",
-          "bossBully",
-          "bossKnight",
-          "bossKojaniy",
-          "bossKolontay",
-          "bossPartisan",
-          "bossSanitar",
-          "bossTagilla",
-          "bossZryachiy"
-        ],
-        "BotRole": "pmcBot"
-      },
-      {
+        "BotRole": "assault",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -556,7 +512,36 @@
           "followerBully",
           "pmcBot"
         ],
-        "BotRole": "assault",
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assaultGroup",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "pmcBot"
+        ],
         "SavagePlayerBehaviour": "Neutral"
       }
     ],
@@ -585,29 +570,7 @@
     "Scattering": 0.6,
     "VisibleDistance": 1.3
   },
-  "BotMarksman": 0,
-  "BotMax": 28,
-  "BotMaxPlayer": 0,
-  "BotMaxPvE": 28,
-  "BotMaxTimePlayer": 0,
-  "BotNormal": 50,
-  "BotSpawnCountStep": 3,
-  "BotSpawnPeriodCheck": 15,
-  "BotSpawnTimeOffMax": 30,
-  "BotSpawnTimeOffMin": 20,
-  "BotSpawnTimeOnMax": 320,
-  "BotSpawnTimeOnMin": 260,
-  "BotStart": 20,
-  "BotStartPlayer": 0,
-  "BotStop": 1500,
-  "Description": "The secret Federal State Reserve Agency base that, according to urban legends, contains enough supplies to last for years: food, medications and other resources, enough to survive an all-out nuclear war.",
   "DisabledForScav": false,
-  "DisabledScavExits": "",
-  "EnableCoop": true,
-  "Enabled": true,
-  "EscapeTimeLimit": 40,
-  "EscapeTimeLimitCoop": 30,
-  "EscapeTimeLimitPVE": 40,
   "Events": {
     "Halloween2024": {
       "CrowdAttackBlockRadius": 100,
@@ -683,113 +646,14 @@
       "ZombieCallDeltaRadius": 20,
       "ZombieCallPeriodSec": 1,
       "ZombieCallRadiusLimit": 125,
-      "ZombieMultiplier": 5
+      "ZombieMultiplier": 5,
+      "InfectionPercentage": 0
     },
     "Khorovod": {
       "Chance": 0
     }
   },
-  "ForceOnlineRaidInPVE": false,
-  "GenerateLocalLootCache": true,
-  "GlobalContainerChanceModifier": 1,
-  "GlobalLootChanceModifier": 0.27,
-  "GlobalLootChanceModifierPvE": 0.4,
-  "HeatmapCellSize": {
-    "x": 1,
-    "y": 2,
-    "z": 1
-  },
-  "HeatmapLayers": [
-    "AllCharactersPositions",
-    "AllBotsPositions",
-    "AllRealPlayersPositions",
-    "RealPlayersSavagesPositions",
-    "RealPlayersSavagesDeads",
-    "RealPlayersSavagesDamages",
-    "RealPlayersPmcPositions",
-    "RealPlayersPmcDeads",
-    "RealPlayersPmcDamages",
-    "RealPlayersPmcLaydownPositions",
-    "RealPlayersPmcEquipmentDropPositions",
-    "RealPlayersPmcHealingPositions",
-    "BotsBossPositions",
-    "BotsBossDeads",
-    "BotsBossDamages",
-    "BotsSavagesPositions",
-    "BotsSavagesDeads",
-    "BotsSavagesDamages",
-    "AllCharactersDamageSources",
-    "RealPlayerDamageSources",
-    "BotsDamageSources",
-    "LootPositions"
-  ],
-  "IconX": 360,
-  "IconY": 410,
-  "Id": "RezervBase",
-  "Insurance": true,
-  "IsSecret": false,
-  "Locked": false,
-  "Loot": [],
-  "MatchMakerMinPlayersByWaitTime": [
-    {
-      "minPlayers": 9,
-      "time": 240
-    },
-    {
-      "minPlayers": 6,
-      "time": 300
-    },
-    {
-      "minPlayers": 4,
-      "time": 360
-    },
-    {
-      "minPlayers": 2,
-      "time": 420
-    },
-    {
-      "minPlayers": 1,
-      "time": 450
-    }
-  ],
-  "MaxBotPerZone": 4,
-  "MaxCoopGroup": 12,
-  "MaxDistToFreePoint": 200,
-  "MaxPlayers": 11,
-  "MinDistToExitPoint": 30,
-  "MinDistToFreePoint": 60,
   "MinMaxBots": [],
-  "MinPlayerLvlAccessKeys": 0,
-  "MinPlayers": 9,
-  "Name": "ReserveBase",
-  "NewSpawn": false,
-  "NewSpawnForPlayers": false,
-  "NonWaveGroupScenario": {
-    "Chance": 50,
-    "Enabled": true,
-    "MaxToBeGroup": 3,
-    "MinToBeGroup": 2
-  },
-  "OcculsionCullingEnabled": false,
-  "OfflineNewSpawn": false,
-  "OfflineOldSpawn": true,
-  "OldSpawn": true,
-  "OpenZones": "ZoneRailStrorage,ZonePTOR1,ZonePTOR2,ZoneBarrack,ZoneBunkerStorage,ZoneSubStorage",
-  "PlayersRequestCount": -1,
-  "PmcMaxPlayersInGroup": 5,
-  "Preview": {
-    "path": "",
-    "rcid": ""
-  },
-  "RequiredPlayerLevelMax": 100,
-  "RequiredPlayerLevelMin": 0,
-  "Rules": "Normal",
-  "SafeLocation": false,
-  "ScavMaxPlayersInGroup": 4,
-  "Scene": {
-    "path": "maps/rezerv_base_preset.bundle",
-    "rcid": "Rezerv_Base.scenespreset.asset"
-  },
   "SpawnPointParams": [
     {
       "BotZoneName": "ZoneSubStorage",
@@ -808,7 +672,7 @@
           "Radius": 20
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "0046beaa-6af4-40d6-b031-b73a4d9229f7",
       "Infiltration": "",
@@ -869,7 +733,7 @@
           "Radius": 150
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "0191ca45-e575-4f46-838a-e3c817badd84",
       "Infiltration": "",
@@ -1636,7 +1500,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "1e03b572-d180-49df-9d33-73af6bd1f566",
       "Infiltration": "",
@@ -1762,7 +1626,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "223574d1-ae68-406a-be75-696340297ca1",
       "Infiltration": "",
@@ -1914,7 +1778,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "272f555f-7e52-49ee-838d-6778794c8c4c",
       "Infiltration": "",
@@ -2128,7 +1992,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "3273cebd-ce19-423e-a22d-58133a360ffd",
       "Infiltration": "",
@@ -2372,7 +2236,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "40916803-13c8-4291-9ed8-8d8d35883798",
       "Infiltration": "",
@@ -2403,7 +2267,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "43088a08-07d2-4b49-ba7f-465ff76a5cda",
       "Infiltration": "",
@@ -2555,7 +2419,7 @@
           "Radius": 85
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "4a38cf30-9551-4cfc-8e2a-834fd8c1abc6",
       "Infiltration": "",
@@ -2647,7 +2511,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "507b2031-2f8c-4e39-8c57-152d102727b1",
       "Infiltration": "",
@@ -2770,7 +2634,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "588e3a94-ef1f-4ae9-a254-83370720e756",
       "Infiltration": "",
@@ -2801,7 +2665,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "59a01e8a-14a1-4cb3-a6f1-5404bf64a2bd",
       "Infiltration": "",
@@ -2832,7 +2696,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "5a491df9-2e9d-4862-b984-45f35f243624",
       "Infiltration": "",
@@ -3016,7 +2880,7 @@
           "Radius": 150
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "606ba6f1-996d-4412-b934-154a58c725bc",
       "Infiltration": "",
@@ -3108,7 +2972,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "6279a730-3fc5-4ab3-8a96-de4aa566342a",
       "Infiltration": "",
@@ -3169,7 +3033,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "674e5308-4b6a-4b1e-84ee-af4abb6ce344",
       "Infiltration": "",
@@ -3293,7 +3157,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "6a5f6553-2d94-4f8f-bd12-48b2afb28181",
       "Infiltration": "",
@@ -3445,7 +3309,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "716c5d8c-4c09-4cd5-8bc7-58a9eb6767a2",
       "Infiltration": "",
@@ -3476,7 +3340,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 4,
       "Id": "717b3772-11bd-4129-a81a-02da749619bf",
       "Infiltration": "",
@@ -3507,7 +3371,7 @@
           "Radius": 20
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "71e06e55-f2f7-4c6a-b40b-6c11c6c6cce9",
       "Infiltration": "",
@@ -3658,7 +3522,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "74ec6705-ade9-4f3e-9483-a27f7ab26b8a",
       "Infiltration": "",
@@ -3689,7 +3553,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "75c4db0d-e048-4110-a3ea-7ea5bc28746f",
       "Infiltration": "",
@@ -3934,7 +3798,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "84c0620b-96f2-40c8-a525-30408e4d17ed",
       "Infiltration": "",
@@ -4088,7 +3952,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 4,
       "Id": "86093e65-7d47-4987-b73a-0957e436b892",
       "Infiltration": "",
@@ -4391,7 +4255,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "903ded63-3e74-4b8b-b5a6-7e46b799921b",
       "Infiltration": "",
@@ -4422,7 +4286,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "90a9fc6c-3006-4283-9d3e-a3bf60503096",
       "Infiltration": "",
@@ -4453,7 +4317,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "90b8eea8-f2f3-4b9c-9536-f60bc408c4b3",
       "Infiltration": "",
@@ -4484,7 +4348,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "92730387-37c6-4656-8fcb-540d045683fb",
       "Infiltration": "",
@@ -4577,7 +4441,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "957dd42a-ddac-49f5-afe7-b36a7b9a22c8",
       "Infiltration": "",
@@ -4731,7 +4595,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "9b4624f3-8b90-456b-b61e-d95bf63e6af2",
       "Infiltration": "",
@@ -4823,7 +4687,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "9e4f3c8d-881a-4915-82ff-5ddacf17a496",
       "Infiltration": "",
@@ -4854,7 +4718,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "9eb59560-93fe-40db-a40f-0b5d4b5a82c4",
       "Infiltration": "",
@@ -4885,7 +4749,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "9f061766-2ffb-4630-9ce5-31b0004f101e",
       "Infiltration": "",
@@ -5133,7 +4997,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 4,
       "Id": "a702d518-6278-4b77-86f7-14eae6e847c7",
       "Infiltration": "",
@@ -5164,7 +5028,7 @@
           "Radius": 20
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "a843bc4e-5a2e-4856-b81f-bf63a97301e5",
       "Infiltration": "",
@@ -5195,7 +5059,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "aa2abcb5-1560-44e5-b75a-d6e19f6af2e3",
       "Infiltration": "",
@@ -5692,7 +5556,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "bdb55252-e2ce-4c4e-82b8-94f0217718a4",
       "Infiltration": "",
@@ -5754,7 +5618,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "bfcffb47-5033-4f12-9dec-e42acf410bdd",
       "Infiltration": "",
@@ -5785,7 +5649,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "c16e51c1-b370-4684-8e6b-9c43c658cd3f",
       "Infiltration": "",
@@ -5846,7 +5710,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "c1f2de48-ab5a-4293-b15c-49af49ada14f",
       "Infiltration": "",
@@ -6003,7 +5867,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "c981f39c-8f79-420f-b952-b9696ea0f454",
       "Infiltration": "",
@@ -6253,7 +6117,7 @@
           "Radius": 25
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "daf7983c-2f16-4c42-ad51-3c6e6b22a3cf",
       "Infiltration": "",
@@ -6376,7 +6240,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "dc9680db-e85d-42bf-85d2-8438df657a7e",
       "Infiltration": "",
@@ -6529,7 +6393,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "e24a7dc3-38c4-4c42-b2d1-b842e76ff601",
       "Infiltration": "",
@@ -6590,7 +6454,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "e5f546cf-e9d2-42ee-89d1-b5560beeb2b5",
       "Infiltration": "",
@@ -6621,7 +6485,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 6,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "e9a9aa12-1398-4e82-9119-3602df1d3690",
       "Infiltration": "",
@@ -6682,7 +6546,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "eb58be74-869d-4fbb-aaa6-722439a3b713",
       "Infiltration": "",
@@ -6992,7 +6856,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "f68f7726-ebca-46f9-9880-708fb97dda0b",
       "Infiltration": "",
@@ -7054,7 +6918,7 @@
           "Radius": 70
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 6,
       "DelayToCanSpawnSec": 4,
       "Id": "f6db9616-e242-49f7-80b8-533284b55cce",
       "Infiltration": "",
@@ -7190,12 +7054,7 @@
       ]
     }
   ],
-  "UnixDateTime": 1706874543,
-  "_Id": "5704e5fad2720bc05b8b4567",
   "doors": [],
-  "exit_access_time": 50,
-  "exit_count": 1,
-  "exit_time": 2,
   "exits": [
     {
       "Chance": 100,
@@ -7330,7 +7189,6 @@
       "RequirementTip": ""
     }
   ],
-  "filter_ex": [],
   "limits": [
     {
       "items": [
@@ -7340,7 +7198,6 @@
       "min": 7
     }
   ],
-  "matching_min_seconds": 60,
   "maxItemCountInLocation": [
     {
       "TemplateId": "634959225289190e5e773b3b",
@@ -7353,9 +7210,40 @@
     {
       "TemplateId": "676bf44c5539167c3603e869",
       "Value": 0
+    },
+    {
+      "TemplateId": "5c1d0f4986f7744bb01837fa",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0c5f86f7744bb2683cf0",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0dc586f7744baf2e7b79",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0efb86f7744baf2e7b7b",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0d6d86f7744bb2683e1f",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1e495a86f7743109743dfb",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c052f6886f7746b1e3db148",
+      "Value": 2
+    },
+    {
+      "TemplateId": "69dd0de23dfe95d9e70b5ebb",
+      "Value": 31
     }
   ],
-  "sav_summon_seconds": 60,
   "secretExits": [
     {
       "EligibleForPMC": true,
@@ -7365,7 +7253,6 @@
       "Name": "reserve_secret_minefield"
     }
   ],
-  "tmp_location_field_remove_me": 0,
   "transits": [
     {
       "activateAfterSec": 60,
@@ -7404,10 +7291,6 @@
       "time": 20
     }
   ],
-  "users_gather_seconds": 0,
-  "users_spawn_seconds_n": 120,
-  "users_spawn_seconds_n2": 200,
-  "users_summon_seconds": 0,
   "waves": [
     {
       "BotPreset": "normal",
@@ -7663,6 +7546,146 @@
       "slots_min": 0,
       "time_max": 2400,
       "time_min": 1200
+    }
+  ],
+  "AccessKeys": [],
+  "AccessKeysPvE": [],
+  "Area": 0,
+  "AveragePlayTime": 27,
+  "AveragePlayerLevel": 35,
+  "BotAssault": 100,
+  "BotEasy": 10,
+  "BotHard": 40,
+  "BotImpossible": 0,
+  "BotMarksman": 0,
+  "BotMax": 28,
+  "BotMaxPvE": 28,
+  "BotNormal": 50,
+  "BotSpawnCountStep": 3,
+  "BotSpawnPeriodCheck": 15,
+  "BotSpawnTimeOffMax": 30,
+  "BotSpawnTimeOffMin": 20,
+  "BotSpawnTimeOnMax": 320,
+  "BotSpawnTimeOnMin": 260,
+  "BotStart": 20,
+  "BotStartPlayer": 0,
+  "BotStop": 1500,
+  "DisabledScavExits": "",
+  "EnableCoop": true,
+  "Enabled": true,
+  "EscapeTimeLimit": 40,
+  "EscapeTimeLimitCoop": 30,
+  "ForceOfflineRaidInPVE": false,
+  "ForceOnlineRaidInPVE": false,
+  "GlobalContainerChanceModifier": 1,
+  "HeatmapCellSize": {
+    "x": 1,
+    "y": 2,
+    "z": 1
+  },
+  "HeatmapLayers": [
+    "AllCharactersPositions",
+    "AllBotsPositions",
+    "AllRealPlayersPositions",
+    "RealPlayersSavagesPositions",
+    "RealPlayersSavagesDeads",
+    "RealPlayersSavagesDamages",
+    "RealPlayersPmcPositions",
+    "RealPlayersPmcDeads",
+    "RealPlayersPmcDamages",
+    "RealPlayersPmcLaydownPositions",
+    "RealPlayersPmcEquipmentDropPositions",
+    "RealPlayersPmcHealingPositions",
+    "BotsBossPositions",
+    "BotsBossDeads",
+    "BotsBossDamages",
+    "BotsSavagesPositions",
+    "BotsSavagesDeads",
+    "BotsSavagesDamages",
+    "AllCharactersDamageSources",
+    "RealPlayerDamageSources",
+    "BotsDamageSources",
+    "LootPositions"
+  ],
+  "HiddenWhenLockedByQuest": false,
+  "IconX": 360,
+  "IconY": 410,
+  "IsSecret": false,
+  "Locked": false,
+  "LockedByQuest": true,
+  "MaxBotPerZone": 4,
+  "MaxCoopGroup": 12,
+  "MaxDistToFreePoint": 200,
+  "MaxPlayers": 11,
+  "MinDistToFreePoint": 60,
+  "MinPlayerLvlAccessKeys": 0,
+  "MinPlayers": 9,
+  "Name": "ReserveBase",
+  "NewSpawn": false,
+  "NewSpawnForPlayers": false,
+  "NonWaveGroupScenario": {
+    "Chance": 50,
+    "Enabled": true,
+    "MaxToBeGroup": 3,
+    "MinToBeGroup": 2
+  },
+  "OcculsionCullingEnabled": false,
+  "OfflineNewSpawn": false,
+  "OfflineOldSpawn": true,
+  "OldSpawn": true,
+  "OpenZones": "ZoneRailStrorage,ZonePTOR1,ZonePTOR2,ZoneBarrack,ZoneBunkerStorage,ZoneSubStorage",
+  "PlayersRequestCount": -1,
+  "PmcMaxPlayersInGroup": 5,
+  "RequiredPlayerLevelMax": 100,
+  "RequiredPlayerLevelMin": 0,
+  "Rules": "Normal",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": false,
+  "ScavMaxPlayersInGroup": 4,
+  "Scene": {
+    "path": "maps/rezerv_base_preset.bundle",
+    "rcid": "Rezerv_Base.scenespreset.asset"
+  },
+  "UnixDateTime": 1706874543,
+  "Id": "RezervBase",
+  "_Id": "5704e5fad2720bc05b8b4567",
+  "Loot": [],
+  "Banners": [
+    {
+      "id": "67d1ac705df2d64de808e1d2",
+      "pic": {
+        "path": "banners/67e404a022d6081b78031dde.jpg",
+        "rcid": "",
+        "file": "67e404a022d6081b78031dde.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5807bfe124597742a92e0a4c",
+      "pic": {
+        "path": "banners/67e404ffbec96f5d8e097333.jpg",
+        "rcid": "",
+        "file": "67e404ffbec96f5d8e097333.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5c1b857086f77465f465faa4",
+      "pic": {
+        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
+        "rcid": "",
+        "file": "67e404c5bec96f5d8e09732f.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0ad6af99768b777048f4e",
+      "pic": {
+        "path": "banners/67e4047d22d6081b78031ddb.jpg",
+        "rcid": "",
+        "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
     }
   ]
 }

@@ -19,6 +19,7 @@ public record LocationTable
         { "interchange", "Interchange" },
         { "laboratory", "Laboratory" },
         { "lighthouse", "Lighthouse" },
+        { "lighthouse2", "Lighthouse2" },
         { "privatearea", "PrivateArea" },
         { "rezervbase", "RezervBase" },
         { "shoreline", "Shoreline" },
@@ -29,7 +30,9 @@ public record LocationTable
         { "town", "Town" },
         { "woods", "Woods" },
         { "sandbox", "Sandbox" },
+        { "sandbox_start", "SandboxStart" },
         { "sandbox_high", "SandboxHigh" },
+        { "icebreaker", "Icebreaker" },
         // SPT
         { "Factory4Day", "Factory4Day" },
         { "Bigmap", "Bigmap" },
@@ -39,6 +42,7 @@ public record LocationTable
         { "Interchange", "Interchange" },
         { "Laboratory", "Laboratory" },
         { "Lighthouse", "Lighthouse" },
+        { "Lighthouse2", "Lighthouse2" },
         { "PrivateArea", "PrivateArea" },
         { "RezervBase", "RezervBase" },
         { "Shoreline", "Shoreline" },
@@ -49,7 +53,9 @@ public record LocationTable
         { "Woods", "Woods" },
         { "Labyrinth", "Labyrinth" },
         { "Sandbox", "Sandbox" },
+        { "SandboxStart", "SandboxStart" },
         { "SandboxHigh", "SandboxHigh" },
+        { "Icebreaker", "Icebreaker" },
     };
 
     private Dictionary<string, Eft.Common.Location>? _locationDictionaryCache;
@@ -78,6 +84,9 @@ public record LocationTable
     [JsonPropertyName("lighthouse")]
     public required Eft.Common.Location Lighthouse { get; init; }
 
+    [JsonPropertyName("lighthouse2")]
+    public required Eft.Common.Location Lighthouse2 { get; init; }
+
     [JsonPropertyName("privatearea")]
     public Eft.Common.Location? PrivateArea { get; init; }
 
@@ -99,6 +108,9 @@ public record LocationTable
     [JsonPropertyName("terminal")]
     public Eft.Common.Location? Terminal { get; init; }
 
+    [JsonPropertyName("terminal_ui")]
+    public Eft.Common.Location? TerminalUi { get; init; }
+
     [JsonPropertyName("town")]
     public Eft.Common.Location? Town { get; init; }
 
@@ -108,8 +120,14 @@ public record LocationTable
     [JsonPropertyName("sandbox")]
     public required Eft.Common.Location Sandbox { get; init; }
 
+    [JsonPropertyName("sandbox_start")]
+    public required Eft.Common.Location SandboxStart { get; init; }
+
     [JsonPropertyName("sandbox_high")]
     public required Eft.Common.Location SandboxHigh { get; init; }
+
+    [JsonPropertyName("icebreaker")]
+    public required Eft.Common.Location Icebreaker { get; init; }
 
     /// <summary>
     ///     Holds a mapping of the linkages between locations on the UI

@@ -1,11 +1,9 @@
 {
-  "AccessKeys": [],
-  "AccessKeysPvE": [],
   "AirdropParameters": [
     {
       "AirdropPointDeactivateDistance": 50,
-      "MinPlayersCountToSpawnAirdrop": 6,
-      "PlaneAirdropChance": 0.2,
+      "MinPlayersCountToSpawnAirdrop": 1,
+      "PlaneAirdropChance": 0.9,
       "PlaneAirdropCooldownMax": 800,
       "PlaneAirdropCooldownMin": 700,
       "PlaneAirdropEnd": 1500,
@@ -13,47 +11,6 @@
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
-    }
-  ],
-  "Area": 0,
-  "AveragePlayTime": 30,
-  "AveragePlayerLevel": 35,
-  "Banners": [
-    {
-      "id": "67d1ac1a2fb6a5d11b09d6f8",
-      "pic": {
-        "file": "67e4049dbec96f5d8e09732d.jpg",
-        "path": "banners/67e4049dbec96f5d8e09732d.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5464e0454bdc2d06708b4567",
-      "pic": {
-        "file": "67e4045225a1aca9270117e7.jpg",
-        "path": "banners/67e4045225a1aca9270117e7.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "5c1b857086f77465f465faa4",
-      "pic": {
-        "file": "67e404c5bec96f5d8e09732f.jpg",
-        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "64c0acf85174e095610734a0",
-      "pic": {
-        "file": "67e404c722d6081b78031de0.jpg",
-        "path": "banners/67e404c722d6081b78031de0.jpg",
-        "rcid": "",
-        "type": "banners"
-      }
     }
   ],
   "BossLocationSpawn": [
@@ -84,7 +41,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 20,
+      "BossChance": 0,
       "BossDifficult": "normal",
       "BossEscortAmount": "2",
       "BossEscortDifficult": "normal",
@@ -97,7 +54,7 @@
       "DependKarmaPVE": false,
       "ForceSpawn": false,
       "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
+      "RandomTimeSpawn": true,
       "ShowOnTarkovMap": false,
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
@@ -106,25 +63,25 @@
       ],
       "Supports": [
         {
-          "BossEscortAmount": "1",
+          "BossEscortType": "followerBigPipe",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerBigPipe"
+          "BossEscortAmount": "1"
         },
         {
-          "BossEscortAmount": "1",
+          "BossEscortType": "followerBirdEye",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerBirdEye"
+          "BossEscortAmount": "1"
         },
         {
-          "BossEscortAmount": "0",
+          "BossEscortType": "followerGluharScout",
           "BossEscortDifficult": [
             "normal"
           ],
-          "BossEscortType": "followerGluharScout"
+          "BossEscortAmount": "0"
         }
       ],
       "Time": -1,
@@ -132,7 +89,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 30,
+      "BossChance": 15,
       "BossDifficult": "normal",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
@@ -158,7 +115,7 @@
       "TriggerName": "botEvent"
     },
     {
-      "BossChance": 80,
+      "BossChance": 40,
       "BossDifficult": "normal",
       "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
@@ -184,7 +141,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 80,
+      "BossChance": 40,
       "BossDifficult": "normal",
       "BossEscortAmount": "1,2",
       "BossEscortDifficult": "normal",
@@ -210,7 +167,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 25,
       "BossDifficult": "normal",
       "BossEscortAmount": "1,1,2",
       "BossEscortDifficult": "normal",
@@ -236,7 +193,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 25,
       "BossDifficult": "normal",
       "BossEscortAmount": "1,1,2",
       "BossEscortDifficult": "normal",
@@ -288,7 +245,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 80,
+      "BossChance": 40,
       "BossDifficult": "normal",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
@@ -314,7 +271,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 80,
+      "BossChance": 40,
       "BossDifficult": "normal",
       "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
@@ -340,7 +297,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 20,
+      "BossChance": 10,
       "BossDifficult": "normal",
       "BossEscortAmount": "1,2",
       "BossEscortDifficult": "normal",
@@ -505,59 +462,9 @@
       "ForceSpawn": false,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
-      "SpawnMode": [
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 0,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "gifter",
-      "BossName": "gifter",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "DependKarma": false,
-      "DependKarmaPVE": false,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
-        "regular",
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 5,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "2",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "crazyAssaultEvent",
-      "BossName": "crazyAssaultEvent",
-      "BossPlayer": false,
-      "BossZone": "Zone_OldHouse",
-      "Delay": 0,
-      "DependKarma": false,
-      "DependKarmaPVE": false,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "regular",
         "pve"
       ],
       "Supports": null,
@@ -566,14 +473,11 @@
       "TriggerName": ""
     }
   ],
-  "BotAssault": 100,
-  "BotEasy": 10,
-  "BotHard": 40,
-  "BotImpossible": 0,
   "BotLocationModifier": {
     "AccuracySpeed": 0.6,
     "AdditionalHostilitySettings": [
       {
+        "BotRole": "pmcBEAR",
         "AlwaysEnemies": [
           "pmcBot",
           "exUsec",
@@ -602,18 +506,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 75,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcBEAR",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -628,18 +523,28 @@
             "Role": "pmcUSEC"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 90,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 75,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 90
       },
       {
+        "BotRole": "pmcUSEC",
         "AlwaysEnemies": [
           "pmcBot",
           "bossBully",
@@ -664,18 +569,9 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "assaultGroup"
         ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "BearEnemyChance": 90,
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BotRole": "pmcUSEC",
         "ChancedEnemies": [
           {
             "EnemyChance": 100,
@@ -698,18 +594,28 @@
             "Role": "bossKnight"
           }
         ],
+        "Warn": [
+          "sectactPriestEvent"
+        ],
         "Neutral": [
           "sectantPriest",
           "sectantWarrior"
         ],
+        "AlwaysFriends": [
+          "bossZryachiy",
+          "followerZryachiy",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter"
+        ],
         "SavagePlayerBehaviour": "Warn",
-        "UsecEnemyChance": 75,
+        "BearPlayerBehaviour": "ChancedEnemies",
+        "BearEnemyChance": 90,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "Warn": [
-          "sectactPriestEvent"
-        ]
+        "UsecEnemyChance": 75
       },
       {
+        "BotRole": "exUsec",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -730,10 +636,10 @@
           "bossSanitar",
           "bossTagilla",
           "bossZryachiy"
-        ],
-        "BotRole": "exUsec"
+        ]
       },
       {
+        "BotRole": "assault",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
@@ -759,7 +665,35 @@
           "followerBirdEye",
           "followerBully"
         ],
-        "BotRole": "assault",
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assaultGroup",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully"
+        ],
         "SavagePlayerBehaviour": "Neutral"
       }
     ],
@@ -788,29 +722,7 @@
     "Scattering": 0.6,
     "VisibleDistance": 1.3
   },
-  "BotMarksman": 0,
-  "BotMax": 29,
-  "BotMaxPlayer": 0,
-  "BotMaxPvE": 29,
-  "BotMaxTimePlayer": 0,
-  "BotNormal": 50,
-  "BotSpawnCountStep": 3,
-  "BotSpawnPeriodCheck": 15,
-  "BotSpawnTimeOffMax": 30,
-  "BotSpawnTimeOffMin": 20,
-  "BotSpawnTimeOnMax": 320,
-  "BotSpawnTimeOnMin": 260,
-  "BotStart": 20,
-  "BotStartPlayer": 0,
-  "BotStop": 1900,
-  "Description": "The lighthouse at Cape Dalniy used to be an important strategic point of the city. At the outbreak of the conflict, USEC used it as a landing zone, thus attracting the attention of BEAR troops that aimed to reduce the hostile PMC presence to zero. ",
   "DisabledForScav": false,
-  "DisabledScavExits": "",
-  "EnableCoop": true,
-  "Enabled": true,
-  "EscapeTimeLimit": 40,
-  "EscapeTimeLimitCoop": 30,
-  "EscapeTimeLimitPVE": 40,
   "Events": {
     "Halloween2024": {
       "CrowdAttackBlockRadius": 100,
@@ -886,112 +798,19 @@
       "ZombieCallDeltaRadius": 20,
       "ZombieCallPeriodSec": 1,
       "ZombieCallRadiusLimit": 200,
-      "ZombieMultiplier": 5
+      "ZombieMultiplier": 5,
+      "InfectionPercentage": 0
     },
     "Khorovod": {
       "Chance": 0
     }
   },
-  "ForceOnlineRaidInPVE": false,
-  "GenerateLocalLootCache": true,
-  "GlobalContainerChanceModifier": 1,
-  "GlobalLootChanceModifier": 0.12,
-  "GlobalLootChanceModifierPvE": 0.26,
-  "HeatmapCellSize": {
-    "x": 1,
-    "y": 2,
-    "z": 1
-  },
-  "HeatmapLayers": [
-    "AllCharactersPositions",
-    "AllBotsPositions",
-    "AllRealPlayersPositions",
-    "RealPlayersSavagesPositions",
-    "RealPlayersSavagesDeads",
-    "RealPlayersSavagesDamages",
-    "RealPlayersPmcPositions",
-    "RealPlayersPmcDeads",
-    "RealPlayersPmcDamages",
-    "RealPlayersPmcLaydownPositions",
-    "RealPlayersPmcEquipmentDropPositions",
-    "RealPlayersPmcHealingPositions",
-    "BotsBossPositions",
-    "BotsBossDeads",
-    "BotsBossDamages",
-    "BotsSavagesPositions",
-    "BotsSavagesDeads",
-    "BotsSavagesDamages",
-    "AllCharactersDamageSources",
-    "RealPlayerDamageSources",
-    "BotsDamageSources",
-    "LootPositions"
-  ],
-  "IconX": 120,
-  "IconY": 450,
-  "Id": "Lighthouse",
-  "Insurance": true,
-  "IsSecret": false,
-  "Locked": false,
-  "Loot": [],
-  "MatchMakerMinPlayersByWaitTime": [
-    {
-      "minPlayers": 11,
-      "time": 240
-    },
-    {
-      "minPlayers": 8,
-      "time": 300
-    },
-    {
-      "minPlayers": 5,
-      "time": 360
-    },
-    {
-      "minPlayers": 2,
-      "time": 420
-    },
-    {
-      "minPlayers": 1,
-      "time": 450
-    }
-  ],
-  "MaxBotPerZone": 8,
-  "MaxCoopGroup": 12,
-  "MaxDistToFreePoint": 200,
-  "MaxPlayers": 12,
-  "MinDistToExitPoint": 30,
-  "MinDistToFreePoint": 70,
   "MinMaxBots": [],
-  "MinPlayerLvlAccessKeys": 0,
-  "MinPlayers": 10,
-  "Name": "Lighthouse",
-  "NewSpawn": true,
-  "NewSpawnForPlayers": true,
   "NonWaveGroupScenario": {
     "Chance": 50,
     "Enabled": true,
     "MaxToBeGroup": 3,
     "MinToBeGroup": 2
-  },
-  "OcculsionCullingEnabled": false,
-  "OfflineNewSpawn": true,
-  "OfflineOldSpawn": true,
-  "OldSpawn": true,
-  "OpenZones": "Zone_Containers,Zone_Rocks,Zone_Chalet,Zone_Village,Zone_Bridge,Zone_OldHouse,Zone_LongRoad,Zone_DestroyedHouse,Zone_SniperPeak,Zone_Island",
-  "PlayersRequestCount": -1,
-  "PmcMaxPlayersInGroup": 5,
-  "Preview": {
-    "path": "",
-    "rcid": ""
-  },
-  "RequiredPlayerLevelMax": 100,
-  "RequiredPlayerLevelMin": 0,
-  "Rules": "Normal",
-  "SafeLocation": false,
-  "ScavMaxPlayersInGroup": 4,
-  "Scene": {
-    "path": "maps/lighthouse_preset.bundle",
-    "rcid": "lighthouse.scenespreset.asset"
   },
   "SpawnPointParams": [
     {
@@ -1041,7 +860,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 27,
+      "CorePointId": 29,
       "DelayToCanSpawnSec": 4,
       "Id": "06e2c7c3-ee44-45f1-b219-96785f80041e",
       "Infiltration": "",
@@ -1104,7 +923,7 @@
           "Radius": 35
         }
       },
-      "CorePointId": 24,
+      "CorePointId": 26,
       "DelayToCanSpawnSec": 4,
       "Id": "0b80efd3-c901-4b57-9e8a-dda31e7301cb",
       "Infiltration": "",
@@ -1165,7 +984,7 @@
           "Radius": 130
         }
       },
-      "CorePointId": 28,
+      "CorePointId": 30,
       "DelayToCanSpawnSec": 4,
       "Id": "0c53d15c-f9f4-462d-b13f-aa0619dc270d",
       "Infiltration": "",
@@ -1196,7 +1015,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "0e1830ca-9b8d-4780-af23-efe8ea0c42df",
       "Infiltration": "",
@@ -1227,7 +1046,7 @@
           "Radius": 40
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "0e8cb32b-bb79-465e-9f5b-d7657722bbfa",
       "Infiltration": "",
@@ -1289,7 +1108,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 17,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 3600,
       "Id": "10d36c5c-d5b4-4a84-8aa4-ad8479e5b702",
       "Infiltration": "",
@@ -1319,7 +1138,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 20,
+      "CorePointId": 22,
       "DelayToCanSpawnSec": 4,
       "Id": "110c2edd-7a99-4bec-986a-b3d12eb6ebd3",
       "Infiltration": "",
@@ -1474,7 +1293,7 @@
           "Radius": 130
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "17d0c036-3b9a-4e93-8d7e-eba2c16a90ec",
       "Infiltration": "",
@@ -1536,7 +1355,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "192e3979-a967-4e2c-84b9-db677c5f8bea",
       "Infiltration": "",
@@ -1571,9 +1390,9 @@
       "Id": "1a79e2ec-b166-437d-a2e2-0d175a882f0d",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 105.9234,
-        "y": 0.8048973,
-        "z": 427.2954
+        "x": 138.956451,
+        "y": 0.8249016,
+        "z": 375.8534
       },
       "Rotation": 260.715424,
       "Sides": [
@@ -1659,7 +1478,7 @@
           "Radius": 200
         }
       },
-      "CorePointId": 26,
+      "CorePointId": 28,
       "DelayToCanSpawnSec": 4,
       "Id": "1b7d320b-1905-47c4-b2db-8525d86542fa",
       "Infiltration": "",
@@ -1722,14 +1541,44 @@
       },
       "CorePointId": 0,
       "DelayToCanSpawnSec": 4,
+      "Id": "1d3efd91-2a86-4e35-b2b9-2efe9060829a",
+      "Infiltration": "North",
+      "Position": {
+        "x": 142.4226,
+        "y": 2.81489944,
+        "z": -929.319336
+      },
+      "Rotation": 330.655945,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
       "Id": "1f0216f7-aec5-4c69-b217-ecb42c32e1a1",
       "Infiltration": "North",
       "Position": {
-        "x": -444.616425,
-        "y": 28.8648987,
-        "z": -372.493347
+        "x": -338.282532,
+        "y": 0.6148987,
+        "z": -263.818054
       },
-      "Rotation": 294.262756,
+      "Rotation": 113.955368,
       "Sides": [
         "All"
       ]
@@ -1750,7 +1599,7 @@
           "Radius": 140
         }
       },
-      "CorePointId": 16,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 3600,
       "Id": "20123cae-43ce-41ff-b31a-e26f54485038",
       "Infiltration": "",
@@ -1793,6 +1642,36 @@
       "Rotation": 244.211288,
       "Sides": [
         "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "211807d0-4bdf-446f-abbe-4cefeb161655",
+      "Infiltration": "North",
+      "Position": {
+        "x": 6.100586,
+        "y": 10.650898,
+        "z": -916.5203
+      },
+      "Rotation": 5.26164675,
+      "Sides": [
+        "All"
       ]
     },
     {
@@ -1938,11 +1817,11 @@
       "Id": "283916a7-9bed-4e06-91a5-0490819397a9",
       "Infiltration": "North",
       "Position": {
-        "x": -221.127411,
-        "y": 13.2248974,
-        "z": -186.749329
+        "x": -214.567413,
+        "y": 12.4848976,
+        "z": -184.769348
       },
-      "Rotation": 281.698669,
+      "Rotation": 158.550385,
       "Sides": [
         "All"
       ]
@@ -1965,7 +1844,7 @@
           "Radius": 35
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "284aefcf-fb51-46c2-8c03-e1bafae9e5e1",
       "Infiltration": "",
@@ -2010,6 +1889,66 @@
       ]
     },
     {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "294d3e84-ac2a-4966-bce4-713909dff7ea",
+      "Infiltration": "North",
+      "Position": {
+        "x": -126.367409,
+        "y": 10.5948982,
+        "z": -897.199341
+      },
+      "Rotation": 103.933083,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "294fcc93-a087-433e-a880-32bb7617d56b",
+      "Infiltration": "North",
+      "Position": {
+        "x": 168.9226,
+        "y": 0.9848976,
+        "z": -763.5993
+      },
+      "Rotation": 295.785645,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
       "BotZoneName": "Zone_RoofRocks",
       "Categories": [
         "Bot",
@@ -2026,7 +1965,7 @@
           "Radius": 240
         }
       },
-      "CorePointId": 14,
+      "CorePointId": 15,
       "DelayToCanSpawnSec": 3600,
       "Id": "2a9bda30-c82d-4be6-9cca-6b9783ab5e2b",
       "Infiltration": "",
@@ -2057,7 +1996,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 21,
+      "CorePointId": 23,
       "DelayToCanSpawnSec": 4,
       "Id": "2b30ac7a-1194-4efe-8ed9-d7cbeaf8a719",
       "Infiltration": "",
@@ -2088,7 +2027,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "2bfd144d-de14-4c4c-9670-d15df958532c",
       "Infiltration": "",
@@ -2131,6 +2070,36 @@
       "Rotation": 348.435364,
       "Sides": [
         "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "2d804d31-544a-4349-9477-e2789eff3f6d",
+      "Infiltration": "North",
+      "Position": {
+        "x": 138.410034,
+        "y": 3.254898,
+        "z": -930.2862
+      },
+      "Rotation": 318.657318,
+      "Sides": [
+        "All"
       ]
     },
     {
@@ -2242,7 +2211,7 @@
           "Radius": 40
         }
       },
-      "CorePointId": 13,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 3600,
       "Id": "30f12408-61c9-4b53-984a-c7c06a2df165",
       "Infiltration": "",
@@ -2277,9 +2246,9 @@
       "Id": "31bb4ef3-4336-4360-a43a-1195365c1faf",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 111.742584,
-        "y": 0.3838997,
-        "z": -161.499329
+        "x": 139.20459,
+        "y": 0.344898224,
+        "z": -109.733337
       },
       "Rotation": 212.519348,
       "Sides": [
@@ -2303,7 +2272,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "341ac673-5ee9-492b-bc39-48bd40483ea4",
       "Infiltration": "",
@@ -2342,7 +2311,7 @@
         "y": 13.2248974,
         "z": -183.899353
       },
-      "Rotation": 328.91275,
+      "Rotation": 154.206329,
       "Sides": [
         "All"
       ]
@@ -2368,9 +2337,9 @@
       "Id": "349103c5-bba4-4d48-97d4-ae8d5de12a24",
       "Infiltration": "North",
       "Position": {
-        "x": -15.1174011,
-        "y": 1.05489731,
-        "z": -137.2793
+        "x": -22.8574066,
+        "y": 1.52489853,
+        "z": -11.4993286
       },
       "Rotation": 165.596863,
       "Sides": [
@@ -2394,7 +2363,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "385a4292-872d-416a-8c43-a2a600f78f7d",
       "Infiltration": "",
@@ -2409,7 +2378,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -2460,9 +2429,9 @@
       "Id": "3a76b2a9-1dbb-4f5f-87e3-277d1980bcb8",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 103.953522,
-        "y": 0.480896,
-        "z": 426.513062
+        "x": 136.986572,
+        "y": 0.500900269,
+        "z": 375.071045
       },
       "Rotation": 260.715424,
       "Sides": [
@@ -2470,7 +2439,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -2521,9 +2490,9 @@
       "Id": "3d8b0ddc-b842-4f3d-8524-bb3a99fc8b7e",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 75.3526,
-        "y": 8.804897,
-        "z": 226.640686
+        "x": 85.752594,
+        "y": 7.23489761,
+        "z": 207.540649
       },
       "Rotation": 293.2345,
       "Sides": [
@@ -2547,7 +2516,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 12,
+      "CorePointId": 13,
       "DelayToCanSpawnSec": 3600,
       "Id": "3e979c68-570b-4635-8228-242511b434f4",
       "Infiltration": "",
@@ -2578,7 +2547,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "3eb024c4-7111-47f5-a319-610455c56d0c",
       "Infiltration": "",
@@ -2640,7 +2609,7 @@
           "Radius": 160
         }
       },
-      "CorePointId": 26,
+      "CorePointId": 28,
       "DelayToCanSpawnSec": 4,
       "Id": "3ee45727-bd56-4684-b953-ecea9c204e4d",
       "Infiltration": "",
@@ -2670,7 +2639,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 20,
+      "CorePointId": 21,
       "DelayToCanSpawnSec": 4,
       "Id": "40216157-56ab-460f-a42b-d84c12b749bc",
       "Infiltration": "",
@@ -2747,7 +2716,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -2826,14 +2795,44 @@
       },
       "CorePointId": 0,
       "DelayToCanSpawnSec": 4,
+      "Id": "4578ad67-cd07-4f0f-ad64-f03bba74e201",
+      "Infiltration": "North",
+      "Position": {
+        "x": -6.117401,
+        "y": 12.0938988,
+        "z": -919.6793
+      },
+      "Rotation": 16.0647449,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
       "Id": "46749164-2db8-4711-83e7-ff8d85b5b03e",
       "Infiltration": "North",
       "Position": {
-        "x": -444.4114,
-        "y": 28.9749,
-        "z": -374.474365
+        "x": -338.498169,
+        "y": 0.7248993,
+        "z": -261.8385
       },
-      "Rotation": 294.262756,
+      "Rotation": 113.955368,
       "Sides": [
         "All"
       ]
@@ -2859,9 +2858,9 @@
       "Id": "46d9652b-5416-42be-bd85-92a6064a3444",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -168.237411,
-        "y": 30.4148979,
-        "z": -65.0293
+        "x": -167.097412,
+        "y": 30.544899,
+        "z": -66.89935
       },
       "Rotation": 148.08,
       "Sides": [
@@ -2889,9 +2888,9 @@
       "Id": "49cf148a-3f73-449a-89bb-8920f59a9000",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 102.215881,
-        "y": 0.3598938,
-        "z": 425.473877
+        "x": 135.772583,
+        "y": 0.379898071,
+        "z": 373.160645
       },
       "Rotation": 260.715424,
       "Sides": [
@@ -2914,7 +2913,7 @@
           "Radius": 240
         }
       },
-      "CorePointId": 16,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 3600,
       "Id": "4adc5712-b41f-4381-809a-a39af416a85a",
       "Infiltration": "",
@@ -3040,7 +3039,7 @@
           "Radius": 35
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "4f350e52-d6ec-448a-a9f9-fd776a9017ec",
       "Infiltration": "",
@@ -3075,11 +3074,41 @@
       "Id": "502bb829-ab80-4051-9218-fcac2bc4e08d",
       "Infiltration": "North",
       "Position": {
-        "x": -385.1474,
-        "y": 24.9248981,
-        "z": -509.9793
+        "x": -124.4474,
+        "y": 10.6748981,
+        "z": -896.3493
       },
       "Rotation": 141.822754,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "50b4ac5b-d0e3-4ad1-90eb-4772465848f6",
+      "Infiltration": "North",
+      "Position": {
+        "x": -126.8074,
+        "y": 10.544899,
+        "z": -895.699341
+      },
+      "Rotation": 119.339577,
       "Sides": [
         "All"
       ]
@@ -3105,9 +3134,9 @@
       "Id": "52521b3f-59a4-4323-8063-e42e116f7554",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 76.9725952,
-        "y": 9.154898,
-        "z": 219.860657
+        "x": 86.73259,
+        "y": 6.97489738,
+        "z": 203.790649
       },
       "Rotation": 293.2345,
       "Sides": [
@@ -3147,6 +3176,36 @@
     },
     {
       "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "53014374-5f1c-496c-8894-4b204fe71565",
+      "Infiltration": "North",
+      "Position": {
+        "x": -126.65741,
+        "y": 10.5548973,
+        "z": -891.6193
+      },
+      "Rotation": 31.9500847,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -3193,7 +3252,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "5622affd-41c1-47aa-acf3-2ba672f650ab",
       "Infiltration": "",
@@ -3239,7 +3298,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -3286,7 +3345,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "5906e8e4-e6a0-4f8d-8b0a-833f82925832",
       "Infiltration": "",
@@ -3321,11 +3380,11 @@
       "Id": "59a8c279-8c5d-4af2-86aa-98755cbc109c",
       "Infiltration": "North",
       "Position": {
-        "x": -442.8274,
-        "y": 28.7448978,
-        "z": -375.699341
+        "x": -340.088654,
+        "y": 0.49489975,
+        "z": -260.621765
       },
-      "Rotation": 294.262756,
+      "Rotation": 113.955368,
       "Sides": [
         "All"
       ]
@@ -3408,7 +3467,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "5fb56c9f-603c-4387-8a03-3f959e9890b1",
       "Infiltration": "",
@@ -3471,7 +3530,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "602d47ac-ada0-4905-a0f2-d70fadffef81",
       "Infiltration": "",
@@ -3501,14 +3560,14 @@
           "Radius": 60
         }
       },
-      "CorePointId": 19,
+      "CorePointId": 20,
       "DelayToCanSpawnSec": 2000,
       "Id": "61237607-6f7f-45ef-8358-5ad2200197ff",
       "Infiltration": "",
       "Position": {
-        "x": -58.01001,
+        "x": -57.4200134,
         "y": 39.5256538,
-        "z": 459.39
+        "z": 457.58
       },
       "Rotation": 256.404022,
       "Sides": [
@@ -3567,9 +3626,9 @@
       "Id": "61f9d52f-5ccb-48a7-a4a1-a852b049f7b8",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -169.927414,
-        "y": 30.3048973,
-        "z": -65.95935
+        "x": -168.787415,
+        "y": 30.4348984,
+        "z": -67.82941
       },
       "Rotation": 148.08,
       "Sides": [
@@ -3655,7 +3714,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 13,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 4,
       "Id": "62c520e1-3545-4b02-8c9b-20ce9218979f",
       "Infiltration": "",
@@ -3685,14 +3744,14 @@
           "Radius": 60
         }
       },
-      "CorePointId": 19,
+      "CorePointId": 20,
       "DelayToCanSpawnSec": 2000,
       "Id": "631da3b2-cc7e-4de9-8838-bcc3bfa369b8",
       "Infiltration": "",
       "Position": {
-        "x": -71.78,
+        "x": -67.41,
         "y": 39.2056541,
-        "z": 451.11
+        "z": 449.65
       },
       "Rotation": 256.404022,
       "Sides": [
@@ -3904,9 +3963,9 @@
       "Id": "68091dec-b042-4e80-9caf-b6a9e8a43877",
       "Infiltration": "North",
       "Position": {
-        "x": -11.9374084,
-        "y": 0.644897461,
-        "z": -126.729309
+        "x": -27.7574,
+        "y": 0.134899139,
+        "z": 0.5006714
       },
       "Rotation": 134.737534,
       "Sides": [
@@ -3934,9 +3993,9 @@
       "Id": "68e599f9-806f-4082-ba71-574de6dd8f2c",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -168.8574,
-        "y": 30.4148979,
-        "z": -67.9093
+        "x": -167.7174,
+        "y": 30.544899,
+        "z": -69.77936
       },
       "Rotation": 148.08,
       "Sides": [
@@ -3990,7 +4049,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "6a7dbf56-4be3-4c80-8526-3fd66f3498d8",
       "Infiltration": "",
@@ -4052,7 +4111,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 3600,
       "Id": "6c2d78e7-91a9-4fd3-937c-d032d97f24e3",
       "Infiltration": "",
@@ -4113,7 +4172,7 @@
           "Radius": 130
         }
       },
-      "CorePointId": 28,
+      "CorePointId": 30,
       "DelayToCanSpawnSec": 4,
       "Id": "6d7ca366-d32b-4e9b-8eaa-ec398239999a",
       "Infiltration": "",
@@ -4179,9 +4238,9 @@
       "Id": "715dfa23-e817-41fd-805c-6b77c3b7dde4",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 116.612579,
-        "y": 0.3838997,
-        "z": -163.829346
+        "x": 138.834564,
+        "y": 0.4048996,
+        "z": -115.612366
       },
       "Rotation": 274.115753,
       "Sides": [
@@ -4236,7 +4295,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 13,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 3600,
       "Id": "72f813e5-f110-4d27-9d30-ea0832f561e5",
       "Infiltration": "",
@@ -4328,7 +4387,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 13,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 4,
       "Id": "764b67be-161c-41c6-8803-c24131494d96",
       "Infiltration": "",
@@ -4391,7 +4450,7 @@
           "Radius": 35
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "7a1b8513-9996-4000-9f71-b36eab91fa01",
       "Infiltration": "",
@@ -4426,9 +4485,9 @@
       "Id": "7b8a26cc-a83c-4b3f-b5f7-5637c19289bf",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 104.329529,
-        "y": 0.504894257,
-        "z": 424.062744
+        "x": 137.362579,
+        "y": 0.5248985,
+        "z": 372.620728
       },
       "Rotation": 260.715424,
       "Sides": [
@@ -4487,9 +4546,9 @@
       "Id": "7c56a74c-5e05-4bbc-84eb-b45ca808c190",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 74.7225952,
-        "y": 8.974897,
-        "z": 233.730652
+        "x": 89.26259,
+        "y": 7.134899,
+        "z": 203.730652
       },
       "Rotation": 293.2345,
       "Sides": [
@@ -4513,7 +4572,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 13,
+      "CorePointId": 1,
       "DelayToCanSpawnSec": 4,
       "Id": "7dd3b1c5-b7bd-42b4-a634-6acecd86e433",
       "Infiltration": "",
@@ -4579,11 +4638,11 @@
       "Id": "801ec76b-b32d-4f56-a5ec-d93ede49fb8f",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -159.287415,
-        "y": 30.3648987,
-        "z": 260.930664
+        "x": -161.797409,
+        "y": 32.4049,
+        "z": 215.7107
       },
-      "Rotation": 148.08,
+      "Rotation": 111.375809,
       "Sides": [
         "All"
       ]
@@ -4606,7 +4665,7 @@
           "Radius": 130
         }
       },
-      "CorePointId": 28,
+      "CorePointId": 30,
       "DelayToCanSpawnSec": 4,
       "Id": "80dfdf1a-bc5d-4f87-8379-0e8ea04358e5",
       "Infiltration": "",
@@ -4637,7 +4696,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 14,
+      "CorePointId": 15,
       "DelayToCanSpawnSec": 3600,
       "Id": "82bf726a-fe9c-4326-ac13-57a8386daabc",
       "Infiltration": "",
@@ -4668,7 +4727,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "82c2b002-4cff-440a-90c7-14109d3d73d3",
       "Infiltration": "",
@@ -4734,9 +4793,9 @@
       "Id": "84c2f0bb-5869-4e84-bbaa-5fdd23a4bae2",
       "Infiltration": "North",
       "Position": {
-        "x": -222.5874,
-        "y": 13.5648975,
-        "z": -193.249329
+        "x": -212.9134,
+        "y": 12.8508987,
+        "z": -189.246338
       },
       "Rotation": 198.027451,
       "Sides": [
@@ -4764,9 +4823,9 @@
       "Id": "85902d64-8404-48ba-84d9-1292b3c79e13",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 77.002594,
-        "y": 9.054897,
-        "z": 224.620667
+        "x": 85.1326,
+        "y": 7.02489853,
+        "z": 204.680664
       },
       "Rotation": 293.2345,
       "Sides": [
@@ -4790,7 +4849,7 @@
           "Radius": 240
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "8603f10a-a4d0-49cd-b973-b008e66d26c3",
       "Infiltration": "",
@@ -4882,7 +4941,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 10,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 3600,
       "Id": "87dba46c-79fd-401f-9b4a-61a463676c14",
       "Infiltration": "",
@@ -4894,6 +4953,36 @@
       "Rotation": 81.6740341,
       "Sides": [
         "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "87defe8b-849d-4445-a5cd-d5e650f0bdb6",
+      "Infiltration": "North",
+      "Position": {
+        "x": 137.742584,
+        "y": 3.27489853,
+        "z": -926.46936
+      },
+      "Rotation": 322.965363,
+      "Sides": [
+        "All"
       ]
     },
     {
@@ -4913,7 +5002,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "8a45ec4e-c338-4e8b-b7b0-8fdcd7e69e52",
       "Infiltration": "",
@@ -4944,7 +5033,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 3600,
       "Id": "8aa59a47-8e0e-4b0a-b719-e135d01f25ae",
       "Infiltration": "",
@@ -4975,7 +5064,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 17,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 3600,
       "Id": "8b1c22e3-3aad-44bc-b880-c4038d0a2f54",
       "Infiltration": "",
@@ -5035,7 +5124,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 16,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 3600,
       "Id": "8c779a3f-0bf3-42f9-88a5-4fe5dc2a5204",
       "Infiltration": "",
@@ -5081,7 +5170,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -5163,9 +5252,9 @@
       "Id": "90610890-d33d-4fd7-9dc4-7f2d8d6bf7ff",
       "Infiltration": "North",
       "Position": {
-        "x": -14.8574066,
-        "y": 0.374897,
-        "z": -134.839355
+        "x": -26.79741,
+        "y": 0.184898376,
+        "z": 5.690674
       },
       "Rotation": 153.723572,
       "Sides": [
@@ -5219,7 +5308,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 20,
+      "CorePointId": 22,
       "DelayToCanSpawnSec": 4,
       "Id": "910ee2f6-a79e-46a8-9ac8-a529b17d8b7a",
       "Infiltration": "",
@@ -5250,7 +5339,7 @@
           "Radius": 130
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "91955450-4106-436c-8a7c-49e9f27e2e39",
       "Infiltration": "",
@@ -5281,7 +5370,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "920adeca-e990-4a01-8da4-3d2038c80a51",
       "Infiltration": "",
@@ -5347,11 +5436,41 @@
       "Id": "934c3322-9145-4406-a23f-c2e90b99b969",
       "Infiltration": "North",
       "Position": {
-        "x": -12.26741,
-        "y": 0.9448967,
-        "z": -133.069336
+        "x": -13.76741,
+        "y": 0.454898834,
+        "z": 2.45068359
       },
-      "Rotation": 151.1096,
+      "Rotation": 191.859833,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9435714e-6a4b-45d5-bbe1-5f29ab998459",
+      "Infiltration": "North",
+      "Position": {
+        "x": 134.4826,
+        "y": 3.18989944,
+        "z": -931.819336
+      },
+      "Rotation": 305.003723,
       "Sides": [
         "All"
       ]
@@ -5439,9 +5558,9 @@
       "Id": "980d7e02-2692-4fb9-83c9-a43f61bc04cc",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 114.390594,
-        "y": 0.3838997,
-        "z": -166.727356
+        "x": 136.612579,
+        "y": 0.4048996,
+        "z": -118.510376
       },
       "Rotation": 212.519348,
       "Sides": [
@@ -5464,7 +5583,7 @@
           "Radius": 140
         }
       },
-      "CorePointId": 16,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 3600,
       "Id": "98522b3f-1135-4895-a1cc-099bdc2d349b",
       "Infiltration": "",
@@ -5479,7 +5598,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "BotPmc"
@@ -5556,7 +5675,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "997f24e6-dc3d-4526-89b0-9c52062d4d94",
       "Infiltration": "",
@@ -5617,13 +5736,13 @@
           "Radius": 140
         }
       },
-      "CorePointId": 16,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 3600,
       "Id": "9a4430ef-de32-48eb-895f-ccab48f92960",
       "Infiltration": "",
       "Position": {
         "x": 12.9400024,
-        "y": 4.7986509999999996,
+        "y": 4.798651,
         "z": -447.53
       },
       "Rotation": 26.8442173,
@@ -5679,7 +5798,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 14,
+      "CorePointId": 15,
       "DelayToCanSpawnSec": 3600,
       "Id": "9b52b015-055f-4322-adf5-6444cf6f38ca",
       "Infiltration": "",
@@ -5714,11 +5833,41 @@
       "Id": "9c96af9c-f0bc-46a9-b62b-ee6b96b5fafd",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 115.702606,
-        "y": 0.3838997,
-        "z": -160.319336
+        "x": 137.924591,
+        "y": 0.4048996,
+        "z": -112.102356
       },
       "Rotation": 312.183167,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "9d769fc5-19f6-4783-9f7f-6bf6e9e45be9",
+      "Infiltration": "North",
+      "Position": {
+        "x": 165.2526,
+        "y": 1.4408989,
+        "z": -758.209351
+      },
+      "Rotation": 296.665863,
       "Sides": [
         "All"
       ]
@@ -5744,11 +5893,11 @@
       "Id": "9e2387b3-10fa-4e10-b192-f2bce8fd0358",
       "Infiltration": "North",
       "Position": {
-        "x": -386.5914,
-        "y": 23.7648983,
-        "z": -511.923279
+        "x": 2.49259949,
+        "y": 12.0388985,
+        "z": -918.71936
       },
-      "Rotation": 141.822754,
+      "Rotation": 354.8676,
       "Sides": [
         "All"
       ]
@@ -5774,11 +5923,11 @@
       "Id": "9e807cd8-a412-40d0-b62e-8df7c31b91ae",
       "Infiltration": "North",
       "Position": {
-        "x": -386.7574,
-        "y": 23.5148983,
-        "z": -515.9593
+        "x": 171.902588,
+        "y": 0.714897156,
+        "z": -756.6693
       },
-      "Rotation": 141.822754,
+      "Rotation": 306.120667,
       "Sides": [
         "All"
       ]
@@ -5866,11 +6015,11 @@
       "Id": "a119da51-2ddf-4ec1-a6a1-1aa701b619ec",
       "Infiltration": "North",
       "Position": {
-        "x": -441.8674,
-        "y": 28.6048985,
-        "z": -372.989319
+        "x": -341.034149,
+        "y": 0.35490036,
+        "z": -263.3369
       },
-      "Rotation": 294.262756,
+      "Rotation": 113.955368,
       "Sides": [
         "All"
       ]
@@ -5896,9 +6045,9 @@
       "Id": "a374b3f8-f839-41a9-a28d-c1222ce4f890",
       "Infiltration": "North",
       "Position": {
-        "x": -220.127411,
-        "y": 13.1848965,
-        "z": -188.419312
+        "x": -210.9474,
+        "y": 12.8148975,
+        "z": -184.879333
       },
       "Rotation": 198.027451,
       "Sides": [
@@ -5922,7 +6071,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 3600,
       "Id": "a884f46b-b59d-4aae-9f4c-f510a132ef37",
       "Infiltration": "",
@@ -5937,7 +6086,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -5958,9 +6107,9 @@
       "Id": "a894cfb8-ab97-4fe7-8317-9846d33f1e8e",
       "Infiltration": "",
       "Position": {
-        "x": -299.567017,
-        "y": 0.110027313,
-        "z": -323.816
+        "x": -310.835022,
+        "y": 0.2906494,
+        "z": -314.988
       },
       "Rotation": 85.4818039,
       "Sides": [
@@ -5988,9 +6137,9 @@
       "Id": "a9f32457-a94d-4547-ba4f-8d94ddfe604b",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -161.4974,
-        "y": 31.2748985,
-        "z": 257.310669
+        "x": -162.437408,
+        "y": 32.2249,
+        "z": 222.9607
       },
       "Rotation": 89.10666,
       "Sides": [
@@ -6045,7 +6194,7 @@
           "Radius": 130
         }
       },
-      "CorePointId": 9,
+      "CorePointId": 10,
       "DelayToCanSpawnSec": 4,
       "Id": "aad04f2e-bbff-47a5-8e22-5d64a2fab88d",
       "Infiltration": "",
@@ -6080,9 +6229,9 @@
       "Id": "ae732602-eb95-47bd-b13a-af481f28e570",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": 106.705719,
-        "y": 0.730896,
-        "z": 424.522827
+        "x": 139.73877,
+        "y": 0.750900269,
+        "z": 373.0808
       },
       "Rotation": 260.715424,
       "Sides": [
@@ -6106,7 +6255,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "aef40efa-ce0d-467c-a4e0-bf4d5c9cf340",
       "Infiltration": "",
@@ -6137,7 +6286,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 17,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 3600,
       "Id": "afd5a14e-627c-45e1-b4e9-95219ca29f1f",
       "Infiltration": "",
@@ -6172,11 +6321,11 @@
       "Id": "b24f0b0e-ac91-40fa-bb25-d33ff5e4bb57",
       "Infiltration": "North",
       "Position": {
-        "x": -10.3174133,
-        "y": 1.8348999,
-        "z": -130.169312
+        "x": -14.9674072,
+        "y": 0.6848984,
+        "z": -3.29931641
       },
-      "Rotation": 135.900757,
+      "Rotation": 204.599335,
       "Sides": [
         "All"
       ]
@@ -6229,7 +6378,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 21,
+      "CorePointId": 23,
       "DelayToCanSpawnSec": 4,
       "Id": "b3d2a139-6f5a-459d-9b6a-8be3b2848c4f",
       "Infiltration": "",
@@ -6260,7 +6409,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 21,
+      "CorePointId": 23,
       "DelayToCanSpawnSec": 4,
       "Id": "b4c246bc-3d64-41d0-aacd-bc63e4050364",
       "Infiltration": "",
@@ -6292,14 +6441,44 @@
       },
       "CorePointId": 0,
       "DelayToCanSpawnSec": 4,
+      "Id": "b57b5177-20ab-4e01-a0f3-89b34b98b8f7",
+      "Infiltration": "North",
+      "Position": {
+        "x": 158.642578,
+        "y": 2.294899,
+        "z": -760.199341
+      },
+      "Rotation": 293.833435,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
       "Id": "b7bea9fa-5af8-47e2-b3d1-d2be915cbf31",
       "Infiltration": "North",
       "Position": {
-        "x": -443.404419,
-        "y": 28.4408989,
-        "z": -371.109375
+        "x": -339.487244,
+        "y": 0.19090271,
+        "z": -265.208466
       },
-      "Rotation": 294.262756,
+      "Rotation": 113.955368,
       "Sides": [
         "All"
       ]
@@ -6321,7 +6500,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "b7d16f4b-222c-4cd1-9245-619b40ec8e56",
       "Infiltration": "",
@@ -6383,7 +6562,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "baca0283-a560-4c58-beae-cc02689e31a7",
       "Infiltration": "",
@@ -6414,7 +6593,7 @@
           "Radius": 100
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 3600,
       "Id": "bb67268b-e599-4dee-88ca-20bb53f25421",
       "Infiltration": "",
@@ -6476,7 +6655,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "bed70598-0303-473b-b758-c500e1a0b540",
       "Infiltration": "",
@@ -6507,7 +6686,7 @@
           "Radius": 80
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "beed7e50-63d7-4b0b-beb2-78b93093e226",
       "Infiltration": "",
@@ -6542,11 +6721,11 @@
       "Id": "bf33b549-99fd-4974-956a-0be2cc5174e0",
       "Infiltration": "North",
       "Position": {
-        "x": -382.737427,
-        "y": 24.7548981,
-        "z": -512.699341
+        "x": 5.822586,
+        "y": 10.6138973,
+        "z": -921.3993
       },
-      "Rotation": 141.822754,
+      "Rotation": 11.1822605,
       "Sides": [
         "All"
       ]
@@ -6568,7 +6747,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 12,
+      "CorePointId": 13,
       "DelayToCanSpawnSec": 3600,
       "Id": "c1fe936e-741e-4cee-aac3-8a9a3b66facc",
       "Infiltration": "",
@@ -6599,7 +6778,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 10,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 3600,
       "Id": "c22dc6e3-e30b-40a9-a51e-9be284093cfd",
       "Infiltration": "",
@@ -6692,7 +6871,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "c697538e-cf2e-4aa2-9457-07488b91052d",
       "Infiltration": "",
@@ -6727,11 +6906,11 @@
       "Id": "c751b04f-87ed-4cda-81db-7d66787c94be",
       "Infiltration": "North",
       "Position": {
-        "x": -384.5074,
-        "y": 24.2249,
-        "z": -513.6393
+        "x": -125.097412,
+        "y": 10.5468979,
+        "z": -891.5593
       },
-      "Rotation": 141.822754,
+      "Rotation": 42.1589775,
       "Sides": [
         "All"
       ]
@@ -6752,7 +6931,7 @@
           "Radius": 50
         }
       },
-      "CorePointId": 20,
+      "CorePointId": 22,
       "DelayToCanSpawnSec": 4,
       "Id": "c84c484f-f45e-4e0a-9834-a3b0215edd3c",
       "Infiltration": "",
@@ -6817,11 +6996,11 @@
       "Id": "cb454f82-501c-4633-a1ab-2ae86c2559d8",
       "Infiltration": "North",
       "Position": {
-        "x": -217.447433,
+        "x": -209.457413,
         "y": 12.584898,
-        "z": -181.449341
+        "z": -188.2793
       },
-      "Rotation": 4.4928484,
+      "Rotation": 154.527588,
       "Sides": [
         "All"
       ]
@@ -6904,7 +7083,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 10,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 3600,
       "Id": "cd18f45a-0103-4bba-9ff3-bcc91c67b70c",
       "Infiltration": "",
@@ -6966,7 +7145,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 17,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 3600,
       "Id": "cdc6970f-9a38-49f8-a981-1068d5d0b55d",
       "Infiltration": "",
@@ -7120,7 +7299,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "d3ecfd50-ee15-4335-a747-36e280f34b1b",
       "Infiltration": "",
@@ -7243,7 +7422,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "d8476bbd-162f-489f-80a9-6a545bec0404",
       "Infiltration": "",
@@ -7274,7 +7453,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "d8681949-ff50-4f0a-888d-fe6c7e96a7de",
       "Infiltration": "",
@@ -7309,9 +7488,9 @@
       "Id": "d994edf1-9146-4863-a39d-d223a1ecf5ea",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -167.4974,
-        "y": 30.4148979,
-        "z": -66.609314
+        "x": -166.3574,
+        "y": 30.544899,
+        "z": -68.47937
       },
       "Rotation": 148.08,
       "Sides": [
@@ -7335,7 +7514,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 17,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 3600,
       "Id": "d996d88c-529b-4f76-940f-c273dd36c7ce",
       "Infiltration": "",
@@ -7412,7 +7591,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -7433,11 +7612,11 @@
       "Id": "dae5c07b-252b-4cf2-b423-58a9a5972b7c",
       "Infiltration": "",
       "Position": {
-        "x": -301.271,
-        "y": 0.09542465,
-        "z": -319.793976
+        "x": -308.542023,
+        "y": -0.08834839,
+        "z": -308.731
       },
-      "Rotation": 85.4818039,
+      "Rotation": 158.7147,
       "Sides": [
         "Savage"
       ]
@@ -7459,7 +7638,7 @@
           "Radius": 90
         }
       },
-      "CorePointId": 24,
+      "CorePointId": 26,
       "DelayToCanSpawnSec": 4,
       "Id": "db1955a0-9c2a-4780-be8a-1c3a17207842",
       "Infiltration": "",
@@ -7490,7 +7669,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 21,
+      "CorePointId": 23,
       "DelayToCanSpawnSec": 4,
       "Id": "db78cb4d-896a-4e61-972b-a2b597cf2194",
       "Infiltration": "",
@@ -7552,7 +7731,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "decbc1da-2ea8-4900-a9b4-425db618269f",
       "Infiltration": "",
@@ -7618,11 +7797,11 @@
       "Id": "e1228f5b-be4c-4859-882e-8ead2fd3987a",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -150.487411,
-        "y": 29.9358978,
-        "z": 262.8806
+        "x": -162.677414,
+        "y": 32.4949,
+        "z": 210.1507
       },
-      "Rotation": 148.08,
+      "Rotation": 98.15158,
       "Sides": [
         "All"
       ]
@@ -7723,6 +7902,36 @@
     {
       "BotZoneName": "",
       "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "e4eafcec-859e-4c59-b446-7accf6a5aa0c",
+      "Infiltration": "North",
+      "Position": {
+        "x": 140.562592,
+        "y": 2.9048996,
+        "z": -927.209351
+      },
+      "Rotation": 328.161377,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
         "Coop",
         "Opposite"
       ],
@@ -7768,7 +7977,7 @@
           "Radius": 40
         }
       },
-      "CorePointId": 15,
+      "CorePointId": 16,
       "DelayToCanSpawnSec": 3600,
       "Id": "e636573d-4e47-4d4e-81b8-12788e4a2931",
       "Infiltration": "",
@@ -7799,7 +8008,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 3600,
       "Id": "e65a6e42-67c9-4d67-9474-d489926baed9",
       "Infiltration": "",
@@ -7830,7 +8039,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 23,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "e6f82659-3b8c-4823-8156-2fe4cc466d08",
       "Infiltration": "",
@@ -7860,13 +8069,13 @@
           "Radius": 60
         }
       },
-      "CorePointId": 16,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 3600,
       "Id": "e89c825c-9b5d-4d93-ab5a-45d11dfa5fe6",
       "Infiltration": "",
       "Position": {
         "x": 31.8899841,
-        "y": 4.7986509999999996,
+        "y": 4.798651,
         "z": -451.1
       },
       "Rotation": 26.8442173,
@@ -7895,9 +8104,9 @@
       "Id": "e8aad4bd-3990-45f0-9106-197afd5251a0",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -162.8074,
-        "y": 31.3148975,
-        "z": 254.180664
+        "x": -163.6974,
+        "y": 32.3948975,
+        "z": 213.100647
       },
       "Rotation": 104.295624,
       "Sides": [
@@ -7921,7 +8130,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 7,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "e8e2fbae-b886-4f3a-9653-79ca737ceed3",
       "Infiltration": "",
@@ -7967,7 +8176,7 @@
       ]
     },
     {
-      "BotZoneName": "",
+      "BotZoneName": "Zone_OldHouse",
       "Categories": [
         "Player",
         "Bot"
@@ -8014,7 +8223,7 @@
           "Radius": 30
         }
       },
-      "CorePointId": 13,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 3600,
       "Id": "ec092cad-33e0-4d5a-ad64-57aea9710aae",
       "Infiltration": "",
@@ -8077,7 +8286,7 @@
           "Radius": 60
         }
       },
-      "CorePointId": 11,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 3600,
       "Id": "ecdd6727-5876-4fd5-b47d-85bb4f68f16a",
       "Infiltration": "",
@@ -8112,11 +8321,41 @@
       "Id": "ed90c8a5-b740-4aa2-868a-f91e710d4e17",
       "Infiltration": "Tunnel",
       "Position": {
-        "x": -171.187408,
-        "y": 30.3048973,
-        "z": -66.78931
+        "x": -170.047409,
+        "y": 30.4348984,
+        "z": -68.65936
       },
       "Rotation": 148.08,
+      "Sides": [
+        "All"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "ee75669d-c5cc-4fc2-bae9-13ffdfa7ea38",
+      "Infiltration": "North",
+      "Position": {
+        "x": -5.6474,
+        "y": 12.1908989,
+        "z": -921.9213
+      },
+      "Rotation": 24.57543,
       "Sides": [
         "All"
       ]
@@ -8138,7 +8377,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 8,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "eecd4c3d-d6e3-4ff5-9464-9d7a15a941b4",
       "Infiltration": "",
@@ -8150,6 +8389,36 @@
       "Rotation": 256.630219,
       "Sides": [
         "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "",
+      "Categories": [
+        "Player"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 0,
+      "DelayToCanSpawnSec": 4,
+      "Id": "effa74ba-b3ce-4a17-b929-3672ab7f215d",
+      "Infiltration": "North",
+      "Position": {
+        "x": 169.116608,
+        "y": 0.9918976,
+        "z": -766.5003
+      },
+      "Rotation": 312.17746,
+      "Sides": [
+        "All"
       ]
     },
     {
@@ -8200,7 +8469,7 @@
           "Radius": 120
         }
       },
-      "CorePointId": 22,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "f155cf00-699e-4716-9cb9-2a46142f408b",
       "Infiltration": "",
@@ -8213,473 +8482,9 @@
       "Sides": [
         "Savage"
       ]
-    },
-    {
-      "BotZoneName": "Zone_Island",
-      "Categories": [
-        "Boss"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 40
-        }
-      },
-      "CorePointId": 20,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f2485515-0c06-43b5-b7c5-60e91afe8a56",
-      "Infiltration": "",
-      "Position": {
-        "x": 332.006958,
-        "y": 2.03665161,
-        "z": 518.079
-      },
-      "Rotation": 190.619385,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_Island",
-      "Categories": [
-        "Boss"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 50
-        }
-      },
-      "CorePointId": 20,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f4b094b9-a041-4930-b69e-8ad139eb7444",
-      "Infiltration": "",
-      "Position": {
-        "x": 392.156,
-        "y": 15.2086487,
-        "z": 567.006
-      },
-      "Rotation": 115.016975,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_Village",
-      "Categories": [
-        "Player",
-        "Bot",
-        "Boss"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 40
-        }
-      },
-      "CorePointId": 3,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f4cfd652-f7b0-4a68-9f9c-ea0fca33c000",
-      "Infiltration": "",
-      "Position": {
-        "x": -124.001007,
-        "y": 11.7786522,
-        "z": -218.06
-      },
-      "Rotation": 149.101685,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "",
-      "Categories": [
-        "Player"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 70
-        }
-      },
-      "CorePointId": 0,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f519a18e-0583-4d8d-b5c6-de9d75699312",
-      "Infiltration": "Tunnel",
-      "Position": {
-        "x": -62.47941,
-        "y": 5.990898,
-        "z": 330.1067
-      },
-      "Rotation": 119.557549,
-      "Sides": [
-        "All"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_Chalet",
-      "Categories": [
-        "Player",
-        "Bot"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 130
-        }
-      },
-      "CorePointId": 9,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f529bcc9-04f0-4bf8-b632-6f146c150513",
-      "Infiltration": "",
-      "Position": {
-        "x": -128.51001,
-        "y": 20.06565,
-        "z": -106.149994
-      },
-      "Rotation": 81.6740341,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_Bridge",
-      "Categories": [
-        "Bot"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 120
-        }
-      },
-      "CorePointId": 4,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f59d10ac-bfee-488a-bf4c-0c9d9294f29d",
-      "Infiltration": "",
-      "Position": {
-        "x": 12.5099792,
-        "y": 6.105652,
-        "z": -238.940033
-      },
-      "Rotation": 297.348724,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "",
-      "Categories": [
-        "Player"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 70
-        }
-      },
-      "CorePointId": 0,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f7bd8ddc-c49f-44d0-8309-75961279d395",
-      "Infiltration": "Tunnel",
-      "Position": {
-        "x": 76.0825958,
-        "y": 8.794899,
-        "z": 228.730652
-      },
-      "Rotation": 293.2345,
-      "Sides": [
-        "All"
-      ]
-    },
-    {
-      "BotZoneName": "",
-      "Categories": [
-        "Player"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 70
-        }
-      },
-      "CorePointId": 0,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f7d2e2e2-6525-4061-be4f-adae897b8a1a",
-      "Infiltration": "Tunnel",
-      "Position": {
-        "x": -164.797409,
-        "y": 30.834898,
-        "z": 260.620728
-      },
-      "Rotation": 108.442146,
-      "Sides": [
-        "All"
-      ]
-    },
-    {
-      "BotZoneName": "",
-      "Categories": [
-        "Player"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 70
-        }
-      },
-      "CorePointId": 0,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f8e5ea44-10d0-4a32-be65-2cfc6ea50953",
-      "Infiltration": "Tunnel",
-      "Position": {
-        "x": 116.310608,
-        "y": 0.3838997,
-        "z": -167.806335
-      },
-      "Rotation": 182.088867,
-      "Sides": [
-        "All"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_Village",
-      "Categories": [
-        "Player",
-        "Bot"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 60
-        }
-      },
-      "CorePointId": 3,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f8f80a79-18b2-4247-94e8-b3cb5b15e098",
-      "Infiltration": "",
-      "Position": {
-        "x": -133.150024,
-        "y": 11.353878,
-        "z": -203.670013
-      },
-      "Rotation": 244.211288,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "",
-      "Categories": [
-        "Coop",
-        "Group"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 70
-        }
-      },
-      "CorePointId": 0,
-      "DelayToCanSpawnSec": 4,
-      "Id": "f96f3b5d-2aae-4238-adac-0af4d71b97fa",
-      "Infiltration": "North",
-      "Position": {
-        "x": 25.7,
-        "y": 6.01,
-        "z": -84.33
-      },
-      "Rotation": 266.5001,
-      "Sides": [
-        "Pmc"
-      ]
-    },
-    {
-      "BotZoneName": "",
-      "Categories": [
-        "Coop",
-        "Group"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 70
-        }
-      },
-      "CorePointId": 0,
-      "DelayToCanSpawnSec": 4,
-      "Id": "fa7869a2-8896-4414-ba7d-60a7c95bd1a8",
-      "Infiltration": "North",
-      "Position": {
-        "x": 25.67,
-        "y": 6.01,
-        "z": -85.89
-      },
-      "Rotation": 266.5001,
-      "Sides": [
-        "Pmc"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_LongRoad",
-      "Categories": [
-        "Player",
-        "Bot"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 120
-        }
-      },
-      "CorePointId": 7,
-      "DelayToCanSpawnSec": 4,
-      "Id": "fc43d1d2-7a2e-4eed-a60f-160d1735031f",
-      "Infiltration": "",
-      "Position": {
-        "x": 35.19998,
-        "y": 7.20565033,
-        "z": 95.5
-      },
-      "Rotation": 256.630219,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_LongRoad",
-      "Categories": [
-        "Player",
-        "Bot"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 120
-        }
-      },
-      "CorePointId": 7,
-      "DelayToCanSpawnSec": 4,
-      "Id": "fc6129ec-c524-4e9d-8b88-9c94b1a1ccba",
-      "Infiltration": "",
-      "Position": {
-        "x": 38.4199829,
-        "y": 9.165649,
-        "z": 1.27999878
-      },
-      "Rotation": 256.630219,
-      "Sides": [
-        "Savage"
-      ]
-    },
-    {
-      "BotZoneName": "Zone_Rocks",
-      "Categories": [
-        "Player",
-        "Bot"
-      ],
-      "ColliderParams": {
-        "_parent": "SpawnSphereParams",
-        "_props": {
-          "Center": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "Radius": 120
-        }
-      },
-      "CorePointId": 2,
-      "DelayToCanSpawnSec": 4,
-      "Id": "fc87b04c-5505-41ca-878c-9c37409b9fb9",
-      "Infiltration": "",
-      "Position": {
-        "x": -117.630005,
-        "y": 37.0256538,
-        "z": 113.7
-      },
-      "Rotation": 275.2177,
-      "Sides": [
-        "Savage"
-      ]
     }
   ],
-  "UnixDateTime": 1634148599,
-  "_Id": "5704e4dad2720bb55b8b4567",
   "doors": [],
-  "exit_access_time": 45,
-  "exit_count": 1,
-  "exit_time": 2,
   "exits": [
     {
       "Chance": 100,
@@ -8752,7 +8557,7 @@
       "ChancePVE": 100,
       "Count": 0,
       "CountPVE": 0,
-      "EntryPoints": "Tunnel",
+      "EntryPoints": "Tunnel,North",
       "EventAvailable": false,
       "ExfiltrationTime": 8,
       "ExfiltrationTimePVE": 8,
@@ -8836,9 +8641,7 @@
       "RequirementTip": "EXFIL_Item"
     }
   ],
-  "filter_ex": [],
   "limits": [],
-  "matching_min_seconds": 60,
   "maxItemCountInLocation": [
     {
       "TemplateId": "675aaa8f7f3c962069072b27",
@@ -8847,9 +8650,36 @@
     {
       "TemplateId": "676bf44c5539167c3603e869",
       "Value": 0
+    },
+    {
+      "TemplateId": "5c1e495a86f7743109743dfb",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0d6d86f7744bb2683e1f",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0efb86f7744baf2e7b7b",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0dc586f7744baf2e7b79",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0c5f86f7744bb2683cf0",
+      "Value": 1
+    },
+    {
+      "TemplateId": "5c1d0f4986f7744bb01837fa",
+      "Value": 1
+    },
+    {
+      "TemplateId": "69dd0de23dfe95d9e70b5ebb",
+      "Value": 29
     }
   ],
-  "sav_summon_seconds": 60,
   "secretExits": [
     {
       "EligibleForPMC": true,
@@ -8859,7 +8689,6 @@
       "Name": "lighthouse_secret_minefield"
     }
   ],
-  "tmp_location_field_remove_me": 0,
   "transits": [
     {
       "activateAfterSec": 60,
@@ -8898,10 +8727,6 @@
       "time": 20
     }
   ],
-  "users_gather_seconds": 0,
-  "users_spawn_seconds_n": 120,
-  "users_spawn_seconds_n2": 200,
-  "users_summon_seconds": 0,
   "waves": [
     {
       "BotPreset": "hard",
@@ -9113,6 +8938,140 @@
       "slots_min": 0,
       "time_max": -1,
       "time_min": -1
+    }
+  ],
+  "AccessKeys": [],
+  "AccessKeysPvE": [],
+  "Area": 0,
+  "AveragePlayTime": 30,
+  "AveragePlayerLevel": 35,
+  "BotAssault": 100,
+  "BotEasy": 10,
+  "BotHard": 40,
+  "BotImpossible": 0,
+  "BotMarksman": 0,
+  "BotMax": 29,
+  "BotMaxPvE": 29,
+  "BotNormal": 50,
+  "BotSpawnCountStep": 3,
+  "BotSpawnPeriodCheck": 15,
+  "BotSpawnTimeOffMax": 30,
+  "BotSpawnTimeOffMin": 20,
+  "BotSpawnTimeOnMax": 320,
+  "BotSpawnTimeOnMin": 260,
+  "BotStart": 20,
+  "BotStartPlayer": 0,
+  "BotStop": 1900,
+  "DisabledScavExits": "",
+  "EnableCoop": true,
+  "Enabled": true,
+  "EscapeTimeLimit": 40,
+  "EscapeTimeLimitCoop": 30,
+  "ForceOfflineRaidInPVE": false,
+  "ForceOnlineRaidInPVE": false,
+  "GlobalContainerChanceModifier": 1,
+  "HeatmapCellSize": {
+    "x": 1,
+    "y": 2,
+    "z": 1
+  },
+  "HeatmapLayers": [
+    "AllCharactersPositions",
+    "AllBotsPositions",
+    "AllRealPlayersPositions",
+    "RealPlayersSavagesPositions",
+    "RealPlayersSavagesDeads",
+    "RealPlayersSavagesDamages",
+    "RealPlayersPmcPositions",
+    "RealPlayersPmcDeads",
+    "RealPlayersPmcDamages",
+    "RealPlayersPmcLaydownPositions",
+    "RealPlayersPmcEquipmentDropPositions",
+    "RealPlayersPmcHealingPositions",
+    "BotsBossPositions",
+    "BotsBossDeads",
+    "BotsBossDamages",
+    "BotsSavagesPositions",
+    "BotsSavagesDeads",
+    "BotsSavagesDamages",
+    "AllCharactersDamageSources",
+    "RealPlayerDamageSources",
+    "BotsDamageSources",
+    "LootPositions"
+  ],
+  "HiddenWhenLockedByQuest": false,
+  "IconX": 120,
+  "IconY": 450,
+  "IsSecret": false,
+  "Locked": false,
+  "LockedByQuest": true,
+  "MaxBotPerZone": 8,
+  "MaxCoopGroup": 12,
+  "MaxDistToFreePoint": 200,
+  "MaxPlayers": 12,
+  "MinDistToFreePoint": 70,
+  "MinPlayerLvlAccessKeys": 0,
+  "MinPlayers": 10,
+  "Name": "Lighthouse",
+  "NewSpawn": true,
+  "NewSpawnForPlayers": true,
+  "OcculsionCullingEnabled": false,
+  "OfflineNewSpawn": true,
+  "OfflineOldSpawn": true,
+  "OldSpawn": true,
+  "OpenZones": "Zone_Containers,Zone_Rocks,Zone_Chalet,Zone_Village,Zone_Bridge,Zone_OldHouse,Zone_LongRoad,Zone_DestroyedHouse,Zone_SniperPeak,Zone_Island",
+  "PlayersRequestCount": -1,
+  "PmcMaxPlayersInGroup": 5,
+  "RequiredPlayerLevelMax": 100,
+  "RequiredPlayerLevelMin": 0,
+  "Rules": "Normal",
+  "SavageForceOfflineRaidInPVE": false,
+  "SavageForceOnlineRaidInPVE": false,
+  "ScavMaxPlayersInGroup": 4,
+  "Scene": {
+    "path": "maps/lighthouse_preset.bundle",
+    "rcid": "lighthouse.scenespreset.asset"
+  },
+  "UnixDateTime": 1634148599,
+  "Id": "Lighthouse",
+  "_Id": "5704e4dad2720bb55b8b4567",
+  "Loot": [],
+  "Banners": [
+    {
+      "id": "67d1ac1a2fb6a5d11b09d6f8",
+      "pic": {
+        "path": "banners/67e4049dbec96f5d8e09732d.jpg",
+        "rcid": "",
+        "file": "67e4049dbec96f5d8e09732d.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5464e0454bdc2d06708b4567",
+      "pic": {
+        "path": "banners/67e4045225a1aca9270117e7.jpg",
+        "rcid": "",
+        "file": "67e4045225a1aca9270117e7.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5c1b857086f77465f465faa4",
+      "pic": {
+        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
+        "rcid": "",
+        "file": "67e404c5bec96f5d8e09732f.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0acf85174e095610734a0",
+      "pic": {
+        "path": "banners/67e404c722d6081b78031de0.jpg",
+        "rcid": "",
+        "file": "67e404c722d6081b78031de0.jpg",
+        "type": "banners"
+      }
     }
   ]
 }
