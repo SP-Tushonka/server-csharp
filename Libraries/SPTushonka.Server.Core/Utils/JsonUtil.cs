@@ -21,7 +21,7 @@ public class JsonUtil
             WriteIndented = false,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
 #if DEBUG
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip,
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
 #endif
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             NewLine = "\n",
