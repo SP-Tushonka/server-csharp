@@ -11,7 +11,7 @@ namespace TestMod2;
 
 public sealed class TestMod2Metadata : IModMetadata, IModBlazorMetadata
 {
-    public string ModGuid { get; init; } = "com.sp-tarkov.test-mod2";
+    public string ModGuid { get; init; } = "com.sp-tushonka.test-mod2";
     public string Name { get; init; } = "test-mod2";
     public string Author { get; init; } = "SPTushonka";
     public List<string>? Contributors { get; init; }
@@ -50,7 +50,7 @@ public class TestMod2(ISptLogger<TestMod2> logger, ClientEnumDefinitions clientE
         }
 
         clientEnumDefinitions.Add(
-            "com.sp-tarkov.test-mod2",
+            "com.sp-tushonka.test-mod2",
             new EnumEntryDefinition
             {
                 EnumType = "EFT.EBuffId",

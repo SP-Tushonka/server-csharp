@@ -31,7 +31,7 @@ jobs:
       - name: Configure Git LFS
         run: |
           git lfs install
-          git config -f .lfsconfig lfs.url https://spt-lfs.sp-tarkov.com/sp-tarkov/server-csharp
+          git config -f .lfsconfig lfs.url https://lfs.sp-tushonka.com/sp-tushonka/server-csharp
           git config -f .lfsconfig lfs.locksverify false
           git lfs pull
 

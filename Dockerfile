@@ -63,7 +63,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
 
 LABEL org.opencontainers.image.title="SPT Server" \
       org.opencontainers.image.description="Single Player Tushonka Server" \
-      org.opencontainers.image.source="https://github.com/sp-tarkov/server-csharp"
+      org.opencontainers.image.source="https://github.com/SP-Tushonka/server-csharp"
 
 # Starts as root to fix bind-mount ownership, then drops to PUID:PGID.
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

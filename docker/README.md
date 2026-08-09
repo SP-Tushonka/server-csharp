@@ -7,13 +7,13 @@ A slim Linux container image for the SPT server. Built and published to the GitH
 ## Versions
 
 ```
-ghcr.io/sp-tarkov/server-csharp:latest             # newest stable release
-ghcr.io/sp-tarkov/server-csharp:4.1.0              # exact stable version
-ghcr.io/sp-tarkov/server-csharp:4.1                # latest 4.1.x stable
-ghcr.io/sp-tarkov/server-csharp:4                  # latest 4.x stable
-ghcr.io/sp-tarkov/server-csharp:edge               # latest bleeding-edge (pre-release)
-ghcr.io/sp-tarkov/server-csharp:edge-mods          # latest bleeding-edge + mods (pre-release)
-ghcr.io/sp-tarkov/server-csharp:4.1.0-BE-20260704  # a specific pre-release build
+ghcr.io/sp-tushonka/server-csharp:latest             # newest stable release
+ghcr.io/sp-tushonka/server-csharp:4.1.0              # exact stable version
+ghcr.io/sp-tushonka/server-csharp:4.1                # latest 4.1.x stable
+ghcr.io/sp-tushonka/server-csharp:4                  # latest 4.x stable
+ghcr.io/sp-tushonka/server-csharp:edge               # latest bleeding-edge (pre-release)
+ghcr.io/sp-tushonka/server-csharp:edge-mods          # latest bleeding-edge + mods (pre-release)
+ghcr.io/sp-tushonka/server-csharp:4.1.0-BE-20260704  # a specific pre-release build
 ```
 
 ## Quick Start
@@ -22,7 +22,7 @@ ghcr.io/sp-tarkov/server-csharp:4.1.0-BE-20260704  # a specific pre-release buil
 docker run -d --name spt-server \
   -p 6969:6969 \
   -v ./spt-user:/opt/spt/user \
-  ghcr.io/sp-tarkov/server-csharp:latest
+  ghcr.io/sp-tushonka/server-csharp:latest
 ```
 
 Or with Compose (see `compose.yaml` in the repo root):

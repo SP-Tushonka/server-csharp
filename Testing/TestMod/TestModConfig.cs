@@ -30,7 +30,7 @@ public class TestModConfigEditorProvider(TestModConfig config) : IConfigEditorCo
     public IEnumerable<ConfigEditorConfigRegistration> GetConfigs()
     {
         yield return ConfigEditorConfigRegistration.Create(
-            "com.sp-tarkov.test-mod",
+            "com.sp-tushonka.test-mod",
             "Test Mod Config",
             config,
             Path.Combine("user", "mods", "TestMod", "config.json")

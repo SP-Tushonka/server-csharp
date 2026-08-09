@@ -1,4 +1,4 @@
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/sp-tarkov/server-csharp)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/SP-Tushonka/server-csharp)
 
 # Single Player Tushonka - Server Project
 
@@ -41,7 +41,7 @@ One of the following is required:
 ### Initial Setup
 
 1. Download and install the [.net 10.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0).
-2. Run `git clone https://github.com/sp-tarkov/server-csharp.git server` to clone the repository
+2. Run `git clone https://github.com/SP-Tushonka/server-csharp.git server` to clone the repository
 3. Run `git lfs pull` to download LFS files locally.
 4. Open the `project/server-csharp.sln` file in Visual Studio or Rider
 5. Run `Build > Build Solution (CTRL + SHIFT + B)` in the IDE
@@ -132,4 +132,4 @@ We have a number of tests that are run automatically when you submit a pull requ
 
 ## License
 
-This project is licensed under the NCSA Open Source License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. See the [LICENSE](LICENSE) file for details.

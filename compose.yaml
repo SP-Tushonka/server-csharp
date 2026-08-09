@@ -2,7 +2,7 @@
 # If you don't know what you're doing, you shouldn't be looking at this.
 services:
   spt-server:
-    image: ghcr.io/sp-tarkov/server-csharp:latest
+    image: ghcr.io/sp-tushonka/server-csharp:latest
     container_name: spt-server
     restart: unless-stopped
     ports:

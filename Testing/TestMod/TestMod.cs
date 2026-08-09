@@ -10,7 +10,7 @@ namespace TestMod;
 
 public sealed class TestModMetadata : IModMetadata, IModBlazorMetadata
 {
-    public string ModGuid { get; init; } = "com.sp-tarkov.test-mod";
+    public string ModGuid { get; init; } = "com.sp-tushonka.test-mod";
     public string Name { get; init; } = "test-mod";
     public string Author { get; init; } = "SPTushonka";
     public List<string>? Contributors { get; init; }

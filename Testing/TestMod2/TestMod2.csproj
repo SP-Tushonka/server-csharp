@@ -29,7 +29,7 @@
     />
     <Copy
       SourceFiles="@(PrepatchDefinition)"
-      DestinationFolder="$(MSBuildProjectDirectory)\..\..\SPTushonka.Server\bin\$(Configuration)\net10.0\user\patchers\com.sp-tarkov.test-mod2"
+      DestinationFolder="$(MSBuildProjectDirectory)\..\..\SPTushonka.Server\bin\$(Configuration)\net10.0\user\patchers\com.sp-tushonka.test-mod2"
     />
     <Copy
       SourceFiles="@(Resources);"
