@@ -10,18 +10,18 @@
     <PackageReference Include="NUnit3TestAdapter" Version="6.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\SPTarkov.Server.Assets\SPTarkov.Server.Assets.csproj" />
-    <ProjectReference Include="..\..\Libraries\SPTarkov.Server.Core\SPTarkov.Server.Core.csproj" />
-    <ProjectReference Include="..\..\Libraries\SPTarkov.DI\SPTarkov.DI.csproj" />
-    <ProjectReference Include="..\..\Libraries\SPTarkov.Common\SPTarkov.Common.csproj" />
-    <ProjectReference Include="..\..\SPTarkov.Server\SPTarkov.Server.csproj" />
+    <ProjectReference Include="..\..\Libraries\SPTushonka.Server.Assets\SPTushonka.Server.Assets.csproj" />
+    <ProjectReference Include="..\..\Libraries\SPTushonka.Server.Core\SPTushonka.Server.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\SPTushonka.DI\SPTushonka.DI.csproj" />
+    <ProjectReference Include="..\..\Libraries\SPTushonka.Common\SPTushonka.Common.csproj" />
+    <ProjectReference Include="..\..\SPTushonka.Server\SPTushonka.Server.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestAssets\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <!-- Needed by tests that build the real early logger factory, which reads this from the working directory -->
-    <None Include="..\..\SPTarkov.Server\sptLogger.json" Link="sptLogger.json">
+    <None Include="..\..\SPTushonka.Server\sptLogger.json" Link="sptLogger.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

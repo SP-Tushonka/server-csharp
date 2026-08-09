@@ -1,8 +1,8 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/sp-tarkov/server-csharp)
 
-# Single Player Tarkov - Server Project
+# Single Player Tushonka - Server Project
 
-This is the Server project for the Single Player Tarkov mod for Escape From Tarkov. It can be run locally to replicate responses to the modified Escape From Tarkov client.
+This is the Server project for the Single Player Tushonka mod for Escape from Tushonka. It can be run locally to replicate responses to the modified Escape from Tushonka client.
 
 
 # Table of Contents
@@ -57,7 +57,7 @@ To debug the project in Visual Studio:
 2. Choose `Debug > Start Debugging (F5)` to run the server
 
 And in Rider:
-1. Choose the configuration called `SPTarkov.Server: Spt Server Debug`
+1. Choose the configuration called `SPTushonka.Server: Spt Server Debug`
 2. Press `(Alt + F5)` to start debugging
 
 ### Mod Debugging

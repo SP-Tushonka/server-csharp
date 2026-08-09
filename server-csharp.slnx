@@ -1,13 +1,13 @@
 <Solution>
   <Folder Name="/Libraries/">
-    <Project Path="Libraries/SPTarkov.Common/SPTarkov.Common.csproj" />
-    <Project Path="Libraries/SPTarkov.DI/SPTarkov.DI.csproj" />
-    <Project Path="Libraries/SPTarkov.Reflection/SPTarkov.Reflection.csproj" />
-    <Project Path="Libraries/SPTarkov.Server.Assets/SPTarkov.Server.Assets.csproj" />
-    <Project Path="Libraries/SPTarkov.Server.Core/SPTarkov.Server.Core.csproj">
+    <Project Path="Libraries/SPTushonka.Common/SPTushonka.Common.csproj" />
+    <Project Path="Libraries/SPTushonka.DI/SPTushonka.DI.csproj" />
+    <Project Path="Libraries/SPTushonka.Reflection/SPTushonka.Reflection.csproj" />
+    <Project Path="Libraries/SPTushonka.Server.Assets/SPTushonka.Server.Assets.csproj" />
+    <Project Path="Libraries/SPTushonka.Server.Core/SPTushonka.Server.Core.csproj">
       <BuildDependency Project="Patches/Ceciler.JsonExtensionData/Ceciler.JsonExtensionData.csproj" />
     </Project>
-    <Project Path="Libraries/SPTarkov.Server.Web/SPTarkov.Server.Web.csproj" />
+    <Project Path="Libraries/SPTushonka.Server.Web/SPTushonka.Server.Web.csproj" />
   </Folder>
   <Folder Name="/Patches/">
     <Project Path="Patches/Ceciler.JsonExtensionData/Ceciler.JsonExtensionData.csproj" />
@@ -23,5 +23,5 @@
     <Project Path="Tools/JsonExtensionDataGenerator/JsonExtensionDataGenerator.csproj" />
     <Project Path="Tools/MongoIdTplGenerator/MongoIdTplGenerator.csproj" />
   </Folder>
-  <Project Path="SPTarkov.Server/SPTarkov.Server.csproj" />
+  <Project Path="SPTushonka.Server/SPTushonka.Server.csproj" />
 </Solution>

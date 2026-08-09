@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\Build.props" />
   <PropertyGroup>
-    <PackageId>SPTarkov.Server.Core</PackageId>
-    <Authors>Single Player Tarkov</Authors>
-    <Description>Core library for the Single Player Tarkov server.</Description>
-    <Copyright>Copyright (c) Single Player Tarkov 2026</Copyright>
+    <PackageId>SPTushonka.Server.Core</PackageId>
+    <AssemblyName>SPTarkov.Server.Core</AssemblyName>
+    <RootNamespace>SPTarkov.Server.Core</RootNamespace>
+    <Authors>Single Player Tushonka</Authors>
+    <Description>Core library for the Single Player Tushonka server.</Description>
+    <Copyright>Copyright (c) Single Player Tushonka 2026</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://sp-tarkov.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sp-tarkov/server-csharp</RepositoryUrl>
@@ -16,8 +18,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SPTarkov.Common\SPTarkov.Common.csproj" />
-    <ProjectReference Include="..\SPTarkov.DI\SPTarkov.DI.csproj" />
+    <ProjectReference Include="..\SPTushonka.Common\SPTushonka.Common.csproj" />
+    <ProjectReference Include="..\SPTushonka.DI\SPTushonka.DI.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.IO.Hashing" Version="10.0.9" />

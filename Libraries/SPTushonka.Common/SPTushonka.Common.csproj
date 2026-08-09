@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <Import Project="..\..\Build.props" />
+  <PropertyGroup>
+    <PackageId>SPTushonka.Common</PackageId>
+    <AssemblyName>SPTarkov.Common</AssemblyName>
+    <RootNamespace>SPTarkov.Common</RootNamespace>
+    <Authors>Single Player Tushonka</Authors>
+    <Description>Common shared library for the Single Player Tushonka projects.</Description>
+    <Copyright>Copyright (c) Single Player Tushonka 2026</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://sp-tarkov.com</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sp-tarkov/server-csharp</RepositoryUrl>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+    <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SemanticVersioning" Version="3.0.0" />
+    <PackageReference Include="Spectre.Console" Version="0.57.2" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.55.0" />
+    <PackageReference Include="ZLinq" Version="1.5.6" />
+    <PackageReference Include="ZLogger" Version="2.5.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+</Project>

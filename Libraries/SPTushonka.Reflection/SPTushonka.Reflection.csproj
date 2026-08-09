@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\Build.props" />
   <PropertyGroup>
-    <PackageId>SPTarkov.Reflection</PackageId>
-    <Authors>Single Player Tarkov</Authors>
-    <Description>Reflection library for the Single Player Tarkov server.</Description>
-    <Copyright>Copyright (c) Single Player Tarkov 2026</Copyright>
+    <PackageId>SPTushonka.Reflection</PackageId>
+    <AssemblyName>SPTarkov.Reflection</AssemblyName>
+    <RootNamespace>SPTarkov.Reflection</RootNamespace>
+    <Authors>Single Player Tushonka</Authors>
+    <Description>Reflection library for the Single Player Tushonka server.</Description>
+    <Copyright>Copyright (c) Single Player Tushonka 2026</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://sp-tarkov.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sp-tarkov/server-csharp</RepositoryUrl>
@@ -21,6 +23,6 @@
     <PackageReference Include="JetBrains.Annotations" Version="2026.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SPTarkov.DI\SPTarkov.DI.csproj" />
+    <ProjectReference Include="..\SPTushonka.DI\SPTushonka.DI.csproj" />
   </ItemGroup>
 </Project>

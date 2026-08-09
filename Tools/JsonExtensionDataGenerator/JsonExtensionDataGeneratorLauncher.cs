@@ -153,7 +153,7 @@ public class JsonExtensionDataGeneratorLauncher
     private static IEnumerable<string> LoadModelFiles()
     {
         var projectDir = Directory.GetParent("./").Parent.Parent.Parent.Parent.Parent;
-        var modelsDir = Path.Combine(projectDir.FullName, "Libraries", "SPTarkov.Server.Core", "Models");
+        var modelsDir = Path.Combine(projectDir.FullName, "Libraries", "SPTushonka.Server.Core", "Models");
         return Directory.GetFiles(modelsDir, "*.cs", SearchOption.AllDirectories);
     }
 }

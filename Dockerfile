@@ -19,7 +19,7 @@ RUN case "${TARGETARCH}" in \
         arm64) RID=linux-arm64 ;; \
         *) echo "Unsupported TARGETARCH: ${TARGETARCH}" >&2; exit 1 ;; \
     esac \
-    && dotnet publish SPTarkov.Server/SPTarkov.Server.csproj \
+    && dotnet publish SPTushonka.Server/SPTushonka.Server.csproj \
     --configuration Release \
     --runtime "${RID}" \
     --self-contained false \
@@ -29,7 +29,7 @@ RUN case "${TARGETARCH}" in \
     -p:SptBuildType="${SptBuildType}" \
     --output /app
 
-RUN cp SPTarkov.Server/sptLogger.Development.json /app/
+RUN cp SPTushonka.Server/sptLogger.Development.json /app/
 
 # ---------------------------------------------------------------------------
 # Runtime Stage
@@ -62,7 +62,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
     CMD curl -fsSk "https://localhost:${SPT_PORT}/health" || exit 1
 
 LABEL org.opencontainers.image.title="SPT Server" \
-      org.opencontainers.image.description="Single Player Tarkov Server" \
+      org.opencontainers.image.description="Single Player Tushonka Server" \
       org.opencontainers.image.source="https://github.com/sp-tarkov/server-csharp"
 
 # Starts as root to fix bind-mount ownership, then drops to PUID:PGID.

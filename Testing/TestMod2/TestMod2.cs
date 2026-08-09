@@ -13,7 +13,7 @@ public sealed class TestMod2Metadata : IModMetadata, IModBlazorMetadata
 {
     public string ModGuid { get; init; } = "com.sp-tarkov.test-mod2";
     public string Name { get; init; } = "test-mod2";
-    public string Author { get; init; } = "SPTarkov";
+    public string Author { get; init; } = "SPTushonka";
     public List<string>? Contributors { get; init; }
     public Version Version { get; init; } = new("1.0.0");
     public Range SptVersion { get; init; } = new("~4.1.0");

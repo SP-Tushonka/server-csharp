@@ -113,7 +113,7 @@ public class ProfileCallbacks(
             return new ValueTask<string>(httpResponse.GetBody(fullProfile?.ProfileInfo?.Username));
         }
 
-        return new ValueTask<string>(httpResponse.GetBody("SPTarkov"));
+        return new ValueTask<string>(httpResponse.GetBody("SPTushonka"));
     }
 
     /// <summary>

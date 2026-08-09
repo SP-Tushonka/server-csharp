@@ -36,7 +36,7 @@ public class ItemTplMongoIdGenerator(
 
         // Figure out our source and target directories
         var projectDir = Directory.GetParent("./").Parent.Parent.Parent.Parent.Parent;
-        _enumDir = Path.Combine(projectDir.FullName, "Libraries", "SPTarkov.Server.Core", "Models", "Enums");
+        _enumDir = Path.Combine(projectDir.FullName, "Libraries", "SPTushonka.Server.Core", "Models", "Enums");
         _items = templateTable.Items;
 
         // Generate an object containing all item name to ID associations
