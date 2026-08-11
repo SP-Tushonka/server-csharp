@@ -130,6 +130,10 @@ public sealed class ModLoader(ISptLogger<ModLoader> logger, ModValidator modVali
             {
                 _loadedMods.Add(LoadMod(modDirectory));
             }
+            catch (OutdatedModException e)
+            {
+                logger.Error(e.Message);
+            }
             catch (Exception e)
             {
                 logger.Critical($"Exception occured while loading a mod at path: {modDirectory}", e);
@@ -308,7 +312,7 @@ public sealed class ModLoader(ISptLogger<ModLoader> logger, ModValidator modVali
         {
             foreach (var module in allAsmModules)
             {
-                var modMetadata = module.GetTypes().SingleOrDefault(t => typeof(IModMetadata).IsAssignableFrom(t));
+                var modMetadata = GetModuleTypes(module, path).SingleOrDefault(t => typeof(IModMetadata).IsAssignableFrom(t));
 
                 if (result != null && modMetadata != null)
                 {
@@ -335,6 +339,30 @@ public sealed class ModLoader(ISptLogger<ModLoader> logger, ModValidator modVali
         }
 
         return result;
+    }
+
+    private static Type[] GetModuleTypes(Module module, string path)
+    {
+        try
+        {
+            return module.GetTypes();
+        }
+        catch (ReflectionTypeLoadException exception)
+        {
+            throw new OutdatedModException(new DirectoryInfo(path).Name, SummariseLoaderErrors(exception), exception);
+        }
+    }
+
+    private static string SummariseLoaderErrors(ReflectionTypeLoadException exception)
+    {
+        var messages = exception.LoaderExceptions.OfType<Exception>().Select(e => e.Message).Distinct().ToArray();
+
+        if (messages.Length == 0)
+        {
+            return "it references types that do not exist in this version of the server";
+        }
+
+        return messages.Length > 1 ? $"{messages[0]} (and {messages.Length - 1} more binding errors)" : messages[0];
     }
 
     private void LoadEnumPrepatch(string modGuid, string path)
