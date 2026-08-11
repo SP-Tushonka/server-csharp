@@ -16,26 +16,39 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
 {
     private readonly ConcurrentDictionary<string, BundleInfo> _bundles = [];
 
-    public async Task LoadBundlesAsync(SptMod mod, CancellationToken cancellationToken = default)
+    public async Task LoadBundlesAsync(IEnumerable<SptMod> mods, CancellationToken cancellationToken = default)
     {
         await bundleHashCacheService.HydrateCacheAsync(cancellationToken);
 
-        var modPath = mod.GetModPath();
-        var modBundles = await jsonUtil.DeserializeFromFileAsync<BundleManifest>(
-            Path.Join(Directory.GetCurrentDirectory(), modPath, "bundles.json"),
-            cancellationToken
-        );
+        var manifests = new List<ModBundles>();
 
-        var relativeModPath = modPath.Replace('\\', '/');
-        var bundlesPath = Path.Join(relativeModPath, "bundles");
-
-        if (modBundles?.Manifest is null)
+        foreach (var mod in mods)
         {
-            logger.Warning($"Could not load bundle manifest for mod {mod.ModMetadata.Name}, skipping!");
+            var modPath = mod.GetModPath();
+            var manifestPath = Path.Join(Directory.GetCurrentDirectory(), modPath, "bundles.json");
+
+            if (!File.Exists(manifestPath))
+            {
+                continue;
+            }
+
+            var modBundles = await jsonUtil.DeserializeFromFileAsync<BundleManifest>(manifestPath, cancellationToken);
+
+            if (modBundles?.Manifest is null)
+            {
+                logger.Warning($"Could not load bundle manifest for mod {mod.ModMetadata.Name}, skipping!");
+                continue;
+            }
+
+            manifests.Add(new ModBundles(mod, modPath.Replace('\\', '/'), modBundles.Manifest));
+        }
+
+        if (manifests.Count == 0)
+        {
             return;
         }
 
-        var total = modBundles.Manifest.Count;
+        var total = manifests.Sum(entry => entry.Entries.Count);
         var ok = 0;
         var missing = 0;
 
@@ -52,42 +65,46 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
             )
             .StartAsync(async ctx =>
             {
-                var progressTask = ctx.AddTask(
-                    $"Loading bundles for {mod.ModMetadata.Name}",
-                    new ProgressTaskSettings { MaxValue = total }
-                );
+                var progressTask = ctx.AddTask("Loading bundles", new ProgressTaskSettings { MaxValue = total });
 
-                await Parallel.ForEachAsync(
-                    modBundles.Manifest,
-                    new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount },
-                    async (bundleManifest, ct) =>
-                    {
-                        var bundleLocalPath = Path.Join(bundlesPath, bundleManifest.Key).Replace('\\', '/');
+                foreach (var (mod, relativeModPath, entries) in manifests)
+                {
+                    var bundlesPath = Path.Join(relativeModPath, "bundles");
 
-                        if (!File.Exists(bundleLocalPath))
+                    await Parallel.ForEachAsync(
+                        entries,
+                        new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount, CancellationToken = cancellationToken },
+                        async (bundleManifest, ct) =>
                         {
-                            logger.Warning($"Could not find bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name}");
-                            Interlocked.Increment(ref missing);
-                        }
-                        else
-                        {
-                            var bundleHash = await bundleHashCacheService.CalculateMatchAndStoreHashAsync(bundleLocalPath, ct);
-                            AddBundle(
-                                bundleManifest.Key,
-                                new BundleInfo
-                                {
-                                    ModPath = relativeModPath,
-                                    Bundle = bundleManifest,
-                                    Crc = bundleHash,
-                                }
-                            );
-                            Interlocked.Increment(ref ok);
-                        }
+                            var bundleLocalPath = Path.Join(bundlesPath, bundleManifest.Key).Replace('\\', '/');
 
-                        progressTask.Increment(1);
-                        progressTask.Description = $"Loading bundles for {mod.ModMetadata.Name} (ok: {ok}, missing: {missing})";
-                    }
-                );
+                            if (!File.Exists(bundleLocalPath))
+                            {
+                                logger.Warning($"Could not find bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name}");
+                                Interlocked.Increment(ref missing);
+                            }
+                            else
+                            {
+                                var bundleHash = await bundleHashCacheService.CalculateMatchAndStoreHashAsync(bundleLocalPath, ct);
+                                AddBundle(
+                                    bundleManifest.Key,
+                                    new BundleInfo
+                                    {
+                                        ModPath = relativeModPath,
+                                        Bundle = bundleManifest,
+                                        Crc = bundleHash,
+                                    }
+                                );
+                                Interlocked.Increment(ref ok);
+                            }
+
+                            progressTask.Increment(1);
+                            progressTask.Description = $"Loading bundles for {mod.ModMetadata.Name} (ok: {ok}, missing: {missing})";
+                        }
+                    );
+                }
+
+                progressTask.Description = $"Loaded bundles from {manifests.Count} mods (ok: {ok}, missing: {missing})";
             });
 
         await bundleHashCacheService.WriteCacheAsync(cancellationToken);
@@ -122,4 +139,6 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
             logger.Error($"Unable to add bundle: {key}");
         }
     }
+
+    private sealed record ModBundles(SptMod Mod, string RelativeModPath, List<BundleManifestEntry> Entries);
 }

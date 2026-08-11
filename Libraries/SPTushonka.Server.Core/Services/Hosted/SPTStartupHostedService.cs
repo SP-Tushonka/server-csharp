@@ -4,7 +4,6 @@ using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Loaders;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Servers;
@@ -36,13 +35,7 @@ public sealed class SPTStartupHostedService(
         {
             if (ProgramStatics.MODS())
             {
-                foreach (var mod in loadedMods)
-                {
-                    if (File.Exists(Path.Join(Directory.GetCurrentDirectory(), mod.GetModPath(), "bundles.json")))
-                    {
-                        await bundleLoader.LoadBundlesAsync(mod, cancellationToken).ConfigureAwait(false);
-                    }
-                }
+                await bundleLoader.LoadBundlesAsync(loadedMods, cancellationToken).ConfigureAwait(false);
             }
 
             systemInformationLogger.LogSystemInformation();
