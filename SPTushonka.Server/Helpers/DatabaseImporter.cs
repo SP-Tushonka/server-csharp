@@ -23,34 +23,32 @@ public sealed class DatabaseImporter(
     {
         var checksFilePath = Path.Combine(SptDataPath, "checks.dat");
 
+        if (!File.Exists(checksFilePath))
+        {
+            throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", checksFilePath));
+        }
+
         try
         {
-            if (File.Exists(checksFilePath))
+            await using var fs = File.OpenRead(checksFilePath);
+
+            using var reader = new StreamReader(fs, Encoding.ASCII);
+            var base64Content = await reader.ReadToEndAsync(cancellationToken);
+
+            var jsonBytes = Convert.FromBase64String(base64Content);
+
+            await using var ms = new MemoryStream(jsonBytes);
+
+            var FileHashes = await jsonUtil.DeserializeFromMemoryStreamAsync<List<FileHash>>(ms, cancellationToken) ?? [];
+
+            foreach (var hash in FileHashes)
             {
-                await using var fs = File.OpenRead(checksFilePath);
-
-                using var reader = new StreamReader(fs, Encoding.ASCII);
-                var base64Content = await reader.ReadToEndAsync(cancellationToken);
-
-                var jsonBytes = Convert.FromBase64String(base64Content);
-
-                await using var ms = new MemoryStream(jsonBytes);
-
-                var FileHashes = await jsonUtil.DeserializeFromMemoryStreamAsync<List<FileHash>>(ms, cancellationToken) ?? [];
-
-                foreach (var hash in FileHashes)
-                {
-                    _databaseHashes.Add(hash.Path, hash.Hash);
-                }
-            }
-            else
-            {
-                logger.Error(serverLocalisationService.GetText("validation_error_exception", checksFilePath));
+                _databaseHashes.Add(hash.Path, hash.Hash);
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            logger.Error(serverLocalisationService.GetText("validation_error_exception", checksFilePath));
+            throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", checksFilePath), ex);
         }
     }
 
