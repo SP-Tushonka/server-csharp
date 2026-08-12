@@ -3,15 +3,20 @@ using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Services.Modding.Custom;
 using SPTarkov.Server.Core.Services.Profile;
 
 namespace SPTarkov.Server.Core.Callbacks;
 
 [Injectable(TypePriority = OnLoadOrder.SaveCallbacks)]
-public class SaveCallbacks(SaveServer saveServer, BackupService backupService, CoreConfig coreConfig) : IOnLoad, IOnUpdate
+public class SaveCallbacks(SaveServer saveServer, BackupService backupService, CustomItemService customItemService, CoreConfig coreConfig)
+    : IOnLoad,
+        IOnUpdate
 {
     public async Task OnLoadAsync(CancellationToken cancellationToken)
     {
+        customItemService.ProfilesLoaded = true;
+
         await saveServer.LoadAsync(cancellationToken);
 
         // Note: This has to happen after loading the saveServer so we don't backup corrupted profiles
