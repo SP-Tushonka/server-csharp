@@ -124,6 +124,11 @@ public class ConfigEditorService
             CopyWritableProperties(editedConfig, runtimeConfig, runtimeType);
         }
 
+        if (descriptor.Registration?.OnAppliedToRuntimeAsync is not null)
+        {
+            await descriptor.Registration.OnAppliedToRuntimeAsync(GetRuntimeConfig(descriptor), CancellationToken.None);
+        }
+
         return Serialize(GetRuntimeConfig(descriptor), runtimeType);
     }
 
