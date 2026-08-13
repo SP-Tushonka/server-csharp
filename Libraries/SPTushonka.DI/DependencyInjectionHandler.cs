@@ -113,10 +113,7 @@ public class DependencyInjectionHandler(IServiceCollection serviceCollection)
 
     private void RegisterGenericComponents(DependencyInjectionContainer typeRef)
     {
-        _candidateConstructors ??= _injectableAssemblies
-            .SelectMany(GetLoadableTypes)
-            .SelectMany(type => type.GetConstructors())
-            .ToList();
+        _candidateConstructors ??= _injectableAssemblies.SelectMany(GetLoadableTypes).SelectMany(type => type.GetConstructors()).ToList();
 
         var typeName = $"{typeRef.Type.Namespace}.{typeRef.Type.Name}";
         try

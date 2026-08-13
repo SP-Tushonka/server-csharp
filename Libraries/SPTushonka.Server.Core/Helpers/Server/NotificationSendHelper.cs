@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
@@ -8,7 +9,6 @@ using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Servers.Ws;
 using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Helpers.Server;
 

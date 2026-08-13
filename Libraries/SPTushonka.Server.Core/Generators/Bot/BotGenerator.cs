@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Constants;
@@ -18,7 +19,6 @@ using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using BodyPart = SPTarkov.Server.Core.Models.Eft.Common.Tables.BodyPart;
 using BodyParts = SPTarkov.Server.Core.Constants.BodyParts;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Generators.Bot;
 

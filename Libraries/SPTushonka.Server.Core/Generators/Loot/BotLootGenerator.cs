@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -16,7 +17,6 @@ using SPTarkov.Server.Core.Services.Bot;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Generators.Loot;
 
@@ -690,14 +690,12 @@ public class BotLootGenerator(
         Dictionary<string, double> modChances
     )
     {
-        var chosenWeaponType = randomUtil.GetArrayValue<string>(
-            [
-                nameof(EquipmentSlots.FirstPrimaryWeapon),
-                nameof(EquipmentSlots.FirstPrimaryWeapon),
-                nameof(EquipmentSlots.FirstPrimaryWeapon),
-                nameof(EquipmentSlots.Holster),
-            ]
-        );
+        var chosenWeaponType = randomUtil.GetArrayValue<string>([
+            nameof(EquipmentSlots.FirstPrimaryWeapon),
+            nameof(EquipmentSlots.FirstPrimaryWeapon),
+            nameof(EquipmentSlots.FirstPrimaryWeapon),
+            nameof(EquipmentSlots.Holster),
+        ]);
         var randomisedWeaponCount = randomUtil.GetInt(
             pmcConfig.LooseWeaponInBackpackLootMinMax.Min,
             pmcConfig.LooseWeaponInBackpackLootMinMax.Max

@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI.Routing;
@@ -11,7 +12,6 @@ using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Callbacks;
 

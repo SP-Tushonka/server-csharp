@@ -8,11 +8,6 @@ public sealed class ProfileQuestOptionModel
 
     public ProfileQuestOptionModel Clone()
     {
-        return new ProfileQuestOptionModel
-        {
-            Id = Id,
-            Label = Label,
-        };
+        return new ProfileQuestOptionModel { Id = Id, Label = Label };
     }
 }
-

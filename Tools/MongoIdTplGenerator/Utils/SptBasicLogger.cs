@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-﻿using Spectre.Console;
+using Spectre.Console;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 

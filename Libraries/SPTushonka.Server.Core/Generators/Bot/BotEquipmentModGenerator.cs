@@ -1,4 +1,5 @@
 using System.Globalization;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -19,7 +20,6 @@ using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using SPTarkov.Server.Core.Utils.Collections;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Generators.Bot;
 
@@ -1890,7 +1890,8 @@ public class BotEquipmentModGenerator(
                                     || itemHelper.IsOfBaseclass(tpl, BaseClasses.MOUNT)
                                 )
                             )
-                    ) ?? false
+                    )
+                    ?? false
                 )
                 // Add mod to allowed list
                 {

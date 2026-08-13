@@ -24,10 +24,10 @@ jobs:
           dotnet-version: 10.0
 
       - name: Restore Tool Dependencies
-        run: dotnet tool install -g csharpier
+        run: dotnet tool restore
 
       - name: CSharpier Format
-        run: csharpier format .
+        run: dotnet csharpier format .
 
       - name: Check for Changes
         id: check-changes
@@ -52,7 +52,7 @@ jobs:
       - name: Fail PR if Changes Detected
         if: steps.check-changes.outputs.changes == 'true' && github.event_name == 'pull_request'
         run: |
-          echo "::error::Code formatting issues found. Please run 'csharpier format .' locally and push the changes to your PR branch. Read the 'README.md' file for more information."
+          echo "::error::Code formatting issues found. Please run 'dotnet tool restore' then 'dotnet csharpier format .' locally and push the changes to your PR branch. Read the 'README.md' file for more information."
           git status --porcelain
           exit 1
 

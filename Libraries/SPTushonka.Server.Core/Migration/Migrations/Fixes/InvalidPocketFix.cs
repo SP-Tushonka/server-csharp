@@ -40,10 +40,7 @@ public sealed class InvalidPocketFix(TemplateTable templateTable) : AbstractProf
                 continue;
             }
 
-            if (
-                itemObj.TryGetValue<string>(out var slotId, "slotId")
-                && slotId == "Pockets"
-            )
+            if (itemObj.TryGetValue<string>(out var slotId, "slotId") && slotId == "Pockets")
             {
                 if (itemObj.TryGetValue<string>(out var template, "_tpl"))
                 {
@@ -70,10 +67,7 @@ public sealed class InvalidPocketFix(TemplateTable templateTable) : AbstractProf
                 continue;
             }
 
-            if (
-                itemObj.TryGetValue<string>(out var slotId, "slotId")
-                && slotId == "Pockets"
-            )
+            if (itemObj.TryGetValue<string>(out var slotId, "slotId") && slotId == "Pockets")
             {
                 if (itemObj.TryGetValue<string>(out var template, "_tpl"))
                 {
@@ -202,10 +196,7 @@ public sealed class InvalidPocketFix(TemplateTable templateTable) : AbstractProf
             {
                 foreach (var item in items.OfType<JsonObject>())
                 {
-                    if (
-                        item.TryGetValue<string>(out var slotId, "slotId")
-                        && slotId == "Pockets"
-                    )
+                    if (item.TryGetValue<string>(out var slotId, "slotId") && slotId == "Pockets")
                     {
                         item["_tpl"] = pmcPocketTpl;
 
@@ -232,10 +223,7 @@ public sealed class InvalidPocketFix(TemplateTable templateTable) : AbstractProf
             {
                 foreach (var item in scavItems.OfType<JsonObject>())
                 {
-                    if (
-                        item.TryGetValue<string>(out var slotId, "slotId")
-                        && slotId == "Pockets"
-                    )
+                    if (item.TryGetValue<string>(out var slotId, "slotId") && slotId == "Pockets")
                     {
                         item["_tpl"] = DEFAULT_POCKETS;
                     }

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -16,7 +17,6 @@ using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using Insurance = SPTarkov.Server.Core.Models.Eft.Profile.Insurance;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Services.Commerce;
 

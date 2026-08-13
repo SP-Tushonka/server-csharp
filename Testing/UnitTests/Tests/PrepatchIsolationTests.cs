@@ -96,9 +96,7 @@ public class PrepatchIsolationTests
     /// </summary>
     private static Type LoadFrom(AssemblyLoadContext context, Type type)
     {
-        var assembly = context.LoadFromAssemblyPath(
-            Path.Combine(AppContext.BaseDirectory, $"{type.Assembly.GetName().Name}.dll")
-        );
+        var assembly = context.LoadFromAssemblyPath(Path.Combine(AppContext.BaseDirectory, $"{type.Assembly.GetName().Name}.dll"));
 
         return assembly.GetType(type.FullName!) ?? throw new InvalidOperationException($"{type.Name} missing from the probe context");
     }

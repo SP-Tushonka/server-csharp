@@ -76,10 +76,14 @@ public sealed class InvalidPmcVoiceFix(TemplateTable templateTable, GlobalTable 
 
         defaultVoice =
             templateTable.Customization.Values.FirstOrDefault(customization =>
-                customization.Properties.Name == defaultVoiceName && IsVoiceCustomization(customization) && HasSide(customization.Properties.Side, side)
+                customization.Properties.Name == defaultVoiceName
+                && IsVoiceCustomization(customization)
+                && HasSide(customization.Properties.Side, side)
             )
             ?? templateTable.Customization.Values.FirstOrDefault(customization =>
-                IsVoiceCustomization(customization) && HasSide(customization.Properties.Side, side) && customization.Properties.AvailableAsDefault
+                IsVoiceCustomization(customization)
+                && HasSide(customization.Properties.Side, side)
+                && customization.Properties.AvailableAsDefault
             )!;
 
         return defaultVoice is not null;

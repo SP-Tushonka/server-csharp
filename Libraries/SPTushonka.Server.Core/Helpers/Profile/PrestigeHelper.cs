@@ -79,9 +79,9 @@ public class PrestigeHelper(
                 }
                 else
                 {
-                    newProfile.CharacterData!.PmcData!.Skills!.Mastering = newProfile.CharacterData.PmcData.Skills.Mastering?.Union(
-                        [skillToCopy]
-                    );
+                    newProfile.CharacterData!.PmcData!.Skills!.Mastering = newProfile.CharacterData.PmcData.Skills.Mastering?.Union([
+                        skillToCopy,
+                    ]);
                 }
             }
         }

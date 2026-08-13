@@ -353,9 +353,10 @@ public class CompletionQuestGenerator(
     {
         var onlyFoundInRaid = completionConfig.RequiredItemsAreFiR;
         var minDurability = itemHelper.IsOfBaseclasses(itemTpl, [BaseClasses.WEAPON, BaseClasses.ARMOR])
-            ? randomUtil.GetArrayValue(
-                [completionConfig.RequiredItemMinDurabilityMinMax.Min, completionConfig.RequiredItemMinDurabilityMinMax.Max]
-            )
+            ? randomUtil.GetArrayValue([
+                completionConfig.RequiredItemMinDurabilityMinMax.Min,
+                completionConfig.RequiredItemMinDurabilityMinMax.Max,
+            ])
             : 0;
 
         // Dog tags MUST NOT be FiR for them to work

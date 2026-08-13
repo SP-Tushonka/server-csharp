@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
@@ -20,7 +21,6 @@ using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using BonusSettings = SPTarkov.Server.Core.Models.Spt.Config.BonusSettings;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Services.Commerce;
 

@@ -1,8 +1,8 @@
+using Microsoft.Extensions.Logging;
 using Spectre.Console;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Spt.Logging;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Controllers;
 

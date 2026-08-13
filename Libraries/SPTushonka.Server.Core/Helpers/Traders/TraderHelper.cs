@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -14,7 +15,6 @@ using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Helpers.Traders;
 
@@ -459,11 +459,13 @@ public class TraderHelper(
                 || profile.TraderPurchases[traderId]?[purchasedItem.ItemId].PurchaseTimestamp is null
             )
             {
-                profile.TraderPurchases[traderId]?[purchasedItem.ItemId] = new TraderPurchaseData
-                {
-                    PurchaseCount = purchasedItem.Count,
-                    PurchaseTimestamp = currentTime,
-                };
+                profile
+                    .TraderPurchases[traderId]
+                    ?[purchasedItem.ItemId] = new TraderPurchaseData
+                    {
+                        PurchaseCount = purchasedItem.Count,
+                        PurchaseTimestamp = currentTime,
+                    };
 
                 continue;
             }

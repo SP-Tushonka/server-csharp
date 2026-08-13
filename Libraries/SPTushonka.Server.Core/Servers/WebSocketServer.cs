@@ -1,10 +1,10 @@
 ﻿using System.Buffers;
 using System.Net.WebSockets;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Servers.Ws;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Servers;
 

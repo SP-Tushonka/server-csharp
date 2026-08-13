@@ -1133,7 +1133,8 @@ public class FenceService(
         {
             // Find the soft insert for this slot
             var modItemToAdjust = armorItemAndMods.FirstOrDefault(mod =>
-                string.Equals(mod.SlotId, requiredSlot.Name, StringComparison.OrdinalIgnoreCase));
+                string.Equals(mod.SlotId, requiredSlot.Name, StringComparison.OrdinalIgnoreCase)
+            );
 
             if (modItemToAdjust == null)
             {
@@ -1143,18 +1144,13 @@ public class FenceService(
             var modItemDbDetails = itemHelper.GetItem(modItemToAdjust.Template).Value;
             if (modItemDbDetails == null)
             {
-                logger.Error(
-                    localisationService.GetText(
-                        "fence-unable_to_find_soft_insert_template_for_slot",
-                        modItemToAdjust.Template));
+                logger.Error(localisationService.GetText("fence-unable_to_find_soft_insert_template_for_slot", modItemToAdjust.Template));
 
                 continue;
             }
 
             // Randomize durability
-            var durabilityValues = GetRandomisedArmorDurabilityValues(
-                modItemDbDetails,
-                traderConfig.Fence.ArmorMaxDurabilityPercentMinMax);
+            var durabilityValues = GetRandomisedArmorDurabilityValues(modItemDbDetails, traderConfig.Fence.ArmorMaxDurabilityPercentMinMax);
 
             // Ensure item has defaults
             modItemToAdjust.AddUpd();

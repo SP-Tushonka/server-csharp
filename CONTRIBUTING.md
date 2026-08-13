@@ -21,7 +21,7 @@ if (!something)
 
 ### Run the formatter
 
-We use [CSharpier](https://csharpier.com/) to keep the project styled and formatted. Install it with `dotnet tool install -g csharpier` and run `csharpier format .` before opening a PR. A workflow will fail if formatting changes are required. See the [Style Guide](README.md#style-guide) in the README for format-on-save setup.
+We use [CSharpier](https://csharpier.com/) to keep the project styled and formatted. Run `dotnet tool restore` once per clone to install the pinned version, then `dotnet csharpier format .` before opening a PR. A workflow will fail if formatting changes are required. See the [Style Guide](README.md#style-guide) in the README for format-on-save setup.
 
 ### Use file-scoped namespaces
 
