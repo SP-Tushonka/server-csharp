@@ -517,33 +517,40 @@ public class TraderHelper(
     {
         lock (HighestPriceLock)
         {
-            if (!HighestTraderPriceItems.TryGetValue(tpl, out var highestPrice))
+            if (HighestTraderPriceItems.TryGetValue(tpl, out var cachedPrice))
             {
-                highestPrice = 1d; // Default price
-                var itemHandbookPrice = handbookHelper.GetTemplatePrice(tpl);
-                foreach (var (_, trader) in traderTable)
-                {
-                    // Get trader and check buy category allows tpl
-                    var traderBase = trader.Base;
-
-                    // Get loyalty level details player has achieved with this trader
-                    // Uses lowest loyalty level as this function is used before a player has logged into server
-                    // We have no idea what player loyalty is with traders
-                    var traderBuyBackPricePercent = 100 - traderBase.LoyaltyLevels?.FirstOrDefault()?.BuyPriceCoefficient;
-
-                    var priceTraderBuysItemAt = randomUtil.GetPercentOfValue(traderBuyBackPricePercent ?? 0, itemHandbookPrice, 0);
-
-                    // Price from this trader is higher than highest found, update
-                    if (priceTraderBuysItemAt > highestPrice)
-                    {
-                        highestPrice = priceTraderBuysItemAt;
-                        HighestTraderPriceItems[tpl] = highestPrice;
-                    }
-                }
+                return cachedPrice;
             }
-
-            return highestPrice;
         }
+
+        var highestPrice = 1d; // Default price
+        var itemHandbookPrice = handbookHelper.GetTemplatePrice(tpl);
+
+        foreach (var (_, trader) in traderTable)
+        {
+            // Get trader and check buy category allows tpl
+            var traderBase = trader.Base;
+
+            // Get loyalty level details player has achieved with this trader
+            // Uses lowest loyalty level as this function is used before a player has logged into server
+            // We have no idea what player loyalty is with traders
+            var traderBuyBackPricePercent = 100 - traderBase.LoyaltyLevels?.FirstOrDefault()?.BuyPriceCoefficient;
+
+            var priceTraderBuysItemAt = randomUtil.GetPercentOfValue(traderBuyBackPricePercent ?? 0, itemHandbookPrice, 0);
+
+            // Price from this trader is higher than highest found, update
+            if (priceTraderBuysItemAt > highestPrice)
+            {
+                highestPrice = priceTraderBuysItemAt;
+            }
+        }
+
+        lock (HighestPriceLock)
+        {
+            HighestTraderPriceItems[tpl] = highestPrice;
+        }
+
+        return highestPrice;
     }
 
     /// <summary>
