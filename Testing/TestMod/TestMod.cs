@@ -57,6 +57,17 @@ public class TestMod(ISptLogger<TestMod> logger) : IOnLoad
     }
 }
 
+[Injectable(TypePriority = OnLoadOrder.PostLoad + 1)]
+public class TestModCheckCallback(ISptLogger<TestMod> logger)
+{
+    public ValueTask OnRuntimeConfigApplied(object runtimeConfig, CancellationToken cancellationToken)
+    {
+        logger.Info("Test mod callback on save runtime!");
+
+        return ValueTask.CompletedTask;
+    }
+}
+
 public record TestDIClass()
 {
     public string TestString { get; init; } = "Test mod with it's own singleton injection!";

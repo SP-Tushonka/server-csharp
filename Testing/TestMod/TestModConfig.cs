@@ -25,7 +25,7 @@ public class TestModConfig
 }
 
 [Injectable(InjectionType.Singleton)]
-public class TestModConfigEditorProvider(TestModConfig config) : IConfigEditorConfigProvider
+public class TestModConfigEditorProvider(TestModConfig config, TestModCheckCallback testModCheckCallback) : IConfigEditorConfigProvider
 {
     public IEnumerable<ConfigEditorConfigRegistration> GetConfigs()
     {
@@ -34,6 +34,9 @@ public class TestModConfigEditorProvider(TestModConfig config) : IConfigEditorCo
             "Test Mod Config",
             config,
             Path.Combine("user", "mods", "TestMod", "config.json")
-        );
+        ) with
+        {
+            OnAppliedToRuntimeAsync = testModCheckCallback.OnRuntimeConfigApplied,
+        };
     }
 }
