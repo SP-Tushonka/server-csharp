@@ -483,36 +483,33 @@ public class RagfairPriceService(
             return GetFleaPriceForItem(weaponRootItem.Template);
         }
 
-        // Get mods on current gun not in default preset
-        var newOrReplacedModsInPresetVsDefault = weaponWithChildren.Where(x =>
-            !presetResult.Preset.Items.Any(y => y.Template == x.Template)
-        );
-
-        // Add up extra mods price
-        var extraModsPrice = 0d;
-        foreach (var mod in newOrReplacedModsInPresetVsDefault)
-        // Use handbook or trader price, whatever is higher (dont use dynamic flea price as purchased item cannot be relisted)
+        var presetItems = presetResult.Preset.Items;
+        var presetTpls = new HashSet<MongoId>(presetItems.Count);
+        var presetSlotIds = new HashSet<string>(presetItems.Count, StringComparer.Ordinal);
+        foreach (var presetItem in presetItems)
         {
-            extraModsPrice += GetHighestHandbookOrTraderPriceAsRouble(mod.Template).Value;
+            presetTpls.Add(presetItem.Template);
+            presetSlotIds.Add(presetItem.SlotId ?? string.Empty);
         }
 
-        // Only deduct cost of replaced mods if there's replaced/new mods
-        if (newOrReplacedModsInPresetVsDefault.Any())
+        // Add up the price of mods on this gun that aren't in the default preset
+        var extraModsPrice = 0d;
+        foreach (var mod in weaponWithChildren)
         {
-            // Add up cost of mods replaced
-            var modsReplacedByNewMods = newOrReplacedModsInPresetVsDefault.Where(x =>
-                presetResult.Preset.Items.Any(y => y.SlotId == x.SlotId)
-            );
-
-            // Add up replaced mods price
-            var replacedModsPrice = 0d;
-            foreach (var replacedMod in modsReplacedByNewMods)
+            if (presetTpls.Contains(mod.Template))
             {
-                replacedModsPrice += GetHighestHandbookOrTraderPriceAsRouble(replacedMod.Template).Value;
+                continue;
             }
 
-            // Subtract replaced mods total from extra mods total
-            extraModsPrice -= replacedModsPrice;
+            // A mod filling a slot the default preset also fills replaces that mod rather than adding to the gun,
+            // so its cost cancels out
+            if (presetSlotIds.Contains(mod.SlotId ?? string.Empty))
+            {
+                continue;
+            }
+
+            // Use handbook or trader price, whatever is higher (dont use dynamic flea price as purchased item cannot be relisted)
+            extraModsPrice += GetHighestHandbookOrTraderPriceAsRouble(mod.Template) ?? 0;
         }
 
         // return extra mods price + base gun price

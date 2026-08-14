@@ -87,7 +87,14 @@ public class RagfairOfferHolder(
                 return null;
             }
 
-            var result = _offersById.Where(x => offerIds.Contains(x.Key)).Select(x => x.Value).ToList();
+            var result = new List<RagfairOffer>(offerIds.Count);
+            foreach (var offerId in offerIds)
+            {
+                if (_offersById.TryGetValue(offerId, out var offer))
+                {
+                    result.Add(offer);
+                }
+            }
 
             return result;
         }
@@ -107,7 +114,16 @@ public class RagfairOfferHolder(
                 return [];
             }
 
-            return offerIds.Select(offerId => _offersById.GetValueOrDefault(offerId)).Where(offer => offer != null).ToList();
+            var result = new List<RagfairOffer>(offerIds.Count);
+            foreach (var offerId in offerIds)
+            {
+                if (_offersById.TryGetValue(offerId, out var offer))
+                {
+                    result.Add(offer);
+                }
+            }
+
+            return result;
         }
     }
 
@@ -344,17 +360,16 @@ public class RagfairOfferHolder(
         lock (_ragfairOperationLock)
         {
             // list of lists of item+children
-            var expiredItems = new List<List<Item>>();
+            var expiredItems = new List<List<Item>>(_expiredOfferIds.Count);
             foreach (var expiredOfferId in _expiredOfferIds.Keys)
             {
-                var offer = GetOfferById(expiredOfferId);
-                if (offer is null)
+                if (!_offersById.TryGetValue(expiredOfferId, out var offer))
                 {
                     logger.Warning($"Expired offerId: {expiredOfferId} not found, skipping");
                     continue;
                 }
 
-                if (offer is null || offer.Items is null)
+                if (offer.Items is null)
                 {
                     logger.Warning($"Offer {expiredOfferId} is null");
                     continue;

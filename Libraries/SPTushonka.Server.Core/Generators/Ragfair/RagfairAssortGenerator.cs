@@ -12,7 +12,6 @@ using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Items;
 using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils.Cloners;
-using ZLinq;
 
 namespace SPTarkov.Server.Core.Generators.Ragfair;
 
@@ -44,21 +43,16 @@ public class RagfairAssortGenerator(
     /// <returns> List of lists (item + children)</returns>
     public IEnumerable<List<Item>> GenerateRagfairAssortItems()
     {
-        IEnumerable<List<Item>> results = [];
+        var results = new List<List<Item>>(templateTable.Items.Count);
 
-        // Get cloned items from db
         var blacklist = itemFilterService.GetBlacklistedItems();
-        var dbItems = templateTable
-            .Items.AsValueEnumerable()
-            .Where(item => !string.Equals(item.Value.Type, "Node", StringComparison.OrdinalIgnoreCase) && !blacklist.Contains(item.Key));
 
         // Store processed preset tpls so we don't add them when processing non-preset items
         HashSet<MongoId> processedArmorItems = [];
-        var seasonalEventActive = seasonalEventService.SeasonalEventEnabled();
+        var skipOutOfSeasonItems = ragfairConfig.Dynamic.RemoveSeasonalItemsWhenNotInEvent && !seasonalEventService.SeasonalEventEnabled();
         var seasonalItemTplBlacklist = seasonalEventService.GetInactiveSeasonalEventItems();
 
-        var presets = GetPresetsToAdd();
-        foreach (var preset in presets)
+        foreach (var preset in GetPresetsToAdd())
         {
             // Update Ids and clone
             var presetAndModsClone = cloner.Clone(preset.Items).ReplaceIDs().ToList();
@@ -67,39 +61,44 @@ public class RagfairAssortGenerator(
             // Add presets base item tpl to the processed list so its skipped later on when processing items
             processedArmorItems.Add(preset.Items[0].Template);
 
-            presetAndModsClone.First().ParentId = "hideout";
-            presetAndModsClone.First().SlotId = "hideout";
-            presetAndModsClone.First().Upd = new Upd
+            var presetRoot = presetAndModsClone[0];
+            presetRoot.ParentId = "hideout";
+            presetRoot.SlotId = "hideout";
+            presetRoot.Upd = new Upd
             {
                 StackObjectsCount = 99999999,
                 UnlimitedCount = true,
                 SptPresetId = preset.Id,
             };
 
-            results = results.Union([presetAndModsClone]);
+            results.Add(presetAndModsClone);
         }
 
-        foreach (var (tpl, item) in dbItems)
+        foreach (var (tpl, item) in templateTable.Items)
         {
-            if (!itemHelper.IsValidItem(item, RagfairItemInvalidBaseTypes))
-            {
-                continue;
-            }
-
-            // Skip seasonal items when not in-season
-            if (ragfairConfig.Dynamic.RemoveSeasonalItemsWhenNotInEvent && !seasonalEventActive && seasonalItemTplBlacklist.Contains(tpl))
-            {
-                continue;
-            }
-
-            // Already processed
+            // Already processed as a preset
             if (processedArmorItems.Contains(tpl))
             {
                 continue;
             }
 
-            var assortItemToAdd = new List<Item> { CreateRagfairAssortRootItem(tpl, tpl) }; // tpl and id must be the same so hideout recipe rewards work
-            results = results.Union([assortItemToAdd]);
+            if (string.Equals(item.Type, "Node", StringComparison.OrdinalIgnoreCase) || blacklist.Contains(tpl))
+            {
+                continue;
+            }
+
+            // Skip seasonal items when not in-season
+            if (skipOutOfSeasonItems && seasonalItemTplBlacklist.Contains(tpl))
+            {
+                continue;
+            }
+            
+            if (!itemHelper.IsValidItem(item, RagfairItemInvalidBaseTypes))
+            {
+                continue;
+            }
+
+            results.Add([CreateRagfairAssortRootItem(tpl, tpl)]); // tpl and id must be the same so hideout recipe rewards work
         }
 
         return results;
