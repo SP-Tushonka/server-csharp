@@ -81,6 +81,7 @@ public class HttpRouter(IEnumerable<StaticRouter> staticRouters, IEnumerable<Dyn
             else
             {
                 wrapper.Output = result as string;
+                wrapper.StreamedBody = null;
             }
 
             matched = true;
