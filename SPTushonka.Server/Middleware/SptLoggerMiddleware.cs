@@ -13,9 +13,11 @@ public sealed class SptLoggerMiddleware(
     ISptLogger<SptLoggerMiddleware> logger
 )
 {
+    private static readonly PathString _healthPath = new("/health");
+
     public async Task InvokeAsync(HttpContext context)
     {
-        if (!httpConfig.LogRequests)
+        if (!httpConfig.LogRequests || context.Request.Path.StartsWithSegments(_healthPath))
         {
             await next(context);
             return;
