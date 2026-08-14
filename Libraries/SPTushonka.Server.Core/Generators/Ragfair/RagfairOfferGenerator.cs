@@ -84,24 +84,26 @@ public class RagfairOfferGenerator(
     /// <returns>RagfairOffer</returns>
     protected RagfairOffer CreateOffer(CreateFleaOfferDetails details)
     {
-        var offerRequirements = details.BarterScheme.Select(barter =>
-        {
-            var offerRequirement = new OfferRequirement
+        var offerRequirements = details
+            .BarterScheme.Select(barter =>
             {
-                TemplateId = barter.Template,
-                Count = Math.Round(barter.Count.Value, 2),
-                OnlyFunctional = barter.OnlyFunctional ?? false,
-            };
+                var offerRequirement = new OfferRequirement
+                {
+                    TemplateId = barter.Template,
+                    Count = Math.Round(barter.Count.Value, 2),
+                    OnlyFunctional = barter.OnlyFunctional ?? false,
+                };
 
-            // Dogtags define level and side
-            if (barter.Level != null)
-            {
-                offerRequirement.Level = barter.Level;
-                offerRequirement.Side = barter.Side;
-            }
+                // Dogtags define level and side
+                if (barter.Level != null)
+                {
+                    offerRequirement.Level = barter.Level;
+                    offerRequirement.Side = barter.Side;
+                }
 
-            return offerRequirement;
-        });
+                return offerRequirement;
+            })
+            .ToList();
 
         var rootItem = details.Items.FirstOrDefault();
 

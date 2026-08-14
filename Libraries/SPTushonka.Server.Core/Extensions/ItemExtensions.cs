@@ -171,9 +171,11 @@ public static class ItemExtensions
     {
         List<MongoId> list = [];
 
+        var baseItemIdString = baseItemId.ToString();
+
         foreach (var childItem in items)
         {
-            if (childItem.ParentId == baseItemId.ToString())
+            if (childItem.ParentId == baseItemIdString)
             {
                 list.AddRange(GetItemWithChildrenTpls(items, childItem.Id));
             }
@@ -405,7 +407,8 @@ public static class ItemExtensions
             item.Id = newId;
 
             // Find all children of item and update their parent ids to match
-            var childItems = items.Where(item => item.ParentId == originalId.ToString());
+            var originalIdString = originalId.ToString();
+            var childItems = items.Where(item => item.ParentId == originalIdString);
             foreach (var childItem in childItems)
             {
                 childItem.ParentId = newId;

@@ -71,48 +71,49 @@ public class RagfairOfferHelper(
     {
         var playerIsFleaBanned = pmcData.PlayerIsFleaBanned(timeUtil.GetTimeStamp());
         var tieredFlea = ragfairConfig.TieredFlea;
-        var tieredFleaLimitTypes = tieredFlea.UnlocksType;
 
-        // Clone offers if tiered flea is enabled as we perform modification of offer data prior to return
-        var offers = tieredFlea.Enabled ? cloner.Clone(ragfairOfferService.GetOffers()) : ragfairOfferService.GetOffers();
-        return offers
-            .Where(offer =>
+        // Only needed by the tiered flea check below
+        var tieredFleaKeys = tieredFlea.Enabled ? tieredFlea.UnlocksType.Keys.ToHashSet() : [];
+
+        var result = new List<RagfairOffer>();
+        foreach (var cachedOffer in ragfairOfferService.GetOffers())
+        {
+            var offerRootItem = cachedOffer.Items.FirstOrDefault();
+            if (!PassesSearchFilterCriteria(searchRequest, cachedOffer, offerRootItem, pmcData))
             {
-                var offerRootItem = offer.Items.FirstOrDefault();
-                if (!PassesSearchFilterCriteria(searchRequest, offer, offerRootItem, pmcData))
-                {
-                    return false;
-                }
+                continue;
+            }
 
-                var isDisplayable = IsDisplayableOffer(
+            if (
+                !IsDisplayableOffer(
                     searchRequest,
                     itemsToAdd,
                     traderAssorts,
-                    offer,
+                    cachedOffer,
                     offerRootItem,
                     pmcData,
                     playerIsFleaBanned
-                );
+                )
+            )
+            {
+                continue;
+            }
 
-                if (!isDisplayable)
+            var offer = cachedOffer;
+            if (tieredFlea.Enabled)
+            {
+                offer = cloner.Clone(cachedOffer)!;
+
+                if (!offer.IsTraderOffer())
                 {
-                    return false;
+                    CheckAndLockOfferFromPlayerTieredFlea(tieredFlea, offer, tieredFleaKeys, pmcData.Info.Level.Value);
                 }
+            }
 
-                // Not trader offer + tiered flea enabled
-                if (tieredFlea.Enabled && !offer.IsTraderOffer())
-                {
-                    CheckAndLockOfferFromPlayerTieredFlea(
-                        tieredFlea,
-                        offer,
-                        tieredFleaLimitTypes.Keys.ToHashSet(),
-                        pmcData.Info.Level.Value
-                    );
-                }
+            result.Add(offer);
+        }
 
-                return true;
-            })
-            .ToList();
+        return result;
     }
 
     /// <summary>
@@ -164,24 +165,30 @@ public class RagfairOfferHelper(
             return;
         }
 
-        // Check if the item belongs to any restricted type and if player level is insufficient
-        var matchingTypes = tieredFleaLimitTypes.Where(tieredItemType => itemHelper.IsOfBaseclass(offerItemTpl, tieredItemType));
-        if (!matchingTypes.Any())
+        // Highest level requirement across every restricted type the item belongs to
+        int? highestRequirement = null;
+        foreach (var tieredItemType in tieredFleaLimitTypes)
+        {
+            if (!itemHelper.IsOfBaseclass(offerItemTpl, tieredItemType))
+            {
+                continue;
+            }
+
+            var requirement = tieredFlea.UnlocksType[tieredItemType];
+            if (highestRequirement is null || requirement > highestRequirement)
+            {
+                highestRequirement = requirement;
+            }
+        }
+
+        if (highestRequirement is null || playerLevel >= highestRequirement)
         {
             return;
         }
 
-        //Get all matches
-        var levelRequirements = tieredFlea.UnlocksType.Where(x => matchingTypes.Contains(x.Key)).Select(x => x.Value);
-
-        // Get highest requirement
-        var highestRequirement = levelRequirements.Max();
-        if (playerLevel < highestRequirement)
-        {
-            // Players level is below matching types requirement, flag as locked
-            offer.Locked = true;
-            offer.User.Nickname = $"Unlock level: {levelRequirements.Max()}";
-        }
+        // Players level is below matching types requirement, flag as locked
+        offer.Locked = true;
+        offer.User.Nickname = $"Unlock level: {highestRequirement}";
     }
 
     /// <summary>
@@ -237,12 +244,11 @@ public class RagfairOfferHelper(
         var offersToReturn = new List<RagfairOffer>();
         var playerIsFleaBanned = pmcData.PlayerIsFleaBanned(timeUtil.GetTimeStamp());
         var tieredFlea = ragfairConfig.TieredFlea;
-        var tieredFleaLimitTypes = tieredFlea.UnlocksType;
 
-        // Clone offers when tiered flea enabled as we may modify the offer
-        var buildItems = tieredFlea.Enabled
-            ? cloner.Clone(searchRequest.BuildItems.Keys.ToDictionary(key => key, ragfairOfferService.GetOffersOfType))
-            : searchRequest.BuildItems.Keys.ToDictionary(key => key, ragfairOfferService.GetOffersOfType);
+        // Only needed by the tiered flea check below
+        var tieredFleaKeys = tieredFlea.Enabled ? tieredFlea.UnlocksType.Keys.ToHashSet() : [];
+
+        var buildItems = searchRequest.BuildItems.Keys.ToDictionary(key => key, ragfairOfferService.GetOffersOfType);
 
         var lockedTraders = pmcData.GetLockedTraderIds();
         foreach (var (desiredItemTpl, matchingOffers) in buildItems)
@@ -253,8 +259,10 @@ public class RagfairOfferHelper(
                 continue;
             }
 
-            foreach (var offer in matchingOffers)
+            foreach (var cachedOffer in matchingOffers)
             {
+                var offer = cachedOffer;
+
                 // Don't show pack offers
                 if (offer.SellInOnePiece.GetValueOrDefault(false))
                 {
@@ -301,20 +309,19 @@ public class RagfairOfferHelper(
                     }
                 }
 
-                // Tiered flea and not trader offer
-                if (tieredFlea.Enabled && !offer.IsTraderOffer())
+                if (tieredFlea.Enabled)
                 {
-                    CheckAndLockOfferFromPlayerTieredFlea(
-                        tieredFlea,
-                        offer,
-                        tieredFleaLimitTypes.Keys.ToHashSet(),
-                        pmcData.Info.Level.Value
-                    );
+                    offer = cloner.Clone(offer)!;
 
-                    // Do not add offer to build if user does not have access to it
-                    if (offer.Locked.GetValueOrDefault(false))
+                    if (!offer.IsTraderOffer())
                     {
-                        continue;
+                        CheckAndLockOfferFromPlayerTieredFlea(tieredFlea, offer, tieredFleaKeys, pmcData.Info.Level.Value);
+
+                        // Do not add offer to build if user does not have access to it
+                        if (offer.Locked.GetValueOrDefault(false))
+                        {
+                            continue;
+                        }
                     }
                 }
 
@@ -390,16 +397,6 @@ public class RagfairOfferHelper(
         // Offer root items tpl not in searched for array
         if (!itemsToAdd.Contains(offerRootItem.Template))
         // skip items we shouldn't include
-        {
-            return false;
-        }
-
-        // Performing a required search and offer doesn't have requirement for item
-        if (
-            !searchRequest.NeededSearchId.HasValue
-            && !searchRequest.NeededSearchId.Value.IsEmpty
-            && !offer.Requirements.Any(requirement => requirement.TemplateId == searchRequest.NeededSearchId)
-        )
         {
             return false;
         }
