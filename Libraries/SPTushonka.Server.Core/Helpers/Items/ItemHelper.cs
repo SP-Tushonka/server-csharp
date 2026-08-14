@@ -827,7 +827,7 @@ public class ItemHelper(
 
             if (!filteredResult.Any())
             {
-                logger.Warning(serverLocalisationService.GetText("item-helper_no_items_for_barter", barterId));
+                logger.Warning(serverLocalisationService.GetText("item-helper_no_items_for_barter", barterId.ToString()));
                 continue;
             }
 

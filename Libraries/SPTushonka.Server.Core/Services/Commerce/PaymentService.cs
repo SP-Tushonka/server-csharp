@@ -46,6 +46,7 @@ public class PaymentService(
     {
         // Track the amounts of each type of currency involved in the trade.
         var currencyAmounts = new Dictionary<MongoId, double>();
+        var requestedMoneyStackIds = new HashSet<MongoId>();
 
         // Delete barter items and track currencies
         foreach (var itemRequest in request.SchemeItems)
@@ -65,6 +66,7 @@ public class PaymentService(
                     // If the item is money, add its count to the currencyAmounts object.
                     // sometimes the currency can be in two parts, so it fails to tryadd the second part
                     currencyAmounts.AddOrUpdate(item.Template, itemRequest.Count.Value);
+                    requestedMoneyStackIds.Add(item.Id);
                 }
             }
             else
@@ -72,6 +74,15 @@ public class PaymentService(
                 // Used by `SptInsure`
                 // Handle differently, `id` is the money type tpl
                 var currencyTpl = itemRequest.Id;
+                if (!paymentHelper.IsMoneyTpl(currencyTpl))
+                {
+                    var errorMessage = $"Unable to pay with stack: {currencyTpl}, it does not exist in the players inventory";
+                    logger.Error(errorMessage);
+                    httpResponseUtil.AppendErrorToOutput(output, errorMessage, BackendErrorCodes.UnknownTradingError);
+
+                    return;
+                }
+
                 // Sometimes the currency can be in two parts, so it fails to tryadd the second part
                 currencyAmounts.AddOrUpdate(currencyTpl, itemRequest.Count.Value);
             }
@@ -99,7 +110,7 @@ public class PaymentService(
             totalCurrencyAmount += currencyAmount;
 
             // Find money stacks in inventory and remove amount needed + update output object to inform client of changes
-            AddPaymentToOutput(pmcData, currencyTpl, currencyAmount, sessionID, output);
+            AddPaymentToOutput(pmcData, currencyTpl, currencyAmount, sessionID, output, requestedMoneyStackIds);
 
             // If there are warnings, exit early
             if (output.Warnings?.Count > 0)
@@ -283,12 +294,36 @@ public class PaymentService(
     /// <param name="amountToPay"> Money value to pay </param>
     /// <param name="sessionID"> Session ID </param>
     /// <param name="output"> Client response </param>
+    [Obsolete(
+        "This method will be removed in a newer version of SPT, use AddPaymentToOutput with the overload accepting requestedStackIds"
+    )]
     public void AddPaymentToOutput(
         PmcData pmcData,
         MongoId currencyTpl,
         double amountToPay,
         MongoId sessionID,
         ItemEventRouterResponse output
+    )
+    {
+        AddPaymentToOutput(pmcData, currencyTpl, amountToPay, sessionID, output, null);
+    }
+
+    /// <summary>
+    ///     Remove currency from player stash/inventory and update client object with changes
+    /// </summary>
+    /// <param name="pmcData"> Player profile to find and remove currency from</param>
+    /// <param name="currencyTpl"> Type of currency to pay </param>
+    /// <param name="amountToPay"> Money value to pay </param>
+    /// <param name="sessionID"> Session ID </param>
+    /// <param name="output"> Client response </param>
+    /// <param name="requestedStackIds"> Money stack IDs the client asked to pay with, spent before any others </param>
+    public void AddPaymentToOutput(
+        PmcData pmcData,
+        MongoId currencyTpl,
+        double amountToPay,
+        MongoId sessionID,
+        ItemEventRouterResponse output,
+        IReadOnlySet<MongoId>? requestedStackIds
     )
     {
         var moneyItemsInInventory = GetSortedMoneyItemsInInventory(pmcData, currencyTpl, pmcData.Inventory!.Stash!.Value);
@@ -317,6 +352,11 @@ public class PaymentService(
             );
 
             return;
+        }
+
+        if (requestedStackIds?.Count > 0)
+        {
+            moneyItemsInInventory = moneyItemsInInventory.OrderByDescending(item => requestedStackIds.Contains(item.Id)).ToList();
         }
 
         var leftToPay = amountToPay;
