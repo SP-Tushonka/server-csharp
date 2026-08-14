@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Security.Cryptography;
 using System.Text;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Exceptions.Database;
@@ -78,7 +77,7 @@ public sealed class DatabaseImporter(
             timer.Stop();
 
             logger.Info(serverLocalisationService.GetText("importing_database_finish"));
-            logger.Debug($"Database import took {timer.ElapsedMilliseconds}ms");
+            logger.Info($"Database import took {timer.ElapsedMilliseconds}ms");
 
             return dataToImport;
         }
@@ -90,22 +89,22 @@ public sealed class DatabaseImporter(
         }
     }
 
-    public async Task VerifyDatabaseAsync(string fileName, CancellationToken cancellationToken)
+    /// <summary>
+    /// Compare the hash computed while the file was being deserialised against the shipped manifest.
+    /// </summary>
+    public Task VerifyDatabaseAsync(string fileName, string computedHash, CancellationToken cancellationToken)
     {
         var relativePath = fileName.StartsWith(SptDataPath, StringComparison.OrdinalIgnoreCase) ? fileName[SptDataPath.Length..] : fileName;
 
-        using var md5 = MD5.Create();
-        await using var stream = File.OpenRead(fileName);
-        var hashBytes = await md5.ComputeHashAsync(stream, cancellationToken);
-        var hashString = Convert.ToHexString(hashBytes);
-
-        if (!_databaseHashes.TryGetValue(relativePath, out var expectedHash) || expectedHash != hashString)
+        if (!_databaseHashes.TryGetValue(relativePath, out var expectedHash) || expectedHash != computedHash)
         {
             throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_file", fileName));
         }
+
+        return Task.CompletedTask;
     }
 
-    private class FileHash
+    private sealed class FileHash
     {
         public string Path { get; set; } = string.Empty;
         public string Hash { get; set; } = string.Empty;
