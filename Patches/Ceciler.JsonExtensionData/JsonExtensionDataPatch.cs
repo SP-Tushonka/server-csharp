@@ -17,6 +17,14 @@ public class JsonExtensionDataPatch : IPatcher
 
         // We need to steal from the constructor the IL line 2 (index 1)
         var createDictionaryReference = sptReferenceType.GetConstructors().First(c => c.Parameters.Count == 0).Body.Instructions[1];
+        var dictionaryConstructor = (MethodReference)createDictionaryReference.Operand;
+
+        // Interlocked.CompareExchange<Dictionary<string, object>>(ref field, value, null)
+        var compareExchangeDefinition = typeof(Interlocked)
+            .GetMethods()
+            .First(m => m.Name == nameof(Interlocked.CompareExchange) && m.IsGenericMethodDefinition && m.GetParameters().Length == 3);
+        var compareExchange = new GenericInstanceMethod(assembly.MainModule.ImportReference(compareExchangeDefinition));
+        compareExchange.GenericArguments.Add(_dictionaryStringObjectReference);
 
         var processed = new HashSet<string>();
         foreach (var typeDefinition in assembly.MainModule.Types)
@@ -37,23 +45,33 @@ public class JsonExtensionDataPatch : IPatcher
             var propertyDefinition = new PropertyDefinition("ExtensionData", PropertyAttributes.None, _dictionaryStringObjectReference);
             propertyDefinition.CustomAttributes.Add(propertyReferenceType.CustomAttributes.First());
 
-            // Add backing field
-            var field = new FieldDefinition(
-                "_extensionData",
-                FieldAttributes.Private | FieldAttributes.InitOnly,
-                _dictionaryStringObjectReference
-            );
+            // Add backing field. Not populated by the constructor - see the getter below
+            var field = new FieldDefinition("_extensionData", FieldAttributes.Private, _dictionaryStringObjectReference);
             field.CustomAttributes.Add(fieldReferenceType.CustomAttributes.First());
             typeDefinition.Fields.Add(field);
 
-            // Add getter
+            // Add getter, creating the dictionary on first read:
+            //     if (_extensionData is null) Interlocked.CompareExchange(ref _extensionData, new(), null);
+            //     return _extensionData;
+            //
             var get = new MethodDefinition(
                 "get_ExtensionData",
                 MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
                 _dictionaryStringObjectReference
             );
 
+            var loadForReturn = Instruction.Create(OpCodes.Ldarg_0);
+
             get.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, field));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Brtrue_S, loadForReturn));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Ldarg_0));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Ldflda, field));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Newobj, dictionaryConstructor));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Ldnull));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Call, compareExchange));
+            get.Body.Instructions.Add(Instruction.Create(OpCodes.Pop));
+            get.Body.Instructions.Add(loadForReturn);
             get.Body.Instructions.Add(Instruction.Create(OpCodes.Ldfld, field));
             get.Body.Instructions.Add(Instruction.Create(OpCodes.Ret));
 
@@ -76,19 +94,6 @@ public class JsonExtensionDataPatch : IPatcher
             typeDefinition.Methods.Add(get);
 
             typeDefinition.Properties.Add(propertyDefinition);
-
-            foreach (var methodDefinition in typeDefinition.GetConstructors().Where(c => !c.IsStatic))
-            {
-                var ilCtor = methodDefinition.Body.GetILProcessor();
-
-                var loadArg = ilCtor.Create(OpCodes.Ldarg_0);
-                var createObj = createDictionaryReference;
-                var setField = ilCtor.Create(OpCodes.Stfld, field);
-                var first = ilCtor.Body.Instructions.First();
-                ilCtor.InsertBefore(first, loadArg);
-                ilCtor.InsertAfter(loadArg, createObj);
-                ilCtor.InsertAfter(createObj, setField);
-            }
 
             processed.Add(typeDefinition.FullName);
         }
