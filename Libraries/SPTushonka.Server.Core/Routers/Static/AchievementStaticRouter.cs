@@ -1,4 +1,4 @@
-﻿using SPTarkov.DI.Annotations;
+using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Callbacks;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -12,9 +12,10 @@ public class AchievementStaticRouter(JsonUtil jsonUtil, AchievementCallbacks ach
     : StaticRouter(
         jsonUtil,
         [
-            new RouteAction<GetAchievementListRequest>(
+            new StreamedRouteAction<GetAchievementListRequest>(
                 "/client/achievement/list",
-                async (url, info, sessionID, output, cancellationToken) => await achievementCallbacks.GetAchievements(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) =>
+                    await achievementCallbacks.GetAchievements(url, info, sessionID)
             ),
             new RouteAction<EmptyRequestData>(
                 "/client/achievement/statistic",

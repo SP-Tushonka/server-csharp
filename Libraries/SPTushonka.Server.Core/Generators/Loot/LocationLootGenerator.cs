@@ -101,7 +101,9 @@ public class LocationLootGenerator(
 
         var mapData = locationTable.GetLocation(locationId);
 
-        var staticWeaponsOnMap = mapData.StaticContainers.Value.StaticWeapons;
+        var staticContainerData = mapData.StaticContainers.Value;
+        var staticWeaponsOnMap = staticContainerData.StaticWeapons;
+        
         if (staticWeaponsOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_static_weapon_for_map", locationId));
@@ -110,14 +112,14 @@ public class LocationLootGenerator(
         // Add mounted weapons to output loot
         result.AddRange(staticWeaponsOnMap);
 
-        var allStaticContainersOnMap = mapData.StaticContainers.Value.StaticContainers;
+        var allStaticContainersOnMap = staticContainerData.StaticContainers;
         if (allStaticContainersOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_static_container_for_map", locationId));
         }
 
         // Containers that MUST be added to map (e.g. quest containers)
-        var staticForcedOnMap = mapData.StaticContainers.Value.StaticForced;
+        var staticForcedOnMap = staticContainerData.StaticForced;
         if (staticForcedOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_forced_static_data_for_map", locationId));

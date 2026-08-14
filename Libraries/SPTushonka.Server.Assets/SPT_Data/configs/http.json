@@ -4,6 +4,7 @@
   "backendIp": "127.0.0.1",
   "backendPort": 6969,
   "logRequests": true,
+  "logResponseBodies": false,
   "serverImagePathOverride": {},
   "webAuthenticationConfig": {
     "enabled": true,

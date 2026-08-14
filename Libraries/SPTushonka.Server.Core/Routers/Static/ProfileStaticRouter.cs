@@ -17,9 +17,9 @@ public class ProfileStaticRouter(ProfileCallbacks profileCallbacks, JsonUtil jso
                 "/client/game/profile/create",
                 async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.CreateProfile(url, info, sessionID)
             ),
-            new RouteAction<EmptyRequestData>(
+            new StreamedRouteAction<EmptyRequestData>(
                 "/client/game/profile/list",
-                async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetProfileData(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) => await profileCallbacks.GetProfileData(url, info, sessionID)
             ),
             new RouteAction<EmptyRequestData>(
                 "/client/game/profile/savage/regenerate",

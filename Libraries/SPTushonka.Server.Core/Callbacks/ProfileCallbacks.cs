@@ -8,6 +8,7 @@ using SPTarkov.Server.Core.Models.Eft.Launcher;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Launcher;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Callbacks;
@@ -35,9 +36,9 @@ public class ProfileCallbacks(
     ///     Get the complete player profile (scav + pmc character)
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetProfileData(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetProfileData(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponse.GetBody(profileController.GetCompleteProfile(sessionID)));
+        return new ValueTask<StreamedJsonBody>(httpResponse.GetStreamedBody(profileController.GetCompleteProfile(sessionID)));
     }
 
     /// <summary>

@@ -1,6 +1,8 @@
+using System.Buffers;
 using System.Collections.Immutable;
 using System.IO.Compression;
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
@@ -8,6 +10,8 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Utils;
 
@@ -20,14 +24,27 @@ public class SptHttpListener(
     ISptLogger<SptHttpListener> logger,
     ISptLogger<RequestLogger> requestsLogger,
     JsonUtil jsonUtil,
-    HttpResponseUtil httpResponseUtil
+    HttpResponseUtil httpResponseUtil,
+    HttpConfig? httpConfig = null
 ) : IHttpListener
 {
-    private static readonly ImmutableHashSet<string> SupportedMethods = ["GET", "PUT", "POST"];
+    private static readonly ImmutableHashSet<string> _supportedMethods = ["GET", "PUT", "POST"];
+
+    private const int ChunkChars = 16 * 1024;
+
+    private bool RequestLoggingEnabled
+    {
+        get { return (httpConfig?.LogRequests ?? true) && ProgramStatics.ENTRY_TYPE() != EntryType.RELEASE; }
+    }
+
+    private bool ResponseBodyLoggingEnabled
+    {
+        get { return RequestLoggingEnabled && (httpConfig?.LogResponseBodies ?? false); }
+    }
 
     public bool CanHandle(HttpContext context)
     {
-        return SupportedMethods.Contains(context.Request.Method) && httpRouter.CanHandle(context);
+        return _supportedMethods.Contains(context.Request.Method) && httpRouter.CanHandle(context);
     }
 
     public async Task HandleAsync(MongoId sessionId, HttpContext context, CancellationToken cancellationToken = default)
@@ -36,7 +53,7 @@ public class SptHttpListener(
         {
             case "GET":
             {
-                var response = await GetResponseAsync(sessionId, context, null, cancellationToken);
+                var response = await GetResponseObjectAsync(sessionId, context, null, cancellationToken);
 
                 // Another handler is already handling this, or no handler was found.
                 if (response is null)
@@ -81,7 +98,7 @@ public class SptHttpListener(
                     }
                 }
 
-                var response = await GetResponseAsync(sessionId, context, body, cancellationToken);
+                var response = await GetResponseObjectAsync(sessionId, context, body, cancellationToken);
 
                 // Another handler is already handling this, or no handler was found.
                 if (response is null)
@@ -93,6 +110,26 @@ public class SptHttpListener(
                 break;
             }
         }
+    }
+
+    public async Task SendResponseAsync(
+        MongoId sessionID,
+        HttpRequest req,
+        HttpResponse resp,
+        object? body,
+        object output,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (output is StreamedJsonBody streamed)
+        {
+            await SendStreamedJsonAsync(resp, streamed, sessionID, IsDebugRequest(req), cancellationToken);
+            LogStreamedRequest(req, streamed);
+
+            return;
+        }
+
+        await SendResponseAsync(sessionID, req, resp, body, (string)output, cancellationToken);
     }
 
     /// <summary>
@@ -115,10 +152,6 @@ public class SptHttpListener(
         CancellationToken cancellationToken = default
     )
     {
-        body ??= new object();
-
-        var bodyInfo = jsonUtil.Serialize(body);
-
         if (IsDebugRequest(req))
         {
             // Send only raw response without transformation
@@ -136,7 +169,7 @@ public class SptHttpListener(
         var serialiser = serializers.FirstOrDefault(x => x.CanHandle(output));
         if (serialiser != null)
         {
-            await serialiser.SerializeAsync(sessionID, req, resp, bodyInfo, cancellationToken);
+            await serialiser.SerializeAsync(sessionID, req, resp, jsonUtil.Serialize(body ?? new object()), cancellationToken);
         }
         else
         // No serializer can handle the request (majority of requests don't), zlib the output and send response back
@@ -164,24 +197,69 @@ public class SptHttpListener(
     /// <param name="output"> Output string </param>
     protected void LogRequest(HttpRequest req, string output)
     {
-        if (ProgramStatics.ENTRY_TYPE() != EntryType.RELEASE)
+        if (!RequestLoggingEnabled)
         {
-            var log = new Response(req.Method, output);
-            requestsLogger.Info($"RESPONSE={jsonUtil.Serialize(log)}");
+            return;
         }
+
+        // Logging these can get really large, not something we want to do even in debug without the user wanting it to happen
+        var body = ResponseBodyLoggingEnabled ? output : $"[{output.Length} chars]";
+
+        requestsLogger.Info($"RESPONSE={jsonUtil.Serialize(new Response(req.Method, body))}");
     }
 
-    public async ValueTask<string> GetResponseAsync(
+    /// <summary>
+    ///     Log request if enabled
+    /// </summary>
+    /// <param name="req"> Log request if enabled </param>
+    /// <param name="streamed"> streamed data </param>
+    private void LogStreamedRequest(HttpRequest req, StreamedJsonBody streamed)
+    {
+        if (!RequestLoggingEnabled)
+        {
+            return;
+        }
+
+        // Logging these can get really large, not something we want to do even in debug without the user wanting it to happen
+        var body = ResponseBodyLoggingEnabled ? jsonUtil.Serialize(streamed.Payload) : "[streamed]";
+
+        requestsLogger.Info($"RESPONSE={jsonUtil.Serialize(new Response(req.Method, body))}");
+    }
+
+    private async Task SendStreamedJsonAsync(
+        HttpResponse resp,
+        StreamedJsonBody streamed,
+        MongoId sessionID,
+        bool uncompressed,
+        CancellationToken cancellationToken
+    )
+    {
+        resp.StatusCode = 200;
+        resp.ContentType = "application/json";
+        resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
+
+        if (uncompressed)
+        {
+            await JsonSerializer.SerializeAsync(resp.Body, streamed.Payload, JsonUtil.JsonSerializerOptionsNoIndent!, cancellationToken);
+
+            return;
+        }
+
+        await using var deflateStream = new ZLibStream(resp.Body, CompressionLevel.SmallestSize);
+        await JsonSerializer.SerializeAsync(deflateStream, streamed.Payload, JsonUtil.JsonSerializerOptionsNoIndent!, cancellationToken);
+    }
+
+    public async ValueTask<object> GetResponseObjectAsync(
         MongoId sessionId,
         HttpContext context,
         string? body,
         CancellationToken cancellationToken = default
     )
     {
-        var output = await httpRouter.GetResponseAsync(context.Request, sessionId, body, cancellationToken);
+        var output = await httpRouter.GetResponseObjectAsync(context.Request, sessionId, body, cancellationToken);
 
         // Route doesn't exist or response is not properly set up
-        if (string.IsNullOrEmpty(output))
+        if (output is not StreamedJsonBody && string.IsNullOrEmpty(output as string))
         {
             output = httpResponseUtil.GetBody<object?>(
                 null,
@@ -190,7 +268,7 @@ public class SptHttpListener(
             );
         }
 
-        if (ProgramStatics.ENTRY_TYPE() != EntryType.RELEASE)
+        if (RequestLoggingEnabled)
         {
             // Parse quest info into object
             var log = new Request(context.Request.Method, new RequestData(context.Request.Path.ToString(), context.Request.Headers));
@@ -218,9 +296,23 @@ public class SptHttpListener(
         resp.ContentType = "application/json";
         resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
 
-        await using (var deflateStream = new ZLibStream(resp.Body, CompressionLevel.SmallestSize))
+        await using var deflateStream = new ZLibStream(resp.Body, CompressionLevel.SmallestSize);
+
+        var encoder = Encoding.UTF8.GetEncoder();
+        var buffer = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetMaxByteCount(ChunkChars));
+        try
         {
-            await deflateStream.WriteAsync(Encoding.UTF8.GetBytes(output), cancellationToken);
+            for (var offset = 0; offset < output.Length; offset += ChunkChars)
+            {
+                var take = Math.Min(ChunkChars, output.Length - offset);
+                var written = encoder.GetBytes(output.AsSpan(offset, take), buffer, offset + take == output.Length);
+
+                await deflateStream.WriteAsync(buffer.AsMemory(0, written), cancellationToken);
+            }
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer);
         }
     }
 

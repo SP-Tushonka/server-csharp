@@ -4,6 +4,7 @@ using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers.Traders;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Callbacks;
@@ -32,9 +33,9 @@ public class TraderCallbacks(
     /// <summary>
     ///     Handle client/trading/api/traderSettings
     /// </summary>
-    public ValueTask<string> GetTraderSettings(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetTraderSettings(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetBody(traderHelper.GetAllTraders(sessionID)));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(traderHelper.GetAllTraders(sessionID)));
     }
 
     /// <summary>

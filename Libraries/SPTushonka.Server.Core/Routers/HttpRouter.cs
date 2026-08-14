@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 
 namespace SPTarkov.Server.Core.Routers;
 
@@ -10,11 +11,13 @@ public class HttpRouter(IEnumerable<StaticRouter> staticRouters, IEnumerable<Dyn
 {
     public bool CanHandle(HttpContext context)
     {
-        return staticRouters.Any(sr => sr.CanHandle(context.Request.Path.Value, false))
-            || dynamicRoutes.Any(dr => dr.CanHandle(context.Request.Path.Value, true));
+        var url = context.Request.Path.Value;
+
+        return !string.IsNullOrEmpty(url)
+            && (staticRouters.Any(sr => sr.CanHandle(url, false)) || dynamicRoutes.Any(dr => dr.CanHandle(url, true)));
     }
 
-    public async ValueTask<string?> GetResponseAsync(
+    public async ValueTask<object?> GetResponseObjectAsync(
         HttpRequest req,
         MongoId sessionID,
         string? body,
@@ -28,7 +31,7 @@ public class HttpRouter(IEnumerable<StaticRouter> staticRouters, IEnumerable<Dyn
             await HandleRouteAsync(req, sessionID, wrapper, dynamicRoutes, true, body, cancellationToken);
         }
 
-        return wrapper.Output;
+        return (object?)wrapper.StreamedBody ?? wrapper.Output;
     }
 
     protected async ValueTask<bool> HandleRouteAsync(
@@ -43,8 +46,13 @@ public class HttpRouter(IEnumerable<StaticRouter> staticRouters, IEnumerable<Dyn
     {
         var url = request.Path.Value;
 
+        if (string.IsNullOrEmpty(url))
+        {
+            return false;
+        }
+
         // remove retry from url
-        if (url?.Contains("?retry=") ?? false)
+        if (url.Contains("?retry="))
         {
             url = url.Split("?retry=")[0];
         }
@@ -52,29 +60,39 @@ public class HttpRouter(IEnumerable<StaticRouter> staticRouters, IEnumerable<Dyn
         var matched = false;
         foreach (var route in routers)
         {
-            if (route.CanHandle(url, dynamic))
+            if (!route.CanHandle(url, dynamic))
             {
-                if (dynamic)
-                {
-                    wrapper.Output =
-                        await (route as DynamicRouter).HandleDynamicAsync(url, body, sessionID, wrapper.Output, cancellationToken)
-                        as string;
-                }
-                else
-                {
-                    wrapper.Output =
-                        await (route as StaticRouter).HandleStaticAsync(url, body, sessionID, wrapper.Output, cancellationToken) as string;
-                }
-
-                matched = true;
+                continue;
             }
+
+            var output = wrapper.Output ?? string.Empty;
+
+            var result = route switch
+            {
+                DynamicRouter dynamicRouter => await dynamicRouter.HandleDynamicAsync(url, body, sessionID, output, cancellationToken),
+                StaticRouter staticRouter => await staticRouter.HandleStaticAsync(url, body, sessionID, output, cancellationToken),
+                _ => null,
+            };
+
+            if (result is StreamedJsonBody streamed)
+            {
+                wrapper.StreamedBody = streamed;
+            }
+            else
+            {
+                wrapper.Output = result as string;
+            }
+
+            matched = true;
         }
 
         return matched;
     }
 
-    protected class ResponseWrapper(string? output)
+    protected sealed class ResponseWrapper(string? output)
     {
         public string? Output { get; set; } = output;
+
+        public StreamedJsonBody? StreamedBody { get; set; }
     }
 }

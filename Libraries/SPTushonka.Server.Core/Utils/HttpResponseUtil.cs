@@ -1,9 +1,9 @@
-using System.Collections.Immutable;
-using System.Text.RegularExpressions;
+using System.Buffers;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Eft.HttpResponse;
 using SPTarkov.Server.Core.Models.Eft.ItemEvent;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Locales;
 
@@ -12,24 +12,41 @@ namespace SPTarkov.Server.Core.Utils;
 [Injectable]
 public class HttpResponseUtil(JsonUtil jsonUtil, ServerLocalisationService serverLocalisationService)
 {
-    protected static readonly ImmutableList<Regex> _cleanupRegexList =
-    [
-        new("[\\b]"),
-        new("[\\f]"),
-        new("[\\n]"),
-        new("[\\r]"),
-        new("[\\t]"),
-    ];
+    private static readonly SearchValues<char> _charsToStrip = SearchValues.Create("\b\f\n\r\t");
 
     protected string ClearString(string? s)
     {
-        var value = s ?? "";
-        foreach (var regex in _cleanupRegexList)
+        if (string.IsNullOrEmpty(s))
         {
-            value = regex.Replace(value, string.Empty);
+            return "";
         }
 
-        return value;
+        var firstMatch = s.AsSpan().IndexOfAny(_charsToStrip);
+        if (firstMatch < 0)
+        {
+            return s;
+        }
+
+        var buffer = ArrayPool<char>.Shared.Rent(s.Length);
+        try
+        {
+            s.AsSpan(0, firstMatch).CopyTo(buffer);
+            var written = firstMatch;
+
+            foreach (var c in s.AsSpan(firstMatch))
+            {
+                if (!_charsToStrip.Contains(c))
+                {
+                    buffer[written++] = c;
+                }
+            }
+
+            return new string(buffer, 0, written);
+        }
+        finally
+        {
+            ArrayPool<char>.Shared.Return(buffer);
+        }
     }
 
     /// <summary>
@@ -55,6 +72,18 @@ public class HttpResponseUtil(JsonUtil jsonUtil, ServerLocalisationService serve
     public string GetBody<T>(T data, BackendErrorCodes err = BackendErrorCodes.None, string? errmsg = null, bool sanitize = true)
     {
         return sanitize ? ClearString(GetUnclearedBody(data, err, errmsg)) : GetUnclearedBody(data, err, errmsg);
+    }
+
+    public StreamedJsonBody GetStreamedBody<T>(T? data, BackendErrorCodes err = BackendErrorCodes.None, string? errmsg = null)
+    {
+        return new StreamedJsonBody(
+            new GetBodyResponseData<T>
+            {
+                Err = err,
+                ErrMsg = errmsg,
+                Data = data,
+            }
+        );
     }
 
     public string GetUnclearedBody<T>(T? data, BackendErrorCodes err = BackendErrorCodes.None, string? errmsg = null)

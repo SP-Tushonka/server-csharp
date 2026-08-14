@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Request;
 using SPTarkov.Server.Core.Models.Eft.ItemEvent;
 using SPTarkov.Server.Core.Models.Eft.Profile;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
 
@@ -202,6 +203,36 @@ public record RouteAction<TRequest>(string url, Func<string, TRequest, MongoId, 
         async (url, info, sessionId, output, cancellationToken) =>
         {
             return await typedAction(url, (TRequest)info, sessionId, output, cancellationToken);
+        },
+        typeof(TRequest)
+    )
+    where TRequest : class, IRequestData;
+
+/// <summary>
+/// Describes a route and a strongly typed action whose payload is serialised straight into the response
+/// stream rather than into a finished JSON string. Worth using for responses of several megabytes.
+/// </summary>
+/// <typeparam name="TRequest">
+/// The strongly typed request body type expected by the route.
+/// </typeparam>
+/// <param name="url">
+/// The route URL or route pattern associated with the action.
+/// </param>
+/// <param name="typedAction">
+/// The strongly typed action to execute for the route, returning the payload to serialise.
+/// The parameters are, in order: the route URL, the typed request data, the session ID,
+/// and a cancellation token sourced from <c>HttpContext.RequestAborted</c>. There is no output
+/// value because a streamed payload cannot be passed on to another route.
+/// </param>
+public record StreamedRouteAction<TRequest>(
+    string url,
+    Func<string, TRequest, MongoId, CancellationToken, ValueTask<StreamedJsonBody>> typedAction
+)
+    : RouteAction(
+        url,
+        async (url, info, sessionId, _, cancellationToken) =>
+        {
+            return await typedAction(url, (TRequest)info, sessionId, cancellationToken);
         },
         typeof(TRequest)
     )
