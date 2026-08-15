@@ -673,11 +673,24 @@ public class ItemHelper(
     /// <param name="itemIdToFind">Template id of item to check for</param>
     /// <param name="assort">List of items to check in</param>
     /// <returns>List of children of requested item</returns>
+    [Obsolete(
+        "This method will be removed in a newer version of SPT, use FindAndReturnChildrenByAssort with the overload accepting a lookup"
+    )]
     public List<Item> FindAndReturnChildrenByAssort(MongoId itemIdToFind, IEnumerable<Item> assort)
     {
-        // Group items by ParentId
-        var lookup = assort.CreateParentIdLookupCache(out _);
+        return FindAndReturnChildrenByAssort(itemIdToFind, assort.CreateParentIdLookupCache(out _));
+    }
 
+    /// <summary>
+    /// Find children of the item in a given assort, using a lookup built by
+    /// <see cref="ItemExtensions.CreateParentIdLookupCache"/>. Build the lookup once when looking up many
+    /// items in the same assort, as building it costs a pass over the whole assort.
+    /// </summary>
+    /// <param name="itemIdToFind">Template id of item to check for</param>
+    /// <param name="lookup">Assort items keyed by their parentId</param>
+    /// <returns>List of children of requested item</returns>
+    public List<Item> FindAndReturnChildrenByAssort(MongoId itemIdToFind, Dictionary<string, List<Item>> lookup)
+    {
         var results = new List<Item>();
         var visitedCache = new HashSet<string>();
 
