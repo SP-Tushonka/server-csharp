@@ -6,6 +6,10 @@ public class LazyLoad<T>(Func<T> deserialize, bool cacheValue = false)
     private T? _cachedValue;
     private bool _hasCachedValue;
 
+    [Obsolete("This constructor will be removed in a newer version of SPT, use the constructor accepting cacheValue")]
+    public LazyLoad(Func<T> deserialize)
+        : this(deserialize, false) { }
+
     private readonly List<Func<T?, T?>> _lazyLoadTransformers = [];
     private readonly ReaderWriterLockSlim _lazyLoadTransformersLock = new();
 
