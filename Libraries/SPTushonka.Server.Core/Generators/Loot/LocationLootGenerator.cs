@@ -777,16 +777,13 @@ public class LocationLootGenerator(
                 continue;
             }
 
-            // Ensure no blacklisted lootable items are in pool
+            // Ensure no blacklisted lootable items are in pool, nor seasonal items when out of season.
             spawnPoint.Template.Items = spawnPoint
-                .Template.Items.Where(item => !itemFilterService.IsLootableItemBlacklisted(item.Template))
+                .Template.Items.Where(item =>
+                    !itemFilterService.IsLootableItemBlacklisted(item.Template)
+                    && (seasonalEventActive || !seasonalItemTplBlacklist.Contains(item.Template))
+                )
                 .ToList();
-
-            // Ensure no seasonal items are in pool if not in-season
-            if (!seasonalEventActive)
-            {
-                spawnPoint.Template.Items = spawnPoint.Template.Items.Where(item => !seasonalItemTplBlacklist.Contains(item.Template));
-            }
 
             // Spawn point has no items after filtering, skip
             if (spawnPoint.Template.Items is null || !spawnPoint.Template.Items.Any())
