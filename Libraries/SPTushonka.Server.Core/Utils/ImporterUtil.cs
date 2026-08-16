@@ -269,7 +269,9 @@ public sealed class ImporterUtil(ISptLogger<ImporterUtil> logger, FileUtil fileU
 
         var expressionDelegate = expression.Compile();
 
-        return Activator.CreateInstance(propertyType, expressionDelegate)
+        var cacheValue = genericArgument.GetCustomAttribute<CacheLazyLoadAttribute>() is not null;
+
+        return Activator.CreateInstance(propertyType, expressionDelegate, cacheValue)
             ?? throw new InvalidOperationException($"Could not create instance for {file}");
     }
 

@@ -40,7 +40,7 @@ public class ServerLocalisationService(
         {
             LoadedLocales.Add(
                 fileUtil.StripExtension(file),
-                new LazyLoad<Dictionary<string, string>>(() => jsonUtil.DeserializeFromFile<Dictionary<string, string>>(file) ?? [])
+                new LazyLoad<Dictionary<string, string>>(() => jsonUtil.DeserializeFromFile<Dictionary<string, string>>(file) ?? [], cacheValue: true)
             );
         }
 
