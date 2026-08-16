@@ -1699,9 +1699,12 @@ public class ItemHelper(
 
         foreach (var mod in itemWithChildren)
         {
-            if (!idMappings.ContainsKey(mod.Id))
+            var modId = mod.Id.ToString();
+
+            if (!idMappings.TryGetValue(modId, out var idValue))
             {
-                idMappings[mod.Id.ToString()] = new MongoId();
+                idValue = new MongoId();
+                idMappings[modId] = idValue;
             }
 
             // Has parentId + no remapping exists for its parent
@@ -1711,7 +1714,7 @@ public class ItemHelper(
                 idMappings![mod.ParentId] = new MongoId();
             }
 
-            mod.Id = idMappings[mod.Id.ToString()];
+            mod.Id = idValue;
             if (mod.ParentId != null)
             {
                 mod.ParentId = idMappings[mod.ParentId];

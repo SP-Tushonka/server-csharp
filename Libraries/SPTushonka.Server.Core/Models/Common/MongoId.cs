@@ -308,12 +308,12 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
 
     public static bool operator !=(MongoId left, MongoId? right)
     {
-        return !left.Equals(right);
+        return !(left == right);
     }
 
     public static bool operator ==(MongoId left, MongoId? right)
     {
-        return left.Equals(right);
+        return right.HasValue && left.Equals(right.Value);
     }
 
     public static bool operator !=(MongoId left, MongoId right)
