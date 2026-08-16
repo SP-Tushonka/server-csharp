@@ -8,36 +8,41 @@ public class StringToSpectreColorConverter : JsonConverter<Color>
 {
     public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.TokenType == JsonTokenType.String)
+        if (reader.TokenType == JsonTokenType.Number)
         {
-            var value = reader.GetString();
-
-            switch (value)
+            return reader.GetInt32() switch
             {
-                case "Black":
-                    return Color.Black;
-                case "Red":
-                    return Color.Red;
-                case "Green":
-                    return Color.Green;
-                case "Yellow":
-                    return Color.Yellow;
-                case "Blue":
-                    return Color.Blue;
-                case "Magenta":
-                    return Color.Magenta;
-                case "Cyan":
-                    return Color.Cyan;
-                case "White":
-                    return Color.White;
-                case "Gray":
-                    return Color.Gray;
-                default:
-                    return Color.Default;
-            }
+                30 or 40 => Color.Black,
+                31 or 41 => Color.Red,
+                32 or 42 => Color.Green,
+                33 or 43 => Color.Yellow,
+                34 or 44 => Color.Blue,
+                35 or 45 => Color.Magenta,
+                36 or 46 => Color.Cyan,
+                37 or 47 => Color.White,
+                90 => Color.Gray,
+                _ => Color.Default,
+            };
         }
 
-        throw new JsonException($"The JsonTokenType was not of type string, it was: {reader.TokenType}");
+        if (reader.TokenType == JsonTokenType.String)
+        {
+            return reader.GetString() switch
+            {
+                "Black" => Color.Black,
+                "Red" => Color.Red,
+                "Green" => Color.Green,
+                "Yellow" => Color.Yellow,
+                "Blue" => Color.Blue,
+                "Magenta" => Color.Magenta,
+                "Cyan" => Color.Cyan,
+                "White" => Color.White,
+                "Gray" => Color.Gray,
+                _ => Color.Default,
+            };
+        }
+
+        throw new JsonException($"The JsonTokenType was not of type string or number, it was: {reader.TokenType}");
     }
 
     public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options)
