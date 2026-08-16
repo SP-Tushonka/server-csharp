@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Exceptions.Database;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Loaders;
 using SPTarkov.Server.Core.Models.Spt.Mod;
@@ -85,6 +86,10 @@ public sealed class SPTStartupHostedService(
                         }
                     }
                     catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+                    {
+                        throw;
+                    }
+                    catch (DatabaseModifiedAfterCutoffException)
                     {
                         throw;
                     }

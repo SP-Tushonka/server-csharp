@@ -9,13 +9,20 @@ using SPTarkov.Server.Core.Services.Profile;
 namespace SPTarkov.Server.Core.Callbacks;
 
 [Injectable(TypePriority = OnLoadOrder.SaveCallbacks)]
-public class SaveCallbacks(SaveServer saveServer, BackupService backupService, CustomItemService customItemService, CoreConfig coreConfig)
+public class SaveCallbacks(
+    SaveServer saveServer,
+    BackupService backupService,
+    CustomItemService customItemService,
+    DatabaseIntegrityService databaseIntegrityService,
+    CoreConfig coreConfig
+)
     : IOnLoad,
         IOnUpdate
 {
     public async Task OnLoadAsync(CancellationToken cancellationToken)
     {
         customItemService.ProfilesLoaded = true;
+        databaseIntegrityService.TakeItemSnapshot();
 
         await saveServer.LoadAsync(cancellationToken);
 
