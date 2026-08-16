@@ -242,12 +242,25 @@ public static class ItemExtensions
     public static List<Item> GetItemWithChildren(this IEnumerable<Item> items, MongoId baseItemId, bool excludeStoredItems = false)
     {
         var childrenByParent = items.CreateParentIdLookupCache(out var rootItem, baseItemId);
-        if (rootItem is null)
-        {
-            // Root not found, nothing to return, exit
-            return [];
-        }
 
+        return rootItem is null ? [] : rootItem.GetItemWithChildren(childrenByParent, excludeStoredItems);
+    }
+
+    /// <summary>
+    /// Get an item with its attachments (children), using a lookup built by
+    /// <see cref="CreateParentIdLookupCache"/>. Build the lookup once when walking many items in the same
+    /// collection, as building it costs a pass over all of them.
+    /// </summary>
+    /// <param name="rootItem">Item to start from</param>
+    /// <param name="childrenByParent">Items keyed by their parentId</param>
+    /// <param name="excludeStoredItems">OPTIONAL - Include only mod items, exclude items stored inside root item</param>
+    /// <returns>list of Item objects</returns>
+    public static List<Item> GetItemWithChildren(
+        this Item rootItem,
+        Dictionary<string, List<Item>> childrenByParent,
+        bool excludeStoredItems = false
+    )
+    {
         var result = new List<Item>();
         var processingStack = new Stack<Item>();
         processingStack.Push(rootItem);

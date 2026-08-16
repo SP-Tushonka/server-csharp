@@ -969,6 +969,8 @@ public class FenceService(
         int loyaltyLevel
     )
     {
+        var childrenByParent = baseFenceAssort.Items.CreateParentIdLookupCache(out _);
+
         var failedAttemptsCount = 0;
         var weaponPresetsAddedCount = 0;
         if (desiredWeaponPresetsCount > 0)
@@ -983,7 +985,7 @@ public class FenceService(
                 var randomPresetRoot = randomUtil.GetArrayValue(weaponPresetRootItems);
                 var rootItemDb = itemHelper.GetItem(randomPresetRoot.Template).Value;
 
-                var presetWithChildrenClone = _cloner.Clone(baseFenceAssort.Items.GetItemWithChildren(randomPresetRoot.Id));
+                var presetWithChildrenClone = _cloner.Clone(randomPresetRoot.GetItemWithChildren(childrenByParent));
 
                 RandomiseItemUpdProperties(rootItemDb, presetWithChildrenClone[0]);
 
@@ -1047,7 +1049,7 @@ public class FenceService(
             var randomPresetRoot = randomUtil.GetArrayValue(equipmentPresetRootItems);
             var rootItemDb = itemHelper.GetItem(randomPresetRoot.Template).Value;
 
-            var presetWithChildrenClone = _cloner.Clone(baseFenceAssort.Items.GetItemWithChildren(randomPresetRoot.Id));
+            var presetWithChildrenClone = _cloner.Clone(randomPresetRoot.GetItemWithChildren(childrenByParent));
 
             // Need to add mods to armors so they don't show as red in the trade screen
             if (itemHelper.ItemRequiresSoftInserts(randomPresetRoot.Template))
