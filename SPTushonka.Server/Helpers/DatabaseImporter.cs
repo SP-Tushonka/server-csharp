@@ -16,6 +16,7 @@ public sealed class DatabaseImporter(
 )
 {
     private const string SptDataPath = "./SPT_Data/";
+    private const int MaxReportedMissingFiles = 10;
     private readonly Dictionary<string, string> _databaseHashes = [];
 
     public async Task LoadHashesAsync(CancellationToken cancellationToken = default)
@@ -49,6 +50,33 @@ public sealed class DatabaseImporter(
         {
             throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", checksFilePath), ex);
         }
+
+        VerifyFilesExist();
+    }
+
+    /// <summary>
+    /// Check every file the manifest lists is still on disk, a deleted file is never read so hash verification alone misses it
+    /// </summary>
+    private void VerifyFilesExist()
+    {
+        var missing = _databaseHashes.Keys.Where(path => !File.Exists(Path.Combine(SptDataPath, path))).ToList();
+
+        if (missing.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var file in missing.Take(MaxReportedMissingFiles))
+        {
+            logger.Error(serverLocalisationService.GetText("validation_error_missing_file", file));
+        }
+
+        if (missing.Count > MaxReportedMissingFiles)
+        {
+            logger.Error(serverLocalisationService.GetText("validation_error_missing_file_overflow", missing.Count - MaxReportedMissingFiles));
+        }
+
+        throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_missing_files", missing.Count));
     }
 
     /// <summary>
