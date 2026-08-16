@@ -212,6 +212,10 @@ public sealed class ImporterUtil(ISptLogger<ImporterUtil> logger, FileUtil fileU
         {
             throw;
         }
+        catch (ValidationErrorException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             throw new Exception($"Error processing directory '{directory}'", ex);

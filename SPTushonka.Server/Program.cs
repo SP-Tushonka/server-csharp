@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Logger;
+using SPTarkov.Server.Core.Exceptions.Database;
 using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Loaders;
 using SPTarkov.Server.Core.Models.Spt.Config;
@@ -110,6 +111,24 @@ public static class Program
                             break;
                     }
                 }
+            }
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey(true);
+        }
+        catch (ValidationErrorException ex)
+        {
+            if (_earlyLogger is not null && _earlyLogger.IsEnabled(LogLevel.Critical))
+            {
+                _earlyLogger.LogCritical("{Message}", ex.Message);
+
+                _earlyLogger.LogCritical(
+                    "One or more of SPT's files do not match the ones it shipped with, they have been modified or are corrupt."
+                );
+
+                _earlyLogger.LogCritical(
+                    "The server has unexpectedly stopped, reach out to the support channel in our Discord server. Include a screenshot of this message and the surrounding error(s) above and below"
+                );
             }
 
             Console.WriteLine("Press any key to exit...");
