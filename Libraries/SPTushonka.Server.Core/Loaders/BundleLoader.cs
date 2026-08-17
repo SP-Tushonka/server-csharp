@@ -94,6 +94,7 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
                                         Bundle = bundleManifest,
                                         Crc = entry.Crc,
                                         Size = entry.Size,
+                                        ModifiedUtcTicks = entry.ModifiedUtcTicks,
                                     }
                                 );
                                 Interlocked.Increment(ref ok);
