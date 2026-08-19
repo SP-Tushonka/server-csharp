@@ -9,16 +9,18 @@
 <main>
 @if (!IsLandingPage)
 {
-    <MudTooltip Text="Return to landing page" Placement="Placement.Right">
-        <MudIconButton Icon="@Icons.Material.Filled.Home"
-                       Href="/"
-                       Variant="Variant.Outlined"
-                       Color="Color.Warning"
-                       Size="Size.Medium"
-                       Class="spt-home-button"
-                       OnClick="Collect"
-                       AriaLabel="Return to landing page" />
-    </MudTooltip>
+    <div class="spt-home-button-container">
+        <MudTooltip Text="Return to landing page" Placement="Placement.Right">
+            <MudIconButton Icon="@Icons.Material.Filled.Home"
+                           Href="/"
+                           Variant="Variant.Outlined"
+                           Color="Color.Warning"
+                           Size="Size.Medium"
+                           Class="spt-home-button"
+                           OnClick="Collect"
+                           AriaLabel="Return to landing page" />
+        </MudTooltip>
+    </div>
 }
 
 @Body
