@@ -9,7 +9,7 @@
   "webAuthenticationConfig": {
     "enabled": true,
     "enableDefaultUser": true,
-    "allowDefaultUserFromAnyIp": false,
+    "allowDefaultUserFromAnyIp": true,
     "requireCredentialsOnLocalhost": false,
     "defaultUser": {
       "username": "spt",
