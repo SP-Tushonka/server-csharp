@@ -27,9 +27,7 @@ public class CertificateHelper(ISptLogger<CertificateHelper> logger, FileUtil fi
         }
 
         // shit went wrong, throw a wobbly and close app
-        logger.Critical("Certificate could not be loaded. Stopping server...");
-        Environment.Exit(1);
-        return null;
+        throw new InvalidOperationException($"Certificate could not be loaded from '{_certificatePath}'. Stopping server...");
     }
 
     /// <summary>
