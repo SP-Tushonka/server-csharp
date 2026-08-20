@@ -35,6 +35,7 @@ public abstract class AbstractPatch : IRuntimePatch
     private readonly List<HarmonyMethod> _transpilerList;
     private readonly List<HarmonyMethod> _finalizerList;
     private readonly List<HarmonyMethod> _ilManipulatorList;
+    private readonly List<HarmonyMethod> _reverseList;
 
     /// <summary>
     /// Constructor
@@ -49,6 +50,7 @@ public abstract class AbstractPatch : IRuntimePatch
         _transpilerList = GetPatchMethods(typeof(PatchTranspilerAttribute));
         _finalizerList = GetPatchMethods(typeof(PatchFinalizerAttribute));
         _ilManipulatorList = GetPatchMethods(typeof(PatchIlManipulatorAttribute));
+        _reverseList = GetPatchMethods(typeof(PatchReverseAttribute));
 
         if (
             _prefixList.Count == 0
@@ -56,6 +58,7 @@ public abstract class AbstractPatch : IRuntimePatch
             && _transpilerList.Count == 0
             && _finalizerList.Count == 0
             && _ilManipulatorList.Count == 0
+            && _reverseList.Count == 0
         )
         {
             throw new PatchException($"{GetType().Name}: At least one of the patch methods must be specified");
@@ -136,6 +139,13 @@ public abstract class AbstractPatch : IRuntimePatch
             foreach (var ilmanipulator in _ilManipulatorList)
             {
                 _harmony!.Patch(TargetMethod, ilmanipulator: ilmanipulator);
+            }
+
+            foreach (var reverse in _reverseList)
+            {
+                var reversePatchType =
+                    reverse.method.GetCustomAttribute<PatchReverseAttribute>()?.ReversePatchType ?? HarmonyReversePatchType.Original;
+                _harmony!.CreateReversePatcher(TargetMethod, reverse).Patch(reversePatchType);
             }
 
             IsActive = true;

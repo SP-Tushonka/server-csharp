@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using HarmonyLib;
+using JetBrains.Annotations;
 
 namespace SPTarkov.Reflection.Patching;
 
@@ -21,6 +22,13 @@ public class PatchFinalizerAttribute : Attribute { }
 [AttributeUsage(AttributeTargets.Method)]
 [MeansImplicitUse]
 public class PatchIlManipulatorAttribute : Attribute { }
+
+[MeansImplicitUse]
+[AttributeUsage(AttributeTargets.Method)]
+public class PatchReverseAttribute(HarmonyReversePatchType type = HarmonyReversePatchType.Original) : Attribute
+{
+    public HarmonyReversePatchType ReversePatchType { get; init; } = type;
+}
 
 /// <summary>
 ///     If added to a patch, it will not be used during auto patching
