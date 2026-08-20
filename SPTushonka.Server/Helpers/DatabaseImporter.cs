@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Security.Cryptography;
 using System.Text;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Exceptions.Database;
@@ -17,41 +16,67 @@ public sealed class DatabaseImporter(
 )
 {
     private const string SptDataPath = "./SPT_Data/";
+    private const int MaxReportedMissingFiles = 10;
     private readonly Dictionary<string, string> _databaseHashes = [];
 
     public async Task LoadHashesAsync(CancellationToken cancellationToken = default)
     {
         var checksFilePath = Path.Combine(SptDataPath, "checks.dat");
 
+        if (!File.Exists(checksFilePath))
+        {
+            throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", checksFilePath));
+        }
+
         try
         {
-            if (File.Exists(checksFilePath))
+            await using var fs = File.OpenRead(checksFilePath);
+
+            using var reader = new StreamReader(fs, Encoding.ASCII);
+            var base64Content = await reader.ReadToEndAsync(cancellationToken);
+
+            var jsonBytes = Convert.FromBase64String(base64Content);
+
+            await using var ms = new MemoryStream(jsonBytes);
+
+            var FileHashes = await jsonUtil.DeserializeFromMemoryStreamAsync<List<FileHash>>(ms, cancellationToken) ?? [];
+
+            foreach (var hash in FileHashes)
             {
-                await using var fs = File.OpenRead(checksFilePath);
-
-                using var reader = new StreamReader(fs, Encoding.ASCII);
-                var base64Content = await reader.ReadToEndAsync(cancellationToken);
-
-                var jsonBytes = Convert.FromBase64String(base64Content);
-
-                await using var ms = new MemoryStream(jsonBytes);
-
-                var FileHashes = await jsonUtil.DeserializeFromMemoryStreamAsync<List<FileHash>>(ms, cancellationToken) ?? [];
-
-                foreach (var hash in FileHashes)
-                {
-                    _databaseHashes.Add(hash.Path, hash.Hash);
-                }
-            }
-            else
-            {
-                logger.Error(serverLocalisationService.GetText("validation_error_exception", checksFilePath));
+                _databaseHashes.Add(hash.Path, hash.Hash);
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            logger.Error(serverLocalisationService.GetText("validation_error_exception", checksFilePath));
+            throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", checksFilePath), ex);
         }
+
+        VerifyFilesExist();
+    }
+
+    /// <summary>
+    /// Check every file the manifest lists is still on disk, a deleted file is never read so hash verification alone misses it
+    /// </summary>
+    private void VerifyFilesExist()
+    {
+        var missing = _databaseHashes.Keys.Where(path => !File.Exists(Path.Combine(SptDataPath, path))).ToList();
+
+        if (missing.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var file in missing.Take(MaxReportedMissingFiles))
+        {
+            logger.Error(serverLocalisationService.GetText("validation_error_missing_file", file));
+        }
+
+        if (missing.Count > MaxReportedMissingFiles)
+        {
+            logger.Error(serverLocalisationService.GetText("validation_error_missing_file_overflow", missing.Count - MaxReportedMissingFiles));
+        }
+
+        throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_missing_files", missing.Count));
     }
 
     /// <summary>
@@ -80,7 +105,7 @@ public sealed class DatabaseImporter(
             timer.Stop();
 
             logger.Info(serverLocalisationService.GetText("importing_database_finish"));
-            logger.Debug($"Database import took {timer.ElapsedMilliseconds}ms");
+            logger.Info($"Database import took {timer.ElapsedMilliseconds}ms");
 
             return dataToImport;
         }
@@ -92,22 +117,22 @@ public sealed class DatabaseImporter(
         }
     }
 
-    public async Task VerifyDatabaseAsync(string fileName, CancellationToken cancellationToken)
+    /// <summary>
+    /// Compare the hash computed while the file was being deserialised against the shipped manifest.
+    /// </summary>
+    public Task VerifyDatabaseAsync(string fileName, string computedHash, CancellationToken cancellationToken)
     {
         var relativePath = fileName.StartsWith(SptDataPath, StringComparison.OrdinalIgnoreCase) ? fileName[SptDataPath.Length..] : fileName;
 
-        using var md5 = MD5.Create();
-        await using var stream = File.OpenRead(fileName);
-        var hashBytes = await md5.ComputeHashAsync(stream, cancellationToken);
-        var hashString = Convert.ToHexString(hashBytes);
-
-        if (!_databaseHashes.TryGetValue(relativePath, out var expectedHash) || expectedHash != hashString)
+        if (!_databaseHashes.TryGetValue(relativePath, out var expectedHash) || expectedHash != computedHash)
         {
             throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_file", fileName));
         }
+
+        return Task.CompletedTask;
     }
 
-    private class FileHash
+    private sealed class FileHash
     {
         public string Path { get; set; } = string.Empty;
         public string Hash { get; set; } = string.Empty;

@@ -41,10 +41,10 @@ public static partial class ProgramStatics
         }
 
 #if DEBUG
-        Console.WriteLine($"SPTarkov.Server.Core: entrytype: {BuildType}");
-        Console.WriteLine($"SPTarkov.Server.Core: debug: {_debug}");
-        Console.WriteLine($"SPTarkov.Server.Core: compiled: {_compiled}");
-        Console.WriteLine($"SPTarkov.Server.Core: mods: {_mods}");
+        Console.WriteLine($"SPTushonka.Server.Core: entrytype: {BuildType}");
+        Console.WriteLine($"SPTushonka.Server.Core: debug: {_debug}");
+        Console.WriteLine($"SPTushonka.Server.Core: compiled: {_compiled}");
+        Console.WriteLine($"SPTushonka.Server.Core: mods: {_mods}");
 #endif
     }
 

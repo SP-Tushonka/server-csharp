@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
@@ -7,7 +8,6 @@ using SPTarkov.Server.Core.Models.Eft.Location;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.InRaid;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Controllers;
 

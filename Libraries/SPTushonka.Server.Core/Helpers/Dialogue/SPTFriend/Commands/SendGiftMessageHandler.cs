@@ -41,15 +41,13 @@ public class SendGiftMessageHandler(MailSendService mailSendService, RandomUtil 
                 mailSendService.SendUserMessageToPlayer(
                     sessionId,
                     sptFriendUser,
-                    randomUtil.GetArrayValue(
-                        [
-                            "Hey! you got the right code!",
-                            "A secret code, how exciting!",
-                            "You found a gift code!",
-                            "A gift code! incredible",
-                            "A gift! what could it be!",
-                        ]
-                    ),
+                    randomUtil.GetArrayValue([
+                        "Hey! you got the right code!",
+                        "A secret code, how exciting!",
+                        "You found a gift code!",
+                        "A gift code! incredible",
+                        "A gift! what could it be!",
+                    ]),
                     [],
                     null
                 );

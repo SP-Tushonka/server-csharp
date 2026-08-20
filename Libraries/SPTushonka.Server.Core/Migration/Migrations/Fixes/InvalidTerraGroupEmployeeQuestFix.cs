@@ -18,8 +18,7 @@ public sealed class InvalidTerraGroupEmployeeQuestFix : AbstractProfileMigration
 
     public override bool CanMigrate(JsonObject profile, IEnumerable<IProfileMigration> previouslyRanMigrations)
     {
-        return TryGetQuestPair(profile, out var colleaguesPartThree, out var sadist)
-            && IsInvalidQuestPair(colleaguesPartThree, sadist);
+        return TryGetQuestPair(profile, out var colleaguesPartThree, out var sadist) && IsInvalidQuestPair(colleaguesPartThree, sadist);
     }
 
     public override JsonObject? Migrate(JsonObject profile)
@@ -29,17 +28,11 @@ public sealed class InvalidTerraGroupEmployeeQuestFix : AbstractProfileMigration
             return base.Migrate(profile);
         }
 
-        if (
-            QuestHasStatus(sadist, QuestStatusEnum.Success)
-            && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Locked)
-        )
+        if (QuestHasStatus(sadist, QuestStatusEnum.Success) && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Locked))
         {
             colleaguesPartThree["status"] = (int)QuestStatusEnum.Fail;
         }
-        else if (
-            QuestHasStatus(sadist, QuestStatusEnum.Locked)
-            && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Success)
-        )
+        else if (QuestHasStatus(sadist, QuestStatusEnum.Locked) && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Success))
         {
             sadist["status"] = (int)QuestStatusEnum.Fail;
         }
@@ -79,10 +72,8 @@ public sealed class InvalidTerraGroupEmployeeQuestFix : AbstractProfileMigration
 
     private static bool IsInvalidQuestPair(JsonObject colleaguesPartThree, JsonObject sadist)
     {
-        return QuestHasStatus(sadist, QuestStatusEnum.Success)
-                && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Locked)
-            || QuestHasStatus(sadist, QuestStatusEnum.Locked)
-                && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Success);
+        return QuestHasStatus(sadist, QuestStatusEnum.Success) && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Locked)
+            || QuestHasStatus(sadist, QuestStatusEnum.Locked) && QuestHasStatus(colleaguesPartThree, QuestStatusEnum.Success);
     }
 
     private static bool QuestHasStatus(JsonObject quest, QuestStatusEnum status)

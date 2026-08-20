@@ -29,8 +29,6 @@ RUN case "${TARGETARCH}" in \
     -p:SptBuildType="${SptBuildType}" \
     --output /app
 
-RUN cp SPTushonka.Server/sptLogger.Development.json /app/
-
 # ---------------------------------------------------------------------------
 # Runtime Stage
 # ---------------------------------------------------------------------------

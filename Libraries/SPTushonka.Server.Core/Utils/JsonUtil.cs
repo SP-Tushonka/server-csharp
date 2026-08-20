@@ -164,6 +164,20 @@ public class JsonUtil
     }
 
     /// <summary>
+    ///     Convert JSON into an object from any stream asynchronously
+    /// </summary>
+    /// <param name="stream">The stream to deserialize</param>
+    /// <param name="type">The type of the object to deserialize to</param>
+    /// <param name="cancellationToken">
+    /// The <see cref="CancellationToken"/> that can be used to cancel the deserialization operation.
+    /// </param>
+    /// <returns>object</returns>
+    public async Task<object?> DeserializeFromStreamAsync(Stream stream, Type type, CancellationToken cancellationToken = default)
+    {
+        return await JsonSerializer.DeserializeAsync(stream, type, JsonSerializerOptionsNoIndent, cancellationToken);
+    }
+
+    /// <summary>
     ///     Convert JSON into an object from a MemoryStream asynchronously
     /// </summary>
     /// <param name="ms">The memory stream to deserialize</param>

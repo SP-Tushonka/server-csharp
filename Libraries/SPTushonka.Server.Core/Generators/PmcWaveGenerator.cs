@@ -56,9 +56,7 @@ public class PmcWaveGenerator(LocationTable locationTable, PmcConfig pmcConfig)
             if (pmcConfig.CustomPmcWaves.TryGetValue(location.Id.ToLowerInvariant(), out var pmcWavesToAdd) && pmcWavesToAdd.Count > 0)
             {
                 var pmcTypes = new HashSet<string> { "pmcUSEC", "pmcBEAR" };
-                location.BossLocationSpawn = location
-                    .BossLocationSpawn.Where(bossSpawn => !pmcTypes.Contains(bossSpawn.BossName))
-                    .ToList();
+                location.BossLocationSpawn = location.BossLocationSpawn.Where(bossSpawn => !pmcTypes.Contains(bossSpawn.BossName)).ToList();
 
                 location.BossLocationSpawn.AddRange(pmcWavesToAdd);
             }

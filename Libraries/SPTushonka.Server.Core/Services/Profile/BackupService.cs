@@ -1,5 +1,5 @@
-using Microsoft.Extensions.Logging;
 using System.Globalization;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Spt.Config;
@@ -29,15 +29,37 @@ public sealed class BackupService(
     private readonly SemaphoreSlim _backupLock = new(1, 1);
     private long _lastBackupTimestamp;
 
-    private static readonly CultureInfo[] _cultures =
-    [
-        CultureInfo.InvariantCulture,
-        new CultureInfo("fa-IR") { DateTimeFormat = { Calendar = new PersianCalendar() } },
-        new CultureInfo("ar-SA") { DateTimeFormat = { Calendar = new HijriCalendar() } },
-        new CultureInfo("he-IL") { DateTimeFormat = { Calendar = new HebrewCalendar() } },
-        new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } },
-        new CultureInfo("ja-JP") { DateTimeFormat = { Calendar = new JapaneseCalendar() } },
-    ];
+    private const string BackupDateFormat = "yyyy-MM-dd_HH-mm-ss";
+
+    private static readonly CultureInfo[] _cultures = BuildParseCultures();
+
+    /// <summary>
+    ///     Builds the cultures used to read backup folder names, in the order they're tried. <br />
+    ///     Only invariant is available under globalization-invariant mode, where folder names written by a
+    ///     non-Gregorian machine can't be decoded at all.
+    /// </summary>
+    /// <returns> The cultures to attempt a folder name with, invariant first. </returns>
+    private static CultureInfo[] BuildParseCultures()
+    {
+        try
+        {
+            return
+            [
+                CultureInfo.InvariantCulture,
+                new CultureInfo("fa-IR") { DateTimeFormat = { Calendar = new PersianCalendar() } },
+                // ar-SA defaults to UmAlQura, which must be tried before Hijri: the two disagree by up to 2 days
+                new CultureInfo("ar-SA") { DateTimeFormat = { Calendar = new UmAlQuraCalendar() } },
+                new CultureInfo("ar-SA") { DateTimeFormat = { Calendar = new HijriCalendar() } },
+                new CultureInfo("he-IL") { DateTimeFormat = { Calendar = new HebrewCalendar() } },
+                new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } },
+                new CultureInfo("ja-JP") { DateTimeFormat = { Calendar = new JapaneseCalendar() } },
+            ];
+        }
+        catch (Exception)
+        {
+            return [CultureInfo.InvariantCulture];
+        }
+    }
 
     /// <summary>
     ///     Start the backup interval if enabled in config.
@@ -67,7 +89,7 @@ public sealed class BackupService(
                 catch (OperationCanceledException) { }
                 catch (Exception ex)
                 {
-                    logger.Error($"Profile backup failed: {ex.Message}, {ex.StackTrace}");
+                    logger.Error($"Profile backup failed: {ex.Message}", ex);
                 }
             },
             null,
@@ -173,7 +195,14 @@ public sealed class BackupService(
                 return;
             }
 
-            CleanBackups();
+            try
+            {
+                CleanBackups();
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Unable to clean up old profile backups: {ex.Message}", ex);
+            }
         }
         finally
         {
@@ -217,52 +246,41 @@ public sealed class BackupService(
     /// <returns> The formatted backup date string. </returns>
     private string GenerateBackupDate()
     {
-        return timeUtil.GetDateTimeNow().ToString("yyyy-MM-dd_HH-mm-ss");
+        return FormatBackupDate(timeUtil.GetDateTimeNow());
+    }
+
+    /// <summary>
+    ///     Formats a date as a backup folder name. <br />
+    ///     Always invariant, otherwise the machine's own calendar puts a Persian/Hijri/Buddhist year in the name.
+    /// </summary>
+    /// <param name="date"> The date to format. </param>
+    /// <returns> The formatted backup date string. </returns>
+    public static string FormatBackupDate(DateTime date)
+    {
+        return date.ToString(BackupDateFormat, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
     ///     Cleans up old backups in the backup directory. <br />
-    ///     This method reads the backup directory, and sorts backups by modification time. If the number of backups exceeds
-    ///     the configured maximum, it deletes the oldest backups.
+    ///     If the number of backups exceeds the configured maximum, the oldest are deleted. Backups whose folder
+    ///     name can't be dated are left alone, and don't count towards the maximum.
     /// </summary>
-    private void CleanBackups()
+    public void CleanBackups()
     {
-        var backupDir = _backupConfig.Directory;
-        var backupPaths = GetBackupPaths(backupDir);
+        var backupPaths = GetBackupPaths(_backupConfig.Directory);
 
-        // Filter out invalid backup paths by ensuring they contain a valid date.
-        var backupPathsWithCreationDateTime = GetBackupPathsWithCreationTimestamp(backupPaths);
-        var excessCount = backupPathsWithCreationDateTime.Count - _backupConfig.MaxBackups;
+        var excessCount = backupPaths.Count - _backupConfig.MaxBackups;
         if (excessCount > 0)
         {
-            var excessBackupPaths = backupPaths.GetRange(0, excessCount);
-            RemoveExcessBackups(excessBackupPaths);
+            RemoveExcessBackups(backupPaths.GetRange(0, excessCount));
         }
-    }
-
-    private SortedDictionary<DateTime, string> GetBackupPathsWithCreationTimestamp(IEnumerable<string> backupPaths)
-    {
-        var result = new SortedDictionary<DateTime, string>();
-        foreach (var backupPath in backupPaths)
-        {
-            var date = ExtractDateFromFolderName(backupPath);
-            if (!date.HasValue)
-            {
-                continue;
-            }
-
-            result.Add(date.Value, backupPath);
-        }
-
-        return result;
     }
 
     private string? GetMostRecentProfileBackup(IEnumerable<string> backupPaths, string profileId)
     {
         var profileFilename = $"{profileId}.json";
-        var backupPathsWithCreationDateTime = GetBackupPathsWithCreationTimestamp(backupPaths);
 
-        foreach (var (_, backupPath) in backupPathsWithCreationDateTime.Reverse())
+        foreach (var backupPath in backupPaths.Reverse())
         {
             var profileBackups = fileUtil.GetFiles(backupPath);
             var profileBackup = profileBackups.FirstOrDefault(path => path.EndsWith(profileFilename));
@@ -276,46 +294,32 @@ public sealed class BackupService(
     }
 
     /// <summary>
-    ///     Retrieves and sorts the backup file paths from the specified directory.
+    ///     Retrieves the backup directories from the specified directory, oldest first. <br />
+    ///     Directories without a readable date in their name are skipped rather than sorted to an arbitrary position.
     /// </summary>
     /// <param name="dir"> The directory to search for backup files. </param>
     /// <returns> List of sorted backup file paths. </returns>
-    private List<string> GetBackupPaths(string dir)
+    public List<string> GetBackupPaths(string dir)
     {
-        var backups = fileUtil.GetDirectories(dir).ToList();
-        backups.Sort(CompareBackupDates);
-
-        return backups;
+        return fileUtil
+            .GetDirectories(dir)
+            .Select(path => (Path: path, Date: ExtractDateFromFolderName(path)))
+            .Where(backup => backup.Date.HasValue)
+            .OrderBy(backup => backup.Date!.Value)
+            .Select(backup => backup.Path)
+            .ToList();
     }
 
     /// <summary>
-    ///     Compares two backup folder names based on their extracted dates.
-    /// </summary>
-    /// <param name="a"> The name of the first backup folder. </param>
-    /// <param name="b"> The name of the second backup folder. </param>
-    /// <returns> The difference in time between the two dates in milliseconds, or `null` if either date is invalid. </returns>
-    private int CompareBackupDates(string a, string b)
-    {
-        var dateA = ExtractDateFromFolderName(a);
-        var dateB = ExtractDateFromFolderName(b);
-
-        if (!dateA.HasValue || !dateB.HasValue)
-        {
-            return 0; // Skip comparison if either date is invalid.
-        }
-
-        return dateA.Value.CompareTo(dateB.Value);
-    }
-
-    /// <summary>
-    ///     Extracts a date from a folder name string formatted as `YYYY-MM-DD_hh-mm-ss`.
+    ///     Extracts a date from a folder name string formatted as `YYYY-MM-DD_hh-mm-ss`. <br />
+    ///     Older folders were named with the machine's own calendar, so a name is read as Gregorian first, then
+    ///     as each calendar that could have written it, and is only accepted if the result is a plausible date.
     /// </summary>
     /// <param name="folderPath"> The name of the folder from which to extract the date. </param>
     /// <returns> A DateTime object if the folder name is in the correct format, otherwise null. </returns>
-    private DateTime? ExtractDateFromFolderName(string folderPath)
+    public DateTime? ExtractDateFromFolderName(string folderPath)
     {
         var folderName = Path.GetFileName(folderPath);
-        const string format = "yyyy-MM-dd_HH-mm-ss";
 
         var now = DateTime.UtcNow;
         var minDate = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -326,7 +330,7 @@ public sealed class BackupService(
             if (
                 DateTime.TryParseExact(
                     folderName,
-                    format,
+                    BackupDateFormat,
                     culture,
                     DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal,
                     out var dt

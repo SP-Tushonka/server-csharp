@@ -29,21 +29,19 @@ public class HelloMessageHandler(MailSendService mailSendService, RandomUtil ran
         mailSendService.SendUserMessageToPlayer(
             sessionId,
             sptFriendUser,
-            randomUtil.GetArrayValue(
-                [
-                    "Howdy",
-                    "Hi",
-                    "Greetings",
-                    "Hello",
-                    "Bonjor",
-                    "Yo",
-                    "Sup",
-                    "Heyyyyy",
-                    "Hey there",
-                    "OH its you",
-                    $"Hello {sender?.Info?.Nickname}",
-                ]
-            ),
+            randomUtil.GetArrayValue([
+                "Howdy",
+                "Hi",
+                "Greetings",
+                "Hello",
+                "Bonjor",
+                "Yo",
+                "Sup",
+                "Heyyyyy",
+                "Hey there",
+                "OH its you",
+                $"Hello {sender?.Info?.Nickname}",
+            ]),
             [],
             null
         );

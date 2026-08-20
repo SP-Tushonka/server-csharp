@@ -22,6 +22,8 @@ public sealed record ConfigEditorConfigRegistration
 
     public Func<object, CancellationToken, ValueTask>? ApplyToRuntimeAsync { get; init; }
 
+    public Func<object, CancellationToken, ValueTask>? OnAppliedToRuntimeAsync { get; init; }
+
     public static ConfigEditorConfigRegistration Create<TConfig>(
         string id,
         string displayName,

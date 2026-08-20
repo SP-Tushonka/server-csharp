@@ -167,7 +167,7 @@ public static class ProgramHelpers
                 .EnumerateFiles(globalPath, "*.json")
                 .ToDictionary(
                     GetLocaleKey,
-                    file => new LazyLoad<GlobalLocaleDictionary>(() => DeserializeFromFile<GlobalLocaleDictionary>(file) ?? []),
+                    file => new LazyLoad<GlobalLocaleDictionary>(() => DeserializeFromFile<GlobalLocaleDictionary>(file) ?? [], cacheValue: true),
                     StringComparer.OrdinalIgnoreCase
                 ),
             Menu = Directory

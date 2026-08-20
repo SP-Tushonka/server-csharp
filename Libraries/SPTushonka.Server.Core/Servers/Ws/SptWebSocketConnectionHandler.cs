@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Net.WebSockets;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers.Profile;
@@ -10,7 +11,6 @@ using SPTarkov.Server.Core.Models.Eft.Ws;
 using SPTarkov.Server.Core.Servers.Ws.Message;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Servers.Ws;
 

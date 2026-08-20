@@ -1,5 +1,5 @@
-using Microsoft.Extensions.Logging;
 using System.Collections.Frozen;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;

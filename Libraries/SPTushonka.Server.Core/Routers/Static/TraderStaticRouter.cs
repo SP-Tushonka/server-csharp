@@ -1,4 +1,4 @@
-﻿using SPTarkov.DI.Annotations;
+using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Callbacks;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -11,9 +11,10 @@ public class TraderStaticRouter(JsonUtil jsonUtil, TraderCallbacks traderCallbac
     : StaticRouter(
         jsonUtil,
         [
-            new RouteAction<EmptyRequestData>(
+            new StreamedRouteAction<EmptyRequestData>(
                 "/client/trading/api/traderSettings",
-                async (url, info, sessionID, output, cancellationToken) => await traderCallbacks.GetTraderSettings(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) =>
+                    await traderCallbacks.GetTraderSettings(url, info, sessionID)
             ),
         ]
     ) { }

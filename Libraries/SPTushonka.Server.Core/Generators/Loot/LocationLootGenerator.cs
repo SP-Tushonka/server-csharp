@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -18,7 +19,6 @@ using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using SPTarkov.Server.Core.Utils.Collections;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Generators.Loot;
 
@@ -101,7 +101,9 @@ public class LocationLootGenerator(
 
         var mapData = locationTable.GetLocation(locationId);
 
-        var staticWeaponsOnMap = mapData.StaticContainers.Value.StaticWeapons;
+        var staticContainerData = mapData.StaticContainers.Value;
+        var staticWeaponsOnMap = staticContainerData.StaticWeapons;
+        
         if (staticWeaponsOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_static_weapon_for_map", locationId));
@@ -110,14 +112,14 @@ public class LocationLootGenerator(
         // Add mounted weapons to output loot
         result.AddRange(staticWeaponsOnMap);
 
-        var allStaticContainersOnMap = mapData.StaticContainers.Value.StaticContainers;
+        var allStaticContainersOnMap = staticContainerData.StaticContainers;
         if (allStaticContainersOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_static_container_for_map", locationId));
         }
 
         // Containers that MUST be added to map (e.g. quest containers)
-        var staticForcedOnMap = mapData.StaticContainers.Value.StaticForced;
+        var staticForcedOnMap = staticContainerData.StaticForced;
         if (staticForcedOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_forced_static_data_for_map", locationId));
@@ -775,16 +777,13 @@ public class LocationLootGenerator(
                 continue;
             }
 
-            // Ensure no blacklisted lootable items are in pool
+            // Ensure no blacklisted lootable items are in pool, nor seasonal items when out of season.
             spawnPoint.Template.Items = spawnPoint
-                .Template.Items.Where(item => !itemFilterService.IsLootableItemBlacklisted(item.Template))
+                .Template.Items.Where(item =>
+                    !itemFilterService.IsLootableItemBlacklisted(item.Template)
+                    && (seasonalEventActive || !seasonalItemTplBlacklist.Contains(item.Template))
+                )
                 .ToList();
-
-            // Ensure no seasonal items are in pool if not in-season
-            if (!seasonalEventActive)
-            {
-                spawnPoint.Template.Items = spawnPoint.Template.Items.Where(item => !seasonalItemTplBlacklist.Contains(item.Template));
-            }
 
             // Spawn point has no items after filtering, skip
             if (spawnPoint.Template.Items is null || !spawnPoint.Template.Items.Any())

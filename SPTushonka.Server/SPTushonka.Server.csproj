@@ -48,10 +48,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>True</ExcludeFromSingleFile>
     </Content>
-    <None Update="sptLogger.json" Condition="'$(Configuration)' == 'RELEASE'">
+    <None Update="sptLogger.json" Condition="'$(SptBuildType)' == 'RELEASE'">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sptLogger.Development.json" Condition="'$(Configuration)' == 'DEBUG'">
+    <None Update="sptLogger.Development.json" Condition="'$(SptBuildType)' != 'RELEASE'">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

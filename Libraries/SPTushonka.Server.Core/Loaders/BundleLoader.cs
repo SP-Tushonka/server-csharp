@@ -80,19 +80,21 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
 
                             if (!File.Exists(bundleLocalPath))
                             {
-                                logger.Warning($"Could not find bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name}");
+                                logger.Error($"Could not find bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name}");
                                 Interlocked.Increment(ref missing);
                             }
                             else
                             {
-                                var bundleHash = await bundleHashCacheService.CalculateMatchAndStoreHashAsync(bundleLocalPath, ct);
+                                var entry = await bundleHashCacheService.GetOrCalculateHashAsync(bundleLocalPath, ct);
                                 AddBundle(
                                     bundleManifest.Key,
                                     new BundleInfo
                                     {
                                         ModPath = relativeModPath,
                                         Bundle = bundleManifest,
-                                        Crc = bundleHash,
+                                        Crc = entry.Crc,
+                                        Size = entry.Size,
+                                        ModifiedUtcTicks = entry.ModifiedUtcTicks,
                                     }
                                 );
                                 Interlocked.Increment(ref ok);

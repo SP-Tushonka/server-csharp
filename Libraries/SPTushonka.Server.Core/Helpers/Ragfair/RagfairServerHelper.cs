@@ -223,10 +223,20 @@ public class RagfairServerHelper(
     /// <returns>randomised number between min and max</returns>
     public int GetOfferCountByBaseType(MongoId itemParentType)
     {
-        if (!ragfairConfig.Dynamic.OfferItemCount.TryGetValue(itemParentType, out var minMaxRange))
+        var offerItemCounts = ragfairConfig.Dynamic.OfferItemCount;
+        
+        MinMax<int>? minMaxRange;
+        Span<char> parentTypeChars = stackalloc char[24];
+        if (itemParentType.TryFormat(parentTypeChars, out var charsWritten) && offerItemCounts.TryGetAlternateLookup<ReadOnlySpan<char>>(out var lookup))
         {
-            minMaxRange = ragfairConfig.Dynamic.OfferItemCount.GetValueOrDefault("default");
+            lookup.TryGetValue(parentTypeChars[..charsWritten], out minMaxRange);
         }
+        else
+        {
+            offerItemCounts.TryGetValue(itemParentType, out minMaxRange);
+        }
+
+        minMaxRange ??= offerItemCounts.GetValueOrDefault("default");
 
         return randomUtil.GetInt(minMaxRange.Min, minMaxRange.Max);
     }

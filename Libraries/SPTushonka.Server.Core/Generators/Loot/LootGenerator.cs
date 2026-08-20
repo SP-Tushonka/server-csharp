@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -18,7 +19,6 @@ using SPTarkov.Server.Core.Services.Ragfair;
 using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Generators.Loot;
 
@@ -60,16 +60,14 @@ public class LootGenerator(
             {
                 // Choose one at random + add to results array
                 var chosenSealedContainer = randomUtil.GetArrayValue(sealedWeaponContainerPool);
-                result.Add(
-                    [
-                        new Item
-                        {
-                            Id = new MongoId(),
-                            Template = chosenSealedContainer.Id,
-                            Upd = new Upd { StackObjectsCount = 1, SpawnedInSession = true },
-                        },
-                    ]
-                );
+                result.Add([
+                    new Item
+                    {
+                        Id = new MongoId(),
+                        Template = chosenSealedContainer.Id,
+                        Upd = new Upd { StackObjectsCount = 1, SpawnedInSession = true },
+                    },
+                ]);
             }
         }
 

@@ -35,6 +35,6 @@ public class NotifySerializer(NotifierController notifierController, JsonUtil js
 
     public bool CanHandle(string route)
     {
-        return route.ToUpper() == "NOTIFY";
+        return string.Equals(route, "NOTIFY", StringComparison.OrdinalIgnoreCase);
     }
 }

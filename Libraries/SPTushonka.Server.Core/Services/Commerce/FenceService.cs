@@ -969,6 +969,8 @@ public class FenceService(
         int loyaltyLevel
     )
     {
+        var childrenByParent = baseFenceAssort.Items.CreateParentIdLookupCache(out _);
+
         var failedAttemptsCount = 0;
         var weaponPresetsAddedCount = 0;
         if (desiredWeaponPresetsCount > 0)
@@ -983,7 +985,7 @@ public class FenceService(
                 var randomPresetRoot = randomUtil.GetArrayValue(weaponPresetRootItems);
                 var rootItemDb = itemHelper.GetItem(randomPresetRoot.Template).Value;
 
-                var presetWithChildrenClone = _cloner.Clone(baseFenceAssort.Items.GetItemWithChildren(randomPresetRoot.Id));
+                var presetWithChildrenClone = _cloner.Clone(randomPresetRoot.GetItemWithChildren(childrenByParent));
 
                 RandomiseItemUpdProperties(rootItemDb, presetWithChildrenClone[0]);
 
@@ -1047,7 +1049,7 @@ public class FenceService(
             var randomPresetRoot = randomUtil.GetArrayValue(equipmentPresetRootItems);
             var rootItemDb = itemHelper.GetItem(randomPresetRoot.Template).Value;
 
-            var presetWithChildrenClone = _cloner.Clone(baseFenceAssort.Items.GetItemWithChildren(randomPresetRoot.Id));
+            var presetWithChildrenClone = _cloner.Clone(randomPresetRoot.GetItemWithChildren(childrenByParent));
 
             // Need to add mods to armors so they don't show as red in the trade screen
             if (itemHelper.ItemRequiresSoftInserts(randomPresetRoot.Template))
@@ -1133,7 +1135,8 @@ public class FenceService(
         {
             // Find the soft insert for this slot
             var modItemToAdjust = armorItemAndMods.FirstOrDefault(mod =>
-                string.Equals(mod.SlotId, requiredSlot.Name, StringComparison.OrdinalIgnoreCase));
+                string.Equals(mod.SlotId, requiredSlot.Name, StringComparison.OrdinalIgnoreCase)
+            );
 
             if (modItemToAdjust == null)
             {
@@ -1143,18 +1146,13 @@ public class FenceService(
             var modItemDbDetails = itemHelper.GetItem(modItemToAdjust.Template).Value;
             if (modItemDbDetails == null)
             {
-                logger.Error(
-                    localisationService.GetText(
-                        "fence-unable_to_find_soft_insert_template_for_slot",
-                        modItemToAdjust.Template));
+                logger.Error(localisationService.GetText("fence-unable_to_find_soft_insert_template_for_slot", modItemToAdjust.Template));
 
                 continue;
             }
 
             // Randomize durability
-            var durabilityValues = GetRandomisedArmorDurabilityValues(
-                modItemDbDetails,
-                traderConfig.Fence.ArmorMaxDurabilityPercentMinMax);
+            var durabilityValues = GetRandomisedArmorDurabilityValues(modItemDbDetails, traderConfig.Fence.ArmorMaxDurabilityPercentMinMax);
 
             // Ensure item has defaults
             modItemToAdjust.AddUpd();

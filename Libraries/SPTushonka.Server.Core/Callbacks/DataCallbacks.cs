@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Controllers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Dialog;
+using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Locales;
@@ -27,48 +28,48 @@ public class DataCallbacks(
     ///     Handle client/settings
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetSettings(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetSettings(string url, EmptyRequestData _, MongoId sessionID)
     {
-        var returns = httpResponseUtil.GetBody(settingsTable);
-        return new ValueTask<string>(returns);
+        var returns = httpResponseUtil.GetStreamedBody(settingsTable);
+        return new ValueTask<StreamedJsonBody>(returns);
     }
 
     /// <summary>
     ///     Handle client/globals
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetGlobals(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetGlobals(string url, EmptyRequestData _, MongoId sessionID)
     {
-        var returns = httpResponseUtil.GetBody(globalTable);
+        var returns = httpResponseUtil.GetStreamedBody(globalTable);
 
-        return new ValueTask<string>(returns);
+        return new ValueTask<StreamedJsonBody>(returns);
     }
 
     /// <summary>
     ///     Handle client/items
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetTemplateItems(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetTemplateItems(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.Items));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Items));
     }
 
     /// <summary>
     ///     Handle client/handbook/templates
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetTemplateHandbook(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetTemplateHandbook(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetBody(templateTable.Handbook));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Handbook));
     }
 
     /// <summary>
     ///     Handle client/customization
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetTemplateSuits(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetTemplateSuits(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetBody(templateTable.Customization));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Customization));
     }
 
     /// <summary>
@@ -93,18 +94,18 @@ public class DataCallbacks(
     ///     Handle client/hideout/areas
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetHideoutAreas(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetHideoutAreas(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetBody(hideoutTable.Areas));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(hideoutTable.Areas));
     }
 
     /// <summary>
     ///     Handle client/hideout/production/recipes
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetHideoutProduction(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetHideoutProduction(string url, EmptyRequestData _, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetBody(hideoutTable.Production));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(hideoutTable.Production));
     }
 
     /// <summary>
@@ -137,12 +138,12 @@ public class DataCallbacks(
     ///     Handle client/locale
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetLocalesGlobal(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetLocalesGlobal(string url, EmptyRequestData _, MongoId sessionID)
     {
         var localeId = url.Replace("/client/locale/", "");
         var locales = localeService.GetLocaleDb(localeId);
 
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(locales));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(locales));
     }
 
     /// <summary>
@@ -168,8 +169,8 @@ public class DataCallbacks(
     /// <summary>
     /// Handle /client/dialogue
     /// </summary>
-    public ValueTask<string> GetDialogue(string url, GetClientDialogueRequestData request, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetDialogue(string url, GetClientDialogueRequestData request, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.Dialogue));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Dialogue));
     }
 }

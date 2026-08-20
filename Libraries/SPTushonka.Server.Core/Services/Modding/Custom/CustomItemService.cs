@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Models.Common;
@@ -14,7 +15,7 @@ using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace SPTarkov.Server.Core.Services.Modding.Custom;
 
-[Injectable]
+[Injectable(InjectionType.Singleton)]
 public class CustomItemService(
     ISptLogger<CustomItemService> logger,
     TemplateTable templateTable,
@@ -28,6 +29,11 @@ public class CustomItemService(
 )
 {
     /// <summary>
+    /// Is set to true once the server begins loading profiles, this is to prevent profile errors
+    /// </summary>
+    public bool ProfilesLoaded { get; internal set; } = false;
+
+    /// <summary>
     ///     Create a new item from a cloned item base <br />
     ///     WARNING - If no item id is supplied, an id will be generated, this id will be random every time you add an item and will not be the same on each subsequent server start <br />
     ///     Add to the items db <br />
@@ -40,6 +46,8 @@ public class CustomItemService(
     /// <returns> tplId of the new item created </returns>
     public CreateItemResult CreateItemFromClone(NewItemFromCloneDetails newItemDetails, Assembly? callingAssembly = null)
     {
+        EnsureItemsCanStillBeAdded(newItemDetails.NewId);
+
         // Generate new id for item if none supplied
         var newItemId = newItemDetails.NewId;
 
@@ -132,6 +140,8 @@ public class CustomItemService(
     {
         var newItem = newItemDetails.NewItem;
 
+        EnsureItemsCanStillBeAdded(newItem.Id);
+
         // Fail if itemId already exists
         if (templateTable.Items.TryGetValue(newItem.Id, out var item))
         {
@@ -194,6 +204,24 @@ public class CustomItemService(
             Success = true,
             ItemId = newItemDetails.NewItem.Id,
         };
+    }
+
+    /// <summary>
+    ///     Items added once profiles are in memory are missing from those profiles item db checks, so refuse them
+    /// </summary>
+    /// <param name="newItemId"> ID of the item being added </param>
+    /// <exception cref="InvalidOperationException"> Thrown when profiles have already been loaded </exception>
+    protected void EnsureItemsCanStillBeAdded(MongoId newItemId)
+    {
+        if (!ProfilesLoaded)
+        {
+            return;
+        }
+
+        throw new InvalidOperationException(
+            $"Unable to add item: {newItemId}, items must be added before profiles load. "
+                + $"Lower the mods {nameof(Injectable.TypePriority)} where items are added to {nameof(OnLoadOrder)}.{nameof(OnLoadOrder.Preload)}"
+        );
     }
 
     /// <summary>

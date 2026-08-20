@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Exceptions.Helpers;
@@ -15,7 +16,6 @@ using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 using SPTarkov.Server.Core.Utils.Collections;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Helpers.Items;
 
@@ -673,11 +673,24 @@ public class ItemHelper(
     /// <param name="itemIdToFind">Template id of item to check for</param>
     /// <param name="assort">List of items to check in</param>
     /// <returns>List of children of requested item</returns>
+    [Obsolete(
+        "This method will be removed in a newer version of SPT, use FindAndReturnChildrenByAssort with the overload accepting a lookup"
+    )]
     public List<Item> FindAndReturnChildrenByAssort(MongoId itemIdToFind, IEnumerable<Item> assort)
     {
-        // Group items by ParentId
-        var lookup = assort.CreateParentIdLookupCache(out _);
+        return FindAndReturnChildrenByAssort(itemIdToFind, assort.CreateParentIdLookupCache(out _));
+    }
 
+    /// <summary>
+    /// Find children of the item in a given assort, using a lookup built by
+    /// <see cref="ItemExtensions.CreateParentIdLookupCache"/>. Build the lookup once when looking up many
+    /// items in the same assort, as building it costs a pass over the whole assort.
+    /// </summary>
+    /// <param name="itemIdToFind">Template id of item to check for</param>
+    /// <param name="lookup">Assort items keyed by their parentId</param>
+    /// <returns>List of children of requested item</returns>
+    public List<Item> FindAndReturnChildrenByAssort(MongoId itemIdToFind, Dictionary<string, List<Item>> lookup)
+    {
         var results = new List<Item>();
         var visitedCache = new HashSet<string>();
 
@@ -827,7 +840,7 @@ public class ItemHelper(
 
             if (!filteredResult.Any())
             {
-                logger.Warning(serverLocalisationService.GetText("item-helper_no_items_for_barter", barterId));
+                logger.Warning(serverLocalisationService.GetText("item-helper_no_items_for_barter", barterId.ToString()));
                 continue;
             }
 
@@ -1686,9 +1699,12 @@ public class ItemHelper(
 
         foreach (var mod in itemWithChildren)
         {
-            if (!idMappings.ContainsKey(mod.Id))
+            var modId = mod.Id.ToString();
+
+            if (!idMappings.TryGetValue(modId, out var idValue))
             {
-                idMappings[mod.Id.ToString()] = new MongoId();
+                idValue = new MongoId();
+                idMappings[modId] = idValue;
             }
 
             // Has parentId + no remapping exists for its parent
@@ -1698,7 +1714,7 @@ public class ItemHelper(
                 idMappings![mod.ParentId] = new MongoId();
             }
 
-            mod.Id = idMappings[mod.Id.ToString()];
+            mod.Id = idValue;
             if (mod.ParentId != null)
             {
                 mod.ParentId = idMappings[mod.ParentId];

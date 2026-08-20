@@ -40,7 +40,7 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
     private readonly int _pidAndIncrement;
 
     private static readonly int _machine = BitConverter.ToInt32(RandomNumberGenerator.GetBytes(4), 0) & 0xFFFFFF;
-    private static readonly short _pid = (short) Environment.ProcessId;
+    private static readonly short _pid = (short)Environment.ProcessId;
     private static int _increment = RandomNumberGenerator.GetInt32(0, 0xFFFFFF);
 
     public bool IsEmpty
@@ -54,25 +54,25 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
     /// </summary>
     public MongoId()
     {
-        var timestamp = (int) DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        var timestamp = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         Span<byte> bytes = stackalloc byte[12];
 
         // timestamp (4 bytes, big-endian)
         BinaryPrimitives.WriteInt32BigEndian(bytes, timestamp);
 
         // machine ID (3 bytes)
-        bytes[4] = (byte) (_machine >> 16);
-        bytes[5] = (byte) (_machine >> 8);
-        bytes[6] = (byte) _machine;
+        bytes[4] = (byte)(_machine >> 16);
+        bytes[5] = (byte)(_machine >> 8);
+        bytes[6] = (byte)_machine;
 
         // PID (2 bytes)
         BinaryPrimitives.WriteInt16BigEndian(bytes[7..9], _pid);
 
         // increment (3 bytes, big-endian)
         var inc = Interlocked.Increment(ref _increment) & 0xFFFFFF;
-        bytes[9] = (byte) (inc >> 16);
-        bytes[10] = (byte) (inc >> 8);
-        bytes[11] = (byte) inc;
+        bytes[9] = (byte)(inc >> 16);
+        bytes[10] = (byte)(inc >> 8);
+        bytes[11] = (byte)inc;
 
         // pack into fields (avoids array allocations later)
         _timestampAndMachine = BitConverter.ToInt64(bytes);
@@ -106,7 +106,7 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
                 throw new FormatException("ObjectId contains invalid hex characters.");
             }
 
-            bytes[i] = (byte) ((hi << 4) | lo);
+            bytes[i] = (byte)((hi << 4) | lo);
         }
 
         _timestampAndMachine = BitConverter.ToInt64(bytes);
@@ -170,7 +170,7 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
     /// <returns>A lowercase hexadecimal character representing the specified value.</returns>
     private static char HexValueToChar(int value)
     {
-        return (char) (value < 10 ? value + '0' : value - 10 + 'a');
+        return (char)(value < 10 ? value + '0' : value - 10 + 'a');
     }
 
     /// <summary>
@@ -183,19 +183,23 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
             return string.Empty;
         }
 
-        return string.Create(24, this, static (chars, state) =>
-        {
-            Span<byte> bytes = stackalloc byte[12];
-            BitConverter.TryWriteBytes(bytes, state._timestampAndMachine);
-            BitConverter.TryWriteBytes(bytes[8..], state._pidAndIncrement);
-
-            for (var i = 0; i < 12; i++)
+        return string.Create(
+            24,
+            this,
+            static (chars, state) =>
             {
-                var b = bytes[i];
-                chars[i * 2] = HexValueToChar(b >> 4);
-                chars[(i * 2) + 1] = HexValueToChar(b & 0x0F);
+                Span<byte> bytes = stackalloc byte[12];
+                BitConverter.TryWriteBytes(bytes, state._timestampAndMachine);
+                BitConverter.TryWriteBytes(bytes[8..], state._pidAndIncrement);
+
+                for (var i = 0; i < 12; i++)
+                {
+                    var b = bytes[i];
+                    chars[i * 2] = HexValueToChar(b >> 4);
+                    chars[(i * 2) + 1] = HexValueToChar(b & 0x0F);
+                }
             }
-        });
+        );
     }
 
     /// <summary>
@@ -256,7 +260,7 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
                 return false;
             }
 
-            bytes[i] = (byte) ((hi << 4) | lo);
+            bytes[i] = (byte)((hi << 4) | lo);
         }
 
         var a = BitConverter.ToInt64(bytes);
@@ -304,12 +308,12 @@ public readonly struct MongoId : IEquatable<MongoId>, IComparable<MongoId>
 
     public static bool operator !=(MongoId left, MongoId? right)
     {
-        return !left.Equals(right);
+        return !(left == right);
     }
 
     public static bool operator ==(MongoId left, MongoId? right)
     {
-        return left.Equals(right);
+        return right.HasValue && left.Equals(right.Value);
     }
 
     public static bool operator !=(MongoId left, MongoId right)

@@ -196,7 +196,7 @@ public class RepeatableQuestController(
             {
                 // Not free, Charge player + apply charisma bonus to cost of replacement
                 cost.Count = (int)Math.Truncate(cost.Count.Value * (1 - (Math.Truncate(charismaBonus / 100) * 0.001)));
-                paymentService.AddPaymentToOutput(pmcData, cost.TemplateId, cost.Count.Value, sessionID, output);
+                paymentService.AddPaymentToOutput(pmcData, cost.TemplateId, cost.Count.Value, sessionID, output, null);
                 if (output.Warnings.Count > 0)
                 {
                     return output;

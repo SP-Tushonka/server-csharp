@@ -29,6 +29,12 @@ public record HttpConfig : BaseConfig
     public required bool LogRequests { get; set; }
 
     /// <summary>
+    ///     Write full response bodies to the request log, debugging only. Responses reach tens of megabytes
+    /// </summary>
+    [JsonPropertyName("logResponseBodies")]
+    public bool LogResponseBodies { get; set; }
+
+    /// <summary>
     ///     e.g. "SPT_Data/Server/images/traders/579dc571d53a0658a154fbec.png": "SPT_Data/Server/images/traders/NewTraderImage.png"
     /// </summary>
     [JsonPropertyName("serverImagePathOverride")]

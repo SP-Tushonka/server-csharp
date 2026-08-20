@@ -87,7 +87,7 @@ public class MongoIDTests
         });
     }
 
-    [TestCase("507f1f77bcf86cd79943901")]  // 23 chars
+    [TestCase("507f1f77bcf86cd79943901")] // 23 chars
     [TestCase("507f1f77bcf86cd7994390112")] // 25 chars
     public void Constructor_InvalidLength_ThrowsArgumentException(string invalidLengthHex)
     {
@@ -169,7 +169,7 @@ public class MongoIDTests
             Assert.That(id.Equals(ValidHex), Is.True);
             Assert.That(id.Equals(mixedCaseHex), Is.True); // Hex parsing handles uppercase
             Assert.That(id.Equals("invalidstringlen"), Is.False);
-            Assert.That(id.Equals((string?) null), Is.False);
+            Assert.That(id.Equals((string?)null), Is.False);
         });
     }
 
@@ -188,8 +188,8 @@ public class MongoIDTests
     public void ImplicitOperators_ConvertCorrectlyBetweenStringAndMongoId()
     {
         // Arrange & Act
-        MongoId id = ValidHex;         // Implicit conversion from string
-        string hexStr = id;            // Implicit conversion to string
+        MongoId id = ValidHex; // Implicit conversion from string
+        string hexStr = id; // Implicit conversion to string
 
         // Assert
         Assert.Multiple(() =>
@@ -327,7 +327,10 @@ public class MongoIDTests
 
         var uniqueCount = uniqueSet.Count;
 
-        Assert.That(uniqueCount, Is.EqualTo(totalCount),
-            $"Expected all generated MongoId's to be unique, but found: {totalCount - uniqueCount} duplicates.");
+        Assert.That(
+            uniqueCount,
+            Is.EqualTo(totalCount),
+            $"Expected all generated MongoId's to be unique, but found: {totalCount - uniqueCount} duplicates."
+        );
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Exceptions.Helpers;
@@ -16,7 +17,6 @@ using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
-using Microsoft.Extensions.Logging;
 
 namespace SPTarkov.Server.Core.Helpers.Profile;
 
@@ -1357,16 +1357,14 @@ public class HideoutHelper(
         List<List<Item>> itemsToAdd = [];
         for (var index = 0; index < craftedCoinCount; index++)
         {
-            itemsToAdd.Add(
-                [
-                    new Item
-                    {
-                        Id = new MongoId(),
-                        Template = ItemTpl.BARTER_PHYSICAL_BITCOIN,
-                        Upd = new Upd { StackObjectsCount = 1 },
-                    },
-                ]
-            );
+            itemsToAdd.Add([
+                new Item
+                {
+                    Id = new MongoId(),
+                    Template = ItemTpl.BARTER_PHYSICAL_BITCOIN,
+                    Upd = new Upd { StackObjectsCount = 1 },
+                },
+            ]);
         }
 
         // Create request for what we want to add to stash

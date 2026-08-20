@@ -28,6 +28,7 @@ public record LocaleTable
     public required Dictionary<string, string> Languages { get; init; }
 }
 
+[CacheLazyLoad]
 public sealed class GlobalLocaleDictionary : Dictionary<string, string>
 {
     public GlobalLocaleDictionary()

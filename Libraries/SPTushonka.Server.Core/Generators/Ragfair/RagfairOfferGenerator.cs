@@ -84,24 +84,26 @@ public class RagfairOfferGenerator(
     /// <returns>RagfairOffer</returns>
     protected RagfairOffer CreateOffer(CreateFleaOfferDetails details)
     {
-        var offerRequirements = details.BarterScheme.Select(barter =>
-        {
-            var offerRequirement = new OfferRequirement
+        var offerRequirements = details
+            .BarterScheme.Select(barter =>
             {
-                TemplateId = barter.Template,
-                Count = Math.Round(barter.Count.Value, 2),
-                OnlyFunctional = barter.OnlyFunctional ?? false,
-            };
+                var offerRequirement = new OfferRequirement
+                {
+                    TemplateId = barter.Template,
+                    Count = Math.Round(barter.Count.Value, 2),
+                    OnlyFunctional = barter.OnlyFunctional ?? false,
+                };
 
-            // Dogtags define level and side
-            if (barter.Level != null)
-            {
-                offerRequirement.Level = barter.Level;
-                offerRequirement.Side = barter.Side;
-            }
+                // Dogtags define level and side
+                if (barter.Level != null)
+                {
+                    offerRequirement.Level = barter.Level;
+                    offerRequirement.Side = barter.Side;
+                }
 
-            return offerRequirement;
-        });
+                return offerRequirement;
+            })
+            .ToList();
 
         var rootItem = details.Items.FirstOrDefault();
 
@@ -549,6 +551,8 @@ public class RagfairOfferGenerator(
 
         var blacklist = ragfairConfig.Dynamic.Blacklist;
         var childAssortItems = assortsClone.Items.Where(x => !string.Equals(x.ParentId, "hideout", StringComparison.Ordinal)).ToList();
+        var childAssortLookup = childAssortItems.CreateParentIdLookupCache(out _);
+
         foreach (var item in assortsClone.Items)
         {
             // We only want to process 'base/root' items, no children
@@ -578,7 +582,7 @@ public class RagfairOfferGenerator(
             var isPreset = presetHelper.IsPreset(item.Id);
             var items = isPreset
                 ? ragfairServerHelper.GetPresetItems(item)
-                : [item, .. itemHelper.FindAndReturnChildrenByAssort(item.Id, childAssortItems)];
+                : [item, .. itemHelper.FindAndReturnChildrenByAssort(item.Id, childAssortLookup)];
 
             if (!assortsClone.BarterScheme.TryGetValue(item.Id, out var barterScheme))
             {
