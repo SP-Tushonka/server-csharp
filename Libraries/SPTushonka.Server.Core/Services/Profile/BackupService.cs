@@ -265,7 +265,7 @@ public sealed class BackupService(
     ///     If the number of backups exceeds the configured maximum, the oldest are deleted. Backups whose folder
     ///     name can't be dated are left alone, and don't count towards the maximum.
     /// </summary>
-    private void CleanBackups()
+    public void CleanBackups()
     {
         var backupPaths = GetBackupPaths(_backupConfig.Directory);
 
