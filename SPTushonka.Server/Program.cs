@@ -113,8 +113,7 @@ public static class Program
                 }
             }
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey(true);
+            WaitForExit();
         }
         catch (ValidationErrorException ex)
         {
@@ -131,8 +130,7 @@ public static class Program
                 );
             }
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey(true);
+            WaitForExit();
         }
         catch (Exception e)
         {
@@ -148,7 +146,7 @@ public static class Program
                     "You may have installed a mod that needs a newer version of of SPT installed. Please try updating SPT"
                 );
 
-                Console.ReadLine();
+                WaitForExit();
                 return;
             }
 
@@ -159,7 +157,8 @@ public static class Program
                     "You may have forgotten to install a requirement for one of your mods, please check the mod page again and install any requirements listed. Read the error message below CAREFULLY for the name of the mod you need to install"
                 );
 
-                Console.ReadLine();
+                WaitForExit();
+
                 // Don't show below error message when it's a mod exception.
                 return;
             }
@@ -168,8 +167,7 @@ public static class Program
                 e,
                 "The server has unexpectedly stopped, reach out to the support channel in our Discord server. Include a screenshot of this message and the surrounding error(s) above and below"
             );
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadLine();
+            WaitForExit();
         }
         finally
         {
@@ -301,6 +299,20 @@ public static class Program
                 });
             }
         );
+    }
+
+    private static void WaitForExit()
+    {
+        Console.WriteLine("Press any key to exit...");
+
+        try
+        {
+            Console.ReadKey(true);
+        }
+        catch (InvalidOperationException)
+        {
+            Console.ReadLine();
+        }
     }
 
     private static bool IsRunFromInstallationFolder()
