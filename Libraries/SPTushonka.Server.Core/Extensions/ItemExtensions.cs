@@ -143,10 +143,12 @@ public static class ItemExtensions
     /// <returns>Returns Array of Items that have been adopted</returns>
     public static List<Item> AdoptOrphanedItems(this List<Item> items, string rootId)
     {
+        var ids = items.Select(item => item.Id).ToHashSet();
+
         foreach (var item in items)
         {
             // Check if the item's parent exists.
-            var parentExists = items.Any(parentItem => parentItem.Id.Equals(item.ParentId));
+            var parentExists = item.ParentId.TryParseMongoId(out var parentId) && ids.Contains(parentId);
 
             // If the parent does not exist and the item is not already a 'hideout' item, adopt the orphaned item by
             // setting the parent ID to the PMCs inventory equipment ID, the slot ID to 'hideout', and remove the location.
