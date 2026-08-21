@@ -35,7 +35,7 @@ public class StringOrInt(string? str, int? num)
 
     public override string? ToString()
     {
-        if (String is null || Int is null)
+        if (String is null && Int is null)
         {
             return null;
         }
