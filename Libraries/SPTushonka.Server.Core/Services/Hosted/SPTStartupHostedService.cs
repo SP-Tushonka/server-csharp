@@ -3,7 +3,6 @@ using Microsoft.Extensions.Hosting;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Exceptions.Database;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Loaders;
 using SPTarkov.Server.Core.Models.Spt.Mod;
@@ -30,39 +29,45 @@ public sealed class SPTStartupHostedService(
 {
     private readonly Dictionary<string, long> _onUpdateLastRun = [];
 
+    public override async Task StartAsync(CancellationToken cancellationToken)
+    {
+        if (ProgramStatics.MODS())
+        {
+            await bundleLoader.LoadBundlesAsync(loadedMods, cancellationToken).ConfigureAwait(false);
+        }
+
+        systemInformationLogger.LogSystemInformation();
+
+        // execute OnLoad callbacks past PreLoad
+        var PostPreloadComponents = dependencyInjectionContainers
+            .Where(container => container.Type == typeof(IOnLoad))
+            .Where(container => container.InjectableAttribute.TypePriority >= OnLoadOrder.GameCallbacks);
+
+        foreach (var onLoadContainer in PostPreloadComponents)
+        {
+            var onLoadService = serviceProvider.GetRequiredService(onLoadContainer.ParentType);
+
+            if (onLoadService is not IOnLoad onLoad)
+            {
+                throw new InvalidOperationException($"Unable to resolve {onLoadContainer.ParentType.FullName} as {nameof(IOnLoad)}");
+            }
+
+            await onLoad.OnLoadAsync(cancellationToken).ConfigureAwait(false);
+        }
+
+        logger.Success(serverLocalisationService.GetText("started_webserver_success", httpServer.ListeningUrl()));
+        logger.Success(serverLocalisationService.GetText("websocket-started", httpServer.ListeningUrl().Replace("https://", "wss://")));
+
+        logger.Success(GetRandomisedStartMessage());
+
+        // Only start the update loop once loading has succeeded
+        await base.StartAsync(cancellationToken).ConfigureAwait(false);
+    }
+
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         try
         {
-            if (ProgramStatics.MODS())
-            {
-                await bundleLoader.LoadBundlesAsync(loadedMods, cancellationToken).ConfigureAwait(false);
-            }
-
-            systemInformationLogger.LogSystemInformation();
-
-            // execute OnLoad callbacks past PreLoad
-            var PostPreloadComponents = dependencyInjectionContainers
-                .Where(container => container.Type == typeof(IOnLoad))
-                .Where(container => container.InjectableAttribute.TypePriority >= OnLoadOrder.GameCallbacks);
-
-            foreach (var onLoadContainer in PostPreloadComponents)
-            {
-                var onLoadService = serviceProvider.GetRequiredService(onLoadContainer.ParentType);
-
-                if (onLoadService is not IOnLoad onLoad)
-                {
-                    throw new InvalidOperationException($"Unable to resolve {onLoadContainer.ParentType.FullName} as {nameof(IOnLoad)}");
-                }
-
-                await onLoad.OnLoadAsync(cancellationToken).ConfigureAwait(false);
-            }
-
-            logger.Success(serverLocalisationService.GetText("started_webserver_success", httpServer.ListeningUrl()));
-            logger.Success(serverLocalisationService.GetText("websocket-started", httpServer.ListeningUrl().Replace("https://", "wss://")));
-
-            logger.Success(GetRandomisedStartMessage());
-
             using var timer = new PeriodicTimer(TimeSpan.FromSeconds(5));
 
             while (!cancellationToken.IsCancellationRequested)
@@ -89,10 +94,6 @@ public sealed class SPTStartupHostedService(
                     {
                         throw;
                     }
-                    catch (DatabaseModifiedAfterCutoffException)
-                    {
-                        throw;
-                    }
                     catch (Exception err)
                     {
                         LogUpdateException(err, updateable);
@@ -102,15 +103,13 @@ public sealed class SPTStartupHostedService(
                 await timer.WaitForNextTickAsync(cancellationToken);
             }
         }
-        catch (Exception ex)
+        catch (OperationCanceledException)
         {
             // Thrown when we stop gracefully, we don't need to care for this
-            if (ex is OperationCanceledException)
-            {
-                logger.Info("Stopping server...");
-                return;
-            }
-
+            logger.Info("Stopping server...");
+        }
+        catch (Exception ex)
+        {
             logger.Critical("Critical exception, stopping server...", ex);
             throw;
         }

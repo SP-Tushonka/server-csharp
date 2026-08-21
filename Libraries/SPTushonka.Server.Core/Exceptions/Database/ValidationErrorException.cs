@@ -1,6 +1,6 @@
 namespace SPTarkov.Server.Core.Exceptions.Database;
 
-public class ValidationErrorException : Exception
+public sealed class ValidationErrorException : Exception
 {
     public ValidationErrorException(string message)
         : base(message) { }
