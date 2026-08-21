@@ -930,7 +930,11 @@ public class FenceService(
         }
 
         // Adjust price based on durability
-        if (itemRoot.Upd?.Repairable != null || itemHelper.IsOfBaseclass(itemRoot.Template, BaseClasses.KEY_MECHANICAL))
+        if (
+            itemRoot.Upd?.Repairable != null
+            || itemHelper.IsOfBaseclass(itemRoot.Template, BaseClasses.KEY_MECHANICAL)
+            || itemHelper.IsOfBaseclass(itemRoot.Template, BaseClasses.KEYCARD)
+        )
         {
             var itemQualityModifier = itemHelper.GetItemQualityModifier(itemRoot);
             var basePrice = barterSchemes[itemRoot.Id][0][0].Count;
@@ -1397,8 +1401,14 @@ public class FenceService(
             return;
         }
 
-        // Mechanical key + has limited uses
-        if (itemHelper.IsOfBaseclass(itemDetails.Id, BaseClasses.KEY_MECHANICAL) && (itemDetails.Properties.MaximumNumberOfUsage ?? 0) > 1)
+        // Mechanical key + and keycards have limited uses
+        if (
+            (
+                itemHelper.IsOfBaseclass(itemDetails.Id, BaseClasses.KEY_MECHANICAL)
+                || itemHelper.IsOfBaseclass(itemDetails.Id, BaseClasses.KEYCARD)
+            )
+            && (itemDetails.Properties.MaximumNumberOfUsage ?? 0) > 1
+        )
         {
             itemToAdjust.Upd.Key = new UpdKey
             {
