@@ -43,15 +43,20 @@
   <ItemGroup>
     <InternalsVisibleTo Include="UnitTests" />
   </ItemGroup>
+  <PropertyGroup>
+    <SptUsesDebugLogger>true</SptUsesDebugLogger>
+    <SptUsesDebugLogger Condition="'$(SptBuildType)' == 'RELEASE'">false</SptUsesDebugLogger>
+    <SptUsesDebugLogger Condition="'$(SptBuildType)' == 'LOCAL' And '$(Configuration)' != 'Debug'">false</SptUsesDebugLogger>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="Assets\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>True</ExcludeFromSingleFile>
     </Content>
-    <None Update="sptLogger.json" Condition="'$(SptBuildType)' == 'RELEASE'">
+    <None Update="sptLogger.json" Condition="'$(SptUsesDebugLogger)' != 'true'">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sptLogger.Development.json" Condition="'$(SptBuildType)' != 'RELEASE'">
+    <None Update="sptLogger.Development.json" Condition="'$(SptUsesDebugLogger)' == 'true'">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
