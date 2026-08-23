@@ -148,6 +148,30 @@ public class PostDbLoadService(
         {
             RenamePreraidLocales();
         }
+
+        SetLocationAirdropMinimumPlayers();
+    }
+
+    /// <summary>
+    /// Default values for minimum player count is 6, which is very unlikely. Adjust them to 1 if they are over 1 and exist.
+    /// </summary>
+    protected void SetLocationAirdropMinimumPlayers()
+    {
+        foreach (var location in locationTable.GetDictionary().Values)
+        {
+            if (location.Base.AirdropParameters is null)
+            {
+                continue;
+            }
+
+            foreach (var airdropParameter in location.Base.AirdropParameters)
+            {
+                if (airdropParameter.MinimumPlayersCountToSpawnAirdrop is > 1)
+                {
+                    airdropParameter.MinimumPlayersCountToSpawnAirdrop = 1;
+                }
+            }
+        }
     }
 
     protected void RenamePreraidLocales()
