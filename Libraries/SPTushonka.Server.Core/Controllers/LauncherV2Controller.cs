@@ -46,6 +46,11 @@ public class LauncherV2Controller(
 
         foreach (var (templateName, template) in dbProfiles)
         {
+            if (IsEditionBlacklisted(templateName))
+            {
+                continue;
+            }
+
             result.TryAdd(templateName, serverLocalisationService.GetText(template.DescriptionLocaleKey));
         }
 
@@ -71,6 +76,11 @@ public class LauncherV2Controller(
     /// <returns></returns>
     public async Task<bool> Register(RegisterData info)
     {
+        if (IsEditionBlacklisted(info.Edition))
+        {
+            return false;
+        }
+
         foreach (var (_, profile) in saveServer.GetProfiles())
         {
             if (info.Username == profile.ProfileInfo!.Username)
@@ -157,6 +167,11 @@ public class LauncherV2Controller(
         await saveServer.SaveProfileAsync(profileId);
 
         return profileId;
+    }
+
+    protected bool IsEditionBlacklisted(string? edition)
+    {
+        return edition is not null && coreConfig.Features.CreateNewProfileTypesBlacklist.Contains(edition, StringComparer.OrdinalIgnoreCase);
     }
 
     protected MongoId GetSessionId(LoginRequestData info)
