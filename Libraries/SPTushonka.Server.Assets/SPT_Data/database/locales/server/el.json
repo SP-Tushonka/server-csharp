@@ -623,6 +623,7 @@
   "ragfair-invalid_player_offer_request": "Αδύνατη η τοποθέτηση προσφοράς, το αίτημα δεν είναι έγκυρο",
   "ragfair-item_not_in_db_unable_to_generate_dynamic_stack_count": "Το αντικείμενο με tpl: %s δε βρέθηκε στη βάση δεδομένων. Δεν είναι δυνατή η δημιουργία δυναμικού αριθμού στοιβών",
   "ragfair-missing_barter_scheme": "generateFleaOffersForTrader() Απέτυχε να βρει barterScheme για το αντικείμενο id: {{itemId}} tpl: {{tpl}} στο {{name}}",
+  "ragfair-missing_loyal_level_item": "generateFleaOffersForTrader() Αδυναμία εύρεσης του LoyalLevelItem για το αντικείμενο με id: {{itemId}} tpl: {{tpl}} στο {{name}}",
   "ragfair-no_trader_assorts_cant_generate_flea_offers": "Δεν είναι δυνατή η δημιουργία προσφορών από το παζάρι για τον έμπορο %s, δε βρέθηκε αντιστοιχία",
   "ragfair-offer_no_longer_exists": "Η προσφορά δεν υπάρχει πλέον",
   "ragfair-offer_not_found_in_profile": "Δεν μπόρεσε να βρεθεί προσφορά με την ταυτότητα: {{offerId}} στο προφίλ{{profileId}} για αφαίρεση",

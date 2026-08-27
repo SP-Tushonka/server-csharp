@@ -90,6 +90,7 @@
   "fence-ammo_not_found_in_db": "Ammo: %s 不是一个有效的物品",
   "fence-unable_to_find_assort_by_id": "找不到id:%s的fence商品",
   "fence-unable_to_find_offer_by_id": "无法找到id为%s的报价",
+  "fence-unable_to_find_soft_insert_template_for_slot": "无法在数据库中找到软盔甲模板： %s",
   "fence-unable_to_get_ammo_penetration_value": "未找到弹药： %s的穿透值，无法检查其是否超过穿透限制，假定为false",
   "fence-unable_to_find_root_item_to_add": "无法向黑商添加道具，找不到对应的根道具",
   "fixer-clothing_item_found": "存档中发现的服装物品：%s不存在于SPT内。你将会遇到错误，这可能是由于使用了服装模组，并在移除该模组时你的人物还在装备该服饰。千万不要使用这个存档。打开SPT\\SPT_Data\\configs\\core.json，编辑 'removeModItemsFromProfile' 为 true。这会允许服务端编辑你的存档，且有望移除服装缺失",
