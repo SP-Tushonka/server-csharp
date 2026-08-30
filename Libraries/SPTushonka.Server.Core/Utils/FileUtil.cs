@@ -214,7 +214,7 @@ public sealed class FileUtil
     }
 
     /// <summary>
-    ///     Check the first 32 bytes of a filestream to ensure they match a Unity AssetBundle
+    ///     Check the first 16 bytes of a filestream to ensure they match a Unity AssetBundle
     /// </summary>
     /// <param name="fileStream">The file stream to check the header for</param>
     /// <param name="cancellationToken">
