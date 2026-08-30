@@ -1,13 +1,15 @@
 using System.Collections.Concurrent;
 using System.Text.Json;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Exceptions.Database;
 using SPTarkov.Server.Core.Models.Spt.Bundles;
+using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Services.Server;
 
 [Injectable(InjectionType.Singleton)]
-public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil, FileUtil fileUtil)
+public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil, FileUtil fileUtil, ServerLocalisationService serverLocalisationService)
 {
     private const string BundleHashCachePath = "./user/cache/";
     private const string CacheName = "bundleHashCache.json";
@@ -53,10 +55,17 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
         var fileInfo = new FileInfo(bundlePath);
         var size = fileInfo.Length;
         var modified = fileInfo.LastWriteTimeUtc.Ticks;
+        var fileStream = File.OpenRead(bundlePath);
 
         if (_loaded.TryGetValue(bundlePath, out var cached) && cached.Size == size && cached.ModifiedUtcTicks == modified)
         {
             _current[bundlePath] = cached;
+
+            if (!await fileUtil.VerifyBundleHeaderAsync(fileStream, cancellationToken))
+            {
+                throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", bundlePath));
+            }
+
             return cached;
         }
 
@@ -64,7 +73,7 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
         {
             Size = size,
             ModifiedUtcTicks = modified,
-            Crc = await hashUtil.GenerateCrc32ForFileAsync(bundlePath, cancellationToken),
+            Crc = await hashUtil.GenerateCrc32ForFileAsync(fileStream, cancellationToken),
         };
 
         _current[bundlePath] = entry;
