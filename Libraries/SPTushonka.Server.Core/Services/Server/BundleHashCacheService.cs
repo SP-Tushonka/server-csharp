@@ -76,6 +76,8 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
             Crc = await hashUtil.GenerateCrc32ForFileAsync(fileStream, cancellationToken),
         };
 
+        await fileStream.DisposeAsync();
+
         _current[bundlePath] = entry;
 
         return entry;
