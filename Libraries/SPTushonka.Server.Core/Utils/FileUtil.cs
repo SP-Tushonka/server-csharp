@@ -214,6 +214,14 @@ public sealed class FileUtil
         return Path.Combine(ModBasePath, modName);
     }
 
+    /// <summary>
+    ///     Check the first 32 bytes of a filestream to ensure they match a Unity AssetBundle
+    /// </summary>
+    /// <param name="fileStream">The file stream to check the header for</param>
+    /// <param name="cancellationToken">
+    ///     The <see cref="CancellationToken"/> that can be used to cancel the bundle header verification operation.
+    /// </param>
+    /// <returns>True if the header matches the AssetBundle header, false if not.</returns>
     public async Task<bool> VerifyBundleHeaderAsync(FileStream fileStream, CancellationToken cancellationToken = default)
     {
         var buffer = ArrayPool<byte>.Shared.Rent(_bundleMagicBytes.Length);
