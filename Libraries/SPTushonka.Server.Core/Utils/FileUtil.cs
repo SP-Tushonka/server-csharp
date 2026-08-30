@@ -1,13 +1,11 @@
 using System.Buffers;
 using System.Text;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Exceptions.Database;
-using SPTarkov.Server.Core.Services.Locales;
 
 namespace SPTarkov.Server.Core.Utils;
 
 [Injectable]
-public sealed class FileUtil(ServerLocalisationService serverLocalisationService)
+public sealed class FileUtil
 {
     private const string ModBasePath = "user/mods/";
 
