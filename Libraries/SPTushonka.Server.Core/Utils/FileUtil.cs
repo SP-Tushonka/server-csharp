@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Text;
 using SPTarkov.DI.Annotations;
 
@@ -7,6 +8,14 @@ namespace SPTarkov.Server.Core.Utils;
 public sealed class FileUtil
 {
     private const string ModBasePath = "user/mods/";
+
+    private readonly byte[] _bundleMagicBytes =
+    [
+        0x55, 0x6E, 0x69, 0x74, 0x79, 0x46, 0x53, 0x00,
+        0x00, 0x00, 0x00, 0x08, 0x35, 0x2E, 0x78, 0x2E,
+        0x78, 0x00, 0x32, 0x30, 0x32, 0x32, 0x2E, 0x33,
+        0x2E, 0x34, 0x33, 0x66, 0x31, 0x00, 0x00, 0x00
+    ];
 
     public List<string> GetFiles(string path, bool recursive = false, string searchPattern = "*")
     {
@@ -203,5 +212,33 @@ public sealed class FileUtil
     public string GetModPath(string modName)
     {
         return Path.Combine(ModBasePath, modName);
+    }
+
+    public async Task<bool> VerifyBundleHeaderAsync(FileStream fileStream, CancellationToken cancellationToken = default)
+    {
+        var buffer = ArrayPool<byte>.Shared.Rent(_bundleMagicBytes.Length);
+
+        try
+        {
+            var read = await fileStream.ReadAsync(buffer.AsMemory(0, _bundleMagicBytes.Length), cancellationToken);
+
+            if (read != 32) { return false; }
+
+            var header = buffer.AsSpan(0, 32);
+
+            for (var i = 0; i < _bundleMagicBytes.Length; i++)
+            {
+                if (header[i] != _bundleMagicBytes[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer);
+        }
     }
 }
