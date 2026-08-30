@@ -1,11 +1,13 @@
 using System.Buffers;
 using System.Text;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Exceptions.Database;
+using SPTarkov.Server.Core.Services.Locales;
 
 namespace SPTarkov.Server.Core.Utils;
 
 [Injectable]
-public sealed class FileUtil
+public sealed class FileUtil(ServerLocalisationService serverLocalisationService)
 {
     private const string ModBasePath = "user/mods/";
 
@@ -16,6 +18,8 @@ public sealed class FileUtil
         0x78, 0x00, 0x32, 0x30, 0x32, 0x32, 0x2E, 0x33,
         0x2E, 0x34, 0x33, 0x66, 0x31, 0x00, 0x00, 0x00
     ];
+
+    private readonly byte[] _gitLfsBytes = [.. "version https://git-lfs.github.c"u8];
 
     public List<string> GetFiles(string path, bool recursive = false, string searchPattern = "*")
     {
@@ -234,15 +238,25 @@ public sealed class FileUtil
 
             var header = buffer.AsSpan(0, 32);
 
-            for (var i = 0; i < _bundleMagicBytes.Length; i++)
+            var isLfsPointer = true;
+            var isValidBundle = true;
+
+            for (var i = 0; i < 32; i++)
             {
-                if (header[i] != _bundleMagicBytes[i])
+                if (isLfsPointer && (i >= _gitLfsBytes.Length || header[i] != _gitLfsBytes[i]))
                 {
-                    return false;
+                    isLfsPointer = false;
                 }
+
+                if (isValidBundle && header[i] != _bundleMagicBytes[i])
+                {
+                    isValidBundle = false;
+                }
+
+                if (!isLfsPointer && !isValidBundle) { break; }
             }
 
-            return true;
+            return isLfsPointer ? throw new ValidationErrorException(serverLocalisationService.GetText("git_lfs_bundle_error", fileStream.Name)) : isValidBundle;
         }
         finally
         {
