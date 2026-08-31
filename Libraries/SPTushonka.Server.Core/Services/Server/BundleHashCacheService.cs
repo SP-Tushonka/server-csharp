@@ -63,9 +63,11 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
 
             if (!await fileUtil.VerifyBundleHeaderAsync(fileStream, cancellationToken))
             {
+                await fileStream.DisposeAsync();
                 throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", bundlePath));
             }
 
+            await fileStream.DisposeAsync();
             return cached;
         }
 
