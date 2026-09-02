@@ -1,20 +1,22 @@
-using SPTarkov.Common.Models.Logging;
+﻿using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Generators.Bot;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Launcher;
+using SPTarkov.Server.Core.Models.Eft.Match;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Launcher;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Profile;
-using ProfileFixerService = SPTarkov.Server.Core.Services.Profile.ProfileFixerService;
 
 namespace SPTarkov.Server.Core.Controllers;
 
@@ -23,11 +25,19 @@ public class ProfileController(
     ISptLogger<ProfileController> logger,
     SaveServer saveServer,
     CreateProfileService createProfileService,
-    ProfileFixerService profileFixerService,
     PlayerScavGenerator playerScavGenerator,
-    ProfileHelper profileHelper
+    ProfileHelper profileHelper,
+    QuestHelper questHelper,
+    ItemHelper itemHelper
 )
 {
+    private const string RegularGameMode = "regular";
+    private const string PveGameMode = "pve";
+    private const string SeasonalGameMode = "pvp-season";
+    private const string AvailableStatus = "available";
+    private const string EmptyStatus = "empty";
+    private const string LockedStatus = "locked";
+
     /// <summary>
     ///     Handle /launcher/profiles
     /// </summary>
@@ -105,7 +115,115 @@ public class ProfileController(
     /// <returns>Return a full profile, scav and pmc profiles + meta data</returns>
     public List<PmcData> GetCompleteProfile(MongoId sessionId)
     {
+        questHelper.GetClientQuests(sessionId);
+
         return profileHelper.GetCompleteProfile(sessionId);
+    }
+
+    /// <summary>
+    ///     Handle /v2/client/game/profiles/. The 1.1 selection screen shows one slot per EGameMode,
+    ///     so the response is keyed by mode rather than the flat list the old endpoint returned.
+    /// </summary>
+    /// <param name="sessionId">Player id</param>
+    /// <returns>Character selection slot per game mode</returns>
+    public Dictionary<string, CharacterSelectionProfileData> GetCharacterSelectionProfiles(MongoId sessionId)
+    {
+        var profiles = profileHelper.GetCompleteProfile(sessionId);
+
+        if (profiles.Count == 0)
+        {
+            return new Dictionary<string, CharacterSelectionProfileData>
+            {
+                [RegularGameMode] = new CharacterSelectionProfileData { Status = LockedStatus },
+                [PveGameMode] = new CharacterSelectionProfileData { Status = EmptyStatus },
+                [SeasonalGameMode] = new CharacterSelectionProfileData { Status = LockedStatus },
+            };
+        }
+
+        var pmc = profiles[0];
+        var info = pmc.Info;
+        var customisation = pmc.Customization;
+
+        var character = new CharacterSelectionProfileData
+        {
+            Uid = pmc.Id,
+            Aid = profileHelper.GetFullProfile(sessionId)?.ProfileInfo?.Aid,
+            Nickname = info?.Nickname,
+            LowerNickname = info?.LowerNickname ?? info?.Nickname?.ToLowerInvariant(),
+            NicknamePref = string.Empty,
+            Side = info?.Side,
+            Level = info?.Level,
+            PrestigeLevel = info?.PrestigeLevel ?? 0,
+            GameVersion = info?.GameVersion,
+            MemberCategory = info?.MemberCategory,
+            AccountType = 0,
+            Status = AvailableStatus,
+            SeasonalInfo = null,
+            BattlePassProgress = [],
+            PlayerVisualRepresentation = new PlayerVisualRepresentation
+            {
+                Info = new VisualInfo
+                {
+                    Side = info?.Side,
+                    Level = info?.Level,
+                    Nickname = info?.Nickname,
+                    MemberCategory = info?.MemberCategory,
+                    SelectedMemberCategory = info?.SelectedMemberCategory,
+                    PrestigeLevel = info?.PrestigeLevel,
+                    GameVersion = info?.GameVersion,
+                },
+                Customization = new Models.Eft.Match.Customization
+                {
+                    Head = customisation?.Head,
+                    Body = customisation?.Body,
+                    Feet = customisation?.Feet,
+                    Hands = customisation?.Hands,
+                    DogTag = customisation?.DogTag,
+                    Voice = customisation?.Voice,
+                },
+                Equipment = GetWornEquipment(pmc),
+            },
+            UnlockedTraders = [],
+            UnlockedRules = [],
+            UnlockedTraderDialogues = [],
+            UnlockedProductionRecipe = [],
+        };
+
+        return new Dictionary<string, CharacterSelectionProfileData>
+        {
+            [RegularGameMode] = new CharacterSelectionProfileData { Status = LockedStatus },
+            [PveGameMode] = character,
+            [SeasonalGameMode] = new CharacterSelectionProfileData { Status = LockedStatus },
+        };
+    }
+
+    /// <summary>
+    ///     The equipment tree the selection screen dresses the character model with. Without it the
+    ///     client has nothing to render, which is why the slot showed no character.
+    /// </summary>
+    private Equipment? GetWornEquipment(PmcData pmc)
+    {
+        var equipmentId = pmc.Inventory?.Equipment;
+        var items = pmc.Inventory?.Items;
+        if (equipmentId is null || items is null)
+        {
+            return null;
+        }
+
+        var root = items.FirstOrDefault(item => item.Id == equipmentId);
+        if (root is null)
+        {
+            return null;
+        }
+
+        var worn = itemHelper.FindAndReturnChildrenByAssort(equipmentId.Value, items.CreateParentIdLookupCache(out _));
+
+        if (worn.All(item => item.Id != root.Id))
+        {
+            worn.Insert(0, root);
+        }
+
+        return new Equipment { Id = equipmentId, Items = worn };
     }
 
     /// <summary>

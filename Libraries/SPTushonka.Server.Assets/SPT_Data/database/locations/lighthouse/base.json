@@ -3,11 +3,11 @@
     {
       "AirdropPointDeactivateDistance": 50,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.9,
+      "PlaneAirdropChance": 0.2,
       "PlaneAirdropCooldownMax": 800,
       "PlaneAirdropCooldownMin": 700,
       "PlaneAirdropEnd": 1500,
-      "PlaneAirdropMax": 1,
+      "PlaneAirdropMax": 5,
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
@@ -33,7 +33,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -41,7 +42,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 0,
+      "BossChance": 30,
       "BossDifficult": "normal",
       "BossEscortAmount": "2",
       "BossEscortDifficult": "normal",
@@ -59,7 +60,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [
         {
@@ -107,7 +109,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -133,7 +136,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -159,7 +163,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -185,7 +190,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -211,7 +217,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -237,7 +244,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -263,7 +271,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -289,7 +298,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -315,7 +325,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -622,6 +633,7 @@
         ],
         "AlwaysFriends": [
           "assault",
+          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -8678,6 +8690,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 29
+    },
+    {
+      "TemplateId": "6a317b9692cfdcddcb02a58e",
+      "Value": 7
+    },
+    {
+      "TemplateId": "6a31830dde69ceafd805afa0",
+      "Value": 7
     }
   ],
   "secretExits": [
@@ -8798,7 +8818,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "Zone_Rocks",
       "WildSpawnType": "assault",
@@ -8815,7 +8836,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "Zone_Chalet",
       "WildSpawnType": "assault",
@@ -8864,7 +8886,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "Zone_LongRoad",
       "WildSpawnType": "assault",
@@ -9000,6 +9023,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 120,
   "IconY": 450,
   "IsSecret": false,
@@ -9070,6 +9094,24 @@
         "path": "banners/67e404c722d6081b78031de0.jpg",
         "rcid": "",
         "file": "67e404c722d6081b78031de0.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

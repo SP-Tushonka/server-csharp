@@ -1,3 +1,4 @@
+using System.Text.Json;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -156,7 +157,72 @@ public class InventoryController(
     public void SetDialogueProgress(PmcData pmcData, SaveDialogueStateRequest request, MongoId sessionId, ItemEventRouterResponse output)
     {
         var fullProfile = profileHelper.GetFullProfile(sessionId);
-        fullProfile.DialogueProgress = request.DialogueProgress;
+        fullProfile.DialogueProgress ??= [];
+
+        foreach (var node in request.DialogueProgress ?? [])
+        {
+            if (!fullProfile.DialogueProgress.Any(visited => visited.DialogueId == node.DialogueId && visited.NodeId == node.NodeId))
+            {
+                fullProfile.DialogueProgress.Add(node);
+            }
+
+            ApplyDialogueVariables(pmcData, node);
+        }
+    }
+
+    private void ApplyDialogueVariables(PmcData pmcData, NodePathTraveled node)
+    {
+        var dialogue = templateTable.Dialogue.Elements.FirstOrDefault(element => element.Id == node.DialogueId);
+
+        if (dialogue is null)
+        {
+            logger.Warning($"Conversation {node.DialogueId} is not in the database, unable to apply its variables");
+            return;
+        }
+
+        // TODO: This shit is disgusting and needs fixing
+        foreach (var line in dialogue.Lines)
+        {
+            if (line is not JsonElement lineJson)
+            {
+                continue;
+            }
+
+            if (!lineJson.TryGetProperty("Id", out var lineId) || lineId.GetString() != node.NodeId)
+            {
+                continue;
+            }
+
+            if (!lineJson.TryGetProperty("Actions", out var actions))
+            {
+                return;
+            }
+
+            foreach (var action in actions.EnumerateArray())
+            {
+                if (!action.TryGetProperty("type", out var type) || type.GetString() != "SetVariable")
+                {
+                    continue;
+                }
+
+                if (!action.TryGetProperty("saveScope", out var scope) || scope.GetString() != "Profile")
+                {
+                    continue;
+                }
+
+                if (!action.TryGetProperty("variableId", out var variableId) || !action.TryGetProperty("value", out var value))
+                {
+                    continue;
+                }
+
+                pmcData.Variables ??= [];
+                pmcData.Variables[new MongoId(variableId.GetString())] = value.TryGetInt32(out var parsed)
+                    ? parsed
+                    : (int)value.GetDouble();
+            }
+
+            return;
+        }
     }
 
     /// <summary>
@@ -340,15 +406,16 @@ public class InventoryController(
             if (rewardContainerDetails?.RewardCount == null)
             {
                 logger.Error($"Unable to add loot to container: {openedItem.Template}, no rewards found");
-            }
-            else
-            {
-                rewards.AddRange(lootGenerator.GetRandomLootContainerLoot(rewardContainerDetails));
+                httpResponseUtil.AppendErrorToOutput(output, "This container has no rewards configured");
 
-                if (rewardContainerDetails.FoundInRaid)
-                {
-                    foundInRaid = rewardContainerDetails.FoundInRaid;
-                }
+                return;
+            }
+
+            rewards.AddRange(lootGenerator.GetRandomLootContainerLoot(rewardContainerDetails));
+
+            if (rewardContainerDetails.FoundInRaid)
+            {
+                foundInRaid = rewardContainerDetails.FoundInRaid;
             }
         }
 

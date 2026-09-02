@@ -1,30 +1,91 @@
 {
   "_id": "54cb57776803fa99248b456e",
-  "availableInRaid": false,
+  "customization_seller": false,
+  "name": "Эльвира",
+  "surname": "Хабибуллина",
+  "nickname": "Терапевт",
+  "location": "",
   "avatar": "/files/trader/avatar/59b91cab86f77469aa5343ca.jpg",
+  "balance_rub": 7000000,
   "balance_dol": 0,
   "balance_eur": 0,
-  "balance_rub": 7000000,
+  "unlockedByDefault": false,
+  "discount": "0",
+  "discount_end": 0,
   "buyer_up": false,
   "currency": "RUB",
-  "customization_seller": false,
-  "discount": 0,
-  "discount_end": 0,
-  "gridHeight": 120,
+  "nextResupply": 1788100640,
+  "repair": {
+    "availability": false,
+    "quality": "0",
+    "excluded_id_list": [],
+    "excluded_category": [
+      "5447e1d04bdc2dff2f8b4567"
+    ],
+    "currency": "5449016a4bdc2d6f028b456f",
+    "currency_coefficient": 1.0
+  },
   "insurance": {
     "availability": true,
+    "min_payment": 0,
+    "min_return_hour": 6,
+    "max_return_hour": 10,
+    "max_storage_time": 240,
     "excluded_category": [
       "62e9103049c018f425059f38"
-    ],
-    "max_return_hour": 20,
-    "max_storage_time": 144,
-    "min_payment": 0,
-    "min_return_hour": 10
+    ]
   },
-  "isAvailableInPVE": true,
-  "isCanTransferItems": false,
-  "isCanTransferItemsFromPve": false,
+  "medic": true,
+  "gridHeight": 120,
+  "availableInRaid": false,
+  "sell_modifier_for_prohibited_items": 0,
+  "loyaltyLevels": [
+    {
+      "minLevel": 0,
+      "minSalesSum": 0,
+      "minStanding": 0.0,
+      "buy_price_coef": 49,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "28",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 315
+    },
+    {
+      "minLevel": 5,
+      "minSalesSum": 0,
+      "minStanding": 0.6,
+      "buy_price_coef": 49,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "27",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 310
+    },
+    {
+      "minLevel": 18,
+      "minSalesSum": 0,
+      "minStanding": 2.1,
+      "buy_price_coef": 49,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "26",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 305
+    },
+    {
+      "minLevel": 37,
+      "minSalesSum": 0,
+      "minStanding": 5.8,
+      "buy_price_coef": 49,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "23",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 350
+    }
+  ],
   "items_buy": {
+    "id_list": [
+      "62a09e73af34e73a266d932a",
+      "62a09e974f842e1bd12da3f0"
+    ],
     "category": [
       "543be5664bdc2dd4348b4569",
       "543be6674bdc2df1348b4569",
@@ -32,11 +93,9 @@
       "543be5e94bdc2df1348b4568",
       "5448eb774bdc2d0a728b4567",
       "5795f317245977243854e041"
-    ],
-    "id_list": []
+    ]
   },
   "items_buy_prohibited": {
-    "category": [],
     "id_list": [
       "62e910aaf957f2915e0a5e36",
       "64d0b40fbe2eed70e254e2d4",
@@ -61,175 +120,157 @@
       "6759bb94b8913ff13e049669",
       "6759e07e4ff23436160d7fed",
       "6841b179322db20d190b4b99",
-      "6841b1ff51bf8645f7067bca"
-    ]
+      "6841b1ff51bf8645f7067bca",
+      "68f11224197b61ffe703b16f",
+      "68f26161b84c6e1f8a09d001",
+      "68f0f8f1a1e799f1c3027c71",
+      "68f0f8a1375a44d1ed01ea4b",
+      "68d65766916a108d7a023c98",
+      "68f25b772605ccea240dd684",
+      "68f25be683ec644ebf046787",
+      "688b3bfa1ed594eccd0c45ee",
+      "688b2e574172ca83e70cf868",
+      "688b2dba67bf6fa26c07e918",
+      "6656560053eaaa7a23349c86",
+      "5d235b4d86f7742e017bc88a",
+      "68fa8e253666e2fd5b00a626",
+      "68dfc07da7cfeed3e60204e7",
+      "67bdea8667098e658f064695",
+      "67bdf04d66ca1d79a2024637",
+      "67c033fd0610e91bea056998",
+      "67c04a6f9152fbdfa306cc66",
+      "67c04dac9320f644db06f45c",
+      "67c0345b354fca26a0008036",
+      "67c04a9bd98287be7b0923d8",
+      "68f213f8ea61d1803707cf7a",
+      "68e6394e658d876c930977b1",
+      "68cc09872bdcc15c010c2668",
+      "68d152b9915f131d4e05ee6c",
+      "68a4b745b63e97cc5a056a07",
+      "6866adbe09b973bf45094339",
+      "6866ad3853330f9b83064cf9",
+      "5d235b4d86f7742e017bc88a",
+      "6937efd50543dcc2560a2c81",
+      "6937ecd37713b904480013ac",
+      "6937eccbfd921faceb0dfecd",
+      "6937ecc3dbdccab44605fcf0",
+      "68c944200bf756126e00d801",
+      "69ce4e3430056e9ce1007c78",
+      "69dd0de23dfe95d9e70b5ebb",
+      "6a04fab776cb0efb8f05969f",
+      "68c954d8ecbf3abc9907ee9b",
+      "69d39aacf1954acdb3083285",
+      "6a3d38063357ef2b260d1891",
+      "6a4ff1e23e95f68a650fcb13"
+    ],
+    "category": []
+  },
+  "sell_category": [],
+  "isCanTransferItems": false,
+  "transferableItems": {
+    "id_list": [],
+    "category": []
+  },
+  "prohibitedTransferableItems": {
+    "id_list": [],
+    "category": []
   },
   "items_sell": {
-    "1": {
-      "category": [],
+    "2": {
       "id_list": [
+        "5751487e245977207e26a315",
+        "567143bf4bdc2d1a0f8b4567",
+        "590c60fc86f77412b13fddcf",
+        "59fafd4b86f7745ca07e1232",
+        "5780d0532459777a5108b9a2",
+        "5b7c710788a4506dec015957",
+        "5be4038986f774527d3fae60",
+        "5af0454c86f7746bf20992e8",
+        "5aafbcd986f7745e590fff23",
+        "5bc9be8fd4351e00334cae6e",
+        "57347d3d245977448f7b7f61",
+        "5a0ee37f86f774023657a86f",
+        "5780cfa52459777dfb276eb1",
+        "590c678286f77426c9660122",
+        "5d1b371186f774253763a656",
+        "67d3ed3271c17ff82e0a5b0b",
+        "5d1b3f2d86f774253763b735",
+        "5d02778e86f774203e7dedbe",
+        "59387a4986f77401cc236e62",
+        "5c10c8fd86f7743d7d706df3",
+        "5751a25924597722c463c472"
+      ],
+      "category": []
+    },
+    "1": {
+      "id_list": [
+        "5448fee04bdc2dbc018b4567",
+        "5755356824597772cb798962",
+        "5673de654bdc2d180f8b456d",
         "544fb25a4bdc2dfb738b4567",
-        "544fb3364bdc2d34748b456a",
+        "574eb85c245977648157eec3",
         "544fb37f4bdc2dee738b4567",
         "590c5d4b86f774784e1b9c45",
-        "5755356824597772cb798962",
-        "590c661e86f7741e566b646a",
-        "574eb85c245977648157eec3",
-        "5673de654bdc2d180f8b456d",
-        "5448fee04bdc2dbc018b4567",
+        "544fb3364bdc2d34748b456a",
+        "5a8036fb86f77407252ddc02",
         "5b7c710788a4506dec015957",
         "5a80a29286f7742b25692012",
-        "5a8036fb86f77407252ddc02",
         "5c093e3486f77430cb02e593",
-        "5448ff904bdc2d6f028b456e",
         "544fb6cc4bdc2d34748b456e",
+        "590c661e86f7741e566b646a",
         "5d1b3a5d86f774252167ba22",
+        "5448ff904bdc2d6f028b456e",
         "544fb45d4bdc2dee738b4568",
+        "593aa4be86f77457f56379f8",
+        "57347c93245977448d35f6e3",
+        "5780d0532459777a5108b9a2",
         "5938603e86f77435642354f4",
         "5e831507ea0a7c419c2f9bd9",
         "57347d5f245977448b40fa81",
-        "593aa4be86f77457f56379f8",
-        "5780d0532459777a5108b9a2",
-        "5e8488fa988a8701445df1e4",
-        "57347c93245977448d35f6e3",
         "5938144586f77473c2087145",
-        "62a0a043cf4a99369e2624a5",
-        "679b9819a2f2dd4da9023512",
-        "67d3ed3271c17ff82e0a5b0b"
-      ]
-    },
-    "2": {
-      "category": [],
-      "id_list": [
-        "590c678286f77426c9660122",
-        "544fb45d4bdc2dee738b4568",
-        "5751a25924597722c463c472",
-        "5751487e245977207e26a315",
-        "5780d0532459777a5108b9a2",
-        "59fafd4b86f7745ca07e1232",
-        "590c657e86f77412b013051d",
-        "590c60fc86f77412b13fddcf",
-        "567143bf4bdc2d1a0f8b4567",
-        "5be4038986f774527d3fae60",
-        "5af0454c86f7746bf20992e8",
-        "5b7c710788a4506dec015957",
-        "5aafbcd986f7745e590fff23",
-        "5c10c8fd86f7743d7d706df3",
-        "5a0ee37f86f774023657a86f",
-        "57347d3d245977448f7b7f61",
-        "5d1b371186f774253763a656",
-        "5bc9be8fd4351e00334cae6e",
-        "5d02778e86f774203e7dedbe",
-        "5c0e530286f7747fa1419862",
-        "5780cfa52459777dfb276eb1",
-        "67d3ed3271c17ff82e0a5b0b"
-      ]
-    },
-    "3": {
-      "category": [],
-      "id_list": [
-        "59fb042886f7746c5005a7b2",
-        "590c678286f77426c9660122",
-        "5aafbcd986f7745e590fff23",
-        "5c0e534186f7747fa1419867",
-        "5d80c78786f774403a401e3e",
-        "5af0454c86f7746bf20992e8",
-        "5c0e531286f7747fa54205c2",
-        "5e4abc6786f77406812bd572",
-        "5c0530ee86f774697952d952",
+        "67d3ed3271c17ff82e0a5b0b",
         "5e8488fa988a8701445df1e4",
-        "619cbf9e0a7c3a1a2731940a",
-        "5c0e530286f7747fa1419862"
-      ]
+        "5991b51486f77447b112d44f"
+      ],
+      "category": []
     },
     "4": {
-      "category": [],
       "id_list": [
-        "59fb016586f7746d0d4b423a",
-        "590c695186f7741e566b64a2",
         "590c657e86f77412b013051d",
-        "544fb3f34bdc2d03748b456a",
-        "5c10c8fd86f7743d7d706df3",
+        "590c695186f7741e566b64a2",
+        "59fb016586f7746d0d4b423a",
         "5ad5d7d286f77450166e0a89",
         "5c0a840b86f7742ffa4f2482",
-        "5c0e530286f7747fa1419862",
+        "5af0548586f7743a532b7e99",
+        "619cbf7d23893217ec30b689",
         "59e3577886f774176a362503",
         "5c0e533786f7747fa23f4d47",
-        "5af0548586f7743a532b7e99",
-        "5c0e531d86f7747fa23f4d42",
-        "619cbf7d23893217ec30b689",
-        "5c94bbff86f7747ee735c08f"
-      ]
+        "5c0e530286f7747fa1419862",
+        "5c0e531d86f7747fa23f4d42"
+      ],
+      "category": []
+    },
+    "3": {
+      "id_list": [
+        "59fb042886f7746c5005a7b2",
+        "5aafbcd986f7745e590fff23",
+        "5e4abc6786f77406812bd572",
+        "619cbf9e0a7c3a1a2731940a",
+        "5d80c78786f774403a401e3e",
+        "5c0530ee86f774697952d952",
+        "5c0e531286f7747fa54205c2",
+        "5c0e530286f7747fa1419862",
+        "697883474afb9f7de10380ba",
+        "5e8488fa988a8701445df1e4",
+        "5c0e534186f7747fa1419867",
+        "5ad5db3786f7743568421cce",
+        "5c94bbff86f7747ee735c08f",
+        "5a0dc95c86f77452440fc675"
+      ],
+      "category": []
     }
   },
-  "location": "",
-  "loyaltyLevels": [
-    {
-      "buy_price_coef": 37,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 100,
-      "insurance_price_coef": 20,
-      "minLevel": 0,
-      "minSalesSum": 0,
-      "minStanding": 0,
-      "repair_price_coef": 0
-    },
-    {
-      "buy_price_coef": 37,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 110,
-      "insurance_price_coef": "21",
-      "minLevel": 13,
-      "minSalesSum": 400000,
-      "minStanding": 0.15,
-      "repair_price_coef": 0
-    },
-    {
-      "buy_price_coef": 37,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 120,
-      "insurance_price_coef": "22",
-      "minLevel": 24,
-      "minSalesSum": 700000,
-      "minStanding": 0.3,
-      "repair_price_coef": 0
-    },
-    {
-      "buy_price_coef": 37,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 135,
-      "insurance_price_coef": "23",
-      "minLevel": 35,
-      "minSalesSum": 900000,
-      "minStanding": 0.6,
-      "repair_price_coef": 0
-    }
-  ],
-  "mainDialogue": null,
-  "medic": true,
-  "name": "Эльвира",
-  "nextResupply": 1717705452,
-  "nickname": "Therapist",
-  "prohibitedTransferableItems": {
-    "category": [],
-    "id_list": []
-  },
-  "repair": {
-    "availability": false,
-    "currency": "5449016a4bdc2d6f028b456f",
-    "currency_coefficient": 1,
-    "excluded_category": [
-      "5447e1d04bdc2dff2f8b4567"
-    ],
-    "excluded_id_list": [],
-    "quality": "0"
-  },
-  "sell_category": [],
-  "sell_modifier_for_prohibited_items": 0,
-  "surname": "Хабибуллина",
-  "transferableItems": {
-    "category": [],
-    "id_list": []
-  },
-  "unlockedByDefault": true
+  "isAvailableInPVE": true,
+  "isCanTransferItemsFromPve": false,
+  "mainDialogue": "67f3be8d6ec025c2036b7a04"
 }

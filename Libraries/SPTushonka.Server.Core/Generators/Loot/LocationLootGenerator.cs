@@ -103,7 +103,7 @@ public class LocationLootGenerator(
 
         var staticContainerData = mapData.StaticContainers.Value;
         var staticWeaponsOnMap = staticContainerData.StaticWeapons;
-        
+
         if (staticWeaponsOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_static_weapon_for_map", locationId));

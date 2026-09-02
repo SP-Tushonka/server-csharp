@@ -1,4 +1,4 @@
-using SPTarkov.DI.Annotations;
+﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Callbacks;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -20,6 +20,10 @@ public class ProfileStaticRouter(ProfileCallbacks profileCallbacks, JsonUtil jso
             new StreamedRouteAction<EmptyRequestData>(
                 "/client/game/profile/list",
                 async (url, info, sessionID, cancellationToken) => await profileCallbacks.GetProfileData(url, info, sessionID)
+            ),
+            new StreamedRouteAction<EmptyRequestData>(
+                "/v2/client/game/profiles/",
+                async (url, info, sessionID, cancellationToken) => await profileCallbacks.GetCharacterSelectionProfiles(url, info, sessionID)
             ),
             new RouteAction<EmptyRequestData>(
                 "/client/game/profile/savage/regenerate",
@@ -73,5 +77,10 @@ public class ProfileStaticRouter(ProfileCallbacks profileCallbacks, JsonUtil jso
                 "/client/tutor-game/check",
                 async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetTutorGameCheck(url, info, sessionID)
             ),
+            new RouteAction<EmptyRequestData>(
+                "/client/tutor-game/profile",
+                async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetTutorGameProfile(url, info, sessionID)
+            ),
         ]
-    ) { }
+    )
+{ }

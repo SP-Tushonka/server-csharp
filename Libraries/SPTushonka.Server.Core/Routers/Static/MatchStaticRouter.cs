@@ -129,4 +129,5 @@ public class MatchStaticRouter(JsonUtil jsonUtil, MatchCallbacks matchCallbacks)
                     await matchCallbacks.EndLocalRaidAsync(url, info, sessionID, cancellationToken)
             ),
         ]
-    ) { }
+    )
+{ }

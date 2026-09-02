@@ -297,4 +297,10 @@ public record BotGlobalShootData
     /// </summary>
     [JsonPropertyName("MISS_ON_TRANSITION")]
     public bool? MissOnTransition { get; set; }
+
+    [JsonPropertyName("MISS_ON_SAME_BOT")]
+    public bool? MissOnSameBot { get; set; }
+
+    [JsonPropertyName("MISS_ON_SAME_GROUP")]
+    public bool? MissOnSameGroup { get; set; }
 }

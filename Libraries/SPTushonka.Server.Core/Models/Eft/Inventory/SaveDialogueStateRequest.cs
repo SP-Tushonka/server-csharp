@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using SPTarkov.Server.Core.Models.Common;
 
 namespace SPTarkov.Server.Core.Models.Eft.Inventory;
 
@@ -11,11 +12,11 @@ public record SaveDialogueStateRequest : InventoryBaseActionRequestData
 public class NodePathTraveled
 {
     [JsonPropertyName("traderId")]
-    public string? TraderId { get; set; }
+    public MongoId? TraderId { get; set; }
 
     [JsonPropertyName("dialogueId")]
-    public string? DialogueId { get; set; }
+    public MongoId? DialogueId { get; set; }
 
     [JsonPropertyName("nodeId")]
-    public string? NodeId { get; set; }
+    public MongoId? NodeId { get; set; }
 }

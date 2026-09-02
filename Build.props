@@ -2,7 +2,7 @@
   <PropertyGroup>
     <!--  SPT specific  -->
     <SptVersion Condition="'$(SptVersion)' == ''">5.0.0</SptVersion>
-    <SptCommit Condition="'$(SptCommit)' == ''">T10MBY</SptCommit>
+    <SptCommit Condition="'$(SptCommit)' == ''">T11MBY</SptCommit>
     <SptBuildTime Condition="'$(SptBuildTime)' == ''">0000000000</SptBuildTime>
     <SptBuildType Condition="'$(SptBuildType)' == ''">LOCAL</SptBuildType>
     <!--  BuildType options - LOCAL, DEBUG, RELEASE, BLEEDINGEDGE, BLEEDINGEDGEMODS - *must be all caps*-->

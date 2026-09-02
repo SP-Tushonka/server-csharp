@@ -16,4 +16,5 @@ public class CustomizationDynamicRouter(JsonUtil jsonUtil, CustomizationCallback
                 async (url, info, sessionID, output, cancellationToken) => await customizationCallbacks.GetTraderSuits(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

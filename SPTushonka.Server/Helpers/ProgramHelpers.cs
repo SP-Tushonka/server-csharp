@@ -1,4 +1,4 @@
-using System.Text.Encodings.Web;
+﻿using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using SPTarkov.Common.Extensions;
@@ -64,6 +64,8 @@ public static class ProgramHelpers
         builder.Services.AddSingleton(databaseTables.Templates);
         builder.Services.AddSingleton(databaseTables.Traders);
         builder.Services.AddSingleton(databaseTables.Globals);
+        builder.Services.AddSingleton(databaseTables.Season);
+        builder.Services.AddSingleton(databaseTables.Shop);
         builder.Services.AddSingleton(databaseTables.Server);
         builder.Services.AddSingleton(databaseTables.Settings);
 

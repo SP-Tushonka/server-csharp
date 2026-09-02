@@ -22,4 +22,5 @@ public sealed class NoteItemEventRouter(NoteCallbacks noteCallbacks)
             ItemEventActions.DELETE_NOTE,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await noteCallbacks.DeleteNote(pmcData, body, sessionID)
         ),
-    ]) { }
+    ])
+{ }

@@ -165,4 +165,13 @@ public record BotGlobalsGrenadeSettings
 
     [JsonPropertyName("CAN_THROW_FROM_ANY_PLACE")]
     public bool? CanThrowFromAnyPlace { get; set; }
+
+    [JsonPropertyName("DO_QUICK_THROW")]
+    public bool? DoQuickThrow { get; set; }
+
+    [JsonPropertyName("THROW_GRENADE_SUPPRESS")]
+    public bool? ThrowGrenadeSuppress { get; set; }
+
+    [JsonPropertyName("THROW_GRENADE_TO_PORTALS")]
+    public bool? ThrowGrenadeToPortals { get; set; }
 }

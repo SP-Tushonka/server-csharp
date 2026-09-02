@@ -130,8 +130,9 @@
       },
       "Backpack": {},
       "FirstPrimaryWeapon": {
-        "5c46fbd72e2216398b5a8c9c": 6455,
-        "67d0576f29f580ebc10efd08": 166
+        "5c46fbd72e2216398b5a8c9c": 108,
+        "68aee763130c00663d08aea8": 4,
+        "67d0576f29f580ebc10efd08": 1
       },
       "SecondPrimaryWeapon": {
         "57dc2fa62459775949412633": 1
@@ -149,14 +150,18 @@
     },
     "Ammo": {
       "Caliber762x54R": {
-        "5e023d48186a883be655e551": 696,
-        "5e023cf8186a883be655e54f": 77
+        "5e023d48186a883be655e551": 35,
+        "5e023cf8186a883be655e54f": 1
       },
       "Caliber545x39": {
         "56dff4a2d2720bbd668b456a": 1
       },
       "Caliber9x21": {
         "5a26abfac4a28232980eabff": 1
+      },
+      "Caliber93x64": {
+        "68aeed8a8906b00bc800fdd6": 1,
+        "68bac6ca653ee6b1e406d978": 1
       },
       "Caliber127x99": {
         "67dc255ee3028a8b120efc48": 1
@@ -185,7 +190,8 @@
       },
       "6516b129609aaf354b34b3a8": {
         "mod_pistolgrip": [
-          "5b30ac585acfc433000eb79c"
+          "5b30ac585acfc433000eb79c",
+          "68d5674bb2573b07dc0d225f"
         ]
       },
       "5c471cb32e221602b177afaa": {
@@ -234,7 +240,8 @@
       },
       "6197b229af1f5202c57a9bea": {
         "mod_stock": [
-          "5947e98b86f774778f1448bc"
+          "5947e98b86f774778f1448bc",
+          "5649be884bdc2d79388b4577"
         ]
       },
       "57dc2fa62459775949412633": {
@@ -280,6 +287,67 @@
       "59f98b4986f7746f546d2cef": {
         "mod_magazine": [
           "59f99a7d86f7745b134aa97b"
+        ]
+      },
+      "68aee763130c00663d08aea8": {
+        "mod_pistol_grip": [
+          "6516b129609aaf354b34b3a8"
+        ],
+        "mod_stock": [
+          "6197b229af1f5202c57a9bea"
+        ],
+        "mod_barrel": [
+          "68be93d19bae3db9c5005b19"
+        ],
+        "mod_mount_001": [
+          "68aee9731ef0d507780a61c9"
+        ],
+        "mod_reciever": [
+          "68aee8f8130c00663d08aeb3"
+        ],
+        "mod_magazine": [
+          "68aef9bf4efeccb5220d25c6"
+        ]
+      },
+      "5649be884bdc2d79388b4577": {
+        "mod_stock_000": [
+          "68bb2a3831ee03fbc00931e6"
+        ]
+      },
+      "68be93d19bae3db9c5005b19": {
+        "mod_muzzle": [
+          "68aeeb3e9df2c1144f0aaa4b"
+        ],
+        "mod_gas_block": [
+          "68aee9e31ef0d507780a61cd"
+        ]
+      },
+      "68aee9731ef0d507780a61c9": {
+        "mod_handguard": [
+          "68d5676f43adc7372a0c8ae0"
+        ]
+      },
+      "68d5676f43adc7372a0c8ae0": {
+        "mod_sight_front": [
+          "5dfa3d950dee1b22f862eae0"
+        ],
+        "mod_bipod": [
+          "676175bb48fa5c377e06fc36"
+        ]
+      },
+      "676175bb48fa5c377e06fc36": {
+        "mod_bipod": [
+          "5888961624597754281f93f3"
+        ]
+      },
+      "68aee8f8130c00663d08aeb3": {
+        "mod_scope": [
+          "6567e751a715f85433025998"
+        ]
+      },
+      "6567e751a715f85433025998": {
+        "mod_scope": [
+          "617151c1d92c473c770214ab"
         ]
       },
       "67d0576f29f580ebc10efd08": {
@@ -330,22 +398,25 @@
     },
     "items": {
       "TacticalVest": {
-        "5c88f24b2e22160bc12c69a6": 241,
-        "55d482194bdc2d1d4e8b456b": 249,
-        "67d418d0ffb910d21f04720e": 8
+        "5c88f24b2e22160bc12c69a6": 111,
+        "55d482194bdc2d1d4e8b456b": 117,
+        "67d418d0ffb910d21f04720e": 2
       },
       "Pockets": {
-        "59f99a7d86f7745b134aa97b": 2,
-        "60098ad7c2240c0fe85c570a": 1,
-        "590c678286f77426c9660122": 1
+        "59f99a7d86f7745b134aa97b": 46,
+        "60098ad7c2240c0fe85c570a": 23,
+        "590c678286f77426c9660122": 23,
+        "68aef9bf4efeccb5220d25c6": 1
       },
       "Backpack": {},
       "SecuredContainer": {
-        "5e023d48186a883be655e551": 50920,
-        "56dff4a2d2720bbd668b456a": 20840,
-        "5a26abfac4a28232980eabff": 9420,
-        "5e023cf8186a883be655e54f": 5863,
-        "67dc255ee3028a8b120efc48": 1990
+        "5e023d48186a883be655e551": 2491,
+        "56dff4a2d2720bbd668b456a": 902,
+        "5a26abfac4a28232980eabff": 451,
+        "68aeed8a8906b00bc800fdd6": 35,
+        "5e023cf8186a883be655e54f": 90,
+        "68bac6ca653ee6b1e406d978": 60,
+        "67dc255ee3028a8b120efc48": 30
       },
       "SpecialLoot": {}
     }
@@ -641,7 +712,8 @@
         "DAMAGE_TIME_TO_GETUP": 300,
         "SHALL_GETUP_ON_ROTATE": false,
         "SHALL_LAY_WITHOUT_CHECK": true,
-        "IF_NO_ENEMY": true
+        "IF_NO_ENEMY": true,
+        "DIST_LAY_CHECK": 11
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -676,7 +748,9 @@
         "NO_GRASS_DIST": 5,
         "LOOK_THROUGH_PERIOD_BY_HIT": 10,
         "MIDDLE_DIST_CAN_SHOOT_HEAD": true,
-        "CAN_USE_LIGHT": false
+        "CAN_USE_LIGHT": false,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -752,7 +826,8 @@
         "HEAL_DELAY_SEC": 5,
         "HIT_DELAY_WHEN_HAVE_SMT": -1,
         "HIT_DELAY_WHEN_PEACE": -1,
-        "TALK_WITH_QUERY": true
+        "TALK_WITH_QUERY": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1158,7 +1233,8 @@
         "DAMAGE_TIME_TO_GETUP": 300,
         "SHALL_GETUP_ON_ROTATE": false,
         "SHALL_LAY_WITHOUT_CHECK": true,
-        "IF_NO_ENEMY": true
+        "IF_NO_ENEMY": true,
+        "DIST_LAY_CHECK": 11
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -1193,7 +1269,9 @@
         "NO_GRASS_DIST": 5,
         "LOOK_THROUGH_PERIOD_BY_HIT": 10,
         "MIDDLE_DIST_CAN_SHOOT_HEAD": true,
-        "CAN_USE_LIGHT": false
+        "CAN_USE_LIGHT": false,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1269,7 +1347,8 @@
         "HEAL_DELAY_SEC": 5,
         "HIT_DELAY_WHEN_HAVE_SMT": -1,
         "HIT_DELAY_WHEN_PEACE": -1,
-        "TALK_WITH_QUERY": true
+        "TALK_WITH_QUERY": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1675,7 +1754,8 @@
         "DAMAGE_TIME_TO_GETUP": 300,
         "SHALL_GETUP_ON_ROTATE": false,
         "SHALL_LAY_WITHOUT_CHECK": true,
-        "IF_NO_ENEMY": true
+        "IF_NO_ENEMY": true,
+        "DIST_LAY_CHECK": 11
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -1710,7 +1790,9 @@
         "NO_GRASS_DIST": 5,
         "LOOK_THROUGH_PERIOD_BY_HIT": 10,
         "MIDDLE_DIST_CAN_SHOOT_HEAD": true,
-        "CAN_USE_LIGHT": false
+        "CAN_USE_LIGHT": false,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1786,7 +1868,8 @@
         "HEAL_DELAY_SEC": 5,
         "HIT_DELAY_WHEN_HAVE_SMT": -1,
         "HIT_DELAY_WHEN_PEACE": -1,
-        "TALK_WITH_QUERY": true
+        "TALK_WITH_QUERY": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2192,7 +2275,8 @@
         "DAMAGE_TIME_TO_GETUP": 300,
         "SHALL_GETUP_ON_ROTATE": false,
         "SHALL_LAY_WITHOUT_CHECK": true,
-        "IF_NO_ENEMY": true
+        "IF_NO_ENEMY": true,
+        "DIST_LAY_CHECK": 11
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -2227,7 +2311,9 @@
         "NO_GRASS_DIST": 5,
         "LOOK_THROUGH_PERIOD_BY_HIT": 10,
         "MIDDLE_DIST_CAN_SHOOT_HEAD": true,
-        "CAN_USE_LIGHT": false
+        "CAN_USE_LIGHT": false,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2303,7 +2389,8 @@
         "HEAL_DELAY_SEC": 5,
         "HIT_DELAY_WHEN_HAVE_SMT": -1,
         "HIT_DELAY_WHEN_PEACE": -1,
-        "TALK_WITH_QUERY": true
+        "TALK_WITH_QUERY": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2445,19 +2532,22 @@
       "mod_magazine": 100,
       "mod_stock": 74,
       "mod_mount_000": 34,
-      "mod_mount_002": 49,
+      "mod_mount_002": 48,
       "mod_muzzle": 100,
       "mod_mount": 0,
-      "mod_sight_front": 0,
+      "mod_sight_front": 3,
       "mod_mount_001": 0,
       "mod_tactical": 0,
-      "mod_scope": 100,
-      "mod_foregrip": 100,
+      "mod_scope": 99,
+      "mod_foregrip": 98,
       "mod_bipod": 100,
-      "mod_charge": 2,
+      "mod_charge": 0,
       "mod_reciever": 100,
       "mod_tactical_000": 0,
       "mod_tactical_001": 0,
+      "mod_stock_000": 100,
+      "mod_stock_003": 0,
+      "mod_mount_003": 0,
       "mod_sight_rear": 0
     },
     "equipmentMods": {}

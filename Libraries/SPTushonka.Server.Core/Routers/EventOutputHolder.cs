@@ -66,6 +66,11 @@ public class EventOutputHolder(ProfileHelper profileHelper, TimeUtil timeUtil, I
                             },
                             Production = [],
                             Improvements = [],
+                            ChangedHideoutStashes = [],
+                            CompletableItems = [],
+                            ReadQuestData = [],
+                            NewQuestNotes = [],
+                            VariableValues = [],
                             Skills = new Skills
                             {
                                 Common = [],
@@ -110,6 +115,9 @@ public class EventOutputHolder(ProfileHelper profileHelper, TimeUtil timeUtil, I
         }
 
         profileChanges.TraderRelations = ConstructTraderRelations(pmcData.TradersInfo);
+        profileChanges.SeasonalRewards = pmcData.SeasonalRewards;
+        profileChanges.BattlePassProgress = pmcData.BattlePassProgress;
+        profileChanges.BattlePassUniversalDocumentBalance = pmcData.BattlePassUniversalDocumentBalance ?? 0;
 
         ResetMoneyTransferLimit(pmcData.MoneyTransferLimitData);
         profileChanges.MoneyTransferLimitData = pmcData.MoneyTransferLimitData;

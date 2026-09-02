@@ -21,6 +21,14 @@ public class HttpServerHelper(HttpConfig httpConfig, IHttpContextAccessor httpCo
         { "png", "image/png" },
         { "svg", "image/svg+xml" },
         { "txt", "text/plain" },
+        { "gif", "image/gif" },
+        { "ico", "image/x-icon" },
+        { "webp", "image/webp" },
+        { "webm", "video/webm" },
+        { "mp4", "video/mp4" },
+        { "woff", "font/woff" },
+        { "woff2", "font/woff2" },
+        { "ttf", "font/ttf" },
     }.ToFrozenDictionary();
 
     public string? GetMimeText(string key)

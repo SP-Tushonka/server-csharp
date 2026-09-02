@@ -16,4 +16,5 @@ public class InsuranceStaticRouter(JsonUtil jsonUtil, InsuranceCallbacks insuran
                 async (url, info, sessionID, output, cancellationToken) => await insuranceCallbacks.GetInsuranceCost(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

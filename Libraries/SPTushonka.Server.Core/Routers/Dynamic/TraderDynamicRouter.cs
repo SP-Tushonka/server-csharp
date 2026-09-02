@@ -20,4 +20,5 @@ public class TraderDynamicRouter(JsonUtil jsonUtil, TraderCallbacks traderCallba
                 async (url, info, sessionID, output, cancellationToken) => await traderCallbacks.GetAssort(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

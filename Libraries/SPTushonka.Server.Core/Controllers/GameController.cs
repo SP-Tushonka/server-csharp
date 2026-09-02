@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Profile;
@@ -46,8 +47,9 @@ public class GameController(
     BotConfig botConfig,
     CoreConfig coreConfig,
     HideoutConfig hideoutConfig,
-    HttpConfig httpConfig
-)
+    HttpConfig httpConfig,
+    BattlePassDocumentLimitService battlePassDocumentLimitService
+) : IOnUpdate
 {
     protected const double Deviation = 0.0001;
 
@@ -514,5 +516,12 @@ public class GameController(
     public void Load()
     {
         postDbLoadService.PerformPostDbLoadActions();
+    }
+
+    public Task<bool> OnUpdateAsync(long secondsSinceLastRun, CancellationToken cancellationToken)
+    {
+        battlePassDocumentLimitService.RefillExpiredBattlePassLimits();
+
+        return Task.FromResult(true);
     }
 }

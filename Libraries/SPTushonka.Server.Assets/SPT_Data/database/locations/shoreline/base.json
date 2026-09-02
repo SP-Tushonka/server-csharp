@@ -3,11 +3,11 @@
     {
       "AirdropPointDeactivateDistance": 50,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.9,
+      "PlaneAirdropChance": 0.2,
       "PlaneAirdropCooldownMax": 1000,
       "PlaneAirdropCooldownMin": 900,
       "PlaneAirdropEnd": 1800,
-      "PlaneAirdropMax": 1,
+      "PlaneAirdropMax": 5,
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
@@ -33,7 +33,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -59,7 +60,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": [
         {
@@ -107,7 +109,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -133,7 +136,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -384,7 +388,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -410,7 +415,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -452,7 +458,8 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "assaultGroup"
+          "assaultGroup",
+          "pmcBotBlackDivSeason"
         ],
         "ChancedEnemies": [
           {
@@ -515,7 +522,8 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "assaultGroup"
+          "assaultGroup",
+          "pmcBotBlackDivSeason"
         ],
         "ChancedEnemies": [
           {
@@ -567,6 +575,7 @@
         ],
         "AlwaysFriends": [
           "assault",
+          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -584,14 +593,74 @@
         ]
       },
       {
-        "BotRole": "assault",
+        "BotRole": "pmcBotBlackDivSeason",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossBullyBlackDiv",
+          "followerBullyBlackDiv",
+          "pmcBotBlackDiv",
+          "bossWedge",
+          "bossWedgeLab",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossZryachiy",
+          "followerZryachiy",
+          "followerWedgeLab",
+          "shooterBTR"
+        ],
+        "Warn": [
+          "bossKilla",
+          "marksman",
+          "bossBoar",
+          "bossBoarSniper",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "followerGluharSecurity",
+          "followerGluharAssault",
+          "followerGluharScout",
+          "bossGluhar",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "followerBoar",
+          "followerBoarClose1",
+          "followerBoarClose2",
+          "followerKojaniy",
+          "followerKolontayAssault",
+          "followerKolontaySecurity",
+          "followerSanitar",
+          "followerTagilla",
+          "assault",
+          "assaultGroup"
+        ],
+        "Neutral": [
+          "sectantPriest",
+          "sectantWarrior",
+          "sentry"
+        ],
+        "SavagePlayerBehaviour": "AlwaysEnemies"
+      },
+      {
+        "BotRole": "marksman",
         "AlwaysEnemies": [
           "pmcBEAR",
           "pmcUSEC"
         ],
         "AlwaysFriends": [
           "bossKilla",
-          "marksman",
+          "assault",
+          "assaultGroup",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
           "gifter",
@@ -609,7 +678,40 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully",
-          "pmcBot"
+          "pmcBot",
+          "pmcBotBlackDivSeason"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assault",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "assaultGroup",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "pmcBot",
+          "pmcBotBlackDivSeason"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
@@ -621,6 +723,7 @@
         ],
         "AlwaysFriends": [
           "bossKilla",
+          "assault",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -639,7 +742,8 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully",
-          "pmcBot"
+          "pmcBot",
+          "pmcBotBlackDivSeason"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
@@ -714,7 +818,8 @@
           "blackDivision",
           "vsRF",
           "vsRFSniper",
-          "assaultTutorial"
+          "assaultTutorial",
+          "pmcBotBlackDivSeason"
         ]
       }
     ],
@@ -887,7 +992,7 @@
       "Infiltration": "",
       "Position": {
         "x": -320.104218,
-        "y": -61.55635,
+        "y": -61.6350021,
         "z": 487.7708
       },
       "Rotation": 55.15233,
@@ -918,7 +1023,7 @@
       "Infiltration": "",
       "Position": {
         "x": -166.7232,
-        "y": -55.6530457,
+        "y": -55.65,
         "z": 368.7158
       },
       "Rotation": 0,
@@ -949,7 +1054,7 @@
       "Infiltration": "",
       "Position": {
         "x": -960.73,
-        "y": -59.39135,
+        "y": -60.11157,
         "z": 389.47998
       },
       "Rotation": 0,
@@ -1010,7 +1115,7 @@
       "Infiltration": "",
       "Position": {
         "x": 459.31,
-        "y": -54.17835,
+        "y": -54.1459045,
         "z": 55.7920074
       },
       "Rotation": 266.625641,
@@ -1160,8 +1265,8 @@
       "Id": "0c2577b9-b858-4a4a-94ca-085214380c6b",
       "Infiltration": "",
       "Position": {
-        "x": -218.900024,
-        "y": -55.6409073,
+        "x": -218.890015,
+        "y": -55.615,
         "z": 379.015839
       },
       "Rotation": 0,
@@ -1222,7 +1327,7 @@
       "Infiltration": "",
       "Position": {
         "x": -308.7532,
-        "y": -62.0376167,
+        "y": -62.055,
         "z": 477.2958
       },
       "Rotation": 0,
@@ -1314,7 +1419,7 @@
       "Infiltration": "",
       "Position": {
         "x": -326.03,
-        "y": -4.52999973,
+        "y": -5.14499569,
         "z": -105.619995
       },
       "Rotation": 19.4150581,
@@ -1345,7 +1450,7 @@
       "Infiltration": "",
       "Position": {
         "x": -621.76,
-        "y": -59.59,
+        "y": -59.605,
         "z": 496.840027
       },
       "Rotation": 0,
@@ -1558,7 +1663,7 @@
       "Infiltration": "",
       "Position": {
         "x": -225.588989,
-        "y": -40.7633476,
+        "y": -40.775,
         "z": 167.765
       },
       "Rotation": 84.57507,
@@ -1621,7 +1726,7 @@
       "Infiltration": "",
       "Position": {
         "x": 128.37,
-        "y": -48.44106,
+        "y": -48.475,
         "z": 76.78
       },
       "Rotation": 0,
@@ -1682,7 +1787,7 @@
       "Infiltration": "",
       "Position": {
         "x": 78.95999,
-        "y": -48.4015732,
+        "y": -48.4137,
         "z": 91.57999
       },
       "Rotation": 0,
@@ -1713,7 +1818,7 @@
       "Infiltration": "",
       "Position": {
         "x": -665.5697,
-        "y": -53.87608,
+        "y": -53.9177933,
         "z": 420.347137
       },
       "Rotation": 0,
@@ -1744,7 +1849,7 @@
       "Infiltration": "",
       "Position": {
         "x": -604.62,
-        "y": -29.8313484,
+        "y": -29.8550034,
         "z": -176.88
       },
       "Rotation": 0,
@@ -1775,7 +1880,7 @@
       "Infiltration": "",
       "Position": {
         "x": 420.2,
-        "y": -47.58135,
+        "y": -47.683136,
         "z": 243.54
       },
       "Rotation": 195.719528,
@@ -1807,7 +1912,7 @@
       "Infiltration": "",
       "Position": {
         "x": 160.559982,
-        "y": -48.30135,
+        "y": -48.305706,
         "z": 62.09999
       },
       "Rotation": 0,
@@ -1958,7 +2063,7 @@
       "Infiltration": "",
       "Position": {
         "x": -232.69,
-        "y": -29.7583351,
+        "y": -29.7500038,
         "z": 192.980011
       },
       "Rotation": 0,
@@ -1989,7 +2094,7 @@
       "Infiltration": "",
       "Position": {
         "x": -749.709961,
-        "y": -37.6113472,
+        "y": -37.69975,
         "z": -50.6799927
       },
       "Rotation": 76.0734,
@@ -2142,7 +2247,7 @@
       "Infiltration": "",
       "Position": {
         "x": 373.22,
-        "y": -53.95135,
+        "y": -54.0477371,
         "z": 75.93002
       },
       "Rotation": 275.844757,
@@ -2173,7 +2278,7 @@
       "Infiltration": "",
       "Position": {
         "x": 237.069992,
-        "y": -52.771347,
+        "y": -52.9178772,
         "z": 213.76
       },
       "Rotation": 245.23494,
@@ -2204,7 +2309,7 @@
       "Infiltration": "",
       "Position": {
         "x": -443.9,
-        "y": -25.962225,
+        "y": -25.9220161,
         "z": 259.87
       },
       "Rotation": 0,
@@ -2265,7 +2370,7 @@
       "Infiltration": "",
       "Position": {
         "x": -891.31,
-        "y": -46.061348,
+        "y": -46.2029076,
         "z": 2.02999878
       },
       "Rotation": 0,
@@ -2296,7 +2401,7 @@
       "Infiltration": "",
       "Position": {
         "x": -251.06,
-        "y": -40.9783936,
+        "y": -41.0200043,
         "z": 195.32
       },
       "Rotation": 0,
@@ -2357,7 +2462,7 @@
       "Infiltration": "",
       "Position": {
         "x": -153.28,
-        "y": -4.86000061,
+        "y": -5.28491974,
         "z": -269.44
       },
       "Rotation": 0,
@@ -2450,7 +2555,7 @@
       "Infiltration": "",
       "Position": {
         "x": -604.48,
-        "y": -29.8313484,
+        "y": -29.8550034,
         "z": -179.41
       },
       "Rotation": 0,
@@ -2481,7 +2586,7 @@
       "Infiltration": "",
       "Position": {
         "x": 199.670013,
-        "y": -64.42,
+        "y": -64.44732,
         "z": 436.79
       },
       "Rotation": 0,
@@ -2512,7 +2617,7 @@
       "Infiltration": "",
       "Position": {
         "x": -234.599991,
-        "y": -5.16861629,
+        "y": -5.13379,
         "z": -174.900009
       },
       "Rotation": 0,
@@ -2543,7 +2648,7 @@
       "Infiltration": "",
       "Position": {
         "x": 458.95,
-        "y": -54.54093,
+        "y": -54.5545158,
         "z": 159.47
       },
       "Rotation": 89.74151,
@@ -2575,7 +2680,7 @@
       "Infiltration": "",
       "Position": {
         "x": -87.8699951,
-        "y": -42.39235,
+        "y": -42.42747,
         "z": 272.28
       },
       "Rotation": 0,
@@ -2607,7 +2712,7 @@
       "Infiltration": "",
       "Position": {
         "x": -291.389984,
-        "y": -5.84999943,
+        "y": -5.907771,
         "z": -54.5399933
       },
       "Rotation": 0,
@@ -2638,7 +2743,7 @@
       "Infiltration": "",
       "Position": {
         "x": 328.860016,
-        "y": -64.65135,
+        "y": -64.75,
         "z": 326.53
       },
       "Rotation": 0,
@@ -2821,7 +2926,7 @@
       "Infiltration": "",
       "Position": {
         "x": -323.5232,
-        "y": -62.0376167,
+        "y": -62.0306168,
         "z": 498.4858
       },
       "Rotation": 0,
@@ -2882,7 +2987,7 @@
       "Infiltration": "",
       "Position": {
         "x": 418.5,
-        "y": -47.68135,
+        "y": -47.708992,
         "z": 255.329987
       },
       "Rotation": 200.381073,
@@ -2913,7 +3018,7 @@
       "Infiltration": "",
       "Position": {
         "x": 13.6999817,
-        "y": -26.2264748,
+        "y": -26.29045,
         "z": -163.839981
       },
       "Rotation": 0,
@@ -2974,7 +3079,7 @@
       "Infiltration": "",
       "Position": {
         "x": -78.19,
-        "y": -21.8066673,
+        "y": -21.840004,
         "z": -6.08999634
       },
       "Rotation": 0,
@@ -3035,7 +3140,7 @@
       "Infiltration": "",
       "Position": {
         "x": 110.25,
-        "y": -48.48343,
+        "y": -48.4399948,
         "z": 138.139984
       },
       "Rotation": 0,
@@ -3156,7 +3261,7 @@
       "Infiltration": "",
       "Position": {
         "x": 459.89,
-        "y": -54.4532776,
+        "y": -54.5574265,
         "z": 92.4900055
       },
       "Rotation": 277.9801,
@@ -3188,7 +3293,7 @@
       "Infiltration": "",
       "Position": {
         "x": -527.13,
-        "y": -26.95135,
+        "y": -27.0361423,
         "z": 287.35
       },
       "Rotation": 0,
@@ -3249,7 +3354,7 @@
       "Infiltration": "",
       "Position": {
         "x": -358.7232,
-        "y": -62.0376167,
+        "y": -62.055,
         "z": 523.105835
       },
       "Rotation": 0,
@@ -3311,7 +3416,7 @@
       "Infiltration": "",
       "Position": {
         "x": -96.84,
-        "y": -41.01888,
+        "y": -40.9714127,
         "z": 211.62999
       },
       "Rotation": 0,
@@ -3402,7 +3507,7 @@
       "Infiltration": "",
       "Position": {
         "x": 446.610016,
-        "y": -48.09135,
+        "y": -48.4514236,
         "z": 235.079987
       },
       "Rotation": 210.132233,
@@ -3433,7 +3538,7 @@
       "Infiltration": "",
       "Position": {
         "x": 363.04,
-        "y": -59.23135,
+        "y": -59.3969879,
         "z": 265.47
       },
       "Rotation": 275.844757,
@@ -3465,7 +3570,7 @@
       "Infiltration": "",
       "Position": {
         "x": -168.695984,
-        "y": -3.644,
+        "y": -3.70999813,
         "z": -83.987
       },
       "Rotation": 19.4150581,
@@ -3526,7 +3631,7 @@
       "Infiltration": "",
       "Position": {
         "x": 72.59999,
-        "y": -31.1844521,
+        "y": -31.2304764,
         "z": -156.3
       },
       "Rotation": 0,
@@ -3587,7 +3692,7 @@
       "Infiltration": "",
       "Position": {
         "x": -312.623,
-        "y": -3.711999,
+        "y": -3.70999813,
         "z": -83.31999
       },
       "Rotation": 0,
@@ -3619,7 +3724,7 @@
       "Infiltration": "",
       "Position": {
         "x": -358.3532,
-        "y": -62.0151253,
+        "y": -62.0498123,
         "z": 555.8658
       },
       "Rotation": 0,
@@ -3681,7 +3786,7 @@
       "Infiltration": "",
       "Position": {
         "x": -893.32,
-        "y": -47.8613472,
+        "y": -47.9813,
         "z": 35.4900055
       },
       "Rotation": 0,
@@ -3773,7 +3878,7 @@
       "Infiltration": "",
       "Position": {
         "x": -139.86,
-        "y": -21.86,
+        "y": -21.875,
         "z": 5.12001038
       },
       "Rotation": 0,
@@ -3925,7 +4030,7 @@
       "Infiltration": "",
       "Position": {
         "x": -490.86,
-        "y": -24.1813488,
+        "y": -24.1662445,
         "z": 203.33
       },
       "Rotation": 0,
@@ -3956,7 +4061,7 @@
       "Infiltration": "",
       "Position": {
         "x": -116.02,
-        "y": -10,
+        "y": -9.838364,
         "z": -360.64
       },
       "Rotation": 0,
@@ -3988,7 +4093,7 @@
       "Infiltration": "",
       "Position": {
         "x": 162.59,
-        "y": -34.96685,
+        "y": -34.72,
         "z": -296.289978
       },
       "Rotation": 0,
@@ -4110,7 +4215,7 @@
       "Infiltration": "",
       "Position": {
         "x": 136.009979,
-        "y": -40.57135,
+        "y": -40.72458,
         "z": -188.54
       },
       "Rotation": 275.728882,
@@ -4173,7 +4278,7 @@
       "Infiltration": "",
       "Position": {
         "x": -156.265991,
-        "y": -3.644,
+        "y": -3.70999813,
         "z": -82.5099945
       },
       "Rotation": 19.4150581,
@@ -4296,7 +4401,7 @@
       "Infiltration": "",
       "Position": {
         "x": -105.990021,
-        "y": -40.13835,
+        "y": -39.72525,
         "z": 244.969986
       },
       "Rotation": 0,
@@ -4419,7 +4524,7 @@
       "Infiltration": "",
       "Position": {
         "x": -122.083717,
-        "y": -9.238266,
+        "y": -9.275337,
         "z": -356.685
       },
       "Rotation": 0,
@@ -4572,7 +4677,7 @@
       "Infiltration": "",
       "Position": {
         "x": -644.133,
-        "y": -26.85735,
+        "y": -26.8799973,
         "z": -230.226013
       },
       "Rotation": 0,
@@ -4641,6 +4746,36 @@
       ]
     },
     {
+      "BotZoneName": "ZoneGreenHouses",
+      "Categories": [
+        "Season01"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 16,
+      "DelayToCanSpawnSec": 4,
+      "Id": "690cad62-5c2d-4116-9bfd-57e998313dbd",
+      "Infiltration": "",
+      "Position": {
+        "x": -222.100037,
+        "y": -9.887849,
+        "z": -343.199982
+      },
+      "Rotation": 240.732513,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
       "BotZoneName": "",
       "Categories": [
         "Player"
@@ -4693,7 +4828,7 @@
       "Infiltration": "",
       "Position": {
         "x": -100.12,
-        "y": -22.2816,
+        "y": -22.29935,
         "z": 10.7100067
       },
       "Rotation": 0,
@@ -4755,7 +4890,7 @@
       "Infiltration": "",
       "Position": {
         "x": -175.86319,
-        "y": -55.7017365,
+        "y": -55.70904,
         "z": 394.2658
       },
       "Rotation": 0,
@@ -4787,7 +4922,7 @@
       "Infiltration": "",
       "Position": {
         "x": -632.42,
-        "y": -26.8423481,
+        "y": -26.8799973,
         "z": -240.12
       },
       "Rotation": 0,
@@ -4878,7 +5013,7 @@
       "Infiltration": "",
       "Position": {
         "x": -318.789978,
-        "y": -5.134326,
+        "y": -5.14499569,
         "z": -173.12999
       },
       "Rotation": 0,
@@ -4909,7 +5044,7 @@
       "Infiltration": "",
       "Position": {
         "x": -248.72998,
-        "y": -40.9998665,
+        "y": -41.01765,
         "z": 158.86
       },
       "Rotation": 200.5934,
@@ -4971,7 +5106,7 @@
       "Infiltration": "",
       "Position": {
         "x": 122.47,
-        "y": -48.44106,
+        "y": -48.4566422,
         "z": 92.81999
       },
       "Rotation": 0,
@@ -5002,7 +5137,7 @@
       "Infiltration": "",
       "Position": {
         "x": -143.76,
-        "y": -11.7710037,
+        "y": -11.8775482,
         "z": -343.349976
       },
       "Rotation": 27.9957886,
@@ -5093,7 +5228,7 @@
       "Infiltration": "",
       "Position": {
         "x": 123.419983,
-        "y": -48.44106,
+        "y": -48.4373856,
         "z": 55.3199921
       },
       "Rotation": 0,
@@ -5185,7 +5320,7 @@
       "Infiltration": "",
       "Position": {
         "x": -197.609985,
-        "y": -5.05,
+        "y": -5.170415,
         "z": -169.939987
       },
       "Rotation": 0,
@@ -5216,7 +5351,7 @@
       "Infiltration": "",
       "Position": {
         "x": -340.0132,
-        "y": -62.021347,
+        "y": -62.0494537,
         "z": 500.8758
       },
       "Rotation": 55.15233,
@@ -5247,7 +5382,7 @@
       "Infiltration": "",
       "Position": {
         "x": -622.62,
-        "y": -29.7413483,
+        "y": -29.8550034,
         "z": -172.66
       },
       "Rotation": 0,
@@ -5398,7 +5533,7 @@
       "Infiltration": "Riverside",
       "Position": {
         "x": -456.0833,
-        "y": -47.87,
+        "y": -47.989,
         "z": 393.009033
       },
       "Rotation": 158.795731,
@@ -5459,7 +5594,7 @@
       "Infiltration": "",
       "Position": {
         "x": -581,
-        "y": -59.3917923,
+        "y": -59.4153366,
         "z": 499.800018
       },
       "Rotation": 0,
@@ -5490,7 +5625,7 @@
       "Infiltration": "",
       "Position": {
         "x": 228.1,
-        "y": -64.56713,
+        "y": -64.46406,
         "z": 425.740021
       },
       "Rotation": 0,
@@ -5521,7 +5656,7 @@
       "Infiltration": "",
       "Position": {
         "x": 357.550018,
-        "y": -59.62579,
+        "y": -59.6140938,
         "z": 328.87
       },
       "Rotation": 222.77774,
@@ -5553,7 +5688,7 @@
       "Infiltration": "",
       "Position": {
         "x": -342.65,
-        "y": -3.711999,
+        "y": -3.70999813,
         "z": -82.83
       },
       "Rotation": 0,
@@ -5614,7 +5749,7 @@
       "Infiltration": "",
       "Position": {
         "x": -295.389984,
-        "y": -5.134326,
+        "y": -5.14499569,
         "z": -127.259995
       },
       "Rotation": 0,
@@ -5765,7 +5900,7 @@
       "Infiltration": "",
       "Position": {
         "x": -694.6,
-        "y": -59.5413475,
+        "y": -59.5581779,
         "z": 471.7
       },
       "Rotation": 89.5888,
@@ -5796,7 +5931,7 @@
       "Infiltration": "",
       "Position": {
         "x": -292.6332,
-        "y": -62.0376167,
+        "y": -62.0362,
         "z": 493.6858
       },
       "Rotation": 0,
@@ -5888,7 +6023,7 @@
       "Infiltration": "",
       "Position": {
         "x": 212.299988,
-        "y": -64.98019,
+        "y": -64.98168,
         "z": 443.23
       },
       "Rotation": 0,
@@ -5919,7 +6054,7 @@
       "Infiltration": "",
       "Position": {
         "x": -581.519958,
-        "y": -43.5413475,
+        "y": -43.5486832,
         "z": 109.78
       },
       "Rotation": 147.9027,
@@ -5950,7 +6085,7 @@
       "Infiltration": "",
       "Position": {
         "x": -156.61,
-        "y": -13.4983215,
+        "y": -13.584549,
         "z": -343.31
       },
       "Rotation": 44.298996,
@@ -5981,7 +6116,7 @@
       "Infiltration": "",
       "Position": {
         "x": -220.86,
-        "y": -29.7583351,
+        "y": -29.7500038,
         "z": 189.53
       },
       "Rotation": 0,
@@ -6012,7 +6147,7 @@
       "Infiltration": "",
       "Position": {
         "x": 125.065,
-        "y": -48.48343,
+        "y": -48.475,
         "z": 136.388
       },
       "Rotation": 0,
@@ -6043,7 +6178,7 @@
       "Infiltration": "",
       "Position": {
         "x": -897.18,
-        "y": -48.50135,
+        "y": -48.67472,
         "z": 44.3399963
       },
       "Rotation": 0,
@@ -6104,7 +6239,7 @@
       "Infiltration": "",
       "Position": {
         "x": -947.28,
-        "y": -59.39135,
+        "y": -58.9738,
         "z": 392.63
       },
       "Rotation": 0,
@@ -6258,7 +6393,7 @@
       "Infiltration": "",
       "Position": {
         "x": -217.540009,
-        "y": -41.0012,
+        "y": -41.0366745,
         "z": 166.4
       },
       "Rotation": 276.228271,
@@ -6288,7 +6423,7 @@
       "Infiltration": "",
       "Position": {
         "x": -151.93,
-        "y": -4.86000061,
+        "y": -5.085907,
         "z": -268.55
       },
       "Rotation": 0,
@@ -6319,7 +6454,7 @@
       "Infiltration": "",
       "Position": {
         "x": -689.077,
-        "y": -51.15035,
+        "y": -51.1206055,
         "z": 403.95
       },
       "Rotation": 89.5888,
@@ -6381,7 +6516,7 @@
       "Infiltration": "",
       "Position": {
         "x": -443.47998,
-        "y": -25.283453,
+        "y": -25.2656364,
         "z": 248.040009
       },
       "Rotation": 0,
@@ -6412,7 +6547,7 @@
       "Infiltration": "",
       "Position": {
         "x": -192.393188,
-        "y": -55.693428,
+        "y": -55.69009,
         "z": 367.8458
       },
       "Rotation": 0,
@@ -6443,7 +6578,7 @@
       "Infiltration": "",
       "Position": {
         "x": -72.17,
-        "y": -21.967,
+        "y": -22.0351715,
         "z": 10.4600067
       },
       "Rotation": 233.659576,
@@ -6595,7 +6730,7 @@
       "Infiltration": "",
       "Position": {
         "x": -753.81,
-        "y": -40.64135,
+        "y": -40.6959038,
         "z": 120.44
       },
       "Rotation": 76.0734,
@@ -6626,7 +6761,7 @@
       "Infiltration": "",
       "Position": {
         "x": -788.9,
-        "y": -40.04935,
+        "y": -40.05519,
         "z": 40.3099976
       },
       "Rotation": 76.0734,
@@ -6688,7 +6823,7 @@
       "Infiltration": "",
       "Position": {
         "x": 143.34,
-        "y": -33.54049,
+        "y": -33.5435829,
         "z": -288.24
       },
       "Rotation": 0,
@@ -6749,7 +6884,7 @@
       "Infiltration": "",
       "Position": {
         "x": -663.53,
-        "y": -59.5880241,
+        "y": -59.62278,
         "z": 496.900024
       },
       "Rotation": 0,
@@ -6780,7 +6915,7 @@
       "Infiltration": "",
       "Position": {
         "x": -697.6,
-        "y": -59.5997047,
+        "y": -59.6031723,
         "z": 497.7
       },
       "Rotation": 0,
@@ -6841,7 +6976,7 @@
       "Infiltration": "",
       "Position": {
         "x": -356.953217,
-        "y": -61.85135,
+        "y": -61.9312248,
         "z": 528.2658
       },
       "Rotation": 0,
@@ -7083,7 +7218,7 @@
       "Infiltration": "",
       "Position": {
         "x": 122.43399,
-        "y": -48.48343,
+        "y": -48.475,
         "z": 136.44
       },
       "Rotation": 0,
@@ -7114,7 +7249,7 @@
       "Infiltration": "",
       "Position": {
         "x": -988.300049,
-        "y": -59.39135,
+        "y": -60.3179359,
         "z": 374.97998
       },
       "Rotation": 0,
@@ -7177,7 +7312,7 @@
       "Infiltration": "",
       "Position": {
         "x": 109.22998,
-        "y": -48.30135,
+        "y": -48.45083,
         "z": 95.87999
       },
       "Rotation": 0,
@@ -7247,6 +7382,36 @@
       ]
     },
     {
+      "BotZoneName": "ZoneGreenHouses",
+      "Categories": [
+        "Season01"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 28,
+      "DelayToCanSpawnSec": 4,
+      "Id": "aaf5fa6f-a0f3-46af-a7f2-2bb3c258188b",
+      "Infiltration": "",
+      "Position": {
+        "x": -502.660034,
+        "y": -18.2673378,
+        "z": -337.009979
+      },
+      "Rotation": 10.0918379,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
       "BotZoneName": "",
       "Categories": [
         "Player"
@@ -7299,7 +7464,7 @@
       "Infiltration": "",
       "Position": {
         "x": 374.68,
-        "y": -59.69135,
+        "y": -59.71846,
         "z": 314.669983
       },
       "Rotation": 277.5449,
@@ -7360,7 +7525,7 @@
       "Infiltration": "",
       "Position": {
         "x": -659.261,
-        "y": -26.8373489,
+        "y": -26.847847,
         "z": -162.341
       },
       "Rotation": 0,
@@ -7421,7 +7586,7 @@
       "Infiltration": "",
       "Position": {
         "x": 244.94,
-        "y": -64.2984848,
+        "y": -64.38047,
         "z": 442.58
       },
       "Rotation": 0,
@@ -7512,7 +7677,7 @@
       "Infiltration": "",
       "Position": {
         "x": -143.63,
-        "y": -21.7317162,
+        "y": -21.7686539,
         "z": -21.1499939
       },
       "Rotation": 0,
@@ -7603,7 +7768,7 @@
       "Infiltration": "",
       "Position": {
         "x": -451.626526,
-        "y": -25.96373,
+        "y": -25.6564236,
         "z": 286.029572
       },
       "Rotation": 0,
@@ -7635,7 +7800,7 @@
       "Infiltration": "",
       "Position": {
         "x": -655.188,
-        "y": -26.8373489,
+        "y": -26.8672485,
         "z": -164.215
       },
       "Rotation": 0,
@@ -7667,7 +7832,7 @@
       "Infiltration": "",
       "Position": {
         "x": -254.633,
-        "y": -45.5623474,
+        "y": -45.5713272,
         "z": 218.166992
       },
       "Rotation": 0,
@@ -7729,7 +7894,7 @@
       "Infiltration": "",
       "Position": {
         "x": -231.303,
-        "y": -4.1430006,
+        "y": -4.165,
         "z": -136.390991
       },
       "Rotation": 19.4150581,
@@ -7851,7 +8016,7 @@
       "Infiltration": "",
       "Position": {
         "x": 27.3945618,
-        "y": -20.5940456,
+        "y": -20.5864315,
         "z": -211.800018
       },
       "Rotation": 0,
@@ -7912,7 +8077,7 @@
       "Infiltration": "",
       "Position": {
         "x": -343.06,
-        "y": -5.16733074,
+        "y": -5.14499569,
         "z": -113.16
       },
       "Rotation": 19.4150581,
@@ -7944,7 +8109,7 @@
       "Infiltration": "",
       "Position": {
         "x": -464.853973,
-        "y": -25.3133488,
+        "y": -25.340004,
         "z": 272.68
       },
       "Rotation": 0,
@@ -7975,7 +8140,7 @@
       "Infiltration": "",
       "Position": {
         "x": 134.297,
-        "y": -48.55235,
+        "y": -48.53539,
         "z": 53.0139923
       },
       "Rotation": 0,
@@ -8066,7 +8231,7 @@
       "Infiltration": "",
       "Position": {
         "x": 328.21,
-        "y": -56.2213478,
+        "y": -56.3850021,
         "z": 110.880005
       },
       "Rotation": 275.844757,
@@ -8188,7 +8353,7 @@
       "Infiltration": "",
       "Position": {
         "x": -215.5632,
-        "y": -55.7550659,
+        "y": -55.7549973,
         "z": 407.585815
       },
       "Rotation": 0,
@@ -8279,7 +8444,7 @@
       "Infiltration": "",
       "Position": {
         "x": 203.769989,
-        "y": -64.57,
+        "y": -64.41774,
         "z": 441.370026
       },
       "Rotation": 0,
@@ -8311,7 +8476,7 @@
       "Infiltration": "",
       "Position": {
         "x": -325.729,
-        "y": -3.711999,
+        "y": -3.68473339,
         "z": -82.48799
       },
       "Rotation": 0,
@@ -8373,7 +8538,7 @@
       "Infiltration": "",
       "Position": {
         "x": -146.11,
-        "y": -3.644,
+        "y": -3.70999813,
         "z": -82.6199951
       },
       "Rotation": 19.4150581,
@@ -8404,7 +8569,7 @@
       "Infiltration": "",
       "Position": {
         "x": -309.5032,
-        "y": -62.0376167,
+        "y": -62.055,
         "z": 505.5958
       },
       "Rotation": 197.8742,
@@ -8526,7 +8691,7 @@
       "Infiltration": "",
       "Position": {
         "x": -134.798325,
-        "y": -10.67804,
+        "y": -10.7351761,
         "z": -351.499146
       },
       "Rotation": 0,
@@ -8557,7 +8722,7 @@
       "Infiltration": "",
       "Position": {
         "x": -170.957,
-        "y": -5.131999,
+        "y": -5.14499569,
         "z": -129.347992
       },
       "Rotation": 359.157959,
@@ -8619,7 +8784,7 @@
       "Infiltration": "",
       "Position": {
         "x": -874.03,
-        "y": -44.55135,
+        "y": -44.5778427,
         "z": 6.779999
       },
       "Rotation": 0,
@@ -8651,7 +8816,7 @@
       "Infiltration": "",
       "Position": {
         "x": -272.846,
-        "y": -4.152999,
+        "y": -4.146323,
         "z": -133.515
       },
       "Rotation": 0,
@@ -8714,7 +8879,7 @@
       "Infiltration": "",
       "Position": {
         "x": 181.433884,
-        "y": -37.2266273,
+        "y": -36.9815331,
         "z": -268.557648
       },
       "Rotation": 0,
@@ -8745,7 +8910,7 @@
       "Infiltration": "",
       "Position": {
         "x": -350.31,
-        "y": -5.134326,
+        "y": -5.14499569,
         "z": -175.090012
       },
       "Rotation": 0,
@@ -8806,7 +8971,7 @@
       "Infiltration": "",
       "Position": {
         "x": -520.37,
-        "y": -25.6599045,
+        "y": -25.893816,
         "z": 284.63
       },
       "Rotation": 0,
@@ -8838,7 +9003,7 @@
       "Infiltration": "",
       "Position": {
         "x": -296.3232,
-        "y": -62.0376167,
+        "y": -62.055,
         "z": 490.1558
       },
       "Rotation": 197.8742,
@@ -8868,7 +9033,7 @@
       "Infiltration": "Riverside",
       "Position": {
         "x": -450.129944,
-        "y": -48,
+        "y": -48.115,
         "z": 392.460022
       },
       "Rotation": 160.595749,
@@ -8929,7 +9094,7 @@
       "Infiltration": "",
       "Position": {
         "x": 206.450012,
-        "y": -64.8,
+        "y": -64.75424,
         "z": 443.370026
       },
       "Rotation": 0,
@@ -8970,6 +9135,36 @@
     {
       "BotZoneName": "ZoneGreenHouses",
       "Categories": [
+        "Season01"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 21,
+      "DelayToCanSpawnSec": 4,
+      "Id": "cfde16df-132f-4f62-ae3e-8cd827a1425b",
+      "Infiltration": "",
+      "Position": {
+        "x": -197.140015,
+        "y": -55.47947,
+        "z": 389.28
+      },
+      "Rotation": 240.732513,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "ZoneGreenHouses",
+      "Categories": [
         "Player",
         "Bot"
       ],
@@ -8990,7 +9185,7 @@
       "Infiltration": "",
       "Position": {
         "x": 227.18,
-        "y": -53.37135,
+        "y": -53.495636,
         "z": 240.909988
       },
       "Rotation": 245.23494,
@@ -9053,7 +9248,7 @@
       "Infiltration": "",
       "Position": {
         "x": -135.68,
-        "y": -5.13,
+        "y": -5.13054562,
         "z": -171.279984
       },
       "Rotation": 359.157959,
@@ -9115,7 +9310,7 @@
       "Infiltration": "",
       "Position": {
         "x": 233.999985,
-        "y": -55.9513474,
+        "y": -56.1034431,
         "z": 146.799988
       },
       "Rotation": 245.23494,
@@ -9389,7 +9584,7 @@
       "Infiltration": "",
       "Position": {
         "x": -984.410034,
-        "y": -59.39135,
+        "y": -60.231575,
         "z": 376.13
       },
       "Rotation": 0,
@@ -9450,7 +9645,7 @@
       "Infiltration": "",
       "Position": {
         "x": 293.57,
-        "y": -62.85135,
+        "y": -63.32877,
         "z": 327.62
       },
       "Rotation": 275.844757,
@@ -9480,7 +9675,7 @@
       "Infiltration": "",
       "Position": {
         "x": -550.27,
-        "y": -29.54135,
+        "y": -29.5415821,
         "z": -211.32
       },
       "Rotation": 0,
@@ -9511,10 +9706,40 @@
       "Infiltration": "",
       "Position": {
         "x": -284.300018,
-        "y": -34.408,
+        "y": -34.4066277,
         "z": 195.3
       },
       "Rotation": 0,
+      "Sides": [
+        "Savage"
+      ]
+    },
+    {
+      "BotZoneName": "ZoneGreenHouses",
+      "Categories": [
+        "Season01"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 3,
+      "DelayToCanSpawnSec": 4,
+      "Id": "e47b21dc-c07a-4d87-a163-1bbcf55f9a07",
+      "Infiltration": "",
+      "Position": {
+        "x": -99.5,
+        "y": -38.8745041,
+        "z": 246.099991
+      },
+      "Rotation": 240.732513,
       "Sides": [
         "Savage"
       ]
@@ -9542,7 +9767,7 @@
       "Infiltration": "",
       "Position": {
         "x": -188.5232,
-        "y": -65.00135,
+        "y": -65.1242752,
         "z": 447.6358
       },
       "Rotation": 0,
@@ -9634,7 +9859,7 @@
       "Infiltration": "",
       "Position": {
         "x": -844.5,
-        "y": -46.37735,
+        "y": -46.29784,
         "z": 59.5
       },
       "Rotation": 76.0734,
@@ -9666,7 +9891,7 @@
       "Infiltration": "",
       "Position": {
         "x": 148.199982,
-        "y": -37.44359,
+        "y": -37.4015236,
         "z": -256.7
       },
       "Rotation": 0,
@@ -9698,7 +9923,7 @@
       "Infiltration": "",
       "Position": {
         "x": -227.107,
-        "y": -5.082999,
+        "y": -5.03603649,
         "z": -54.086
       },
       "Rotation": 19.4150581,
@@ -9729,7 +9954,7 @@
       "Infiltration": "",
       "Position": {
         "x": -909.329,
-        "y": -58.42135,
+        "y": -58.4355736,
         "z": 257.208984
       },
       "Rotation": 76.0734,
@@ -9851,7 +10076,7 @@
       "Infiltration": "",
       "Position": {
         "x": -131.652,
-        "y": -5.080117,
+        "y": -5.090804,
         "z": -103.83
       },
       "Rotation": 301.760071,
@@ -9882,7 +10107,7 @@
       "Infiltration": "",
       "Position": {
         "x": -574.95,
-        "y": -43.99135,
+        "y": -44.0206642,
         "z": 129.459991
       },
       "Rotation": 147.9027,
@@ -9912,9 +10137,9 @@
       "Id": "ecce6c0f-acab-4e54-9c9d-22db670dc4ad",
       "Infiltration": "",
       "Position": {
-        "x": -944.14,
-        "y": -59.39135,
-        "z": 398.97
+        "x": -944.3009,
+        "y": -58.8701553,
+        "z": 398.997742
       },
       "Rotation": 0,
       "Sides": [
@@ -9944,7 +10169,7 @@
       "Infiltration": "",
       "Position": {
         "x": 233.48999,
-        "y": -55.9513474,
+        "y": -56.12464,
         "z": 139.94
       },
       "Rotation": 245.23494,
@@ -9975,7 +10200,7 @@
       "Infiltration": "",
       "Position": {
         "x": -195.01,
-        "y": -5.16733074,
+        "y": -5.13359356,
         "z": -113.72
       },
       "Rotation": 19.4150581,
@@ -10036,7 +10261,7 @@
       "Infiltration": "Village",
       "Position": {
         "x": 334.301331,
-        "y": -42.59,
+        "y": -42.708,
         "z": -263.523132
       },
       "Rotation": 307.8608,
@@ -10097,7 +10322,7 @@
       "Infiltration": "",
       "Position": {
         "x": -638.28,
-        "y": -59.2350578,
+        "y": -59.24233,
         "z": 423.48
       },
       "Rotation": 0,
@@ -10129,7 +10354,7 @@
       "Infiltration": "",
       "Position": {
         "x": -615.14,
-        "y": -29.7413483,
+        "y": -29.8550034,
         "z": -177.85
       },
       "Rotation": 0,
@@ -10190,7 +10415,7 @@
       "Infiltration": "",
       "Position": {
         "x": 459.38,
-        "y": -54.585,
+        "y": -54.6285248,
         "z": 181.860016
       },
       "Rotation": 91.269104,
@@ -10282,7 +10507,7 @@
       "Infiltration": "",
       "Position": {
         "x": -299.15,
-        "y": -5.134326,
+        "y": -5.14499569,
         "z": -151.41
       },
       "Rotation": 0,
@@ -10373,7 +10598,7 @@
       "Infiltration": "",
       "Position": {
         "x": 462.4,
-        "y": -54.4639664,
+        "y": -54.46189,
         "z": 119.560013
       },
       "Rotation": 195.821518,
@@ -10404,7 +10629,7 @@
       "Infiltration": "",
       "Position": {
         "x": -845.37,
-        "y": -45.6313477,
+        "y": -45.79458,
         "z": 123.57
       },
       "Rotation": 76.0734,
@@ -10527,7 +10752,7 @@
       "Infiltration": "",
       "Position": {
         "x": -623.65,
-        "y": -26.7413483,
+        "y": -26.8799973,
         "z": -224.44
       },
       "Rotation": 0,
@@ -10563,6 +10788,36 @@
       "Rotation": 354.017853,
       "Sides": [
         "Pmc"
+      ]
+    },
+    {
+      "BotZoneName": "ZoneGreenHouses",
+      "Categories": [
+        "Season01"
+      ],
+      "ColliderParams": {
+        "_parent": "SpawnSphereParams",
+        "_props": {
+          "Center": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "Radius": 70
+        }
+      },
+      "CorePointId": 22,
+      "DelayToCanSpawnSec": 4,
+      "Id": "fb09bc75-4a7d-4209-b0ca-95f97839b119",
+      "Infiltration": "",
+      "Position": {
+        "x": -378.230042,
+        "y": -40.3537865,
+        "z": 217.45
+      },
+      "Rotation": 240.732513,
+      "Sides": [
+        "Savage"
       ]
     },
     {
@@ -10846,6 +11101,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 33
+    },
+    {
+      "TemplateId": "6a31828557705071410ca00e",
+      "Value": 7
+    },
+    {
+      "TemplateId": "6a31830dde69ceafd805afa0",
+      "Value": 7
     }
   ],
   "secretExits": [
@@ -11158,7 +11421,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneSmuglers",
       "WildSpawnType": "assault",
@@ -11351,7 +11615,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneSanatorium1",
       "WildSpawnType": "assault",
@@ -11368,7 +11633,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneSanatorium2",
       "WildSpawnType": "assault",
@@ -11440,6 +11706,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 220,
   "IconY": 300,
   "IsSecret": false,
@@ -11510,6 +11777,24 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

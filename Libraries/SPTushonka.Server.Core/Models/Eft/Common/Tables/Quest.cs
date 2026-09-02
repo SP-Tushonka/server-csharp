@@ -10,12 +10,6 @@ namespace SPTarkov.Server.Core.Models.Eft.Common.Tables;
 public record Quest
 {
     /// <summary>
-    ///     SPT addition - human readable quest name
-    /// </summary>
-    [JsonPropertyName("QuestName")]
-    public string? QuestName { get; set; }
-
-    /// <summary>
     ///     _id
     /// </summary>
     [JsonPropertyName("_id")]
@@ -51,6 +45,9 @@ public record Quest
     [JsonPropertyName("type")] // can be string or QuestTypeEnum
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public required QuestTypeEnum Type { get; set; }
+
+    [JsonPropertyName("isStoryQuest")]
+    public bool? IsStoryQuest { get; set; }
 
     [JsonPropertyName("isKey")]
     public bool? IsKey { get; set; }
@@ -94,9 +91,6 @@ public record Quest
     [JsonPropertyName("status")]
     public int? Status { get; set; }
 
-    [JsonPropertyName("KeyQuest")]
-    public bool? KeyQuest { get; set; }
-
     [JsonPropertyName("changeQuestMessageText")]
     public string? ChangeQuestMessageText { get; set; }
 
@@ -126,6 +120,30 @@ public record Quest
     /// </summary>
     [JsonPropertyName("sptStatus")]
     public QuestStatusEnum? SptStatus { get; set; }
+
+    [JsonPropertyName("icon")]
+    public string? Icon { get; set; }
+
+    [JsonPropertyName("inBufferZoneOnly")]
+    public bool? InBufferZoneOnly { get; set; }
+
+    [JsonPropertyName("localization")]
+    public Dictionary<string, Dictionary<string, string>>? Localization { get; set; }
+
+    [JsonPropertyName("mailSettings")]
+    public QuestMailSettings? MailSettings { get; set; }
+
+    [JsonPropertyName("notDisplayedQuest")]
+    public bool? NotDisplayedQuest { get; set; }
+
+    [JsonPropertyName("notes")]
+    public Dictionary<string, object?>? Notes { get; set; }
+
+    [JsonPropertyName("rewardsInfo")]
+    public List<Reward>? RewardsInfo { get; set; }
+
+    [JsonPropertyName("tierAccessory")]
+    public int? TierAccessory { get; set; }
 }
 
 /// <summary>
@@ -524,4 +542,25 @@ public record VisibilityCondition
 
     [JsonPropertyName("conditionType")]
     public required string ConditionType { get; set; }
+}
+
+public record QuestMailSettings
+{
+    [JsonPropertyName("isEnabled")]
+    public bool? IsEnabled { get; set; }
+
+    [JsonPropertyName("fromTraderId")]
+    public MongoId? FromTraderId { get; set; }
+
+    [JsonPropertyName("entryPoint")]
+    public string? EntryPoint { get; set; }
+
+    [JsonPropertyName("dialogueId")]
+    public MongoId? DialogueId { get; set; }
+
+    [JsonPropertyName("dialogueTraderId")]
+    public MongoId? DialogueTraderId { get; set; }
+
+    [JsonPropertyName("whileAvailableMessageText")]
+    public string? WhileAvailableMessageText { get; set; }
 }

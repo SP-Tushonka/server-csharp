@@ -15,4 +15,29 @@ public static class Traders
     public static MongoId LIGHTHOUSEKEEPER = new("638f541a29ffd1183d187f57");
     public static MongoId BTR = new("656f0f98d80a697f855d34b1");
     public static MongoId REF = new("6617beeaa9cfa777ca915b7c");
+    public static MongoId STORYLINE = new("67f7af56c117b6140af2a607");
+    public static MongoId KERMAN = new("688246518448b05efd61d461");
+    public static MongoId VOEVODA = new("688246958448b05efd61d462");
+    public static MongoId TARAN = new("68fe15910f29ba3fdbba9d54");
+    public static MongoId RADIO_STATION = new("68fe15990f29ba3fdbba9d55");
+    public static MongoId SCIENTIST = new("69e0d6cc77b63940375b9173");
+
+    /// <summary>
+    /// These traders should only be added after a pre-1.0 profile wipes
+    /// </summary>
+    public static readonly HashSet<MongoId> WipeOnly = [STORYLINE, KERMAN, VOEVODA, TARAN, RADIO_STATION, SCIENTIST];
+
+    /// <summary>
+    /// Traders with no assort to restock
+    /// </summary>
+    public static readonly HashSet<MongoId> NoAssortRefresh =
+    [
+        LIGHTHOUSEKEEPER,
+        STORYLINE,
+        KERMAN,
+        VOEVODA,
+        TARAN,
+        RADIO_STATION,
+        SCIENTIST,
+    ];
 }

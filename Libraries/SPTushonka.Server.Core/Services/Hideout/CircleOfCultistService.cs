@@ -615,27 +615,27 @@ public class CircleOfCultistService(
         switch (craftingInfo.RewardType)
         {
             case CircleRewardType.RANDOM:
-            {
-                // Does reward pass the high value threshold
-                var isHighValueReward = craftingInfo.RewardAmountRoubles >= cultistCircleConfig.HighValueThresholdRub;
-                GenerateRandomisedItemsAndAddToRewardPool(rewardPool, itemRewardBlacklist, isHighValueReward);
-
-                break;
-            }
-            case CircleRewardType.HIDEOUT_TASK:
-            {
-                // Hideout/Task loot
-                AddHideoutUpgradeRequirementsToRewardPool(hideoutTable, pmcData, itemRewardBlacklist, rewardPool);
-                AddTaskItemRequirementsToRewardPool(pmcData, itemRewardBlacklist, rewardPool);
-
-                // If we have no tasks or hideout stuff left or need more loot to fill it out, default to high value
-                if (rewardPool.Count < cultistCircleConfig.MaxRewardItemCount + 2)
                 {
-                    GenerateRandomisedItemsAndAddToRewardPool(rewardPool, itemRewardBlacklist, true);
-                }
+                    // Does reward pass the high value threshold
+                    var isHighValueReward = craftingInfo.RewardAmountRoubles >= cultistCircleConfig.HighValueThresholdRub;
+                    GenerateRandomisedItemsAndAddToRewardPool(rewardPool, itemRewardBlacklist, isHighValueReward);
 
-                break;
-            }
+                    break;
+                }
+            case CircleRewardType.HIDEOUT_TASK:
+                {
+                    // Hideout/Task loot
+                    AddHideoutUpgradeRequirementsToRewardPool(hideoutTable, pmcData, itemRewardBlacklist, rewardPool);
+                    AddTaskItemRequirementsToRewardPool(pmcData, itemRewardBlacklist, rewardPool);
+
+                    // If we have no tasks or hideout stuff left or need more loot to fill it out, default to high value
+                    if (rewardPool.Count < cultistCircleConfig.MaxRewardItemCount + 2)
+                    {
+                        GenerateRandomisedItemsAndAddToRewardPool(rewardPool, itemRewardBlacklist, true);
+                    }
+
+                    break;
+                }
         }
 
         // Add custom rewards from config

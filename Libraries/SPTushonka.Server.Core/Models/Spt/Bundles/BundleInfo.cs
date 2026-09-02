@@ -14,7 +14,7 @@ public sealed record BundleInfo
     public required uint Crc { get; init; }
 
     public required long Size { get; init; }
-    
+
     public required long ModifiedUtcTicks { get; init; }
 
     public List<string> Dependencies

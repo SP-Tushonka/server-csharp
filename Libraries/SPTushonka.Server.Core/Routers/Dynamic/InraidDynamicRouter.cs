@@ -16,4 +16,5 @@ public class InraidDynamicRouter(JsonUtil jsonUtil, InraidCallbacks inraidCallba
                 async (url, info, sessionID, output, cancellationToken) => await inraidCallbacks.RegisterPlayer(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

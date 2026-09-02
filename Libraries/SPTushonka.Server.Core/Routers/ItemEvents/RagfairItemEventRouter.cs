@@ -22,4 +22,5 @@ public sealed class RagfairItemEventRouter(RagfairCallbacks ragfairCallbacks)
             ItemEventActions.RAGFAIR_RENEW_OFFER,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await ragfairCallbacks.ExtendOffer(pmcData, body, sessionID)
         ),
-    ]) { }
+    ])
+{ }

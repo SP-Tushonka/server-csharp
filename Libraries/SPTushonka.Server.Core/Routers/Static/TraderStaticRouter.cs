@@ -17,4 +17,5 @@ public class TraderStaticRouter(JsonUtil jsonUtil, TraderCallbacks traderCallbac
                     await traderCallbacks.GetTraderSettings(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

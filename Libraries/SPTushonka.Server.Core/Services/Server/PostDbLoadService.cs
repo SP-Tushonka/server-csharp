@@ -59,6 +59,8 @@ public class PostDbLoadService(
 
         AdjustMinReserveRaiderSpawnChance();
 
+        DisableForcedOnlineRaids();
+
         if (coreConfig.Fixes.FixShotgunDispersion)
         {
             FixShotgunDispersions(coreConfig.Fixes.ShotgunIdsToFix);
@@ -150,6 +152,20 @@ public class PostDbLoadService(
         }
 
         SetLocationAirdropMinimumPlayers();
+    }
+    
+    protected void DisableForcedOnlineRaids()
+    {
+        foreach (var location in locationTable.GetDictionary().Values)
+        {
+            if (location.Base is null)
+            {
+                continue;
+            }
+
+            location.Base.ForceOnlineRaidInPVE = false;
+            location.Base.SavageForceOnlineRaidInPVE = false;
+        }
     }
 
     /// <summary>
@@ -704,10 +720,12 @@ public class PostDbLoadService(
         }
 
         foreach (var area in hideoutTable.Areas)
-        foreach (var (_, stage) in area.Stages)
-        // Only adjust crafts ABOVE the override
         {
-            stage.ConstructionTime = Math.Min(stage.ConstructionTime.Value, overrideSeconds);
+            foreach (var (_, stage) in area.Stages)
+            // Only adjust crafts ABOVE the override
+            {
+                stage.ConstructionTime = Math.Min(stage.ConstructionTime.Value, overrideSeconds);
+            }
         }
     }
 
@@ -757,7 +775,7 @@ public class PostDbLoadService(
                 if (!traderAssorts.LoyalLevelItems.ContainsKey(assortKey))
                 {
                     // Reverse lookup of enum key by value
-                    var messageValues = new { traderName = traderId, questName = quests[questKey]?.QuestName ?? "UNKNOWN" };
+                    var messageValues = new { traderName = traderId, questName = quests[questKey]?.Name ?? "UNKNOWN" };
                     logger.Warning(serverLocalisationService.GetText("assort-missing_quest_assort_unlock", messageValues));
                 }
             }

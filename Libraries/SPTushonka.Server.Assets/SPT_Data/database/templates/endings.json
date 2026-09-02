@@ -1,0 +1,911 @@
+{
+  "elements": [
+    {
+      "id": "68a6028ef4c23ebbbc49da4b",
+      "systemName": "YouDidntEscapeFromYourself",
+      "conditions": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "68f6201440c96f10b158fd72",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "target": "67c9877aff0329206209cb67",
+          "status": [
+            4,
+            3
+          ],
+          "availableAfter": 0,
+          "dispersion": 0,
+          "isFinisher": false,
+          "conditionType": "Quest"
+        }
+      ],
+      "rewards": [
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b10d78d675b490e419a.png",
+            "bigImage": "/files/prestige/reward/big/69022a8c2aa6c3289000c040.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76dcb4fd078508cd66737",
+          "target": "68df9b2642e96f583d042b8c",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022afe7364e095110dc40a.png",
+            "bigImage": "/files/prestige/reward/big/69022a6a41eae86f8e01e708.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76dc15f0a612adbc12fdf",
+          "target": "68df9a222e6cd294e908d1eb",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022ae685a95b566509c6e3.png",
+            "bigImage": "/files/prestige/reward/big/69022a4afae017be17080d0e.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76defc4e65c32e4c8f334",
+          "target": "68dfaffe3c5a40e30f0e55b0",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022af4c25ffb24600793c4.png",
+            "bigImage": "/files/prestige/reward/big/69022a5ba37a53d59402be70.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76db025e5d0399722dfc7",
+          "target": "68df9aa45d4e135b130392d0",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b26a37a53d59402be88.png",
+            "bigImage": "/files/prestige/reward/big/69022acbd78d675b490e4196.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76e0b67a349c5b259d6aa",
+          "target": "e928f3c11bba9c9daab0ce13",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "e928f3c11bba9c9daab0ce13",
+              "_tpl": "68df977e972cf1e1ec072568",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b1bf2aab08f0108ee6e.png",
+            "bigImage": "/files/prestige/reward/big/69022a9ed190614b1b08bbef.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "69033d9e336a41917d7d61dd",
+          "target": "68fb63be323974a4ae011df8",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022add41eae86f8e01e70a.png",
+            "bigImage": "/files/prestige/reward/big/69022a3e691d9a161804fcc8.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76e03190df16d290ab25e",
+          "target": "0ddd2d2ee82368173958efc1",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "0ddd2d2ee82368173958efc1",
+              "_tpl": "68d41fb0a1c275dbaa0798bf",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69033c11b153ac4c880068d2.png",
+            "bigImage": "/files/prestige/reward/big/69022a526cfbd82d3602dd4a.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76f1034baa4509f851cfb",
+          "type": "Stub"
+        }
+      ],
+      "consequences": [
+        {
+          "viewId": "YouDidntEscapeFromYourself",
+          "index": 1,
+          "localizationKeyCaptionPVP": "YouDidntEscapeFromYourself consequence",
+          "localizationKeyCaptionPVE": "YouDidntEscapeFromYourself consequence"
+        },
+        {
+          "viewId": "YouDidntEscapeFromYourself",
+          "index": 2,
+          "localizationKeyCaptionPVP": "YouDidntEscapeFromYourself consequence_02",
+          "localizationKeyCaptionPVE": "YouDidntEscapeFromYourself consequence_02"
+        }
+      ]
+    },
+    {
+      "id": "68a6e8c834a37e244710d516",
+      "systemName": "EscapedFromTarkovAndSurvived",
+      "conditions": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "68f61fe4741d24fce10c5078",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "target": "67c08f0268e50a07b10d25a6",
+          "status": [
+            4,
+            3
+          ],
+          "availableAfter": 0,
+          "dispersion": 0,
+          "isFinisher": false,
+          "conditionType": "Quest"
+        }
+      ],
+      "rewards": [
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b0c7364e095110dc40b.png",
+            "bigImage": "/files/prestige/reward/big/69022a80b0e4174f820d319c.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68e8f0d3c713846f907d6d69",
+          "target": "68df9abc5d4e135b130392d2",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022af0f2aab08f0108ee6d.png",
+            "bigImage": "/files/prestige/reward/big/69022a566cfbd82d3602dd4b.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68e8f103bb1e2f0cc92ef1fb",
+          "target": "68df9a925d4e135b130392ce",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022ae2c25ffb24600793c3.png",
+            "bigImage": "/files/prestige/reward/big/69022a44fae017be17080d0d.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68a6e8c85eb4b79878a2e238",
+          "target": "68dfafd82d57066c0d011c86",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022af9a37a53d59402be86.png",
+            "bigImage": "/files/prestige/reward/big/69022a61d78d675b490e4193.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68a6e8c8229eef457509bf1e",
+          "target": "68df9a053772634bf40f4f18",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b21c25ffb24600793c6.png",
+            "bigImage": "/files/prestige/reward/big/69022aa8b0e4174f820d319e.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68a6e8c89acc0a0f5182d527",
+          "target": "2e1697df71e0c78da3565560",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "2e1697df71e0c78da3565560",
+              "_tpl": "68df97725d4e135b130392c8",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b169343ca1b170169c2.png",
+            "bigImage": "/files/prestige/reward/big/69022a94b0e4174f820d319d.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "69033d2c16a6649ba92a45cd",
+          "target": "68fb638ebe7aff394b016818",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022ad9d78d675b490e4197.png",
+            "bigImage": "/files/prestige/reward/big/69022a39a37a53d59402be6d.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68a6e8c8c304ed5b38f0fa8b",
+          "target": "caeec48e8b48aa4b260f13ee",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "caeec48e8b48aa4b260f13ee",
+              "_tpl": "68d41e65a706eba9a204ed27",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        }
+      ],
+      "consequences": [
+        {
+          "viewId": "EscapedFromTarkovAndSurvived",
+          "index": 1,
+          "localizationKeyCaptionPVP": "EscapedFromTarkovAndSurvived consequence",
+          "localizationKeyCaptionPVE": "EscapedFromTarkovAndSurvived consequence"
+        },
+        {
+          "viewId": "EscapedFromTarkovAndSurvived",
+          "index": 2,
+          "localizationKeyCaptionPVP": "EscapedFromTarkovAndSurvived consequence_02",
+          "localizationKeyCaptionPVE": "EscapedFromTarkovAndSurvived consequence_02"
+        }
+      ]
+    },
+    {
+      "id": "68a6e8e4a8d0bee0b5324d96",
+      "systemName": "EscapedFromTarkovToFallInTheDarkness",
+      "conditions": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "68f62006c12c2d203c954d5a",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "target": "67c862bd9f9b7ef9090651d8",
+          "status": [
+            4,
+            3
+          ],
+          "availableAfter": 0,
+          "dispersion": 0,
+          "isFinisher": false,
+          "conditionType": "Quest"
+        }
+      ],
+      "rewards": [
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b0e2aa6c3289000c047.png",
+            "bigImage": "/files/prestige/reward/big/69022a875ea67277b70a4efc.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76d7c60ffc691db263b0e",
+          "target": "68df9ac5a38a5e37d80df6cd",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022af22aa6c3289000c046.png",
+            "bigImage": "/files/prestige/reward/big/69022a59c25ffb24600793bd.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76d6b43c9792d32ce3b1a",
+          "target": "68df9a9ba38a5e37d80df6cb",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022ae4b0e4174f820d31a0.png",
+            "bigImage": "/files/prestige/reward/big/69022a4757b3108eb6079c64.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76d840c1e9ef88f1e9406",
+          "target": "68dfafeadfaadbd4eb06539a",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022afb41eae86f8e01e70b.png",
+            "bigImage": "/files/prestige/reward/big/69022a64f2aab08f0108ee65.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76d758a59aaa260e40794",
+          "target": "68df9a14972cf1e1ec07256c",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b24f41be1e44b007b2e.png",
+            "bigImage": "/files/prestige/reward/big/69022ac7a37a53d59402be83.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76d90bd4b568b4147e322",
+          "target": "24d141b21c38c5cf255fe069",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "24d141b21c38c5cf255fe069",
+              "_tpl": "68df97792e6cd294e908d1e9",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b1941eae86f8e01e70d.png",
+            "bigImage": "/files/prestige/reward/big/69022a996cfbd82d3602dd4f.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "69033d6825a343a808efc84c",
+          "target": "68fb63afc09c82a74d07d21f",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022adba37a53d59402be84.png",
+            "bigImage": "/files/prestige/reward/big/69022a3b6cfbd82d3602dd48.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76d995519e80f539b200c",
+          "target": "2ce03b2c36bb89b915625bf2",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "2ce03b2c36bb89b915625bf2",
+              "_tpl": "68d41f017cb8c03da8079004",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69033c11b153ac4c880068d2.png",
+            "bigImage": "/files/prestige/reward/big/69022a526cfbd82d3602dd4a.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76f21f8aa06f898f952e7",
+          "type": "Stub"
+        }
+      ],
+      "consequences": [
+        {
+          "viewId": "EscapedFromTarkovToFallInTheDarkness",
+          "index": 1,
+          "localizationKeyCaptionPVP": "EscapedFromTarkovToFallInTheDarkness consequence",
+          "localizationKeyCaptionPVE": "EscapedFromTarkovToFallInTheDarkness consequence"
+        },
+        {
+          "viewId": "EscapedFromTarkovToFallInTheDarkness",
+          "index": 2,
+          "localizationKeyCaptionPVP": "EscapedFromTarkovToFallInTheDarkness consequence_02",
+          "localizationKeyCaptionPVE": "EscapedFromTarkovToFallInTheDarkness consequence_02"
+        }
+      ]
+    },
+    {
+      "id": "68a6e8f1a7455e5e23099ad8",
+      "systemName": "EscapedFromTarkovForHumanity",
+      "conditions": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "68f61ff4bd381bc8c83b7c5a",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "target": "67bdf8c066ca1d79a202463a",
+          "status": [
+            4,
+            3
+          ],
+          "availableAfter": 0,
+          "dispersion": 0,
+          "isFinisher": false,
+          "conditionType": "Quest"
+        }
+      ],
+      "rewards": [
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b12f41be1e44b007b2d.png",
+            "bigImage": "/files/prestige/reward/big/69022a91d190614b1b08bbee.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76aefd0101a9e5b60fffb",
+          "target": "68df9b2e3772634bf40f4f1c",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022af7b0e4174f820d31a1.png",
+            "bigImage": "/files/prestige/reward/big/69022a5eb0e4174f820d3199.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76af26f6d7791cf5451bc",
+          "target": "68df9aaf637781242a0b22fa",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022ae82aa6c3289000c045.png",
+            "bigImage": "/files/prestige/reward/big/69022a4d41eae86f8e01e704.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76af46d629ebf3a260798",
+          "target": "68dfb00742e96f583d042bd2",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b07f41be1e44b007b2c.png",
+            "bigImage": "/files/prestige/reward/big/69022a7dd190614b1b08bbed.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76af02fc08180b44f080d",
+          "target": "68df9a2d3772634bf40f4f1a",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b2841eae86f8e01e70e.png",
+            "bigImage": "/files/prestige/reward/big/69022acd7364e095110dc406.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76b4849e635460a2508bb",
+          "target": "cd32c2aa744953c8696ce6ab",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "cd32c2aa744953c8696ce6ab",
+              "_tpl": "68df9785beba86572e097ce8",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022b1f2aa6c3289000c048.png",
+            "bigImage": "/files/prestige/reward/big/69022a96f2aab08f0108ee69.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "69033d4e5335ee50cd6ab060",
+          "target": "68fb63c9be7aff394b01681a",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69022ae07364e095110dc407.png",
+            "bigImage": "/files/prestige/reward/big/69022a40d78d675b490e3456.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76b54be93ecc31127a3c7",
+          "target": "d8f5dd9d67b93b82f7227d55",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": false,
+          "items": [
+            {
+              "_id": "d8f5dd9d67b93b82f7227d55",
+              "_tpl": "68d41fde2937f3f17c04864d",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "gameMode": [],
+          "availableInGameEditions": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/69033c11b153ac4c880068d2.png",
+            "bigImage": "/files/prestige/reward/big/69022a526cfbd82d3602dd4a.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f76f1815ed37d2d232b0a8",
+          "type": "Stub"
+        }
+      ],
+      "consequences": [
+        {
+          "viewId": "EscapedFromTarkovForHumanity",
+          "index": 1,
+          "localizationKeyCaptionPVP": "EscapedFromTarkovForHumanity consequence",
+          "localizationKeyCaptionPVE": "EscapedFromTarkovForHumanity consequence"
+        },
+        {
+          "viewId": "EscapedFromTarkovForHumanity",
+          "index": 2,
+          "localizationKeyCaptionPVP": "EscapedFromTarkovForHumanity consequence_02",
+          "localizationKeyCaptionPVE": "EscapedFromTarkovForHumanity consequence_02"
+        }
+      ]
+    }
+  ]
+}

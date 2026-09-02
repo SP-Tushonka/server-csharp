@@ -1,4 +1,4 @@
-using SPTarkov.Server.Core.Models.Spt.Tables;
+﻿using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace SPTarkov.Server.Helpers;
 
@@ -19,6 +19,10 @@ public sealed record DatabaseTables
     public required TradersTable Traders { get; init; }
 
     public required GlobalTable Globals { get; init; }
+
+    public required SeasonTable Season { get; init; }
+
+    public required ShopTable Shop { get; init; }
 
     public required ServerTable Server { get; init; }
 

@@ -16,4 +16,5 @@ public class BundleStaticRouter(JsonUtil jsonUtil, BundleCallbacks bundleCallbac
                 async (url, info, sessionID, output, cancellationToken) => await bundleCallbacks.GetBundles(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

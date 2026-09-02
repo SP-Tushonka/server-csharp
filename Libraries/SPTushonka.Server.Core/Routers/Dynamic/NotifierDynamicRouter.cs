@@ -28,4 +28,5 @@ public class NotifierDynamicRouter(JsonUtil jsonUtil, NotifierCallbacks notifier
                 async (url, info, sessionID, _, cancellationToken) => await notifierCallbacks.GetNotifier(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

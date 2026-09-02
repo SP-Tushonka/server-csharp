@@ -383,7 +383,7 @@ public partial class ProfileFixerService(
             logger.Error(
                 serverLocalisationService.GetText(
                     "quest-unable_to_find_matching_hideout_production",
-                    new { questName = questDetails.QuestName, matchCount = matchingProductions.Count }
+                    new { questName = questDetails.Name, matchCount = matchingProductions.Count }
                 )
             );
 
@@ -401,7 +401,7 @@ public partial class ProfileFixerService(
         {
             if (logger.IsLogEnabled(LogLevel.Debug))
             {
-                logger.Debug($"Added production: {matchingProductionId} to unlocked production recipes for: {questDetails.QuestName}");
+                logger.Debug($"Added production: {matchingProductionId} to unlocked production recipes for: {questDetails.Name}");
             }
         }
     }

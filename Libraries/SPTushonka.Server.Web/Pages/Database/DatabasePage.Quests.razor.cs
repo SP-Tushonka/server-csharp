@@ -170,7 +170,7 @@ public partial class DatabasePage
             chips,
             properties,
             propertiesJson,
-            string.Join(" ", id, title, description, quest.Name, quest.QuestName, type, trader, traderId, location, side, status)
+            string.Join(" ", id, title, description, quest.Name, type, trader, traderId, location, side, status)
         );
     }
 
@@ -211,7 +211,7 @@ public partial class DatabasePage
                     new DatabaseDetailValue("Restartable", GetBoolLabel(quest.Restartable)),
                     new DatabaseDetailValue("Instant complete", GetBoolLabel(quest.InstantComplete)),
                     new DatabaseDetailValue("Secret", GetBoolLabel(quest.SecretQuest)),
-                    new DatabaseDetailValue("Key quest", GetBoolLabel(quest.KeyQuest ?? quest.IsKey)),
+                    new DatabaseDetailValue("Key quest", GetBoolLabel(quest.IsKey)),
                     new DatabaseDetailValue("Notifications", GetBoolLabel(quest.CanShowNotificationsInGame)),
                 ]
             ),
@@ -263,9 +263,9 @@ public partial class DatabasePage
 
     private static string GetQuestTitle(Quest quest, Dictionary<string, string> locale, string id)
     {
-        if (!string.IsNullOrWhiteSpace(quest.QuestName))
+        if (!string.IsNullOrWhiteSpace(quest.Name))
         {
-            return quest.QuestName;
+            return quest.Name;
         }
 
         return GetLocaleValue(locale, $"{id} name", GetNonEmptyValue(quest.Name, id));

@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -58,6 +58,10 @@ public record SptProfile
     /// </summary>
     [JsonPropertyName("dialogueProgress")]
     public List<NodePathTraveled>? DialogueProgress { get; set; }
+
+    /// <summary>Stores Shop offers that are already bought, so the ones marked non-countable cannot be bought twice.</summary>
+    [JsonPropertyName("purchasedShopOffers")]
+    public HashSet<string>? PurchasedShopOffers { get; set; }
 }
 
 public record TraderPurchaseData
@@ -363,6 +367,9 @@ public record Spt
     /// </summary>
     [JsonPropertyName("freeRepeatableRefreshUsedCount")]
     public Dictionary<string, int>? FreeRepeatableRefreshUsedCount { get; set; }
+
+    [JsonPropertyName("tutorialCompleted")]
+    public bool? TutorialCompleted { get; set; }
 
     /// <summary>
     ///     When was a profile migrated, value is timestamp

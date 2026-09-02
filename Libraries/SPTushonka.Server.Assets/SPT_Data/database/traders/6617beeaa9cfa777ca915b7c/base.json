@@ -1,37 +1,91 @@
 {
   "_id": "6617beeaa9cfa777ca915b7c",
-  "availableInRaid": false,
+  "customization_seller": false,
+  "name": "Распорядитель Арены",
+  "surname": "Arena",
+  "nickname": "Arena",
+  "location": "Arena",
   "avatar": "/files/trader/avatar/6617beeaa9cfa777ca915b7c.png",
+  "balance_rub": 7000000,
   "balance_dol": 0,
   "balance_eur": 0,
-  "balance_rub": 7000000,
+  "unlockedByDefault": false,
+  "discount": "0",
+  "discount_end": 0,
   "buyer_up": false,
   "currency": "RUB",
-  "customization_seller": false,
-  "discount": 0,
-  "discount_end": 0,
-  "gridHeight": 120,
+  "nextResupply": 1788097340,
+  "repair": {
+    "availability": false,
+    "quality": "0",
+    "excluded_id_list": [],
+    "excluded_category": [],
+    "currency": "5449016a4bdc2d6f028b456f",
+    "currency_coefficient": 1.0
+  },
   "insurance": {
     "availability": false,
-    "excluded_category": [],
+    "min_payment": 0,
+    "min_return_hour": 0,
     "max_return_hour": 0,
     "max_storage_time": 48,
-    "min_payment": 0,
-    "min_return_hour": 0
+    "excluded_category": []
   },
-  "isAvailableInPVE": true,
-  "isCanTransferItems": true,
-  "isCanTransferItemsFromPve": false,
+  "medic": false,
+  "gridHeight": 120,
+  "availableInRaid": false,
+  "sell_modifier_for_prohibited_items": 0,
+  "loyaltyLevels": [
+    {
+      "minLevel": 1,
+      "minSalesSum": 0,
+      "minStanding": 0.0,
+      "buy_price_coef": 60,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "0",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 0
+    },
+    {
+      "minLevel": 15,
+      "minSalesSum": 0,
+      "minStanding": 0.25,
+      "buy_price_coef": 55,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "0",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 0
+    },
+    {
+      "minLevel": 25,
+      "minSalesSum": 0,
+      "minStanding": 0.5,
+      "buy_price_coef": 55,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "0",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 0
+    },
+    {
+      "minLevel": 35,
+      "minSalesSum": 0,
+      "minStanding": 1.2,
+      "buy_price_coef": 50,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "0",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 0
+    }
+  ],
   "items_buy": {
+    "id_list": [],
     "category": [
       "5422acb9af1c889c16000029",
       "5448fe124bdc2da5018b4567",
       "5485a8684bdc2da71d8b4567"
-    ],
-    "id_list": []
+    ]
   },
   "items_buy_prohibited": {
-    "category": [],
     "id_list": [
       "64d0b40fbe2eed70e254e2d4",
       "62e910aaf957f2915e0a5e36",
@@ -54,167 +108,163 @@
       "6759bb94b8913ff13e049669",
       "6759e07e4ff23436160d7fed",
       "6841b179322db20d190b4b99",
-      "6841b1ff51bf8645f7067bca"
-    ]
-  },
-  "items_sell": {
-    "1": {
-      "category": [],
-      "id_list": [
-        "59fafd4b86f7745ca07e1232",
-        "664d3db6db5dea2bad286955",
-        "62389aaba63f32501b1b444f"
-      ]
-    },
-    "2": {
-      "category": [],
-      "id_list": [
-        "5737330a2459776af32363a1",
-        "66dae7cbeb28f0f96809f325",
-        "6038d614d10cbf667352dd44",
-        "657025281419851aef03e71b",
-        "5d1b371186f774253763a656",
-        "6570241bcfc010a0f50069f5",
-        "65702566bfc87b3a3409324d",
-        "620109578d82e67e7911abf2",
-        "664d3dd590294949fe2d81b7",
-        "5e2af55f86f7746d4159f07c",
-        "5aafbcd986f7745e590fff23",
-        "67600929bd0a0549d70993f6",
-        "59f9d81586f7744c7506ee62",
-        "5aafbde786f774389d0cbc0f",
-        "67d3ed3271c17ff82e0a5b0b",
-        "5c127c4486f7745625356c13",
-        "5a351711c4a282000b1521a4",
-        "5b07dd285acfc4001754240d"
-      ]
-    },
-    "3": {
-      "category": [],
-      "id_list": [
-        "62389ba9a63f32501b1b4451",
-        "65702558cfc010a0f5006a25",
-        "59fb023c86f7746d0d4b423c",
-        "57372d1b2459776862260581",
-        "59fb042886f7746c5005a7b2",
-        "5bed625c0db834001c062946",
-        "628e1ffc83ec92260c0f437f",
-        "6489875745f9ca4ba51c4808",
-        "664d3ddfdda2e85aca370d75",
-        "6570266bc5d7d4cb4d078594",
-        "5c0558060db834001b735271",
-        "618ba27d9008e4636a67f61d",
-        "6516e971a3d4c6497930b450",
-        "558022b54bdc2dac148b458d",
-        "648986bbc827d4637f01791e",
-        "5b057b4f5acfc4771e1bd3e9",
-        "655df24fdf80b12750626d0a",
-        "657023a9126cc4a57d0e17a6",
-        "55d482194bdc2d1d4e8b456b",
-        "5d1b36a186f7742523398433",
-        "5b3b99475acfc432ff4dcbee",
-        "59c1383d86f774290a37e0ca",
-        "6516e91f609aaf354b34b3e2",
-        "5910968f86f77425cf569c32"
-      ]
-    },
-    "4": {
-      "category": [],
-      "id_list": [
-        "57347ca924597744596b4e71",
-        "655746010177119f4a097ff7",
-        "5f5e46b96bdad616ad46d613",
-        "664d3de85f2355673b09aed5",
-        "657025dabfc87b3a34093256",
-        "5a34fe59c4a282000b1521a2",
-        "64acea16c4eda9354b0226b0",
-        "6489879db5a2df1c815a04ef",
-        "615d8f8567085e45ef1409ca",
-        "5cf8f3b0d7f00c00217872ef",
-        "5c94bbff86f7747ee735c08f",
-        "648983d6b5a2df1c815a04ec",
-        "5c0a840b86f7742ffa4f2482",
-        "59c1383d86f774290a37e0ca",
-        "5b6d9ce188a4501afc1b2b25",
-        "656f611f94b480b8a500c0db",
-        "591094e086f7747caa7bb2ef",
-        "657023ccbfc87b3a3409320a",
-        "67600a42b32eb5d23e0eb459",
-        "6570254fcfc010a0f5006a22",
-        "65702572c5d7d4cb4d078576"
-      ]
-    }
-  },
-  "location": "Arena",
-  "loyaltyLevels": [
-    {
-      "buy_price_coef": 50,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 0,
-      "insurance_price_coef": "0",
-      "minLevel": 1,
-      "minSalesSum": 0,
-      "minStanding": 0,
-      "repair_price_coef": 0
-    },
-    {
-      "buy_price_coef": 44,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 0,
-      "insurance_price_coef": "0",
-      "minLevel": 15,
-      "minSalesSum": 0,
-      "minStanding": 0.25,
-      "repair_price_coef": 0
-    },
-    {
-      "buy_price_coef": 44,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 0,
-      "insurance_price_coef": "0",
-      "minLevel": 25,
-      "minSalesSum": 0,
-      "minStanding": 0.5,
-      "repair_price_coef": 0
-    },
-    {
-      "buy_price_coef": 38,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 0,
-      "insurance_price_coef": "0",
-      "minLevel": 35,
-      "minSalesSum": 0,
-      "minStanding": 1.2,
-      "repair_price_coef": 0
-    }
-  ],
-  "mainDialogue": null,
-  "medic": false,
-  "name": "Распорядитель Арены",
-  "nextResupply": 1717707106,
-  "nickname": "Arena",
-  "prohibitedTransferableItems": {
-    "category": [],
-    "id_list": []
-  },
-  "repair": {
-    "availability": false,
-    "currency": "5449016a4bdc2d6f028b456f",
-    "currency_coefficient": 1,
-    "excluded_category": [],
-    "excluded_id_list": [],
-    "quality": 0
+      "6841b1ff51bf8645f7067bca",
+      "68f26161b84c6e1f8a09d001",
+      "68f11224197b61ffe703b16f",
+      "68f0f8f1a1e799f1c3027c71",
+      "68f0f8a1375a44d1ed01ea4b",
+      "68d65766916a108d7a023c98",
+      "68f25b772605ccea240dd684",
+      "68f25be683ec644ebf046787",
+      "6937efd50543dcc2560a2c81",
+      "6937ecd37713b904480013ac",
+      "6937eccbfd921faceb0dfecd",
+      "6937ecc3dbdccab44605fcf0",
+      "68f25be683ec644ebf046787",
+      "68fa8e253666e2fd5b00a626",
+      "68dfc07da7cfeed3e60204e7",
+      "67bdea8667098e658f064695",
+      "67c033fd0610e91bea056998",
+      "67bdf04d66ca1d79a2024637",
+      "67c04a6f9152fbdfa306cc66",
+      "67c04dac9320f644db06f45c",
+      "67c0345b354fca26a0008036",
+      "67c04a9bd98287be7b0923d8",
+      "68f213f8ea61d1803707cf7a",
+      "68e6394e658d876c930977b1",
+      "68cc09872bdcc15c010c2668",
+      "68d152b9915f131d4e05ee6c",
+      "68a4b745b63e97cc5a056a07",
+      "6866adbe09b973bf45094339",
+      "6866ad3853330f9b83064cf9",
+      "68c944200bf756126e00d801",
+      "69ce4e3430056e9ce1007c78",
+      "69dd0de23dfe95d9e70b5ebb",
+      "6a04fab776cb0efb8f05969f",
+      "68c954d8ecbf3abc9907ee9b",
+      "69d39aacf1954acdb3083285",
+      "6a317b9692cfdcddcb02a58e",
+      "6a31807f17005505b70d5827",
+      "6a3181f178450ec91c0ea1aa",
+      "6a31824878450ec91c0ea1ae",
+      "6a31828557705071410ca00e",
+      "6a3182b72fd891345e047eef",
+      "6a3182dc6cd8de21cf0a3a7d",
+      "6a31830dde69ceafd805afa0",
+      "6a3183258f113efdb7093622",
+      "6a3d38063357ef2b260d1891",
+      "6a4ff1e23e95f68a650fcb13"
+    ],
+    "category": []
   },
   "sell_category": [],
-  "sell_modifier_for_prohibited_items": 0,
-  "surname": "Arena",
+  "isCanTransferItems": true,
   "transferableItems": {
-    "category": [],
     "id_list": [
       "5d235b4d86f7742e017bc88a",
       "5449016a4bdc2d6f028b456f",
-      "6656560053eaaa7a23349c86"
-    ]
+      "6656560053eaaa7a23349c86",
+      "68c944200bf756126e00d801",
+      "69d39aacf1954acdb3083285"
+    ],
+    "category": []
   },
-  "unlockedByDefault": false
+  "prohibitedTransferableItems": {
+    "id_list": [],
+    "category": []
+  },
+  "items_sell": {
+    "3": {
+      "id_list": [
+        "656fad8c498d1b7e3e071da0",
+        "5b057b4f5acfc4771e1bd3e9",
+        "648986bbc827d4637f01791e",
+        "655df24fdf80b12750626d0a",
+        "55d482194bdc2d1d4e8b456b",
+        "628e1ffc83ec92260c0f437f",
+        "6516e91f609aaf354b34b3e2",
+        "5d1b36a186f7742523398433",
+        "65702558cfc010a0f5006a25",
+        "62389ba9a63f32501b1b4451",
+        "6516e971a3d4c6497930b450",
+        "5c0558060db834001b735271",
+        "664d3ddfdda2e85aca370d75",
+        "5b3b99475acfc432ff4dcbee",
+        "558022b54bdc2dac148b458d",
+        "6489875745f9ca4ba51c4808",
+        "5c94bbff86f7747ee735c08f",
+        "618ba27d9008e4636a67f61d",
+        "5bed625c0db834001c062946",
+        "657023a9126cc4a57d0e17a6",
+        "5910968f86f77425cf569c32",
+        "59fb042886f7746c5005a7b2",
+        "59fb023c86f7746d0d4b423c"
+      ],
+      "category": []
+    },
+    "1": {
+      "id_list": [
+        "62389aaba63f32501b1b444f",
+        "664d3db6db5dea2bad286955",
+        "59fafd4b86f7745ca07e1232"
+      ],
+      "category": []
+    },
+    "4": {
+      "id_list": [
+        "615d8f8567085e45ef1409ca",
+        "656f611f94b480b8a500c0db",
+        "5a34fe59c4a282000b1521a2",
+        "67600a42b32eb5d23e0eb459",
+        "657023ccbfc87b3a3409320a",
+        "591094e086f7747caa7bb2ef",
+        "5cf8f3b0d7f00c00217872ef",
+        "65702572c5d7d4cb4d078576",
+        "6489879db5a2df1c815a04ef",
+        "657025dabfc87b3a34093256",
+        "57347ca924597744596b4e71",
+        "6570254fcfc010a0f5006a22",
+        "64acea16c4eda9354b0226b0",
+        "59c1383d86f774290a37e0ca",
+        "648983d6b5a2df1c815a04ec",
+        "655746010177119f4a097ff7",
+        "5f5e46b96bdad616ad46d613",
+        "664d3de85f2355673b09aed5",
+        "657024e3c5d7d4cb4d07856a",
+        "5c0a840b86f7742ffa4f2482",
+        "5b6d9ce188a4501afc1b2b25"
+      ],
+      "category": []
+    },
+    "2": {
+      "id_list": [
+        "5d1b371186f774253763a656",
+        "65702566bfc87b3a3409324d",
+        "5a351711c4a282000b1521a4",
+        "67600929bd0a0549d70993f6",
+        "5737330a2459776af32363a1",
+        "657025281419851aef03e71b",
+        "5aafbde786f774389d0cbc0f",
+        "5b07dd285acfc4001754240d",
+        "57372d1b2459776862260581",
+        "66dae7cbeb28f0f96809f325",
+        "59f9d81586f7744c7506ee62",
+        "664d3dd590294949fe2d81b7",
+        "6570266bc5d7d4cb4d078594",
+        "6038d614d10cbf667352dd44",
+        "5e2af55f86f7746d4159f07c",
+        "6570241bcfc010a0f50069f5",
+        "67d3ed3271c17ff82e0a5b0b",
+        "5aafbcd986f7745e590fff23",
+        "620109578d82e67e7911abf2",
+        "5c127c4486f7745625356c13",
+        "6985bee16be2752c150e689b",
+        "6985bed26be2752c150e6898"
+      ],
+      "category": []
+    }
+  },
+  "isAvailableInPVE": true,
+  "isCanTransferItemsFromPve": false,
+  "mainDialogue": null
 }

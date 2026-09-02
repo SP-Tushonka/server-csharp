@@ -21,4 +21,5 @@ public class PrestigeStaticRouter(JsonUtil jsonUtil, PrestigeCallbacks prestigeC
                 async (url, info, sessionID, output, canellationToken) => await prestigeCallbacks.ObtainPrestige(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

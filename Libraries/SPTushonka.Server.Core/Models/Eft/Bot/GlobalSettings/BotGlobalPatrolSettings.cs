@@ -204,4 +204,13 @@ public class BotGlobalPatrolSettings
 
     [JsonPropertyName("DEAD_BODY_DROP_ITEM_PROBABILITY")]
     public float? DeadBodyDropItemProbability { get; set; }
+
+    [JsonPropertyName("CAN_FIND_LOOT")]
+    public bool? CanFindLoot { get; set; }
+
+    [JsonPropertyName("MAX_SPEED_ON_PATROL")]
+    public double? MaxSpeedOnPatrol { get; set; }
+
+    [JsonPropertyName("MIN_SPEED_ON_PATROL")]
+    public double? MinSpeedOnPatrol { get; set; }
 }

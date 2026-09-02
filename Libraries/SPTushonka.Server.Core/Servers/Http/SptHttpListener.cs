@@ -32,6 +32,8 @@ public class SptHttpListener(
     private static readonly ImmutableHashSet<string> _supportedMethods = ["GET", "PUT", "POST"];
 
     private const int ChunkChars = 16 * 1024;
+    private const int ShuffleHeaderLength = 4;
+    private const int FrameStartCapacity = 256 * 1024;
 
     private bool RequestLoggingEnabled
     {
@@ -53,68 +55,83 @@ public class SptHttpListener(
         switch (context.Request.Method)
         {
             case "GET":
-            {
-                var response = await GetResponseObjectAsync(sessionId, context, null, cancellationToken);
-
-                // Another handler is already handling this, or no handler was found.
-                if (response is null)
                 {
-                    return;
-                }
+                    var response = await GetResponseObjectAsync(sessionId, context, null, cancellationToken);
 
-                await SendResponseAsync(sessionId, context.Request, context.Response, null, response, cancellationToken);
-                break;
-            }
+                    // Another handler is already handling this, or no handler was found.
+                    if (response is null)
+                    {
+                        return;
+                    }
+
+                    await SendResponseAsync(sessionId, context.Request, context.Response, null, response, cancellationToken);
+                    break;
+                }
             // these are handled almost identically.
             case "POST":
             case "PUT":
-            {
-                // Contrary to reasonable expectations, the content-encoding is _not_ actually used to
-                // determine if the payload is compressed. All PUT requests are, and POST requests without
-                // debug = 1 are as well. This should be fixed.
-                // let compressed = req.headers["content-encoding"] === "deflate";
-                var requestIsCompressed =
-                    !context.Request.Headers.TryGetValue("requestcompressed", out var compressHeader) || compressHeader != "0";
-                var requestCompressed = context.Request.Method == "PUT" || requestIsCompressed;
-                var bodyStream = await requestEncryptionUtil.DeShuffleAsync(
-                    context.Request.Body,
-                    ShouldShuffleRequest(context.Request.Path),
-                    cancellationToken
-                );
-
-                string body;
-
-                if (requestCompressed)
                 {
-                    await using var deflateStream = new ZLibStream(bodyStream, CompressionMode.Decompress);
-                    using var reader = new StreamReader(deflateStream, Encoding.UTF8);
-                    body = await reader.ReadToEndAsync(cancellationToken);
-                }
-                else
-                {
-                    using var reader = new StreamReader(bodyStream, Encoding.UTF8);
-                    body = await reader.ReadToEndAsync(cancellationToken);
-                }
+                    // Content-Encoding is not what decides compression: every PUT is compressed, and so is
+                    // every POST without requestcompressed=0.
+                    var requestIsCompressed =
+                        !context.Request.Headers.TryGetValue("requestcompressed", out var compressHeader) || compressHeader != "0";
+                    var requestCompressed = context.Request.Method == "PUT" || requestIsCompressed;
+                    var bodyStream = await requestEncryptionUtil.DeShuffleAsync(
+                        context.Request.Body,
+                        ShouldShuffleRequest(context.Request.Path),
+                        cancellationToken
+                    );
 
-                if (!requestIsCompressed)
-                {
-                    if (logger.IsLogEnabled(LogLevel.Debug))
+                    string body;
+                    await using var bufferedBody = new MemoryStream();
+                    await bodyStream.CopyToAsync(bufferedBody, cancellationToken);
+                    bufferedBody.Position = 0;
+
+                    var looksZlib = false;
+                    if (bufferedBody.Length >= 2)
                     {
-                        logger.Debug(body);
+                        var cmf = bufferedBody.ReadByte();
+                        var flg = bufferedBody.ReadByte();
+                        bufferedBody.Position = 0;
+                        looksZlib = (cmf & 0x0F) == 8 && ((cmf << 8) | flg) % 31 == 0;
                     }
+
+                    if (requestCompressed && looksZlib)
+                    {
+                        await using var deflateStream = new ZLibStream(bufferedBody, CompressionMode.Decompress);
+                        using var reader = new StreamReader(deflateStream, Encoding.UTF8);
+                        body = await reader.ReadToEndAsync(cancellationToken);
+                    }
+                    else
+                    {
+                        if (requestCompressed && bufferedBody.Length > 0)
+                        {
+                            logger.Debug($"Body on {context.Request.Path} is not zlib; reading it as plain text");
+                        }
+
+                        using var reader = new StreamReader(bufferedBody, Encoding.UTF8);
+                        body = await reader.ReadToEndAsync(cancellationToken);
+                    }
+
+                    if (!requestIsCompressed)
+                    {
+                        if (logger.IsLogEnabled(LogLevel.Debug))
+                        {
+                            logger.Debug(body);
+                        }
+                    }
+
+                    var response = await GetResponseObjectAsync(sessionId, context, body, cancellationToken);
+
+                    // Another handler is already handling this, or no handler was found.
+                    if (response is null)
+                    {
+                        return;
+                    }
+
+                    await SendResponseAsync(sessionId, context.Request, context.Response, body, response, cancellationToken);
+                    break;
                 }
-
-                var response = await GetResponseObjectAsync(sessionId, context, body, cancellationToken);
-
-                // Another handler is already handling this, or no handler was found.
-                if (response is null)
-                {
-                    return;
-                }
-
-                await SendResponseAsync(sessionId, context.Request, context.Response, body, response, cancellationToken);
-                break;
-            }
         }
     }
 
@@ -251,8 +268,29 @@ public class SptHttpListener(
             return;
         }
 
-        await using var deflateStream = new ZLibStream(resp.Body, CompressionLevel.SmallestSize);
-        await JsonSerializer.SerializeAsync(deflateStream, streamed.Payload, JsonUtil.JsonSerializerOptionsNoIndent!, cancellationToken);
+        await using var frame = new PooledBufferStream(FrameStartCapacity);
+        frame.Reserve(ShuffleHeaderLength);
+
+        await using (var deflateStream = new ZLibStream(frame, CompressionLevel.SmallestSize, leaveOpen: true))
+        {
+            await JsonSerializer.SerializeAsync(deflateStream, streamed.Payload, JsonUtil.JsonSerializerOptionsNoIndent!, cancellationToken);
+        }
+
+        await WriteShuffledAsync(resp, frame, cancellationToken);
+    }
+
+    /// <summary>
+    ///     Live shuffles every compressed response
+    /// </summary>
+    private async Task WriteShuffledAsync(HttpResponse resp, PooledBufferStream frame, CancellationToken cancellationToken)
+    {
+        var payloadLength = (int)frame.Length - ShuffleHeaderLength;
+        frame.Reserve(requestEncryptionUtil.NextPadding());
+
+        var frameLength = (int)frame.Length;
+        requestEncryptionUtil.ShuffleInPlace(frame.Buffer.AsSpan(0, frameLength), payloadLength);
+
+        await resp.Body.WriteAsync(frame.Buffer.AsMemory(0, frameLength), cancellationToken);
     }
 
     public async ValueTask<object> GetResponseObjectAsync(
@@ -308,48 +346,54 @@ public class SptHttpListener(
         resp.ContentType = "application/json";
         resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
 
-        byte[] compressedBytes;
-
-        await using (var compressedStream = new MemoryStream())
+        if (SendsPlainJson(req.Path))
         {
-            await using (var deflateStream = new ZLibStream(compressedStream, CompressionLevel.SmallestSize, leaveOpen: true))
-            {
-                var encoder = Encoding.UTF8.GetEncoder();
-                var buffer = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetMaxByteCount(ChunkChars));
-                try
-                {
-                    for (var offset = 0; offset < output.Length; offset += ChunkChars)
-                    {
-                        var take = Math.Min(ChunkChars, output.Length - offset);
-                        var written = encoder.GetBytes(output.AsSpan(offset, take), buffer, offset + take == output.Length);
+            resp.Headers.Append("Access-Control-Allow-Origin", "*");
 
-                        await deflateStream.WriteAsync(buffer.AsMemory(0, written), cancellationToken);
-                    }
-                }
-                finally
-                {
-                    ArrayPool<byte>.Shared.Return(buffer);
-                }
-            }
+            await resp.Body.WriteAsync(Encoding.UTF8.GetBytes(output), cancellationToken);
 
-            compressedBytes = compressedStream.ToArray();
+            return;
         }
 
-        var responseBytes = ShouldShuffleResponse(req.Path) ? requestEncryptionUtil.Shuffle(compressedBytes) : compressedBytes;
+        await using var frame = new PooledBufferStream(FrameStartCapacity);
+        frame.Reserve(ShuffleHeaderLength);
 
-        await resp.Body.WriteAsync(responseBytes, cancellationToken);
+        await using (var deflateStream = new ZLibStream(frame, CompressionLevel.SmallestSize, leaveOpen: true))
+        {
+            var encoder = Encoding.UTF8.GetEncoder();
+            var buffer = ArrayPool<byte>.Shared.Rent(Encoding.UTF8.GetMaxByteCount(ChunkChars));
+            try
+            {
+                for (var offset = 0; offset < output.Length; offset += ChunkChars)
+                {
+                    var take = Math.Min(ChunkChars, output.Length - offset);
+                    var written = encoder.GetBytes(output.AsSpan(offset, take), buffer, offset + take == output.Length);
+
+                    await deflateStream.WriteAsync(buffer.AsMemory(0, written), cancellationToken);
+                }
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(buffer);
+            }
+        }
+
+        await WriteShuffledAsync(resp, frame, cancellationToken);
     }
 
     private static bool ShouldShuffleRequest(PathString path)
     {
         return !path.StartsWithSegments("/launcher")
             && !path.StartsWithSegments("/client/metadata")
+            && !path.StartsWithSegments("/v2/shop")
             && !path.StartsWithSegments("/files");
     }
 
-    private static bool ShouldShuffleResponse(PathString path)
+    private static bool SendsPlainJson(PathString path)
     {
-        return !path.StartsWithSegments("/launcher") && !path.StartsWithSegments("/files");
+        return path.StartsWithSegments("/launcher")
+            || path.StartsWithSegments("/v2/shop")
+            || path.StartsWithSegments("/files");
     }
 
     private record Response(string Method, string jsonData);

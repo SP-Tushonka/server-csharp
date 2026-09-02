@@ -18,4 +18,5 @@ public sealed class RepairItemEventRouter(RepairCallbacks repairCallbacks)
             ItemEventActions.TRADER_REPAIR,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await repairCallbacks.TraderRepair(pmcData, body, sessionID)
         ),
-    ]) { }
+    ])
+{ }

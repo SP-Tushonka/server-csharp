@@ -262,6 +262,30 @@ public record BotGlobalAimingSettings
 
     [JsonPropertyName("UnderbarrelLauncherAiming")]
     public BotUnderbarrelLauncherAimingSettings? UnderbarrelLauncherAiming { get; set; }
+
+    [JsonPropertyName("CAN_HARD_AIM")]
+    public bool? CanHardAim { get; set; }
+
+    [JsonPropertyName("CAN_USE_STRIBOSCOPE")]
+    public int? CanUseStriboscope { get; set; }
+
+    [JsonPropertyName("CHANCE_DISCARD_AIM_SEC")]
+    public int? ChanceDiscardAimSec { get; set; }
+
+    [JsonPropertyName("DEAD_BODY_LOOK_PERIOD")]
+    public double? DeadBodyLookPeriod { get; set; }
+
+    [JsonPropertyName("ENEMY_Y_WEAPON_OFFSET")]
+    public double? EnemyYWeaponOffset { get; set; }
+
+    [JsonPropertyName("RECLC_DIST")]
+    public double? ReclcDist { get; set; }
+
+    [JsonPropertyName("RECLC_SQR_DIST")]
+    public double? ReclcSqrDist { get; set; }
+
+    [JsonPropertyName("SHALL_LAY_PROBABILTY_WHEN_ARTILLERY")]
+    public int? ShallLayProbabiltyWhenArtillery { get; set; }
 }
 
 /// <summary>

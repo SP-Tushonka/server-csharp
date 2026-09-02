@@ -77,10 +77,10 @@ public record QteRequirement
 public record QteResult
 {
     [JsonPropertyName("energy")]
-    public int? Energy { get; set; }
+    public double? Energy { get; set; }
 
     [JsonPropertyName("hydration")]
-    public int? Hydration { get; set; }
+    public double? Hydration { get; set; }
 
     [JsonPropertyName("rewardsRange")]
     public List<QteEffect>? RewardEffects { get; set; }

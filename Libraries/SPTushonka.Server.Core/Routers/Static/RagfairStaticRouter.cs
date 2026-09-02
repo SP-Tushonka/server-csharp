@@ -42,4 +42,5 @@ public class RagfairStaticRouter(JsonUtil jsonUtil, RagfairCallbacks ragfairCall
                 async (url, info, sessionID, output, cancellationToken) => await ragfairCallbacks.GetFleaOfferById(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

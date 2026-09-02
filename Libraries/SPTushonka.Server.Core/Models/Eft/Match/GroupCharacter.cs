@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
 
@@ -86,27 +87,39 @@ public record VisualInfo
 
     [JsonPropertyName("GameVersion")]
     public string? GameVersion { get; set; }
+
+    [JsonPropertyName("PrestigeLevel")]
+    public int? PrestigeLevel { get; set; }
+
+    [JsonPropertyName("SelectedMemberCategory")]
+    public MemberCategory? SelectedMemberCategory { get; set; }
 }
 
 public record Customization
 {
     [JsonPropertyName("Head")]
-    public string? Head { get; set; }
+    public MongoId? Head { get; set; }
 
     [JsonPropertyName("Body")]
-    public string? Body { get; set; }
+    public MongoId? Body { get; set; }
 
     [JsonPropertyName("Feet")]
-    public string? Feet { get; set; }
+    public MongoId? Feet { get; set; }
 
     [JsonPropertyName("Hands")]
-    public string? Hands { get; set; }
+    public MongoId? Hands { get; set; }
+
+    [JsonPropertyName("DogTag")]
+    public MongoId? DogTag { get; set; }
+
+    [JsonPropertyName("Voice")]
+    public MongoId? Voice { get; set; }
 }
 
 public record Equipment
 {
     [JsonPropertyName("Id")]
-    public string? Id { get; set; }
+    public MongoId? Id { get; set; }
 
     [JsonPropertyName("Items")]
     public List<Item>? Items { get; set; }

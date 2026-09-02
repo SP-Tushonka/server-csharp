@@ -68,7 +68,13 @@ public class SptLoggerExtensionsTests
 
     private sealed class TestOnlyLogHandler : ILogHandler
     {
-        public LoggerType LoggerType => LoggerType.Console;
+        public LoggerType LoggerType
+        {
+            get
+            {
+                return LoggerType.Console;
+            }
+        }
 
         public void Log(SptLogMessage message, BaseSptLoggerReference reference)
         {

@@ -3,11 +3,11 @@
     {
       "AirdropPointDeactivateDistance": 50,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.9,
+      "PlaneAirdropChance": 0.2,
       "PlaneAirdropCooldownMax": 700,
       "PlaneAirdropCooldownMin": 600,
       "PlaneAirdropEnd": 1200,
-      "PlaneAirdropMax": 1,
+      "PlaneAirdropMax": 5,
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
@@ -33,7 +33,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -41,7 +42,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 30,
+      "BossChance": 25,
       "BossDifficult": "normal",
       "BossEscortAmount": "2",
       "BossEscortDifficult": "normal",
@@ -59,7 +60,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [
         {
@@ -107,7 +109,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -115,7 +118,7 @@
       "TriggerName": "botEvent"
     },
     {
-      "BossChance": 25,
+      "BossChance": 30,
       "BossDifficult": "normal",
       "BossEscortAmount": "4",
       "BossEscortDifficult": "normal",
@@ -133,7 +136,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -440,6 +444,7 @@
         ],
         "AlwaysFriends": [
           "assault",
+          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -10682,6 +10687,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 29
+    },
+    {
+      "TemplateId": "6a3181f178450ec91c0ea1aa",
+      "Value": 7
+    },
+    {
+      "TemplateId": "6a31807f17005505b70d5827",
+      "Value": 7
     }
   ],
   "secretExits": [
@@ -10757,7 +10770,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneScavBase",
       "WildSpawnType": "assault",
@@ -10790,7 +10804,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneDormitory",
       "WildSpawnType": "assault",
@@ -10807,7 +10822,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneGasStation",
       "WildSpawnType": "assault",
@@ -10856,7 +10872,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneOldAZS",
       "WildSpawnType": "assault",
@@ -11104,6 +11121,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 550,
   "IconY": 460,
   "IsSecret": false,
@@ -11228,6 +11246,24 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

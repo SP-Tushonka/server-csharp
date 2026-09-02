@@ -224,7 +224,7 @@ public class RagfairServerHelper(
     public int GetOfferCountByBaseType(MongoId itemParentType)
     {
         var offerItemCounts = ragfairConfig.Dynamic.OfferItemCount;
-        
+
         MinMax<int>? minMaxRange;
         Span<char> parentTypeChars = stackalloc char[24];
         if (itemParentType.TryFormat(parentTypeChars, out var charsWritten) && offerItemCounts.TryGetAlternateLookup<ReadOnlySpan<char>>(out var lookup))

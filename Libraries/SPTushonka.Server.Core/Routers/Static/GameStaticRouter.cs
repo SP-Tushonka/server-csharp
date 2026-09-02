@@ -21,6 +21,34 @@ public class GameStaticRouter(JsonUtil jsonUtil, GameCallbacks gameCallbacks)
                 "/client/putHWMetrics",
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.PutHwMetrics(url, info, sessionID)
             ),
+            new RouteAction<EmptyRequestData>(
+                "/client/season/active",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetActiveSeason(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/game/token/issue",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.IssueGameToken(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/v2/client/shop/status",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetShopStatus(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/v2/client/shop/token/generate",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GenerateShopToken(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/v2/client/shop/purchase/sign",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.SignShopPurchase(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/battle-pass/active",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetActiveBattlePass(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
+                "/client/seasonal-perks/list",
+                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetSeasonalPerks(url, info, sessionID)
+            ),
             new RouteAction<GameModeRequestData>(
                 "/client/game/mode",
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetGameMode(url, info, sessionID)
@@ -86,4 +114,5 @@ public class GameStaticRouter(JsonUtil jsonUtil, GameCallbacks gameCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.ReceiveClientMods(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

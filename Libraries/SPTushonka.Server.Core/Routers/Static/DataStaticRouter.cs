@@ -85,4 +85,5 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetEndingList(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

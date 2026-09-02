@@ -229,4 +229,10 @@ public record BotGlobalsCoverSettings
     /// </summary>
     [JsonPropertyName("CAN_LAY_TO_COVER")]
     public bool? CanLayToCover { get; set; }
+
+    [JsonPropertyName("CAN_LOOK_OUT_WHEN_HOLDING")]
+    public bool? CanLookOutWhenHolding { get; set; }
+
+    [JsonPropertyName("LOOK_LAST_ENEMY_POS_HOLDING")]
+    public double? LookLastEnemyPosHolding { get; set; }
 }

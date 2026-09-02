@@ -61,4 +61,16 @@ public record BotGlobalCoreSettings
         normal,
         regular,
     }
+
+    [JsonPropertyName("EffectImmunity")]
+    public List<string>? EffectImmunity { get; set; }
+
+    [JsonPropertyName("GainSightCoef")]
+    public double? GainSightCoef { get; set; }
+
+    [JsonPropertyName("START_DIST_TO_COV")]
+    public int? StartDistToCov { get; set; }
+
+    [JsonPropertyName("TILT_CHANCE")]
+    public double? TiltChance { get; set; }
 }

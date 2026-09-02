@@ -237,6 +237,9 @@ public class CustomizationController(
                 case "voice":
                     pmcData.Customization.Voice = customisation.Id;
                     break;
+                case "head":
+                    pmcData.Customization.Head = customisation.Id;
+                    break;
                 default:
                     logger.Error($"Unhandled customisation type: {customisation.Type}");
                     break;

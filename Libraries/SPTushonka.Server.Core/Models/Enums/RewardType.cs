@@ -1,4 +1,4 @@
-namespace SPTarkov.Server.Core.Models.Enums;
+﻿namespace SPTarkov.Server.Core.Models.Enums;
 
 public enum RewardType
 {
@@ -23,8 +23,12 @@ public enum RewardType
     Stub,
     WebPromoCode,
     NotificationPopup,
+    GlobalVariable,
+    LocationUnlock,
+    TraderDialogueUnlock,
     Customization = 116,
     BattlePassExperience,
     BattlePassCurrency,
+    Tarcoin,
     ArenaArmoryItem = 100,
 }

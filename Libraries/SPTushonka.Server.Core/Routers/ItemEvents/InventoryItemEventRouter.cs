@@ -129,4 +129,5 @@ public sealed class InventoryItemEventRouter(InventoryCallbacks inventoryCallbac
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await inventoryCallbacks.SaveDialogueState(pmcData, body, sessionID, output)
         ),
-    ]) { }
+    ])
+{ }

@@ -3,11 +3,11 @@
     {
       "AirdropPointDeactivateDistance": 100,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.9,
+      "PlaneAirdropChance": 0.2,
       "PlaneAirdropCooldownMax": 900,
       "PlaneAirdropCooldownMin": 800,
       "PlaneAirdropEnd": 1800,
-      "PlaneAirdropMax": 1,
+      "PlaneAirdropMax": 5,
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
@@ -31,7 +31,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -55,7 +56,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -344,6 +346,7 @@
         ],
         "AlwaysFriends": [
           "assault",
+          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -9202,6 +9205,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 35
+    },
+    {
+      "TemplateId": "6a31824878450ec91c0ea1ae",
+      "Value": 7
+    },
+    {
+      "TemplateId": "6a31807f17005505b70d5827",
+      "Value": 7
     }
   ],
   "secretExits": [
@@ -9274,7 +9285,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneCenterBot",
       "WildSpawnType": "assault",
@@ -9458,6 +9470,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 660,
   "IconY": 360,
   "IsSecret": false,
@@ -9528,6 +9541,24 @@
         "path": "banners/67e404c722d6081b78031de0.jpg",
         "rcid": "",
         "file": "67e404c722d6081b78031de0.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

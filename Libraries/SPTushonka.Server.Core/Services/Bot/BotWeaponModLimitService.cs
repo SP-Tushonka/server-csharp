@@ -21,10 +21,12 @@ public class BotWeaponModLimitService(ISptLogger<BotWeaponModLimitService> logge
     /// <returns>BotModLimits object</returns>
     public BotModLimits GetWeaponModLimits(string botRole)
     {
+        var limits = botConfig.Equipment.GetValueOrDefault(botRole)?.WeaponModLimits;
+
         return new BotModLimits
         {
             Scope = new ItemCount { Count = 0 },
-            ScopeMax = botConfig.Equipment[botRole]?.WeaponModLimits?.ScopeLimit,
+            ScopeMax = limits?.ScopeLimit,
             ScopeBaseTypes =
             [
                 BaseClasses.OPTIC_SCOPE,
@@ -34,7 +36,7 @@ public class BotWeaponModLimitService(ISptLogger<BotWeaponModLimitService> logge
                 BaseClasses.SPECIAL_SCOPE,
             ],
             FlashlightLaser = new ItemCount { Count = 0 },
-            FlashlightLaserMax = botConfig.Equipment[botRole]?.WeaponModLimits?.LightLaserLimit,
+            FlashlightLaserMax = limits?.LightLaserLimit,
             FlashlightLaserBaseTypes = [BaseClasses.TACTICAL_COMBO, BaseClasses.FLASHLIGHT, BaseClasses.PORTABLE_RANGE_FINDER],
         };
     }

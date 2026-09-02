@@ -496,6 +496,36 @@
       }
     },
     "assaultgroup": {},
+    "assaulttutorial": {
+      "faceShieldIsActiveChancePercent": 85,
+      "laserIsActiveChancePercent": 75,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 85,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 90,
+      "weaponModLimits": {
+        "lightLaserLimit": 2,
+        "scopeLimit": 1
+      }
+    },
+    "blackdivision": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
     "bossboar": {
       "forceStock": true,
       "laserIsActiveChancePercent": 85,
@@ -632,6 +662,18 @@
       "lightIsActiveNightChancePercent": 85,
       "nvgIsActiveChanceDayPercent": 10,
       "nvgIsActiveChanceNightPercent": 90
+    },
+    "civilian": {
+      "faceShieldIsActiveChancePercent": 85,
+      "laserIsActiveChancePercent": 75,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 85,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 90,
+      "weaponModLimits": {
+        "lightLaserLimit": 2,
+        "scopeLimit": 1
+      }
     },
     "crazyassaultevent": {
       "faceShieldIsActiveChancePercent": 80,
@@ -2520,6 +2562,18 @@
       "nvgIsActiveChanceDayPercent": 10,
       "nvgIsActiveChanceNightPercent": 100
     },
+    "sentry": {
+      "faceShieldIsActiveChancePercent": 85,
+      "laserIsActiveChancePercent": 75,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 85,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 90,
+      "weaponModLimits": {
+        "lightLaserLimit": 2,
+        "scopeLimit": 1
+      }
+    },
     "shooterbtr": {},
     "skier": {
       "faceShieldIsActiveChancePercent": 100,
@@ -2541,7 +2595,43 @@
       "lightIsActiveDayChancePercent": 25,
       "lightIsActiveNightChancePercent": 75
     },
-    "test": {}
+    "test": {},
+    "vsrf": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
+    "vsrfsniper": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    }
   },
   "itemSpawnLimits": {
     "arenafighter": {
@@ -2567,6 +2657,25 @@
       "679baa9091966fe40408f149": 0
     },
     "assaultgroup": {},
+    "assaulttutorial": {
+      "5448e8d04bdc2ddf718b4569": 2,
+      "5448e8d64bdc2dce718b4568": 2,
+      "5448f3ac4bdc2dce718b4569": 4,
+      "5449016a4bdc2d6f028b456f": 2,
+      "5783c43d2459774bbe137486": 1,
+      "5a0c27731526d80618476ac4": 1,
+      "5c99f98d86f7745c314214b3": 1,
+      "60b0f6c058e0b0481a09ad11": 1,
+      "62a09d3bcf4a99369e262447": 1,
+      "67e183377c6c2011970f3149": 0,
+      "679baa2c61f588ae2b062a24": 0,
+      "679baa4f59b8961f370dd683": 0,
+      "679baa5a59b8961f370dd685": 0,
+      "679baa9091966fe40408f149": 0
+    },
+    "blackdivision": {
+      "60098ad7c2240c0fe85c570a": 2
+    },
     "bossboar": {},
     "bossboarsniper": {},
     "bossbully": {
@@ -2592,6 +2701,22 @@
     "bosstagillaagro": {},
     "bosstest": {},
     "bosszryachiy": {},
+    "civilian": {
+      "5448e8d04bdc2ddf718b4569": 2,
+      "5448e8d64bdc2dce718b4568": 2,
+      "5448f3ac4bdc2dce718b4569": 4,
+      "5449016a4bdc2d6f028b456f": 2,
+      "5783c43d2459774bbe137486": 1,
+      "5a0c27731526d80618476ac4": 1,
+      "5c99f98d86f7745c314214b3": 1,
+      "60b0f6c058e0b0481a09ad11": 1,
+      "62a09d3bcf4a99369e262447": 1,
+      "67e183377c6c2011970f3149": 0,
+      "679baa2c61f588ae2b062a24": 0,
+      "679baa4f59b8961f370dd683": 0,
+      "679baa5a59b8961f370dd685": 0,
+      "679baa9091966fe40408f149": 0
+    },
     "crazyassaultevent": {},
     "cursedassault": {},
     "default": {},
@@ -2700,10 +2825,32 @@
     "sectantpriest": {},
     "sectantprizrak": {},
     "sectantwarrior": {},
+    "sentry": {
+      "5448e8d04bdc2ddf718b4569": 2,
+      "5448e8d64bdc2dce718b4568": 2,
+      "5448f3ac4bdc2dce718b4569": 4,
+      "5449016a4bdc2d6f028b456f": 2,
+      "5783c43d2459774bbe137486": 1,
+      "5a0c27731526d80618476ac4": 1,
+      "5c99f98d86f7745c314214b3": 1,
+      "60b0f6c058e0b0481a09ad11": 1,
+      "62a09d3bcf4a99369e262447": 1,
+      "67e183377c6c2011970f3149": 0,
+      "679baa2c61f588ae2b062a24": 0,
+      "679baa4f59b8961f370dd683": 0,
+      "679baa5a59b8961f370dd685": 0,
+      "679baa9091966fe40408f149": 0
+    },
     "shooterbtr": {},
     "skier": {},
     "tagillahelperagro": {},
-    "test": {}
+    "test": {},
+    "vsrf": {
+      "60098ad7c2240c0fe85c570a": 2
+    },
+    "vsrfsniper": {
+      "60098ad7c2240c0fe85c570a": 2
+    }
   },
   "lootItemResourceRandomization": {
     "assault": {
@@ -2830,6 +2977,8 @@
     "arenaFighter": 15,
     "arenaFighterEvent": 15,
     "assault": 45,
+    "assaultTutorial": 45,
+    "blackDivision": 40,
     "bossBoar": 5,
     "bossBoarSniper": 5,
     "bossBully": 5,
@@ -2841,10 +2990,11 @@
     "bossKolontay": 5,
     "bossPartisan": 5,
     "bossSanitar": 5,
-    "bossTagilla": 5,
     "bossTagillAagro": 5,
+    "bossTagilla": 5,
     "bossTest": 10,
     "bossZryachiy": 5,
+    "civilian": 45,
     "crazyAssaultEvent": 15,
     "cursedAssault": 50,
     "exUsec": 15,
@@ -2884,10 +3034,13 @@
     "sectantPriest": 10,
     "sectantPrizrak": 10,
     "sectantWarrior": 10,
+    "sentry": 45,
     "shooterBTR": 1,
     "skier": 10,
     "tagillaHelperAgro": 5,
-    "test": 30
+    "test": 30,
+    "vsRF": 40,
+    "vsRFSniper": 40
   },
   "secureContainerAmmoStackCount": 20,
   "showTypeInNickname": false,

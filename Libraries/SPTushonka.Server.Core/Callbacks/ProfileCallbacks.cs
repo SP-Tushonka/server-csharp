@@ -1,9 +1,10 @@
-using SPTarkov.DI.Annotations;
+﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Controllers;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Launcher;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
@@ -22,6 +23,7 @@ public class ProfileCallbacks(
     ProfileHelper profileHelper
 )
 {
+
     /// <summary>
     ///     Handle client/game/profile/create
     /// </summary>
@@ -40,6 +42,15 @@ public class ProfileCallbacks(
     public ValueTask<StreamedJsonBody> GetProfileData(string url, EmptyRequestData _, MongoId sessionID)
     {
         return new ValueTask<StreamedJsonBody>(httpResponse.GetStreamedBody(profileController.GetCompleteProfile(sessionID)));
+    }
+
+    /// <summary>
+    ///     Handle /v2/client/game/profiles/
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<StreamedJsonBody> GetCharacterSelectionProfiles(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        return new ValueTask<StreamedJsonBody>(httpResponse.GetStreamedBody(profileController.GetCharacterSelectionProfiles(sessionID)));
     }
 
     /// <summary>
@@ -187,9 +198,28 @@ public class ProfileCallbacks(
     ///     Handle /client/tutor-game/check
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetTutorGameCheck(string url, TutorGameCheckRequest _, MongoId sessionID)
+    public ValueTask<string> GetTutorGameCheck(string url, TutorGameCheckRequest info, MongoId sessionID)
     {
-        // TODO: Implement me!
-        return new ValueTask<string>(httpResponse.GetBody(new TutorGameCheckResponse { LaunchTutorGame = false }));
+        var profile = profileHelper.GetFullProfile(sessionID);
+        if (profile?.SptData is null)
+        {
+            return new ValueTask<string>(httpResponse.GetBody(new TutorGameCheckResponse { LaunchTutorGame = false }));
+        }
+
+        var launch = !info.SkipTutorial && !(profile.SptData.TutorialCompleted ?? false);
+
+        return new ValueTask<string>(httpResponse.GetBody(new TutorGameCheckResponse { LaunchTutorGame = launch }));
+    }
+
+    /// <summary>
+    ///     Handle /client/tutor-game/profile
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<string> GetTutorGameProfile(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        var profile = profileHelper.GetFullProfile(sessionID);
+        return new ValueTask<string>(
+            httpResponse.GetBody(new TutorGameProfileResponse { Profile = profile?.CharacterData?.PmcData })
+        );
     }
 }

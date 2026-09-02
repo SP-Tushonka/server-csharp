@@ -1386,10 +1386,7 @@
 
     private static string GetQuestDbLabel(MongoId questId, Quest quest)
     {
-        return GetNonEmptyValue(
-            quest.QuestName,
-            GetNonEmptyValue(quest.Name, GetShortId(questId.ToString()))
-        );
+        return GetNonEmptyValue(quest.Name, GetShortId(questId.ToString()));
     }
 
     private static double? GetProductionRemainingSeconds(Production production, long now)

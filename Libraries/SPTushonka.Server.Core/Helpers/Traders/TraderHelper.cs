@@ -66,7 +66,11 @@ public class TraderHelper(
             }
 
             // Profile has traderInfo dict (profile beyond creation stage) but no requested trader in profile
-            if (pmcData.TradersInfo != null && !pmcData.TradersInfo.ContainsKey(traderId))
+            if (
+                pmcData.TradersInfo != null
+                && !pmcData.TradersInfo.ContainsKey(traderId)
+                && !Models.Enums.Traders.WipeOnly.Contains(traderId)
+            )
             {
                 // Add trader values to profile
                 ResetTrader(sessionId.Value, traderId);
@@ -330,6 +334,11 @@ public class TraderHelper(
     /// <param name="pmcData">Profile to update trader in.</param>
     public void LevelUp(MongoId traderId, PmcData pmcData)
     {
+        if (pmcData.TradersInfo is null || !pmcData.TradersInfo.ContainsKey(traderId))
+        {
+            return;
+        }
+
         var loyaltyLevels = traderTable.GetTrader(traderId)!.Base.LoyaltyLevels;
 
         // Level up player

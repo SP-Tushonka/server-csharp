@@ -14,9 +14,7 @@ public class RequestEncryptionUtil(ISptLogger<RequestEncryptionUtil> logger)
     private readonly byte[] _key = "7*YabV3MfOfyE*lhI*l*Qx*q"u8.ToArray();
     private readonly ObjectPool<byte[]> _objectPool = new DefaultObjectPool<byte[]>(new PooledObjectPolicy());
 
-    private static readonly Lock _lock = new Lock();
-    private static ulong[] _table = [];
-    private static ulong _tableCursor = 0x65F6D;
+    private static readonly Lock _lock = new();
     private static readonly int[] _paddingTable = ComputeArray(6, 11);
     private static int _rngTableLength = XtimeCompute();
 
@@ -68,94 +66,36 @@ public class RequestEncryptionUtil(ISptLogger<RequestEncryptionUtil> logger)
         return result;
     }
 
-    public async Task<Stream> DeShuffleAsync(
-        Stream stream,
-        bool shouldShuffle = true,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<Stream> DeShuffleAsync(Stream stream, bool shouldShuffle = true, CancellationToken cancellationToken = default)
     {
-        using var buffer = new MemoryStream();
+        var buffer = new MemoryStream();
         await stream.CopyToAsync(buffer, cancellationToken);
-        var backup = buffer.ToArray();
 
-        // Some responses dont need shuffling
-        // /client/metadata doesn't need shuffling for the request but does for the response
-        // Some responses are too short (2 bytes) those don't need shuffling either
-        if (!shouldShuffle || backup.Length < 4)
+        // /client/metadata is not shuffled on the way in, and nothing under 4 bytes is shuffled at all
+        var length = (int)buffer.Length;
+        if (!shouldShuffle || length < 4)
         {
-            return new MemoryStream(backup);
+            buffer.Position = 0;
+
+            return buffer;
         }
 
-        var startEntry = backup.Length % 0xAAB;
-        BuildTable(startEntry + backup.Length);
+        var frame = buffer.GetBuffer().AsSpan(0, length);
+        var startEntry = length % 0xAAB;
 
-        var decryptEnd = backup.Length;
-        var offset = 1;
-
-        while (offset < decryptEnd)
+        for (var offset = 1; offset < length; offset++)
         {
-            var swapIndex = _table[offset + startEntry] % (ulong)offset;
-
-            var temp = backup[offset];
-            backup[offset] = backup[swapIndex];
-            backup[swapIndex] = temp;
-
-            offset++;
+            var swap = (int)(Entry(offset + startEntry) % (uint)offset);
+            (frame[offset], frame[swap]) = (frame[swap], frame[offset]);
         }
 
-        var size = BinaryPrimitives.ReadInt32LittleEndian(backup);
-        var result = new byte[size];
-
-        Buffer.BlockCopy(backup, 4, result, 0, size);
-
-        return new MemoryStream(result);
-    }
-
-    public byte[] Shuffle(byte[] input)
-    {
-        var padding = GetShufflePadding();
-        var output = new byte[padding + input.Length + 4];
-
-        BinaryPrimitives.WriteInt32LittleEndian(output, input.Length);
-
-        //Add padding which is probably completely useless, but Nikita seems to think it looks cool in Fiddler
-        //
+        var size = BinaryPrimitives.ReadInt32LittleEndian(frame);
+        if (size < 0 || size > length - 4)
         {
-            var dataOffset = 4;
-            var dataLeftLength = output.Length - 4;
-
-            while (dataLeftLength > input.Length)
-            {
-                Buffer.BlockCopy(input, 0, output, dataOffset, input.Length);
-
-                dataLeftLength -= input.Length;
-                dataOffset += input.Length;
-            }
-
-            if (dataLeftLength > 0)
-            {
-                Buffer.BlockCopy(input, 0, output, dataOffset, dataLeftLength);
-            }
+            throw new InvalidOperationException($"Deshuffled body carries an impossible length ({size})");
         }
 
-        var startEntry = output.Length % 0xAAB;
-        BuildTable(startEntry + output.Length);
-
-        const int decryptEnd = 0;
-        var offset = output.Length - 1;
-
-        while (offset > decryptEnd)
-        {
-            var swapIndex = _table[offset + startEntry] % (ulong)offset;
-
-            var temp = output[offset];
-            output[offset] = output[swapIndex];
-            output[swapIndex] = temp;
-
-            offset--;
-        }
-
-        return output;
+        return new MemoryStream(buffer.GetBuffer(), 4, size, false);
     }
 
     private class PooledObjectPolicy : IPooledObjectPolicy<byte[]>
@@ -172,44 +112,53 @@ public class RequestEncryptionUtil(ISptLogger<RequestEncryptionUtil> logger)
         }
     }
 
-    private static void BuildTable(int size)
-    {
-        lock (_lock)
-        {
-            if (_table.Length >= size)
-            {
-                return;
-            }
-
-            var table = new ulong[size];
-            Array.Copy(_table, table, _table.Length);
-
-            for (var i = _table.Length; i < size; i++)
-            {
-                var offset = ((1624453ul * _tableCursor++) + 1023920427) % 0x8ED7A18Dul;
-                if (_tableCursor > 0xA53F260DDB0ul)
-                {
-                    _tableCursor = 0;
-                }
-
-                table[i] = offset;
-            }
-
-            _table = table;
-        }
-    }
-
-    private static int GetShufflePadding()
+    /// <summary>How many bytes of padding the next response carries. Live rolls this per response.</summary>
+    public int NextPadding()
     {
         lock (_lock)
         {
             var rng = (_rngTableLength + 1) % 0x25A18;
             _rngTableLength = rng;
 
-            BuildTable(rng + 1);
-
-            return _paddingTable[(int)(_table[rng] % (ulong)_paddingTable.Length)];
+            return _paddingTable[(int)(Entry(rng) % (uint)_paddingTable.Length)];
         }
+    }
+
+    /// <summary>
+    ///     Shuffle a response frame in place. The frame is [4 byte length][payload][padding] with the
+    ///     payload already at offset 4, this writes the header and padding, then permutes.
+    /// </summary>
+    public void ShuffleInPlace(Span<byte> frame, int payloadLength)
+    {
+        BinaryPrimitives.WriteInt32LittleEndian(frame, payloadLength);
+
+        // Live pads with the payload repeated from its start, the client drops it by the header
+        var payload = frame.Slice(4, payloadLength);
+        var padding = frame.Slice(4 + payloadLength);
+        if (payloadLength == 0)
+        {
+            padding.Clear();
+        }
+
+        while (padding.Length > 0 && payloadLength > 0)
+        {
+            var take = Math.Min(padding.Length, payloadLength);
+            payload.Slice(0, take).CopyTo(padding);
+            padding = padding.Slice(take);
+        }
+
+        var startEntry = frame.Length % 0xAAB;
+
+        for (var offset = frame.Length - 1; offset > 0; offset--)
+        {
+            var swap = (int)(Entry(offset + startEntry) % (uint)offset);
+            (frame[offset], frame[swap]) = (frame[swap], frame[offset]);
+        }
+    }
+
+    private static uint Entry(int index)
+    {
+        return (uint)(((1624453ul * (0x65F6Dul + (ulong)index)) + 1023920427ul) % 0x8ED7A18Dul);
     }
 
     private static int[] ComputeArray(int startIndex, int count)
@@ -228,12 +177,12 @@ public class RequestEncryptionUtil(ISptLogger<RequestEncryptionUtil> logger)
         var ticks = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() * 10_000L;
         var seconds32 = ticks / 10_000_000;
         var cycles = ticks / 1_541_360_000_000L;
-        var v = ((seconds32 - (154_136L * cycles)) % 0x25A18);
-        if (v < 0)
+        var value = (seconds32 - (154_136L * cycles)) % 0x25A18;
+        if (value < 0)
         {
-            v += 0x25A18;
+            value += 0x25A18;
         }
 
-        return (int)v;
+        return (int)value;
     }
 }

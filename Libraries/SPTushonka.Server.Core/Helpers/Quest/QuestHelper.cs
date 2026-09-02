@@ -1115,7 +1115,7 @@ public class QuestHelper(
             {
                 if (logger.IsLogEnabled(LogLevel.Debug))
                 {
-                    logger.Debug($"Unable to show quest: {quest.QuestName} as its for a trader: {quest.TraderId} that no longer exists.");
+                    logger.Debug($"Unable to show quest: {quest.Name} as its for a trader: {quest.TraderId} that no longer exists.");
                 }
 
                 continue;
@@ -1128,7 +1128,7 @@ public class QuestHelper(
             // Quest has no conditions, standing or loyalty conditions, add to visible quest list
             if (questRequirements.Count == 0 && loyaltyRequirements.Count == 0 && standingRequirements.Count == 0)
             {
-                quest.SptStatus = QuestStatusEnum.AvailableForStart;
+                quest.SptStatus = StartStorylineTask(profile, quest) ?? QuestStatusEnum.AvailableForStart;
                 questsToShowPlayer.Add(quest);
                 continue;
             }
@@ -1169,7 +1169,7 @@ public class QuestHelper(
                     var unlockTime = previousQuestCompleteTime + conditionToFulfil.AvailableAfter;
                     if (unlockTime > timeUtil.GetTimeStamp())
                     {
-                        logger.Debug($"Quest {quest.QuestName} is locked for another: {unlockTime - timeUtil.GetTimeStamp()} seconds");
+                        logger.Debug($"Quest {quest.Name} is locked for another: {unlockTime - timeUtil.GetTimeStamp()} seconds");
                     }
                 }
             }
@@ -1202,12 +1202,79 @@ public class QuestHelper(
 
             if (haveCompletedPreviousQuest && passesLoyaltyRequirements && passesStandingRequirements)
             {
-                quest.SptStatus = QuestStatusEnum.AvailableForStart;
+                quest.SptStatus = StartStorylineTask(profile, quest) ?? QuestStatusEnum.AvailableForStart;
                 questsToShowPlayer.Add(quest);
             }
         }
 
         return UpdateQuestsForGameEdition(cloner.Clone(questsToShowPlayer)!, profile.Info!.GameVersion!);
+    }
+
+    protected QuestStatusEnum? StartStorylineTask(PmcData profile, Models.Eft.Common.Tables.Quest quest)
+    {
+        if (IsStoryChapter(quest.Id))
+        {
+            return null;
+        }
+
+        if (!ChapterIsStarted(profile, quest.Id))
+        {
+            return null;
+        }
+
+        if ((quest.Conditions?.AvailableForStart?.Count ?? 0) == 0)
+        {
+            return null;
+        }
+
+        profile.Quests ??= [];
+
+        if (profile.Quests.Any(profileQuest => profileQuest.QId == quest.Id))
+        {
+            return null;
+        }
+
+        var startedAt = timeUtil.GetTimeStamp();
+
+        profile.Quests.Add(
+            new QuestStatus
+            {
+                QId = quest.Id,
+                StartTime = startedAt,
+                Status = QuestStatusEnum.Started,
+                StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Started, startedAt } },
+            }
+        );
+
+        return QuestStatusEnum.Started;
+    }
+
+    /// <summary>A chapter is a quest the story rail is built from, named by the main quest notes.</summary>
+    protected bool IsStoryChapter(MongoId questId)
+    {
+        return templateTable.MainQuestNotes.Any(note => note.ChapterId == questId);
+    }
+
+    /// <summary>Is the chapter that lists this quest as one of its tasks currently started.</summary>
+    protected bool ChapterIsStarted(PmcData profile, MongoId taskId)
+    {
+        foreach (var chapterId in templateTable.MainQuestNotes.Select(note => note.ChapterId).Distinct())
+        {
+            var chapter = templateTable.Quests.GetValueOrDefault(new MongoId(chapterId));
+            var listsTask = chapter
+                ?.Conditions?.AvailableForFinish?.Any(condition =>
+                    condition.ConditionType == "Quest" && condition.Target?.Item == taskId
+                );
+
+            if (listsTask ?? false)
+            {
+                return profile.Quests?.Any(profileQuest =>
+                        profileQuest.QId == new MongoId(chapterId) && profileQuest.Status == QuestStatusEnum.Started
+                    ) ?? false;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -1231,10 +1298,7 @@ public class QuestHelper(
                     continue;
                 }
 
-                quest.Rewards[rewardType.Key] = quest
-                    .Rewards[rewardType.Key]
-                    .Where(reward => rewardHelper.RewardIsForGameEdition(reward, gameVersion))
-                    .ToList();
+                quest.Rewards[rewardType.Key] = quest.Rewards[rewardType.Key].ToList();
             }
         }
 
@@ -1367,10 +1431,19 @@ public class QuestHelper(
     )
     {
         var quest = GetQuestFromDb(completedQuestId, pmcData);
+        if (quest is null)
+        {
+            return;
+        }
+        
+        if (quest.TraderId == Models.Enums.Traders.STORYLINE)
+        {
+            return;
+        }
 
         mailSendService.SendLocalisedNpcMessageToPlayer(
             sessionId,
-            quest!.TraderId,
+            quest.TraderId,
             MessageType.QuestSuccess,
             quest.SuccessMessageText ?? "",
             questRewards,

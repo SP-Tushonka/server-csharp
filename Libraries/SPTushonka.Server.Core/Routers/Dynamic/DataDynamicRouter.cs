@@ -12,6 +12,10 @@ public class DataDynamicRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
         jsonUtil,
         [
             new RouteAction<EmptyRequestData>(
+                "/client/dialogue/",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetDialogueById(url, info, sessionID)
+            ),
+            new RouteAction<EmptyRequestData>(
                 "/client/menu/locale/",
                 async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetLocalesMenu(url, info, sessionID)
             ),
@@ -20,9 +24,10 @@ public class DataDynamicRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
                 async (url, info, sessionID, cancellationToken) =>
                     await dataCallbacks.GetLocalesGlobal(url, info, sessionID)
             ),
-            new RouteAction<EmptyRequestData>(
+            new StreamedRouteAction<EmptyRequestData>(
                 "/client/items/prices/",
-                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetItemPrices(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) => await dataCallbacks.GetItemPrices(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -417,6 +417,8 @@ public class LocationLifecycleService(
         return locationBaseClone;
     }
 
+    private const string TutorialLocation = "sandbox_start";
+
     /// <summary>
     ///     Handle client/match/local/end
     /// </summary>
@@ -446,6 +448,15 @@ public class LocationLifecycleService(
         var isDead = request.Results.IsPlayerDead();
         var isTransfer = request.Results.IsMapToMapTransfer();
         var isSurvived = request.Results.IsPlayerSurvived();
+
+        if (locationName == TutorialLocation)
+        {
+            fullProfile.SptData?.TutorialCompleted = true;
+
+            logger.Debug($"Tutorial finished for {sessionId}");
+
+            return;
+        }
 
         // Handle items transferred via BTR or transit to player mailbox
         btrDeliveryService.HandleItemTransferEvent(sessionId, request);

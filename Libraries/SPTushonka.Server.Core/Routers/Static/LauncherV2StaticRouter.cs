@@ -27,4 +27,5 @@ public class LauncherV2StaticRouter(LauncherV2Callbacks launcherV2Callbacks, Jso
             new RouteAction<LoginRequestData>("/launcher/v2/profile", async (_, info, _, _, _) => await launcherV2Callbacks.Profile(info)),
             new RouteAction<RegisterData>("/launcher/v2/wipe", async (_, info, _, _, _) => await launcherV2Callbacks.Wipe(info)),
         ]
-    ) { }
+    )
+{ }

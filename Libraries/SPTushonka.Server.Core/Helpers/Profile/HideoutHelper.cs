@@ -183,30 +183,30 @@ public class HideoutHelper(
         switch (bonus.Type)
         {
             case BonusType.StashSize:
-            {
-                // Find stash item and adjust tpl to new tpl from bonus
-                var stashItem = profileData.Inventory?.Items?.FirstOrDefault(x => x.Id == profileData.Inventory.Stash);
-                if (stashItem is null)
                 {
-                    logger.Error(
-                        serverLocalisationService.GetText(
-                            "hideout-unable_to_apply_stashsize_bonus_no_stash_found",
-                            profileData.Inventory?.Stash
-                        )
-                    );
+                    // Find stash item and adjust tpl to new tpl from bonus
+                    var stashItem = profileData.Inventory?.Items?.FirstOrDefault(x => x.Id == profileData.Inventory.Stash);
+                    if (stashItem is null)
+                    {
+                        logger.Error(
+                            serverLocalisationService.GetText(
+                                "hideout-unable_to_apply_stashsize_bonus_no_stash_found",
+                                profileData.Inventory?.Stash
+                            )
+                        );
 
-                    return;
-                }
+                        return;
+                    }
 
-                if (bonus.TemplateId.HasValue)
-                {
-                    stashItem.Template = bonus.TemplateId.Value;
+                    if (bonus.TemplateId.HasValue)
+                    {
+                        stashItem.Template = bonus.TemplateId.Value;
+                        break;
+                    }
+
+                    logger.Error("Bonus template id is null when trying to apply stash size bonus");
                     break;
                 }
-
-                logger.Error("Bonus template id is null when trying to apply stash size bonus");
-                break;
-            }
             case BonusType.MaximumEnergyReserve:
                 if (profileData.Health?.Energy is null)
                 {
@@ -696,12 +696,12 @@ public class HideoutHelper(
                     continue;
                 // Undefined fuel, fresh fuel item and needs its max fuel amount looked up
                 case null:
-                {
-                    var fuelItemTemplate = itemHelper.GetItem(fuelItemInSlot.Template).Value;
-                    pointsConsumed = fuelUsedSinceLastTick ?? 0;
-                    fuelRemaining = fuelItemTemplate!.Properties!.MaxResource - fuelUsedSinceLastTick;
-                    break;
-                }
+                    {
+                        var fuelItemTemplate = itemHelper.GetItem(fuelItemInSlot.Template).Value;
+                        pointsConsumed = fuelUsedSinceLastTick ?? 0;
+                        fuelRemaining = fuelItemTemplate!.Properties!.MaxResource - fuelUsedSinceLastTick;
+                        break;
+                    }
                 default:
                     // Fuel exists already, deduct fuel from item remaining value
                     pointsConsumed = (double)((fuelItemInSlot.Upd!.Resource!.UnitsConsumed ?? 0) + fuelUsedSinceLastTick)!;

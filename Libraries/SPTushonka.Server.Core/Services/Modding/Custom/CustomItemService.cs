@@ -232,7 +232,9 @@ public class CustomItemService(
     protected void UpdateBaseItemPropertiesWithOverrides(TemplateItemProperties? overrideProperties, TemplateItem itemClone)
     {
         if (overrideProperties is null || itemClone?.Properties is null)
+        {
             return;
+        }
 
         var target = itemClone.Properties;
         var targetType = target.GetType();

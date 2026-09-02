@@ -60,6 +60,7 @@ public record TraderBase
     public bool? CustomizationSeller { get; set; }
 
     [JsonPropertyName("discount")]
+    [JsonConverter(typeof(StringToNumberFactoryConverter))]
     public decimal? Discount { get; set; }
 
     [JsonPropertyName("discount_end")]

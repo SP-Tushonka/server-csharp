@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Notes;
 using SPTarkov.Server.Core.Models.Eft.Ragfair;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
+using SPTarkov.Server.Core.Utils.Json;
 using SPTarkov.Server.Core.Utils.Json.Converters;
 
 namespace SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -114,6 +115,42 @@ public record BotBase
     /// </summary>
     [JsonPropertyName("sptIsPmc")]
     public bool? IsPmc { get; set; }
+
+    [JsonPropertyName("BattlePassProgress")]
+    public List<ProfileBattlePassProgress>? BattlePassProgress { get; set; }
+
+    [JsonPropertyName("BattlePassUniversalDocumentBalance")]
+    public int? BattlePassUniversalDocumentBalance { get; set; }
+
+    [JsonPropertyName("battlePassDocumentLimitData")]
+    public Dictionary<MongoId, ProfileBattlePassDocumentLimit>? BattlePassDocumentLimitData { get; set; }
+
+    [JsonPropertyName("TarCoinBalance")]
+    public int? TarCoinBalance { get; set; }
+
+    [JsonPropertyName("SeasonalPerks")]
+    public List<MongoId>? SeasonalPerks { get; set; }
+
+    [JsonPropertyName("SeasonalPerkEffectParameters")]
+    public SeasonalPerkEffectParameters? SeasonalPerkEffectParameters { get; set; }
+
+    [JsonPropertyName("SeasonalRewards")]
+    public DictionaryOrList<MongoId, List<MongoId>>? SeasonalRewards { get; set; }
+
+    [JsonPropertyName("Ending")]
+    public ProfileEnding? Ending { get; set; }
+
+    [JsonPropertyName("QuestNotes")]
+    public Dictionary<MongoId, bool>? QuestNotes { get; set; }
+
+    [JsonPropertyName("ReadQuestData")]
+    public List<MongoId>? ReadQuestData { get; set; }
+
+    [JsonPropertyName("CompletableItems")]
+    public Dictionary<MongoId, bool>? CompletableItems { get; set; }
+
+    [JsonPropertyName("UnlockedLocations")]
+    public List<string>? UnlockedLocations { get; set; }
 }
 
 public record MoneyTransferLimits
@@ -915,6 +952,9 @@ public record TraderInfo
 
     [JsonPropertyName("disabled")]
     public bool? Disabled { get; set; }
+
+    [JsonPropertyName("dialogueAvailable")]
+    public bool? DialogueAvailable { get; set; }
 }
 
 public record RagfairInfo

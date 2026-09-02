@@ -73,15 +73,15 @@ public class TraderSptCommand(TraderHelper traderHelper, MailSendService mailSen
                 profileChangeEventType = NotificationEventType.TraderSalesSum;
                 break;
             default:
-            {
-                mailSendService.SendUserMessageToPlayer(
-                    sessionId,
-                    commandHandler,
-                    "Invalid use of trader command, ProfileChangeEventType was not found. Use 'help' for more information."
-                );
+                {
+                    mailSendService.SendUserMessageToPlayer(
+                        sessionId,
+                        commandHandler,
+                        "Invalid use of trader command, ProfileChangeEventType was not found. Use 'help' for more information."
+                    );
 
-                return new ValueTask<string>(request.DialogId);
-            }
+                    return new ValueTask<string>(request.DialogId);
+                }
         }
 
         mailSendService.SendSystemMessageToPlayer(

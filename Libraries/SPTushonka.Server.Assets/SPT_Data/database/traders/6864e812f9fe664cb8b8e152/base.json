@@ -1,33 +1,57 @@
 {
   "_id": "6864e812f9fe664cb8b8e152",
-  "availableInRaid": true,
+  "customization_seller": false,
+  "name": "Storyteller",
+  "surname": "Storyteller",
+  "nickname": "Storyteller",
+  "location": "Storyteller",
   "avatar": "/files/trader/avatar/5824657996560e1be8000848.png",
+  "balance_rub": 7000000,
   "balance_dol": 0,
   "balance_eur": 0,
-  "balance_rub": 7000000,
+  "unlockedByDefault": false,
+  "discount": "0",
+  "discount_end": 0,
   "buyer_up": false,
   "currency": "RUB",
-  "customization_seller": false,
-  "discount": 0,
-  "discount_end": 0,
-  "gridHeight": 120,
+  "nextResupply": 1788092094,
+  "repair": {
+    "availability": false,
+    "quality": "0",
+    "excluded_id_list": [],
+    "excluded_category": [],
+    "currency": "5449016a4bdc2d6f028b456f",
+    "currency_coefficient": 1.0
+  },
   "insurance": {
     "availability": false,
-    "excluded_category": [],
+    "min_payment": 0,
+    "min_return_hour": 0,
     "max_return_hour": 0,
     "max_storage_time": 48,
-    "min_payment": 0,
-    "min_return_hour": 0
+    "excluded_category": []
   },
-  "isAvailableInPVE": true,
-  "isCanTransferItems": false,
-  "isCanTransferItemsFromPve": false,
+  "medic": false,
+  "gridHeight": 120,
+  "availableInRaid": true,
+  "sell_modifier_for_prohibited_items": 0,
+  "loyaltyLevels": [
+    {
+      "minLevel": 1,
+      "minSalesSum": 0,
+      "minStanding": 0.0,
+      "buy_price_coef": 0,
+      "repair_price_coef": 0,
+      "insurance_price_coef": "0",
+      "exchange_price_coef": 0,
+      "heal_price_coef": 0
+    }
+  ],
   "items_buy": {
-    "category": [],
-    "id_list": []
+    "id_list": [],
+    "category": []
   },
   "items_buy_prohibited": {
-    "category": [],
     "id_list": [
       "64d0b40fbe2eed70e254e2d4",
       "65ddcc9cfa85b9f17d0dfb07",
@@ -38,45 +62,21 @@
       "6638a5474e92f038531e210e",
       "6707d0bdaab679420007e01a",
       "6707d0804e617ec94f0e562f"
-    ]
-  },
-  "items_sell": [],
-  "location": "Storyteller",
-  "loyaltyLevels": [
-    {
-      "buy_price_coef": 0,
-      "exchange_price_coef": 0,
-      "heal_price_coef": 0,
-      "insurance_price_coef": "0",
-      "minLevel": 1,
-      "minSalesSum": 0,
-      "minStanding": 0,
-      "repair_price_coef": 0
-    }
-  ],
-  "mainDialogue": null,
-  "medic": false,
-  "name": "Storyteller",
-  "nextResupply": 1755766433,
-  "nickname": "Storyteller",
-  "prohibitedTransferableItems": {
-    "category": [],
-    "id_list": []
-  },
-  "repair": {
-    "availability": false,
-    "currency": "5449016a4bdc2d6f028b456f",
-    "currency_coefficient": 1,
-    "excluded_category": [],
-    "excluded_id_list": [],
-    "quality": 0
+    ],
+    "category": []
   },
   "sell_category": [],
-  "sell_modifier_for_prohibited_items": 0,
-  "surname": "Storyteller",
+  "isCanTransferItems": false,
   "transferableItems": {
-    "category": [],
-    "id_list": []
+    "id_list": [],
+    "category": []
   },
-  "unlockedByDefault": false
+  "prohibitedTransferableItems": {
+    "id_list": [],
+    "category": []
+  },
+  "items_sell": [],
+  "isAvailableInPVE": true,
+  "isCanTransferItemsFromPve": false,
+  "mainDialogue": null
 }

@@ -25,4 +25,5 @@ public class ClientLogStaticRouter(JsonUtil jsonUtil, ClientLogCallbacks clientL
                 async (url, info, sessionID, output, cancellationToken) => await clientLogCallbacks.BsgLogging()
             ),
         ]
-    ) { }
+    )
+{ }

@@ -578,4 +578,70 @@ public record BotGlobalsMindSettings
         Unknown,
         MarkOfUnknowsDist,
     }
+
+    [JsonPropertyName("ADD_TO_ENEMY_BY_HIT")]
+    public bool? AddToEnemyByHit { get; set; }
+
+    [JsonPropertyName("AGGRESSOR_LOYALTY_BONUS")]
+    public double? AggressorLoyaltyBonus { get; set; }
+
+    [JsonPropertyName("ALWAYS_SEARCH_ADVANCED_POINT_CHECKS")]
+    public bool? AlwaysSearchAdvancedPointChecks { get; set; }
+
+    [JsonPropertyName("ALWAYS_SEARCH_REFRESH_RND_PERIOD")]
+    public int? AlwaysSearchRefreshRndPeriod { get; set; }
+
+    [JsonPropertyName("BOSS_CAN_PANIC")]
+    public bool? BossCanPanic { get; set; }
+
+    [JsonPropertyName("CAN_RECIVE_PLAYER_REQUESTS")]
+    public bool? CanRecivePlayerRequests { get; set; }
+
+    [JsonPropertyName("CHANCE_NOT_FIND_TRIPWIRE")]
+    public int? ChanceNotFindTripwire { get; set; }
+
+    [JsonPropertyName("DEFAULT_ENEMY_BEAR")]
+    public bool? DefaultEnemyBear { get; set; }
+
+    [JsonPropertyName("DEFAULT_ENEMY_SAVAGE")]
+    public bool? DefaultEnemySavage { get; set; }
+
+    [JsonPropertyName("DEFAULT_ENEMY_USEC")]
+    public bool? DefaultEnemyUsec { get; set; }
+
+    [JsonPropertyName("ENEMY_LOOK_MY_SECTOR_ANG")]
+    public double? EnemyLookMySectorAng { get; set; }
+
+    [JsonPropertyName("GO_TO_ENEMY_LOOK_ONLY_STRAIGHT")]
+    public bool? GoToEnemyLookOnlyStraight { get; set; }
+
+    [JsonPropertyName("GO_TO_ENEMY_USE_TILT")]
+    public bool? GoToEnemyUseTilt { get; set; }
+
+    [JsonPropertyName("IGNORE_DELIVER_ENEMY_INFO")]
+    public bool? IgnoreDeliverEnemyInfo { get; set; }
+
+    [JsonPropertyName("IGNORE_HOSILE_SCAVS")]
+    public bool? IgnoreHosileScavs { get; set; }
+
+    [JsonPropertyName("LOST_PERIOD_AXE_TARGET")]
+    public double? LostPeriodAxeTarget { get; set; }
+
+    [JsonPropertyName("MAX_DIST_TO_PERSUE_AXEMAN_FORCE")]
+    public double? MaxDistToPersueAxemanForce { get; set; }
+
+    [JsonPropertyName("ONE_BY_ONE_PANIC_SPRINT")]
+    public bool? OneByOnePanicSprint { get; set; }
+
+    [JsonPropertyName("PERSUIT_BOT_TYPES")]
+    public List<WildSpawnType>? PersuitBotTypes { get; set; }
+
+    [JsonPropertyName("PERSUIT_BOT_TYPES_DIST")]
+    public List<string>? PersuitBotTypesDist { get; set; }
+
+    [JsonPropertyName("PRIORITY_FIGHT_UNDER_ARTILLERY")]
+    public bool? PriorityFightUnderArtillery { get; set; }
+
+    [JsonPropertyName("TIME_LEAVE_MAP")]
+    public int? TimeLeaveMap { get; set; }
 }

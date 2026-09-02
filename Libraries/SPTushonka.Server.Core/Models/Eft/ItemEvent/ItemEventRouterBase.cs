@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Ragfair;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Utils.Json;
 
 namespace SPTarkov.Server.Core.Models.Eft.ItemEvent;
 
@@ -42,14 +43,11 @@ public record ProfileChange
     [JsonPropertyName("quests")]
     public List<Quest>? Quests { get; set; }
 
+    [JsonPropertyName("questsStatus")]
+    public List<QuestStatus>? QuestsStatus { get; set; }
+
     [JsonPropertyName("ragFairOffers")]
     public List<RagfairOffer>? RagFairOffers { get; set; }
-
-    [JsonPropertyName("weaponBuilds")]
-    public List<WeaponBuildChange>? WeaponBuilds { get; set; }
-
-    [JsonPropertyName("equipmentBuilds")]
-    public List<EquipmentBuildChange>? EquipmentBuilds { get; set; }
 
     [JsonPropertyName("items")]
     public ItemChanges? Items { get; set; }
@@ -73,8 +71,8 @@ public record ProfileChange
     [JsonPropertyName("traderRelations")]
     public Dictionary<MongoId, TraderData>? TraderRelations { get; set; }
 
-    [JsonPropertyName("moneyTransferLimitData")]
-    public MoneyTransferLimits? MoneyTransferLimitData { get; set; }
+    [JsonPropertyName("changedHideoutStashes")]
+    public Dictionary<string, HideoutStashItem>? ChangedHideoutStashes { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     [JsonPropertyName("repeatableQuests")]
@@ -84,11 +82,35 @@ public record ProfileChange
     [JsonPropertyName("recipeUnlocked")]
     public Dictionary<MongoId, bool>? RecipeUnlocked { get; set; }
 
-    [JsonPropertyName("changedHideoutStashes")]
-    public Dictionary<string, HideoutStashItem>? ChangedHideoutStashes { get; set; }
+    [JsonPropertyName("moneyTransferLimitData")]
+    public MoneyTransferLimits? MoneyTransferLimitData { get; set; }
 
-    [JsonPropertyName("questsStatus")]
-    public List<QuestStatus>? QuestsStatus { get; set; }
+    [JsonPropertyName("completableItems")]
+    public Dictionary<MongoId, bool>? CompletableItems { get; set; }
+
+    [JsonPropertyName("readQuestData")]
+    public List<MongoId>? ReadQuestData { get; set; }
+
+    [JsonPropertyName("newQuestNotes")]
+    public List<MongoId>? NewQuestNotes { get; set; }
+
+    [JsonPropertyName("variableValues")]
+    public Dictionary<MongoId, int>? VariableValues { get; set; }
+
+    [JsonPropertyName("seasonalRewards")]
+    public DictionaryOrList<MongoId, List<MongoId>>? SeasonalRewards { get; set; }
+
+    [JsonPropertyName("battlePassUniversalDocumentBalance")]
+    public int? BattlePassUniversalDocumentBalance { get; set; }
+
+    [JsonPropertyName("battlePassProgress")]
+    public List<ProfileBattlePassProgress>? BattlePassProgress { get; set; }
+
+    [JsonPropertyName("weaponBuilds")]
+    public List<WeaponBuildChange>? WeaponBuilds { get; set; }
+
+    [JsonPropertyName("equipmentBuilds")]
+    public List<EquipmentBuildChange>? EquipmentBuilds { get; set; }
 }
 
 public record HideoutStashItem

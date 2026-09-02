@@ -1,13 +1,20 @@
-﻿using System.Text;
+using System.Text;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Controllers;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.BattlePass;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Request;
 using SPTarkov.Server.Core.Models.Eft.Game;
+using SPTarkov.Server.Core.Models.Eft.Seasons;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Services.Server;
+using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.Profile;
 using SPTarkov.Server.Core.Utils;
 
@@ -15,13 +22,18 @@ namespace SPTarkov.Server.Core.Callbacks;
 
 [Injectable(TypePriority = OnLoadOrder.GameCallbacks)]
 public class GameCallbacks(
+    SessionTokenService sessionTokenService,
     HttpResponseUtil httpResponseUtil,
     Watermark watermark,
     SaveServer saveServer,
     BackupService backupService,
     GameController gameController,
     ProfileActivityService profileActivityService,
-    TimeUtil timeUtil
+    TimeUtil timeUtil,
+    SeasonTable seasonTable,
+    TarcoinStoreService tarcoinStoreService,
+    HttpServerHelper httpServerHelper,
+    ISptLogger<GameCallbacks> logger
 ) : IOnLoad
 {
     public Task OnLoadAsync(CancellationToken cancellationToken)
@@ -92,6 +104,126 @@ public class GameCallbacks(
     public ValueTask<string> PutHwMetrics(string url, EmptyRequestData info, MongoId sessionID)
     {
         return new ValueTask<string>(httpResponseUtil.GetBody<string>(null!));
+    }
+
+    /// <summary>
+    ///     Handle client/season/active
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<string> GetActiveSeason(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetBody(seasonTable.Active));
+    }
+
+    /// <summary>
+    ///     Handle /v2/client/shop/status
+    /// </summary>
+    public ValueTask<string> GetShopStatus(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        var profile = saveServer.GetProfile(sessionID);
+        var shopStatusBody = httpResponseUtil.NoBody(
+            new ShopData<ShopStatusResponse>
+            {
+                Data = new ShopStatusResponse
+                {
+                    Aid = profile?.ProfileInfo?.Aid,
+                    Labels = [],
+                    Tarcoins = tarcoinStoreService.GetBalance(sessionID),
+                },
+            }
+        );
+
+        return new ValueTask<string>(shopStatusBody);
+    }
+
+    /// <summary>
+    ///     Handle /v2/shop/api/v1/account/balance/
+    /// </summary>
+    public ValueTask<string> GetShopBalance(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.NoBody(tarcoinStoreService.GetBalanceResponse(sessionID)));
+    }
+
+    /// <summary>
+    ///     Handle /v2/shop/api/v1/menu
+    /// </summary>
+    public ValueTask<string> GetShopMenu(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.NoBody(tarcoinStoreService.GetMenu()));
+    }
+
+    /// <summary>
+    ///     Handle /v2/shop/api/v1/catalog/{offerId}
+    /// </summary>
+    public ValueTask<string> GetShopCatalogItem(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        var offerId = url.Split('?')[0].TrimEnd('/').Split('/').Last();
+
+        return new ValueTask<string>(httpResponseUtil.NoBody(tarcoinStoreService.GetOffer(offerId)));
+    }
+
+    /// <summary>
+    ///     Handle /v2/shop/api/v1/purchase/single
+    /// </summary>
+    public async ValueTask<string> PurchaseShopOffer(string url, ShopPurchaseRequest info, MongoId sessionID)
+    {
+        var bought = await tarcoinStoreService.TryPurchaseAsync(sessionID, info.OfferId ?? string.Empty, info.Count ?? 1);
+
+        return httpResponseUtil.NoBody(new ShopData<ShopPurchaseResult> { Data = new ShopPurchaseResult { Success = bought } });
+    }
+
+    /// <summary>
+    ///     Handle /client/game/token/issue
+    /// </summary>
+    public ValueTask<string> IssueGameToken(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetBody(new GameTokenResponse { Token = sessionTokenService.IssueToken(sessionID) }));
+    }
+
+    /// <summary>
+    ///     Handle /v2/client/shop/token/generate
+    /// </summary>
+    public ValueTask<string> GenerateShopToken(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        var id = sessionID.ToString();
+
+        return new ValueTask<string>(
+            httpResponseUtil.GetBody(
+                new ExpansionsAccessData
+                {
+                    Id = id,
+                    Success = true,
+                    Token = id,
+                }
+            )
+        );
+    }
+
+    /// <summary>
+    ///     Handle /v2/client/shop/purchase/sign
+    /// </summary>
+    public ValueTask<string> SignShopPurchase(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        //Todo: Implement!
+        return new ValueTask<string>(httpResponseUtil.NullResponse());
+    }
+
+    /// <summary>
+    ///     Handle client/battle-pass/active
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<string> GetActiveBattlePass(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetBody(seasonTable.BattlePass));
+    }
+
+    /// <summary>
+    ///     Handle client/seasonal-perks/list
+    /// </summary>
+    /// <returns></returns>
+    public ValueTask<string> GetSeasonalPerks(string url, EmptyRequestData info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetBody(seasonTable.Perks));
     }
 
     /// <summary>

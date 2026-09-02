@@ -3,11 +3,11 @@
     {
       "AirdropPointDeactivateDistance": 50,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.9,
+      "PlaneAirdropChance": 0.2,
       "PlaneAirdropCooldownMax": 800,
       "PlaneAirdropCooldownMin": 700,
       "PlaneAirdropEnd": 1500,
-      "PlaneAirdropMax": 1,
+      "PlaneAirdropMax": 5,
       "PlaneAirdropStartMax": 900,
       "PlaneAirdropStartMin": 300,
       "UnsuccessfulTryPenalty": 600
@@ -31,7 +31,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": [
         {
@@ -77,7 +78,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": 1470,
@@ -101,7 +103,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -125,7 +128,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -149,7 +153,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": 3,
@@ -444,6 +449,7 @@
         ],
         "AlwaysFriends": [
           "assault",
+          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -468,6 +474,7 @@
         ],
         "AlwaysFriends": [
           "assault",
+          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -7242,6 +7249,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 31
+    },
+    {
+      "TemplateId": "6a317b9692cfdcddcb02a58e",
+      "Value": 7
+    },
+    {
+      "TemplateId": "6a3181f178450ec91c0ea1aa",
+      "Value": 7
     }
   ],
   "secretExits": [
@@ -7298,7 +7313,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7315,7 +7331,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7332,7 +7349,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7349,7 +7367,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneSubStorage",
       "WildSpawnType": "assault",
@@ -7366,7 +7385,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7383,7 +7403,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7400,7 +7421,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7417,7 +7439,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7434,7 +7457,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7451,7 +7475,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7468,7 +7493,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7485,7 +7511,8 @@
       "KeepZoneOnSpawn": true,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "ZoneBarrack",
       "WildSpawnType": "assault",
@@ -7502,7 +7529,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7519,7 +7547,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7536,7 +7565,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -7608,6 +7638,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 360,
   "IconY": 410,
   "IsSecret": false,
@@ -7684,6 +7715,24 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

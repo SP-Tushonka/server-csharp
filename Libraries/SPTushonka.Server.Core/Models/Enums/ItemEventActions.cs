@@ -27,6 +27,7 @@ public record ItemEventActions
     public const string SAVE_EQUIPMENT_BUILD = "SaveEquipmentBuild";
     public const string REMOVE_EQUIPMENT_BUILD = "RemoveEquipmentBuild";
     public const string REDEEM_PROFILE_REWARD = "RedeemProfileReward";
+    public const string BATTLE_PASS_UNLOCK_REWARD = "BattlePassUnlockReward";
     public const string SET_FAVORITE_ITEMS = "SetFavoriteItems";
     public const string QUEST_FAIL = "QuestFail";
     public const string PIN_LOCK = "PinLock";
@@ -57,4 +58,6 @@ public record ItemEventActions
     public const string CUSTOMIZATION_SET = "CustomizationSet";
     public const string CUSTOMIZATION_BUY = "CustomizationBuy";
     public const string SAVE_DIALOGUE_STATE = "SaveDialogueState";
+    public const string READ_QUEST_DATA = "ReadQuestData";
+    public const string ADD_QUEST_NOTE = "AddQuestNote";
 }

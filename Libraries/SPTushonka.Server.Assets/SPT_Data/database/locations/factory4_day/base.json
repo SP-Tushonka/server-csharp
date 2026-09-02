@@ -15,7 +15,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -5416,6 +5417,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 15
+    },
+    {
+      "TemplateId": "6a3181f178450ec91c0ea1aa",
+      "Value": 5
+    },
+    {
+      "TemplateId": "6a31824878450ec91c0ea1ae",
+      "Value": 5
     }
   ],
   "secretExits": [
@@ -5458,7 +5467,7 @@
       "id": 14,
       "location": "laboratory",
       "name": "FAC_TRANSIT_14",
-      "target": "5b0fc42d86f7744a585f9105",
+      "target": "6a294a5b5eb5f9a1700417b7",
       "time": 20
     }
   ],
@@ -5469,7 +5478,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5486,7 +5496,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5503,7 +5514,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5520,7 +5532,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5537,7 +5550,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5554,7 +5568,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5571,7 +5586,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5588,7 +5604,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "BotZone",
       "WildSpawnType": "assault",
@@ -5660,6 +5677,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 470,
   "IconY": 510,
   "IsSecret": false,
@@ -5784,6 +5802,24 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

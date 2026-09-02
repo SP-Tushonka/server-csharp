@@ -1,0 +1,1309 @@
+{
+  "common": [
+    {
+      "id": "69c41a19cd28c936320a7523",
+      "type": "common",
+      "imageUrl": "/files/seasonal-perks/6a60d391ad4b72034b029c61.png",
+      "effects": [
+        {
+          "effectId": "insurance_disabled"
+        }
+      ],
+      "points": null,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c41a86383fc5c9ad03f3d5",
+      "type": "common",
+      "imageUrl": "/files/seasonal-perks/6a60d38cdbd6b04ab5082d64.png",
+      "effects": [
+        {
+          "skillIds": [
+            "Crafting"
+          ],
+          "intValue": 51,
+          "effectId": "skill_level_preset"
+        },
+        {
+          "multiplicator": 0.87,
+          "effectId": "craft_time_multiplicator"
+        }
+      ],
+      "points": null,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c41adf883efd5e3b09ccae",
+      "type": "common",
+      "imageUrl": "/files/seasonal-perks/6a60d395a51799c4240d7af6.png",
+      "effects": [
+        {
+          "multiplicator": 1.25,
+          "effectId": "pmc_experience_multiplicator"
+        }
+      ],
+      "points": null,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69ce5d9296f3b267fa08f137",
+      "type": "common",
+      "imageUrl": "/files/seasonal-perks/6a60d3718f05da0353066306.png",
+      "effects": [],
+      "points": null,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69ce5e104e0a1c7ca20781c9",
+      "type": "common",
+      "imageUrl": "/files/seasonal-perks/6a60d37b9e94cffce502d320.png",
+      "effects": [],
+      "points": null,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69ce5eb3e4b79de94a0d78c8",
+      "type": "common",
+      "imageUrl": "/files/seasonal-perks/6a60d36ba51799c4240d7af5.png",
+      "effects": [
+        {
+          "mode": "not_require",
+          "effectId": "hideout_fir"
+        }
+      ],
+      "points": null,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    }
+  ],
+  "personal": [
+    {
+      "id": "69c3cd003ffdba4e68086bd7",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3fcf23eae53e50f3456.png",
+      "effects": [
+        {
+          "multiplicator": 1.25,
+          "effectId": "bleeding_chance_multiplicator"
+        }
+      ],
+      "points": 2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c4116a383fc5c9ad03f3d1"
+      ]
+    },
+    {
+      "id": "69c3cddcfb79911cf20022d6",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d411dbd6b04ab5082d68.png",
+      "effects": [
+        {
+          "multiplicator": 1.25,
+          "effectId": "fracture_chance_multiplicator"
+        },
+        {
+          "multiplicator": 1.2,
+          "effectId": "fall_damage_multiplicator"
+        }
+      ],
+      "points": 3,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c41632d7a7b2ca660e0c59"
+      ]
+    },
+    {
+      "id": "69c3d036042c81ad9209eeae",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3a8f9e99c65c201ce72.png",
+      "effects": [
+        {
+          "itemFilter": {
+            "include": [
+              {
+                "field": "_tpl",
+                "value": "590c657e86f77412b013051d"
+              },
+              {
+                "field": "_tpl",
+                "value": "60098ad7c2240c0fe85c570a"
+              },
+              {
+                "field": "_tpl",
+                "value": "590c661e86f7741e566b646a"
+              },
+              {
+                "field": "_tpl",
+                "value": "590c678286f77426c9660122"
+              },
+              {
+                "field": "_tpl",
+                "value": "5755356824597772cb798962"
+              },
+              {
+                "field": "_tpl",
+                "value": "544fb45d4bdc2dee738b4568"
+              }
+            ],
+            "exclude": []
+          },
+          "multiplicator": 1.25,
+          "effectId": "item_resource_drain_multiplicator"
+        }
+      ],
+      "points": 2,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c3d21749d7d7c520026425",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d40c8f05da035306632b.png",
+      "effects": [
+        {
+          "skillIds": [
+            "AimDrills",
+            "Assault",
+            "AttachedLauncher",
+            "Attention",
+            "Charisma",
+            "CovertMovement",
+            "Crafting",
+            "DMR",
+            "Endurance",
+            "HMG",
+            "Health",
+            "HeavyVests",
+            "HideoutManagement",
+            "Immunity",
+            "Intellect",
+            "LMG",
+            "Launcher",
+            "LightVests",
+            "MagDrills",
+            "Melee",
+            "Metabolism",
+            "Perception",
+            "Pistol",
+            "Revolver",
+            "SMG",
+            "Search",
+            "Shotgun",
+            "Strength",
+            "StressResistance",
+            "Surgery",
+            "Throwing",
+            "TroubleShooting",
+            "Vitality",
+            "WeaponTreatment"
+          ],
+          "multiplicator": 0.75,
+          "effectId": "skill_experience_multiplicator"
+        },
+        {
+          "skillIds": [
+            "AimDrills",
+            "Assault",
+            "AttachedLauncher",
+            "Attention",
+            "Charisma",
+            "CovertMovement",
+            "DMR",
+            "Endurance",
+            "HMG",
+            "Health",
+            "HeavyVests",
+            "HideoutManagement",
+            "Immunity",
+            "Intellect",
+            "LMG",
+            "Launcher",
+            "LightVests",
+            "MagDrills",
+            "Melee",
+            "Metabolism",
+            "Perception",
+            "Pistol",
+            "Revolver",
+            "SMG",
+            "Search",
+            "Shotgun",
+            "Sniper",
+            "Strength",
+            "StressResistance",
+            "Surgery",
+            "Throwing",
+            "TroubleShooting",
+            "Vitality",
+            "WeaponTreatment"
+          ],
+          "intValue": 30,
+          "effectId": "skill_max_level_cap"
+        }
+      ],
+      "points": 10,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69ce64064e0a1c7ca20781d3",
+        "6a578102e7737aa469066518"
+      ]
+    },
+    {
+      "id": "69c3d2acfe3c5632e4045fe8",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d4153d109aeba509fbc4.png",
+      "effects": [
+        {
+          "multiplicator": 1.2,
+          "effectId": "hydration_drain_multiplicator"
+        }
+      ],
+      "points": 2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c411d8883efd5e3b09ccab"
+      ]
+    },
+    {
+      "id": "69c3d35feaf97663fb0bb367",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3b417dbbfbaa50a145f.png",
+      "effects": [
+        {
+          "multiplicator": 1.2,
+          "effectId": "energy_drain_multiplicator"
+        }
+      ],
+      "points": 2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c412519b5263783d0fe520",
+        "69c40c0f5e9ce5a8970f6be9"
+      ]
+    },
+    {
+      "id": "69c3d43030f896ebef0ed357",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3daf9e99c65c201ce74.png",
+      "effects": [
+        {
+          "skillIds": [
+            "Charisma"
+          ],
+          "effectId": "skill_not_growing"
+        },
+        {
+          "traderIds": [
+            "5ac3b934156ae10c4430e83c",
+            "58330581ace78e27b8b10cee",
+            "5c0647fdd443bc2504c2d371",
+            "5a7c2eca46aef81a7ca2145d",
+            "5935c25fb3acc3127c3d8cd9",
+            "579dc571d53a0658a154fbec",
+            "54cb50c76803fa8b248b4571",
+            "54cb57776803fa99248b456e"
+          ],
+          "tradeAction": "buy",
+          "multiplicator": 1.2,
+          "effectId": "trader_prices_by_trader_multiplicator"
+        }
+      ],
+      "points": 2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69ce62886e199f4bbe0ab19b"
+      ]
+    },
+    {
+      "id": "69c3d4e949d7d7c52002642a",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3d6f23eae53e50f3455.png",
+      "effects": [
+        {
+          "effectId": "fresh_wounds_until_raid_end"
+        }
+      ],
+      "points": 1,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c3d6a9af28f094100fe128",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3acb39f93e78f0c894c.png",
+      "effects": [
+        {
+          "itemFilter": {
+            "include": [
+              {
+                "field": "ParentId",
+                "value": "5448f3a14bdc2d27728b4569"
+              },
+              {
+                "field": "ParentId",
+                "value": "5448f3a64bdc2d60728b456a"
+              },
+              {
+                "field": "ParentId",
+                "value": "543be6674bdc2df1348b4569"
+              }
+            ],
+            "exclude": []
+          },
+          "randomSlotCount": 3,
+          "appliedRandomEffectCount": 1,
+          "subEffects": {
+            "pain": {
+              "enabled": true,
+              "durationSeconds": 30
+            },
+            "tremor": {
+              "enabled": true,
+              "durationSeconds": 20
+            },
+            "tunnelVision": {
+              "enabled": true,
+              "durationSeconds": 20
+            },
+            "onPainkillers": {
+              "enabled": false,
+              "durationSeconds": 0
+            },
+            "healthRegeneration": {
+              "enabled": true,
+              "amount": -3,
+              "durationSeconds": 30
+            },
+            "hydrationRecovery": {
+              "enabled": true,
+              "amount": -3,
+              "durationSeconds": 30
+            },
+            "energyRecovery": {
+              "enabled": true,
+              "amount": -3,
+              "durationSeconds": 30
+            }
+          },
+          "effectId": "allergy"
+        }
+      ],
+      "points": 3,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c3da8fc0e4deb02605f3c9",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3e80ee20df6890d022b.png",
+      "effects": [
+        {
+          "effectId": "flea_market_npc_only"
+        }
+      ],
+      "points": 10,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c3e8d8af28f094100fe130",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d773a51799c4240d7b65.png",
+      "effects": [
+        {
+          "bodyPartTypes": [
+            "arms",
+            "legs"
+          ],
+          "multiplicator": 0.8,
+          "effectId": "stamina_consumption_body_parts_multiplicator"
+        }
+      ],
+      "points": -3,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3ce913ffdba4e68086bdb",
+        "69c41111cd28c936320a7520"
+      ]
+    },
+    {
+      "id": "69c405a9d7a7b2ca660e0c56",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d755dbd6b04ab5082d90.png",
+      "effects": [
+        {
+          "multiplicatorPrimary": 0.25,
+          "multiplicatorSecondary": 0.25,
+          "effectId": "bush_interaction_multiplicators"
+        }
+      ],
+      "points": -5,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c406731d8aec4a2b0551bd",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d790f9e99c65c201cec1.png",
+      "effects": [
+        {
+          "itemFilter": {
+            "include": [
+              {
+                "field": "_tpl",
+                "value": "57513f07245977207e26a311"
+              },
+              {
+                "field": "_tpl",
+                "value": "57513f9324597720a7128161"
+              },
+              {
+                "field": "_tpl",
+                "value": "57513fcc24597720a31c09a6"
+              },
+              {
+                "field": "_tpl",
+                "value": "544fb62a4bdc2dfb738b4568"
+              }
+            ],
+            "exclude": []
+          },
+          "randomSlotCount": 4,
+          "appliedRandomEffectCount": 1,
+          "subEffects": {
+            "pain": {
+              "enabled": false,
+              "durationSeconds": 30
+            },
+            "tremor": {
+              "enabled": false,
+              "durationSeconds": 0
+            },
+            "tunnelVision": {
+              "enabled": false,
+              "durationSeconds": 0
+            },
+            "onPainkillers": {
+              "enabled": true,
+              "durationSeconds": 60
+            },
+            "healthRegeneration": {
+              "enabled": false,
+              "amount": 1,
+              "durationSeconds": 5
+            },
+            "hydrationRecovery": {
+              "enabled": false,
+              "amount": 0,
+              "durationSeconds": 0
+            },
+            "energyRecovery": {
+              "enabled": false,
+              "amount": 0,
+              "durationSeconds": 0
+            }
+          },
+          "effectId": "allergy"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c40cb782362c4aff041510",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d75917dbbfbaa50a14ac.png",
+      "effects": [
+        {
+          "periodUnixSeconds": 604800,
+          "mailTemplateId": "69ce6b95603956f0c0030557",
+          "effectId": "scheduled_mail"
+        }
+      ],
+      "points": -1,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c40e131f8903ce7a06984c",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d78b0ee20df6890d0258.png",
+      "effects": [
+        {
+          "skillIds": [
+            "Sniper"
+          ],
+          "intValue": 25,
+          "effectId": "skill_level_preset"
+        },
+        {
+          "skillIds": [
+            "Sniper"
+          ],
+          "multiplicator": 2.0,
+          "effectId": "skill_experience_multiplicator"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69ce64064e0a1c7ca20781d3"
+      ]
+    },
+    {
+      "id": "69c40f9f9b5263783d0fe51d",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d75d9e94cffce502d34b.png",
+      "effects": [
+        {
+          "itemFilter": {
+            "include": [
+              {
+                "field": "ParentId",
+                "value": "543be6674bdc2df1348b4569"
+              }
+            ],
+            "exclude": []
+          },
+          "multiplicator": 0.5,
+          "effectId": "item_resource_drain_multiplicator"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c4116a383fc5c9ad03f3d1",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d7932fa684a5ee01c7c7.png",
+      "effects": [
+        {
+          "multiplicator": 0.75,
+          "effectId": "bleeding_chance_multiplicator"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3cd003ffdba4e68086bd7"
+      ]
+    },
+    {
+      "id": "69c411d8883efd5e3b09ccab",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d768f9e99c65c201cec0.png",
+      "effects": [
+        {
+          "multiplicator": 0.8,
+          "effectId": "hydration_drain_multiplicator"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3d2acfe3c5632e4045fe8"
+      ]
+    },
+    {
+      "id": "69c412519b5263783d0fe520",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d77cdbd6b04ab5082d91.png",
+      "effects": [
+        {
+          "multiplicator": 0.8,
+          "effectId": "energy_drain_multiplicator"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3d35feaf97663fb0bb367",
+        "69c40c0f5e9ce5a8970f6be9"
+      ]
+    },
+    {
+      "id": "69c41632d7a7b2ca660e0c59",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d7874b0691f8c10498ba.png",
+      "effects": [
+        {
+          "multiplicator": 0.75,
+          "effectId": "fracture_chance_multiplicator"
+        },
+        {
+          "multiplicator": 0.8,
+          "effectId": "fall_damage_multiplicator"
+        }
+      ],
+      "points": -3,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3cddcfb79911cf20022d6"
+      ]
+    },
+    {
+      "id": "69ce62886e199f4bbe0ab19b",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3f22fa684a5ee01c7c0.png",
+      "effects": [
+        {
+          "multiplicator": 0.99,
+          "effectId": "sprint_speed_multiplicator"
+        },
+        {
+          "traderIds": [
+            "54cb57776803fa99248b456e"
+          ],
+          "tradeAction": "buy",
+          "multiplicator": 0.95,
+          "effectId": "trader_prices_by_trader_multiplicator"
+        }
+      ],
+      "points": 1,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c41111cd28c936320a7520",
+        "69c3d43030f896ebef0ed357"
+      ]
+    },
+    {
+      "id": "69ce64fe6e199f4bbe0ab1a1",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d76d2fa684a5ee01c7c6.png",
+      "effects": [
+        {
+          "periodUnixSeconds": 31556926,
+          "mailTemplateId": "69ce6921603956f0c003054c",
+          "effectId": "scheduled_mail"
+        }
+      ],
+      "points": -12,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "6a578102e7737aa469066518",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d48b17dbbfbaa50a1486.png",
+      "effects": [
+        {
+          "skillIds": [
+            "AimDrills",
+            "Assault",
+            "AttachedLauncher",
+            "Attention",
+            "Charisma",
+            "CovertMovement",
+            "Crafting",
+            "DMR",
+            "Endurance",
+            "HMG",
+            "Health",
+            "HeavyVests",
+            "HideoutManagement",
+            "Immunity",
+            "Intellect",
+            "LMG",
+            "Launcher",
+            "LightVests",
+            "MagDrills",
+            "Melee",
+            "Metabolism",
+            "Perception",
+            "Pistol",
+            "Revolver",
+            "SMG",
+            "Search",
+            "Shotgun",
+            "Sniper",
+            "Strength",
+            "StressResistance",
+            "Surgery",
+            "Throwing",
+            "TroubleShooting",
+            "Vitality",
+            "WeaponTreatment"
+          ],
+          "multiplicator": 1.3,
+          "effectId": "skill_experience_multiplicator"
+        }
+      ],
+      "points": -5,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69ce64064e0a1c7ca20781d3",
+        "69c3d21749d7d7c520026425"
+      ]
+    },
+    {
+      "id": "6a5789f713792e2c7c0d2a5b",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d4232fa684a5ee01c7c1.png",
+      "effects": [
+        {
+          "effectId": "lucky"
+        }
+      ],
+      "points": -1,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "6a578ac032cea863f505beed"
+      ]
+    },
+    {
+      "id": "6a578ac032cea863f505beed",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3a2e46631bbe50437c4.png",
+      "effects": [
+        {
+          "effectId": "unlucky"
+        }
+      ],
+      "points": 1,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "6a5789f713792e2c7c0d2a5b"
+      ]
+    },
+    {
+      "id": "69c3ce913ffdba4e68086bdb",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d3dfb39f93e78f0c894e.png",
+      "effects": [
+        {
+          "bodyPartTypes": [
+            "arms",
+            "legs"
+          ],
+          "multiplicator": 0.8,
+          "effectId": "stamina_restore_body_parts_multiplicator"
+        },
+        {
+          "bodyPartTypes": [
+            "arms",
+            "legs"
+          ],
+          "intValue": -10,
+          "effectId": "stamina_scale_body_parts"
+        }
+      ],
+      "points": 5,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3e8d8af28f094100fe130",
+        "69c40c0f5e9ce5a8970f6be9"
+      ]
+    },
+    {
+      "id": "69c405332f253132020be099",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d750a51799c4240d7b64.png",
+      "effects": [
+        {
+          "keyTypes": [
+            "mechanical"
+          ],
+          "multiplicator": 0.25,
+          "effectId": "key_durability_multiplicator"
+        }
+      ],
+      "points": -5,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c40ae21d8aec4a2b0551c2",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d495f23eae53e50f347b.png",
+      "effects": [
+        {
+          "itemFilter": {
+            "include": [
+              {
+                "field": "_tpl",
+                "value": "57347d5f245977448b40fa81"
+              },
+              {
+                "field": "_tpl",
+                "value": "57347d9c245977448b40fa85"
+              },
+              {
+                "field": "_tpl",
+                "value": "5673de654bdc2d180f8b456d"
+              },
+              {
+                "field": "_tpl",
+                "value": "5bc9c29cd4351e003562b8a3"
+              }
+            ],
+            "exclude": []
+          },
+          "randomSlotCount": 4,
+          "appliedRandomEffectCount": 1,
+          "subEffects": {
+            "pain": {
+              "enabled": false,
+              "durationSeconds": 30
+            },
+            "tremor": {
+              "enabled": false,
+              "durationSeconds": 0
+            },
+            "tunnelVision": {
+              "enabled": false,
+              "durationSeconds": 0
+            },
+            "onPainkillers": {
+              "enabled": false,
+              "durationSeconds": 0
+            },
+            "healthRegeneration": {
+              "enabled": true,
+              "amount": 2,
+              "durationSeconds": 30
+            },
+            "hydrationRecovery": {
+              "enabled": false,
+              "amount": 0,
+              "durationSeconds": 0
+            },
+            "energyRecovery": {
+              "enabled": false,
+              "amount": 0,
+              "durationSeconds": 0
+            }
+          },
+          "effectId": "allergy"
+        }
+      ],
+      "points": -2,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    },
+    {
+      "id": "69c40c0f5e9ce5a8970f6be9",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d48fdbd6b04ab5082d69.png",
+      "effects": [
+        {
+          "bodyPartTypes": [
+            "arms",
+            "legs"
+          ],
+          "intValue": 10,
+          "effectId": "stamina_scale_body_parts"
+        },
+        {
+          "multiplicator": 0.8,
+          "effectId": "energy_drain_multiplicator"
+        }
+      ],
+      "points": -5,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3ce913ffdba4e68086bdb",
+        "69c3d35feaf97663fb0bb367",
+        "69c412519b5263783d0fe520"
+      ]
+    },
+    {
+      "id": "69c410831f8903ce7a06984f",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d7630ee20df6890d0257.png",
+      "effects": [
+        {
+          "skillIds": [
+            "Strength",
+            "Endurance"
+          ],
+          "intValue": 15,
+          "effectId": "skill_level_preset"
+        }
+      ],
+      "points": -5,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69ce64064e0a1c7ca20781d3"
+      ]
+    },
+    {
+      "id": "69c41111cd28c936320a7520",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d783f23eae53e50f34a5.png",
+      "effects": [
+        {
+          "multiplicator": 1.05,
+          "effectId": "sprint_speed_multiplicator"
+        }
+      ],
+      "points": -3,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c3e8d8af28f094100fe130",
+        "69ce62886e199f4bbe0ab19b"
+      ]
+    },
+    {
+      "id": "69ce64064e0a1c7ca20781d3",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d74c2fa684a5ee01c7c5.png",
+      "effects": [
+        {
+          "skillIds": [
+            "AimDrills",
+            "Assault",
+            "AttachedLauncher",
+            "Attention",
+            "Charisma",
+            "CovertMovement",
+            "Crafting",
+            "DMR",
+            "Endurance",
+            "HMG",
+            "Health",
+            "HeavyVests",
+            "HideoutManagement",
+            "Immunity",
+            "Intellect",
+            "LMG",
+            "Launcher",
+            "LightVests",
+            "MagDrills",
+            "Melee",
+            "Metabolism",
+            "Perception",
+            "Pistol",
+            "Revolver",
+            "SMG",
+            "Search",
+            "Shotgun",
+            "Sniper",
+            "Strength",
+            "StressResistance",
+            "Surgery",
+            "Throwing",
+            "TroubleShooting",
+            "Vitality",
+            "WeaponTreatment"
+          ],
+          "effectId": "skill_not_growing"
+        },
+        {
+          "skillIds": [
+            "AimDrills",
+            "Assault",
+            "AttachedLauncher",
+            "Attention",
+            "Charisma",
+            "CovertMovement",
+            "DMR",
+            "Endurance",
+            "HMG",
+            "Health",
+            "HeavyVests",
+            "HideoutManagement",
+            "Immunity",
+            "Intellect",
+            "LMG",
+            "Launcher",
+            "LightVests",
+            "MagDrills",
+            "Melee",
+            "Metabolism",
+            "Perception",
+            "Pistol",
+            "Revolver",
+            "SMG",
+            "Search",
+            "Shotgun",
+            "Sniper",
+            "Strength",
+            "StressResistance",
+            "Surgery",
+            "Throwing",
+            "TroubleShooting",
+            "Vitality",
+            "WeaponTreatment"
+          ],
+          "intValue": 25,
+          "effectId": "skill_level_preset"
+        }
+      ],
+      "points": -12,
+      "mutuallyExclusiveSeasonalPerkIds": [
+        "69c40e131f8903ce7a06984c",
+        "69c410831f8903ce7a06984f",
+        "69c3d21749d7d7c520026425",
+        "6a578102e7737aa469066518"
+      ]
+    },
+    {
+      "id": "69c3da13eaf97663fb0bb36d",
+      "type": "personal",
+      "imageUrl": "/files/seasonal-perks/6a60d4194b0691f8c104986f.png",
+      "effects": [
+        {
+          "itemFilter": {
+            "include": [
+              {
+                "field": "ParentId",
+                "value": "543be5e94bdc2df1348b4568"
+              },
+              {
+                "field": "ParentId",
+                "value": "5447e0e74bdc2d3c308b4567"
+              },
+              {
+                "field": "_tpl",
+                "value": "68fb41120760c7891606613c"
+              },
+              {
+                "field": "_tpl",
+                "value": "6662e9aca7e0b43baa3d5f74"
+              },
+              {
+                "field": "_tpl",
+                "value": "68fb412b0760c7891606613e"
+              },
+              {
+                "field": "_tpl",
+                "value": "6662e9cda7e0b43baa3d5f76"
+              },
+              {
+                "field": "_tpl",
+                "value": "68fb4143a854bc7ae80fad3e"
+              },
+              {
+                "field": "_tpl",
+                "value": "6662e9f37fa79a6d83730fa0"
+              },
+              {
+                "field": "_tpl",
+                "value": "68fb4157b280c103230e3b3c"
+              },
+              {
+                "field": "_tpl",
+                "value": "6662ea05f6259762c56f3189"
+              },
+              {
+                "field": "_tpl",
+                "value": "59f32bb586f774757e1e8442"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f15e26f1aa7e100a0ca208"
+              },
+              {
+                "field": "_tpl",
+                "value": "675dc9d37ae1a8792107ca96"
+              },
+              {
+                "field": "_tpl",
+                "value": "675dcb0545b1a2d108011b2b"
+              },
+              {
+                "field": "_tpl",
+                "value": "684180bc51bf8645f7067bc8"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f0f63c645c14a02104142a"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f0f60a121d878a2303eedb"
+              },
+              {
+                "field": "_tpl",
+                "value": "684181208d035f60230f63f9"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f15cf222c8979ee308f495"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df991142e96f583d042b8a"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df9908972cf1e1ec07256a"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df991dbeba86572e097ceb"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df9927a38a5e37d80df6c9"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f153aa7da590b6df0515da"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f15e53103c5d9d4f022c78"
+              },
+              {
+                "field": "_tpl",
+                "value": "6764207f2fa5e32733055c4a"
+              },
+              {
+                "field": "_tpl",
+                "value": "6764202ae307804338014c1a"
+              },
+              {
+                "field": "_tpl",
+                "value": "68418091b5b0c9e4c60f0e7a"
+              },
+              {
+                "field": "_tpl",
+                "value": "684180ee9b6d80d840042e8a"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f0f64f183146ea530330aa"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f0f662859ebec8d501b76a"
+              },
+              {
+                "field": "_tpl",
+                "value": "68f15dbab2b53abd200b9378"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df99a614ca2428b2017cd8"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df99975d4e135b130392ca"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df99b2f716906506098308"
+              },
+              {
+                "field": "_tpl",
+                "value": "68df99c05d4e135b130392cc"
+              },
+              {
+                "field": "_tpl",
+                "value": "5b9b9020e7ef6f5716480215"
+              },
+              {
+                "field": "ParentId",
+                "value": "567849dd4bdc2d150f8b456e"
+              },
+              {
+                "field": "_tpl",
+                "value": "60b0f6c058e0b0481a09ad11"
+              },
+              {
+                "field": "_tpl",
+                "value": "59fafd4b86f7745ca07e1232"
+              },
+              {
+                "field": "_tpl",
+                "value": "62a09d3bcf4a99369e262447"
+              },
+              {
+                "field": "_tpl",
+                "value": "6937eccbfd921faceb0dfecd"
+              },
+              {
+                "field": "_tpl",
+                "value": "5783c43d2459774bbe137486"
+              },
+              {
+                "field": "_tpl",
+                "value": "5c093e3486f77430cb02e593"
+              },
+              {
+                "field": "ParentId",
+                "value": "543be5dd4bdc2deb348b4569"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354a30652075cf460944c6"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354a9a9cd7a91b45027a89"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354abe73339990030ca469"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354aa56632508bd10476dc"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a3549435288a3fe6e085224"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a3548e72a963bcdd8098649"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354a6f8d465a55c70065c8"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354a7e6632508bd10476d8"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354a6240e6797a930312e5"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a354a077e4ccdbe95005266"
+              },
+              {
+                "field": "_tpl",
+                "value": "59f32c3b86f77472a31742f0"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a461aed7391ab085a093760"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a461bf82b2264dbe10d0ee6"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a461c41ec88c6b9a509fb17"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a31807f17005505b70d5827"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a3182dc6cd8de21cf0a3a7d"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a31830dde69ceafd805afa0"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a317b9692cfdcddcb02a58e"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a3181f178450ec91c0ea1aa"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a31824878450ec91c0ea1ae"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a31828557705071410ca00e"
+              },
+              {
+                "field": "_tpl",
+                "value": "6a3182b72fd891345e047eef"
+              },
+              {
+                "field": "_tpl",
+                "value": "6937ecc3dbdccab44605fcf0"
+              },
+              {
+                "field": "_tpl",
+                "value": "697883474afb9f7de10380ba"
+              },
+              {
+                "field": "_tpl",
+                "value": "619cbf9e0a7c3a1a2731940a"
+              }
+            ],
+            "exclude": []
+          },
+          "effectId": "pouch_item_filter_restrict"
+        }
+      ],
+      "points": 6,
+      "mutuallyExclusiveSeasonalPerkIds": []
+    }
+  ]
+}

@@ -99,4 +99,16 @@ public record BotGlobalLayData
 
     [JsonPropertyName("SHALL_LAY_PROBABILTY_WHEN_ARTILLERY")]
     public int? ShallLayProbabilityWhenArtillery { get; set; }
+
+    [JsonPropertyName("CAN_CHECK_MAGAZINE")]
+    public bool? CanCheckMagazine { get; set; }
+
+    [JsonPropertyName("CAN_LAY_AT_SHOOTFROMPLACE")]
+    public bool? CanLayAtShootfromplace { get; set; }
+
+    [JsonPropertyName("CHECK_CLOSEST_FRIEND")]
+    public bool? CheckClosestFriend { get; set; }
+
+    [JsonPropertyName("DIST_LAY_CHECK")]
+    public double? DistLayCheck { get; set; }
 }

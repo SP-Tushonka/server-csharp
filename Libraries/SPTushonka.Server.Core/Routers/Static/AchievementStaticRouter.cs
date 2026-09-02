@@ -21,4 +21,5 @@ public class AchievementStaticRouter(JsonUtil jsonUtil, AchievementCallbacks ach
                 async (url, info, sessionID, output, cancellationToken) => await achievementCallbacks.Statistic(url, info, sessionID)
             ),
         ]
-    ) { }
+    )
+{ }

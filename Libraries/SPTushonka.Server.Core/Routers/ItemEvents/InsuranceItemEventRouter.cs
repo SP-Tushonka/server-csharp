@@ -14,4 +14,5 @@ public sealed class InsuranceItemEventRouter(InsuranceCallbacks insuranceCallbac
             ItemEventActions.INSURE,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await insuranceCallbacks.Insure(pmcData, body, sessionID)
         ),
-    ]) { }
+    ])
+{ }

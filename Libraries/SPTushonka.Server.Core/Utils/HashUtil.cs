@@ -94,18 +94,18 @@ public sealed class HashUtil(RandomUtil _randomUtil)
         switch (algorithm)
         {
             case HashingAlgorithm.MD5:
-            {
-                await using var ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
-                var md5HashData = await MD5.HashDataAsync(ms, cancellationToken);
-                return Convert.ToHexString(md5HashData).Replace("-", string.Empty);
-            }
+                {
+                    await using var ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
+                    var md5HashData = await MD5.HashDataAsync(ms, cancellationToken);
+                    return Convert.ToHexString(md5HashData).Replace("-", string.Empty);
+                }
 
             case HashingAlgorithm.SHA1:
-            {
-                await using var ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
-                var sha1HashData = await SHA1.HashDataAsync(ms, cancellationToken);
-                return Convert.ToHexString(sha1HashData).Replace("-", string.Empty);
-            }
+                {
+                    await using var ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
+                    var sha1HashData = await SHA1.HashDataAsync(ms, cancellationToken);
+                    return Convert.ToHexString(sha1HashData).Replace("-", string.Empty);
+                }
         }
 
         throw new NotImplementedException($"Provided hash algorithm: {algorithm} is not supported.");

@@ -179,21 +179,21 @@ public static class SptLoggerFilterExtensions
         switch (filter.MatchingType)
         {
             case MatchingType.Literal:
-            {
-                return string.Equals(filter.Name, message.Logger, StringComparison.Ordinal);
-            }
+                {
+                    return string.Equals(filter.Name, message.Logger, StringComparison.Ordinal);
+                }
 
             case MatchingType.Regex:
-            {
-                var regex = _cachedRegexes.GetOrAdd(filter.Name, static pattern => new Regex(pattern));
+                {
+                    var regex = _cachedRegexes.GetOrAdd(filter.Name, static pattern => new Regex(pattern));
 
-                return regex.IsMatch(message.Logger);
-            }
+                    return regex.IsMatch(message.Logger);
+                }
 
             default:
-            {
-                return false;
-            }
+                {
+                    return false;
+                }
         }
     }
 

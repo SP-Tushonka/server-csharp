@@ -27,7 +27,8 @@
       "RandomTimeSpawn": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -47,7 +48,8 @@
       "RandomTimeSpawn": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -67,7 +69,8 @@
       "RandomTimeSpawn": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -87,7 +90,8 @@
       "RandomTimeSpawn": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -107,7 +111,8 @@
       "RandomTimeSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": null,
       "Time": -1,
@@ -2096,7 +2101,8 @@
       "KeepZoneOnSpawn": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "SpawnPoints": "",
       "WildSpawnType": "assault",
@@ -2168,6 +2174,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 700,
   "IconY": 700,
   "IsSecret": false,

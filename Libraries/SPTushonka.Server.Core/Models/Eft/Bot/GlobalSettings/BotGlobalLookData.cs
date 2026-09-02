@@ -231,4 +231,25 @@ public record BotGlobalLookData
 
     [JsonPropertyName("VISIBILITY_LEVEL_TO_TURN_HEAD")]
     public float? VisibilityLevelToTurnHead { get; set; }
+
+    [JsonPropertyName("ATTCK_MOVING_LOOK_TO_ENEMY")]
+    public double? AttckMovingLookToEnemy { get; set; }
+
+    [JsonPropertyName("CAN_LOOK_TO_WALL")]
+    public bool? CanLookToWall { get; set; }
+
+    [JsonPropertyName("FULL_SECTOR_VIEW_DIST")]
+    public double? FullSectorViewDist { get; set; }
+
+    [JsonPropertyName("NEVER_HIDE_NIGHT_VISION")]
+    public bool? NeverHideNightVision { get; set; }
+
+    [JsonPropertyName("ONLY_BODY")]
+    public bool? OnlyBody { get; set; }
+
+    [JsonPropertyName("OPTIMIZE_TO_ONLY_BODY")]
+    public bool? OptimizeToOnlyBody { get; set; }
+
+    [JsonPropertyName("REFRESH_SEARCH_POINT_PERIOD")]
+    public int? RefreshSearchPointPeriod { get; set; }
 }

@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
@@ -25,6 +25,21 @@ public record TemplateTable
 
     [JsonPropertyName("quests")]
     public required Dictionary<MongoId, Quest> Quests { get; init; }
+
+    [JsonPropertyName("questChains")]
+    public required QuestChainsResponse QuestChains { get; init; }
+
+    [JsonPropertyName("variableGroups")]
+    public required List<VariableGroupData> VariableGroups { get; init; }
+
+    [JsonPropertyName("subtitleTracks")]
+    public required List<SubtitleGroupData> SubtitleTracks { get; init; }
+
+    [JsonPropertyName("tapes")]
+    public required List<SubtitleGroupData> Tapes { get; init; }
+
+    [JsonPropertyName("endings")]
+    public required EndingsResponse Endings { get; init; }
 
     [JsonPropertyName("repeatableQuests")]
     public required RepeatableQuestDatabase RepeatableQuests { get; init; }

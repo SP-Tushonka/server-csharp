@@ -577,6 +577,7 @@ public record GlobalConfig
     public required CoopSettings CoopSettings { get; set; }
     public required PveSettings PveSettings { get; set; }
     public required ExtensionsSettings ExtensionsSettings { get; set; }
+    public required BattlePassUniversalDocument BattlePassUniversalDocument { get; set; }
     public required IEnumerable<FinalConsequencesSettings> FinalConsequenceSettings { get; set; }
     public required FinalMissionSettings FinalMissionSettings { get; set; }
     public required KolotunSettings KolotunSettings { get; set; }
@@ -3294,6 +3295,15 @@ public record ExtensionsSettings
     public required string PveUrl { get; set; }
     public required string StashRowsUrl { get; set; }
     public required int MaxStashRows { get; set; }
+    public required string BattlePassUrl { get; set; }
+}
+
+public record BattlePassUniversalDocument
+{
+    public required MongoId Id { get; set; }
+    public required string Image { get; set; }
+    public required string UnavailableImage { get; set; }
+    public required string OfferId { get; set; }
 }
 
 public record FinalConsequencesSettings

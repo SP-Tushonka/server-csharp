@@ -15,6 +15,7 @@ using SPTarkov.Server.Core.Models.Eft.Ws;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
@@ -32,9 +33,11 @@ public class RewardHelper(
     ProfileHelper profileHelper,
     ServerLocalisationService serverLocalisationService,
     TraderHelper traderHelper,
+    LocationTable locationTable,
     PresetHelper presetHelper,
     NotifierHelper notifierHelper,
     NotificationSendHelper notificationSendHelper,
+    TarcoinStoreService tarcoinStoreService,
     ICloner cloner
 )
 {
@@ -70,12 +73,6 @@ public class RewardHelper(
 
         foreach (var reward in rewards)
         {
-            // Handle reward availability for different game versions, notAvailableInGameEditions currently not used
-            if (!RewardIsForGameEdition(reward, gameVersion!))
-            {
-                continue;
-            }
-
             switch (reward.Type)
             {
                 case RewardType.Skill:
@@ -100,6 +97,12 @@ public class RewardHelper(
                     break;
                 case RewardType.TraderUnlock:
                     traderHelper.SetTraderUnlockedState(reward.Target!, true, sessionId!.Value);
+                    break;
+                case RewardType.TraderDialogueUnlock:
+                    SetTraderDialogueAvailable(reward.Target!, pmcProfile);
+                    break;
+                case RewardType.LocationUnlock:
+                    UnlockLocation(reward.Target!, pmcProfile);
                     break;
                 case RewardType.Item:
                     // Item rewards are retrieved by getRewardItems() below, and returned to be handled by caller
@@ -143,6 +146,9 @@ public class RewardHelper(
                     );
 
                     break;
+                case RewardType.Tarcoin:
+                    tarcoinStoreService.Credit(sessionId!.Value, Convert.ToInt32(reward.Value));
+                    break;
                 case RewardType.NotificationPopup:
                     var notification = notifierHelper.CreateNotificationPopup(reward.IllustrationConfig!, reward.Message!.Value);
                     _ = notificationSendHelper.SendMessageAsync(sessionId!.Value, notification);
@@ -166,27 +172,40 @@ public class RewardHelper(
     }
 
     /// <summary>
-    /// Does the provided reward have a game version requirement to be given and does it match.
+    ///     Let the player talk to a trader
     /// </summary>
-    /// <param name="reward">Reward to check.</param>
-    /// <param name="gameVersion">Version of game to check reward against.</param>
-    /// <returns>True if it has requirement, false if it doesn't pass check.</returns>
-    public bool RewardIsForGameEdition(Reward reward, string gameVersion)
+    protected void SetTraderDialogueAvailable(MongoId traderId, PmcData pmcProfile)
     {
-        if (reward.AvailableInGameEditions?.Count > 0 && !reward.AvailableInGameEditions.Contains(gameVersion))
-        // Reward has edition whitelist and game version isn't in it
+        if (pmcProfile.TradersInfo?.TryGetValue(traderId, out var traderInfo) ?? false)
         {
-            return false;
+            traderInfo.DialogueAvailable = true;
+
+            return;
         }
 
-        if (reward.NotAvailableInGameEditions?.Count > 0 && reward.NotAvailableInGameEditions.Contains(gameVersion))
-        // Reward has edition blacklist and game version is in it
+        logger.Warning($"Unable to open dialogue for trader: {traderId}, it is not in the profile");
+    }
+
+    /// <summary>
+    ///     Add a location to the ones the player may deploy to. The reward names it by its _id, while the
+    ///     profile lists them by the name the client uses, e.g. factory4_day.
+    /// </summary>
+    protected void UnlockLocation(MongoId locationId, PmcData pmcProfile)
+    {
+        var location = locationTable.GetDictionary().Values.FirstOrDefault(entry => entry.Base?.IdField == locationId);
+        if (location?.Base?.Id is null)
         {
-            return false;
+            logger.Warning($"Unable to unlock location: {locationId}, no location has that id");
+
+            return;
         }
 
-        // No whitelist/blacklist or reward isn't blacklisted/whitelisted
-        return true;
+        pmcProfile.UnlockedLocations ??= [];
+
+        if (!pmcProfile.UnlockedLocations.Contains(location.Base.Id))
+        {
+            pmcProfile.UnlockedLocations.Add(location.Base.Id);
+        }
     }
 
     /// <summary>
@@ -224,7 +243,12 @@ public class RewardHelper(
         pmcData.UnlockedInfo!.UnlockedProductionRecipe!.Add(matchingCraftId);
 
         // Update Inform client of change
-        response.ProfileChanges[sessionId].RecipeUnlocked ??= new();
+        if (response is null || response.ProfileChanges is null)
+        {
+            return;
+        }
+
+        response.ProfileChanges[sessionId].RecipeUnlocked ??= [];
         response.ProfileChanges[sessionId].RecipeUnlocked![matchingCraftId] = true;
     }
 
@@ -306,7 +330,7 @@ public class RewardHelper(
     {
         // Iterate over all rewards with the desired status, flatten out items that have a type of Item
         var rewardItems = rewards.SelectMany(reward =>
-            reward.Type == RewardType.Item && RewardIsForGameEdition(reward, gameVersion) ? ProcessReward(reward) : []
+            reward.Type == RewardType.Item ? ProcessReward(reward) : []
         );
 
         return rewardItems;

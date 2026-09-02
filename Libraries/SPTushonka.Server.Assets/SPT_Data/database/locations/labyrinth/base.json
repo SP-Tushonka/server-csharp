@@ -33,7 +33,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": -1,
@@ -59,7 +60,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "pve",
-        "regular"
+        "regular",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 1100,
@@ -85,7 +87,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 450,
@@ -111,7 +114,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 495,
@@ -137,7 +141,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 550,
@@ -163,7 +168,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": -1,
@@ -189,7 +195,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": -1,
@@ -215,7 +222,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 30,
@@ -241,7 +249,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 10,
@@ -267,7 +276,8 @@
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
-        "pve"
+        "pve",
+        "pvp-season"
       ],
       "Supports": [],
       "Time": 1500,
@@ -1162,6 +1172,14 @@
     {
       "TemplateId": "69dd0de23dfe95d9e70b5ebb",
       "Value": 33
+    },
+    {
+      "TemplateId": "6a31824878450ec91c0ea1ae",
+      "Value": 7
+    },
+    {
+      "TemplateId": "6a3182dc6cd8de21cf0a3a7d",
+      "Value": 7
     }
   ],
   "secretExits": [
@@ -1353,6 +1371,7 @@
     "LootPositions"
   ],
   "HiddenWhenLockedByQuest": false,
+  "HighLevelLocationId": "",
   "IconX": 245,
   "IconY": 325,
   "IsSecret": false,

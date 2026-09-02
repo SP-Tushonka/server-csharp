@@ -22,9 +22,18 @@ public sealed class QuestItemEventRouter(QuestCallbacks questCallbacks)
             ItemEventActions.QUEST_HANDOVER,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.HandoverQuest(pmcData, body, sessionID)
         ),
+        new ItemRouteAction<AddQuestNoteRequest>(
+            ItemEventActions.ADD_QUEST_NOTE,
+            async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.AddQuestNote(pmcData, body, sessionID)
+        ),
+        new ItemRouteAction<ReadQuestDataRequest>(
+            ItemEventActions.READ_QUEST_DATA,
+            async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.ReadQuestData(pmcData, body, sessionID)
+        ),
         new ItemRouteAction<RepeatableQuestChangeRequest>(
             ItemEventActions.REPEATABLE_QUEST_CHANGE,
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await questCallbacks.ChangeRepeatableQuest(pmcData, body, sessionID)
         ),
-    ]) { }
+    ])
+{ }

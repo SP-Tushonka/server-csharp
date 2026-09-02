@@ -92,7 +92,7 @@ public class RagfairAssortGenerator(
             {
                 continue;
             }
-            
+
             if (!itemHelper.IsValidItem(item, RagfairItemInvalidBaseTypes))
             {
                 continue;

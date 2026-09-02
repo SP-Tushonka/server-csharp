@@ -78,39 +78,39 @@ public class ProfileSptCommand(MailSendService mailSendService, ProfileHelper pr
                 profileChangeEvent = HandleLevelCommand(quantity);
                 break;
             case "skill":
-            {
-                var enumSkill = Enum.GetValues<SkillTypes>()
-                    .Cast<SkillTypes?>()
-                    .FirstOrDefault(t => string.Equals(t?.ToString(), skill, StringComparison.OrdinalIgnoreCase));
-
-                if (enumSkill == null)
                 {
-                    mailSendService.SendUserMessageToPlayer(
-                        sessionId,
-                        commandHandler,
-                        "Invalid use of profile command, the skill was not found. Use 'help' for more information."
-                    );
-                    return new ValueTask<string>(request.DialogId);
-                }
+                    var enumSkill = Enum.GetValues<SkillTypes>()
+                        .Cast<SkillTypes?>()
+                        .FirstOrDefault(t => string.Equals(t?.ToString(), skill, StringComparison.OrdinalIgnoreCase));
 
-                if (quantity is < 0 or > 51)
-                {
-                    mailSendService.SendUserMessageToPlayer(
-                        sessionId,
-                        commandHandler,
-                        "Invalid use of profile command, the skill level was outside bounds: 1 to 51. Use 'help' for more information."
-                    );
-                    return new ValueTask<string>(request.DialogId);
-                }
+                    if (enumSkill == null)
+                    {
+                        mailSendService.SendUserMessageToPlayer(
+                            sessionId,
+                            commandHandler,
+                            "Invalid use of profile command, the skill was not found. Use 'help' for more information."
+                        );
+                        return new ValueTask<string>(request.DialogId);
+                    }
 
-                profileChangeEvent = HandleSkillCommand(enumSkill, quantity);
-                break;
-            }
+                    if (quantity is < 0 or > 51)
+                    {
+                        mailSendService.SendUserMessageToPlayer(
+                            sessionId,
+                            commandHandler,
+                            "Invalid use of profile command, the skill level was outside bounds: 1 to 51. Use 'help' for more information."
+                        );
+                        return new ValueTask<string>(request.DialogId);
+                    }
+
+                    profileChangeEvent = HandleSkillCommand(enumSkill, quantity);
+                    break;
+                }
             case "examine":
-            {
-                profileChangeEvent = HandleExamineCommand();
-                break;
-            }
+                {
+                    profileChangeEvent = HandleExamineCommand();
+                    break;
+                }
             default:
                 mailSendService.SendUserMessageToPlayer(
                     sessionId,

@@ -1,0 +1,521 @@
+{
+  "season": {
+    "id": "69e232a764dfe95549003f0f",
+    "startTs": 1776431739,
+    "endTs": 1796634039,
+    "seasonalRewards": [
+      {
+        "id": "6a4dfeed8f8e957fd91ed127",
+        "seasonId": "69e232a764dfe95549003f0f",
+        "conditions": [
+          {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a6395d0be62c7ed483de95c",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "target": "6a4f5c207368e70cae00e6ec",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "isFinisher": false,
+            "conditionType": "Quest"
+          }
+        ],
+        "rewards": [
+          {
+            "unknown": false,
+            "gameMode": [],
+            "availableInGameEditions": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "id": "6a4dff0bda25575d397f2a10",
+            "target": "77598771f1c3fa0ae9ec0202",
+            "loyaltyLevel": 1,
+            "traderId": "5935c25fb3acc3127c3d8cd9",
+            "items": [
+              {
+                "_id": "77598771f1c3fa0ae9ec0202",
+                "_tpl": "689b3fffa1295e322207a677"
+              }
+            ],
+            "type": "AssortmentUnlock"
+          }
+        ],
+        "imageUrl": "/files/seasonal/6a622c0999e01ebeb30f04bb.png",
+        "bigImageUrl": "/files/seasonal/6a622c2aaac6064a460e92b1.png",
+        "location": {
+          "x": 0,
+          "y": 0,
+          "w": 1,
+          "h": 1
+        }
+      },
+      {
+        "id": "6a4dff7d183eda81ef8525a2",
+        "seasonId": "69e232a764dfe95549003f0f",
+        "conditions": [
+          {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a6395e7ddaa60096cc19299",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "target": "6a4f5fda45f72a73f3089a8a",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "isFinisher": false,
+            "conditionType": "Quest"
+          }
+        ],
+        "rewards": [
+          {
+            "unknown": false,
+            "gameMode": [],
+            "availableInGameEditions": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "id": "6a68627bdafb1927f144bfb1",
+            "target": "9fa863e038504010702fe396",
+            "loyaltyLevel": 2,
+            "traderId": "5935c25fb3acc3127c3d8cd9",
+            "items": [
+              {
+                "_id": "9fa863e038504010702fe396",
+                "_tpl": "689b880fff8b4adc420f5b56"
+              }
+            ],
+            "type": "AssortmentUnlock"
+          }
+        ],
+        "imageUrl": "/files/seasonal/6a622bf9909760e7df00819f.png",
+        "bigImageUrl": "/files/seasonal/6a622c357173bfec3b07706a.png",
+        "location": {
+          "x": 1,
+          "y": 0,
+          "w": 1,
+          "h": 1
+        }
+      },
+      {
+        "id": "6a4e00acbda8fdbd37db7877",
+        "seasonId": "69e232a764dfe95549003f0f",
+        "conditions": [
+          {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a4e00b9a91e28134995dd6f",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "value": 30,
+            "compareMethod": ">=",
+            "conditionType": "Level"
+          },
+          {
+            "index": 1,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a63964e5f2fbc0681e7257f",
+            "props": {
+              "index": 1,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "target": "6a4f7a63e41198323708563b",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "isFinisher": false,
+            "conditionType": "Quest"
+          }
+        ],
+        "rewards": [
+          {
+            "unknown": false,
+            "gameMode": [],
+            "availableInGameEditions": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "id": "6a4e00e36c2baf462fe828eb",
+            "target": "9b4fde861a7a5f1ec56c3f40",
+            "loyaltyLevel": 4,
+            "traderId": "5935c25fb3acc3127c3d8cd9",
+            "items": [
+              {
+                "_id": "9b4fde861a7a5f1ec56c3f40",
+                "_tpl": "689479a4a733b1602007e2eb"
+              },
+              {
+                "_id": "a4aa323ab095cd6ca4396714",
+                "_tpl": "68a5f30248f18317750ab20b",
+                "parentId": "9b4fde861a7a5f1ec56c3f40",
+                "slotId": "Soft_armor_front"
+              },
+              {
+                "_id": "24a0589933fc2073ef41deaa",
+                "_tpl": "68a5f3a348f18317750ab4be",
+                "parentId": "9b4fde861a7a5f1ec56c3f40",
+                "slotId": "Soft_armor_back"
+              },
+              {
+                "_id": "bfb04775ef8bcecc44486ece",
+                "_tpl": "68a5f3ec7c9f6975d00238be",
+                "parentId": "9b4fde861a7a5f1ec56c3f40",
+                "slotId": "Soft_armor_left"
+              },
+              {
+                "_id": "b4a0bcb14dd1c532341c1732",
+                "_tpl": "68a5f42948f18317750ab543",
+                "parentId": "9b4fde861a7a5f1ec56c3f40",
+                "slotId": "soft_armor_right"
+              }
+            ],
+            "type": "AssortmentUnlock"
+          }
+        ],
+        "imageUrl": "/files/seasonal/6a5e68b8c0e52002fd09d8b4.png",
+        "bigImageUrl": "/files/seasonal/6a5e68c13d0e6b95910b8607.png",
+        "location": {
+          "x": 2,
+          "y": 0,
+          "w": 1,
+          "h": 2
+        }
+      },
+      {
+        "id": "6a4dffde4df0ac625d7a3db1",
+        "seasonId": "69e232a764dfe95549003f0f",
+        "conditions": [
+          {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a4e0092ec3f7fb8e440fbfb",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "value": 25,
+            "compareMethod": ">=",
+            "conditionType": "Level"
+          },
+          {
+            "index": 1,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a6396014a621d3290ec2e35",
+            "props": {
+              "index": 1,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "target": "6a4f602f02d214b87f065c40",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "isFinisher": false,
+            "conditionType": "Quest"
+          }
+        ],
+        "rewards": [
+          {
+            "unknown": false,
+            "gameMode": [],
+            "availableInGameEditions": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "id": "6a4e000269f9adca22d1831a",
+            "target": "ad62c06019cb94f46fdfe975",
+            "loyaltyLevel": 3,
+            "traderId": "5ac3b934156ae10c4430e83c",
+            "items": [
+              {
+                "_id": "ad62c06019cb94f46fdfe975",
+                "_tpl": "68947ab5a733b1602007e2fe"
+              }
+            ],
+            "type": "AssortmentUnlock"
+          }
+        ],
+        "imageUrl": "/files/seasonal/6a69e79fedde32c28f0dc31c.png",
+        "bigImageUrl": "/files/seasonal/6a60d3222fa684a5ee01c7bc.png",
+        "location": {
+          "x": 0,
+          "y": 1,
+          "w": 2,
+          "h": 1
+        }
+      },
+      {
+        "id": "6a4e010dd8e65128452573bb",
+        "seasonId": "69e232a764dfe95549003f0f",
+        "conditions": [
+          {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a4e01160a20c4e961eef69b",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "value": 30,
+            "compareMethod": ">=",
+            "conditionType": "Level"
+          },
+          {
+            "index": 1,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "dialogId": null,
+            "entryPoint": null,
+            "fromTraderId": null,
+            "id": "6a4e02af4ded8581af01f0b7",
+            "props": {
+              "index": 1,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": "",
+              "entryPoint": null,
+              "dialogId": null,
+              "fromTraderId": null
+            },
+            "questNoteId": null,
+            "target": "6a4f82e11b7350af050b2e1c",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "isFinisher": false,
+            "conditionType": "Quest"
+          }
+        ],
+        "rewards": [
+          {
+            "unknown": false,
+            "gameMode": [],
+            "availableInGameEditions": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "id": "6a4e0134d8e30d6c6094409a",
+            "target": "187c6e83777f4ea27a05d39e",
+            "loyaltyLevel": 4,
+            "traderId": "5935c25fb3acc3127c3d8cd9",
+            "items": [
+              {
+                "_id": "187c6e83777f4ea27a05d39e",
+                "_tpl": "68947a4be4bf255d1b0ca746"
+              },
+              {
+                "_id": "f01a3708bbd2f049c9f83141",
+                "_tpl": "68a5eaab48f18317750a0b92",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Soft_armor_front"
+              },
+              {
+                "_id": "2bbe705eddc78af8fea63769",
+                "_tpl": "68a5ea26200341f12e08de79",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Soft_armor_back"
+              },
+              {
+                "_id": "c4860874f7237b683bfae11f",
+                "_tpl": "68a5eb4c200341f12e08e7d1",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Soft_armor_left"
+              },
+              {
+                "_id": "80059be341db3df055c501d7",
+                "_tpl": "68a5eba93acdf023050b1c15",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "soft_armor_right"
+              },
+              {
+                "_id": "2b14c1c1db496f2f3d58463e",
+                "_tpl": "68a5ea756e534ad0110eca16",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Collar"
+              },
+              {
+                "_id": "2deb217f661bc868cc0996aa",
+                "_tpl": "68a5eb16c4e56258880dfe96",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Shoulder_l"
+              },
+              {
+                "_id": "c942c0c70cf8e8493e8e80c2",
+                "_tpl": "68a5eb856e534ad0110efa05",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Shoulder_r"
+              },
+              {
+                "_id": "ae548b09cc6d79702ca2d7dd",
+                "_tpl": "68a5eadd2c125bac5a097cbf",
+                "parentId": "187c6e83777f4ea27a05d39e",
+                "slotId": "Groin"
+              }
+            ],
+            "type": "AssortmentUnlock"
+          }
+        ],
+        "imageUrl": "/files/seasonal/6a5e68c6438217c0b20b65be.png",
+        "bigImageUrl": "/files/seasonal/6a5e68cabf561127450b27ca.png",
+        "location": {
+          "x": 3,
+          "y": 0,
+          "w": 1,
+          "h": 2
+        }
+      }
+    ]
+  }
+}

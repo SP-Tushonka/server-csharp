@@ -1,9 +1,11 @@
 ﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Controllers;
+using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Dialog;
 using SPTarkov.Server.Core.Models.Eft.Quests;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Services;
@@ -22,9 +24,13 @@ public class DataCallbacks(
     HideoutTable hideoutTable,
     TraderController traderController,
     HideoutController hideoutController,
-    LocaleService localeService
+    LocaleService localeService,
+    ProfileHelper profileHelper
 )
 {
+    /// <summary>The story chapter every new profile starts with.</summary>
+    private static readonly MongoId TutorialChapterId = new("68cbd33676fe74b1e80bfd91");
+
     /// <summary>
     ///     Handle client/settings
     /// </summary>
@@ -160,11 +166,11 @@ public class DataCallbacks(
     ///     Handle client/items/prices/
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetItemPrices(string url, EmptyRequestData _, MongoId sessionID)
+    public ValueTask<StreamedJsonBody> GetItemPrices(string url, EmptyRequestData _, MongoId sessionID)
     {
         var traderId = url.Replace("/client/items/prices/", "");
 
-        return new ValueTask<string>(httpResponseUtil.GetBody(traderController.GetItemPrices(sessionID, traderId)));
+        return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(traderController.GetItemPrices(sessionID, traderId)));
     }
 
     /// <summary>
@@ -173,6 +179,17 @@ public class DataCallbacks(
     public ValueTask<StreamedJsonBody> GetDialogue(string url, EmptyRequestData _, MongoId sessionID)
     {
         return new ValueTask<StreamedJsonBody>(httpResponseUtil.GetStreamedBody(templateTable.Dialogue));
+    }
+
+    /// <summary>
+    /// Handle /client/dialogue/{id}
+    /// </summary>
+    public ValueTask<string> GetDialogueById(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        var dialogueId = url[(url.LastIndexOf('/') + 1)..];
+        var dialogue = templateTable.Dialogue?.Elements?.FirstOrDefault(element => element.Id == dialogueId);
+
+        return new ValueTask<string>(httpResponseUtil.GetBody(dialogue));
     }
 
     // TODO: These are base implementations to get the game loading.
@@ -190,8 +207,23 @@ public class DataCallbacks(
     /// </summary>
     public ValueTask<string> GetMainQuestsList(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // TODO: Implement me! Seems to only send chapters you have unlocked
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new MainQuestsList { Chapters = [] }));
+        // TODO: Still not sure if this is correct lol, FAFO I guess
+        var startedQuests = profileHelper
+            .GetPmcProfile(sessionID)
+            ?.Quests?.Where(quest => quest.Status == QuestStatusEnum.Started)
+            .Select(quest => quest.QId)
+            .ToHashSet();
+
+        var chapters = (
+            startedQuests is null || startedQuests.Count == 0
+                ? [TutorialChapterId]
+                : templateTable
+                    .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
+                    .Distinct()
+                    .Where(startedQuests.Contains)
+        ).Select(chapterId => new MainQuestChapterId { ChapterId = chapterId });
+
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new MainQuestsList { Chapters = chapters }));
     }
 
     /// <summary>
@@ -199,8 +231,7 @@ public class DataCallbacks(
     /// </summary>
     public ValueTask<string> GetVariableGroup(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // TODO: Implement me! No idea what this does, seems related to the story
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new List<VariableGroupData>()));
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.VariableGroups));
     }
 
     /// <summary>
@@ -208,8 +239,7 @@ public class DataCallbacks(
     /// </summary>
     public ValueTask<string> GetSubtitleTrackList(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // TODO: Implement me! No Idea
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new List<SubtitleGroupData>()));
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.SubtitleTracks));
     }
 
     /// <summary>
@@ -217,8 +247,7 @@ public class DataCallbacks(
     /// </summary>
     public ValueTask<string> GetTapeList(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // TODO: Implement me! No idea, but same model as /client/subtitle-track/list
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new List<SubtitleGroupData>()));
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.Tapes));
     }
 
     /// <summary>
@@ -226,7 +255,6 @@ public class DataCallbacks(
     /// </summary>
     public ValueTask<string> GetEndingList(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // TODO: Implement me! Needs model, looks achievement/quest like, but doesn't fit any current model
-        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new { elements = new List<object>() }));
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.Endings));
     }
 }

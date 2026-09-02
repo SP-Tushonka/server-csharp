@@ -403,4 +403,7 @@ public record BotGlobalsBossSettings
 
     [JsonPropertyName("TAGILLA_MELEE_ATTACK_IF_NO_SHOOT")]
     public float? TagillaMeleeAttackIfNoShoot { get; set; }
+
+    [JsonPropertyName("KOJANIY_COVER_POWER")]
+    public double? KojaniyCoverPower { get; set; }
 }

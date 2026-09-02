@@ -24,4 +24,5 @@ public sealed class TradeItemEventRouter(TradeCallbacks tradeCallbacks)
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await tradeCallbacks.SellAllFromSavage(pmcData, body, sessionID)
         ),
-    ]) { }
+    ])
+{ }

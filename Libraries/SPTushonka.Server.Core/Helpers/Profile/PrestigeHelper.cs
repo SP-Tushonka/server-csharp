@@ -209,10 +209,10 @@ public class PrestigeHelper(
             switch (reward.Type)
             {
                 case RewardType.CustomizationDirect:
-                {
-                    profileHelper.AddHideoutCustomisationUnlock(newProfile, reward, CustomisationSource.PRESTIGE);
-                    break;
-                }
+                    {
+                        profileHelper.AddHideoutCustomisationUnlock(newProfile, reward, CustomisationSource.PRESTIGE);
+                        break;
+                    }
                 case RewardType.Skill:
                     if (Enum.TryParse(reward.Target, out SkillTypes result))
                     {
@@ -232,15 +232,15 @@ public class PrestigeHelper(
 
                     break;
                 case RewardType.Item:
-                {
-                    itemsToSend.AddRange(reward.Items ?? []);
-                    break;
-                }
+                    {
+                        itemsToSend.AddRange(reward.Items ?? []);
+                        break;
+                    }
                 case RewardType.ExtraDailyQuest:
-                {
-                    newProfile.AddExtraRepeatableQuest(new MongoId(reward.Target), (double)reward.Value!);
-                    break;
-                }
+                    {
+                        newProfile.AddExtraRepeatableQuest(new MongoId(reward.Target), (double)reward.Value!);
+                        break;
+                    }
                 default:
                     logger.Error($"Unhandled prestige reward type: {reward.Type} Id: {reward.Id}");
                     break;

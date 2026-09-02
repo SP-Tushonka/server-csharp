@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Eft.Common;
 
 namespace SPTarkov.Server.Core.Models.Spt.Tables;
@@ -34,6 +34,8 @@ public record Settings
     public required int GroupStatusInterval { get; set; }
 
     public required int KeepAliveInterval { get; set; }
+
+    public required bool KeepAliveStaticInterval { get; set; }
 
     public required int LobbyConnectionPercentage { get; set; }
 
@@ -83,6 +85,8 @@ public record Settings
 public record AudioSettings
 {
     public required List<AudioGroupPreset> AudioGroupPresets { get; set; } = [];
+
+    public required Dictionary<string, CustomHeadphonesTemplate> CustomHeadphonesTemplates { get; set; } = [];
 
     public required EnvironmentSettings EnvironmentSettings { get; set; }
 
@@ -182,6 +186,81 @@ public record HeadphonesSettings
     public required string FadeOut { get; set; } = string.Empty;
 }
 
+public record CustomHeadphonesTemplate
+{
+    public required double RolloffMultiplier { get; set; }
+
+    public required double GunsCompressorSendLevel { get; set; }
+
+    public required double ClientPlayerCompressorSendLevel { get; set; }
+
+    public required double ObservedPlayerCompressorSendLevel { get; set; }
+
+    public required double NpcCompressorSendLevel { get; set; }
+
+    public required double EnvTechnicalCompressorSendLevel { get; set; }
+
+    public required double EnvNatureCompressorSendLevel { get; set; }
+
+    public required double EnvCommonCompressorSendLevel { get; set; }
+
+    public required double AmbientCompressorSendLevel { get; set; }
+
+    public required double EffectsReturnsCompressorSendLevel { get; set; }
+
+    public required double HeadphonesMixerVolume { get; set; }
+
+    public required double AmbientVolume { get; set; }
+
+    public required double PrecipitationVolume { get; set; }
+
+    public required double DryVolume { get; set; }
+
+    public required double EffectsReturnsGroupVolume { get; set; }
+
+    public required double Distortion { get; set; }
+
+    public required double CompressorThreshold { get; set; }
+
+    public required double CompressorAttack { get; set; }
+
+    public required double CompressorRelease { get; set; }
+
+    public required double CompressorGain { get; set; }
+
+    public required double GunsCompressorThreshold { get; set; }
+
+    public required double GunsCompressorAttack { get; set; }
+
+    public required double GunsCompressorRelease { get; set; }
+
+    public required double GunsCompressorGain { get; set; }
+
+    public required double HighpassFreq { get; set; }
+
+    public required double HighpassResonance { get; set; }
+
+    public required double LowpassFreq { get; set; }
+
+    public required double EQBand1Frequency { get; set; }
+
+    public required double EQBand1Gain { get; set; }
+
+    public required double EQBand1Q { get; set; }
+
+    public required double EQBand2Frequency { get; set; }
+
+    public required double EQBand2Gain { get; set; }
+
+    public required double EQBand2Q { get; set; }
+
+    public required double EQBand3Frequency { get; set; }
+
+    public required double EQBand3Gain { get; set; }
+
+    public required double EQBand3Q { get; set; }
+}
+
 public record MasterMixerSettings
 {
     public required List<ExposedParameterValue> ExposedParameters { get; set; } = [];
@@ -262,7 +341,7 @@ public record PlayerSettings
 
     public required double OutdoorRolloffMult { get; set; }
 
-    public required PointOfViewSoundValue SearchSoundVolume { get; set; }
+    public required PointOfViewSoundVolume SearchSoundVolume { get; set; }
 
     public required TinnitusEffectConfig TinnitusEffectConfig { get; set; }
 }

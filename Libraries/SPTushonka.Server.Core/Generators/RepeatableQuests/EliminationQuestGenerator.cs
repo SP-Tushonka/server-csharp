@@ -535,22 +535,22 @@ public class EliminationQuestGenerator(
         {
             // Filter out close range weapons from far distance requirement
             case > 50:
-            {
-                HashSet<string> weaponTypeBlacklist = ["Shotgun", "Pistol"];
+                {
+                    HashSet<string> weaponTypeBlacklist = ["Shotgun", "Pistol"];
 
-                // Filter out close range weapons from long distance requirement
-                generationData.WeaponCategoryRequirementConfig.RemoveAll(category => weaponTypeBlacklist.Contains(category.Key));
-                break;
-            }
+                    // Filter out close range weapons from long distance requirement
+                    generationData.WeaponCategoryRequirementConfig.RemoveAll(category => weaponTypeBlacklist.Contains(category.Key));
+                    break;
+                }
             // Filter out long range weapons from close distance requirement
             case < 20:
-            {
-                HashSet<string> weaponTypeBlacklist = ["MarksmanRifle", "DMR"];
+                {
+                    HashSet<string> weaponTypeBlacklist = ["MarksmanRifle", "DMR"];
 
-                // Filter out far range weapons from close distance requirement
-                generationData.WeaponCategoryRequirementConfig.RemoveAll(category => weaponTypeBlacklist.Contains(category.Key));
-                break;
-            }
+                    // Filter out far range weapons from close distance requirement
+                    generationData.WeaponCategoryRequirementConfig.RemoveAll(category => weaponTypeBlacklist.Contains(category.Key));
+                    break;
+                }
         }
 
         // Pick a weighted weapon category

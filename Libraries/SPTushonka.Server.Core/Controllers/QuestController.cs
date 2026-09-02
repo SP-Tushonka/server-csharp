@@ -2,6 +2,7 @@ using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -26,6 +27,7 @@ public class QuestController(
     EventOutputHolder eventOutputHolder,
     MailSendService mailSendService,
     QuestHelper questHelper,
+    ProfileHelper profileHelper,
     QuestRewardHelper questRewardHelper,
     ServerLocalisationService serverLocalisationService,
     ICloner cloner
@@ -42,6 +44,30 @@ public class QuestController(
     {
         return questHelper.GetClientQuests(sessionId);
     }
+
+    public ItemEventRouterResponse AddQuestNote(PmcData pmcData, AddQuestNoteRequest request, MongoId sessionID)
+    {
+        var output = eventOutputHolder.GetOutput(sessionID);
+
+        pmcData.QuestNotes ??= [];
+        pmcData.QuestNotes[request.NoteId] = true;
+
+        return output;
+    }
+
+    public ItemEventRouterResponse ReadQuestData(PmcData pmcData, ReadQuestDataRequest request, MongoId sessionID)
+    {
+        var output = eventOutputHolder.GetOutput(sessionID);
+
+        pmcData.ReadQuestData ??= [];
+        if (!pmcData.ReadQuestData.Contains(request.QuestId))
+        {
+            pmcData.ReadQuestData.Add(request.QuestId);
+        }
+
+        return output;
+    }
+
 
     /// <summary>
     ///     Handle QuestAccept event
@@ -147,17 +173,42 @@ public class QuestController(
             );
         }
     }
-
+    
     /// <summary>
-    ///     Handle QuestComplete event
-    ///     Update completed quest in profile
-    ///     Add newly unlocked quests to profile
-    ///     Also recalculate their level due to exp rewards
+    ///     Handle client/quest/complete
     /// </summary>
-    /// <param name="pmcData">Players PMC profile</param>
-    /// <param name="request">Complete quest request</param>
     /// <param name="sessionId">Session/Player id</param>
-    /// <returns>ItemEventRouterResponse</returns>
+    /// <param name="request">Quest the client finished</param>
+    /// <returns>Templates of the quests that start as a result</returns>
+    public AutoStartQuestsResponse CompleteStoryQuest(MongoId sessionId, CompleteStoryQuestRequest request)
+    {
+        var pmcData = profileHelper.GetPmcProfile(sessionId);
+        if (pmcData is null)
+        {
+            return new AutoStartQuestsResponse { Templates = [], DeletedQuestItems = [] };
+        }
+
+        var questInDb = questHelper.GetQuestFromDb(request.QuestId, pmcData);
+        if (questInDb is null)
+        {
+            logger.Warning($"client/quest/complete named a quest that is not in the database: '{request.QuestId}'");
+
+            return new AutoStartQuestsResponse { Templates = [], DeletedQuestItems = [] };
+        }
+
+        var before = questHelper.GetClientQuests(sessionId).Select(quest => quest.Id).ToHashSet();
+
+        CompleteQuest(pmcData, new CompleteQuestRequestData { QuestId = request.QuestId }, sessionId);
+
+        // Anything that became available off the back of that completion is what the client starts next
+        var started = questHelper
+            .GetClientQuests(sessionId)
+            .Where(quest => !before.Contains(quest.Id) && quest.SptStatus == QuestStatusEnum.AvailableForStart)
+            .ToList();
+
+        return new AutoStartQuestsResponse { Templates = started, DeletedQuestItems = [] };
+    }
+
     public ItemEventRouterResponse CompleteQuest(PmcData pmcData, CompleteQuestRequestData request, MongoId sessionId)
     {
         return questHelper.CompleteQuest(pmcData, request, sessionId);

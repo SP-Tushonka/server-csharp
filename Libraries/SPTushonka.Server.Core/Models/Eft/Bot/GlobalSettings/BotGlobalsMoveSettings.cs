@@ -117,4 +117,22 @@ public record BotGlobalsMoveSettings
 
     [JsonPropertyName("MELEE_ATTACK_OPTIMIZE")]
     public bool? MeleeAttackOptimize { get; set; }
+
+    [JsonPropertyName("AT")]
+    public List<string>? AT { get; set; }
+
+    [JsonPropertyName("DISABLE_LOCAL_AVOIDANCE")]
+    public bool? DisableLocalAvoidance { get; set; }
+
+    [JsonPropertyName("ONE_BY_ONE_FORCE_MOVE_SPEED")]
+    public bool? OneByOneForceMoveSpeed { get; set; }
+
+    [JsonPropertyName("ONE_BY_ONE_NEVER_STOP")]
+    public bool? OneByOneNeverStop { get; set; }
+
+    [JsonPropertyName("ONE_BY_ONE_SPRINT_BEGIN_DIST")]
+    public int? OneByOneSprintBeginDist { get; set; }
+
+    [JsonPropertyName("ONE_BY_ONE_SPRINT_FINISH_DIST")]
+    public int? OneByOneSprintFinishDist { get; set; }
 }

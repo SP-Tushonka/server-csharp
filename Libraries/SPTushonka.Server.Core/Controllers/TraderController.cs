@@ -47,7 +47,7 @@ public class TraderController(
 
         foreach (var (traderId, trader) in traderTable)
         {
-            if (traderId == Traders.LIGHTHOUSEKEEPER)
+            if (Traders.NoAssortRefresh.Contains(traderId))
             {
                 continue;
             }
@@ -102,7 +102,7 @@ public class TraderController(
     {
         foreach (var (traderId, trader) in traderTable)
         {
-            if (traderId == Traders.LIGHTHOUSEKEEPER)
+            if (Traders.NoAssortRefresh.Contains(traderId))
             {
                 continue;
             }
