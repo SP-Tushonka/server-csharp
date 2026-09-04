@@ -83,7 +83,8 @@
         {
             foreach (var activeProfileId in activeProfileIds)
             {
-                _activeProfiles.Add($"{activeProfileId} ({ProfileHelper.GetPmcProfile(activeProfileId).Info.Nickname})");
+                var profileNickname = ProfileHelper.GetPmcProfile(activeProfileId)?.Info?.Nickname ?? L("common-none");
+                _activeProfiles.Add($"{activeProfileId} ({profileNickname})");
             }
         }
 

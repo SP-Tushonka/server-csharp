@@ -1,4 +1,4 @@
-using System.Text.Json.Nodes;
+﻿using System.Text.Json.Nodes;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Models.Common;
@@ -55,8 +55,8 @@ public sealed class InvalidPmcHeadFix(TemplateTable templateTable) : AbstractPro
 
     private bool IsValidHead(string headId, string side)
     {
-        return MongoId.IsValidMongoId(headId)
-            && templateTable.Customization.TryGetValue(new MongoId(headId), out var head)
+        return headId.TryParseMongoId(out var parsedHeadId)
+            && templateTable.Customization.TryGetValue(parsedHeadId, out var head)
             && IsHeadCustomization(head)
             && HasSide(head.Properties.Side, side);
     }

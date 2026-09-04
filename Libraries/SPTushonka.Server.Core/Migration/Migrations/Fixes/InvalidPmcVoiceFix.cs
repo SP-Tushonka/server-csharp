@@ -1,4 +1,4 @@
-using System.Text.Json.Nodes;
+﻿using System.Text.Json.Nodes;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Models.Common;
@@ -55,8 +55,8 @@ public sealed class InvalidPmcVoiceFix(TemplateTable templateTable, GlobalTable 
 
     private bool IsValidVoice(string voiceId, string side)
     {
-        return MongoId.IsValidMongoId(voiceId)
-            && templateTable.Customization.TryGetValue(new MongoId(voiceId), out var voice)
+        return voiceId.TryParseMongoId(out var parsedVoiceId)
+            && templateTable.Customization.TryGetValue(parsedVoiceId, out var voice)
             && IsVoiceCustomization(voice)
             && HasSide(voice.Properties.Side, side);
     }

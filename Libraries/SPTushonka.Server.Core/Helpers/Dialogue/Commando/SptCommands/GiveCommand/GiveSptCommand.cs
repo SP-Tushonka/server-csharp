@@ -91,8 +91,17 @@ public class GiveSptCommand(
             }
 
             _savedCommand.TryGetValue(sessionId, out var savedCommand);
-            var locationSixValue = +int.Parse(result.Groups[6].Value);
-            if (locationSixValue > savedCommand.PotentialItemNames.Count)
+            if (!int.TryParse(result.Groups[6].Value, out var locationSixValue))
+            {
+                mailSendService.SendUserMessageToPlayer(
+                    sessionId,
+                    commandHandler,
+                    "Invalid selection. Outside of bounds! Use 'help' for more information."
+                );
+                return new ValueTask<string>(request.DialogId);
+            }
+
+            if (locationSixValue < 1 || locationSixValue > savedCommand.PotentialItemNames.Count)
             {
                 mailSendService.SendUserMessageToPlayer(
                     sessionId,
@@ -115,8 +124,7 @@ public class GiveSptCommand(
 
             isItemName = (!string.IsNullOrEmpty(result.Groups[5].Value));
             item = (!string.IsNullOrEmpty(result.Groups[5].Value)) ? result.Groups[5].Value : result.Groups[2].Value;
-            quantity = +int.Parse(result.Groups[6].Value);
-            if (quantity <= 0)
+            if (!int.TryParse(result.Groups[6].Value, out quantity) || quantity <= 0)
             {
                 mailSendService.SendUserMessageToPlayer(
                     sessionId,
@@ -230,7 +238,7 @@ public class GiveSptCommand(
             : item;
 
         var checkedItem = itemHelper.GetItem(tplId);
-        if (!checkedItem.Key)
+        if (!checkedItem.Key || !IsRealItem(checkedItem.Value))
         {
             mailSendService.SendUserMessageToPlayer(
                 sessionId,
@@ -342,16 +350,23 @@ public class GiveSptCommand(
     }
 
     /// <summary>
+    /// Is the template an actual item rather than a category node
+    /// </summary>
+    protected static bool IsRealItem(TemplateItem templateItem)
+    {
+        return templateItem.Type != "Node" && (templateItem.Properties?.Prefab?.Path ?? "") != "";
+    }
+
+    /// <summary>
     /// A "simple" function that checks if an item is supposed to be given to a player or not
     /// </summary>
     /// <param name="templateItem">Template item to check</param>
     /// <returns>true if its obtainable</returns>
     protected bool IsItemAllowed(TemplateItem templateItem)
     {
-        return templateItem.Type != "Node"
+        return IsRealItem(templateItem)
             && !templateItem.IsQuestItem()
             && !itemFilterService.IsItemBlacklisted(templateItem.Id)
-            && (templateItem.Properties?.Prefab?.Path ?? "") != ""
             && !itemHelper.IsOfBaseclasses(
                 templateItem.Id,
                 [

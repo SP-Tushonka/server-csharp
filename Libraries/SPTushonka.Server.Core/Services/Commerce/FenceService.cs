@@ -696,6 +696,8 @@ public class FenceService(
             return;
         }
 
+        var childrenByParent = baseFenceAssortClone.Items.CreateParentIdLookupCache(out _);
+
         // Create new assorts until we've fulfilled the count requirement
         for (var i = 0; i < assortCount; i++)
         {
@@ -752,14 +754,10 @@ public class FenceService(
                 value.current += 1;
             }
 
-            // Filter to only 1 root item + all children
-            var childItemsAndSingleRoot = baseFenceAssortClone.Items.Where(item =>
-                !string.Equals(item.ParentId, "hideout", StringComparison.Ordinal) || item.Id == chosenBaseAssortRoot.Id
-            );
-
+            // Only 1 root item + all children
             // MUST randomise Ids as its possible to add the same base fence assort twice = duplicate IDs = dead client
             var desiredAssortItemAndChildrenClone = _cloner
-                .Clone(childItemsAndSingleRoot.GetItemWithChildren(chosenBaseAssortRoot.Id))
+                .Clone(chosenBaseAssortRoot.GetItemWithChildren(childrenByParent))
                 .ReplaceIDs()
                 .ToList();
             desiredAssortItemAndChildrenClone.RemapRootItemId();
@@ -932,7 +930,11 @@ public class FenceService(
         }
 
         // Adjust price based on durability
-        if (itemRoot.Upd?.Repairable != null || itemHelper.IsOfBaseclass(itemRoot.Template, BaseClasses.KEY_MECHANICAL))
+        if (
+            itemRoot.Upd?.Repairable != null
+            || itemHelper.IsOfBaseclass(itemRoot.Template, BaseClasses.KEY_MECHANICAL)
+            || itemHelper.IsOfBaseclass(itemRoot.Template, BaseClasses.KEYCARD)
+        )
         {
             var itemQualityModifier = itemHelper.GetItemQualityModifier(itemRoot);
             var basePrice = barterSchemes[itemRoot.Id][0][0].Count;
@@ -1399,8 +1401,14 @@ public class FenceService(
             return;
         }
 
-        // Mechanical key + has limited uses
-        if (itemHelper.IsOfBaseclass(itemDetails.Id, BaseClasses.KEY_MECHANICAL) && (itemDetails.Properties.MaximumNumberOfUsage ?? 0) > 1)
+        // Mechanical key + and keycards have limited uses
+        if (
+            (
+                itemHelper.IsOfBaseclass(itemDetails.Id, BaseClasses.KEY_MECHANICAL)
+                || itemHelper.IsOfBaseclass(itemDetails.Id, BaseClasses.KEYCARD)
+            )
+            && (itemDetails.Properties.MaximumNumberOfUsage ?? 0) > 1
+        )
         {
             itemToAdjust.Upd.Key = new UpdKey
             {

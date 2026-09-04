@@ -48,7 +48,8 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
     /// <param name="cancellationToken">
     /// The <see cref="CancellationToken"/> that can be used to cancel the hashing operation.
     /// </param>
-    public async Task<BundleHashCacheEntry> GetOrCalculateHashAsync(string bundlePath, CancellationToken cancellationToken = default)
+    /// <returns>The cache entry, or null when the file is not a Unity asset bundle</returns>
+    public async Task<BundleHashCacheEntry?> GetOrCalculateHashAsync(string bundlePath, CancellationToken cancellationToken = default)
     {
         var fileInfo = new FileInfo(bundlePath);
         var size = fileInfo.Length;
@@ -60,11 +61,21 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
             return cached;
         }
 
+        await using var fileStream = File.OpenRead(bundlePath);
+
+        if (!await fileUtil.VerifyBundleHeaderAsync(fileStream, cancellationToken))
+        {
+            return null;
+        }
+
+        // Reset stream position so the whole file is calculated
+        fileStream.Position = 0;
+
         var entry = new BundleHashCacheEntry
         {
             Size = size,
             ModifiedUtcTicks = modified,
-            Crc = await hashUtil.GenerateCrc32ForFileAsync(bundlePath, cancellationToken),
+            Crc = await hashUtil.GenerateCrc32ForFileAsync(fileStream, cancellationToken),
         };
 
         _current[bundlePath] = entry;

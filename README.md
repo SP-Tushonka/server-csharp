@@ -74,7 +74,7 @@ To build the project via CLI:
     - `-p:SptCommit=******` to set the commit ProgramStatics uses
     - `-p:SptBuildTime=*********` to set the buildTime ProgramStatic uses
     - `-p:SptBuildType=*********` to set the BuildType ProgramStatic uses
-    - Options for `SptBuildType`: `LOCAL`, `DEBUG`, `RELEASE`, `BLEEDING_EDGE`, `BLEEDING_EDGE_MODS`
+    - Options for `SptBuildType`: `LOCAL`, `DEBUG`, `RELEASE`, `BLEEDINGEDGE`, `BLEEDINGEDGEMODS`
 
 ## Contributing
 

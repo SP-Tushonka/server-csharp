@@ -90,6 +90,7 @@
   "fence-ammo_not_found_in_db": "Munitions: %s n'est pas un item valide",
   "fence-unable_to_find_assort_by_id": "Impossible de trouver l'assort de Fence pour l'id : %s",
   "fence-unable_to_find_offer_by_id": "Impossible de trouver l'offre avec l'id: %s",
+  "fence-unable_to_find_soft_insert_template_for_slot": "Fence incapable de trouver modèle d'armure souple pour emplacement : %s",
   "fence-unable_to_get_ammo_penetration_value": "Aucune valeur de pénétration trouvée pour la munition: %s, impossible de vérifier si elle est supérieure à la limite de pénétration, faux par défaut",
   "fence-unable_to_find_root_item_to_add": "Impossible d'ajouter des objets dans l'inventaire de Fence car aucun objet source n'a été trouvé",
   "fixer-clothing_item_found": "Vêtement: %s a été trouvé dans le profil mais n'existe pas dans SPT. Vous rencontrerez des erreurs, qui peuvent être dues au fait d'utiliser un mod de vêtement que vous ayez supprimer alors que votre personnage le portait toujours. N'UTILISEZ PAS CE PROFIL. Ouvrez SPT_Data\\Server\\configs\\core.json, éditez 'removeModItemsFromProfile' à la valeur true. Cela permettra au serveur d'éditer votre profil, dans le but de supprimer le vêtement manquant",

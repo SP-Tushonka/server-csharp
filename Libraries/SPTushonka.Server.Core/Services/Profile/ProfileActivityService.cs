@@ -94,6 +94,11 @@ public class ProfileActivityService(TimeUtil timeUtil)
 
         foreach (var (sessionId, activeProfile) in _activeProfiles)
         {
+            if (!MongoId.IsValidMongoId(sessionId))
+            {
+                continue;
+            }
+
             // Profile was active in last x minutes, add to return list
             if (currentTimestamp - activeProfile.LastActive < minutes * 60)
             {

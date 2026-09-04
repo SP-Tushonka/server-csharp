@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Text;
 using SPTarkov.DI.Annotations;
 
@@ -7,6 +8,13 @@ namespace SPTarkov.Server.Core.Utils;
 public sealed class FileUtil
 {
     private const string ModBasePath = "user/mods/";
+
+    // [16] UnityFS.....5.x.
+    private static readonly byte[] BundleMagicBytes =
+    [
+        0x55, 0x6E, 0x69, 0x74, 0x79, 0x46, 0x53, 0x00,
+        0x00, 0x00, 0x00, 0x08, 0x35, 0x2E, 0x78, 0x2E
+    ];
 
     public List<string> GetFiles(string path, bool recursive = false, string searchPattern = "*")
     {
@@ -203,5 +211,34 @@ public sealed class FileUtil
     public string GetModPath(string modName)
     {
         return Path.Combine(ModBasePath, modName);
+    }
+
+    /// <summary>
+    ///     Check the first 16 bytes of a filestream to ensure they match a Unity AssetBundle
+    /// </summary>
+    /// <param name="fileStream">The file stream to check the header for</param>
+    /// <param name="cancellationToken">
+    ///     The <see cref="CancellationToken"/> that can be used to cancel the bundle header verification operation.
+    /// </param>
+    /// <returns>True if the header matches the AssetBundle header, false if not.</returns>
+    public async Task<bool> VerifyBundleHeaderAsync(FileStream fileStream, CancellationToken cancellationToken = default)
+    {
+        var buffer = ArrayPool<byte>.Shared.Rent(BundleMagicBytes.Length);
+
+        try
+        {
+            var read = await fileStream.ReadAtLeastAsync(
+                buffer.AsMemory(0, BundleMagicBytes.Length),
+                BundleMagicBytes.Length,
+                throwOnEndOfStream: false,
+                cancellationToken
+            );
+
+            return read == BundleMagicBytes.Length && buffer.AsSpan(0, BundleMagicBytes.Length).SequenceEqual(BundleMagicBytes);
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer);
+        }
     }
 }

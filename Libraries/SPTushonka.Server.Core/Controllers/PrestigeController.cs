@@ -1,4 +1,5 @@
-using SPTarkov.DI.Annotations;
+﻿using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Models.Common;
@@ -78,12 +79,12 @@ public class PrestigeController(TemplateTable templateTable, ProfileHelper profi
 
             foreach (var reward in prestigeRewards)
             {
-                if (!MongoId.IsValidMongoId(reward.Target))
+                if (!reward.Target.TryParseMongoId(out var rewardTarget))
                 {
                     continue;
                 }
 
-                if (!customisationTemplateDb.TryGetValue(reward.Target, out var template))
+                if (!customisationTemplateDb.TryGetValue(rewardTarget, out var template))
                 {
                     continue;
                 }
