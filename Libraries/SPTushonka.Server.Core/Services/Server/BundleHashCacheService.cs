@@ -1,15 +1,13 @@
 using System.Collections.Concurrent;
 using System.Text.Json;
 using SPTarkov.DI.Annotations;
-using SPTarkov.Server.Core.Exceptions.Database;
 using SPTarkov.Server.Core.Models.Spt.Bundles;
-using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Services.Server;
 
 [Injectable(InjectionType.Singleton)]
-public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil, FileUtil fileUtil, ServerLocalisationService serverLocalisationService)
+public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil, FileUtil fileUtil)
 {
     private const string BundleHashCachePath = "./user/cache/";
     private const string CacheName = "bundleHashCache.json";
@@ -50,26 +48,28 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
     /// <param name="cancellationToken">
     /// The <see cref="CancellationToken"/> that can be used to cancel the hashing operation.
     /// </param>
-    public async Task<BundleHashCacheEntry> GetOrCalculateHashAsync(string bundlePath, CancellationToken cancellationToken = default)
+    /// <returns>The cache entry, or null when the file is not a Unity asset bundle</returns>
+    public async Task<BundleHashCacheEntry?> GetOrCalculateHashAsync(string bundlePath, CancellationToken cancellationToken = default)
     {
         var fileInfo = new FileInfo(bundlePath);
         var size = fileInfo.Length;
         var modified = fileInfo.LastWriteTimeUtc.Ticks;
-        var fileStream = File.OpenRead(bundlePath);
 
         if (_loaded.TryGetValue(bundlePath, out var cached) && cached.Size == size && cached.ModifiedUtcTicks == modified)
         {
             _current[bundlePath] = cached;
-
-            if (!await fileUtil.VerifyBundleHeaderAsync(fileStream, cancellationToken))
-            {
-                await fileStream.DisposeAsync();
-                throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_exception", bundlePath));
-            }
-
-            await fileStream.DisposeAsync();
             return cached;
         }
+
+        await using var fileStream = File.OpenRead(bundlePath);
+
+        if (!await fileUtil.VerifyBundleHeaderAsync(fileStream, cancellationToken))
+        {
+            return null;
+        }
+
+        // Reset stream position so the whole file is calculated
+        fileStream.Position = 0;
 
         var entry = new BundleHashCacheEntry
         {
@@ -77,8 +77,6 @@ public sealed class BundleHashCacheService(JsonUtil jsonUtil, HashUtil hashUtil,
             ModifiedUtcTicks = modified,
             Crc = await hashUtil.GenerateCrc32ForFileAsync(fileStream, cancellationToken),
         };
-
-        await fileStream.DisposeAsync();
 
         _current[bundlePath] = entry;
 

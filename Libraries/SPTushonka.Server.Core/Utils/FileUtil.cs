@@ -10,7 +10,7 @@ public sealed class FileUtil
     private const string ModBasePath = "user/mods/";
 
     // [16] UnityFS.....5.x.
-    private readonly byte[] _bundleMagicBytes =
+    private static readonly byte[] BundleMagicBytes =
     [
         0x55, 0x6E, 0x69, 0x74, 0x79, 0x46, 0x53, 0x00,
         0x00, 0x00, 0x00, 0x08, 0x35, 0x2E, 0x78, 0x2E
@@ -223,29 +223,18 @@ public sealed class FileUtil
     /// <returns>True if the header matches the AssetBundle header, false if not.</returns>
     public async Task<bool> VerifyBundleHeaderAsync(FileStream fileStream, CancellationToken cancellationToken = default)
     {
-        var buffer = ArrayPool<byte>.Shared.Rent(_bundleMagicBytes.Length);
+        var buffer = ArrayPool<byte>.Shared.Rent(BundleMagicBytes.Length);
 
         try
         {
-            var read = await fileStream.ReadAsync(buffer.AsMemory(0, _bundleMagicBytes.Length), cancellationToken);
+            var read = await fileStream.ReadAtLeastAsync(
+                buffer.AsMemory(0, BundleMagicBytes.Length),
+                BundleMagicBytes.Length,
+                throwOnEndOfStream: false,
+                cancellationToken
+            );
 
-            if (read != 16) { return false; }
-
-            var header = buffer.AsSpan(0, 16);
-
-            var isValidBundle = true;
-
-            for (var i = 0; i < 16; i++)
-            {
-                if (isValidBundle && header[i] != _bundleMagicBytes[i])
-                {
-                    isValidBundle = false;
-                }
-
-                if (!isValidBundle) { break; }
-            }
-
-            return isValidBundle;
+            return read == BundleMagicBytes.Length && buffer.AsSpan(0, BundleMagicBytes.Length).SequenceEqual(BundleMagicBytes);
         }
         finally
         {
