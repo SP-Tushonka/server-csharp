@@ -354,12 +354,17 @@ public class GameController(
     /// <param name="diffSeconds"></param>
     protected void DecreaseBodyPartEffectTimes(PmcData pmcProfile, double hpRegenPerHour, double diffSeconds)
     {
+        var bodyParts = pmcProfile.Health!.BodyParts!.Select(bodyPartKvP => bodyPartKvP.Value).ToList();
+
+        // HP regeneration is an overall rate, so divide it across count of body parts
+        var hpRegenPerPart = hpRegenPerHour * (diffSeconds / 3600d) / bodyParts.Count;
+
         foreach (var bodyPart in pmcProfile.Health!.BodyParts!.Select(bodyPartKvP => bodyPartKvP.Value))
         {
             // Check part hp
             if (bodyPart.Health!.Current < bodyPart.Health.Maximum)
             {
-                bodyPart.Health.Current += Math.Round(hpRegenPerHour * (diffSeconds / 3600));
+                bodyPart.Health.Current += hpRegenPerPart;
             }
 
             if (bodyPart.Health.Current > bodyPart.Health.Maximum)

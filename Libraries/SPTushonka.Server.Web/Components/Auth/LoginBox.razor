@@ -1,6 +1,8 @@
 @using Microsoft.AspNetCore.WebUtilities
-@using SPTarkov.Server.Web.Services
+@using SPTarkov.Server.Core.Models.Spt.Config
 @inject NavigationManager NavigationManager
+@inject HttpConfig HttpConfig
+@inject AuthService AuthService
 
 <div class="auth-page spt-page spt-page-centered">
     <MudPaper Elevation="0" Class="auth-box spt-panel pa-5">
@@ -20,6 +22,13 @@
             {
                 <MudAlert Severity="Severity.Error" Variant="Variant.Outlined" Dense="true">
                     @StatusMessage
+                </MudAlert>
+            }
+
+            @if (ShowForm && DefaultUserRequiresPasswordChange)
+            {
+                <MudAlert Severity="Severity.Info" Variant="Variant.Outlined" Dense="true">
+                    Default login: <b>@HttpConfig.WebAuthenticationConfig.DefaultUser.Username</b> / <b>@HttpConfig.WebAuthenticationConfig.DefaultUser.Password</b>
                 </MudAlert>
             }
 
@@ -61,6 +70,8 @@
 
     [Parameter]
     public string? FailureUrlOverride { get; set; }
+
+    private bool DefaultUserRequiresPasswordChange { get; set; }
 
     private bool HasLoginError { get; set; }
 
@@ -124,5 +135,7 @@
         var query = QueryHelpers.ParseQuery(uri.Query);
 
         HasLoginError = query.ContainsKey("authError");
+
+        DefaultUserRequiresPasswordChange = AuthService.DefaultUserRequiresPasswordChange();
     }
 }
