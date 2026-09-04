@@ -19,6 +19,10 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
     internal const string IsAdministratorClaimType = "isAdministrator";
     internal const string IsAdministratorClaimValue = "true";
 
+    internal const string ChangePasswordPath = "/spt-web-auth/change-password";
+    internal const string MustChangePasswordClaimType = "mustChangePassword";
+    internal const string MustChangePasswordClaimValue = "true";
+
     internal IReadOnlyList<AuthUserCredential> Credentials
     {
         get { return _credentials.AsReadOnly(); }
@@ -49,7 +53,12 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
     {
         var defaultUser = httpConfig.WebAuthenticationConfig.DefaultUser;
 
-        return CreatePrincipal(defaultUser.Username, defaultUser.IsAdministrator);
+        if (TryGetCredentials(defaultUser.Username, out var credential) && credential is not null)
+        {
+            return CreatePrincipal(credential.Username, credential.IsAdministrator, credential.MustChangePassword == true);
+        }
+
+        return CreatePrincipal(defaultUser.Username, defaultUser.IsAdministrator, false);
     }
 
     internal bool TryGetCredentials(string username, out AuthUserCredential? credential)
@@ -71,8 +80,29 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
                 Username = username,
                 Password = passwordHasher.Hash(password),
                 IsAdministrator = isAdministrator,
+                MustChangePassword = false,
             }
         );
+        await SaveCredentials();
+
+        return true;
+    }
+
+    internal async Task<bool> TryChangeInitialPassword(string username, string newPassword)
+    {
+        if (!TryGetCredentials(username, out var credential) || credential is null)
+        {
+            return false;
+        }
+
+        if (credential.MustChangePassword != true)
+        {
+            return false;
+        }
+
+        credential.Password = passwordHasher.Hash(newPassword);
+        credential.MustChangePassword = false;
+
         await SaveCredentials();
 
         return true;
@@ -172,7 +202,7 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
             }
         }
 
-        return CreatePrincipal(credentials.Username, credentials.IsAdministrator);
+        return CreatePrincipal(credentials.Username, credentials.IsAdministrator, credentials.MustChangePassword == true);
     }
 
     internal static string GetSafeReturnUrl(string? returnUrl)
@@ -207,7 +237,7 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
         return $"{GetLoginPageUrl(returnUrl)}&noPermissions=1";
     }
 
-    private static ClaimsPrincipal CreatePrincipal(string username, bool isAdministrator)
+    private static ClaimsPrincipal CreatePrincipal(string username, bool isAdministrator, bool mustChangePassword)
     {
         var claims = new List<Claim> { new(ClaimTypes.Name, username), new(ClaimTypes.NameIdentifier, username) };
 
@@ -216,9 +246,24 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
             claims.Add(new Claim(IsAdministratorClaimType, IsAdministratorClaimValue));
         }
 
+        if (mustChangePassword)
+        {
+            claims.Add(new Claim(MustChangePasswordClaimType, MustChangePasswordClaimValue));
+        }
+
         var identity = new ClaimsIdentity(claims, AuthenticationScheme);
 
         return new ClaimsPrincipal(identity);
+    }
+
+    internal ClaimsPrincipal? CreateAuthenticatedPrincipal(string username)
+    {
+        if (!TryGetCredentials(username, out var credential) || credential is null)
+        {
+            return null;
+        }
+
+        return CreatePrincipal(credential.Username, credential.IsAdministrator, credential.MustChangePassword == true);
     }
 
     private static bool IsLocalRequest(HttpContext httpContext)
@@ -257,12 +302,13 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
                 ?? throw new NullReferenceException("Could not deserialize credentials.json");
 
             await MigratePlaintextCredentials();
+            await MigrateDefaultPasswordRequirement();
 
             return;
         }
 
-        // Seed from the config default user, hashing its plaintext password before it touches disk.
         var defaultUser = httpConfig.WebAuthenticationConfig.DefaultUser;
+
         _credentials =
         [
             new AuthUserCredential
@@ -270,8 +316,26 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
                 Username = defaultUser.Username,
                 Password = passwordHasher.Hash(defaultUser.Password),
                 IsAdministrator = defaultUser.IsAdministrator,
+                MustChangePassword = true,
             },
         ];
+
+        await SaveCredentials();
+    }
+
+    private async Task MigrateDefaultPasswordRequirement()
+    {
+        var defaultUser = httpConfig.WebAuthenticationConfig.DefaultUser;
+
+        var credential = _credentials.FirstOrDefault(x => string.Equals(x.Username, defaultUser.Username, StringComparison.Ordinal));
+
+        if (credential is null || credential.MustChangePassword is not null)
+        {
+            return;
+        }
+
+        credential.MustChangePassword = DefaultUserRequiresPasswordChange();
+
         await SaveCredentials();
     }
 
@@ -296,6 +360,28 @@ public class AuthService(ISptLogger<AuthService> logger, HttpConfig httpConfig, 
             await SaveCredentials();
             logger.Warning($"Migrated {migratedCount} plaintext web credentials to hashes.");
         }
+    }
+
+    internal bool DefaultUserRequiresPasswordChange()
+    {
+        var defaultUser = httpConfig.WebAuthenticationConfig.DefaultUser;
+
+        if (!httpConfig.WebAuthenticationConfig.EnableDefaultUser)
+        {
+            return false;
+        }
+
+        if (!TryGetCredentials(defaultUser.Username, out var credential) || credential is null)
+        {
+            return false;
+        }
+
+        if (credential.MustChangePassword is not null)
+        {
+            return credential.MustChangePassword.Value;
+        }
+
+        return passwordHasher.Verify(defaultUser.Password, credential.Password, out _);
     }
 
     private async Task SaveCredentials(List<AuthUserCredential>? credentials = null)

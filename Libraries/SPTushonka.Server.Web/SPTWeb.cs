@@ -115,6 +115,7 @@ public static class SPTWeb
         app.MapControllers();
         app.MapPost(AuthService.LoginPath, HandleLogin).DisableAntiforgery();
         app.MapPost(AuthService.LogoutPath, HandleLogout).DisableAntiforgery();
+        app.MapPost(AuthService.ChangePasswordPath, HandleChangePassword).DisableAntiforgery();
         app.MapGet("/profiles/{profileId}/download", HandleProfileDownload).RequireAuthorization(AuthService.AdministratorPolicy);
 
         var razorBuilder = app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
@@ -185,6 +186,7 @@ public static class SPTWeb
         var password = form["password"].ToString();
 
         var authenticatedUser = await authService.ValidateCredentialsAsync(username, password, context);
+
         if (authenticatedUser is null)
         {
             return Results.Redirect(AuthService.AddLoginError(failureUrl));
@@ -193,6 +195,50 @@ public static class SPTWeb
         await context.SignInAsync(
             AuthService.AuthenticationScheme,
             authenticatedUser,
+            new AuthenticationProperties { IsPersistent = true, AllowRefresh = true }
+        );
+
+        if (authenticatedUser.HasClaim(AuthService.MustChangePasswordClaimType, AuthService.MustChangePasswordClaimValue))
+        {
+            return Results.Redirect($"/change-password?returnUrl={Uri.EscapeDataString(returnUrl)}");
+        }
+
+        return Results.Redirect(returnUrl);
+    }
+
+    private static async Task<IResult> HandleChangePassword(HttpContext context, AuthService authService)
+    {
+        var form = await context.Request.ReadFormAsync();
+
+        var returnUrl = AuthService.GetSafeReturnUrl(form["returnUrl"].ToString());
+
+        var newPassword = form["newPassword"].ToString();
+        var confirmPassword = form["confirmPassword"].ToString();
+
+        if (newPassword != confirmPassword)
+        {
+            return Results.Redirect($"/change-password?returnUrl={Uri.EscapeDataString(returnUrl)}&passwordMismatch=1");
+        }
+
+        var username = context.User.Identity?.Name;
+
+        if (string.IsNullOrWhiteSpace(username))
+        {
+            return Results.Redirect(AuthService.GetLoginPageUrl(returnUrl));
+        }
+
+        var changed = await authService.TryChangeInitialPassword(username, newPassword);
+
+        if (!changed)
+        {
+            return Results.Redirect($"/change-password?returnUrl={Uri.EscapeDataString(returnUrl)}&passwordError=1");
+        }
+
+        var updatedUser = authService.CreateAuthenticatedPrincipal(username);
+
+        await context.SignInAsync(
+            AuthService.AuthenticationScheme,
+            updatedUser,
             new AuthenticationProperties { IsPersistent = true, AllowRefresh = true }
         );
 

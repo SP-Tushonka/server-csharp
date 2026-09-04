@@ -75,4 +75,7 @@ public record AuthUserCredential
     /// </summary>
     [JsonPropertyName("isAdministrator")]
     public required bool IsAdministrator { get; set; }
+
+    [JsonPropertyName("mustChangePassword")]
+    public bool? MustChangePassword { get; set; }
 }
