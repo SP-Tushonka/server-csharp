@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Buffers.Binary;
 using System.Text;
 using SPTarkov.DI.Annotations;
 
@@ -9,12 +10,8 @@ public sealed class FileUtil
 {
     private const string ModBasePath = "user/mods/";
 
-    // [16] UnityFS.....5.x.
-    private static readonly byte[] BundleMagicBytes =
-    [
-        0x55, 0x6E, 0x69, 0x74, 0x79, 0x46, 0x53, 0x00,
-        0x00, 0x00, 0x00, 0x08, 0x35, 0x2E, 0x78, 0x2E
-    ];
+    // "UnityFS\0"
+    private static readonly byte[] _bundleSignature = [0x55, 0x6E, 0x69, 0x74, 0x79, 0x46, 0x53, 0x00];
 
     public List<string> GetFiles(string path, bool recursive = false, string searchPattern = "*")
     {
@@ -214,7 +211,7 @@ public sealed class FileUtil
     }
 
     /// <summary>
-    ///     Check the first 16 bytes of a filestream to ensure they match a Unity AssetBundle
+    ///     Check the header of a filestream to ensure it matches a Unity AssetBundle
     /// </summary>
     /// <param name="fileStream">The file stream to check the header for</param>
     /// <param name="cancellationToken">
@@ -223,18 +220,28 @@ public sealed class FileUtil
     /// <returns>True if the header matches the AssetBundle header, false if not.</returns>
     public async Task<bool> VerifyBundleHeaderAsync(FileStream fileStream, CancellationToken cancellationToken = default)
     {
-        var buffer = ArrayPool<byte>.Shared.Rent(BundleMagicBytes.Length);
+        const int headerLength = 12;
+        const uint MinBundleFormatVersion = 6;
+
+        var buffer = ArrayPool<byte>.Shared.Rent(headerLength);
 
         try
         {
             var read = await fileStream.ReadAtLeastAsync(
-                buffer.AsMemory(0, BundleMagicBytes.Length),
-                BundleMagicBytes.Length,
+                buffer.AsMemory(0, headerLength),
+                headerLength,
                 throwOnEndOfStream: false,
                 cancellationToken
             );
 
-            return read == BundleMagicBytes.Length && buffer.AsSpan(0, BundleMagicBytes.Length).SequenceEqual(BundleMagicBytes);
+            if (read != headerLength || !buffer.AsSpan(0, _bundleSignature.Length).SequenceEqual(_bundleSignature))
+            {
+                return false;
+            }
+
+            var formatVersion = BinaryPrimitives.ReadUInt32BigEndian(buffer.AsSpan(_bundleSignature.Length, sizeof(uint)));
+
+            return formatVersion >= MinBundleFormatVersion;
         }
         finally
         {
