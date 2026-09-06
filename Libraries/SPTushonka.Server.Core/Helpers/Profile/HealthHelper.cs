@@ -3,6 +3,7 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Exceptions.Helpers;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Utils;
 using BodyPartHealth = SPTarkov.Server.Core.Models.Eft.Common.Tables.BodyPartHealth;
@@ -13,6 +14,8 @@ namespace SPTarkov.Server.Core.Helpers.Profile;
 public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, HealthConfig healthConfig)
 {
     protected readonly HashSet<string> EffectsToSkip = ["Dehydration", "Exhaustion"];
+    private const int LightBleedingTimeInSeconds = 600;
+    private const int HeavyBleedingTimeInSeconds = 900;
 
     /// <summary>
     ///     Update player profile vitality values with changes from client request object
@@ -101,6 +104,14 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
         bool playerWasCursed = false
     )
     {
+        var debuffEndDelayPercent =
+            profileToAdjust
+                .Bonuses?.Where(bonus => bonus.Type == BonusType.DebuffEndDelay)
+                .Aggregate(0d, (sum, bonus) => sum + bonus.Value!.Value)
+            ?? 0d;
+
+        var debuffEndDelayMultiplier = Math.Max(0d, 1d + (debuffEndDelayPercent / 100d));
+
         foreach (var (partName, partProperties) in bodyPartChanges)
         {
             // Pattern matching null and false because otherwise the compiler throws a fit because `matchingProfilePart`
@@ -142,11 +153,27 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
                 }
             }
 
+            // Have effects we need to add, init effect array
+            matchingProfilePart.Effects ??= [];
+
+            // Anything the server has for this part that the client did NOT report is no longer active (expired or treated in raid) - remove it
+            var clientKeys = partProperties.Effects?.Keys ?? Enumerable.Empty<string>();
+            foreach (var serverKey in matchingProfilePart.Effects.Keys.ToList())
+            {
+                if (!clientKeys.Contains(serverKey))
+                {
+                    matchingProfilePart.Effects.Remove(serverKey);
+                }
+            }
+
             // Process each effect for each part
             foreach (var (key, effectDetails) in partProperties.Effects ?? [])
             {
-                // Have effects we need to add, init effect array
-                matchingProfilePart.Effects ??= [];
+                var isSkipped = effectsToSkip is not null && effectsToSkip.Contains(key);
+                var isBleedKey =
+                    key.Equals("LightBleeding", StringComparison.OrdinalIgnoreCase)
+                    || key.Equals("HeavyBleeding", StringComparison.OrdinalIgnoreCase);
+                var bleedOverrideSeconds = GetBleedExitOverrideTime(key, debuffEndDelayMultiplier);
 
                 if (
                     key.Equals("MildMusclePain", StringComparison.OrdinalIgnoreCase)
@@ -157,37 +184,49 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
                     continue;
                 }
 
+                // Bleed reduced to zero or below by DebuffEndDelay bonuses - treat as fully resolved
+                if (isBleedKey && bleedOverrideSeconds is null)
+                {
+                    matchingProfilePart.Effects.Remove(key);
+                    continue;
+                }
+
                 // Effect on limb already exists in server profile, handle differently
                 if (matchingProfilePart.Effects.ContainsKey(key))
                 {
                     matchingProfilePart.Effects.TryGetValue(key, out var matchingEffectOnServer);
 
                     // Edge case - effect already exists at destination, but we don't want to overwrite details e.g. Exhaustion
-                    if (effectsToSkip is not null && effectsToSkip.Contains(key))
+                    if (isSkipped)
                     {
                         matchingProfilePart.Effects[key] = null;
                     }
-
-                    // Effect time has decreased while in raid, persist this reduction into profile
-                    if (
+                    else if (bleedOverrideSeconds is not null && matchingEffectOnServer is not null)
+                    {
+                        // Bleeds always get a fresh timer on raid exit (client always sends -1 for these in-raid)
+                        matchingEffectOnServer.Time = bleedOverrideSeconds;
+                    }
+                    else if (
                         effectDetails?.Time is not null
                         && matchingEffectOnServer?.Time is not null
                         && effectDetails.Time < matchingEffectOnServer.Time
                     )
                     {
+                        // Effect time has decreased while in raid, persist this reduction into profile
                         matchingEffectOnServer.Time = effectDetails.Time;
                     }
 
                     continue;
                 }
 
-                if (effectsToSkip is not null && effectsToSkip.Contains(key))
+                if (isSkipped)
                 // Do not pass skipped effect into profile
                 {
                     continue;
                 }
 
-                var effectToAdd = new BodyPartEffectProperties { Time = effectDetails?.Time ?? -1 };
+                var effectToAdd = new BodyPartEffectProperties { Time = bleedOverrideSeconds ?? effectDetails?.Time ?? -1 };
+
                 // Add effect to server profile
                 if (matchingProfilePart.Effects.TryAdd(key, effectToAdd))
                 {
@@ -195,6 +234,29 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
                 }
             }
         }
+    }
+
+    private double? GetBleedExitOverrideTime(string effectKey, double debuffEndDelayMultiplier)
+    {
+        int baseSeconds;
+
+        if (effectKey.Equals("LightBleeding", StringComparison.OrdinalIgnoreCase))
+        {
+            baseSeconds = LightBleedingTimeInSeconds;
+        }
+        else if (effectKey.Equals("HeavyBleeding", StringComparison.OrdinalIgnoreCase))
+        {
+            baseSeconds = HeavyBleedingTimeInSeconds;
+        }
+        else
+        {
+            return null;
+        }
+
+        var adjusted = baseSeconds * debuffEndDelayMultiplier;
+
+        // guard in case they have bonuses reducing it beyond 100%
+        return adjusted > 0 ? adjusted : null;
     }
 
     /// <summary>
