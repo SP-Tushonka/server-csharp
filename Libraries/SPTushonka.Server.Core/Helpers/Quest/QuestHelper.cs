@@ -43,7 +43,7 @@ public class QuestHelper(
     protected readonly FrozenSet<QuestStatusEnum> StartedOrAvailToFinish = [QuestStatusEnum.Started, QuestStatusEnum.AvailableForFinish];
     private static readonly MongoId _guideChapterId = new("68cbd33676fe74b1e80bfd91");
 
-    private Dictionary<MongoId, MongoId>? _taskChapters = [];
+    private Dictionary<MongoId, MongoId>? _taskChapters;
 
     /// <summary>
     /// List of <see cref="Quest"/> conditions that require trader sales be tracked and incremented, keyed by <see cref="Quest.Id"/>
@@ -1323,7 +1323,20 @@ public class QuestHelper(
     /// <summary>The chapter that lists this quest as one of its tasks, if any.</summary>
     protected MongoId? ChapterOf(MongoId taskId)
     {
-        _taskChapters ??= templateTable
+        _taskChapters ??= BuildTaskChapters();
+
+        // A conditional expression would turn the null into an empty MongoId through the string conversion
+        if (!_taskChapters.TryGetValue(taskId, out var chapterId))
+        {
+            return null;
+        }
+
+        return chapterId;
+    }
+
+    private Dictionary<MongoId, MongoId> BuildTaskChapters()
+    {
+        return templateTable
             .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
             .Distinct()
             .SelectMany(chapterId =>
@@ -1333,14 +1346,6 @@ public class QuestHelper(
             )
             .DistinctBy(pair => pair.Task)
             .ToDictionary(pair => pair.Task, pair => pair.Chapter);
-
-        // A conditional expression would turn the null into an empty MongoId through the string conversion
-        if (!_taskChapters.TryGetValue(taskId, out var chapterId))
-        {
-            return null;
-        }
-
-        return chapterId;
     }
 
     /// <summary>

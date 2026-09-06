@@ -186,6 +186,10 @@ public class DataCallbacks(
     {
         var dialogueId = url[(url.LastIndexOf('/') + 1)..];
         var dialogue = templateTable.Dialogue?.Elements?.FirstOrDefault(element => element.Id == dialogueId);
+        if (dialogue is null)
+        {
+            return new ValueTask<string>(httpResponseUtil.GetBody<object>(null, BackendErrorCodes.HTTPNotFound, "404 - Not Found!"));
+        }
 
         return new ValueTask<string>(httpResponseUtil.GetBody(dialogue));
     }
