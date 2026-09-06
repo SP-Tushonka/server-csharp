@@ -1,269 +1,51 @@
 {
   "appearance": {
     "body": {
-      "619238266c614e6d15792bca": 3195,
-      "5fd1eb3fbe3b7107d66cb645": 3115,
-      "5fd22d311add82653b5a704c": 3052,
-      "64a2edba08d26f8d62049c06": 3029,
-      "5cde9f337d6c8b0474535da8": 3134,
-      "637df28ac22da5bb8d046935": 3040,
-      "618d1af10a5a59657e5f56f3": 3079,
-      "5e4bb3ee86f77406975c934e": 3075,
-      "5d28ad6986f77429275dba22": 3078,
-      "5e9da1d086f774054a667134": 3048,
-      "5d28ad7286f7742926686182": 3068,
-      "5cc2e59214c02e000f16684e": 3024,
-      "5df8a10486f77412672a1e3a": 3017
+      "5fd1eb3fbe3b7107d66cb645": 1
     },
     "feet": {
-      "5d28af3486f774292364a6e7": 3700,
-      "5cde9fb87d6c8b0474535da9": 3405,
-      "5f5e41366760b4138443b343": 3549,
-      "5f5e410c6bdad616ad46d60b": 3720,
-      "5cc2e5d014c02e15d53d9c03": 3748,
-      "64a2e970a74bb33d140e6dc5": 3598,
-      "637df25a1e688345e1097bd4": 3616,
-      "5df8a15186f77412640e2e6a": 3699,
-      "5f5e41576760b4138443b344": 3626,
-      "61922589bb2cea6f7a22d964": 3610,
-      "6193be546e5968395b260157": 3683
+      "5f5e41576760b4138443b344": 1
     },
     "hands": {
-      "618cf9540a5a59657e5f5677": 3195,
-      "5fd78fe9e3bfcf6cab4c9f54": 3115,
-      "5fd7901bdd870108a754c0e6": 3052,
-      "64ac23c449d74fd5ec0a124e": 3029,
-      "5cc2e68f14c02e28b47de290": 12300,
-      "6391c6205dbbdb3b1b049840": 3040,
-      "6197aca964ae5436d76c1f98": 3079,
-      "5e4bb49586f77406a313ec5a": 3075,
-      "5e9da2dd86f774054e7d0f63": 3048,
-      "5df8eac086f77412640e2ea7": 3017
+      "5fd78fe9e3bfcf6cab4c9f54": 1
     },
     "head": {
-      "5f68c4c217d579077152a252": 8034,
-      "5d28afe786f774292668618d": 7931,
-      "5cc2e4d014c02e000d0115f8": 8081,
-      "5cde9ff17d6c8b0474535daa": 7933,
-      "5f68c4a7c174a17c0f4c8945": 7975
+      "5f68c4a7c174a17c0f4c8945": 1
     },
     "voice": {
-      "5fc614390b735e7b024c76e6": 6676,
-      "5fc613e10b735e7b024c76e3": 6626,
-      "5fc613c80b735e7b024c76e2": 6593,
-      "5fc614130b735e7b024c76e4": 6655,
-      "5fc614290b735e7b024c76e5": 6690,
-      "5fc6144b0b735e7b024c76e7": 6714
+      "5fc6144b0b735e7b024c76e7": 1
     }
   },
-  "experience": {
-    "level": {
-      "min": 0,
-      "max": 1
-    },
-    "reward": {
-      "normal": {
-        "min": -1,
-        "max": -1
-      }
-    },
-    "standingForKill": {
-      "normal": 0
-    },
-    "aggressorBonus": {
-      "normal": 0
-    },
-    "useSimpleAnimator": false
-  },
-  "health": {
-    "Hydration": {
-      "min": 100,
-      "max": 100
-    },
-    "Energy": {
-      "min": 100,
-      "max": 100
-    },
-    "Temperature": {
-      "min": 36,
-      "max": 40
-    },
-    "BodyParts": [
-      {
-        "Head": {
-          "min": 35,
-          "max": 35
-        },
-        "Chest": {
-          "min": 85,
-          "max": 85
-        },
-        "Stomach": {
-          "min": 70,
-          "max": 70
-        },
-        "LeftArm": {
-          "min": 60,
-          "max": 60
-        },
-        "RightArm": {
-          "min": 60,
-          "max": 60
-        },
-        "LeftLeg": {
-          "min": 65,
-          "max": 65
-        },
-        "RightLeg": {
-          "min": 65,
-          "max": 65
-        }
-      }
-    ]
-  },
-  "skills": {
-    "Common": {}
-  },
-  "inventory": {
+  "chances": {
     "equipment": {
-      "Headwear": {},
-      "Earpiece": {},
-      "FaceCover": {},
-      "ArmorVest": {},
-      "Eyewear": {},
-      "ArmBand": {},
-      "TacticalVest": {
-        "544a5caa4bdc2d1a388b4568": 1
-      },
-      "Backpack": {},
-      "FirstPrimaryWeapon": {
-        "657857faeff4c850222dff1b": 1
-      },
-      "SecondPrimaryWeapon": {},
-      "Holster": {},
-      "Scabbard": {},
-      "Pockets": {
-        "64cbd95a29b9b4283e216ff5": 1
-      },
-      "SecuredContainer": {
-        "5c0a794586f77461c458f892": 1
-      }
+      "Headwear": 0,
+      "Earpiece": 0,
+      "FaceCover": 0,
+      "ArmorVest": 0,
+      "Eyewear": 0,
+      "ArmBand": 0,
+      "TacticalVest": 100,
+      "Backpack": 0,
+      "FirstPrimaryWeapon": 100,
+      "SecondPrimaryWeapon": 0,
+      "Holster": 0,
+      "Scabbard": 0,
+      "Pockets": 100,
+      "SecuredContainer": 100
     },
-    "Ammo": {
-      "Caliber762x54R": {
-        "5e023d34e8a400319a28ed44": 1
-      }
+    "weaponMods": {
+      "mod_magazine": 100,
+      "mod_stock": 100,
+      "mod_bipod": 0,
+      "mod_handguard": 0,
+      "mod_sight_rear": 100,
+      "mod_muzzle": 0
     },
-    "mods": {
-      "657857faeff4c850222dff1b": {
-        "mod_pistolgrip": [
-          "64cbad529f7cf7f75c077fd5"
-        ],
-        "mod_barrel": [
-          "64639a9aab86f8fd4300146c"
-        ],
-        "mod_stock": [
-          "6492e3a97df7d749100e29ee"
-        ],
-        "mod_sight_rear": [
-          "6492fb8253acae0af00a29b6"
-        ],
-        "mod_magazine": [
-          "65785979bec02a3fe82c181e"
-        ],
-        "patron_in_weapon": [
-          "5e023d34e8a400319a28ed44"
-        ]
-      },
-      "544a5caa4bdc2d1a388b4568": {
-        "Front_plate": [
-          "656f9fa0498d1b7e3e071d98"
-        ],
-        "Back_plate": [
-          "656f9fa0498d1b7e3e071d98"
-        ],
-        "Soft_armor_front": [
-          "6570e83223c1f638ef0b0ede"
-        ],
-        "Soft_armor_back": [
-          "6570e87c23c1f638ef0b0ee2"
-        ],
-        "Groin": [
-          "6570e90b3a5689d85f08db97"
-        ]
-      }
-    },
-    "items": {
-      "TacticalVest": {
-        "65785979bec02a3fe82c181e": 1
-      },
-      "Pockets": {},
-      "Backpack": {},
-      "SecuredContainer": {
-        "5e023d34e8a400319a28ed44": 1
-      },
-      "SpecialLoot": {}
+    "equipmentMods": {
+      "front_plate": 100,
+      "back_plate": 100
     }
   },
-  "firstName": [
-    "Сеня",
-    "Артём",
-    "Витя",
-    "Даня",
-    "Вован",
-    "Володя",
-    "Егор",
-    "Влад",
-    "Ярик",
-    "Михаил",
-    "Максим",
-    "Кир",
-    "Юра",
-    "Антон",
-    "Саня",
-    "Макар",
-    "Никитос",
-    "Борис",
-    "Илья",
-    "Серёга",
-    "Тоха",
-    "Олег",
-    "Тимур",
-    "Андрей",
-    "Ваня",
-    "Сева",
-    "Всеволод"
-  ],
-  "lastName": [
-    "Рис",
-    "Реднек",
-    "Батон",
-    "Ментос",
-    "Бритва",
-    "Голландский",
-    "Клоун",
-    "Никсон",
-    "Депутат",
-    "Сталлоне",
-    "Нелегальный",
-    "Папаша",
-    "Кола",
-    "Шпала",
-    "Танк",
-    "Ходка",
-    "Мамонт",
-    "Комсомолец",
-    "Каток",
-    "Чача",
-    "Подснежник",
-    "Бан",
-    "Болт",
-    "Движ",
-    "Разбан",
-    "Тридцать",
-    "Хряк",
-    "Горыныч"
-  ],
   "difficulty": {
     "easy": {
       "Aiming": {
@@ -586,7 +368,9 @@
         "NO_GRASS_DIST": 5,
         "FULL_SECTOR_VIEW": true,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -675,7 +459,10 @@
         "VALID_REASONS_TO_ADD_ENEMY": [
           "attackBTR",
           "serviceBTR"
-        ]
+        ],
+        "CAN_RECIVE_PLAYER_REQUESTS": false,
+        "DEFAULT_ENEMY_SAVAGE": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1126,7 +913,9 @@
         "NO_GRASS_DIST": 5,
         "FULL_SECTOR_VIEW": true,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1215,7 +1004,10 @@
         "VALID_REASONS_TO_ADD_ENEMY": [
           "attackBTR",
           "serviceBTR"
-        ]
+        ],
+        "CAN_RECIVE_PLAYER_REQUESTS": false,
+        "DEFAULT_ENEMY_SAVAGE": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1666,7 +1458,9 @@
         "NO_GRASS_DIST": 5,
         "FULL_SECTOR_VIEW": true,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1755,7 +1549,10 @@
         "VALID_REASONS_TO_ADD_ENEMY": [
           "attackBTR",
           "serviceBTR"
-        ]
+        ],
+        "CAN_RECIVE_PLAYER_REQUESTS": false,
+        "DEFAULT_ENEMY_SAVAGE": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2206,7 +2003,9 @@
         "NO_GRASS_DIST": 5,
         "FULL_SECTOR_VIEW": true,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2295,7 +2094,10 @@
         "VALID_REASONS_TO_ADD_ENEMY": [
           "attackBTR",
           "serviceBTR"
-        ]
+        ],
+        "CAN_RECIVE_PLAYER_REQUESTS": false,
+        "DEFAULT_ENEMY_SAVAGE": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2426,43 +2228,40 @@
       }
     }
   },
-  "chances": {
-    "equipment": {
-      "Headwear": 0,
-      "Earpiece": 0,
-      "FaceCover": 0,
-      "ArmorVest": 0,
-      "Eyewear": 0,
-      "ArmBand": 0,
-      "TacticalVest": 100,
-      "Backpack": 0,
-      "FirstPrimaryWeapon": 100,
-      "SecondPrimaryWeapon": 0,
-      "Holster": 0,
-      "Scabbard": 0,
-      "Pockets": 100,
-      "SecuredContainer": 100
+  "experience": {
+    "aggressorBonus": {
+      "normal": 0
     },
-    "weaponMods": {
-      "mod_magazine": 100,
-      "mod_stock": 100,
-      "mod_bipod": 0,
-      "mod_handguard": 0,
-      "mod_sight_rear": 100
+    "level": {
+      "max": 1,
+      "min": 0
     },
-    "equipmentMods": {
-      "front_plate": 100,
-      "back_plate": 100
-    }
+    "reward": {
+      "normal": {
+        "max": -1,
+        "min": -1
+      }
+    },
+    "standingForKill": {
+      "normal": 0
+    },
+    "useSimpleAnimator": false
   },
+  "firstName": [
+    "Илья"
+  ],
   "generation": {
     "items": {
-      "specialItems": {
+      "grenades": {
         "weights": {
           "0": 1,
-          "1": 0
+          "1": 2,
+          "2": 1,
+          "3": 1,
+          "4": 0,
+          "5": 0
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "healing": {
         "weights": {
@@ -2470,7 +2269,7 @@
           "1": 2,
           "2": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "drugs": {
         "weights": {
@@ -2478,15 +2277,7 @@
           "1": 2,
           "2": 0
         },
-        "whitelist": []
-      },
-      "stims": {
-        "weights": {
-          "0": 2,
-          "1": 1,
-          "2": 0
-        },
-        "whitelist": []
+        "whitelist": {}
       },
       "food": {
         "weights": {
@@ -2494,7 +2285,7 @@
           "1": 5,
           "2": 2
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "drink": {
         "weights": {
@@ -2502,7 +2293,7 @@
           "1": 5,
           "2": 2
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "currency": {
         "weights": {
@@ -2510,7 +2301,15 @@
           "1": 5,
           "2": 1
         },
-        "whitelist": []
+        "whitelist": {}
+      },
+      "stims": {
+        "weights": {
+          "0": 2,
+          "1": 1,
+          "2": 0
+        },
+        "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
@@ -2523,7 +2322,7 @@
           "6": 1,
           "7": 0
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
@@ -2533,7 +2332,7 @@
           "3": 1,
           "4": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "vestLoot": {
         "weights": {
@@ -2545,7 +2344,7 @@
           "5": 0,
           "6": 0
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "magazines": {
         "weights": {
@@ -2555,19 +2354,148 @@
           "3": 3,
           "4": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
-      "grenades": {
+      "specialItems": {
         "weights": {
           "0": 1,
-          "1": 2,
-          "2": 1,
-          "3": 1,
-          "4": 0,
-          "5": 0
+          "1": 0
         },
-        "whitelist": []
+        "whitelist": {}
       }
     }
+  },
+  "health": {
+    "BodyParts": [
+      {
+        "Chest": {
+          "max": 85,
+          "min": 85
+        },
+        "Head": {
+          "max": 35,
+          "min": 35
+        },
+        "LeftArm": {
+          "max": 60,
+          "min": 60
+        },
+        "LeftLeg": {
+          "max": 65,
+          "min": 65
+        },
+        "RightArm": {
+          "max": 60,
+          "min": 60
+        },
+        "RightLeg": {
+          "max": 65,
+          "min": 65
+        },
+        "Stomach": {
+          "max": 70,
+          "min": 70
+        }
+      }
+    ],
+    "Energy": {
+      "max": 100,
+      "min": 100
+    },
+    "Hydration": {
+      "max": 100,
+      "min": 100
+    },
+    "Temperature": {
+      "max": 40,
+      "min": 36
+    }
+  },
+  "inventory": {
+    "equipment": {
+      "Headwear": {},
+      "Earpiece": {},
+      "FaceCover": {},
+      "ArmorVest": {},
+      "Eyewear": {},
+      "ArmBand": {},
+      "TacticalVest": {
+        "544a5caa4bdc2d1a388b4568": 1
+      },
+      "Backpack": {},
+      "FirstPrimaryWeapon": {
+        "657857faeff4c850222dff1b": 1
+      },
+      "SecondPrimaryWeapon": {},
+      "Holster": {},
+      "Scabbard": {},
+      "Pockets": {
+        "64cbd95a29b9b4283e216ff5": 1
+      },
+      "SecuredContainer": {
+        "5c0a794586f77461c458f892": 1
+      }
+    },
+    "Ammo": {
+      "Caliber762x54R": {
+        "5e023d34e8a400319a28ed44": 1
+      }
+    },
+    "items": {
+      "Backpack": {},
+      "Pockets": {},
+      "SecuredContainer": {
+        "5e023d34e8a400319a28ed44": 1
+      },
+      "SpecialLoot": {},
+      "TacticalVest": {
+        "65785979bec02a3fe82c181e": 1
+      }
+    },
+    "mods": {
+      "657857faeff4c850222dff1b": {
+        "mod_pistolgrip": [
+          "64cbad529f7cf7f75c077fd5"
+        ],
+        "mod_barrel": [
+          "64639a9aab86f8fd4300146c"
+        ],
+        "mod_stock": [
+          "6492e3a97df7d749100e29ee"
+        ],
+        "mod_sight_rear": [
+          "6492fb8253acae0af00a29b6"
+        ],
+        "mod_magazine": [
+          "65785979bec02a3fe82c181e"
+        ],
+        "patron_in_weapon": [
+          "5e023d34e8a400319a28ed44"
+        ]
+      },
+      "544a5caa4bdc2d1a388b4568": {
+        "Front_plate": [
+          "656f9fa0498d1b7e3e071d98"
+        ],
+        "Back_plate": [
+          "656f9fa0498d1b7e3e071d98"
+        ],
+        "Soft_armor_front": [
+          "6570e83223c1f638ef0b0ede"
+        ],
+        "Soft_armor_back": [
+          "6570e87c23c1f638ef0b0ee2"
+        ],
+        "Groin": [
+          "6570e90b3a5689d85f08db97"
+        ]
+      }
+    }
+  },
+  "lastName": [
+    "Тридцать"
+  ],
+  "skills": {
+    "Common": {}
   }
 }

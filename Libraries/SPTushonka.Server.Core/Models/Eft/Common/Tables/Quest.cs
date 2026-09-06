@@ -186,6 +186,9 @@ public record QuestConditionTypes
 
     [JsonPropertyName("Fail")]
     public List<QuestCondition>? Fail { get; set; }
+
+    [JsonPropertyName("AutoStart")]
+    public List<QuestCondition>? AutoStart { get; set; }
 }
 
 public record QuestCondition
@@ -359,6 +362,21 @@ public record QuestCondition
 
     [JsonPropertyName("isFinisher")]
     public bool? IsFinisher { get; set; }
+
+    [JsonPropertyName("includeEquipment")]
+    public bool? IncludeEquipment { get; set; }
+
+    [JsonPropertyName("isCompleted")]
+    public bool? IsCompleted { get; set; }
+
+    [JsonPropertyName("showCounter")]
+    public bool? ShowCounter { get; set; }
+
+    [JsonPropertyName("isNotGroupProgress")]
+    public bool? IsNotGroupProgress { get; set; }
+
+    [JsonPropertyName("zoneIds")]
+    public List<string>? ZoneIds { get; set; }
 }
 
 public record QuestConditionProperties

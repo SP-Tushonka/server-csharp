@@ -23,7 +23,8 @@
     "sandbox_start": 2.8,
     "lighthouse2": 2.8,
     "icebreaker": 2.8,
-    "terminal_ui": 1
+    "terminal_ui": 1,
+    "laboratory_dark": 2.8
   },
   "staticLootMultiplier": {
     "bigmap": 1,
@@ -49,7 +50,8 @@
     "sandbox_start": 1,
     "lighthouse2": 1,
     "icebreaker": 1,
-    "terminal_ui": 1
+    "terminal_ui": 1,
+    "laboratory_dark": 1
   },
   "customWaves": {
     "boss": {},
@@ -149,6 +151,15 @@
     },
     "labyrinth": {
       "679b992329acd1f2f60985a5": 5
+    },
+    "laboratory_dark": {
+      "6398a4cfb5992f573c6562b3": 1,
+      "64e74a44c2b4f829615ec334": 1,
+      "6711039f9e648049e50b3307": 1,
+      "6707cef3571b50abc703b64f": 1,
+      "6707cd70aab679420007e018": 1,
+      "6707cc67cc1667e49e0f7232": 1,
+      "6707cf827d279daad80fa95f": 1
     }
   },
   "rogueLighthouseSpawnTimeSettings": {
@@ -197,7 +208,8 @@
       "rezervbase": true,
       "sandbox": true,
       "sandbox_high": true,
-      "labyrinth": true
+      "labyrinth": true,
+      "laboratory_dark": true
     },
     "containerTypesToNotRandomise": [
       "578f87b7245977356274f2cd",
@@ -490,6 +502,31 @@
           "40": 5,
           "50": 5,
           "60": 2,
+          "70": 1
+        },
+        "adjustWaves": true
+      },
+      "laboratory_dark": {
+        "reduceLootByPercent": true,
+        "minDynamicLootPercent": 50,
+        "minStaticLootPercent": 40,
+        "reducedChancePercent": 100,
+        "reductionPercentWeights": {
+          "40": 2,
+          "42": 2,
+          "44": 2,
+          "46": 2,
+          "48": 2,
+          "50": 2,
+          "52": 2,
+          "54": 2,
+          "56": 2,
+          "58": 2,
+          "60": 2,
+          "62": 2,
+          "64": 2,
+          "66": 2,
+          "68": 2,
           "70": 1
         },
         "adjustWaves": true

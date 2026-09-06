@@ -28,6 +28,16 @@ public sealed class SPTStartupHostedService(
 ) : BackgroundService
 {
     private readonly Dictionary<string, long> _onUpdateLastRun = [];
+    private static readonly DatedStartMessage[] _datedStartMessages =
+    [
+        new(1, 1, "server_start_newyear_", 100),
+        new(4, 1, "server_start_meme_", 100),
+        new(5, 4, "server_start_fika_", 25),
+        new(8, 10, "server_start_canned_", 25),
+        new(12, 24, "server_start_christmas_", 100),
+        new(12, 25, "server_start_christmas_", 100),
+        new(12, 31, "server_start_nye_", 100),
+    ];
 
     public override async Task StartAsync(CancellationToken cancellationToken)
     {
@@ -117,6 +127,15 @@ public sealed class SPTStartupHostedService(
 
     private string GetRandomisedStartMessage()
     {
+        var today = DateTime.Now;
+        foreach (var message in _datedStartMessages)
+        {
+            if (today.Month == message.Month && today.Day == message.Day && randomUtil.GetChance100(message.ChancePercent))
+            {
+                return serverLocalisationService.GetRandomTextThatMatchesPartialKey(message.KeyPrefix);
+            }
+        }
+
         if (randomUtil.GetInt(1, 1000) > 999)
         {
             return serverLocalisationService.GetRandomTextThatMatchesPartialKey("server_start_meme_");
@@ -131,3 +150,5 @@ public sealed class SPTStartupHostedService(
         logger.Error(err.ToString());
     }
 }
+
+internal sealed record DatedStartMessage(int Month, int Day, string KeyPrefix, double ChancePercent);

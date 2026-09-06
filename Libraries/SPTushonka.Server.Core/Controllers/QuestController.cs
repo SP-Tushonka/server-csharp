@@ -68,7 +68,6 @@ public class QuestController(
         return output;
     }
 
-
     /// <summary>
     ///     Handle QuestAccept event
     ///     Handle the client accepting a quest and starting it
@@ -173,7 +172,7 @@ public class QuestController(
             );
         }
     }
-    
+
     /// <summary>
     ///     Handle client/quest/complete
     /// </summary>
@@ -212,6 +211,35 @@ public class QuestController(
     public ItemEventRouterResponse CompleteQuest(PmcData pmcData, CompleteQuestRequestData request, MongoId sessionId)
     {
         return questHelper.CompleteQuest(pmcData, request, sessionId);
+    }
+
+    /// <summary>
+    ///     Handle /client/quest/fail. The client evaluates fail conditions itself and reports the quest
+    ///     that failed, the answer carries what that opened up and the changed statuses.
+    /// </summary>
+    public FailStoryQuestResponse FailStoryQuest(MongoId sessionId, FailStoryQuestRequest request)
+    {
+        var pmcData = profileHelper.GetPmcProfile(sessionId);
+        if (pmcData is null || questHelper.GetQuestFromDb(request.QuestId, pmcData) is null)
+        {
+            logger.Warning($"client/quest/fail named a quest that is not in the database: '{request.QuestId}'");
+
+            return new FailStoryQuestResponse { Quests = [], QuestsStatus = [] };
+        }
+
+        var output = eventOutputHolder.GetOutput(sessionId);
+        questHelper.FailQuest(
+            pmcData,
+            new FailQuestRequestData { QuestId = request.QuestId, RemoveExcessItems = false },
+            sessionId,
+            output
+        );
+
+        return new FailStoryQuestResponse
+        {
+            Quests = output.ProfileChanges[sessionId].Quests ?? [],
+            QuestsStatus = pmcData.Quests?.Where(quest => quest.QId == request.QuestId).ToList() ?? [],
+        };
     }
 
     /// <summary>

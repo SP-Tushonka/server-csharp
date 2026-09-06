@@ -420,8 +420,9 @@ public partial class ProfileFixerService(
     }
 
     /// <summary>
-    ///     If the profile has elite Hideout Management skill, add the additional slots from globals
-    ///     NOTE: This seems redundant, but we will leave it here just in case.
+    ///     Make sure each area has its base slots, plus the extra slots from globals when the profile has
+    ///     elite Hideout Management. The client sizes its slot arrays by that skill, so extra slots on a
+    ///     profile without it overflow the client when it rebuilds the hideout.
     /// </summary>
     /// <param name="pmcProfile">profile to add slots to</param>
     protected void AddHideoutEliteSlots(PmcData pmcProfile)
@@ -431,11 +432,15 @@ public partial class ProfileFixerService(
             return;
         }
 
+        var hideoutManagement = pmcProfile.Skills?.Common?.FirstOrDefault(skill => skill.Id == SkillTypes.HideoutManagement);
+        var elite = hideoutManagement?.Progress >= 5100;
+        var eliteSlots = globalTable.Configuration.SkillsSettings.HideoutManagement.EliteSlots;
+
         var generator = pmcProfile.Hideout.Areas.FirstOrDefault(area => area.Type == HideoutAreas.Generator);
         if (generator?.Slots is not null)
         {
             var fuelSlots = generator.Slots.Count;
-            var extraGenSlots = globalTable.Configuration.SkillsSettings.HideoutManagement.EliteSlots.Generator.Slots;
+            var extraGenSlots = elite ? eliteSlots.Generator.Slots : 0;
 
             if (fuelSlots < 6 + extraGenSlots)
             {
@@ -462,7 +467,7 @@ public partial class ProfileFixerService(
         }
 
         var waterCollSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.WaterCollector)?.Slots?.Count;
-        var extraWaterCollSlots = globalTable.Configuration.SkillsSettings.HideoutManagement.EliteSlots.WaterCollector.Slots;
+        var extraWaterCollSlots = elite ? eliteSlots.WaterCollector.Slots : 0;
 
         if (waterCollSlots.GetValueOrDefault(0) < 1 + extraWaterCollSlots)
         {
@@ -475,7 +480,7 @@ public partial class ProfileFixerService(
         }
 
         var filterSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.AirFilteringUnit)?.Slots?.Count;
-        var extraFilterSlots = globalTable.Configuration.SkillsSettings.HideoutManagement.EliteSlots.AirFilteringUnit.Slots;
+        var extraFilterSlots = elite ? eliteSlots.AirFilteringUnit.Slots : 0;
 
         if (filterSlots.GetValueOrDefault(0) < 3 + extraFilterSlots)
         {
@@ -488,7 +493,7 @@ public partial class ProfileFixerService(
         }
 
         var btcFarmSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.BitcoinFarm)?.Slots?.Count;
-        var extraBtcSlots = globalTable.Configuration.SkillsSettings.HideoutManagement.EliteSlots.BitcoinFarm.Slots;
+        var extraBtcSlots = elite ? eliteSlots.BitcoinFarm.Slots : 0;
 
         // BTC Farm doesn't have extra slots for hideout management, but we still check for modded stuff!!
         if (btcFarmSlots < 50 + extraBtcSlots)

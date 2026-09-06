@@ -35,6 +35,9 @@
     },
     "woods": {
       "assault": 1
+    },
+    "laboratory_dark": {
+      "assault": 1
     }
   },
   "bosses": [
@@ -54,7 +57,10 @@
     "followerBirdEye",
     "bossTagillaAgro",
     "bossKillaAgro",
-    "tagillaHelperAgro"
+    "tagillaHelperAgro",
+    "bossWedge",
+    "bossBullyBlackDiv",
+    "bossWedgeLab"
   ],
   "botNameLengthLimit": 19,
   "botRolesThatMustHaveUniqueName": [
@@ -2631,6 +2637,90 @@
       "weaponSlotIdsToMakeRequired": [
         "mod_reciever"
       ]
+    },
+    "bossbullyblackdiv": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
+    "followerbullyblackdiv": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
+    "pmcbotblackdiv": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
+    "bosswedge": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 75,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 75,
+      "nvgIsActiveChanceDayPercent": 10,
+      "nvgIsActiveChanceNightPercent": 90
+    },
+    "bosswedgelab": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 75,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 75,
+      "nvgIsActiveChanceDayPercent": 10,
+      "nvgIsActiveChanceNightPercent": 90
+    },
+    "followerwedgelab": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 75,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 75,
+      "nvgIsActiveChanceDayPercent": 10,
+      "nvgIsActiveChanceNightPercent": 90
     }
   },
   "itemSpawnLimits": {
@@ -2850,7 +2940,19 @@
     },
     "vsrfsniper": {
       "60098ad7c2240c0fe85c570a": 2
-    }
+    },
+    "bossbullyblackdiv": {
+      "60098ad7c2240c0fe85c570a": 2
+    },
+    "followerbullyblackdiv": {
+      "60098ad7c2240c0fe85c570a": 2
+    },
+    "pmcbotblackdiv": {
+      "60098ad7c2240c0fe85c570a": 2
+    },
+    "bosswedge": {},
+    "bosswedgelab": {},
+    "followerwedgelab": {}
   },
   "lootItemResourceRandomization": {
     "assault": {
@@ -2885,7 +2987,8 @@
     "sandbox_high": 12,
     "shoreline": 25,
     "tarkovstreets": 24,
-    "woods": 23
+    "woods": 23,
+    "laboratory_dark": 19
   },
   "playerScavBrainType": {
     "bigmap": {
@@ -2971,6 +3074,13 @@
       "pmcBot": 0,
       "pmcBEAR": 2,
       "pmcUSEC": 2
+    },
+    "laboratory_dark": {
+      "assault": 0,
+      "bossKilla": 2,
+      "pmcBot": 0,
+      "pmcBEAR": 2,
+      "pmcUSEC": 2
     }
   },
   "presetBatch": {
@@ -3040,7 +3150,13 @@
     "tagillaHelperAgro": 5,
     "test": 30,
     "vsRF": 40,
-    "vsRFSniper": 40
+    "vsRFSniper": 40,
+    "bossBullyBlackDiv": 5,
+    "followerBullyBlackDiv": 15,
+    "pmcBotBlackDiv": 20,
+    "bossWedge": 5,
+    "bossWedgeLab": 5,
+    "followerWedgeLab": 10
   },
   "secureContainerAmmoStackCount": 20,
   "showTypeInNickname": false,
@@ -3068,7 +3184,7 @@
     ]
   },
   "weeklyBoss": {
-    "enabled": true,
+    "enabled": false,
     "bossPool": [
       "bossBully",
       "bossTagilla",
@@ -3081,7 +3197,7 @@
     "resetDay": "Monday"
   },
   "goonSpawnSystem": {
-    "enabled": true,
+    "enabled": false,
     "locationPool": [
       "bigmap",
       "woods",

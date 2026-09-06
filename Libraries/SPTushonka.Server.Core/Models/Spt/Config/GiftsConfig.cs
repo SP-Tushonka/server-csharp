@@ -62,4 +62,8 @@ public record Gift
 
     [JsonPropertyName("maxToSendPlayer")]
     public int? MaxToSendPlayer { get; set; }
+
+    /// <summary>Optional, tarcoins credited to the account's shop wallet when the gift is sent</summary>
+    [JsonPropertyName("tarcoins")]
+    public int? Tarcoins { get; set; }
 }

@@ -45,6 +45,7 @@ public class RagfairController(
     RagfairHelper ragfairHelper,
     RagfairSortHelper ragfairSortHelper,
     RagfairOfferHelper ragfairOfferHelper,
+    RagfairLevelService ragfairLevelService,
     RagfairCategoriesService ragfairCategoriesService,
     TraderHelper traderHelper,
     ServerLocalisationService localisationService,
@@ -436,6 +437,15 @@ public class RagfairController(
         if (!IsValidPlayerOfferRequest(offerRequest))
         {
             return httpResponseUtil.AppendErrorToOutput(output, "Unable to add offer, check server for error");
+        }
+
+        var offerItems = offerRequest.Items.SelectMany(itemId => pmcData.Inventory.Items.GetItemWithChildren(itemId)).ToList();
+        if (ragfairLevelService.IsLocked(offerItems, pmcData.Info.Level.GetValueOrDefault(0), out var requiredLevel))
+        {
+            return httpResponseUtil.AppendErrorToOutput(
+                output,
+                localisationService.GetText("ragfair-offer_locked_by_level", requiredLevel)
+            );
         }
 
         var typeOfOffer = GetOfferType(offerRequest);

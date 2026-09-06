@@ -29,8 +29,6 @@ public class DataCallbacks(
 )
 {
     /// <summary>The story chapter every new profile starts with.</summary>
-    private static readonly MongoId TutorialChapterId = new("68cbd33676fe74b1e80bfd91");
-
     /// <summary>
     ///     Handle client/settings
     /// </summary>
@@ -203,25 +201,15 @@ public class DataCallbacks(
     }
 
     /// <summary>
-    /// Handle /client/quest/getMainQuestsList
+    /// Handle /client/quest/getMainQuestsList. The client places every main quest in a chapter and drops
+    /// quests whose chapter is absent, so every chapter is listed regardless of progress, as live does.
     /// </summary>
     public ValueTask<string> GetMainQuestsList(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // TODO: Still not sure if this is correct lol, FAFO I guess
-        var startedQuests = profileHelper
-            .GetPmcProfile(sessionID)
-            ?.Quests?.Where(quest => quest.Status == QuestStatusEnum.Started)
-            .Select(quest => quest.QId)
-            .ToHashSet();
-
-        var chapters = (
-            startedQuests is null || startedQuests.Count == 0
-                ? [TutorialChapterId]
-                : templateTable
-                    .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
-                    .Distinct()
-                    .Where(startedQuests.Contains)
-        ).Select(chapterId => new MainQuestChapterId { ChapterId = chapterId });
+        var chapters = templateTable
+            .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
+            .Distinct()
+            .Select(chapterId => new MainQuestChapterId { ChapterId = chapterId });
 
         return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(new MainQuestsList { Chapters = chapters }));
     }

@@ -55,83 +55,83 @@ public class SptHttpListener(
         switch (context.Request.Method)
         {
             case "GET":
+            {
+                var response = await GetResponseObjectAsync(sessionId, context, null, cancellationToken);
+
+                // Another handler is already handling this, or no handler was found.
+                if (response is null)
                 {
-                    var response = await GetResponseObjectAsync(sessionId, context, null, cancellationToken);
-
-                    // Another handler is already handling this, or no handler was found.
-                    if (response is null)
-                    {
-                        return;
-                    }
-
-                    await SendResponseAsync(sessionId, context.Request, context.Response, null, response, cancellationToken);
-                    break;
+                    return;
                 }
+
+                await SendResponseAsync(sessionId, context.Request, context.Response, null, response, cancellationToken);
+                break;
+            }
             // these are handled almost identically.
             case "POST":
             case "PUT":
+            {
+                // Content-Encoding is not what decides compression: every PUT is compressed, and so is
+                // every POST without requestcompressed=0.
+                var requestIsCompressed =
+                    !context.Request.Headers.TryGetValue("requestcompressed", out var compressHeader) || compressHeader != "0";
+                var requestCompressed = context.Request.Method == "PUT" || requestIsCompressed;
+                var bodyStream = await requestEncryptionUtil.DeShuffleAsync(
+                    context.Request.Body,
+                    ShouldShuffleRequest(context.Request.Path),
+                    cancellationToken
+                );
+
+                string body;
+                await using var bufferedBody = new MemoryStream();
+                await bodyStream.CopyToAsync(bufferedBody, cancellationToken);
+                bufferedBody.Position = 0;
+
+                var looksZlib = false;
+                if (bufferedBody.Length >= 2)
                 {
-                    // Content-Encoding is not what decides compression: every PUT is compressed, and so is
-                    // every POST without requestcompressed=0.
-                    var requestIsCompressed =
-                        !context.Request.Headers.TryGetValue("requestcompressed", out var compressHeader) || compressHeader != "0";
-                    var requestCompressed = context.Request.Method == "PUT" || requestIsCompressed;
-                    var bodyStream = await requestEncryptionUtil.DeShuffleAsync(
-                        context.Request.Body,
-                        ShouldShuffleRequest(context.Request.Path),
-                        cancellationToken
-                    );
-
-                    string body;
-                    await using var bufferedBody = new MemoryStream();
-                    await bodyStream.CopyToAsync(bufferedBody, cancellationToken);
+                    var cmf = bufferedBody.ReadByte();
+                    var flg = bufferedBody.ReadByte();
                     bufferedBody.Position = 0;
-
-                    var looksZlib = false;
-                    if (bufferedBody.Length >= 2)
-                    {
-                        var cmf = bufferedBody.ReadByte();
-                        var flg = bufferedBody.ReadByte();
-                        bufferedBody.Position = 0;
-                        looksZlib = (cmf & 0x0F) == 8 && ((cmf << 8) | flg) % 31 == 0;
-                    }
-
-                    if (requestCompressed && looksZlib)
-                    {
-                        await using var deflateStream = new ZLibStream(bufferedBody, CompressionMode.Decompress);
-                        using var reader = new StreamReader(deflateStream, Encoding.UTF8);
-                        body = await reader.ReadToEndAsync(cancellationToken);
-                    }
-                    else
-                    {
-                        if (requestCompressed && bufferedBody.Length > 0)
-                        {
-                            logger.Debug($"Body on {context.Request.Path} is not zlib; reading it as plain text");
-                        }
-
-                        using var reader = new StreamReader(bufferedBody, Encoding.UTF8);
-                        body = await reader.ReadToEndAsync(cancellationToken);
-                    }
-
-                    if (!requestIsCompressed)
-                    {
-                        if (logger.IsLogEnabled(LogLevel.Debug))
-                        {
-                            logger.Debug(body);
-                        }
-                    }
-
-                    var response = await GetResponseObjectAsync(sessionId, context, body, cancellationToken);
-
-                    // Another handler is already handling this, or no handler was found.
-                    if (response is null)
-                    {
-                        return;
-                    }
-
-                    await SendResponseAsync(sessionId, context.Request, context.Response, body, response, cancellationToken);
-                    break;
+                    looksZlib = (cmf & 0x0F) == 8 && ((cmf << 8) | flg) % 31 == 0;
                 }
+
+                if (requestCompressed && looksZlib)
+                {
+                    await using var deflateStream = new ZLibStream(bufferedBody, CompressionMode.Decompress);
+                    using var reader = new StreamReader(deflateStream, Encoding.UTF8);
+                    body = await reader.ReadToEndAsync(cancellationToken);
+                }
+                else
+                {
+                    if (requestCompressed && bufferedBody.Length > 0)
+                    {
+                        logger.Debug($"Body on {context.Request.Path} is not zlib; reading it as plain text");
+                    }
+
+                    using var reader = new StreamReader(bufferedBody, Encoding.UTF8);
+                    body = await reader.ReadToEndAsync(cancellationToken);
+                }
+
+                if (!requestIsCompressed)
+                {
+                    if (logger.IsLogEnabled(LogLevel.Debug))
+                    {
+                        logger.Debug(body);
+                    }
+                }
+
+                var response = await GetResponseObjectAsync(sessionId, context, body, cancellationToken);
+
+                // Another handler is already handling this, or no handler was found.
+                if (response is null)
+                {
+                    return;
+                }
+
+                await SendResponseAsync(sessionId, context.Request, context.Response, body, response, cancellationToken);
+                break;
+            }
         }
     }
 
@@ -273,15 +273,32 @@ public class SptHttpListener(
 
         await using (var deflateStream = new ZLibStream(frame, CompressionLevel.SmallestSize, leaveOpen: true))
         {
-            await JsonSerializer.SerializeAsync(deflateStream, streamed.Payload, JsonUtil.JsonSerializerOptionsNoIndent!, cancellationToken);
+            await JsonSerializer.SerializeAsync(
+                deflateStream,
+                streamed.Payload,
+                JsonUtil.JsonSerializerOptionsNoIndent!,
+                cancellationToken
+            );
         }
 
-        await WriteShuffledAsync(resp, frame, cancellationToken);
+        await WriteFrameAsync(resp.HttpContext.Request.Path, resp, frame, cancellationToken);
     }
 
     /// <summary>
-    ///     Live shuffles every compressed response
+    ///     Shuffles the compressed frame for the game client. The launcher and the modules only inflate.
     /// </summary>
+    private async Task WriteFrameAsync(PathString path, HttpResponse resp, PooledBufferStream frame, CancellationToken cancellationToken)
+    {
+        if (ShouldShuffleResponse(path))
+        {
+            await WriteShuffledAsync(resp, frame, cancellationToken);
+
+            return;
+        }
+
+        await resp.Body.WriteAsync(frame.Buffer.AsMemory(ShuffleHeaderLength, (int)frame.Length - ShuffleHeaderLength), cancellationToken);
+    }
+
     private async Task WriteShuffledAsync(HttpResponse resp, PooledBufferStream frame, CancellationToken cancellationToken)
     {
         var payloadLength = (int)frame.Length - ShuffleHeaderLength;
@@ -348,8 +365,6 @@ public class SptHttpListener(
 
         if (SendsPlainJson(req.Path))
         {
-            resp.Headers.Append("Access-Control-Allow-Origin", "*");
-
             await resp.Body.WriteAsync(Encoding.UTF8.GetBytes(output), cancellationToken);
 
             return;
@@ -378,7 +393,7 @@ public class SptHttpListener(
             }
         }
 
-        await WriteShuffledAsync(resp, frame, cancellationToken);
+        await WriteFrameAsync(req.Path, resp, frame, cancellationToken);
     }
 
     private static bool ShouldShuffleRequest(PathString path)
@@ -389,11 +404,14 @@ public class SptHttpListener(
             && !path.StartsWithSegments("/files");
     }
 
+    private static bool ShouldShuffleResponse(PathString path)
+    {
+        return ShouldShuffleRequest(path) && !path.StartsWithSegments("/singleplayer");
+    }
+
     private static bool SendsPlainJson(PathString path)
     {
-        return path.StartsWithSegments("/launcher")
-            || path.StartsWithSegments("/v2/shop")
-            || path.StartsWithSegments("/files");
+        return path.StartsWithSegments("/v2/shop") || path.StartsWithSegments("/files");
     }
 
     private record Response(string Method, string jsonData);

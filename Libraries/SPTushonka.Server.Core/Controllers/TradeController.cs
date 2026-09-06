@@ -36,6 +36,7 @@ public class TradeController(
     ItemHelper itemHelper,
     RagfairOfferService ragfairOfferService,
     RagfairOfferHelper ragfairOfferHelper,
+    RagfairLevelService ragfairLevelService,
     HttpResponseUtil httpResponseUtil,
     ServerLocalisationService serverLocalisationService,
     MailSendService mailSendService,
@@ -109,6 +110,12 @@ public class TradeController(
                     itemHelper.GetItem(fleaOffer.Items[0].Template).Value.Name
                 );
                 return httpResponseUtil.AppendErrorToOutput(output, errorMessage, BackendErrorCodes.OfferOutOfStock);
+            }
+
+            if (!fleaOffer.IsTraderOffer() && ragfairLevelService.IsLocked(fleaOffer.Items, pmcData.Info.Level.GetValueOrDefault(0), out var requiredLevel))
+            {
+                var errorMessage = serverLocalisationService.GetText("ragfair-offer_locked_by_level", requiredLevel);
+                return httpResponseUtil.AppendErrorToOutput(output, errorMessage, BackendErrorCodes.RagfairUnavailable);
             }
 
             if (fleaOffer.IsTraderOffer())

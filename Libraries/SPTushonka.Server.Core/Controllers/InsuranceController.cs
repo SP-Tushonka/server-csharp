@@ -631,10 +631,15 @@ public class InsuranceController(
     /// <param name="insurance">The insured items to process</param>
     /// <param name="labsId">OPTIONAL - id of labs location</param>
     /// <returns></returns>
-    protected bool IsMapLabsAndInsuranceDisabled(Insurance insurance, string labsId = "laboratory")
+    protected bool IsMapLabsAndInsuranceDisabled(Insurance insurance)
     {
-        return string.Equals(insurance.SystemData?.Location, labsId, StringComparison.OrdinalIgnoreCase)
-            && !(locationTable.GetLocation(labsId)?.Base?.Insurance ?? false);
+        var location = insurance.SystemData?.Location;
+        if (!string.Equals(location, "laboratory", StringComparison.OrdinalIgnoreCase) && !string.Equals(location, "laboratory_dark", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        return !(locationTable.GetLocation(location)?.Base?.Insurance ?? false);
     }
 
     /// <summary>

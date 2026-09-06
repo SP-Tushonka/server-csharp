@@ -23,7 +23,6 @@ public class ProfileCallbacks(
     ProfileHelper profileHelper
 )
 {
-
     /// <summary>
     ///     Handle client/game/profile/create
     /// </summary>
@@ -217,9 +216,8 @@ public class ProfileCallbacks(
     /// <returns></returns>
     public ValueTask<string> GetTutorGameProfile(string url, EmptyRequestData _, MongoId sessionID)
     {
-        var profile = profileHelper.GetFullProfile(sessionID);
         return new ValueTask<string>(
-            httpResponse.GetBody(new TutorGameProfileResponse { Profile = profile?.CharacterData?.PmcData })
+            httpResponse.GetBody(new TutorGameProfileResponse { Profile = profileController.GetTutorGameProfile(sessionID) })
         );
     }
 }

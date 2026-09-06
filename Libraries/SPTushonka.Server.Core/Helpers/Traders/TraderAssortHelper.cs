@@ -22,6 +22,7 @@ public class TraderAssortHelper(
     TraderPurchasePersisterService traderPurchasePersisterService,
     TraderHelper traderHelper,
     FenceService fenceService,
+    BattlePassAssortHelper battlePassAssortHelper,
     ICloner cloner
 )
 {
@@ -102,6 +103,8 @@ public class TraderAssortHelper(
             MergedQuestAssorts,
             showLockedAssorts
         );
+
+        battlePassAssortHelper.AppendClaimedOffers(pmcProfile, traderId, traderClone.Assort);
 
         // Filter out root assorts that are blacklisted for this profile
         if (fullProfile.SptData.BlacklistedItemTemplates?.Count > 0)

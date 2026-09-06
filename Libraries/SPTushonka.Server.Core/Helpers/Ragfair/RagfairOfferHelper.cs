@@ -45,6 +45,7 @@ public class RagfairOfferHelper(
     ServerLocalisationService serverLocalisationService,
     MailSendService mailSendService,
     RagfairRequiredItemsService ragfairRequiredItemsService,
+    RagfairLevelService ragfairLevelService,
     ProfileHelper profileHelper,
     EventOutputHolder eventOutputHolder,
     BotConfig botConfig,
@@ -70,11 +71,6 @@ public class RagfairOfferHelper(
     )
     {
         var playerIsFleaBanned = pmcData.PlayerIsFleaBanned(timeUtil.GetTimeStamp());
-        var tieredFlea = ragfairConfig.TieredFlea;
-
-        // Only needed by the tiered flea check below
-        var tieredFleaKeys = tieredFlea.Enabled ? tieredFlea.UnlocksType.Keys.ToHashSet() : [];
-
         var result = new List<RagfairOffer>();
         foreach (var cachedOffer in ragfairOfferService.GetOffers())
         {
@@ -99,96 +95,32 @@ public class RagfairOfferHelper(
                 continue;
             }
 
-            var offer = cachedOffer;
-            if (tieredFlea.Enabled)
-            {
-                offer = cloner.Clone(cachedOffer)!;
-
-                if (!offer.IsTraderOffer())
-                {
-                    CheckAndLockOfferFromPlayerTieredFlea(tieredFlea, offer, tieredFleaKeys, pmcData.Info.Level.Value);
-                }
-            }
-
-            result.Add(offer);
+            result.Add(LockWhenBelowLevel(cachedOffer, pmcData));
         }
 
         return result;
     }
 
     /// <summary>
-    ///     Disable offer if item is flagged by tiered flea config based on player level
+    ///     The client locks flea categories by RagfairLevelToTrade. An offer the player cannot buy yet is
+    ///     handed over flagged as locked, on a copy so the cached offer stays untouched.
     /// </summary>
-    /// <param name="tieredFlea">Tiered flea settings from ragfair config</param>
-    /// <param name="offer">Ragfair offer to evaluate</param>
-    /// <param name="tieredFleaLimitTypes">List of item types flagged with a required player level</param>
-    /// <param name="playerLevel">Current level of player viewing offer</param>
-    protected void CheckAndLockOfferFromPlayerTieredFlea(
-        TieredFlea tieredFlea,
-        RagfairOffer offer,
-        HashSet<MongoId> tieredFleaLimitTypes,
-        int playerLevel
-    )
+    protected RagfairOffer LockWhenBelowLevel(RagfairOffer offer, PmcData pmcData)
     {
-        var offerItemTpl = offer.Items.FirstOrDefault().Template;
-
-        // Check if offer item is ammo
-        if (tieredFlea.AmmoTplUnlocks is not null && itemHelper.IsOfBaseclass(offerItemTpl, BaseClasses.AMMO))
+        if (!IsLockedByLevel(offer, pmcData))
         {
-            // Check if ammo is flagged with a level requirement
-            if (tieredFlea.AmmoTplUnlocks.TryGetValue(offerItemTpl, out var unlockLevel) && playerLevel < unlockLevel)
-            {
-                // Lock the offer if player's level is below the ammo's unlock requirement
-                offer.Locked = true;
-                offer.User.Nickname = $"Unlock level: {unlockLevel}";
-
-                return;
-            }
+            return offer;
         }
 
-        // Check for a direct level requirement for the offer item
-        if (tieredFlea.UnlocksTpl.TryGetValue(offerItemTpl, out var itemLevelRequirement))
-        {
-            if (playerLevel < itemLevelRequirement)
-            {
-                // Lock the offer if player's level is below the item's specific requirement
-                offer.Locked = true;
-                offer.User.Nickname = $"Unlock level: {itemLevelRequirement}";
+        var locked = cloner.Clone(offer)!;
+        locked.Locked = true;
 
-                return;
-            }
-        }
+        return locked;
+    }
 
-        // Optimisation - Skip further checks if the item type isn't in the restricted types list
-        if (!itemHelper.IsOfBaseclasses(offerItemTpl, tieredFleaLimitTypes))
-        {
-            return;
-        }
-
-        // Highest level requirement across every restricted type the item belongs to
-        int? highestRequirement = null;
-        foreach (var tieredItemType in tieredFleaLimitTypes)
-        {
-            if (!itemHelper.IsOfBaseclass(offerItemTpl, tieredItemType))
-            {
-                continue;
-            }
-
-            var requirement = tieredFlea.UnlocksType[tieredItemType];
-            if (highestRequirement is null || requirement > highestRequirement)
-            {
-                highestRequirement = requirement;
-            }
-        }
-
-        if (highestRequirement is null || playerLevel >= highestRequirement)
-        {
-            return;
-        }
-
-        // Players level is below matching types requirement, flag as locked
-        offer.Locked = true;
-        offer.User.Nickname = $"Unlock level: {highestRequirement}";
+    protected bool IsLockedByLevel(RagfairOffer offer, PmcData pmcData)
+    {
+        return !offer.IsTraderOffer() && ragfairLevelService.IsLocked(offer.Items, pmcData.Info.Level.GetValueOrDefault(0), out _);
     }
 
     /// <summary>
@@ -203,23 +135,14 @@ public class RagfairOfferHelper(
         // Get all offers that require the desired item and filter out offers from non traders if player below ragfair unlock
         var offerIDsForItem = ragfairRequiredItemsService.GetRequiredOffersById(searchRequest.NeededSearchId.Value);
 
-        var tieredFlea = ragfairConfig.TieredFlea;
-        var tieredFleaLimitTypes = tieredFlea.UnlocksType;
-        var tieredFleaKeys = tieredFleaLimitTypes.Keys.ToHashSet();
-
         var result = new List<RagfairOffer>();
         foreach (
             var offer in offerIDsForItem
-                .Select(tieredFlea.Enabled ? cloner.Clone(ragfairOfferService.GetOfferByOfferId) : ragfairOfferService.GetOfferByOfferId) // Clone offer when tiered flea enabled as we may modify offer data
+                .Select(ragfairOfferService.GetOfferByOfferId)
                 .Where(offer => PassesSearchFilterCriteria(searchRequest, offer, offer.Items.FirstOrDefault(), pmcData))
         )
         {
-            if (tieredFlea.Enabled && !offer.IsTraderOffer())
-            {
-                CheckAndLockOfferFromPlayerTieredFlea(tieredFlea, offer, tieredFleaKeys, pmcData.Info.Level.Value);
-            }
-
-            result.Add(offer);
+            result.Add(LockWhenBelowLevel(offer, pmcData));
         }
 
         return result;
@@ -243,11 +166,6 @@ public class RagfairOfferHelper(
         var offersMap = new Dictionary<MongoId, List<RagfairOffer>>();
         var offersToReturn = new List<RagfairOffer>();
         var playerIsFleaBanned = pmcData.PlayerIsFleaBanned(timeUtil.GetTimeStamp());
-        var tieredFlea = ragfairConfig.TieredFlea;
-
-        // Only needed by the tiered flea check below
-        var tieredFleaKeys = tieredFlea.Enabled ? tieredFlea.UnlocksType.Keys.ToHashSet() : [];
-
         var buildItems = searchRequest.BuildItems.Keys.ToDictionary(key => key, ragfairOfferService.GetOffersOfType);
 
         var lockedTraders = pmcData.GetLockedTraderIds();
@@ -309,20 +227,10 @@ public class RagfairOfferHelper(
                     }
                 }
 
-                if (tieredFlea.Enabled)
+                // A build cannot use an offer the player is not high enough to buy
+                if (IsLockedByLevel(offer, pmcData))
                 {
-                    offer = cloner.Clone(offer)!;
-
-                    if (!offer.IsTraderOffer())
-                    {
-                        CheckAndLockOfferFromPlayerTieredFlea(tieredFlea, offer, tieredFleaKeys, pmcData.Info.Level.Value);
-
-                        // Do not add offer to build if user does not have access to it
-                        if (offer.Locked.GetValueOrDefault(false))
-                        {
-                            continue;
-                        }
-                    }
+                    continue;
                 }
 
                 var key = offer.Items[0].Template;

@@ -29,8 +29,6 @@ public record RagfairConfig : BaseConfig
     [JsonPropertyName("dynamic")]
     public required Dynamic Dynamic { get; set; }
 
-    [JsonPropertyName("tieredFlea")]
-    public required TieredFlea TieredFlea { get; set; }
 
     /// <summary>
     ///     Trader ids + should their assorts be listed on flea
@@ -515,28 +513,4 @@ public record ArmorSettings
     /// </summary>
     [JsonPropertyName("plateSlotIdToRemovePool")]
     public HashSet<string> PlateSlotIdToRemovePool { get; set; }
-}
-
-public record TieredFlea
-{
-    [JsonPropertyName("enabled")]
-    public bool Enabled { get; set; }
-
-    /// <summary>
-    ///     key: tpl, value: playerlevel
-    /// </summary>
-    [JsonPropertyName("unlocksTpl")]
-    public required Dictionary<MongoId, int> UnlocksTpl { get; set; }
-
-    /// <summary>
-    ///     key: item type id, value: playerlevel
-    /// </summary>
-    [JsonPropertyName("unlocksType")]
-    public required Dictionary<MongoId, int> UnlocksType { get; set; }
-
-    [JsonPropertyName("ammoTplUnlocks")]
-    public Dictionary<MongoId, int>? AmmoTplUnlocks { get; set; }
-
-    [JsonPropertyName("ammoTiersEnabled")]
-    public bool AmmoTiersEnabled { get; set; }
 }

@@ -15,6 +15,7 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Location;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Servers.Ws;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.InRaid;
@@ -182,7 +183,7 @@ public class GameController(
             ActiveProfileId = sessionId,
             Backend = new Backend
             {
-                Lobby = httpServerHelper.GetBackendUrl(),
+                Lobby = $"{httpServerHelper.GetWebsocketUrl()}{SessionRequestWebSocketHandler.HookUrl}{sessionId}",
                 Trading = httpServerHelper.GetBackendUrl(),
                 Messaging = httpServerHelper.GetBackendUrl(),
                 Main = httpServerHelper.GetBackendUrl(),

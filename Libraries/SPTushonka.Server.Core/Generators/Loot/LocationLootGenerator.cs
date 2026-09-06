@@ -471,7 +471,9 @@ public class LocationLootGenerator(
 
         // Choose items to add to container, factor in weighting + lock money down
         // Filter out items picked that are already in the above `tplsForced` array
-        var chosenTpls = locationConfig.AllowDuplicateItemsInStaticContainers
+        // A container whose count covers its whole pool holds every item once. The Terminal quest
+        // safes rely on that to always contain their keys.
+        var chosenTpls = locationConfig.AllowDuplicateItemsInStaticContainers && itemCountToAdd < containerLootPool.Count
             ? containerLootPool.Draw(itemCountToAdd).Where(tpl => !tplsForced.Contains(tpl) && !counterTrackerHelper.IncrementCount(tpl))
             : containerLootPool
                 .DrawAndRemove(itemCountToAdd, lockList)

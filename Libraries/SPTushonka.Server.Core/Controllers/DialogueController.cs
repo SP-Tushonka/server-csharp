@@ -258,10 +258,12 @@ public class DialogueController(
 
         if (dialogue.Messages == null || dialogue.Messages.Count == 0)
         {
+            // The client only lets the player write when it finds them among the members, so an
+            // empty chat still has to name both sides
             return new GetMailDialogViewResponseData
             {
                 Messages = [],
-                Profiles = [],
+                Profiles = GetProfilesForMail(fullProfile, dialogue.Users),
                 HasMessagesWithRewards = false,
             };
         }

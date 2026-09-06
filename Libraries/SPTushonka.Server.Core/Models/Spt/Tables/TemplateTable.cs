@@ -88,4 +88,7 @@ public record TemplateTable
     /// </summary>
     [JsonPropertyName("locationServices")]
     public required LocationServices LocationServices { get; init; }
+
+    [JsonPropertyName("tutorialLoadout")]
+    public Dictionary<string, List<Item>>? TutorialLoadout { get; init; }
 }

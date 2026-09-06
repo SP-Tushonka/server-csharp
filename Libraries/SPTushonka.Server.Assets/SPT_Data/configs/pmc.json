@@ -224,6 +224,9 @@
       },
       "labyrinth": {
         "pmcBEAR": 1
+      },
+      "laboratory_dark": {
+        "pmcBEAR": 10
       }
     },
     "pmcusec": {
@@ -265,6 +268,9 @@
       },
       "labyrinth": {
         "pmcUSEC": 1
+      },
+      "laboratory_dark": {
+        "pmcUSEC": 1
       }
     }
   },
@@ -288,7 +294,8 @@
       "locationMultiplier": {
         "default": 1,
         "laboratory": 2,
-        "labyrinth": 4
+        "labyrinth": 4,
+        "laboratory_dark": 2
       }
     },
     "vest": {
@@ -302,7 +309,8 @@
       "locationMultiplier": {
         "default": 1,
         "laboratory": 2,
-        "labyrinth": 4
+        "labyrinth": 4,
+        "laboratory_dark": 2
       }
     },
     "backpack": {
@@ -336,7 +344,8 @@
       "locationMultiplier": {
         "default": 1,
         "laboratory": 2,
-        "labyrinth": 4
+        "labyrinth": 4,
+        "laboratory_dark": 2
       }
     }
   },
@@ -3423,6 +3432,288 @@
         ],
         "Supports": [],
         "Time": 360,
+        "TriggerId": "",
+        "TriggerName": ""
+      }
+    ],
+    "laboratory_dark": [
+      {
+        "BossChance": 100,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "2,2,2,1,2,3,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 30.0,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 100,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "2,2,2,1,2",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 30.0,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 100,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "2,2,2,1,2,3,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 30.0,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 100,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "2,2,2,1,2",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 30.0,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 50,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "2,2,2,1,1,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 360,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 50,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "2,2,2,1,1,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 360,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 70,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 720,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 70,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 720,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 60,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 1080,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 60,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 1080,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 60,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 1440,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 60,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2,3",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 1440,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 50,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcUSEC",
+        "BossName": "pmcUSEC",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 1800,
+        "TriggerId": "",
+        "TriggerName": ""
+      },
+      {
+        "BossChance": 50,
+        "BossDifficult": "normal",
+        "BossEscortAmount": "0,1,1,2,2,2,2",
+        "BossEscortDifficult": "normal",
+        "BossEscortType": "pmcBEAR",
+        "BossName": "pmcBEAR",
+        "BossPlayer": false,
+        "BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+        "Delay": 0,
+        "IgnoreMaxBots": true,
+        "RandomTimeSpawn": false,
+        "SpawnMode": [
+          "pve"
+        ],
+        "Supports": null,
+        "Time": 1800,
         "TriggerId": "",
         "TriggerName": ""
       }

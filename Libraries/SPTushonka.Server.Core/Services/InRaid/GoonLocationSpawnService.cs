@@ -65,11 +65,11 @@ public sealed class GoonLocationSpawnService(ISptLogger<GoonLocationSpawnService
     {
         locationBlacklist ??= ["hideout", "develop"];
 
-        // Reset all maps with goons to 0% spawn, ignore blacklisted locations
+        // Only the pool rotates. Maps outside it keep their own Knight spawn
         var allLocations = locationTable.GetDictionary();
-        foreach (var (locationId, location) in allLocations)
+        foreach (var locationId in botConfig.GoonSpawnSystem.LocationPool)
         {
-            if (!locationBlacklist.Contains(locationId) && location?.Base?.BossLocationSpawn is not null)
+            if (!locationBlacklist.Contains(locationId) && allLocations.TryGetValue(locationId, out var location) && location?.Base?.BossLocationSpawn is not null)
             {
                 foreach (var goonSpawn in location.Base.BossLocationSpawn.Where(x => x.BossName == "bossKnight"))
                 {

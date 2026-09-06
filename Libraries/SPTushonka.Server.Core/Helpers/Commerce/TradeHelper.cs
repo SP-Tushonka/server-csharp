@@ -141,6 +141,12 @@ public class TradeHelper(
                     var traderAssorts = traderHelper.GetTraderAssortsByTraderId(buyRequestData.TransactionId)!.Items;
                     var itemPurchased = traderAssorts.FirstOrDefault(item => item.Id == buyRequestData.ItemId);
 
+                    // Season pass offers are appended per profile and carry no stock to track
+                    if (itemPurchased is null)
+                    {
+                        return;
+                    }
+
                     // Ensure purchase does not exceed trader item limit
                     if (itemPurchased!.HasBuyRestrictions())
                     // Will throw error if check fails

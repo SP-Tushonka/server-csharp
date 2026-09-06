@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.BattlePass;
 using SPTarkov.Server.Core.Models.Eft.Seasons;
 
@@ -14,4 +15,7 @@ public record SeasonTable
 
     [JsonPropertyName("perks")]
     public required SeasonalPerksResponse Perks { get; init; }
+
+    [JsonPropertyName("battlePassAssort")]
+    public Dictionary<MongoId, BattlePassAssortOffer>? BattlePassAssort { get; init; }
 }

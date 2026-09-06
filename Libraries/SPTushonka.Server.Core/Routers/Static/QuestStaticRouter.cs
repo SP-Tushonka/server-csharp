@@ -18,11 +18,16 @@ public class QuestStaticRouter(JsonUtil jsonUtil, QuestCallbacks questCallbacks)
             ),
             new RouteAction<EmptyRequestData>(
                 "/client/completable-item/quests/list",
-                async (url, info, sessionID, output, cancellationToken) => await questCallbacks.GetCompletableItemQuests(url, info, sessionID)
+                async (url, info, sessionID, output, cancellationToken) =>
+                    await questCallbacks.GetCompletableItemQuests(url, info, sessionID)
             ),
             new RouteAction<CompleteStoryQuestRequest>(
                 "/client/quest/complete",
                 async (url, info, sessionID, output, cancellationToken) => await questCallbacks.CompleteQuest(url, info, sessionID)
+            ),
+            new RouteAction<FailStoryQuestRequest>(
+                "/client/quest/fail",
+                async (url, info, sessionID, output, cancellationToken) => await questCallbacks.FailQuest(url, info, sessionID)
             ),
             new StreamedRouteAction<ListQuestsRequestData>(
                 "/client/quest/list",
@@ -34,5 +39,4 @@ public class QuestStaticRouter(JsonUtil jsonUtil, QuestCallbacks questCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await questCallbacks.ActivityPeriods(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

@@ -41,6 +41,9 @@ public class QuestHelper(
 )
 {
     protected readonly FrozenSet<QuestStatusEnum> StartedOrAvailToFinish = [QuestStatusEnum.Started, QuestStatusEnum.AvailableForFinish];
+    private static readonly MongoId _guideChapterId = new("68cbd33676fe74b1e80bfd91");
+
+    private Dictionary<MongoId, MongoId>? _taskChapters = [];
 
     /// <summary>
     /// List of <see cref="Quest"/> conditions that require trader sales be tracked and incremented, keyed by <see cref="Quest.Id"/>
@@ -684,6 +687,8 @@ public class QuestHelper(
         // Prepare response to send back to client
         var updatedOutput = output ?? eventOutputHolder.GetOutput(sessionId);
 
+        // The client also fails quests it never accepted once their fail conditions hold
+        AddQuestsToProfile(pmcData, [failRequest.QuestId], [QuestStatusEnum.Fail]);
         UpdateQuestState(pmcData, QuestStatusEnum.Fail, failRequest.QuestId);
         var questRewards = questRewardHelper.ApplyQuestReward(pmcData, failRequest.QuestId, QuestStatusEnum.Fail, sessionId, updatedOutput);
 
@@ -883,11 +888,17 @@ public class QuestHelper(
     /// <param name="statuses">statuses quests should have added to profile</param>
     public void AddAllQuestsToProfile(PmcData pmcProfile, IEnumerable<QuestStatusEnum> statuses)
     {
-        // Iterate over all quests in db
-        foreach (var (key, questData) in templateTable.Quests)
+        AddQuestsToProfile(pmcProfile, templateTable.Quests.Keys, statuses);
+    }
+
+    /// <summary>
+    /// Add the given quests to a profile with the provided statuses, quests already present are left alone
+    /// </summary>
+    public void AddQuestsToProfile(PmcData pmcProfile, IEnumerable<MongoId> questIds, IEnumerable<QuestStatusEnum> statuses)
+    {
+        foreach (var key in questIds)
         {
-            // Quest from db matches quests in profile, skip
-            if (pmcProfile.Quests!.Any(x => x.QId == questData.Id))
+            if (pmcProfile.Quests!.Any(x => x.QId == key))
             {
                 continue;
             }
@@ -1069,6 +1080,12 @@ public class QuestHelper(
             return [];
         }
 
+        // A freshly registered account lists its profiles before it has a character
+        if (profile.Quests is null)
+        {
+            return [];
+        }
+
         var allQuests = GetQuestsFromDb();
         foreach (var quest in allQuests)
         {
@@ -1128,7 +1145,13 @@ public class QuestHelper(
             // Quest has no conditions, standing or loyalty conditions, add to visible quest list
             if (questRequirements.Count == 0 && loyaltyRequirements.Count == 0 && standingRequirements.Count == 0)
             {
-                quest.SptStatus = StartStorylineTask(profile, quest) ?? QuestStatusEnum.AvailableForStart;
+                var storyStatus = ResolveStorylineStatus(profile, quest, false);
+                if (storyStatus is null)
+                {
+                    continue;
+                }
+
+                quest.SptStatus = storyStatus.Value;
                 questsToShowPlayer.Add(quest);
                 continue;
             }
@@ -1202,44 +1225,86 @@ public class QuestHelper(
 
             if (haveCompletedPreviousQuest && passesLoyaltyRequirements && passesStandingRequirements)
             {
-                quest.SptStatus = StartStorylineTask(profile, quest) ?? QuestStatusEnum.AvailableForStart;
+                var storyStatus = ResolveStorylineStatus(profile, quest, questRequirements.Count > 0);
+                if (storyStatus is null)
+                {
+                    continue;
+                }
+
+                quest.SptStatus = storyStatus.Value;
                 questsToShowPlayer.Add(quest);
             }
+        }
+
+        // A chapter started by one of its tasks above may have been skipped earlier in the loop
+        foreach (var profileQuest in profile.Quests)
+        {
+            if (!IsStoryChapter(profileQuest.QId) || questsToShowPlayer.Any(shown => shown.Id == profileQuest.QId))
+            {
+                continue;
+            }
+
+            var chapter = allQuests.FirstOrDefault(quest => quest.Id == profileQuest.QId);
+            if (chapter is null)
+            {
+                continue;
+            }
+
+            chapter.SptStatus = profileQuest.Status;
+            questsToShowPlayer.Add(chapter);
         }
 
         return UpdateQuestsForGameEdition(cloner.Clone(questsToShowPlayer)!, profile.Info!.GameVersion!);
     }
 
-    protected QuestStatusEnum? StartStorylineTask(PmcData profile, Models.Eft.Common.Tables.Quest quest)
+    // Live starts the Tour chapter itself seconds after the character is created. Every other chapter
+    // starts together with the first of its tasks unlocked by a finished quest, and stays hidden until then.
+    // Returns the status a quest should be shown with, or null when it must stay hidden.
+    protected QuestStatusEnum? ResolveStorylineStatus(PmcData profile, Models.Eft.Common.Tables.Quest quest, bool unlockedByQuest)
     {
         if (IsStoryChapter(quest.Id))
         {
-            return null;
+            return quest.Id == _guideChapterId ? StartStorylineQuest(profile, quest.Id) : null;
         }
 
-        if (!ChapterIsStarted(profile, quest.Id))
+        var chapterId = ChapterOf(quest.Id);
+        if (chapterId is null)
         {
-            return null;
+            return QuestStatusEnum.AvailableForStart;
         }
 
-        if ((quest.Conditions?.AvailableForStart?.Count ?? 0) == 0)
+        var chapterStarted =
+            profile.Quests?.Any(profileQuest => profileQuest.QId == chapterId && profileQuest.Status == QuestStatusEnum.Started) ?? false;
+
+        // Tasks not gated on another quest wait for the player once their chapter is running
+        if (!unlockedByQuest)
         {
-            return null;
+            return chapterStarted ? QuestStatusEnum.AvailableForStart : null;
         }
 
+        if (!chapterStarted)
+        {
+            StartStorylineQuest(profile, chapterId.Value);
+        }
+
+        return StartStorylineQuest(profile, quest.Id);
+    }
+
+    protected QuestStatusEnum StartStorylineQuest(PmcData profile, MongoId questId)
+    {
         profile.Quests ??= [];
 
-        if (profile.Quests.Any(profileQuest => profileQuest.QId == quest.Id))
+        var existing = profile.Quests.FirstOrDefault(profileQuest => profileQuest.QId == questId);
+        if (existing is not null)
         {
-            return null;
+            return existing.Status;
         }
 
         var startedAt = timeUtil.GetTimeStamp();
-
         profile.Quests.Add(
             new QuestStatus
             {
-                QId = quest.Id,
+                QId = questId,
                 StartTime = startedAt,
                 Status = QuestStatusEnum.Started,
                 StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Started, startedAt } },
@@ -1255,26 +1320,27 @@ public class QuestHelper(
         return templateTable.MainQuestNotes.Any(note => note.ChapterId == questId);
     }
 
-    /// <summary>Is the chapter that lists this quest as one of its tasks currently started.</summary>
-    protected bool ChapterIsStarted(PmcData profile, MongoId taskId)
+    /// <summary>The chapter that lists this quest as one of its tasks, if any.</summary>
+    protected MongoId? ChapterOf(MongoId taskId)
     {
-        foreach (var chapterId in templateTable.MainQuestNotes.Select(note => note.ChapterId).Distinct())
-        {
-            var chapter = templateTable.Quests.GetValueOrDefault(new MongoId(chapterId));
-            var listsTask = chapter
-                ?.Conditions?.AvailableForFinish?.Any(condition =>
-                    condition.ConditionType == "Quest" && condition.Target?.Item == taskId
-                );
+        _taskChapters ??= templateTable
+            .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
+            .Distinct()
+            .SelectMany(chapterId =>
+                (templateTable.Quests.GetValueOrDefault(chapterId)?.Conditions?.AvailableForFinish ?? [])
+                    .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
+                    .Select(condition => (Task: new MongoId(condition.Target!.Item!), Chapter: chapterId))
+            )
+            .DistinctBy(pair => pair.Task)
+            .ToDictionary(pair => pair.Task, pair => pair.Chapter);
 
-            if (listsTask ?? false)
-            {
-                return profile.Quests?.Any(profileQuest =>
-                        profileQuest.QId == new MongoId(chapterId) && profileQuest.Status == QuestStatusEnum.Started
-                    ) ?? false;
-            }
+        // A conditional expression would turn the null into an empty MongoId through the string conversion
+        if (!_taskChapters.TryGetValue(taskId, out var chapterId))
+        {
+            return null;
         }
 
-        return false;
+        return chapterId;
     }
 
     /// <summary>
@@ -1435,7 +1501,7 @@ public class QuestHelper(
         {
             return;
         }
-        
+
         if (quest.TraderId == Models.Enums.Traders.STORYLINE)
         {
             return;

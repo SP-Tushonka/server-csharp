@@ -14,9 +14,11 @@ using SPTarkov.Server.Core.Models.Eft.Match;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Launcher;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Profile;
+using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace SPTarkov.Server.Core.Controllers;
 
@@ -28,7 +30,9 @@ public class ProfileController(
     PlayerScavGenerator playerScavGenerator,
     ProfileHelper profileHelper,
     QuestHelper questHelper,
-    ItemHelper itemHelper
+    ItemHelper itemHelper,
+    TemplateTable templateTable,
+    ICloner cloner
 )
 {
     private const string RegularGameMode = "regular";
@@ -118,6 +122,67 @@ public class ProfileController(
         questHelper.GetClientQuests(sessionId);
 
         return profileHelper.GetCompleteProfile(sessionId);
+    }
+
+    /// <summary>
+    ///     Handle /client/tutor-game/profile. Live plays the Tour raid with a fixed kit in place of the
+    ///     player's gear, keeping the secure container, the melee weapon and the pockets, which differ
+    ///     by edition, and filling the pockets from the kit. The swap is not saved, the raid end leaves
+    ///     the profile untouched.
+    /// </summary>
+    public PmcData? GetTutorGameProfile(MongoId sessionId)
+    {
+        var pmcData = profileHelper.GetPmcProfile(sessionId);
+        var loadout = templateTable.TutorialLoadout?.GetValueOrDefault(pmcData?.Info?.Side?.ToLowerInvariant() ?? "");
+        if (pmcData?.Inventory?.Equipment is null || loadout is null)
+        {
+            return pmcData;
+        }
+
+        var profile = cloner.Clone(pmcData);
+        var equipmentId = profile.Inventory.Equipment.Value;
+        var pockets = profile.Inventory.Items.FirstOrDefault(item => item.ParentId == equipmentId && item.SlotId == "Pockets");
+        var kept = profile
+            .Inventory.Items.Where(item => item.ParentId == equipmentId && item.SlotId is "SecuredContainer" or "Scabbard")
+            .SelectMany(item => profile.Inventory.Items.GetItemWithChildren(item.Id))
+            .Select(item => item.Id)
+            .ToHashSet();
+        kept.Add(equipmentId);
+        if (pockets is not null)
+        {
+            kept.Add(pockets.Id);
+        }
+
+        var worn = profile
+            .Inventory.Items.GetItemWithChildren(equipmentId)
+            .Select(item => item.Id)
+            .Where(id => !kept.Contains(id))
+            .ToHashSet();
+        profile.Inventory.Items.RemoveAll(item => worn.Contains(item.Id));
+
+        var gear = cloner.Clone(loadout).ReplaceIDs().ToList();
+        var root = gear.First(item => item.ParentId is null);
+        foreach (var item in gear.Where(item => item.ParentId == root.Id))
+        {
+            item.ParentId = equipmentId;
+        }
+
+        gear.Remove(root);
+        var kitPockets = gear.FirstOrDefault(item => item.ParentId == equipmentId && item.SlotId == "Pockets");
+        if (pockets is not null && kitPockets is not null)
+        {
+            foreach (var item in gear.Where(item => item.ParentId == kitPockets.Id))
+            {
+                item.ParentId = pockets.Id;
+            }
+
+            gear.Remove(kitPockets);
+        }
+
+        profile.Inventory.Items.AddRange(gear);
+        profile.Inventory.FastPanel = [];
+
+        return profile;
     }
 
     /// <summary>

@@ -20,6 +20,7 @@ public class GiftService(
     ServerLocalisationService serverLocalisationService,
     TimeUtil timeUtil,
     ProfileHelper profileHelper,
+    TarcoinStoreService tarcoinStoreService,
     GiftsConfig giftsConfig
 )
 {
@@ -161,6 +162,11 @@ public class GiftService(
             }
 
             mailSendService.SendMessageToPlayer(details);
+        }
+
+        if (giftData.Tarcoins > 0)
+        {
+            tarcoinStoreService.Credit(playerId, giftData.Tarcoins.Value);
         }
 
         profileHelper.FlagGiftReceivedInProfile(playerId, giftId, maxGiftsToSendCount);

@@ -113,6 +113,12 @@ public class QuestCallbacks(
         return new ValueTask<string>(httpResponseUtil.GetBody(questController.CompleteStoryQuest(sessionID, info)));
     }
 
+    /// <summary>Handle client/quest/fail</summary>
+    public ValueTask<string> FailQuest(string url, FailStoryQuestRequest info, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetBody(questController.FailStoryQuest(sessionID, info)));
+    }
+
     /// <summary>
     ///     Handle client/completable-item/quests/list
     /// </summary>
