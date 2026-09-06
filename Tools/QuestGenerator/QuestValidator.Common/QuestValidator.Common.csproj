@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\Build.props" />
+
+  <PropertyGroup>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\SPTushonka.Common\SPTushonka.Common.csproj" />
+    <ProjectReference Include="..\..\..\Libraries\SPTushonka.Server.Core\SPTushonka.Server.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuestValidator.Models\QuestValidator.Models.csproj" />
+  </ItemGroup>
+</Project>

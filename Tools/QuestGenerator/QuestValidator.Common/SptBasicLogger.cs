@@ -1,0 +1,68 @@
+﻿using System;
+using Microsoft.Extensions.Logging;
+using Spectre.Console;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.DI.Annotations;
+
+namespace QuestValidator.Common;
+
+[Injectable]
+public class SptBasicLogger<T> : ISptLogger<T>
+{
+    private readonly string categoryName;
+
+    public SptBasicLogger()
+    {
+        categoryName = typeof(T).Name;
+    }
+
+    public void LogWithColor(string data, Color? textColor = null, Color? backgroundColor = null, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Success(string data, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Error(string data, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Warning(string data, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Info(string data, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Debug(string data, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Critical(string data, Exception? ex = null)
+    {
+        Console.WriteLine($"{categoryName}: {data}");
+    }
+
+    public void Log(LogLevel level, string data, Color? textColor = null, Color? backgroundColor = null, Exception? ex = null)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsLogEnabled(LogLevel level)
+    {
+        return true;
+    }
+
+    public void DumpAndStop()
+    {
+        throw new NotImplementedException();
+    }
+}

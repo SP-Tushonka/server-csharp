@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\Build.props" />
+
+  <PropertyGroup>
+    <Nullable>disable</Nullable>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuestValidator.Common\QuestValidator.Common.csproj" />
+    <ProjectReference Include="..\QuestValidator.Models\QuestValidator.Models.csproj" />
+  </ItemGroup>
+</Project>

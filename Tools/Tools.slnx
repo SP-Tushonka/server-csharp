@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/BotGenerator/">
+    <Project Path="BotGenerator\Common.Models\Common.Models.csproj" />
+    <Project Path="BotGenerator\Common\Common.csproj" />
+    <Project Path="BotGenerator\Generator\Generator.csproj" />
+    <Project Path="BotGenerator\PMCGenerator\PMCGenerator.csproj" />
+  </Folder>
+  <Folder Name="/LootDumpProcessor/">
+    <Project Path="LootDumpProcessor\LootDumpProcessor.csproj" />
+  </Folder>
+  <Folder Name="/QuestGenerator/">
+    <Project Path="QuestGenerator\DumpCleaner\DumpCleaner.csproj" />
+    <Project Path="QuestGenerator\GenerateQuestFile\GenerateQuestFile.csproj" />
+    <Project Path="QuestGenerator\QuestValidator.Common\QuestValidator.Common.csproj" />
+    <Project Path="QuestGenerator\QuestValidator.Models\QuestValidator.Models.csproj" />
+    <Project Path="QuestGenerator\QuestValidator\QuestValidator.csproj" />
+  </Folder>
+  <Project Path="AssortGenerator\AssortGenerator.csproj" />
+  <Project Path="HideoutCraftQuestIdGenerator\HideoutCraftQuestIdGenerator.csproj" />
+  <Project Path="MongoIdTplGenerator\MongoIdTplGenerator.csproj" />
+</Solution>

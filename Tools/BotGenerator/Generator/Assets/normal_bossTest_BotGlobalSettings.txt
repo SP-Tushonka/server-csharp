@@ -1,0 +1,116 @@
+﻿{
+  "Lay": {
+  },
+  "Aiming": {
+    "MAX_AIM_PRECICING": 2.0,
+    "BETTER_PRECICING_COEF": 0.9,
+    "MAX_AIMING_UPGRADE_BY_TIME": 0.4,
+    "MAX_TIME_DISCARD_AIM_SEC": 0.6,
+    "XZ_COEF": 0.1,
+    "BOTTOM_COEF": 0.1,
+    "BASE_SHIEF": 0.01,
+    "TIME_COEF_IF_MOVE": 1.1,
+    "UnderbarrelLauncherAiming": {
+      "MAX_AIM_PRECICING": 2.0,
+      "MAX_AIMING_UPGRADE_BY_TIME": 0.4,
+      "MAX_TIME_DISCARD_AIM_SEC": 0.6,
+      "BOTTOM_COEF": 0.1,
+      "TIME_COEF_IF_MOVE": 1.1
+    }
+  },
+  "Look": {
+    "MAX_VISION_GRASS_METERS": 8.1,
+    "NO_GREEN_DIST": 5,
+    "NO_GRASS_DIST": 5,
+    "GOAL_TO_FULL_DISSAPEAR_GREEN": 1.5
+  },
+  "Shoot": {
+    "RECOIL_TIME_NORMALIZE": 1.0,
+    "RECOIL_PER_METER": 0.03,
+    "MAX_RECOIL_PER_METER": 0.01,
+    "HORIZONT_RECOIL_COEF": 0.01,
+    "WAIT_NEXT_SINGLE_SHOT": 0.2,
+    "WAIT_NEXT_SINGLE_SHOT_LONG_MIN": 0.4,
+    "FAR_DIST_ENEMY_SQR": 400.0,
+    "RUN_DIST_NO_AMMO_SQRT": 625.0,
+    "NOT_TO_SEE_ENEMY_TO_WANT_RELOAD_PERCENT": 0.5,
+    "CHANCE_TO_CHANGE_WEAPON": 0.0,
+    "CHANCE_TO_CHANGE_WEAPON_WITH_HELMET": 0.0
+  },
+  "Move": {
+    "REACH_DIST_RUN": 0.8,
+    "UPDATE_TIME_RECAL_WAY": 7.0,
+    "RUN_TO_COVER_MIN": 2.0,
+    "RUN_IF_CANT_SHOOT": true,
+    "RUN_IF_GAOL_FAR_THEN": 10.0,
+    "AT": [
+      "normal",
+      "normal",
+      "normal",
+      "regular",
+      "regular"
+    ]
+  },
+  "Grenade": {
+    "RUN_AWAY": 22.0,
+    "RUN_AWAY_SQR": 484.0,
+    "FLASH_GRENADE_TIME_COEF": 0.1,
+    "GrenadePrecision": 0.1,
+    "WAIT_TIME_TURN_AWAY": 0.2,
+    "CHEAT_START_GRENADE_PLACE": true,
+    "STRAIGHT_CONTACT_DELTA_SEC": 3.0
+  },
+  "Change": {
+    "FLASH_VISION_DIST": 0.05,
+    "STUN_HEARING": 0.01
+  },
+  "Cover": {
+    "SOUND_TO_GET_SPOTTED": 2.0,
+    "DIST_CHECK_SFETY": 9.0,
+    "LOOK_LAST_ENEMY_POS_MOVING": 1.5,
+    "LOOK_TO_HIT_POINT_IF_LAST_ENEMY": 3.0,
+    "MAX_SPOTTED_TIME_SEC": 85.0,
+    "DELTA_SEEN_FROM_COVE_LAST_POS": 0.1,
+    "RUN_COVER_IF_CAN_AND_NO_ENEMIES": true,
+    "MIN_DEFENCE_LEVEL": 22.0,
+    "REWORK_NOT_TO_SHOOT": false,
+    "DELETE_POINTS_BEHIND_ENEMIES": false,
+    "CHECK_CLOSEST_FRIEND": true
+  },
+  "Patrol": {
+    "MIN_TALK_DELAY": 35.0,
+    "CHANGE_WAY_TIME": 325.1,
+    "MAX_YDIST_TO_START_WARN_REQUEST_TO_REQUESTER": 5.0
+  },
+  "Hearing": {
+    "BOT_CLOSE_PANIC_DIST": 5.0,
+    "CHANCE_TO_HEAR_SIMPLE_SOUND_0_1": 0.88,
+    "CLOSE_DIST": 16.0,
+    "LOOK_ONLY_DANGER_DELTA": 9.0
+  },
+  "Mind": {
+    "MAX_AGGRO_BOT_DIST": 300.0,
+    "CHANCE_FUCK_YOU_ON_CONTACT_100": 0.0,
+    "CAN_RECEIVE_PLAYER_REQUESTS_SAVAGE": false,
+    "SUSPETION_POINT_CHANCE_ADD100": 0.0,
+    "ATTACK_ENEMY_IF_PROTECT_DELTA_LAST_TIME_SEEN": 1.5,
+    "DOG_FIGHT_OUT": 6.0,
+    "SHOOT_INSTEAD_DOG_FIGHT": 9.0,
+    "REVENGE_BOT_TYPES": ["exUsec", "gifter", "bossKnight", "followerBigPipe", "followerBirdEye"]
+  },
+  "Boss": {
+    "KILLA_SEARCH_METERS": 20.0,
+    "SHALL_WARN": false,
+    "KOJANIY_DIST_ENEMY_TOO_CLOSE": 17.0
+  },
+  "Core": {
+    "VisibleAngle": 140.0,
+    "ScatteringPerMeter": 0.01,
+    "DamageCoeff": 1.0,
+    "CanGrenade": false,
+    "AccuratySpeed": 0.2,
+    "WaitInCoverBetweenShotsSec": 1.0
+  },
+  "Scattering": {
+  }
+}

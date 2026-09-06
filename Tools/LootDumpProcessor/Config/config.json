@@ -1,0 +1,63 @@
+{
+  "serverItemsJsonLocation": "F:\\User Profile\\Documents\\SPT\\server-csharp\\Libraries\\SPTushonka.Server.Assets\\SPT_Data\\database\\templates\\items.json",
+  "threads": 10,
+  "threadPoolingTimeoutMs": 1000,
+  "manualGarbageCollectionCalls": false,
+  "dumpProcessorConfig": {
+    "spawnContainerChanceIncludeAfterDate": "2023-08-10 00:00:01"
+  },
+  "loggerConfig": {
+    "logLevel": "Info",
+    "queueLoggerPoolingTimeoutMs": 500
+  },
+  "readerConfig": {
+    "intakeReaderConfig": {
+      "maxDumpsPerMap": 5000,
+      "readerType": "Json",
+      "ignoredDumpLocations": [
+        "Hideout"
+      ]
+    },
+    "thresholdDate": "2023-01-08",
+    "acceptedFileExtensions": [
+      "json"
+    ],
+    "processSubFolders": true,
+    "fileFilters": [
+      "JsonDump"
+    ]
+  },
+  "processorConfig": {
+    "spawnPointToleranceForForced": 99.5,
+    "looseLootCountTolerancePercentage": 75
+  },
+  "collectorConfig": {
+    "collectorType": "Dump",
+    "maxEntitiesBeforeDumping": 1000
+  },
+  "containerIgnoreList": {
+    "tarkovstreets": [
+      "container_City_SW_04_DesignStuff_00002",
+      "Lootable_00063"
+    ]
+  },
+  "mapsToProcess": [
+    "bigmap",
+    "factory4_day",
+    "factory4_night",
+    "interchange",
+    "laboratory",
+    "laboratory_dark",
+    "lighthouse",
+    "rezervbase",
+    "sandbox",
+    "sandbox_start",
+    "sandbox_high",
+    "shoreline",
+    "tarkovstreets",
+    "woods",
+    "labyrinth",
+    "terminal",
+    "icebreaker"
+  ]
+}

@@ -74,7 +74,7 @@ public class HideoutCraftQuestIdGenerator(
                     QuestId = questId,
                     ItemTemplate = reward.Items[0].Template,
                     Quantity = 0,
-                    QuestName = quest.QuestName,
+                    QuestName = quest.Name,
                 };
 
                 // Loop over root items only, ignore children

@@ -1,0 +1,26 @@
+---
+static_weapon_ids:
+  # ids for static weapons
+  - 5d52cc5ba4b9367408500062
+  - 5cdeb229d7f00c000e7ce174
+
+forced_items:
+  bigmap:
+  - containerId: container_custom_DesignStuff_00060 # unknown key
+    itemTpl: 593962ca86f774068014d9af
+
+  tarkovstreets:
+  - containerId: container_City_SE_02_DesignStuff_00091 # Backup hideout key
+    itemTpl: 6398fd8ad3de3849057f5128
+
+  sandbox:
+  - containerId: container_Test_for_export_00002 # Lab technician body
+    itemTpl: 658199aa38c79576a2569e13 # TerraGroup science office key
+  - containerId: container_Sandbox_Design_Stuff_00008 # dead body of scav near exit
+    itemTpl: 6217726288ed9f0845317459 # RSP-30 reactive signal cartridge (Green)
+
+  sandbox_high:
+  - containerId: container_Test_for_export_00002 # Lab technician body
+    itemTpl: 658199aa38c79576a2569e13 # TerraGroup science office key
+  - containerId: container_Sandbox_Design_Stuff_00008 # dead body of scav near exit
+    itemTpl: 6217726288ed9f0845317459 # RSP-30 reactive signal cartridge (Green)
