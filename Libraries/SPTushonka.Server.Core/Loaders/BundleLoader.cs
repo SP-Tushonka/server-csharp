@@ -51,6 +51,7 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
         var total = manifests.Sum(entry => entry.Entries.Count);
         var ok = 0;
         var missing = 0;
+        var invalid = 0;
 
         await AnsiConsole
             .Progress()
@@ -86,27 +87,36 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
                             else
                             {
                                 var entry = await bundleHashCacheService.GetOrCalculateHashAsync(bundleLocalPath, ct);
-                                AddBundle(
-                                    bundleManifest.Key,
-                                    new BundleInfo
-                                    {
-                                        ModPath = relativeModPath,
-                                        Bundle = bundleManifest,
-                                        Crc = entry.Crc,
-                                        Size = entry.Size,
-                                        ModifiedUtcTicks = entry.ModifiedUtcTicks,
-                                    }
-                                );
-                                Interlocked.Increment(ref ok);
+
+                                if (entry is null)
+                                {
+                                    logger.Error($"Bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name} is not a valid Unity asset bundle, skipping");
+                                    Interlocked.Increment(ref invalid);
+                                }
+                                else
+                                {
+                                    AddBundle(
+                                        bundleManifest.Key,
+                                        new BundleInfo
+                                        {
+                                            ModPath = relativeModPath,
+                                            Bundle = bundleManifest,
+                                            Crc = entry.Crc,
+                                            Size = entry.Size,
+                                            ModifiedUtcTicks = entry.ModifiedUtcTicks,
+                                        }
+                                    );
+                                    Interlocked.Increment(ref ok);
+                                }
                             }
 
                             progressTask.Increment(1);
-                            progressTask.Description = $"Loading bundles for {mod.ModMetadata.Name} (ok: {ok}, missing: {missing})";
+                            progressTask.Description = $"Loading bundles for {mod.ModMetadata.Name} (ok: {ok}, missing: {missing}, invalid: {invalid})";
                         }
                     );
                 }
 
-                progressTask.Description = $"Loaded bundles from {manifests.Count} mods (ok: {ok}, missing: {missing})";
+                progressTask.Description = $"Loaded bundles from {manifests.Count} mods (ok: {ok}, missing: {missing}, invalid: {invalid})";
             });
 
         await bundleHashCacheService.WriteCacheAsync(cancellationToken);

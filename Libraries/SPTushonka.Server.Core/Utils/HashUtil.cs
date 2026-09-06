@@ -29,15 +29,29 @@ public sealed class HashUtil(RandomUtil _randomUtil)
     /// <returns>The CRC32 hash as a uint</returns>
     public async Task<uint> GenerateCrc32ForFileAsync(string filePath, CancellationToken cancellationToken = default)
     {
+        await using var fileStream = File.OpenRead(filePath);
+
+        return await GenerateCrc32ForFileAsync(fileStream, cancellationToken);
+    }
+
+    /// <summary>
+    /// Generates a CRC32 hash from the stream's current position to its end, reading in chunks using a pooled buffer to reduce allocations.
+    /// </summary>
+    /// <param name="fileStream">The open file stream</param>
+    /// <param name="cancellationToken">
+    /// The <see cref="CancellationToken"/> that can be used to cancel the hashing operation.
+    /// </param>
+    /// <returns>The CRC32 hash as a uint</returns>
+    public async Task<uint> GenerateCrc32ForFileAsync(FileStream fileStream, CancellationToken cancellationToken = default)
+    {
         var crc = new Crc32();
-        await using var stream = File.OpenRead(filePath);
 
         // Rent from pool to avoid repeated allocations for each file read
         var buffer = ArrayPool<byte>.Shared.Rent(81920);
         try
         {
             int bytesRead;
-            while ((bytesRead = await stream.ReadAsync(buffer, cancellationToken)) > 0)
+            while ((bytesRead = await fileStream.ReadAsync(buffer, cancellationToken)) > 0)
             {
                 crc.Append(buffer.AsSpan(0, bytesRead));
             }
