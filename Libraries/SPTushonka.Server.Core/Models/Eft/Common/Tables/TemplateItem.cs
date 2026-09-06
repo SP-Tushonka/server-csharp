@@ -18,7 +18,7 @@ public record TemplateItem
     public string? Name
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     [JsonPropertyName("_parent")]
@@ -38,7 +38,7 @@ public record TemplateItem
     public string? Prototype
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public record TemplateItemProperties
     public string? BackgroundColor
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     // Type confirmed via client
@@ -131,7 +131,7 @@ public record TemplateItemProperties
     public string? ItemSound
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     [JsonPropertyName("LeftHandItem")]

@@ -269,7 +269,7 @@ public record QuestCondition
     public required string ConditionType
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     [JsonPropertyName("epicGamesId")]
