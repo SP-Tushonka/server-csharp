@@ -378,24 +378,19 @@ public class GameController(
             // Look for effects
             foreach (var (effectId, effect) in bodyPart.Effects)
             {
-                // remove effects below 1, .e.g. bleeds at -1
+                // Effects below 1 are intentional (e.g. -1). Do not modify or remove them
                 if (effect.Time < 1)
                 {
-                    // More than 30 minutes has passed
-                    if (diffSeconds > timeUtil.GetMinutesAsSeconds(30))
-                    {
-                        bodyPart.Effects.Remove(effectId);
-                    }
-
                     continue;
                 }
 
-                // Decrement effect time value by difference between current time and time health was last updated
+                // Decrease the effect duration by the elapsed time
                 effect.Time -= diffSeconds;
+
+                // Effect has now expired
                 if (effect.Time < 1)
-                // Effect time was sub 1, set floor it can be
                 {
-                    effect.Time = 1;
+                    bodyPart.Effects.Remove(effectId);
                 }
             }
         }
