@@ -566,9 +566,9 @@ public class LootGenerator(
             var rewardItemPool = templateTable.Items.Values.Where(item =>
                 item.Parent == rewardKey
                 && string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase)
-                && itemFilterService.IsItemBlacklisted(item.Id)
-                && !(containerSettings.AllowBossItems || itemFilterService.IsBossItem(item.Id))
-                && item.Properties.QuestItem is null
+                && !itemFilterService.IsItemBlacklisted(item.Id)
+                && (containerSettings.AllowBossItems || !itemFilterService.IsBossItem(item.Id))
+                && item.Properties.QuestItem != true
             );
 
             if (!rewardItemPool.Any())
