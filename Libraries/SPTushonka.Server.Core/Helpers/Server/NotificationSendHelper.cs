@@ -31,7 +31,9 @@ public class NotificationSendHelper(
     {
         if (logger.IsLogEnabled(LogLevel.Debug))
         {
-            logger.Debug($"Send message for {sessionId} started, message: {jsonUtil.Serialize(notificationMessage)}");
+            logger.Debug(
+                $"Send message for {sessionId} started, message: {jsonUtil.Serialize(notificationMessage, notificationMessage.GetType())}"
+            );
         }
 
         if (sptWebSocketConnectionHandler.IsWebSocketConnected(sessionId))
