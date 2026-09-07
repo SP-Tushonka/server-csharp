@@ -37,7 +37,7 @@ public class NotifierCallbacks(
          */
         notifierController
             .NotifyAsync(tmpSessionID)
-            .ContinueWith(messages => messages.Result.Select(message => string.Join("\n", jsonUtil.Serialize(message))))
+            .ContinueWith(messages => messages.Result.Select(message => string.Join("\n", jsonUtil.Serialize(message, message.GetType()))))
             .ContinueWith(text => httpServerHelper.SendTextJson(resp, text.Result));
     }
 
