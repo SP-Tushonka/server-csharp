@@ -2829,245 +2829,6 @@
     "parentArea": null
   },
   {
-    "_id": "5d484fc8654e760065037abf",
-    "type": 6,
-    "enabled": true,
-    "needsFuel": true,
-    "takeFromSlotLocked": false,
-    "craftGivesExp": true,
-    "displayLevel": true,
-    "requirements": [],
-    "stages": {
-      "0": {
-        "requirements": [],
-        "bonuses": [],
-        "slots": 0,
-        "constructionTime": 0.0,
-        "description": "",
-        "container": "",
-        "autoUpgrade": false,
-        "displayInterface": true,
-        "improvements": [],
-        "globalCounterId": null
-      },
-      "1": {
-        "requirements": [
-          {
-            "templateId": "59e35cbb86f7741778269d83",
-            "count": 4,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "templateId": "57347c5b245977448d35f6e1",
-            "count": 5,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "templateId": "57347c77245977448d35f6e2",
-            "count": 5,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "templateId": "57347c1124597737fb1379e3",
-            "count": 3,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          }
-        ],
-        "bonuses": [
-          {
-            "id": "64f5b9e5fa34f11b380756c8",
-            "value": 10.0,
-            "passive": true,
-            "production": false,
-            "visible": true,
-            "type": "HydrationRegeneration"
-          }
-        ],
-        "slots": 0,
-        "constructionTime": 0.0,
-        "description": "",
-        "container": "",
-        "autoUpgrade": false,
-        "displayInterface": true,
-        "improvements": [],
-        "globalCounterId": null
-      },
-      "2": {
-        "requirements": [
-          {
-            "templateId": "59e35cbb86f7741778269d83",
-            "count": 6,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "templateId": "5d1b2fa286f77425227d1674",
-            "count": 2,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "templateId": "590c2e1186f77425357b6124",
-            "count": 2,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "skillName": "Attention",
-            "skillLevel": 3,
-            "type": "Skill"
-          },
-          {
-            "areaType": 10,
-            "requiredLevel": 1,
-            "type": "Area"
-          },
-          {
-            "areaType": 6,
-            "requiredLevel": 1,
-            "type": "Area"
-          },
-          {
-            "templateId": "5e2af29386f7746d4159f077",
-            "count": 5,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          }
-        ],
-        "bonuses": [
-          {
-            "id": "64f5b9e5fa34f11b380756ca",
-            "value": 20.0,
-            "passive": true,
-            "production": false,
-            "visible": true,
-            "type": "HydrationRegeneration"
-          }
-        ],
-        "slots": 0,
-        "constructionTime": 7200.0,
-        "description": "",
-        "container": "",
-        "autoUpgrade": false,
-        "displayInterface": true,
-        "improvements": [],
-        "globalCounterId": null
-      },
-      "3": {
-        "requirements": [
-          {
-            "templateId": "5449016a4bdc2d6f028b456f",
-            "count": 20000,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "areaType": 4,
-            "requiredLevel": 3,
-            "type": "Area"
-          },
-          {
-            "templateId": "5af04b6486f774195a3ebb49",
-            "count": 2,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": true,
-            "type": "Item"
-          },
-          {
-            "templateId": "590c35a486f774273531c822",
-            "count": 10,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": false,
-            "type": "Item"
-          },
-          {
-            "areaType": 6,
-            "requiredLevel": 2,
-            "type": "Area"
-          },
-          {
-            "areaType": 5,
-            "requiredLevel": 2,
-            "type": "Area"
-          },
-          {
-            "templateId": "60391afc25aff57af81f7085",
-            "count": 1,
-            "isFunctional": false,
-            "isEncoded": false,
-            "isSpawnedInSession": true,
-            "type": "Item"
-          }
-        ],
-        "bonuses": [
-          {
-            "id": "64f5b9e5fa34f11b380756cd",
-            "value": 30.0,
-            "passive": true,
-            "production": false,
-            "visible": true,
-            "type": "HydrationRegeneration"
-          },
-          {
-            "id": "64f5b9e5fa34f11b380756ce",
-            "value": 1.0,
-            "passive": true,
-            "production": false,
-            "visible": false,
-            "filter": [
-              "5d1b385e86f774252167b98a"
-            ],
-            "icon": null,
-            "type": "AdditionalSlots"
-          },
-          {
-            "id": "5d836517a57db3778f31fde7",
-            "value": 0.0,
-            "passive": true,
-            "production": false,
-            "visible": true,
-            "icon": "/files/Hideout/icon_hideout_createitem_generic.png",
-            "type": "TextBonus"
-          }
-        ],
-        "slots": 0,
-        "constructionTime": 57600.0,
-        "description": "",
-        "container": "",
-        "autoUpgrade": false,
-        "displayInterface": true,
-        "improvements": [],
-        "globalCounterId": null
-      }
-    },
-    "enableAreaRequirements": false,
-    "parentArea": null
-  },
-  {
     "_id": "5d484fcd654e7668ec2ec322",
     "type": 7,
     "enabled": true,
@@ -5962,6 +5723,246 @@
         "constructionTime": 86400.0,
         "description": "",
         "container": "64381b6e44b37a080d0245b9",
+        "autoUpgrade": false,
+        "displayInterface": true,
+        "improvements": [],
+        "globalCounterId": null
+      }
+    },
+    "enableAreaRequirements": false,
+    "parentArea": null
+  },
+  {
+    "_id": "5d484fc8654e760065037abf",
+    "type": 6,
+    "enabled": true,
+    "needsFuel": true,
+    "takeFromSlotLocked": false,
+    "craftGivesExp": true,
+    "displayLevel": true,
+    "requirements": [],
+    "stages": {
+      "0": {
+        "requirements": [],
+        "bonuses": [],
+        "slots": 0,
+        "constructionTime": 0.0,
+        "description": "",
+        "container": "",
+        "autoUpgrade": false,
+        "displayInterface": true,
+        "improvements": [],
+        "globalCounterId": null
+      },
+      "1": {
+        "requirements": [
+          {
+            "templateId": "59e35cbb86f7741778269d83",
+            "count": 4,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "templateId": "57347c5b245977448d35f6e1",
+            "count": 5,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "templateId": "57347c77245977448d35f6e2",
+            "count": 5,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "templateId": "57347c1124597737fb1379e3",
+            "count": 3,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          }
+        ],
+        "bonuses": [
+          {
+            "id": "64f5b9e5fa34f11b380756c8",
+            "value": 10.0,
+            "passive": true,
+            "production": false,
+            "visible": true,
+            "type": "HydrationRegeneration"
+          }
+        ],
+        "slots": 0,
+        "constructionTime": 0.0,
+        "description": "",
+        "container": "",
+        "autoUpgrade": false,
+        "displayInterface": true,
+        "improvements": [],
+        "globalCounterId": null
+      },
+      "2": {
+        "requirements": [
+          {
+            "templateId": "59e35cbb86f7741778269d83",
+            "count": 6,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "templateId": "5d1b2fa286f77425227d1674",
+            "count": 2,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "templateId": "590c2e1186f77425357b6124",
+            "count": 2,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "skillName": "Attention",
+            "skillLevel": 3,
+            "type": "Skill"
+          },
+          {
+            "areaType": 10,
+            "requiredLevel": 1,
+            "type": "Area"
+          },
+          {
+            "areaType": 6,
+            "requiredLevel": 1,
+            "type": "Area"
+          },
+          {
+            "templateId": "5e2af29386f7746d4159f077",
+            "count": 5,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          }
+        ],
+        "bonuses": [
+          {
+            "id": "64f5b9e5fa34f11b380756ca",
+            "value": 20.0,
+            "passive": true,
+            "production": false,
+            "visible": true,
+            "type": "HydrationRegeneration"
+          }
+        ],
+        "slots": 0,
+        "constructionTime": 7200.0,
+        "description": "",
+        "container": "",
+        "autoUpgrade": false,
+        "displayInterface": true,
+        "improvements": [],
+        "globalCounterId": null
+      },
+      "3": {
+        "requirements": [
+          {
+            "templateId": "5449016a4bdc2d6f028b456f",
+            "count": 20000,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "areaType": 4,
+            "requiredLevel": 3,
+            "type": "Area"
+          },
+          {
+            "templateId": "5af04b6486f774195a3ebb49",
+            "count": 2,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": true,
+            "type": "Item"
+          },
+          {
+            "templateId": "590c35a486f774273531c822",
+            "count": 10,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": false,
+            "type": "Item"
+          },
+          {
+            "areaType": 6,
+            "requiredLevel": 2,
+            "type": "Area"
+          },
+          {
+            "areaType": 5,
+            "requiredLevel": 2,
+            "type": "Area"
+          },
+          {
+            "templateId": "60391afc25aff57af81f7085",
+            "count": 1,
+            "isFunctional": false,
+            "isEncoded": false,
+            "isSpawnedInSession": true,
+            "type": "Item"
+          }
+        ],
+        "bonuses": [
+          {
+            "id": "64f5b9e5fa34f11b380756cd",
+            "value": 30.0,
+            "passive": true,
+            "production": false,
+            "visible": true,
+            "type": "HydrationRegeneration"
+          },
+          {
+            "id": "64f5b9e5fa34f11b380756ce",
+            "value": 1.0,
+            "passive": true,
+            "production": false,
+            "visible": false,
+            "filter": [
+              "5d1b385e86f774252167b98a",
+              "6a9980872a87c16fef04789f"
+            ],
+            "icon": null,
+            "type": "AdditionalSlots"
+          },
+          {
+            "id": "5d836517a57db3778f31fde7",
+            "value": 0.0,
+            "passive": true,
+            "production": false,
+            "visible": true,
+            "icon": "/files/Hideout/icon_hideout_createitem_generic.png",
+            "type": "TextBonus"
+          }
+        ],
+        "slots": 0,
+        "constructionTime": 57600.0,
+        "description": "",
+        "container": "",
         "autoUpgrade": false,
         "displayInterface": true,
         "improvements": [],

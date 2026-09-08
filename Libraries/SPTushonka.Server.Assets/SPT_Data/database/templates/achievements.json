@@ -3784,7 +3784,59 @@
     "id": "6514321bec10ff011f17ccac",
     "imageUrl": "/files/achievement/Legendary_42.png",
     "assetPath": "",
-    "rewards": [],
+    "rewards": [
+      {
+        "unknown": false,
+        "gameMode": [],
+        "availableInGameEditions": [
+          "arena"
+        ],
+        "illustrationConfig": {
+          "image": "",
+          "bigImage": "",
+          "isBigImage": false
+        },
+        "isHidden": false,
+        "isImportant": false,
+        "id": "6a8f1a7ca4f5eb2e0bc25ce1",
+        "target": "6a8830707535bd83830c58aa",
+        "type": "CustomizationDirect"
+      },
+      {
+        "unknown": false,
+        "gameMode": [],
+        "availableInGameEditions": [
+          "arena"
+        ],
+        "illustrationConfig": {
+          "image": "",
+          "bigImage": "",
+          "isBigImage": false
+        },
+        "isHidden": false,
+        "isImportant": false,
+        "id": "6a8f1a866a713cca90592f0d",
+        "target": "6a882fe520ea333fe80b842e",
+        "type": "CustomizationDirect"
+      },
+      {
+        "unknown": false,
+        "gameMode": [],
+        "availableInGameEditions": [
+          "arena"
+        ],
+        "illustrationConfig": {
+          "image": "",
+          "bigImage": "",
+          "isBigImage": false
+        },
+        "isHidden": false,
+        "isImportant": false,
+        "id": "6a8f1a956fd7eef195869106",
+        "target": "6a8830528e1bd6c97104a467",
+        "type": "CustomizationDirect"
+      }
+    ],
     "conditions": {
       "availableForFinish": [
         {
@@ -8924,7 +8976,72 @@
     "id": "6a03447fb2e3003f8706a400",
     "imageUrl": "/files/achievement/6a0c90b0b92078534c04c36d.png",
     "assetPath": "",
-    "rewards": [],
+    "rewards": [
+      {
+        "unknown": false,
+        "gameMode": [],
+        "availableInGameEditions": [
+          "regular",
+          "pve",
+          "pvp-season"
+        ],
+        "illustrationConfig": {
+          "image": "",
+          "bigImage": "",
+          "isBigImage": false
+        },
+        "isHidden": false,
+        "isImportant": false,
+        "id": "6a955be237d0d79fa4d7668e",
+        "target": "e768891afe3f3edf435d56ee",
+        "value": 1,
+        "isEncoded": false,
+        "findInRaid": true,
+        "items": [
+          {
+            "_id": "e768891afe3f3edf435d56ee",
+            "_tpl": "6a3d38063357ef2b260d1891",
+            "upd": {
+              "SpawnedInSession": true,
+              "StackObjectsCount": 1
+            }
+          }
+        ],
+        "isDeliverByMail": true,
+        "type": "Item"
+      },
+      {
+        "unknown": false,
+        "gameMode": [],
+        "availableInGameEditions": [
+          "regular",
+          "pve",
+          "pvp-season"
+        ],
+        "illustrationConfig": {
+          "image": "",
+          "bigImage": "",
+          "isBigImage": false
+        },
+        "isHidden": false,
+        "isImportant": false,
+        "id": "6a955cd42b6887eab57587e1",
+        "target": "c4de3985d5b3a8dd92ed4e44",
+        "traderId": 10,
+        "loyaltyLevel": 1,
+        "items": [
+          {
+            "_id": "c4de3985d5b3a8dd92ed4e44",
+            "_tpl": "6a4ff1e23e95f68a650fcb13",
+            "upd": {
+              "SpawnedInSession": true,
+              "StackObjectsCount": 1
+            }
+          }
+        ],
+        "type": "ProductionScheme"
+      }
+    ],
     "conditions": {
       "availableForFinish": [
         {
@@ -9921,5 +10038,49 @@
     "progressBarEnabled": false,
     "side": "All",
     "index": 39999999
+  },
+  {
+    "id": "6a6871871f135181ee0aff56",
+    "imageUrl": "/files/achievement/6a59f502ceec2980f10364dc.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "6a68716cc99d25adc0fbdd14",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "conditionType": "Block"
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": false,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Seasonal",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "All",
+    "index": 49999999
   }
 ]

@@ -184,6 +184,30 @@
         "TraderServiceType": "PlayerTaxi",
         "UniqueItems": []
       },
+      "StoryCardBarter": {
+        "Requirements": {
+          "CompletedQuests": [
+            {
+              "QuestId": "67c8846ac2ca1d06400680a0"
+            }
+          ],
+          "Standings": {
+            "638f541a29ffd1183d187f57": {
+              "Value": 0.01
+            }
+          }
+        },
+        "ServiceItemCost": {
+          "6389c8c5dbfd5e4b95197e6b": {
+            "Count": 1
+          }
+        },
+        "TraderId": "638f541a29ffd1183d187f57",
+        "TraderServiceType": "StoryCardBarter",
+        "UniqueItems": [
+          "67c04dac9320f644db06f45c"
+        ]
+      },
       "TransitItemsDelivery": {
         "Requirements": {
           "CompletedQuests": [],

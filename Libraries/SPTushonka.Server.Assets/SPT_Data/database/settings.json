@@ -1,347 +1,333 @@
 {
   "config": {
-    "MemoryManagementSettings": {
-      "HeapPreAllocationEnabled": false,
-      "HeapPreAllocationMB": 200,
-      "OverrideRamCleanerSettings": false,
-      "RamCleanerEnabled": false,
-      "GigabytesRequiredToDisableGCDuringRaid": 25,
-      "AggressiveGC": true
-    },
-    "ReleaseProfiler": {
-      "Enabled": true,
-      "RecordTriggerValue": 2000,
-      "MaxRecords": 100
-    },
-    "FramerateLimit": {
-      "MinFramerateLimit": 30,
-      "MaxFramerateLobbyLimit": 240,
-      "MaxFramerateGameLimit": 240
-    },
-    "CollectLoadTimeMetrics": true,
-    "ClientSendRateLimit": 120,
-    "TurnOffLogging": false,
-    "NVidiaHighlights": false,
-    "WebDiagnosticsEnabled": false,
-    "KeepAliveInterval": 140,
-    "KeepAliveStaticInterval": true,
-    "GroupStatusInterval": 60,
-    "GroupStatusButtonInterval": 7,
-    "PingServersInterval": 5,
-    "PingServerResultSendInterval": -1,
-    "WeaponOverlapDistanceCulling": 50,
-    "FirstCycleDelaySeconds": 20,
-    "SecondCycleDelaySeconds": 40,
-    "NextCycleDelaySeconds": 60,
-    "AdditionalRandomDelaySeconds": 13,
-    "Mark502and504AsNonImportant": true,
-    "DefaultRetriesCount": 1,
-    "CriticalRetriesCount": 1,
     "AFKTimeoutSeconds": 1800,
-    "RequestsMadeThroughLobby": [
-      "/client/mail/msg/send"
-    ],
-    "LobbyKeepAliveInterval": 60,
-    "RequestConfirmationTimeouts": [
-      0.2,
-      0.4,
-      0.8,
-      1.6,
-      3.2,
-      6.4,
-      18.8
-    ],
-    "NetworkStateView": {
-      "LossThreshold": 10,
-      "RttThreshold": 100
-    },
-    "WsReconnectionDelays": [
-      500,
-      3000,
-      5000
-    ],
+    "AdditionalRandomDelaySeconds": 13,
     "AudioSettings": {
-      "MasterMixerSettings": {
-        "ExposedParameters": [
-          {
-            "ExposedParameter": "WorldVolume",
-            "Value": 7
-          },
-          {
-            "ExposedParameter": "MasterVolume",
-            "Value": 1
-          },
-          {
-            "ExposedParameter": "MusicVolume",
-            "Value": 0.1
-          },
-          {
-            "ExposedParameter": "UIVolume",
-            "Value": 0.45
-          },
-          {
-            "ExposedParameter": "ChatVolume",
-            "Value": 1
-          },
-          {
-            "ExposedParameter": "HideoutVolume",
-            "Value": 0.6
-          },
-          {
-            "ExposedParameter": "RoomToneVolume",
-            "Value": 5
-          }
-        ]
-      },
       "AudioGroupPresets": [
         {
-          "Name": "Gunshots",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": true,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 0,
-          "OverallVolume": 0.65,
+          "HeightToAllowBinaural": 10,
+          "Name": "Gunshots",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": true,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 1
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 0.65
         },
         {
-          "Name": "Weaponry",
+          "AngleToAllowBinaural": 12,
+          "DisabledBinauralByDistance": true,
+          "DistanceToAllowBinaural": 10,
           "GroupType": 1,
-          "OverallVolume": 0.8,
+          "HeightToAllowBinaural": 2,
+          "Name": "Weaponry",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": true,
-          "DistanceToAllowBinaural": 10,
-          "HeightToAllowBinaural": 2,
-          "AngleToAllowBinaural": 12,
-          "OcclusionRolloffScale": 0.9
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 0.8
         },
         {
-          "Name": "Impacts",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 2,
-          "OverallVolume": 1,
+          "HeightToAllowBinaural": 10,
+          "Name": "Impacts",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 0.9
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 1
         },
         {
-          "Name": "Character",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 3,
-          "OverallVolume": 1,
+          "HeightToAllowBinaural": 10,
+          "Name": "Character",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 0.9
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 1
         },
         {
-          "Name": "Environment",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 4,
-          "OverallVolume": 1,
+          "HeightToAllowBinaural": 10,
+          "Name": "Environment",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 0.9
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 1
         },
         {
-          "Name": "Collisions",
-          "GroupType": 5,
-          "OverallVolume": 0.9,
-          "OcclusionEnabled": true,
-          "OcclusionIntensity": 1,
+          "AngleToAllowBinaural": 12,
           "DisabledBinauralByDistance": true,
           "DistanceToAllowBinaural": 10,
+          "GroupType": 5,
           "HeightToAllowBinaural": 2,
-          "AngleToAllowBinaural": 12,
-          "OcclusionRolloffScale": 1
+          "Name": "Collisions",
+          "OcclusionEnabled": true,
+          "OcclusionIntensity": 1,
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 0.9
         },
         {
-          "Name": "Speech",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 6,
-          "OverallVolume": 0.7,
+          "HeightToAllowBinaural": 10,
+          "Name": "Speech",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 0.9
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 0.7
         },
         {
-          "Name": "Distant",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 7,
-          "OverallVolume": 1,
+          "HeightToAllowBinaural": 10,
+          "Name": "Distant",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 1
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 1
         },
         {
-          "Name": "NonspatialBypass",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 8,
-          "OverallVolume": 1,
+          "HeightToAllowBinaural": 10,
+          "Name": "NonspatialBypass",
           "OcclusionEnabled": false,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 1
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 1
         },
         {
-          "Name": "Nonspatial",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 9,
-          "OverallVolume": 1,
+          "HeightToAllowBinaural": 10,
+          "Name": "Nonspatial",
           "OcclusionEnabled": false,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 1
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 1
         },
         {
-          "Name": "Voip",
+          "AngleToAllowBinaural": 30,
+          "DisabledBinauralByDistance": false,
+          "DistanceToAllowBinaural": 60,
           "GroupType": 10,
-          "OverallVolume": 0.8,
+          "HeightToAllowBinaural": 10,
+          "Name": "Voip",
           "OcclusionEnabled": false,
           "OcclusionIntensity": 1,
-          "DisabledBinauralByDistance": false,
-          "DistanceToAllowBinaural": 60,
-          "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 0.9
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 0.8
         },
         {
-          "Name": "Grenades",
-          "GroupType": 11,
-          "OverallVolume": 0.65,
-          "OcclusionEnabled": true,
-          "OcclusionIntensity": 1,
+          "AngleToAllowBinaural": 30,
           "DisabledBinauralByDistance": true,
           "DistanceToAllowBinaural": 100,
+          "GroupType": 11,
           "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 1
-        },
-        {
-          "Name": "Windows",
-          "GroupType": 12,
-          "OverallVolume": 0.5,
+          "Name": "Grenades",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 0.65
+        },
+        {
+          "AngleToAllowBinaural": 12,
           "DisabledBinauralByDistance": true,
           "DistanceToAllowBinaural": 10,
+          "GroupType": 12,
           "HeightToAllowBinaural": 2,
-          "AngleToAllowBinaural": 12,
-          "OcclusionRolloffScale": 1
-        },
-        {
-          "Name": "ItemDrop",
-          "GroupType": 20,
-          "OverallVolume": 1,
+          "Name": "Windows",
           "OcclusionEnabled": true,
           "OcclusionIntensity": 1,
+          "OcclusionRolloffScale": 1,
+          "OverallVolume": 0.5
+        },
+        {
+          "AngleToAllowBinaural": 30,
           "DisabledBinauralByDistance": false,
           "DistanceToAllowBinaural": 60,
+          "GroupType": 20,
           "HeightToAllowBinaural": 10,
-          "AngleToAllowBinaural": 30,
-          "OcclusionRolloffScale": 0.9
+          "Name": "ItemDrop",
+          "OcclusionEnabled": true,
+          "OcclusionIntensity": 1,
+          "OcclusionRolloffScale": 0.9,
+          "OverallVolume": 1
         }
       ],
+      "CustomHeadphonesTemplates": {
+        "DefaultHeadphonesTemplate": {
+          "AmbientCompressorSendLevel": -80,
+          "AmbientVolume": 0,
+          "ClientPlayerCompressorSendLevel": -80,
+          "CompressorAttack": 35,
+          "CompressorGain": 10,
+          "CompressorRelease": 215,
+          "CompressorThreshold": -20,
+          "Distortion": 0,
+          "DryVolume": 0,
+          "EQBand1Frequency": 200,
+          "EQBand1Gain": 1,
+          "EQBand1Q": 1,
+          "EQBand2Frequency": 1000,
+          "EQBand2Gain": 1,
+          "EQBand2Q": 1,
+          "EQBand3Frequency": 8000,
+          "EQBand3Gain": 1,
+          "EQBand3Q": 1,
+          "EffectsReturnsCompressorSendLevel": -80,
+          "EffectsReturnsGroupVolume": 0,
+          "EnvCommonCompressorSendLevel": -80,
+          "EnvNatureCompressorSendLevel": -80,
+          "EnvTechnicalCompressorSendLevel": -80,
+          "GunsCompressorAttack": -10,
+          "GunsCompressorGain": 0,
+          "GunsCompressorRelease": 215,
+          "GunsCompressorSendLevel": -80,
+          "GunsCompressorThreshold": 0,
+          "HeadphonesMixerVolume": 0,
+          "HighpassFreq": 245,
+          "HighpassResonance": 2.47,
+          "LowpassFreq": 22000,
+          "NpcCompressorSendLevel": -80,
+          "ObservedPlayerCompressorSendLevel": -80,
+          "PrecipitationVolume": 0,
+          "RolloffMultiplier": 1
+        },
+        "HelmetLowMuteHeadphonesTemplate": {
+          "AmbientCompressorSendLevel": -2,
+          "AmbientVolume": -50,
+          "ClientPlayerCompressorSendLevel": -1,
+          "CompressorAttack": 0,
+          "CompressorGain": 0,
+          "CompressorRelease": 0,
+          "CompressorThreshold": 0,
+          "Distortion": 0,
+          "DryVolume": -50,
+          "EQBand1Frequency": 200,
+          "EQBand1Gain": 1,
+          "EQBand1Q": 1,
+          "EQBand2Frequency": 1000,
+          "EQBand2Gain": 1,
+          "EQBand2Q": 1,
+          "EQBand3Frequency": 8000,
+          "EQBand3Gain": 1,
+          "EQBand3Q": 1,
+          "EffectsReturnsCompressorSendLevel": -80,
+          "EffectsReturnsGroupVolume": 0,
+          "EnvCommonCompressorSendLevel": 0,
+          "EnvNatureCompressorSendLevel": -2,
+          "EnvTechnicalCompressorSendLevel": -2,
+          "GunsCompressorAttack": 0,
+          "GunsCompressorGain": 0,
+          "GunsCompressorRelease": 0,
+          "GunsCompressorSendLevel": 0,
+          "GunsCompressorThreshold": 0,
+          "HeadphonesMixerVolume": -1,
+          "HighpassFreq": 60,
+          "HighpassResonance": 1,
+          "LowpassFreq": 22000,
+          "NpcCompressorSendLevel": 0,
+          "ObservedPlayerCompressorSendLevel": 0,
+          "PrecipitationVolume": 0,
+          "RolloffMultiplier": 1
+        },
+        "HelmetStrongMuteHeadphonesTemplate": {
+          "AmbientCompressorSendLevel": -5,
+          "AmbientVolume": -50,
+          "ClientPlayerCompressorSendLevel": -1,
+          "CompressorAttack": 0,
+          "CompressorGain": 0,
+          "CompressorRelease": 0,
+          "CompressorThreshold": 0,
+          "Distortion": 0,
+          "DryVolume": -50,
+          "EQBand1Frequency": 200,
+          "EQBand1Gain": 1,
+          "EQBand1Q": 1,
+          "EQBand2Frequency": 1000,
+          "EQBand2Gain": 1,
+          "EQBand2Q": 1,
+          "EQBand3Frequency": 8000,
+          "EQBand3Gain": 1,
+          "EQBand3Q": 1,
+          "EffectsReturnsCompressorSendLevel": -80,
+          "EffectsReturnsGroupVolume": -7,
+          "EnvCommonCompressorSendLevel": 0,
+          "EnvNatureCompressorSendLevel": -2,
+          "EnvTechnicalCompressorSendLevel": -2,
+          "GunsCompressorAttack": 0,
+          "GunsCompressorGain": 0,
+          "GunsCompressorRelease": 0,
+          "GunsCompressorSendLevel": 0,
+          "GunsCompressorThreshold": 0,
+          "HeadphonesMixerVolume": -3.5,
+          "HighpassFreq": 60,
+          "HighpassResonance": 1.1,
+          "LowpassFreq": 18000,
+          "NpcCompressorSendLevel": 0,
+          "ObservedPlayerCompressorSendLevel": 0,
+          "PrecipitationVolume": 0,
+          "RolloffMultiplier": 1
+        },
+        "SpectatorHeadphonesTemplate": {
+          "AmbientCompressorSendLevel": -8,
+          "AmbientVolume": -50,
+          "ClientPlayerCompressorSendLevel": -2,
+          "CompressorAttack": 35,
+          "CompressorGain": 3,
+          "CompressorRelease": 255,
+          "CompressorThreshold": -25,
+          "Distortion": 0.35,
+          "DryVolume": -60,
+          "EQBand1Frequency": 200,
+          "EQBand1Gain": 1,
+          "EQBand1Q": 1,
+          "EQBand2Frequency": 1000,
+          "EQBand2Gain": 1,
+          "EQBand2Q": 1,
+          "EQBand3Frequency": 8000,
+          "EQBand3Gain": 1,
+          "EQBand3Q": 1,
+          "EffectsReturnsCompressorSendLevel": -80,
+          "EffectsReturnsGroupVolume": -7,
+          "EnvCommonCompressorSendLevel": -8,
+          "EnvNatureCompressorSendLevel": -6,
+          "EnvTechnicalCompressorSendLevel": -7.5,
+          "GunsCompressorAttack": 35,
+          "GunsCompressorGain": 2,
+          "GunsCompressorRelease": 255,
+          "GunsCompressorSendLevel": -7,
+          "GunsCompressorThreshold": -27,
+          "HeadphonesMixerVolume": -5,
+          "HighpassFreq": 240,
+          "HighpassResonance": 2,
+          "LowpassFreq": 15000,
+          "NpcCompressorSendLevel": 0,
+          "ObservedPlayerCompressorSendLevel": 0,
+          "PrecipitationVolume": -3,
+          "RolloffMultiplier": 1
+        }
+      },
       "EnvironmentSettings": {
-        "SurfaceMultipliers": [
-          {
-            "SurfaceType": "Concrete",
-            "VolumeMult": 0
-          },
-          {
-            "SurfaceType": "Metal",
-            "VolumeMult": 0.4
-          },
-          {
-            "SurfaceType": "Wood",
-            "VolumeMult": 0.5
-          },
-          {
-            "SurfaceType": "Soil",
-            "VolumeMult": 1
-          },
-          {
-            "SurfaceType": "Grass",
-            "VolumeMult": 1
-          },
-          {
-            "SurfaceType": "Asphalt",
-            "VolumeMult": 0.8
-          },
-          {
-            "SurfaceType": "Glass",
-            "VolumeMult": 0.1
-          },
-          {
-            "SurfaceType": "Gravel",
-            "VolumeMult": 1
-          },
-          {
-            "SurfaceType": "MetalThin",
-            "VolumeMult": 0.4
-          },
-          {
-            "SurfaceType": "Puddle",
-            "VolumeMult": 0.2
-          },
-          {
-            "SurfaceType": "Slate",
-            "VolumeMult": 0.3
-          },
-          {
-            "SurfaceType": "Tile",
-            "VolumeMult": 0.1
-          },
-          {
-            "SurfaceType": "WoodThick",
-            "VolumeMult": 0.5
-          },
-          {
-            "SurfaceType": "Swamp",
-            "VolumeMult": 0.5
-          },
-          {
-            "SurfaceType": "Garbage",
-            "VolumeMult": 0.5
-          },
-          {
-            "SurfaceType": "GarbageMetal",
-            "VolumeMult": 0.4
-          },
-          {
-            "SurfaceType": "Plastic",
-            "VolumeMult": 0.3
-          },
-          {
-            "SurfaceType": "WholeGlass",
-            "VolumeMult": 0.1
-          },
-          {
-            "SurfaceType": "WoodThin",
-            "VolumeMult": 0.5
-          }
-        ],
         "AutumnLateSettings": {
           "RainSettings": [
             {
@@ -624,6 +610,84 @@
             }
           ]
         },
+        "SurfaceMultipliers": [
+          {
+            "SurfaceType": "Concrete",
+            "VolumeMult": 0
+          },
+          {
+            "SurfaceType": "Metal",
+            "VolumeMult": 0.4
+          },
+          {
+            "SurfaceType": "Wood",
+            "VolumeMult": 0.5
+          },
+          {
+            "SurfaceType": "Soil",
+            "VolumeMult": 1
+          },
+          {
+            "SurfaceType": "Grass",
+            "VolumeMult": 1
+          },
+          {
+            "SurfaceType": "Asphalt",
+            "VolumeMult": 0.8
+          },
+          {
+            "SurfaceType": "Glass",
+            "VolumeMult": 0.1
+          },
+          {
+            "SurfaceType": "Gravel",
+            "VolumeMult": 1
+          },
+          {
+            "SurfaceType": "MetalThin",
+            "VolumeMult": 0.4
+          },
+          {
+            "SurfaceType": "Puddle",
+            "VolumeMult": 0.2
+          },
+          {
+            "SurfaceType": "Slate",
+            "VolumeMult": 0.3
+          },
+          {
+            "SurfaceType": "Tile",
+            "VolumeMult": 0.1
+          },
+          {
+            "SurfaceType": "WoodThick",
+            "VolumeMult": 0.5
+          },
+          {
+            "SurfaceType": "Swamp",
+            "VolumeMult": 0.5
+          },
+          {
+            "SurfaceType": "Garbage",
+            "VolumeMult": 0.5
+          },
+          {
+            "SurfaceType": "GarbageMetal",
+            "VolumeMult": 0.4
+          },
+          {
+            "SurfaceType": "Plastic",
+            "VolumeMult": 0.3
+          },
+          {
+            "SurfaceType": "WholeGlass",
+            "VolumeMult": 0.1
+          },
+          {
+            "SurfaceType": "WoodThin",
+            "VolumeMult": 0.5
+          }
+        ],
         "WinterSettings": {
           "RainSettings": [
             {
@@ -677,10 +741,42 @@
         "FadeIn": "InverseExponential",
         "FadeOut": "EaseIn"
       },
+      "MasterMixerSettings": {
+        "ExposedParameters": [
+          {
+            "ExposedParameter": "WorldVolume",
+            "Value": 7
+          },
+          {
+            "ExposedParameter": "MasterVolume",
+            "Value": 1
+          },
+          {
+            "ExposedParameter": "MusicVolume",
+            "Value": 0.1
+          },
+          {
+            "ExposedParameter": "UIVolume",
+            "Value": 0.45
+          },
+          {
+            "ExposedParameter": "ChatVolume",
+            "Value": 1
+          },
+          {
+            "ExposedParameter": "HideoutVolume",
+            "Value": 0.6
+          },
+          {
+            "ExposedParameter": "RoomToneVolume",
+            "Value": 5
+          }
+        ]
+      },
       "MetaXRAudioPluginSettings": {
         "EnabledPluginErrorChecker": true,
-        "OutputVolumeCheckCooldown": 0.25,
         "HardResetEnabled": true,
+        "OutputVolumeCheckCooldown": 0.25,
         "ResetWaitTime": 0.25,
         "audioGroupAcousticSettings": [
           {
@@ -1050,121 +1146,6 @@
         ]
       },
       "OcclusionSettings": {
-        "locationOcclusionSettings": {
-          "commonSettings": {
-            "diffractionThreshold": 0.5,
-            "effectChangeThreshold": 0.05,
-            "floorHeight": 2.7,
-            "maxDistance": 250,
-            "playerObstructionYOffset": 0.5,
-            "positionChangeThreshold": [
-              {
-                "audioQuality": "High",
-                "value": 0.2
-              },
-              {
-                "audioQuality": "Medium",
-                "value": 0.3
-              },
-              {
-                "audioQuality": "Low",
-                "value": 0.4
-              }
-            ],
-            "smoothingFactor": 30,
-            "transmissionThreshold": 0.6
-          },
-          "diffractionSettings": {
-            "edgeSearchRayCount": [
-              {
-                "audioQuality": "High",
-                "value": 16
-              },
-              {
-                "audioQuality": "Medium",
-                "value": 12
-              },
-              {
-                "audioQuality": "Low",
-                "value": 8
-              }
-            ],
-            "edgeSearchRayLength": 1,
-            "edgeValidationRayOffset": 0.01,
-            "maxEdgeDist": 1,
-            "maxPathFactor": 5
-          },
-          "propagationSettings": {
-            "absoluteHeightWeight": 0.35,
-            "diffractionExponent": 1.1,
-            "distanceWeight": 0.35,
-            "heightExponent": 0.8,
-            "maxSegmentLength": 10,
-            "minPortalCostPercent": 0.1,
-            "relaxationIterations": 2,
-            "routesCompressionFactorByQuality": [
-              {
-                "audioQuality": "High",
-                "value": 1
-              },
-              {
-                "audioQuality": "Medium",
-                "value": 1
-              },
-              {
-                "audioQuality": "Low",
-                "value": 1
-              }
-            ],
-            "segmentHeightWeightDown": 0.1,
-            "segmentHeightWeightUp": 0.1,
-            "typicalRoomHeight": 2.7
-          },
-          "reflectionSettings": {
-            "energyLossFactorPerReflection": 0.3,
-            "initialRaysCount": [
-              {
-                "audioQuality": "High",
-                "value": 24
-              },
-              {
-                "audioQuality": "Medium",
-                "value": 20
-              },
-              {
-                "audioQuality": "Low",
-                "value": 16
-              }
-            ],
-            "maxReflections": 3,
-            "minEnergyAtMaxDistance": 0.1
-          },
-          "transmissionSettings": {
-            "absorptionPerUnit": 0.1,
-            "initialRaysCount": [
-              {
-                "audioQuality": "High",
-                "value": 12
-              },
-              {
-                "audioQuality": "Medium",
-                "value": 10
-              },
-              {
-                "audioQuality": "Low",
-                "value": 8
-              }
-            ],
-            "listenerHeightSamplingOffset": 0.2,
-            "minClearPathScore": 0.5,
-            "minEnergyThreshold": 0.05,
-            "obstacleMaxThickness": 5,
-            "obstacleMinThickness": 0.35,
-            "raysWideningRadius": 0.6,
-            "sourceHeightSamplingOffset": 0.2,
-            "useRaycast": true
-          }
-        },
         "audioGroupOcclusionSettings": [
           {
             "groupType": "Gunshots",
@@ -23808,10 +23789,156 @@
               }
             }
           }
-        ]
+        ],
+        "locationOcclusionSettings": {
+          "commonSettings": {
+            "diffractionThreshold": 0.5,
+            "effectChangeThreshold": 0.05,
+            "floorHeight": 2.7,
+            "maxDistance": 250,
+            "playerObstructionYOffset": 0.5,
+            "positionChangeThreshold": [
+              {
+                "audioQuality": "High",
+                "value": 0.2
+              },
+              {
+                "audioQuality": "Medium",
+                "value": 0.3
+              },
+              {
+                "audioQuality": "Low",
+                "value": 0.4
+              }
+            ],
+            "smoothingFactor": 30,
+            "transmissionThreshold": 0.6
+          },
+          "diffractionSettings": {
+            "edgeSearchRayCount": [
+              {
+                "audioQuality": "High",
+                "value": 16
+              },
+              {
+                "audioQuality": "Medium",
+                "value": 12
+              },
+              {
+                "audioQuality": "Low",
+                "value": 8
+              }
+            ],
+            "edgeSearchRayLength": 1,
+            "edgeValidationRayOffset": 0.01,
+            "maxEdgeDist": 1,
+            "maxPathFactor": 5
+          },
+          "propagationSettings": {
+            "absoluteHeightWeight": 0.35,
+            "diffractionExponent": 1.1,
+            "distanceWeight": 0.35,
+            "heightExponent": 0.8,
+            "maxSegmentLength": 10,
+            "minPortalCostPercent": 0.1,
+            "relaxationIterations": 2,
+            "routesCompressionFactorByQuality": [
+              {
+                "audioQuality": "High",
+                "value": 1
+              },
+              {
+                "audioQuality": "Medium",
+                "value": 1
+              },
+              {
+                "audioQuality": "Low",
+                "value": 1
+              }
+            ],
+            "segmentHeightWeightDown": 0.1,
+            "segmentHeightWeightUp": 0.1,
+            "typicalRoomHeight": 2.7
+          },
+          "reflectionSettings": {
+            "energyLossFactorPerReflection": 0.3,
+            "initialRaysCount": [
+              {
+                "audioQuality": "High",
+                "value": 24
+              },
+              {
+                "audioQuality": "Medium",
+                "value": 20
+              },
+              {
+                "audioQuality": "Low",
+                "value": 16
+              }
+            ],
+            "maxReflections": 3,
+            "minEnergyAtMaxDistance": 0.1
+          },
+          "transmissionSettings": {
+            "absorptionPerUnit": 0.1,
+            "initialRaysCount": [
+              {
+                "audioQuality": "High",
+                "value": 12
+              },
+              {
+                "audioQuality": "Medium",
+                "value": 10
+              },
+              {
+                "audioQuality": "Low",
+                "value": 8
+              }
+            ],
+            "listenerHeightSamplingOffset": 0.2,
+            "minClearPathScore": 0.5,
+            "minEnergyThreshold": 0.05,
+            "obstacleMaxThickness": 5,
+            "obstacleMinThickness": 0.35,
+            "raysWideningRadius": 0.6,
+            "sourceHeightSamplingOffset": 0.2,
+            "useRaycast": true
+          }
+        }
       },
       "PlayerSettings": {
         "BaseMaxMovementRolloff": 90,
+        "IndoorRolloffMult": 1,
+        "ItemInHandsSettings": {
+          "ItemOperationsSpatialBlend": {
+            "FpValue": 0.1,
+            "TpValue": 1
+          },
+          "ItemOperationsVolumeMult": {
+            "FpValue": 0.45,
+            "TpValue": 0.35
+          },
+          "WeaponOperationsSpatialBlend": {
+            "FpValue": 0.8,
+            "TpValue": 1
+          },
+          "WeaponOperationsVolumeMult": {
+            "FpValue": 0.7,
+            "TpValue": 0.4
+          }
+        },
+        "MinStepSoundRolloffSpeedMult": {
+          "FpValue": 1,
+          "TpValue": 0.8
+        },
+        "MinStepSoundVolumeMult": {
+          "FpValue": 0.2,
+          "TpValue": 0.05
+        },
+        "MinStepSoundVolumeSpeedMult": {
+          "FpValue": 0.2,
+          "TpValue": 0.15
+        },
         "MovementRolloffMultipliers": [
           {
             "MovementState": "None",
@@ -23870,41 +23997,10 @@
             "RolloffMultiplier": 0.2
           }
         ],
-        "MinStepSoundVolumeMult": {
-          "FpValue": 0.2,
-          "TpValue": 0.05
-        },
-        "MinStepSoundVolumeSpeedMult": {
-          "FpValue": 0.2,
-          "TpValue": 0.15
-        },
-        "MinStepSoundRolloffSpeedMult": {
-          "FpValue": 1,
-          "TpValue": 0.8
-        },
         "OutdoorRolloffMult": 0.98,
-        "IndoorRolloffMult": 1,
         "SearchSoundVolume": {
           "FpVolume": 0.6,
           "TpVolume": 0.45
-        },
-        "ItemInHandsSettings": {
-          "ItemOperationsVolumeMult": {
-            "FpValue": 0.45,
-            "TpValue": 0.35
-          },
-          "WeaponOperationsVolumeMult": {
-            "FpValue": 0.7,
-            "TpValue": 0.4
-          },
-          "ItemOperationsSpatialBlend": {
-            "FpValue": 0.1,
-            "TpValue": 1
-          },
-          "WeaponOperationsSpatialBlend": {
-            "FpValue": 0.8,
-            "TpValue": 1
-          }
         },
         "TinnitusEffectConfig": {
           "EffectBaseDurationMultiplier": 1.5,
@@ -23913,183 +24009,58 @@
       },
       "WeaponSettings": {
         "PlaybackSettings": {
-          "FireLoopBreakMultiplier": 4,
-          "BurstFireFadeMultiplier": 4,
-          "MinRandomPitch": -0.015,
-          "MaxRandomPitch": 0.015,
-          "MinClampPitch": 0.98,
-          "MaxClampPitch": 1.03,
-          "OcclusionThreshold": 0.5,
           "AdaptiveFadeEnabled": true,
           "AdaptiveFadeLeadBeatsThreshold": 1.5,
           "AdaptiveFadeMaxMultiplier": 2,
           "AdaptiveFadeMaxSeconds": 0.25,
+          "BurstFireFadeMultiplier": 4,
+          "FireLoopBreakMultiplier": 4,
           "IndoorMaxDistance": 200,
-          "IndoorSilencedMaxDistance": 120
+          "IndoorSilencedMaxDistance": 120,
+          "MaxClampPitch": 1.03,
+          "MaxRandomPitch": 0.015,
+          "MinClampPitch": 0.98,
+          "MinRandomPitch": -0.015,
+          "OcclusionThreshold": 0.5
         },
         "PoolSettings": {
           "DefaultPoolSize": 5,
-          "MinPoolSize": 2,
-          "MaxPoolSize": 15
-        }
-      },
-      "CustomHeadphonesTemplates": {
-        "DefaultHeadphonesTemplate": {
-          "RolloffMultiplier": 1,
-          "GunsCompressorSendLevel": -80,
-          "ClientPlayerCompressorSendLevel": -80,
-          "ObservedPlayerCompressorSendLevel": -80,
-          "NpcCompressorSendLevel": -80,
-          "EnvTechnicalCompressorSendLevel": -80,
-          "EnvNatureCompressorSendLevel": -80,
-          "EnvCommonCompressorSendLevel": -80,
-          "AmbientCompressorSendLevel": -80,
-          "EffectsReturnsCompressorSendLevel": -80,
-          "HeadphonesMixerVolume": 0,
-          "AmbientVolume": 0,
-          "PrecipitationVolume": 0,
-          "DryVolume": 0,
-          "EffectsReturnsGroupVolume": 0,
-          "Distortion": 0,
-          "CompressorThreshold": -20,
-          "CompressorAttack": 35,
-          "CompressorRelease": 215,
-          "CompressorGain": 10,
-          "GunsCompressorThreshold": 0,
-          "GunsCompressorAttack": -10,
-          "GunsCompressorRelease": 215,
-          "GunsCompressorGain": 0,
-          "HighpassFreq": 245,
-          "HighpassResonance": 2.47,
-          "LowpassFreq": 22000,
-          "EQBand1Frequency": 200,
-          "EQBand1Gain": 1,
-          "EQBand1Q": 1,
-          "EQBand2Frequency": 1000,
-          "EQBand2Gain": 1,
-          "EQBand2Q": 1,
-          "EQBand3Frequency": 8000,
-          "EQBand3Gain": 1,
-          "EQBand3Q": 1
-        },
-        "HelmetLowMuteHeadphonesTemplate": {
-          "RolloffMultiplier": 1,
-          "GunsCompressorSendLevel": 0,
-          "ClientPlayerCompressorSendLevel": -1,
-          "ObservedPlayerCompressorSendLevel": 0,
-          "NpcCompressorSendLevel": 0,
-          "EnvTechnicalCompressorSendLevel": -2,
-          "EnvNatureCompressorSendLevel": -2,
-          "EnvCommonCompressorSendLevel": 0,
-          "AmbientCompressorSendLevel": -2,
-          "EffectsReturnsCompressorSendLevel": -80,
-          "HeadphonesMixerVolume": -1,
-          "AmbientVolume": -50,
-          "PrecipitationVolume": 0,
-          "DryVolume": -50,
-          "EffectsReturnsGroupVolume": 0,
-          "Distortion": 0,
-          "CompressorThreshold": 0,
-          "CompressorAttack": 0,
-          "CompressorRelease": 0,
-          "CompressorGain": 0,
-          "GunsCompressorThreshold": 0,
-          "GunsCompressorAttack": 0,
-          "GunsCompressorRelease": 0,
-          "GunsCompressorGain": 0,
-          "HighpassFreq": 60,
-          "HighpassResonance": 1,
-          "LowpassFreq": 22000,
-          "EQBand1Frequency": 200,
-          "EQBand1Gain": 1,
-          "EQBand1Q": 1,
-          "EQBand2Frequency": 1000,
-          "EQBand2Gain": 1,
-          "EQBand2Q": 1,
-          "EQBand3Frequency": 8000,
-          "EQBand3Gain": 1,
-          "EQBand3Q": 1
-        },
-        "HelmetStrongMuteHeadphonesTemplate": {
-          "RolloffMultiplier": 1,
-          "GunsCompressorSendLevel": 0,
-          "ClientPlayerCompressorSendLevel": -1,
-          "ObservedPlayerCompressorSendLevel": 0,
-          "NpcCompressorSendLevel": 0,
-          "EnvTechnicalCompressorSendLevel": -2,
-          "EnvNatureCompressorSendLevel": -2,
-          "EnvCommonCompressorSendLevel": 0,
-          "AmbientCompressorSendLevel": -5,
-          "EffectsReturnsCompressorSendLevel": -80,
-          "HeadphonesMixerVolume": -3.5,
-          "AmbientVolume": -50,
-          "PrecipitationVolume": 0,
-          "DryVolume": -50,
-          "EffectsReturnsGroupVolume": -7,
-          "Distortion": 0,
-          "CompressorThreshold": 0,
-          "CompressorAttack": 0,
-          "CompressorRelease": 0,
-          "CompressorGain": 0,
-          "GunsCompressorThreshold": 0,
-          "GunsCompressorAttack": 0,
-          "GunsCompressorRelease": 0,
-          "GunsCompressorGain": 0,
-          "HighpassFreq": 60,
-          "HighpassResonance": 1.1,
-          "LowpassFreq": 18000,
-          "EQBand1Frequency": 200,
-          "EQBand1Gain": 1,
-          "EQBand1Q": 1,
-          "EQBand2Frequency": 1000,
-          "EQBand2Gain": 1,
-          "EQBand2Q": 1,
-          "EQBand3Frequency": 8000,
-          "EQBand3Gain": 1,
-          "EQBand3Q": 1
-        },
-        "SpectatorHeadphonesTemplate": {
-          "RolloffMultiplier": 1,
-          "GunsCompressorSendLevel": -7,
-          "ClientPlayerCompressorSendLevel": -2,
-          "ObservedPlayerCompressorSendLevel": 0,
-          "NpcCompressorSendLevel": 0,
-          "EnvTechnicalCompressorSendLevel": -7.5,
-          "EnvNatureCompressorSendLevel": -6,
-          "EnvCommonCompressorSendLevel": -8,
-          "AmbientCompressorSendLevel": -8,
-          "EffectsReturnsCompressorSendLevel": -80,
-          "HeadphonesMixerVolume": -5,
-          "AmbientVolume": -50,
-          "PrecipitationVolume": -3,
-          "DryVolume": -60,
-          "EffectsReturnsGroupVolume": -7,
-          "Distortion": 0.35,
-          "CompressorThreshold": -25,
-          "CompressorAttack": 35,
-          "CompressorRelease": 255,
-          "CompressorGain": 3,
-          "GunsCompressorThreshold": -27,
-          "GunsCompressorAttack": 35,
-          "GunsCompressorRelease": 255,
-          "GunsCompressorGain": 2,
-          "HighpassFreq": 240,
-          "HighpassResonance": 2,
-          "LowpassFreq": 15000,
-          "EQBand1Frequency": 200,
-          "EQBand1Gain": 1,
-          "EQBand1Q": 1,
-          "EQBand2Frequency": 1000,
-          "EQBand2Gain": 1,
-          "EQBand2Q": 1,
-          "EQBand3Frequency": 8000,
-          "EQBand3Gain": 1,
-          "EQBand3Q": 1
+          "MaxPoolSize": 15,
+          "MinPoolSize": 2
         }
       }
     },
-    "ShouldEstablishLobbyConnection": true,
+    "ClientSendRateLimit": 120,
+    "CollectLoadTimeMetrics": true,
+    "CriticalRetriesCount": 1,
+    "DefaultRetriesCount": 1,
+    "FirstCycleDelaySeconds": 20,
+    "FramerateLimit": {
+      "MaxFramerateGameLimit": 240,
+      "MaxFramerateLobbyLimit": 240,
+      "MinFramerateLimit": 30
+    },
+    "GroupStatusButtonInterval": 7,
+    "GroupStatusInterval": 60,
+    "KeepAliveInterval": 140,
+    "KeepAliveStaticInterval": true,
     "LobbyConnectionPercentage": 100,
+    "LobbyKeepAliveInterval": 1,
+    "Mark502and504AsNonImportant": true,
+    "MemoryManagementSettings": {
+      "AggressiveGC": true,
+      "GigabytesRequiredToDisableGCDuringRaid": 25,
+      "HeapPreAllocationEnabled": false,
+      "HeapPreAllocationMB": 200,
+      "OverrideRamCleanerSettings": false,
+      "RamCleanerEnabled": false
+    },
+    "NVidiaHighlights": false,
+    "NetworkStateView": {
+      "LossThreshold": 10,
+      "RttThreshold": 100
+    },
+    "NextCycleDelaySeconds": 60,
     "NotifierLobbyAidsForce": [
       13611057,
       7284426,
@@ -24125,8 +24096,37 @@
       13106945,
       2265912
     ],
-    "NotifierLobbyPercentage": 50,
+    "NotifierLobbyPercentage": 100,
     "NotifierUseLobby": true,
-    "SteamSyncCooldownSeconds": 30
+    "PingServerResultSendInterval": -1,
+    "PingServersInterval": 5,
+    "ReleaseProfiler": {
+      "Enabled": true,
+      "MaxRecords": 100,
+      "RecordTriggerValue": 2000
+    },
+    "RequestConfirmationTimeouts": [
+      0.2,
+      0.4,
+      0.8,
+      1.6,
+      3.2,
+      6.4,
+      18.8
+    ],
+    "RequestsMadeThroughLobby": [
+      "/client/mail/msg/send"
+    ],
+    "SecondCycleDelaySeconds": 40,
+    "ShouldEstablishLobbyConnection": true,
+    "SteamSyncCooldownSeconds": 30,
+    "TurnOffLogging": false,
+    "WeaponOverlapDistanceCulling": 50,
+    "WebDiagnosticsEnabled": false,
+    "WsReconnectionDelays": [
+      500,
+      3000,
+      5000
+    ]
   }
 }

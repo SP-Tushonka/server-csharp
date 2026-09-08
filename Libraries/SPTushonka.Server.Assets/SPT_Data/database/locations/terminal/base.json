@@ -2065,10 +2065,10 @@
     {
       "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "3",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
-      "BossEscortType": "followerSanitar",
-      "BossName": "bossSanitar",
+      "BossEscortType": "bossKilla",
+      "BossName": "bossTagilla",
       "BossZone": "Zone2ScavPort29",
       "Delay": 40,
       "ForceSpawn": true,
@@ -2077,12 +2077,12 @@
       "ShowOnTarkovMap": true,
       "ShowOnTarkovMapPvE": true,
       "SpawnMode": [
-        "regular",
         "pve",
+        "regular",
         "pvp-season"
       ],
       "Supports": null,
-      "Time": 5690,
+      "Time": 5790,
       "TriggerId": "T4",
       "TriggerName": "botEvent"
     }
