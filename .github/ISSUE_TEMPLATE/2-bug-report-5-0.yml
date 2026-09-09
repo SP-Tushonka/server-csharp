@@ -1,13 +1,13 @@
-name: "Bug Report - Stable 4.1"
-description: "Report a bug in the current stable (4.1) release of the SPT project."
-labels: ["triage"]
+name: "Bug Report - Bleeding Edge 5.0"
+description: "Report a bug in a pre-release (5.0) version of the SPT project."
+labels: ["triage", "bleeding edge"]
 body:
   - type: markdown
     attributes:
       value: |
         ## Thank you for taking the time to fill out a bug report!
 
-        Please note the following requirements:
+        You are reporting against a **pre-release (bleeding-edge) 5.0 build**. These builds are unstable and change frequently, so please note the following requirements:
 
         - You must be able to replicate the issue with a fresh profile, running no mods. If you can't, we can't fix it.
         - If you are using a profile from an older version, please make a fresh profile and replicate the issue before submitting.
@@ -19,7 +19,15 @@ body:
       label: SPT Version
       description: What version of SPT are you using?
       options:
-        - "4.1"
+        - "5.0"
+    validations:
+      required: true
+  - type: input
+    id: build
+    attributes:
+      label: "Build Name"
+      description: "The exact build name you're running. This can be found in the #dev-builds channel where you downloaded the BE build. This is critical."
+      placeholder: "e.g. SPT-BLEEDINGEDGE-5.0.0-47242-556c5d41f-20260909"
     validations:
       required: true
   - type: dropdown
@@ -68,6 +76,14 @@ body:
     attributes:
       label: "BepinEx Log"
       description: "Upload a copy of your *entire* BepinEx log: `/BepinEx/LogOutput.log`."
+      placeholder: "Attach the log file. Do not paste the contents."
+    validations:
+      required: true
+  - type: textarea
+    id: log_loader
+    attributes:
+      label: "Loader Log"
+      description: "Upload a copy of `tushonka.log` from the game folder, next to `EscapeFromTarkov.exe`. It holds the loader and preloader output, including any fault report."
       placeholder: "Attach the log file. Do not paste the contents."
     validations:
       required: true
