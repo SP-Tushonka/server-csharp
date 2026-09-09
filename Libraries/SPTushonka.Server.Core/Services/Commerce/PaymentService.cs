@@ -578,32 +578,41 @@ public class PaymentService(
     /// <returns> True if it's in inventory </returns>
     protected InventoryLocation GetItemLocation(MongoId itemId, List<Item> inventoryItems, MongoId playerStashId)
     {
-        var inventoryItem = inventoryItems.FirstOrDefault(item => item.Id == itemId);
-        if (inventoryItem is null)
+        var visited = new HashSet<MongoId>();
+        var currentId = itemId;
+
+        while (visited.Add(currentId))
         {
-            // Doesn't exist
-            return InventoryLocation.Other;
+            var inventoryItem = inventoryItems.FirstOrDefault(item => item.Id == currentId);
+            if (inventoryItem is null)
+            {
+                // Doesn't exist
+                return InventoryLocation.Other;
+            }
+
+            // is root item and its parent is the player stash
+            if (inventoryItem.Id == playerStashId)
+            {
+                return InventoryLocation.Stash;
+            }
+
+            // is child item and its parent is a root item
+            if (inventoryItem.SlotId == "hideout")
+            {
+                return InventoryLocation.Stash;
+            }
+
+            if (inventoryItem.SlotId == "SecuredContainer")
+            {
+                return InventoryLocation.Secure;
+            }
+
+            // Walk up to parentId
+            currentId = inventoryItem.ParentId;
         }
 
-        // is root item and its parent is the player stash
-        if (inventoryItem.Id == playerStashId)
-        {
-            return InventoryLocation.Stash;
-        }
-
-        // is child item and its parent is a root item
-        if (inventoryItem.SlotId == "hideout")
-        {
-            return InventoryLocation.Stash;
-        }
-
-        if (inventoryItem.SlotId == "SecuredContainer")
-        {
-            return InventoryLocation.Secure;
-        }
-
-        // Recursive call for parentId
-        return GetItemLocation(inventoryItem.ParentId, inventoryItems, playerStashId);
+        // circular reference detected, stop
+        return InventoryLocation.Other;
     }
 
     protected enum InventoryLocation

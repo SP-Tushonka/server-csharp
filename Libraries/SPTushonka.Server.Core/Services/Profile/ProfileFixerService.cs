@@ -14,6 +14,7 @@ using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 
@@ -32,7 +33,8 @@ public partial class ProfileFixerService(
     RewardHelper rewardHelper,
     HideoutHelper hideoutHelper,
     ServerLocalisationService serverLocalisationService,
-    CoreConfig coreConfig
+    CoreConfig coreConfig,
+    MailSendService mailSendService
 )
 {
     /// <summary>
@@ -46,6 +48,7 @@ public partial class ProfileFixerService(
         RemoveOrphanedQuests(pmcProfile);
         VerifyQuestProductionUnlocks(pmcProfile);
         FixOrphanedInsurance(pmcProfile);
+        CheckForAndFixCircularParentReferences(pmcProfile);
 
         if (pmcProfile.Hideout is not null)
         {
@@ -676,6 +679,122 @@ public partial class ProfileFixerService(
                 }
             }
         }
+    }
+
+    /// <summary>
+    ///     Detects items whose parent chain contains a circular reference and removes them from the
+    ///     inventory, mailing them back to the player rather than deleting them outright
+    /// </summary>
+    /// <param name="pmcProfile">Profile to check and repair</param>
+    public void CheckForAndFixCircularParentReferences(PmcData pmcProfile)
+    {
+        if (pmcProfile.Inventory?.Items is null || pmcProfile.Inventory.Stash is null)
+        {
+            return;
+        }
+
+        var items = pmcProfile.Inventory.Items;
+        var itemsById = items.ToDictionary(item => item.Id);
+        var stashId = pmcProfile.Inventory.Stash.Value;
+
+        var corruptedIds = new HashSet<MongoId>();
+        var confirmedGoodIds = new HashSet<MongoId>();
+
+        foreach (var item in items)
+        {
+            // root itself can't be part of a cycle
+            if (item.Id == stashId)
+            {
+                continue;
+            }
+
+            if (corruptedIds.Contains(item.Id) || confirmedGoodIds.Contains(item.Id))
+            {
+                continue;
+            }
+
+            var path = new List<MongoId>();
+            var pathSet = new HashSet<MongoId>();
+            var currentId = item.Id;
+            var hitCycle = false;
+
+            while (itemsById.TryGetValue(currentId, out var current))
+            {
+                if (confirmedGoodIds.Contains(currentId))
+                {
+                    // walked into a chain already proven fine, stop early
+                    break;
+                }
+
+                if (!pathSet.Add(currentId))
+                {
+                    // revisited a node on this path - circular reference
+                    hitCycle = true;
+                    break;
+                }
+
+                path.Add(currentId);
+
+                // same slots checked in PaymentService.GetItemLocation
+                if (currentId == stashId || current.SlotId == "hideout" || current.SlotId == "SecuredContainer")
+                {
+                    // Reached a legitimate root
+                    break;
+                }
+
+                if (current.ParentId is null)
+                {
+                    break;
+                }
+
+                currentId = current.ParentId;
+            }
+
+            var target = hitCycle ? corruptedIds : confirmedGoodIds;
+            foreach (var id in path)
+            {
+                target.Add(id);
+            }
+        }
+
+        // all good, return early
+        if (corruptedIds.Count == 0)
+        {
+            return;
+        }
+
+        logger.Warning(
+            $"Found {corruptedIds.Count} item(s) with circular parent references in profile: {pmcProfile.Id}. Removing and mailing back to player."
+        );
+
+        // create new item with a new instance id and break parent child relationship for safety
+        var itemsToMail = items
+            .Where(item => corruptedIds.Contains(item.Id))
+            .Select(item => new Item
+            {
+                Id = new MongoId(),
+                Template = item.Template,
+                Upd = item.Upd,
+            })
+            .ToList();
+
+        // remove all corrupted items as they will be mailed
+        pmcProfile.Inventory.Items.RemoveAll(item => corruptedIds.Contains(item.Id));
+
+        var sessionId = pmcProfile.SessionId;
+        if (sessionId is null)
+        {
+            logger.Warning($"Unable to mail corrupted items back to player, SessionId is null");
+
+            return;
+        }
+
+        // mail items to player
+        mailSendService.SendSystemMessageToPlayer(
+            sessionId.Value,
+            serverLocalisationService.GetText("inventory-corrupted_items_returned"),
+            itemsToMail
+        );
     }
 
     [GeneratedRegex("[^a-zA-Z0-9 -]")]
