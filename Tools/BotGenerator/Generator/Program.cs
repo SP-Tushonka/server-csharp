@@ -86,6 +86,10 @@ internal static class Program
             "pmcbotblackdiv",
             "bosswedgelab",
             "followerwedgelab",
+            "exusecfree",
+            "vsrffight",
+            "followertagilla",
+            "pmcbotblackdivseason",
         };
 
         // Read raw bot dumps and turn into c# objects

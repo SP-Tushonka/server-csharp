@@ -77,5 +77,9 @@
         pmcbotblackdiv = 73,
         bosswedgelab = 74,
         followerwedgelab = 75,
+        exusecfree = 76,
+        vsrffight = 77,
+        followertagilla = 78,
+        pmcbotblackdivseason = 79,
     }
 }

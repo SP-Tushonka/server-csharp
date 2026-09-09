@@ -2721,6 +2721,70 @@
       "lightIsActiveNightChancePercent": 75,
       "nvgIsActiveChanceDayPercent": 10,
       "nvgIsActiveChanceNightPercent": 90
+    },
+    "exusecfree": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 85,
+      "lightIsActiveDayChancePercent": 25,
+      "lightIsActiveNightChancePercent": 90,
+      "nvgIsActiveChanceDayPercent": 10,
+      "nvgIsActiveChanceNightPercent": 90,
+      "randomisation": [
+        {
+          "equipmentMods": {
+            "mod_nvg": 0
+          },
+          "levelRange": {
+            "max": 100,
+            "min": 1
+          },
+          "nighttimeChanges": {
+            "equipmentModsModifiers": {
+              "mod_nvg": 90
+            }
+          }
+        }
+      ],
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
+    "vsrffight": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
+    },
+    "pmcbotblackdivseason": {
+      "faceShieldIsActiveChancePercent": 100,
+      "forceOnlyArmoredRigWhenNoArmor": true,
+      "forceRigWhenNoVest": true,
+      "forceStock": true,
+      "laserIsActiveChancePercent": 95,
+      "lightIsActiveDayChancePercent": 35,
+      "lightIsActiveNightChancePercent": 95,
+      "nvgIsActiveChanceDayPercent": 20,
+      "nvgIsActiveChanceNightPercent": 95,
+      "weaponModLimits": {
+        "lightLaserLimit": 1,
+        "scopeLimit": 1
+      },
+      "weaponSlotIdsToMakeRequired": [
+        "mod_reciever"
+      ]
     }
   },
   "itemSpawnLimits": {
@@ -3156,7 +3220,10 @@
     "pmcBotBlackDiv": 20,
     "bossWedge": 5,
     "bossWedgeLab": 5,
-    "followerWedgeLab": 10
+    "followerWedgeLab": 10,
+    "exUsecFree": 15,
+    "vsRFFight": 40,
+    "pmcBotBlackDivSeason": 20
   },
   "secureContainerAmmoStackCount": 20,
   "showTypeInNickname": false,
