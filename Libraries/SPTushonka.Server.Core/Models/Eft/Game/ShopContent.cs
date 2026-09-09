@@ -17,7 +17,7 @@ public sealed record ShopContent
     [JsonPropertyName("prices")]
     public required List<ShopPrice> Prices { get; set; }
 
-    /// <summary>Localisation keyed by language, then by key - "offer.&lt;id&gt;.name"</summary>
+    // Keyed by language, then by key such as "offer.<id>.name".
     [JsonPropertyName("locale")]
     public required Dictionary<string, Dictionary<string, string>> Locale { get; set; }
 }
@@ -27,9 +27,7 @@ public sealed record ShopMenuItem
     [JsonPropertyName("id")]
     public MongoId Id { get; set; }
 
-    /// <summary>
-    ///     Null for a tab that only groups its children rather than opening a page of its own.
-    /// </summary>
+    // Null for a tab that only groups its children.
     [JsonPropertyName("pageId")]
     public MongoId? PageId { get; set; }
 
@@ -48,6 +46,9 @@ public sealed record ShopMenuItem
     [JsonPropertyName("selectedIconUrl")]
     public string? SelectedIconUrl { get; set; }
 
+    [JsonPropertyName("soundTheme")]
+    public string? SoundTheme { get; set; }
+
     [JsonPropertyName("labels")]
     public List<string> Labels { get; set; } = [];
 }
@@ -61,7 +62,7 @@ public sealed record ShopPage
     public List<ShopBlock> Blocks { get; set; } = [];
 }
 
-/// <summary>One tile on a page. Position and aspect ratio drive the grid the client lays out.</summary>
+// One tile on a page. Position and aspect ratio drive the grid the client lays out.
 public sealed record ShopBlock
 {
     [JsonPropertyName("offerId")]
@@ -73,14 +74,14 @@ public sealed record ShopBlock
     [JsonPropertyName("subtitleKey")]
     public string? SubtitleKey { get; set; }
 
-    /// <summary>A second line the shop renders in green, with its own label - "Includes", say.</summary>
+    // A second line the shop renders in green under its own label.
     [JsonPropertyName("additionalSubtitleKey")]
     public string? AdditionalSubtitleKey { get; set; }
 
     [JsonPropertyName("additionalSubtitleLabelKey")]
     public string? AdditionalSubtitleLabelKey { get; set; }
 
-    /// <summary>Artwork for the purchase dialog, which is usually larger than the tile image.</summary>
+    // Artwork for the purchase dialog, larger than the tile image.
     [JsonPropertyName("purchasePopupImage")]
     public string? PurchasePopupImage { get; set; }
 
@@ -107,6 +108,33 @@ public sealed record ShopBlock
 
     [JsonPropertyName("scope")]
     public List<string> Scope { get; set; } = ["EFT"];
+
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
+    [JsonPropertyName("widgetSettings")]
+    public ShopWidgetSettings? WidgetSettings { get; set; }
+}
+
+public sealed record ShopWidgetSettings
+{
+    [JsonPropertyName("steam")]
+    public ShopSteamSettings? Steam { get; set; }
+
+    [JsonPropertyName("xsolla")]
+    public ShopXsollaSettings? Xsolla { get; set; }
+}
+
+public sealed record ShopSteamSettings
+{
+    [JsonPropertyName("link")]
+    public string? Link { get; set; }
+}
+
+public sealed record ShopXsollaSettings
+{
+    [JsonPropertyName("sku")]
+    public string? Sku { get; set; }
 }
 
 public sealed record ShopGridPosition
@@ -141,17 +169,14 @@ public sealed record ShopOffer
     [JsonPropertyName("detailImages")]
     public List<ShopDetailImage> DetailImages { get; set; } = [];
 
-    /// <summary>What the buyer receives. Items reference a template, customisations a suite.</summary>
+    // What the buyer receives. Items reference a template, customisations a suite.
     [JsonPropertyName("items")]
     public List<ShopOfferItem> Items { get; set; } = [];
 
     [JsonPropertyName("tags")]
     public List<string> Tags { get; set; } = [];
 
-    /// <summary>
-    ///     What a bundle is made of. The item view lists these as its contents, each with its own
-    ///     name, description and artwork.
-    /// </summary>
+    // The offers a bundle is made of, listed as its contents with their own artwork.
     [JsonPropertyName("relatedOffers")]
     public List<ShopRelatedOffer> RelatedOffers { get; set; } = [];
 
@@ -209,20 +234,32 @@ public sealed record ShopOfferItem
     [JsonPropertyName("isApplyOnce")]
     public bool IsApplyOnce { get; set; }
 
-    /// <summary>
-    ///     What the entry hands over when it is neither an item nor a customisation
-    /// </summary>
+    // What the entry hands over when it is neither an item nor a customisation.
     [JsonPropertyName("type")]
     public string? Type { get; set; }
 
     [JsonPropertyName("quantity")]
     public int Quantity { get; set; }
+
+    [JsonPropertyName("rowsCount")]
+    public int RowsCount { get; set; }
+
+    [JsonPropertyName("edition")]
+    public string? Edition { get; set; }
+
+    [JsonPropertyName("persistAfterWipe")]
+    public bool PersistAfterWipe { get; set; }
+
+    [JsonPropertyName("amount")]
+    public int Amount { get; set; }
 }
 
 public static class ShopOfferItemType
 {
     public const string Customization = "CUSTOMIZATION";
     public const string BattlePassUniversalDocument = "EFT_BATTLE_PASS_UNIVERSAL_DOCUMENT";
+    public const string StashRows = "STASH_ROWS";
+    public const string GameEdition = "GAME_EDITION";
 }
 
 public sealed record ShopPrice

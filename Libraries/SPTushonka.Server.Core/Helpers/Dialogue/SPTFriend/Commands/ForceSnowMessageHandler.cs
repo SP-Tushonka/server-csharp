@@ -29,7 +29,7 @@ public class ForceSnowMessageHandler(
         return string.Equals(message, "itsonlysnowalan", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         weatherConfig.OverrideSeason = Season.WINTER;
 
@@ -40,5 +40,7 @@ public class ForceSnowMessageHandler(
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 }

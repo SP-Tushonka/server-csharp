@@ -24,6 +24,9 @@ public record GlobalTable
 
     [JsonPropertyName("ItemPresets")]
     public required Dictionary<MongoId, Preset> ItemPresets { get; init; }
+
+    [JsonPropertyName("InventoryTarcoinMigrationProdAllowedAids")]
+    public required List<long> InventoryTarcoinMigrationProdAllowedAids { get; init; }
 }
 
 //Todo: Most of this stuff needs moved out of this and into a globals namespace or something
@@ -586,6 +589,7 @@ public record GlobalConfig
     public required SteamStatusSettings SteamStatusSettings { get; set; }
     public required TutorialGlobals Tutorial { get; set; }
     public required WishlistSettings WishlistSettings { get; set; }
+    public required GroupQuestSetting GroupQuestSetting { get; set; }
 }
 
 public record GlobalAudioSettings
@@ -3288,6 +3292,19 @@ public record QuestChapter
     public required string ChapterId { get; set; }
 }
 
+public record GroupQuestSetting
+{
+    public required bool CounterCreatorExitStatus { get; set; }
+    public required bool CounterCreatorHealthEffects { get; set; }
+    public required bool CounterCreatorKill { get; set; }
+    public required bool CounterCreatorLaunchFlare { get; set; }
+    public required bool CounterCreatorMapTransit { get; set; }
+    public required bool CounterCreatorShot { get; set; }
+    public required bool CounterCreatorTriggerCondition { get; set; }
+    public required bool CounterCreatorUnderArtillery { get; set; }
+    public required bool CounterCreatorUseItem { get; set; }
+}
+
 public record ExtensionsSettings
 {
     public required bool Enabled { get; set; }
@@ -3296,6 +3313,7 @@ public record ExtensionsSettings
     public required string StashRowsUrl { get; set; }
     public required int MaxStashRows { get; set; }
     public required string BattlePassUrl { get; set; }
+    public required bool Maintenance { get; set; }
 }
 
 public record BattlePassUniversalDocument

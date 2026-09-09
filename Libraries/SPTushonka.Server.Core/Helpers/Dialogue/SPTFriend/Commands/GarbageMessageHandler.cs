@@ -20,7 +20,7 @@ public class GarbageMessageHandler(MailSendService _mailSendService) : IChatMess
         return string.Equals(message, "garbage", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         var beforeCollect = GC.GetTotalMemory(false) / 1024 / 1024;
 
@@ -29,5 +29,7 @@ public class GarbageMessageHandler(MailSendService _mailSendService) : IChatMess
         var afterCollect = GC.GetTotalMemory(false) / 1024 / 1024;
 
         _mailSendService.SendUserMessageToPlayer(sessionId, sptFriendUser, $"Before: {beforeCollect}MB, After: {afterCollect}MB", [], null);
+
+        return ValueTask.CompletedTask;
     }
 }

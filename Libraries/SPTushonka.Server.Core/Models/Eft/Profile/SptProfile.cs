@@ -127,6 +127,9 @@ public record UserBuilds
 
 public record UserBuild
 {
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
     [JsonPropertyName("Id")]
     public MongoId Id { get; set; }
 
@@ -145,6 +148,11 @@ public record WeaponBuild : UserBuild
 
 public record EquipmentBuild : UserBuild
 {
+    public EquipmentBuild()
+    {
+        Type = "equipment";
+    }
+
     [JsonPropertyName("Root")]
     public MongoId Root { get; set; }
 

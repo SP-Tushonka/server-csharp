@@ -65,7 +65,7 @@ public class GiftService(
     /// <param name="playerId"> Player to send gift to / sessionID </param>
     /// <param name="giftId"> ID of gift in configs/gifts.json to send player </param>
     /// <returns> Outcome of sending gift to player </returns>
-    public GiftSentResult SendGiftToPlayer(MongoId playerId, string giftId)
+    public async Task<GiftSentResult> SendGiftToPlayerAsync(MongoId playerId, string giftId)
     {
         var giftData = GetGiftById(giftId);
         if (giftData is null)
@@ -166,7 +166,7 @@ public class GiftService(
 
         if (giftData.Tarcoins > 0)
         {
-            tarcoinStoreService.Credit(playerId, giftData.Tarcoins.Value);
+            await tarcoinStoreService.CreditAsync(playerId, giftData.Tarcoins.Value);
         }
 
         profileHelper.FlagGiftReceivedInProfile(playerId, giftId, maxGiftsToSendCount);
@@ -212,43 +212,6 @@ public class GiftService(
             default:
                 logger.Error(serverLocalisationService.GetText("gift-unable_to_handle_message_type_command", giftData.Sender));
                 return null;
-        }
-    }
-
-    /// <summary>
-    ///     Prapor sends gifts to player for first week after profile creation
-    /// </summary>
-    /// <param name="sessionId"> Player ID </param>
-    /// <param name="day"> What day to give gift for </param>
-    public void SendPraporStartingGift(MongoId sessionId, int day)
-    {
-        var giftId = day switch
-        {
-            1 => "PraporGiftDay1",
-            2 => "PraporGiftDay2",
-            _ => null,
-        };
-
-        if (giftId is not null)
-        {
-            if (!profileHelper.PlayerHasReceivedMaxNumberOfGift(sessionId, giftId, 1))
-            {
-                SendGiftToPlayer(sessionId, giftId);
-            }
-        }
-    }
-
-    /// <summary>
-    ///     Send player a gift with silent received check
-    /// </summary>
-    /// <param name="giftId"> ID of gift to send </param>
-    /// <param name="sessionId"> Session ID of player to send to </param>
-    /// <param name="giftCount"> Optional, how many to send </param>
-    public void SendGiftWithSilentReceivedCheck(string giftId, MongoId sessionId, int giftCount)
-    {
-        if (!profileHelper.PlayerHasReceivedMaxNumberOfGift(sessionId, giftId, giftCount))
-        {
-            SendGiftToPlayer(sessionId, giftId);
         }
     }
 }

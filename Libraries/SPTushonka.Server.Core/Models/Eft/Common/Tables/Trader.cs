@@ -254,6 +254,9 @@ public record TraderAssort
 
 public record BarterScheme
 {
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
     // Confirmed in client
     [JsonPropertyName("count")]
     public double? Count { get; set; }

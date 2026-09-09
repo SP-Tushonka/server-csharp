@@ -13,6 +13,9 @@ public record LocationBase
     [JsonPropertyName("AccessKeysPvE")]
     public IEnumerable<string>? AccessKeysPvE { get; set; }
 
+    [JsonPropertyName("HighLevelLocationId")]
+    public string? HighLevelLocationId { get; set; }
+
     [JsonPropertyName("AirdropParameters")]
     public List<AirdropParameter>? AirdropParameters { get; set; }
 
@@ -1286,8 +1289,12 @@ public enum WildSpawnType
     sentry,
     vsRFFight,
     civilian,
+    exUsecFree,
     bossWedge = 76,
     bossBullyBlackDiv,
     followerBullyBlackDiv,
     pmcBotBlackDiv,
+    bossWedgeLab,
+    followerWedgeLab,
+    pmcBotBlackDivSeason,
 }

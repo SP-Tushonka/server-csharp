@@ -42,7 +42,6 @@ public class GameController(
     ServerLocalisationService serverLocalisationService,
     PostDbLoadService postDbLoadService,
     SeasonalEventService seasonalEventService,
-    GiftService giftService,
     RaidTimeAdjustmentService raidTimeAdjustmentService,
     ProfileActivityService profileActivityService,
     BotConfig botConfig,
@@ -60,7 +59,7 @@ public class GameController(
     /// <param name="url"></param>
     /// <param name="sessionId">Session/Player id</param>
     /// <param name="startTimeStampMs"></param>
-    public void GameStart(string url, MongoId sessionId, long startTimeStampMs)
+    public async Task GameStart(string url, MongoId sessionId, long startTimeStampMs)
     {
         profileActivityService.AddActiveProfile(sessionId, startTimeStampMs);
 
@@ -118,12 +117,6 @@ public class GameController(
             UpdateProfileHealthValues(pmcProfile);
         }
 
-        if (pmcProfile.Inventory is not null)
-        {
-            SendPraporGiftsToNewProfiles(pmcProfile);
-            SendMechanicGiftsToNewProfile(pmcProfile);
-        }
-
         profileFixerService.CheckForAndRemoveInvalidTraders(fullProfile);
         profileFixerService.CheckForAndFixPmcProfileIssues(pmcProfile);
 
@@ -153,7 +146,7 @@ public class GameController(
             WarnOnActiveBotReloadSkill(pmcProfile);
         }
 
-        seasonalEventService.GivePlayerSeasonalGifts(sessionId);
+        await seasonalEventService.GivePlayerSeasonalGiftsAsync(sessionId);
 
         // Set activity timestamp at the end of the method, so that code that checks for an older timestamp (Updating hideout) can still run
         profileActivityService.SetActivityTimestamp(sessionId);
@@ -187,6 +180,7 @@ public class GameController(
                 Trading = httpServerHelper.GetBackendUrl(),
                 Messaging = httpServerHelper.GetBackendUrl(),
                 Main = httpServerHelper.GetBackendUrl(),
+                Static = httpServerHelper.GetBackendUrl(),
                 RagFair = httpServerHelper.GetBackendUrl(),
             },
             UseProtobuf = false,
@@ -195,6 +189,13 @@ public class GameController(
             SessionMode = "pve",
             PurchasedGames = new PurchasedGames { IsEftPurchased = true, IsArenaPurchased = false },
             IsGameSynced = true,
+            LinkedPlatforms = [],
+            AvailableGameModes = new Dictionary<string, bool>
+            {
+                { "regular", true },
+                { "pve", true },
+                { "pvp-season", true },
+            },
         };
 
         return config;
@@ -397,38 +398,6 @@ public class GameController(
                 }
             }
         }
-    }
-
-    /// <summary>
-    ///     Send starting gifts to profile after x days
-    /// </summary>
-    /// <param name="pmcProfile">Profile to add gifts to</param>
-    protected void SendPraporGiftsToNewProfiles(PmcData pmcProfile)
-    {
-        var timeStampProfileCreated = pmcProfile.Info?.RegistrationDate;
-        var oneDaySeconds = timeUtil.GetHoursAsSeconds(24);
-        var currentTimeStamp = timeUtil.GetTimeStamp();
-
-        // One day post-profile creation
-        if (currentTimeStamp > timeStampProfileCreated + oneDaySeconds)
-        {
-            giftService.SendPraporStartingGift(pmcProfile.SessionId.Value, 1);
-        }
-
-        // Two day post-profile creation
-        if (currentTimeStamp > timeStampProfileCreated + (oneDaySeconds * 2))
-        {
-            giftService.SendPraporStartingGift(pmcProfile.SessionId.Value, 2);
-        }
-    }
-
-    /// <summary>
-    ///     Mechanic sends players a measuring tape on profile start for some reason
-    /// </summary>
-    /// <param name="pmcProfile"></param>
-    protected void SendMechanicGiftsToNewProfile(PmcData pmcProfile)
-    {
-        giftService.SendGiftWithSilentReceivedCheck("MechanicGiftDay1", pmcProfile.SessionId.Value, 1);
     }
 
     /// <summary>

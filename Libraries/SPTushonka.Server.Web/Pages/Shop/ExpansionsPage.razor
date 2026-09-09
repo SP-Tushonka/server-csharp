@@ -1,0 +1,329 @@
+﻿@page "/shop/{Token}"
+@page "/shop/{Token}/item/{OfferId}"
+@using SPTarkov.Server.Core.Models.Common
+@using SPTarkov.Server.Core.Models.Eft.Game
+@using SPTarkov.Server.Core.Services.Commerce
+@using SPTarkov.Server.Web.Layout
+@using SPTarkov.Server.Web.Pages.Shop.Components
+
+@inject TarcoinStoreService TarcoinStoreService
+@inject NavigationManager Navigation
+
+@layout EmptyLayout
+
+<HeadContent>
+    @* Live's own stylesheet, extracted and de-scoped by Tools/import-shop-styles.py. The
+       components mirror their markup so the rules apply as they are. *@
+    <link rel="stylesheet" href="/SPTarkov.Server.Web/css/expansions-shop.css?v=@AssetVersion"/>
+    @* Clears the glow SPT's own web ui paints on html and body. Loaded only by this page. *@
+    <link rel="stylesheet" href="/SPTarkov.Server.Web/css/expansions-shop-host.css?v=@AssetVersion"/>
+    <script src="/SPTarkov.Server.Web/js/expansions-shop.js?v=@AssetVersion" defer></script>
+</HeadContent>
+
+<PageTitle>Expansion Hub</PageTitle>
+
+<CascadingValue Name="ShopLanguage" Value="_language">
+<div class="shop-page">
+    <div class="app-bg w-screen">
+        <div class="parallax-wrapper">
+            @* Live overhangs the viewport by 150px and pulls it back by half, so the drift has
+               the same room either side. That is why their sheet's left of -100px is overridden
+               inline. *@
+            <div class="texture parallax-background"
+                 style="background-image: url(/files/shop/ExpansionsHub_Background_Paralax_Store.jpg); background-size: contain; background-position: center center; background-repeat: no-repeat; width: calc(150px + 100vw); left: -75px;"></div>
+        </div>
+
+        @* Live wraps the layout in a container of its own that isolates it, so the drifting
+           parallax layer below can never be composited together with it. *@
+        <div class="loader-container">
+            <div class="main-layout">
+                <ShopHeader Balance="_balance"/>
+                <div class="main-layout__global-header__border"></div>
+
+                <div class="main-layout__body">
+                    <div class="catalog-shell main-layout__section-host">
+                        <CategoryTree Menu="_menu"
+                                      Selected="_selected"
+                                      Children="OpenBranch()"
+                                      OnSelectRoot="SelectRootFromRail"
+                                      OnSelect="SelectFromRail"/>
+
+                        <ShopPageHost>
+                            <HeaderContent>
+                                <ShopCategoryBar Parent="@BreadcrumbParent()"
+                                                 Title="@BreadcrumbTitle()"
+                                                 BackUrl="@(_openBlock is null ? null : $"/shop/{Token}")"/>
+                            </HeaderContent>
+                            <ChildContent>
+                            @if (_openBlock is not null)
+                            {
+                                <CatalogItemPurchasePanel Block="_openBlock"
+                                                          Offer="_openOffer"
+                                                          Price="_openPrice"
+                                                          Token="@Token"
+                                                          Category="@TarcoinStoreService.Localise(_selected?.NameKey, _language)"
+                                                          CanBuy="CanAfford(_openPrice)"
+                                                          Purchased="_openBlock is not null && !_openBlock.Countable && _purchased.Contains(_openBlock.OfferId.ToString())"
+                                                          PurchasedOffers="_purchased"
+                                                          OnBuy="Confirm"/>
+                            }
+                            else
+                            {
+                                <ShopMosaic @key="_selected?.Id"
+                                            Blocks="_blocks"
+                                            Prices="_prices"
+                                            Token="@Token"
+                                            Balance="_balance"
+                                            PurchasedOffers="_purchased"
+                                            OnBuy="Confirm"/>
+                            }
+                            </ChildContent>
+                        </ShopPageHost>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-glow-overlay"></div>
+    </div>
+
+    @if (_message is not null)
+    {
+        <div class="s-toast">
+            <div class="s-toast__viewport s-toast__viewport--top-right">
+                <div class="s-toast__list">
+                    <div class="s-toast__item @(_messageFailed ? "s-toast__item--error" : "s-toast__item--success")">
+                        <div class="s-toast__content">
+                            <p class="s-toast__summary">@_message</p>
+                            <p class="s-toast__detail">@(_messageFailed ? "Nothing was taken from your wallet." : "Check your messages.")</p>
+                        </div>
+                        <button class="s-toast__close" @onclick="() => _message = null">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (_confirming is not null)
+    {
+        <PurchaseConfirmation Block="_confirming"
+                              Price="_confirmPrice"
+                              CanBuy="CanAfford(_confirmPrice)"
+                              Revealing="_revealing"
+                              OnConfirm="BuyAsync"
+                              OnCancel="() => _confirming = null"/>
+    }
+</div>
+</CascadingValue>
+
+@code {
+    // The client builds this address itself as <host>/shop/<AccessToken>, and the token we hand it
+    // is the session id, so the page knows whose wallet it is spending.
+    [Parameter]
+    public string? Token { get; set; }
+
+    [Parameter]
+    public string? OfferId { get; set; }
+
+    private string _language = "en";
+    // The game's webview caches these hard, so a rebuild has to change the url.
+    private static readonly string AssetVersion =
+        System.IO.File.GetLastWriteTimeUtc(typeof(ExpansionsPage).Assembly.Location).Ticks.ToString();
+
+    private MongoId _sessionId;
+    private int _balance;
+    private HashSet<string> _purchased = [];
+    private string? _message;
+    private bool _messageFailed;
+
+    private List<ShopMenuItem> _menu = [];
+    private ShopMenuItem? _selected;
+    private ShopMenuItem? _openRoot;
+    private List<ShopBlock> _blocks = [];
+    private Dictionary<string, ShopPrice> _prices = new();
+
+    private ShopBlock? _confirming;
+    private bool _revealing;
+    private ShopPrice? _confirmPrice;
+
+    private ShopBlock? _openBlock;
+    private ShopOffer? _openOffer;
+    private ShopPrice? _openPrice;
+
+    protected override void OnParametersSet()
+    {
+        if (!string.IsNullOrWhiteSpace(Token))
+        {
+            _sessionId = new MongoId(Token);
+            _balance = TarcoinStoreService.GetBalance(_sessionId);
+            _purchased = TarcoinStoreService.GetPurchasedOffers(_sessionId);
+        }
+
+        var query = System.Web.HttpUtility.ParseQueryString(new Uri(Navigation.Uri).Query);
+        var code = query["code"];
+        _language = string.IsNullOrWhiteSpace(code) ? "en" : code;
+
+        _menu = TarcoinStoreService.GetMenu();
+
+        if (_selected is null)
+        {
+            // The client deep links with ?pageId= (buy documents, stash rows, apparel), naming a tab's page
+            var pageId = query["pageId"];
+            var target = string.IsNullOrWhiteSpace(pageId) ? null : _menu.FirstOrDefault(tab => tab.PageId?.ToString() == pageId);
+
+            if (target is not null)
+            {
+                _openRoot = target.ParentId is null ? target : _menu.FirstOrDefault(tab => tab.Id.ToString() == target.ParentId) ?? target;
+                Select(target);
+            }
+            else
+            {
+                // Tabs without a page of their own only group their children, so open the first real one.
+                SelectRoot(_menu.FirstOrDefault(tab =>
+                    tab.ParentId is null && tab.PageId is not null && TarcoinStoreService.GetPage(tab.PageId.ToString()!) is not null));
+            }
+        }
+
+        LoadOffer();
+    }
+
+    private List<ShopMenuItem> ChildrenOf(ShopMenuItem? tab)
+    {
+        return tab is null ? [] : _menu.Where(item => item.ParentId == tab.Id.ToString()).ToList();
+    }
+
+    private List<ShopMenuItem> OpenBranch()
+    {
+        return ChildrenOf(_openRoot);
+    }
+
+    // The open item lives in the route, so leaving it means navigating back to the page. State
+    // alone would leave the item on screen.
+    private void SelectRootFromRail(ShopMenuItem? tab)
+    {
+        SelectRoot(tab);
+        LeaveOpenItem();
+    }
+
+    private void SelectFromRail(ShopMenuItem? tab)
+    {
+        Select(tab);
+        LeaveOpenItem();
+    }
+
+    private void LeaveOpenItem()
+    {
+        if (string.IsNullOrEmpty(OfferId))
+        {
+            return;
+        }
+
+        _openBlock = null;
+        _openOffer = null;
+        Navigation.NavigateTo($"/shop/{Token}?code={_language}");
+    }
+
+    private void SelectRoot(ShopMenuItem? tab)
+    {
+        if (tab is null)
+        {
+            return;
+        }
+
+        _openRoot = tab;
+
+        var children = ChildrenOf(tab);
+        Select(tab.PageId is null && children.Count > 0 ? children[0] : tab);
+    }
+
+    private void Select(ShopMenuItem? tab)
+    {
+        _selected = tab;
+        _blocks = tab?.PageId is null ? [] : TarcoinStoreService.GetPage(tab.PageId.ToString()!)?.Blocks ?? [];
+        _prices = TarcoinStoreService
+            .GetPrices(_blocks.Select(block => block.OfferId.ToString()))
+            .ToDictionary(price => price.Id.ToString());
+    }
+
+    private string? BreadcrumbParent()
+    {
+        if (_openBlock is not null)
+        {
+            return TarcoinStoreService.Localise(_selected?.NameKey, _language);
+        }
+
+        return _selected?.ParentId is null ? null : TarcoinStoreService.Localise(_openRoot?.NameKey, _language);
+    }
+
+    private string? BreadcrumbTitle()
+    {
+        return _openBlock is not null
+            ? TarcoinStoreService.Localise(_openBlock.NameKey, _language)
+            : TarcoinStoreService.Localise(_selected?.NameKey, _language);
+    }
+
+    private void LoadOffer()
+    {
+        if (string.IsNullOrEmpty(OfferId))
+        {
+            _openBlock = null;
+            _openOffer = null;
+            return;
+        }
+
+        // The block is what every tile is drawn from, so the item view can always be filled. Only the
+        // description and the contents strip need the catalog entry, which most offers here lack.
+        _openBlock = FindBlock(OfferId);
+
+        _openOffer = TarcoinStoreService.GetOffer(OfferId);
+        _openPrice = TarcoinStoreService.GetPrices([OfferId]).FirstOrDefault();
+    }
+
+    private bool CanAfford(ShopPrice? price)
+    {
+        return !_sessionId.IsEmpty && price is not null && _balance >= price.AmountWithDiscount;
+    }
+
+    private void Confirm(string offerId)
+    {
+        _confirming = FindBlock(offerId);
+        _confirmPrice = TarcoinStoreService.GetPrices([offerId]).FirstOrDefault();
+    }
+
+    private ShopBlock? FindBlock(string offerId)
+    {
+        return _menu
+            .Where(tab => tab.PageId is not null)
+            .Select(tab => TarcoinStoreService.GetPage(tab.PageId.ToString()!))
+            .SelectMany(page => page?.Blocks ?? [])
+            .FirstOrDefault(block => block.OfferId.ToString() == offerId);
+    }
+
+    private async Task BuyAsync(string offerId)
+    {
+        if (_sessionId.IsEmpty)
+        {
+            _confirming = null;
+            return;
+        }
+
+        var offer = TarcoinStoreService.GetOffer(offerId);
+        var name = TarcoinStoreService.Localise(offer?.NameKey, _language);
+        var bought = await TarcoinStoreService.TryPurchaseAsync(_sessionId, offerId, 1);
+
+        _balance = TarcoinStoreService.GetBalance(_sessionId);
+        _purchased = TarcoinStoreService.GetPurchasedOffers(_sessionId);
+        _messageFailed = !bought;
+        _message = bought ? $"{name} purchased" : $"Could not purchase {name}";
+
+        if (bought)
+        {
+            _revealing = true;
+            StateHasChanged();
+            await Task.Delay(1100);
+            _revealing = false;
+        }
+
+        _confirming = null;
+    }
+}

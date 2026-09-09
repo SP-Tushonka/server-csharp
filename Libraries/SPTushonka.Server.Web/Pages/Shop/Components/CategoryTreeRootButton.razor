@@ -1,0 +1,34 @@
+﻿@using SPTarkov.Server.Core.Models.Eft.Game
+@using SPTarkov.Server.Core.Services.Commerce
+
+@inject TarcoinStoreService TarcoinStoreService
+
+<button type="button"
+        class="category-tree__root-button btn-grid-overlay @(Active ? "category-tree__root-button--active" : "category-tree__root-button--default")"
+        @onclick="() => OnSelect.InvokeAsync(Tab)">
+    @if (!string.IsNullOrEmpty(Tab.IconUrl))
+    {
+        <img class="category-tree__root-icon"
+             src="@(Active && !string.IsNullOrEmpty(Tab.SelectedIconUrl) ? Tab.SelectedIconUrl : Tab.IconUrl)"
+             alt="@TarcoinStoreService.Localise(Tab.NameKey, Language)" draggable="false"/>
+    }
+
+    <span class="category-tree__root-footer z-10">
+        <span class="category-tree__root-label">@TarcoinStoreService.Localise(Tab.NameKey, Language)</span>
+    </span>
+</button>
+
+@code {
+    [CascadingParameter(Name = "ShopLanguage")]
+    public string Language { get; set; } = "en";
+
+    [Parameter]
+    [EditorRequired]
+    public required ShopMenuItem Tab { get; set; }
+
+    [Parameter]
+    public bool Active { get; set; }
+
+    [Parameter]
+    public EventCallback<ShopMenuItem> OnSelect { get; set; }
+}

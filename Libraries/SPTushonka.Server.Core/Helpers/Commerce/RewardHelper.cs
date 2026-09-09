@@ -147,7 +147,7 @@ public class RewardHelper(
 
                     break;
                 case RewardType.Tarcoin:
-                    tarcoinStoreService.Credit(sessionId!.Value, Convert.ToInt32(reward.Value));
+                    _ = tarcoinStoreService.CreditAsync(sessionId!.Value, Convert.ToInt32(reward.Value));
                     break;
                 case RewardType.NotificationPopup:
                     var notification = notifierHelper.CreateNotificationPopup(reward.IllustrationConfig!, reward.Message!.Value);
@@ -329,9 +329,7 @@ public class RewardHelper(
     protected IEnumerable<Item> GetRewardItems(IEnumerable<Reward> rewards, string gameVersion)
     {
         // Iterate over all rewards with the desired status, flatten out items that have a type of Item
-        var rewardItems = rewards.SelectMany(reward =>
-            reward.Type == RewardType.Item ? ProcessReward(reward) : []
-        );
+        var rewardItems = rewards.SelectMany(reward => reward.Type == RewardType.Item ? ProcessReward(reward) : []);
 
         return rewardItems;
     }

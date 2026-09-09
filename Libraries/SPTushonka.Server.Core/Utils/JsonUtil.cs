@@ -20,8 +20,9 @@ public class JsonUtil
             ReadCommentHandling = JsonCommentHandling.Skip,
             WriteIndented = false,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            //Todo: Reset this back to disallow at a later stage
 #if DEBUG
-            UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip,
 #endif
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             NewLine = "\n",

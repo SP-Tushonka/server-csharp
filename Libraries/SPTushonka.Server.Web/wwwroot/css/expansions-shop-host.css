@@ -1,0 +1,22 @@
+html,
+body {
+    background-image: none;
+    background-color: #111;
+}
+
+.h-\[110px\] { height: 110px; }
+.w-\[90px\] { width: 90px; }
+.w-\[16px\] { width: 16px; }
+.h-\[28px\] { height: 28px; }
+.pl-\[13px\] { padding-left: 13px; }
+.px-\[40px\] { padding-left: 40px; padding-right: 40px; }
+
+button {
+    border-style: solid;
+    border-color: rgb(229, 231, 235);
+    align-items: normal;
+    justify-content: normal;
+}
+.\!w-\[120px\] { width: 120px !important; }
+
+.mr-3 { margin-right: 15px !important; }

@@ -33,7 +33,7 @@ public class GiveMeSpaceMessageHandler(
         return string.Equals(message, "givemespace", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         const string stashRowGiftId = "StashRows";
         var maxGiftsToSendCount = coreConfig.Features.ChatbotFeatures.CommandUseLimits[stashRowGiftId] ?? 5;
@@ -72,5 +72,7 @@ public class GiveMeSpaceMessageHandler(
 
             profileHelper.FlagGiftReceivedInProfile(sessionId, stashRowGiftId, maxGiftsToSendCount);
         }
+
+        return ValueTask.CompletedTask;
     }
 }

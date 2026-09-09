@@ -118,6 +118,12 @@ public class CreateProfileService(
             CustomisationUnlocks = [],
         };
 
+        // Editions that hand you a running start skip the tutorial
+        if (profileHelper.GetProfileTemplateFlagValue(account.ProfileInfo.Edition, "skipTutorial"))
+        {
+            profileDetails.SptData.TutorialCompleted = true;
+        }
+
         // Set old account in-game time data on wipe, if it exists to the pmc
         if (account.CharacterData?.PmcData?.Stats?.Eft is not null)
         {

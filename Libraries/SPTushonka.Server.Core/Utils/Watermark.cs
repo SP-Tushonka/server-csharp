@@ -2,6 +2,7 @@ using Spectre.Console;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Locales;
@@ -108,15 +109,18 @@ public class Watermark(
     ///     Handle singleplayer/settings/version
     ///     Get text shown in game on screen, can't be translated as it breaks BSGs client when certain characters are used
     /// </summary>
-    /// <returns>label text</returns>
+    /// <returns>label text, "SPT 5.0.0 (BE) a1b2c3". The client appends its own version</returns>
     public string GetInGameVersionLabel()
     {
-        var sptVersion = ProgramStatics.SPT_VERSION();
-        var versionTag = ProgramStatics.DEBUG()
-            ? $"{sptVersion} - BLEEDINGEDGE {ProgramStatics.COMMIT()?.Substring(0, 6) ?? ""}"
-            : $"{sptVersion} - {ProgramStatics.COMMIT()?.Substring(0, 6) ?? ""}";
+        var build = ProgramStatics.ENTRY_TYPE() switch
+        {
+            EntryType.BLEEDINGEDGEMODS => " (BEM)",
+            EntryType.BLEEDINGEDGE => " (BE)",
+            _ => ProgramStatics.DEBUG() ? " (BE)" : "",
+        };
+        var commit = ProgramStatics.COMMIT() ?? "";
 
-        return $"{coreConfig.ProjectName} {versionTag}";
+        return $"{coreConfig.ProjectName} {ProgramStatics.SPT_VERSION()}{build} {commit.Substring(0, Math.Min(6, commit.Length))}".TrimEnd();
     }
 
     /// <summary>

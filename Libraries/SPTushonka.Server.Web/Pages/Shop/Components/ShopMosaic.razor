@@ -1,0 +1,87 @@
+﻿@using SPTarkov.Server.Core.Models.Eft.Game
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<section class="p-2 h-full">
+    @* Live lays this out with gridstack. Items are positioned in multiples of two css variables
+       and its javascript sets the cell height from the rendered width so the cells come out
+       square. expansions-shop.js does the same here. *@
+    <div class="grid-stack gs-4 grid-stack-static grid-stack-animate"
+         data-rows="@Rows"
+         style="--gs-item-margin-top: 10px; --gs-item-margin-bottom: 10px; --gs-item-margin-right: 10px; --gs-item-margin-left: 10px; --gs-column-width: 25%;">
+    @foreach (var block in Blocks)
+    {
+        var price = Prices.GetValueOrDefault(block.OfferId.ToString());
+
+        <div class="grid-stack-item ui-draggable-disabled ui-resizable-disabled" style="@ItemStyle(block)">
+            <div class="grid-stack-item-content grid-stack-item-content--default">
+                @* Their inner wrapper is what carries the card shadow, the hover lift and the orange
+                   accent underneath it. Without it the tiles sit flat. *@
+                <div class="grid-stack-item-content__inner">
+                    <ProductCard Block="block"
+                                 Price="price"
+                                 Token="@Token"
+                                 CanBuy="price is not null && Balance >= price.AmountWithDiscount"
+                                 Purchased="!block.Countable && (PurchasedOffers?.Contains(block.OfferId.ToString()) ?? false)"
+                                 OnBuy="OnBuy"/>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+</section>
+
+@code {
+    // Gridstack derives its cell height from the rendered width. Blazor replaces the prerendered
+    // grid with its own node, so the measurement has to be retaken once this component is live.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("shopLayoutMosaic");
+    }
+
+    [Parameter]
+    [EditorRequired]
+    public required List<ShopBlock> Blocks { get; set; }
+
+    [Parameter]
+    [EditorRequired]
+    public required Dictionary<string, ShopPrice> Prices { get; set; }
+
+    [Parameter]
+    public string? Token { get; set; }
+
+    [Parameter]
+    public int Balance { get; set; }
+
+    [Parameter]
+    public HashSet<string>? PurchasedOffers { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnBuy { get; set; }
+
+    private int Rows => Blocks.Count == 0 ? 0 : Blocks.Max(block => block.Position.Y + Size(block).Height);
+
+    private static string ItemStyle(ShopBlock block)
+    {
+        var (width, height) = Size(block);
+        var style = new List<string>();
+
+        if (block.Position.X > 0) style.Add($"left: calc({block.Position.X} * var(--gs-column-width));");
+        if (block.Position.Y > 0) style.Add($"top: calc({block.Position.Y} * var(--gs-cell-height));");
+        if (width > 1) style.Add($"width: calc({width} * var(--gs-column-width));");
+        if (height > 1) style.Add($"height: calc({height} * var(--gs-cell-height));");
+
+        return string.Join(" ", style);
+    }
+
+    // Their parser reads the ratio backwards. "1:2" assigns the second number to the width and the
+    // first to the height, and read the other way round the pages do not tile.
+    private static (int Width, int Height) Size(ShopBlock block)
+    {
+        var parts = (block.AspectRatio ?? "1:1").Split(':');
+        var width = parts.Length == 2 && int.TryParse(parts[1], out var w) ? Math.Max(1, w) : 1;
+        var height = parts.Length == 2 && int.TryParse(parts[0], out var h) ? Math.Max(1, h) : 1;
+
+        return (width, height);
+    }
+}

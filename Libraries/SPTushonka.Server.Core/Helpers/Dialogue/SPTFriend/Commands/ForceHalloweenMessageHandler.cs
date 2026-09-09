@@ -29,7 +29,7 @@ public class ForceHalloweenMessageHandler(
         return string.Equals(message, "veryspooky", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         var enableEventResult = _seasonalEventService.ForceSeasonalEvent(SeasonalEventType.Halloween);
         if (enableEventResult)
@@ -44,5 +44,7 @@ public class ForceHalloweenMessageHandler(
                 null
             );
         }
+
+        return ValueTask.CompletedTask;
     }
 }

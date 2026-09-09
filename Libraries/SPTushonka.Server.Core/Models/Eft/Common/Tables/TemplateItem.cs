@@ -1815,6 +1815,12 @@ public record Slot
     [JsonPropertyName("_required")]
     public bool? Required { get; set; }
 
+    [JsonPropertyName("_isPlateSlot")]
+    public bool? IsPlateSlot { get; set; }
+
+    [JsonPropertyName("_isPatronSlot")]
+    public bool? IsPatronSlot { get; set; }
+
     [JsonPropertyName("_mergeSlotWithChildren")]
     public bool? MergeSlotWithChildren { get; set; }
 

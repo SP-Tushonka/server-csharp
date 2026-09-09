@@ -29,7 +29,7 @@ public class ForceChristmasMessageHandler(
         return string.Equals(message, "hohoho", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         var enableEventResult = _seasonalEventService.ForceSeasonalEvent(SeasonalEventType.Christmas);
         if (enableEventResult)
@@ -44,5 +44,7 @@ public class ForceChristmasMessageHandler(
                 null
             );
         }
+
+        return ValueTask.CompletedTask;
     }
 }

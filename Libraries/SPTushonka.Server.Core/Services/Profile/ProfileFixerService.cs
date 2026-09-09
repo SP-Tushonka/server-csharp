@@ -31,10 +31,58 @@ public partial class ProfileFixerService(
     JsonUtil jsonUtil,
     RewardHelper rewardHelper,
     HideoutHelper hideoutHelper,
+    HideoutTable hideoutTable,
     ServerLocalisationService serverLocalisationService,
-    CoreConfig coreConfig
+    CoreConfig coreConfig,
+    SeasonTable seasonTable,
+    TimeUtil timeUtil
 )
 {
+    private const string PveGameMode = "pve";
+
+    /// <summary>
+    ///     The client errors with "Battle pass document limit data is missing" when spawning raid loot
+    ///     if the profile has none. SPT only runs pve, so that mode's limit applies.
+    /// </summary>
+    protected void AddMissingBattlePassDocumentLimits(PmcData pmcData)
+    {
+        var battlePasses = seasonTable.BattlePass?.BattlePasses;
+        if (battlePasses is null)
+        {
+            return;
+        }
+
+        pmcData.BattlePassDocumentLimitData ??= [];
+
+        foreach (var battlePass in battlePasses)
+        {
+            if (pmcData.BattlePassDocumentLimitData.ContainsKey(battlePass.Id))
+            {
+                continue;
+            }
+
+            var limits = battlePass.DocumentLimits;
+            var totalLimit = limits
+                ?.LimitsByGameMode?.FirstOrDefault(limit => string.Equals(limit.GameMode, PveGameMode, StringComparison.OrdinalIgnoreCase))
+                ?.TotalLimit;
+
+            if (totalLimit is null)
+            {
+                continue;
+            }
+
+            var resetInterval = (limits!.ResetHours ?? 0) * 3600;
+
+            pmcData.BattlePassDocumentLimitData[battlePass.Id] = new ProfileBattlePassDocumentLimit
+            {
+                NextResetTime = timeUtil.GetTimeStamp() + resetInterval,
+                RemainingLimit = totalLimit,
+                TotalLimit = totalLimit,
+                ResetInterval = resetInterval,
+            };
+        }
+    }
+
     /// <summary>
     ///     Find issues in the pmc profile data that may cause issues and fix them
     /// </summary>
@@ -46,10 +94,11 @@ public partial class ProfileFixerService(
         RemoveOrphanedQuests(pmcProfile);
         VerifyQuestProductionUnlocks(pmcProfile);
         FixOrphanedInsurance(pmcProfile);
+        AddMissingBattlePassDocumentLimits(pmcProfile);
 
         if (pmcProfile.Hideout is not null)
         {
-            AddHideoutEliteSlots(pmcProfile);
+            FixHideoutAreaSlots(pmcProfile);
         }
     }
 
@@ -425,7 +474,9 @@ public partial class ProfileFixerService(
     ///     profile without it overflow the client when it rebuilds the hideout.
     /// </summary>
     /// <param name="pmcProfile">profile to add slots to</param>
-    protected void AddHideoutEliteSlots(PmcData pmcProfile)
+    // The client sizes an area's resource slots from the AdditionalSlots bonuses of the stages it has
+    // reached, then copies the profile's slot list into that array. Any extra entry throws in the hideout.
+    protected void FixHideoutAreaSlots(PmcData pmcProfile)
     {
         if (pmcProfile.Hideout?.Areas is null)
         {
@@ -436,85 +487,40 @@ public partial class ProfileFixerService(
         var elite = hideoutManagement?.Progress >= 5100;
         var eliteSlots = globalTable.Configuration.SkillsSettings.HideoutManagement.EliteSlots;
 
-        var generator = pmcProfile.Hideout.Areas.FirstOrDefault(area => area.Type == HideoutAreas.Generator);
-        if (generator?.Slots is not null)
+        foreach (var area in pmcProfile.Hideout.Areas)
         {
-            var fuelSlots = generator.Slots.Count;
-            var extraGenSlots = elite ? eliteSlots.Generator.Slots : 0;
-
-            if (fuelSlots < 6 + extraGenSlots)
+            var template = hideoutTable.Areas.FirstOrDefault(x => x.Type == area.Type);
+            if (template?.Stages is null)
             {
-                if (logger.IsLogEnabled(LogLevel.Debug))
+                continue;
+            }
+
+            var allowed = template
+                .Stages.Where(stage => int.Parse(stage.Key) <= (area.Level ?? 0))
+                .SelectMany(stage => stage.Value.Bonuses ?? [])
+                .Where(bonus => bonus.Type == BonusType.AdditionalSlots)
+                .Sum(bonus => bonus.Value ?? 0);
+
+            if (elite && allowed > 0)
+            {
+                allowed += area.Type switch
                 {
-                    logger.Debug("Updating generator area slots to a size of 6 + hideout management skill");
-                }
-
-                AddEmptyObjectsToHideoutAreaSlots(HideoutAreas.Generator, (int)(6 + extraGenSlots), pmcProfile);
+                    HideoutAreas.Generator => eliteSlots.Generator.Slots,
+                    HideoutAreas.WaterCollector => eliteSlots.WaterCollector.Slots,
+                    HideoutAreas.AirFilteringUnit => eliteSlots.AirFilteringUnit.Slots,
+                    HideoutAreas.BitcoinFarm => eliteSlots.BitcoinFarm.Slots,
+                    _ => 0,
+                };
             }
-        }
 
-        var restArea = pmcProfile.Hideout.Areas.FirstOrDefault(area => area.Type == HideoutAreas.RestSpace);
-        var slots = restArea?.Slots?.Count;
-
-        if (slots < 1)
-        {
-            if (logger.IsLogEnabled(LogLevel.Debug))
+            area.Slots ??= [];
+            var removed = area.Slots.RemoveAll(slot => slot.LocationIndex >= (int)allowed && (slot.Items is null || slot.Items.Count == 0));
+            if (removed > 0 && logger.IsLogEnabled(LogLevel.Debug))
             {
-                logger.Debug("Updating restArea slots to a size of 1");
+                logger.Debug($"Removed {removed} empty {area.Type} slots past the {allowed} the client allows at level {area.Level}");
             }
 
-            AddEmptyObjectsToHideoutAreaSlots(HideoutAreas.RestSpace, 1, pmcProfile);
-        }
-
-        var waterCollSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.WaterCollector)?.Slots?.Count;
-        var extraWaterCollSlots = elite ? eliteSlots.WaterCollector.Slots : 0;
-
-        if (waterCollSlots.GetValueOrDefault(0) < 1 + extraWaterCollSlots)
-        {
-            if (logger.IsLogEnabled(LogLevel.Debug))
-            {
-                logger.Debug("Updating water collector area slots to a size of 1 + hideout management skill");
-            }
-
-            AddEmptyObjectsToHideoutAreaSlots(HideoutAreas.WaterCollector, (int)(1 + extraWaterCollSlots), pmcProfile);
-        }
-
-        var filterSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.AirFilteringUnit)?.Slots?.Count;
-        var extraFilterSlots = elite ? eliteSlots.AirFilteringUnit.Slots : 0;
-
-        if (filterSlots.GetValueOrDefault(0) < 3 + extraFilterSlots)
-        {
-            if (logger.IsLogEnabled(LogLevel.Debug))
-            {
-                logger.Debug("Updating air filter area slots to a size of 3 + hideout management skill");
-            }
-
-            AddEmptyObjectsToHideoutAreaSlots(HideoutAreas.AirFilteringUnit, (int)(3 + extraFilterSlots), pmcProfile);
-        }
-
-        var btcFarmSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.BitcoinFarm)?.Slots?.Count;
-        var extraBtcSlots = elite ? eliteSlots.BitcoinFarm.Slots : 0;
-
-        // BTC Farm doesn't have extra slots for hideout management, but we still check for modded stuff!!
-        if (btcFarmSlots < 50 + extraBtcSlots)
-        {
-            if (logger.IsLogEnabled(LogLevel.Debug))
-            {
-                logger.Debug("Updating bitcoin farm area slots to a size of 50 + hideout management skill");
-            }
-
-            AddEmptyObjectsToHideoutAreaSlots(HideoutAreas.BitcoinFarm, (int)(50 + extraBtcSlots), pmcProfile);
-        }
-
-        var cultistAreaSlots = pmcProfile.Hideout.Areas.FirstOrDefault(x => x.Type == HideoutAreas.CircleOfCultists)?.Slots?.Count;
-        if (cultistAreaSlots < 1)
-        {
-            if (logger.IsLogEnabled(LogLevel.Debug))
-            {
-                logger.Debug("Updating cultist area slots to a size of 1");
-            }
-
-            AddEmptyObjectsToHideoutAreaSlots(HideoutAreas.CircleOfCultists, 1, pmcProfile);
+            area.Slots = AddObjectsToList((int)allowed, area.Slots);
         }
     }
 

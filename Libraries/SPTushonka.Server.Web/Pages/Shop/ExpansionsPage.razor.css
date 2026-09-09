@@ -1,0 +1,91 @@
+﻿.shop-page {
+    min-height: 100vh;
+    font-family: "Jovanny Lemonad - Bender", "Bender", "Segoe UI", sans-serif;
+    color: var(--color-text-primary-warm, #b4b49a);
+}
+
+::deep .product-gallery__thumb {
+    width: 150px;
+    flex: 0 0 auto;
+    object-fit: cover;
+    border: 1px solid var(--color-border-default, #323530);
+}
+
+::deep .category-tree__root-footer {
+    width: 100%;
+    text-align: center;
+}
+
+::deep .category-tree__node-icon {
+    justify-self: center;
+    max-height: 22px;
+    max-width: 22px;
+    object-fit: contain;
+}
+
+::deep .main-layout__item-nav {
+    flex-shrink: 0;
+}
+
+::deep .s-category-header__secondary {
+    display: block;
+}
+
+::deep .main-page__content {
+    min-height: 0;
+}
+
+::deep .catalog-item-page__gallery .product-gallery img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+::deep .catalog-item-page__tags {
+    padding-left: 13px;
+}
+
+::deep .purchase-confirm__price-value--short {
+    color: var(--color-accent-red, #e73636);
+}
+
+::deep .btn-texture {
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+::deep .main-layout__item-nav__block-3 .catalog-item-nav__back-btn {
+    margin-right: 20px;
+}
+
+::deep .ticket-wrapper {
+    text-shadow: none;
+    letter-spacing: 1px;
+}
+
+::deep .catalog-item-purchase__received {
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-accent-orange);
+}
+
+.shop-page {
+    color: #000;
+}
+
+::deep .product-horizontal-carousel__arrow {
+    position: static;
+}
+
+::deep .product-horizontal-carousel__track {
+    transform: translateX(0);
+}
+
+::deep .product-card-carousel__track {
+    transform: translateY(0);
+}

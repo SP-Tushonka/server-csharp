@@ -1,0 +1,43 @@
+﻿<div class="main-layout__item-nav">
+    <div class="main-layout__item-nav__block main-layout__item-nav__block-1">
+        <div class="s-category-header">
+            @* Live reserves this line with an invisible copy of the title, so the header keeps
+               its height on a page with no parent to name. *@
+            <span class="s-category-header__secondary">
+                @if (string.IsNullOrEmpty(Parent))
+                {
+                    <span class="invisible">@Title</span>
+                }
+                else
+                {
+                    @Parent
+                }
+            </span>
+            <span class="s-category-header__primary">@Title</span>
+        </div>
+    </div>
+
+    <div class="main-layout__item-nav__block main-layout__item-nav__block-2"></div>
+
+    <div class="main-layout__item-nav__block main-layout__item-nav__block-3">
+        <div class="mr-3"></div>
+        @if (!string.IsNullOrEmpty(BackUrl))
+        {
+            <a class="btn btn--secondary btn--size--med catalog-item-nav__back-btn" href="@BackUrl">
+                <span class="btn-text">Back</span>
+                <div class="texture btn-texture" style="background-image: url(/files/shop/ExpansionsHub_MainButton_172_Background_1.png);"></div>
+            </a>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Parent { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? BackUrl { get; set; }
+}

@@ -10,4 +10,5 @@ public enum TraderServiceType
     PlayerTaxi,
     BtrBotCover,
     TransitItemsDelivery,
+    StoryCardBarter,
 }

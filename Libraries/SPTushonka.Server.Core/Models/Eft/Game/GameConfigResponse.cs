@@ -51,6 +51,12 @@ public record GameConfigResponse
 
     [JsonPropertyName("isGameSynced")]
     public bool? IsGameSynced { get; set; }
+
+    [JsonPropertyName("linkedPlatforms")]
+    public List<string>? LinkedPlatforms { get; set; }
+
+    [JsonPropertyName("availableGameModes")]
+    public Dictionary<string, bool>? AvailableGameModes { get; set; }
 }
 
 public record PurchasedGames
@@ -75,6 +81,9 @@ public record Backend
 
     [JsonPropertyName("Main")]
     public string? Main { get; set; }
+
+    [JsonPropertyName("Static")]
+    public string? Static { get; set; }
 
     [JsonPropertyName("RagFair")]
     public string? RagFair { get; set; }

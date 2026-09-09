@@ -21,7 +21,7 @@ public class LoveYouChatMessageHandler(MailSendService _mailSendService, RandomU
         return string.Equals(message, "love you", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         _mailSendService.SendUserMessageToPlayer(
             sessionId,
@@ -35,5 +35,7 @@ public class LoveYouChatMessageHandler(MailSendService _mailSendService, RandomU
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 }

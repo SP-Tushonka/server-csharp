@@ -21,7 +21,7 @@ public class DisplaySkillNamesHandler(MailSendService _mailSendService) : IChatM
         return string.Equals(message, "skills", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         // Get all items as an array
         var skills = Enum.GetNames(typeof(SkillTypes)).Order();
@@ -45,5 +45,7 @@ public class DisplaySkillNamesHandler(MailSendService _mailSendService) : IChatM
             // Increment processed count
             parsedCount += itemsToSend.Count();
         }
+
+        return ValueTask.CompletedTask;
     }
 }

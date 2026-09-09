@@ -10,5 +10,5 @@ public interface IChatMessageHandler
     int GetPriority();
 
     public bool CanHandle(string message);
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null);
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null);
 }

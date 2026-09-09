@@ -21,7 +21,7 @@ public class DisplayLocationsHandler(MailSendService _mailSendService) : IChatMe
         return string.Equals(message, "locations", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         // Get all items as an array
         var locations = Enum.GetNames(typeof(ELocationName));
@@ -45,5 +45,7 @@ public class DisplayLocationsHandler(MailSendService _mailSendService) : IChatMe
             // Increment processed count
             parsedCount += itemsToSend.Count();
         }
+
+        return ValueTask.CompletedTask;
     }
 }

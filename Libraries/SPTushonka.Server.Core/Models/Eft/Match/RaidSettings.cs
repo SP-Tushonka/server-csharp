@@ -107,4 +107,7 @@ public record WavesSettings
 
     [JsonPropertyName("isTaggedAndCursed")]
     public bool? IsTaggedAndCursed { get; set; }
+
+    [JsonPropertyName("timings")]
+    public Dictionary<string, int>? Timings { get; set; }
 }

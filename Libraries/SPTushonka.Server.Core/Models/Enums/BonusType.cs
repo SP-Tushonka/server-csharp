@@ -33,4 +33,5 @@ public enum BonusType
     TextBonus,
     SkillGroupLevelingBoost,
     StashRows,
+    Customization,
 }

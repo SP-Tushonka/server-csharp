@@ -24,7 +24,7 @@ public class HelloMessageHandler(MailSendService mailSendService, RandomUtil ran
         return _greetings.Contains(message, StringComparer.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         mailSendService.SendUserMessageToPlayer(
             sessionId,
@@ -45,6 +45,8 @@ public class HelloMessageHandler(MailSendService mailSendService, RandomUtil ran
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 
     public string GetCommand()

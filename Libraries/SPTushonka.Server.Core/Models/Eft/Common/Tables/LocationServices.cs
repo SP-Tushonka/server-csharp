@@ -42,6 +42,9 @@ public record TraderServices
 
     [JsonPropertyName("TransitItemsDelivery")]
     public TraderService TransitItemsDelivery { get; set; }
+
+    [JsonPropertyName("StoryCardBarter")]
+    public TraderService? StoryCardBarter { get; set; }
 }
 
 public record TraderService

@@ -109,6 +109,9 @@ public record BotGlobalsGrenadeSettings
     [JsonPropertyName("NO_RUN_FROM_AI_GRENADES")]
     public bool? NoRunFromAiGrenades { get; set; }
 
+    [JsonPropertyName("NO_RUN_FROM_GAS_GRENADES")]
+    public bool? NoRunFromGasGrenades { get; set; }
+
     [JsonPropertyName("MAX_THROW_POWER")]
     public float? MaxThrowPower { get; set; }
 

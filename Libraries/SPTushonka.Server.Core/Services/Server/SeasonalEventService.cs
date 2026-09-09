@@ -789,7 +789,7 @@ public class SeasonalEventService(
         }
     }
 
-    public void GivePlayerSeasonalGifts(MongoId sessionId)
+    public async Task GivePlayerSeasonalGiftsAsync(MongoId sessionId)
     {
         if (_currentlyActiveEvents is null)
         {
@@ -801,11 +801,11 @@ public class SeasonalEventService(
             switch (seasonEvent.Type)
             {
                 case SeasonalEventType.Christmas:
-                    GiveGift(sessionId, "Christmas2022");
+                    await GiveGiftAsync(sessionId, "Christmas2022");
                     break;
                 case SeasonalEventType.NewYears:
-                    GiveGift(sessionId, "NewYear2023");
-                    GiveGift(sessionId, "NewYear2024");
+                    await GiveGiftAsync(sessionId, "NewYear2023");
+                    await GiveGiftAsync(sessionId, "NewYear2024");
                     break;
             }
         }
@@ -864,7 +864,9 @@ public class SeasonalEventService(
                     ? infectionPercentage
                     : Convert.ToDouble(randomUtil.GetInt(Convert.ToInt32(infectionPercentage), 100));
             if (logger.IsLogEnabled(LogLevel.Debug))
+            {
                 logger.Debug($"Percent infected from map: {locationId} is: {randomInfectionPercentage}");
+            }
             // Infection rates sometimes apply to multiple maps, e.g. Factory day/night or Sandbox/sandbox_high
             // Get the list of maps that should have infection value applied to their base
             // 90% of locations are just 1 map e.g. bigmap = customs
@@ -1286,12 +1288,12 @@ public class SeasonalEventService(
     /// </summary>
     /// <param name="playerId">Player to send gift to</param>
     /// <param name="giftKey">Key of gift to give</param>
-    protected void GiveGift(MongoId playerId, string giftKey)
+    protected async Task GiveGiftAsync(MongoId playerId, string giftKey)
     {
         var giftData = giftService.GetGiftById(giftKey);
         if (!profileHelper.PlayerHasReceivedMaxNumberOfGift(playerId, giftKey, giftData.MaxToSendPlayer ?? 5))
         {
-            giftService.SendGiftToPlayer(playerId, giftKey);
+            await giftService.SendGiftToPlayerAsync(playerId, giftKey);
         }
     }
 

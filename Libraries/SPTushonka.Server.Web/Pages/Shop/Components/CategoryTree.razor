@@ -1,0 +1,60 @@
+﻿@using SPTarkov.Server.Core.Models.Eft.Game
+
+<aside class="catalog-shell__sidebar">
+    <div class="catalog-shell__sidebar-header">Categories</div>
+
+    <div class="category-tree relative main-drop-shadow">
+        <div class="category-tree__roots">
+            @foreach (var tab in Menu.Where(item => item.ParentId is null))
+            {
+                var children = Menu.Where(item => item.ParentId == tab.Id.ToString()).ToList();
+                var onPath = tab.Id == Selected?.Id || children.Any(child => child.Id == Selected?.Id);
+
+                <CategoryTreeRootButton Tab="tab" Active="onPath" OnSelect="OnSelectRoot"/>
+            }
+        </div>
+
+        <div class="panel-with-overlay flex-1">
+            <div class="panel-bg-with-grid"></div>
+
+            <div class="panel-with-overlay__scroll">
+                    <div class="category-tree__content">
+                    @if (Children.Count == 0)
+                    {
+                        <div class="category-tree__state-message-arrow">
+                            <span class="arrow">
+                                <span class="arrow-line"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="11" viewBox="0 0 9 11" fill="none" class="arrow-head">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.490005 10.99L0 10.106L6.987 5.995V4.995L0 0.884L0.490005 0L8.987 4.995V5.995L0.490005 10.99Z" fill="white"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    }
+
+                    @foreach (var child in Children)
+                    {
+                        <CategoryTreeNode Node="child" Active="child.Id == Selected?.Id" OnSelect="OnSelect"/>
+                        }
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public required List<ShopMenuItem> Menu { get; set; }
+
+    [Parameter]
+    public ShopMenuItem? Selected { get; set; }
+
+    [Parameter]
+    public List<ShopMenuItem> Children { get; set; } = [];
+
+    [Parameter]
+    public EventCallback<ShopMenuItem> OnSelectRoot { get; set; }
+
+    [Parameter]
+    public EventCallback<ShopMenuItem> OnSelect { get; set; }
+}

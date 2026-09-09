@@ -106,4 +106,7 @@ public class CustomizationProperties
 
     [JsonPropertyName("ProfileVersionsIgnoresSide")]
     public IEnumerable<string>? ProfileVersionsIgnoresSide { get; set; }
+
+    [JsonPropertyName("ShopCustomizationUrl")]
+    public string? ShopCustomizationUrl { get; set; }
 }

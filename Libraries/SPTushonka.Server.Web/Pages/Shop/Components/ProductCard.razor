@@ -1,0 +1,162 @@
+﻿@using SPTarkov.Server.Core.Models.Eft.Game
+@using SPTarkov.Server.Core.Services.Commerce
+
+@inject TarcoinStoreService TarcoinStoreService
+
+<article class="product-card@(Purchased ? " product-card--purchased" : "")">
+    <a class="cursor-pointer" href="@($"/shop/{Token}/item/{Block.OfferId}")">
+        @if (Block.Images.Count > 0)
+        {
+            <div class="product-card-carousel">
+                <div class="product-card-carousel__track product-card-carousel__track--vertical">
+                    <img class="product-card-carousel__slide" src="@Block.Images[0]" alt="" loading="lazy"/>
+                </div>
+            </div>
+        }
+    </a>
+
+        <div class="product-card__overlay"></div>
+        <div class="product-card__vignette"></div>
+
+        <header class="product-card__top">
+            <div class="product-tags product-card__tags">
+                @foreach (var tag in Block.Tags)
+                {
+                    <img class="product-tags__item" src="/files/shop/ExpansionsHub_Tag_Full_4.png" alt="@tag" draggable="false"/>
+                }
+            </div>
+            @* Live keeps this in the dom and hides it. It sizes the header's grid. *@
+            <div class="product-card__platforms !hidden">
+                <span class="product-card__platform-badge product-card__platform-badge--active">EFT</span>
+            </div>
+        </header>
+
+        <footer class="product-card__bottom">
+            @{
+                // The label is the green ticket such as "Save 450 TC". additionalSubtitle is the
+                // highlighted tail of the subtitle line.
+                var marker = TarcoinStoreService.Localise(Block.AdditionalSubtitleLabelKey, Language);
+                var additionalSubtitle = TarcoinStoreService.Localise(Block.AdditionalSubtitleKey, Language);
+            }
+
+            <div class="product-card__info@(Purchased ? "" : " product-card__info-hover")">
+                <h3 class="product-card__title">@TarcoinStoreService.Localise(Block.NameKey, Language)</h3>
+
+                <div class="product-card__subtitle-row">
+                    <h3 class="product-card__subtitle">@TarcoinStoreService.Localise(Block.SubtitleKey, Language)</h3>
+                    @if (!string.IsNullOrWhiteSpace(additionalSubtitle))
+                    {
+                        <span class="product-card__additional-subtitle product-card__additional-subtitle-desc">@additionalSubtitle</span>
+                    }
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(marker))
+                {
+                    <div class="ticket-wrapper min-w-0 max-w-full tracking-[1px]">
+                        <div class="ticket ticket-bonus">
+                            <div class="ticket-body">@marker</div>
+                        </div>
+                    </div>
+                }
+
+                @* Live always renders this row. A widget offer is bought with real money through
+                   Xsolla, so it carries a cash price instead of a tarcoin one. *@
+                <div class="product-card__price-row">
+                    @if (Purchased)
+                    {
+                        <span class="product-card__received">Received</span>
+                    }
+                    else if (!ShopFormat.IsTarcoinPriced(Block))
+                    {
+                        <span class="product-card__price-check">@TarcoinStoreService.Localise($"custom.{Block.OfferId}.priceCaption", Language)</span>
+                    }
+                    else if (Price is null)
+                    {
+                        <span class="product-card__received">Unavailable</span>
+                    }
+                    else
+                    {
+                        <span class="product-card__currency">
+                            <img class="textures-icon" src="/files/shop/ExpansionsHub_Currency_TC_Icon_1.png" alt=""/>
+                        </span>
+                        <span class="product-card__price-current">@ShopFormat.Price(Price.AmountWithDiscount)</span>
+                    }
+                </div>
+            </div>
+
+            @if (Block.ItemsCount > 1)
+            {
+                <div class="product-card__quantity">
+                    <span class="product-card__quantity-value">@ShopFormat.Quantity(Block.ItemsCount)</span>
+                    <span class="product-card__quantity-icon" aria-hidden="true">
+                        <img class="textures-icon" src="/files/shop/ExpansionsHub_Box_Icon.png" alt=""/>
+                    </span>
+                </div>
+            }
+        </footer>
+
+        @if (Purchased)
+        {
+            <div class="product-card-purchased__vignette"></div>
+            <div class="product-card-purchased__striped-lines"></div>
+            <div class="product-card-purchased__logo">
+                <img class="textures-icon h-[110px] w-[90px]" src="/files/shop/ExpansionsHub_Anim_Banner_2.png" alt=""/>
+            </div>
+        }
+
+    @if (!Purchased)
+    {
+        <div class="product-card__actions">
+            @if (ShopFormat.IsTarcoinPriced(Block))
+            {
+                <div class="purchase-single-button purchase-showcase-button !w-[120px]">
+                    <button class="button btn-grid-overlay button--gold button--md !w-full !h-full"
+                            disabled="@(Price is null)"
+                            @onclick="() => OnBuy.InvokeAsync(Block.OfferId.ToString())">
+                        <span class="button__content">
+                            <span class="button__label">
+                                <img class="textures-icon purchase-showcase-button__icon"
+                                     src="/files/shop/ExpansionsHub_MainButtons_Icon_1.png" alt=""/>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            }
+            else
+            {
+                <button class="button btn-grid-overlay button--gold button--md !w-[120px]" disabled>
+                    <span class="button__content">
+                        <span class="button__label">
+                            <img class="textures-icon showcase-product-card__actions-icon"
+                                 src="/files/shop/ExpansionsHub_MainButtons_Icon_1.png" alt=""/>
+                        </span>
+                    </span>
+                </button>
+            }
+        </div>
+    }
+</article>
+
+@code {
+    [CascadingParameter(Name = "ShopLanguage")]
+    public string Language { get; set; } = "en";
+
+    [Parameter]
+    [EditorRequired]
+    public required ShopBlock Block { get; set; }
+
+    [Parameter]
+    public ShopPrice? Price { get; set; }
+
+    [Parameter]
+    public string? Token { get; set; }
+
+    [Parameter]
+    public bool CanBuy { get; set; }
+
+    [Parameter]
+    public bool Purchased { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnBuy { get; set; }
+}

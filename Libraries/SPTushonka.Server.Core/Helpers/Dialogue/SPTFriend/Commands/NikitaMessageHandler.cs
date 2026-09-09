@@ -21,7 +21,7 @@ public class NikitaMessageHandler(MailSendService _mailSendService, RandomUtil _
         return string.Equals(message, "nikita", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         _mailSendService.SendUserMessageToPlayer(
             sessionId,
@@ -36,5 +36,7 @@ public class NikitaMessageHandler(MailSendService _mailSendService, RandomUtil _
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 }

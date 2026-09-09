@@ -37,27 +37,27 @@ public class SptDialogueChatBot(
         };
     }
 
-    public ValueTask<string> HandleMessage(MongoId sessionId, SendMessageRequest request)
+    public async ValueTask<string> HandleMessage(MongoId sessionId, SendMessageRequest request)
     {
         var sender = profileHelper.GetPmcProfile(sessionId);
         var sptFriendUser = GetChatBot();
 
         if (string.Equals(request.Text, "help", StringComparison.OrdinalIgnoreCase))
         {
-            return SendPlayerHelpMessage(sessionId, request);
+            return await SendPlayerHelpMessage(sessionId, request);
         }
 
         var handler = ChatMessageHandlers.FirstOrDefault(h => h.CanHandle(request.Text));
         if (handler is not null)
         {
-            handler.Process(sessionId, sptFriendUser, sender, request);
+            await handler.Process(sessionId, sptFriendUser, sender, request);
 
-            return new ValueTask<string>(request.DialogId);
+            return request.DialogId;
         }
 
         mailSendService.SendUserMessageToPlayer(sessionId, GetChatBot(), GetUnrecognizedCommandMessage(), [], null);
 
-        return new ValueTask<string>(request.DialogId);
+        return request.DialogId;
     }
 
     protected static List<IChatMessageHandler> ChatMessageHandlerSetup(IEnumerable<IChatMessageHandler> components)

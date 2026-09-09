@@ -25,7 +25,7 @@ public class SendGiftMessageHandler(MailSendService mailSendService, RandomUtil 
         return giftService.GiftExists(message);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public async ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         // Gifts may be disabled via config
         if (!coreConfig.Features.ChatbotFeatures.SptFriendGiftsEnabled)
@@ -34,7 +34,7 @@ public class SendGiftMessageHandler(MailSendService mailSendService, RandomUtil 
         }
 
         var messageTest = ((SendMessageRequest)extraInfo).Text;
-        var giftSent = giftService.SendGiftToPlayer(sessionId, messageTest);
+        var giftSent = await giftService.SendGiftToPlayerAsync(sessionId, messageTest);
         switch (giftSent)
         {
             case GiftSentResult.SUCCESS:

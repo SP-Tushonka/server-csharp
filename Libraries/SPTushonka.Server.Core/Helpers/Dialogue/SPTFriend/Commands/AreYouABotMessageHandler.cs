@@ -21,7 +21,7 @@ public class AreYouABotMessageHandler(MailSendService _mailSendService, RandomUt
         return string.Equals(message, "are you a bot", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         _mailSendService.SendUserMessageToPlayer(
             sessionId,
@@ -30,5 +30,7 @@ public class AreYouABotMessageHandler(MailSendService _mailSendService, RandomUt
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 }

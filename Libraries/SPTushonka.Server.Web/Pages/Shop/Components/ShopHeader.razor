@@ -1,0 +1,50 @@
+﻿@using Microsoft.JSInterop
+<div class="main-header the-header__global-header main-layout__global-header">
+    <div class="main-header__left">
+        <button class="tab btn-grid-overlay tab--active">
+            <span class="tab__content">
+                <span class="tab__icon-container">
+                    <img class="textures-icon tab__icon" src="/files/shop/ExpansionsHub_MainTab_Store_Icon_2.png" alt=""/>
+                </span>
+                <span class="tab__label">Store</span>
+            </span>
+        </button>
+    </div>
+
+    <div class="main-header__title">Expansion Hub</div>
+
+    <div class="main-header__actions">
+        <div class="the-header__balance">
+            <div class="user-balance">
+                <div class="texture user-balance__bg"
+                     style="background-image: url(/files/shop/ExpansionsHub_Currency_Log_Background.png); background-size: cover; background-position: center center; background-repeat: no-repeat;"></div>
+                <div class="user-balance__panel">
+                    <div class="user-balance__art">
+                        <img class="textures-icon" src="/files/shop/ExpansionsHub_Currency_TC_Icon_2.png" alt="TarCoins" width="32" height="32"/>
+                    </div>
+                    <div class="user-balance__value">@ShopFormat.Price(Balance)</div>
+                    <div class="user-balance__log"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-header__logout">
+            <button class="btn btn--secondary btn--size--med main-header__exit" @onclick="Exit">
+                <span class="btn-text">Exit</span>
+                <div class="texture btn-texture" style="background-image: url(/files/shop/ExpansionsHub_MainButton_172_Background_1.png);"></div>
+            </button>
+        </div>
+    </div>
+</div>
+
+@inject IJSRuntime JS
+
+@code {
+    private async Task Exit()
+    {
+        await JS.InvokeVoidAsync("shopExit");
+    }
+
+    [Parameter]
+    public int Balance { get; set; }
+}

@@ -1,8 +1,12 @@
 ﻿using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Game;
+using SPTarkov.Server.Core.Models.Eft.Ws;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
 
@@ -13,7 +17,9 @@ public class TarcoinStoreService(
     ISptLogger<TarcoinStoreService> logger,
     SaveServer saveServer,
     ShopTable shopTable,
-    MailSendService mailSendService
+    MailSendService mailSendService,
+    ProfileHelper profileHelper,
+    NotificationSendHelper notificationSendHelper
 )
 {
     public int GetBalance(MongoId sessionId)
@@ -21,7 +27,7 @@ public class TarcoinStoreService(
         return saveServer.GetProfile(sessionId)?.CharacterData?.PmcData?.TarCoinBalance ?? 0;
     }
 
-    public void Credit(MongoId sessionId, int amount)
+    public async Task CreditAsync(MongoId sessionId, int amount)
     {
         if (amount <= 0)
         {
@@ -29,12 +35,14 @@ public class TarcoinStoreService(
         }
 
         SetBalance(sessionId, GetBalance(sessionId) + amount);
+        await NotifyAsync(
+            sessionId,
+            new WsExpansionsBalanceIncreased { EventType = NotificationEventType.UpdateAccountTarcoinBalanceIncreased, Amount = amount }
+        );
+        await NotifyBalanceAsync(sessionId);
     }
 
-    /// <summary>
-    ///     Take <paramref name="cost" /> from the wallet when it covers it.
-    /// </summary>
-    /// <returns>False when the balance is short, leaving it untouched</returns>
+    // False when the balance is short, which leaves it untouched.
     public bool TrySpend(MongoId sessionId, int cost)
     {
         var balance = GetBalance(sessionId);
@@ -50,31 +58,32 @@ public class TarcoinStoreService(
         return true;
     }
 
-    /// <summary>
-    ///     Build the reply the shop webview expects from /v2/shop/api/v1/account/balance/.
-    /// </summary>
     public ShopBalanceResponse GetBalanceResponse(MongoId sessionId)
     {
-        return new ShopBalanceResponse
-        {
-            Data = new ShopBalanceData { Item = new ShopBalanceItem { Balance = GetBalance(sessionId) } },
-        };
+        return new ShopBalanceResponse { Data = new ShopBalanceData { Item = new ShopBalanceItem { Balance = GetBalance(sessionId) } } };
     }
 
+    // TarCoins, Editions and PvE Zone sell real money products, so their tabs stay hidden for now.
+    private static readonly HashSet<string> HiddenTabs =
+    [
+        "69cba58925b5e944b4d5116e",
+        "6a22dbe90b05431dfebe972c",
+        "69fdbdce62f4875f5b27091f",
+    ];
 
-    /// <summary>The tab list behind /v2/shop/api/v1/menu.</summary>
     public List<ShopMenuItem> GetMenu()
     {
-        return shopTable.Content.Menu.OrderBy(item => item.Order).ToList();
+        return shopTable
+            .Content.Menu.Where(item => !HiddenTabs.Contains(item.Id.ToString()) && !HiddenTabs.Contains(item.ParentId ?? ""))
+            .OrderBy(item => item.Order)
+            .ToList();
     }
 
-    /// <summary>A page of offer tiles, behind /v2/shop/api/v1/page/{id}.</summary>
     public ShopPage? GetPage(string pageId)
     {
         return shopTable.Content.Pages.FirstOrDefault(page => page.Id.ToString() == pageId);
     }
 
-    /// <summary>One offer's detail, behind /v2/shop/api/v1/catalog/{id}.</summary>
     public ShopOffer? GetOffer(string offerId)
     {
         return shopTable.Content.Offers.FirstOrDefault(offer => offer.Id.ToString() == offerId);
@@ -87,7 +96,7 @@ public class TarcoinStoreService(
         return shopTable.Content.Prices.Where(price => wanted.Contains(price.Id.ToString())).ToList();
     }
 
-    /// <summary>Resolve a display key such as "offer.&lt;id&gt;.name" for a language.</summary>
+    // A language can be missing a string the shop still has in english, so that is the fallback.
     public string Localise(string? key, string language = "en")
     {
         if (string.IsNullOrEmpty(key))
@@ -95,18 +104,16 @@ public class TarcoinStoreService(
             return string.Empty;
         }
 
-        // A language can be missing a string the shop still has in english, so fall through rather
-        // than showing the raw key.
-        if (shopTable.Content.Locale.TryGetValue(language, out var strings)
+        if (
+            shopTable.Content.Locale.TryGetValue(language, out var strings)
             && strings.TryGetValue(key, out var value)
-            && !string.IsNullOrEmpty(value))
+            && !string.IsNullOrEmpty(value)
+        )
         {
             return value;
         }
 
-        return shopTable.Content.Locale.TryGetValue("en", out var english) && english.TryGetValue(key, out var fallback)
-            ? fallback
-            : key;
+        return shopTable.Content.Locale.TryGetValue("en", out var english) && english.TryGetValue(key, out var fallback) ? fallback : key;
     }
 
     public async Task<bool> TryPurchaseAsync(MongoId sessionId, string offerId, int count, CancellationToken cancellationToken = default)
@@ -144,6 +151,8 @@ public class TarcoinStoreService(
         }
 
         var items = new List<Item>();
+        var bonusTypes = new List<BonusType>();
+        var documentsChanged = false;
         var profile = saveServer.GetProfile(sessionId);
 
         foreach (var entry in deliverables)
@@ -158,6 +167,7 @@ public class TarcoinStoreService(
                         Upd = new Upd { StackObjectsCount = entry.Count * quantity },
                     }
                 );
+                bonusTypes.Add(BonusType.ReceiveItemBonus);
 
                 continue;
             }
@@ -172,9 +182,26 @@ public class TarcoinStoreService(
                 var pmc = profile.CharacterData?.PmcData;
                 if (pmc is not null)
                 {
-                    pmc.BattlePassUniversalDocumentBalance =
-                        (pmc.BattlePassUniversalDocumentBalance ?? 0) + entry.Quantity * quantity;
+                    pmc.BattlePassUniversalDocumentBalance = (pmc.BattlePassUniversalDocumentBalance ?? 0) + entry.Quantity * quantity;
+                    documentsChanged = true;
                 }
+
+                continue;
+            }
+
+            if (entry.Type == ShopOfferItemType.StashRows)
+            {
+                var rows = entry.RowsCount * quantity;
+                var bonusId = profileHelper.AddStashRowsBonusToProfile(sessionId, rows);
+                bonusTypes.Add(BonusType.StashRows);
+                await NotifyAsync(
+                    sessionId,
+                    new WsProfileChangeEvent
+                    {
+                        EventType = NotificationEventType.StashRows,
+                        Changes = new Dictionary<string, double?> { { bonusId!, rows } },
+                    }
+                );
 
                 continue;
             }
@@ -187,6 +214,7 @@ public class TarcoinStoreService(
             }
 
             profile.CustomisationUnlocks ??= [];
+            bonusTypes.Add(BonusType.Customization);
             if (profile.CustomisationUnlocks.Exists(unlock => Equals(unlock.Id, entry.CustomizationId.Value)))
             {
                 continue;
@@ -208,16 +236,52 @@ public class TarcoinStoreService(
         }
 
         RecordPurchase(sessionId, boughtOfferIds);
-        
+
+        // The client shows the purchase popup and refreshes its balance from these, it never re-reads the shop status
+        await NotifyAsync(
+            sessionId,
+            new WsExpansionsOffer
+            {
+                EventType = NotificationEventType.UpdateAccountOfferPurchased,
+                OfferId = offerId,
+                BonusTypes = bonusTypes.Distinct().Select(bonus => bonus.ToString()).ToList(),
+            }
+        );
+        await NotifyBalanceAsync(sessionId);
+        if (documentsChanged)
+        {
+            await NotifyAsync(
+                sessionId,
+                new WsExpansionsBalance
+                {
+                    EventType = NotificationEventType.UpdateAccountEftBattlePassUniversalDocumentBalance,
+                    Balance = profile?.CharacterData?.PmcData?.BattlePassUniversalDocumentBalance ?? 0,
+                }
+            );
+        }
+
         await saveServer.SaveProfileAsync(sessionId, cancellationToken);
 
         return true;
     }
 
-    /// <summary>
-    ///     Everything an offer hands over. A bundle's contents are other offers, possibly bundles
-    ///     themselves, so the tree is walked down to the offers carrying a template or customisation.
-    /// </summary>
+    private async Task NotifyBalanceAsync(MongoId sessionId)
+    {
+        await NotifyAsync(
+            sessionId,
+            new WsExpansionsBalance { EventType = NotificationEventType.UpdateAccountTarcoinBalance, Balance = GetBalance(sessionId) }
+        );
+    }
+
+    private Task NotifyAsync(MongoId sessionId, WsNotificationEvent notification)
+    {
+        notification.EventIdentifier = new MongoId();
+
+        return notificationSendHelper.SendMessageAsync(sessionId, notification);
+    }
+
+    // A bundle's contents are other offers, possibly bundles themselves, so the tree is walked
+    // down to the offers carrying a template or customisation.
     private List<ShopOfferItem> CollectDeliverables(ShopOffer offer, out HashSet<string> visitedOfferIds)
     {
         var deliverables = new List<ShopOfferItem>();
@@ -250,13 +314,11 @@ public class TarcoinStoreService(
         return deliverables;
     }
 
-    /// <summary>Has this account already bought a one-off offer.</summary>
     public bool HasPurchased(MongoId sessionId, string offerId)
     {
         return saveServer.GetProfile(sessionId)?.PurchasedShopOffers?.Contains(offerId) ?? false;
     }
 
-    /// <summary>Every one-off offer this account has bought, for greying the cards out.</summary>
     public HashSet<string> GetPurchasedOffers(MongoId sessionId)
     {
         return saveServer.GetProfile(sessionId)?.PurchasedShopOffers ?? [];

@@ -13,9 +13,9 @@ using SPTarkov.Server.Core.Models.Eft.Seasons;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
-using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.Profile;
+using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Callbacks;
@@ -55,22 +55,21 @@ public class GameCallbacks(
     ///     Handle client/game/start
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GameStart(string url, EmptyRequestData _, MongoId sessionID)
+    public async ValueTask<string> GameStart(string url, EmptyRequestData _, MongoId sessionID)
     {
         if (saveServer.IsProfileInvalidOrUnloadable(sessionID))
         {
-            return new ValueTask<string>(
-                httpResponseUtil.GetBody(
-                    new GameStartResponse { UtcTime = 0 },
-                    Models.Enums.BackendErrorCodes.PlayerProfileNotFound,
-                    "This profile cannot be loaded due to it being invalid or unloadable!"
-                )
+            return httpResponseUtil.GetBody(
+                new GameStartResponse { UtcTime = 0 },
+                Models.Enums.BackendErrorCodes.PlayerProfileNotFound,
+                "This profile cannot be loaded due to it being invalid or unloadable!"
             );
         }
 
         var startTimestampSec = timeUtil.GetTimeStamp();
-        gameController.GameStart(url, sessionID, startTimestampSec);
-        return new ValueTask<string>(httpResponseUtil.GetBody(new GameStartResponse { UtcTime = startTimestampSec }));
+        await gameController.GameStart(url, sessionID, startTimestampSec);
+
+        return httpResponseUtil.GetBody(new GameStartResponse { UtcTime = startTimestampSec });
     }
 
     /// <summary>
@@ -277,7 +276,6 @@ public class GameCallbacks(
     /// <returns></returns>
     public ValueTask<string> GetVersion(string url, EmptyRequestData _, MongoId sessionID)
     {
-        // change to be a proper type
         return new ValueTask<string>(httpResponseUtil.NoBody(new { Version = watermark.GetInGameVersionLabel() }));
     }
 

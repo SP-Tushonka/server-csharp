@@ -1,0 +1,260 @@
+﻿@using SPTarkov.Server.Core.Models.Eft.Game
+@using SPTarkov.Server.Core.Services.Commerce
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+@inject TarcoinStoreService TarcoinStoreService
+
+<div class="catalog-item-page">
+    <div class="catalog-item-page__body">
+        <div class="catalog-item-page__content">
+            <div class="product-tags catalog-item-page__tags pl-[13px]">
+                @foreach (var tag in Block.Tags)
+                {
+                    <img class="textures-icon" src="/files/shop/ExpansionsHub_Tag_Full_4.png" alt="@tag" title="@tag"/>
+                }
+            </div>
+
+            <div class="catalog-item-page__gallery">
+                <div class="product-gallery">
+                    <div class="product-gallery__viewer">
+                        <img class="product-gallery__main-img product-gallery__main-img--visible"
+                             src="@(Block.PurchasePopupImage ?? Block.Images.FirstOrDefault())" alt=""/>
+                    </div>
+                </div>
+                <div class="catalog-item-page__gallery__bg-mask"></div>
+            </div>
+
+            <div class="common__vignette"></div>
+
+            <div class="catalog-item-page__details">
+                <div class="catalog-item-summary">
+                    <div class="catalog-item-summary__meta">
+                        @if (!string.IsNullOrEmpty(Category))
+                        {
+                            <span>Category: @Category</span>
+                        }
+                    </div>
+                    <h2 class="catalog-item-summary__title">@TarcoinStoreService.Localise(Block.NameKey, Language)</h2>
+                </div>
+
+                @{
+                    // The text carries its own newlines, including blank ones between the paragraph
+                    // and the bullets. Live drops the blanks and lays the rest out as lines.
+                    var description = Offer is not null && !string.IsNullOrEmpty(Offer.DescriptionKey)
+                        ? TarcoinStoreService.Localise(Offer.DescriptionKey, Language)
+                        : TarcoinStoreService.Localise(Block.SubtitleKey, Language);
+                    var lines = (description ?? string.Empty)
+                        .Split('\n')
+                        .Select(line => line.Trim())
+                        .ToList();
+                }
+
+                <div class="catalog-item-description">
+                    <p class="catalog-item-description__text">
+                        @foreach (var line in lines)
+                        {
+                            @line
+                            <br/>
+                        }
+                    </p>
+                </div>
+
+                @if (Offer is not null && Offer.RelatedOffers.Count > 0)
+                {
+                    <div class="catalog-item-composition">
+                        @* Their tab width is calc(100% / var(--tab-columns)). Without the
+                           variable the declaration is invalid and the tabs collapse to their
+                           content. *@
+                        <div class="s-tab-view" style="--tab-columns: 2;">
+                            <div class="s-tab-view__nav">
+                                <button class="s-tab-view__tab s-tab-view__tab--active">
+                                    <span class="s-tab-view__tab-content">
+                                        <div class="textures-icon textures-icon--tinted s-tab-view__tab-icon" style="@TintedIcon("ExpansionsHub_Offers_Icon.png")"></div>
+                                        <span class="s-tab-view__tab-header">Edition contents</span>
+                                        <span class="s-tab-view__tab-badge">(@Offer.RelatedOffers.Count)</span>
+                                    </span>
+                                </button>
+                                @* Live keeps the second tab in the dom and hides it, which is what sizes the first. *@
+                                <button class="s-tab-view__tab s-tab-view__tab--hidden">
+                                    <span class="s-tab-view__tab-content">
+                                        <div class="textures-icon textures-icon--tinted s-tab-view__tab-icon" style="@TintedIcon("ExpansionsHub_Offers_Icon.png")"></div>
+                                        <span class="s-tab-view__tab-header">Linked bundles</span>
+                                        <span class="s-tab-view__tab-badge">(0)</span>
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div class="s-tab-view__panels">
+                            <div class="s-tab-panel catalog-item-composition__bundle-carousel">
+                                <div class="product-horizontal-carousel">
+                                    <button class="product-horizontal-carousel__arrow" disabled aria-label="Scroll left">
+                                        <div class="textures-icon textures-icon--tinted w-[16px] h-[28px] rotate-180" style="@TintedIcon("ExpansionsHub_Arrow.png", "rgb(88, 93, 96)")"></div>
+                                    </button>
+                                    <div class="product-horizontal-carousel__viewport">
+                                        <div class="product-horizontal-carousel__fade-left"></div>
+                                        <div class="product-horizontal-carousel__fade-right"></div>
+                                        <div class="product-horizontal-carousel__track">
+                                            @foreach (var (part, index) in Offer.RelatedOffers.Select((part, index) => (part, index)))
+                                            {
+                                                <div class="product-horizontal-carousel__slide product-horizontal-carousel__slide--square">
+                                                    @{
+                                                        var partOwned = PurchasedOffers?.Contains(part.Id.ToString()) ?? false;
+                                                    }
+                                                    <a class="product-horizontal-carousel__media@(partOwned ? " product-horizontal-carousel__media--purchased" : "")" href="@($"/shop/{Token}/item/{part.Id}")">
+                                                        <div class="product-horizontal-carousel__counter">@(index + 1)</div>
+                                                        <img class="product-horizontal-carousel__image" src="@part.Images.FirstOrDefault()?.Url" alt=""/>
+
+                                                        @if (partOwned)
+                                                        {
+                                                            <div class="product-horizontal-carousel__media-purchased__vignette"></div>
+                                                            <div class="product-horizontal-carousel__media-purchased__striped-lines"></div>
+                                                            <div class="product-horizontal-carousel__media-purchased__logo">
+                                                                <img class="textures-icon h-[110px] w-[90px]" src="/files/shop/ExpansionsHub_Anim_Banner_2.png" alt=""/>
+                                                            </div>
+                                                        }
+
+                                                        <div class="product-horizontal-carousel__meta">
+                                                            <div class="product-horizontal-carousel__name">@TarcoinStoreService.Localise(part.NameKey, Language)</div>
+                                                            <div class="product-horizontal-carousel__description">@TarcoinStoreService.Localise(part.DescriptionKey, Language)</div>
+                                                        </div>
+
+                                                        <div class="product-horizontal-carousel__overlay">
+                                                            <div class="product-horizontal-carousel__cta">
+                                                                <div class="textures-icon textures-icon--tinted product-horizontal-carousel__cta-icon"
+                                                                     style="@TintedIcon("ExpansionsHub_Links_MoveTo_Icon.png")"></div>
+                                                                <span>Visit</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <button class="product-horizontal-carousel__arrow" aria-label="Scroll right">
+                                        <div class="textures-icon textures-icon--tinted w-[16px] h-[28px]" style="@TintedIcon("ExpansionsHub_Arrow.png", "rgb(88, 93, 96)")"></div>
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="catalog-item-purchase">
+                @if (Purchased)
+                {
+                    <div class="catalog-item-purchase__purchased-block">
+                        <div class="texture absolute inset-0"
+                             style="background-image: url(/files/shop/ExpansionsHub_PriceTag_Background_Received.png); background-size: cover; background-repeat: no-repeat;"></div>
+                        <span class="catalog-item-purchase__received">Received</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="catalog-item-purchase__content">
+                        <div class="texture !absolute inset-0"
+                             style="background-image: url(/files/shop/ExpansionsHub_PriceTag_Background_Default.png); background-size: cover; background-repeat: no-repeat;"></div>
+
+                        <div class="catalog-item-purchase__quantity-grid invisible">
+                            <span></span>
+                            <span>Quantity:</span>
+                            <span class="font-bold">1</span>
+                        </div>
+
+                        <div class="catalog-item-purchase__price-row">
+                            @if (!ShopFormat.IsTarcoinPriced(Block))
+                            {
+                                <span class="product-card__received">Real money offer</span>
+                            }
+                            else if (Price is null)
+                            {
+                                <span class="product-card__received">Unavailable</span>
+                            }
+                            else
+                            {
+                                <div class="catalog-item-purchase__currency-block">
+                                    <span class="catalog-item-purchase__currency">
+                                        <img class="textures-icon h-full" src="/files/shop/ExpansionsHub_Currency_TC_Icon_1.png" alt=""/>
+                                    </span>
+                                </div>
+                                <span class="catalog-item-purchase__price">@ShopFormat.Price(Price.AmountWithDiscount)</span>
+                            }
+                        </div>
+
+                        <div class="catalog-item-purchase__discount-row">
+                            @if (Price is not null && Price.Amount > Price.AmountWithDiscount)
+                            {
+                                <span class="catalog-item-purchase__old-price">@ShopFormat.Price(Price.Amount)</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="catalog-item-purchase__buy-row px-[40px]">
+                        <div class="purchase-single-button catalog-item-purchase__button">
+                            <button class="button btn-grid-overlay button--gold button--md !w-full !h-full"
+                                    disabled="@(Price is null || !ShopFormat.IsTarcoinPriced(Block))"
+                                    @onclick="() => OnBuy.InvokeAsync(Block.OfferId.ToString())">
+                                <span class="button__content">
+                                    <span class="button__label">
+                                    <div class="flex gap-1 items-center">
+                                        <img class="textures-icon mb-[7px]" src="/files/shop/ExpansionsHub_MainButtons_Icon_1.png" alt=""/>
+                                        <span class="catalog-item-purchase__button-label">Buy</span>
+                                    </div>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Their arrows are enabled from the rendered widths, so measure once this is live.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("shopLayoutCarousels");
+    }
+
+    private static string TintedIcon(string file, string colour = "rgb(176, 186, 193)")
+    {
+        var url = $"url(/files/shop/{file})";
+
+        return $"-webkit-mask-image: {url}; mask-image: {url}; background-color: {colour};";
+    }
+
+    [CascadingParameter(Name = "ShopLanguage")]
+    public string Language { get; set; } = "en";
+
+    [Parameter]
+    [EditorRequired]
+    public required ShopBlock Block { get; set; }
+
+    [Parameter]
+    public ShopOffer? Offer { get; set; }
+
+    [Parameter]
+    public ShopPrice? Price { get; set; }
+
+    [Parameter]
+    public string? Token { get; set; }
+
+    [Parameter]
+    public string? Category { get; set; }
+
+    [Parameter]
+    public bool CanBuy { get; set; }
+
+    [Parameter]
+    public bool Purchased { get; set; }
+
+    [Parameter]
+    public HashSet<string>? PurchasedOffers { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnBuy { get; set; }
+}

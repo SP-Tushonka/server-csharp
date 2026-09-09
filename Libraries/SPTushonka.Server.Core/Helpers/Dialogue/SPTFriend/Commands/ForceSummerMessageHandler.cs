@@ -29,7 +29,7 @@ public class ForceSummerMessageHandler(
         return string.Equals(message, "givemesunshine", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         weatherConfig.OverrideSeason = Season.SUMMER;
 
@@ -40,5 +40,7 @@ public class ForceSummerMessageHandler(
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 }

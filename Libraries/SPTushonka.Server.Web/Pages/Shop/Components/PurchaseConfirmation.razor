@@ -1,0 +1,108 @@
+﻿@using SPTarkov.Server.Core.Models.Eft.Game
+@using SPTarkov.Server.Core.Services.Commerce
+
+@inject TarcoinStoreService TarcoinStoreService
+
+<div class="s-dialog">
+    <div class="s-dialog__mask" @onclick="() => OnCancel.InvokeAsync()"></div>
+
+    <div class="s-dialog__panel purchase-single-button__dialog-panel">
+        <div class="s-dialog__header">
+            <div class="text-2xl">Purchase confirmation</div>
+        </div>
+
+        <div class="s-dialog__content">
+            <div class="purchase-confirm">
+                <div class="purchase-banner">
+                    <div class="purchase-banner__inner">
+                        <div class="purchase-banner__media">
+                            @* A monochrome copy sits over the colour banner. Live wipes it away
+                               once a purchase goes through. *@
+                            <img class="purchase-banner__img purchase-banner__img--color"
+                                 src="@(Block.PurchasePopupImage ?? Block.Images.FirstOrDefault())" alt=""/>
+                            <img class="purchase-banner__img purchase-banner__img--mono @(Revealing ? "purchase-banner__img--mono--revealing" : null)"
+                                 src="@(Block.PurchasePopupImage ?? Block.Images.FirstOrDefault())" alt=""/>
+
+                            <video class="purchase-banner__video purchase-banner__img--mono opacity-50"
+                                   src="/files/shop/Animation_NOISE_BG_EKRAN_animation_2menshecontrst.webm"
+                                   autoplay loop muted playsinline></video>
+                        </div>
+
+                        @if (Revealing)
+                        {
+                            <div class="purchase-banner__scanline"></div>
+                        }
+
+                        <div class="texture purchase-banner__vignette"
+                             style="background-image: url(/files/shop/ExpansionsHub_Anim_Effects.png); mix-blend-mode: multiply; background-size: cover; background-position: center center; background-repeat: no-repeat;"></div>
+                        <div class="purchase-banner__scanlines"></div>
+
+                        <div class="purchase-banner__meta">
+                            <div class="purchase-banner__title">@TarcoinStoreService.Localise(Block.NameKey, Language)</div>
+                            <div class="purchase-banner__subtitle">@TarcoinStoreService.Localise(Block.SubtitleKey, Language)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="s-dialog__footer">
+            <div class="purchase-confirm__footer">
+                <div class="purchase-confirm__price-box">
+                    <div class="texture purchase-confirm__price-box-texture"
+                         style="background-image: url(/files/shop/ExpansionsHub_PriceTag_Popup_Background_Default.png);"></div>
+
+                    <div class="purchase-confirm__price-box-currency">
+                        <div class="purchase-confirm__currency-wrapper">
+                            <div class="textures-icon textures-icon--tinted purchase-confirm__currency"
+                                 style="mask-image: url(/files/shop/ExpansionsHub_Currency_TC_Icon_1.png); -webkit-mask-image: url(/files/shop/ExpansionsHub_Currency_TC_Icon_1.png); background-color: @(CanBuy ? "var(--color-text-primary-warm)" : "var(--color-accent-red)");"></div>
+                        </div>
+
+                        <div class="purchase-confirm__price-value @(CanBuy ? null : "purchase-confirm__price-value--short")">
+                            @(Price is null ? "-" : ShopFormat.Price(Price.AmountWithDiscount))
+                        </div>
+                    </div>
+                </div>
+
+                <div class="purchase-confirm__actions">
+                    <button class="btn btn--primary btn--size--lg min-w-[220px] @(CanBuy ? null : "btn--disabled")"
+                            disabled="@(!CanBuy)"
+                            title="@(CanBuy ? null : "Not enough TarCoins")"
+                            @onclick="() => OnConfirm.InvokeAsync(Block.OfferId.ToString())">
+                        <span class="btn-text">Buy</span>
+                        <div class="texture btn-texture" style="background-image: url(/files/shop/ExpansionsHub_MainButton_220_Background_2.png);"></div>
+                    </button>
+
+                    <button class="btn btn--secondary btn--size--lg min-w-[220px]" @onclick="() => OnCancel.InvokeAsync()">
+                        <span class="btn-text">Back</span>
+                        <div class="texture btn-texture" style="background-image: url(/files/shop/ExpansionsHub_MainButton_220_Background_1.png);"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [CascadingParameter(Name = "ShopLanguage")]
+    public string Language { get; set; } = "en";
+
+    [Parameter]
+    [EditorRequired]
+    public required ShopBlock Block { get; set; }
+
+    [Parameter]
+    public ShopPrice? Price { get; set; }
+
+    [Parameter]
+    public bool CanBuy { get; set; }
+
+    [Parameter]
+    public bool Revealing { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnConfirm { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+}

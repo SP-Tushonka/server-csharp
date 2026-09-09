@@ -1,0 +1,24 @@
+﻿<div class="main-layout__main catalog-shell__page-host">
+    @HeaderContent
+
+    <main class="loader-container main-page__content">
+        <div class="main-page">
+            <div class="panel-with-overlay">
+                <div class="panel-bg-with-grid"></div>
+                <div class="panel-with-overlay__scroll">
+                    @ChildContent
+                </div>
+
+                <div class="common__vignette"></div>
+            </div>
+        </div>
+    </main>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? HeaderContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

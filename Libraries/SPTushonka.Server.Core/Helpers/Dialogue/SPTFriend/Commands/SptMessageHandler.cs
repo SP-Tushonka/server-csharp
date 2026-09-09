@@ -21,7 +21,7 @@ public class SptMessageHandler(MailSendService _mailSendService, RandomUtil _ran
         return string.Equals(message, "spt", StringComparison.OrdinalIgnoreCase);
     }
 
-    public void Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
+    public ValueTask Process(MongoId sessionId, UserDialogInfo sptFriendUser, PmcData? sender, object? extraInfo = null)
     {
         _mailSendService.SendUserMessageToPlayer(
             sessionId,
@@ -30,5 +30,7 @@ public class SptMessageHandler(MailSendService _mailSendService, RandomUtil _ran
             [],
             null
         );
+
+        return ValueTask.CompletedTask;
     }
 }
