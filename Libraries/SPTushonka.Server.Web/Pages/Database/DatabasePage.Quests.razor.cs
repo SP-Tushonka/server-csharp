@@ -283,7 +283,7 @@ public partial class DatabasePage
 
     private static string GetQuestStatusLabel(Quest quest)
     {
-        return quest.SptStatus?.ToString() ?? GetNumberLabel(quest.Status);
+        return (quest.SptStatus ?? quest.Status)?.ToString() ?? "n/a";
     }
 
     private static int GetConditionCount(IReadOnlyCollection<QuestCondition>? conditions)

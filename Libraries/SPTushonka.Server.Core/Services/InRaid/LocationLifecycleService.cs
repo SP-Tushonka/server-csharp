@@ -847,6 +847,7 @@ public class LocationLifecycleService(
         serverPmcProfile.Stats.Eft = postRaidProfile.Stats.Eft;
         serverPmcProfile.Encyclopedia = postRaidProfile.Encyclopedia;
         serverPmcProfile.TaskConditionCounters = postRaidProfile.TaskConditionCounters;
+        serverPmcProfile.CompletableItems = postRaidProfile.CompletableItems;
         serverPmcProfile.SurvivorClass = postRaidProfile.SurvivorClass;
 
         // MUST occur prior to profile achievements being overwritten by post-raid achievements
@@ -1059,6 +1060,9 @@ public class LocationLifecycleService(
     /// <returns> List of adjusted QuestStatus post-raid </returns>
     protected List<QuestStatus> ProcessPostRaidQuests(List<QuestStatus> questsToProcess)
     {
+        // The client sends its whole quest book, including quests it only evaluated as Locked
+        questsToProcess = questsToProcess.Where(quest => quest.Status != QuestStatusEnum.Locked).ToList();
+
         var failedQuests = questsToProcess.Where(quest => quest.Status == QuestStatusEnum.MarkedAsFailed);
         foreach (var failedQuest in failedQuests)
         {

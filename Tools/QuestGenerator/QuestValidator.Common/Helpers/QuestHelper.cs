@@ -89,9 +89,10 @@ namespace QuestValidator.Common.Helpers
             return long.TryParse(name[(name.LastIndexOf('_') + 1)..], out var stamp) ? stamp : 0;
         }
 
-        // Profiles also see trimmed condition lists, so conditions are unioned by content while reward
-        // lists follow the newest dump, since those change between game versions.
-        private static void FillMissing(JsonObject into, JsonObject from, bool unionArrays = false)
+        // The newest dump wins outright. Conditions, rewards and localization are reworked between
+        // versions, so merging their arrays across dumps would keep gates live has removed. Older dumps
+        // only supply keys a newer dump lacks.
+        private static void FillMissing(JsonObject into, JsonObject from)
         {
             foreach (var (key, value) in from)
             {
@@ -107,82 +108,8 @@ namespace QuestValidator.Common.Helpers
                 }
                 else if (current is JsonObject currentObject && value is JsonObject valueObject)
                 {
-                    FillMissing(currentObject, valueObject, unionArrays || key == "conditions");
+                    FillMissing(currentObject, valueObject);
                 }
-                else if (current is JsonArray currentArray && value is JsonArray valueArray)
-                {
-                    FillMissing(currentArray, valueArray, unionArrays);
-                }
-            }
-        }
-
-        // Elements pair up by id, or by position when a dump regenerated the ids and the shapes still match
-        private static void FillMissing(JsonArray into, JsonArray from, bool unionArrays)
-        {
-            if (into.Count == 0)
-            {
-                foreach (var element in from)
-                {
-                    into.Add(element?.DeepClone());
-                }
-
-                return;
-            }
-
-            var signatures = unionArrays ? into.Select(Signature).ToHashSet() : null;
-            for (var i = 0; i < from.Count; i++)
-            {
-                if (from[i] is not JsonObject element)
-                {
-                    continue;
-                }
-
-                var id = element["id"]?.GetValue<string>();
-                var match = id is null ? null : into.FirstOrDefault(x => x?["id"]?.GetValue<string>() == id) as JsonObject;
-                if (match is null && into.Count == from.Count)
-                {
-                    match = into[i] as JsonObject;
-                }
-
-                if (match is not null)
-                {
-                    FillMissing(match, element, unionArrays);
-                }
-                else if (unionArrays && signatures.Add(Signature(element)))
-                {
-                    into.Add(element.DeepClone());
-                }
-            }
-        }
-
-        // Ids and indexes are regenerated per dump, the rest identifies a condition
-        private static string Signature(JsonNode node)
-        {
-            var copy = node?.DeepClone();
-            StripIds(copy);
-            return copy?.ToJsonString() ?? "";
-        }
-
-        private static void StripIds(JsonNode node)
-        {
-            switch (node)
-            {
-                case JsonObject obj:
-                    obj.Remove("id");
-                    obj.Remove("index");
-                    foreach (var child in obj.Select(kv => kv.Value).ToList())
-                    {
-                        StripIds(child);
-                    }
-
-                    break;
-                case JsonArray arr:
-                    foreach (var child in arr)
-                    {
-                        StripIds(child);
-                    }
-
-                    break;
             }
         }
 

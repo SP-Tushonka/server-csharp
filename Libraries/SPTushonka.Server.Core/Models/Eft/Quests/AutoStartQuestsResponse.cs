@@ -6,7 +6,7 @@ namespace SPTarkov.Server.Core.Models.Eft.Quests;
 
 public record AutoStartQuestsResponse
 {
-    [JsonPropertyName("templates")]
+    [JsonPropertyName("quests")]
     public required List<Common.Tables.Quest> Templates { get; set; }
 
     [JsonPropertyName("deletedQuestItems")]

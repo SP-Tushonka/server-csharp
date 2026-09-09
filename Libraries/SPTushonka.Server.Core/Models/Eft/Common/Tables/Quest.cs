@@ -89,7 +89,7 @@ public record Quest
     ///     Becomes 'AppearStatus' inside client
     /// </summary>
     [JsonPropertyName("status")]
-    public int? Status { get; set; }
+    public QuestStatusEnum? Status { get; set; }
 
     [JsonPropertyName("changeQuestMessageText")]
     public string? ChangeQuestMessageText { get; set; }

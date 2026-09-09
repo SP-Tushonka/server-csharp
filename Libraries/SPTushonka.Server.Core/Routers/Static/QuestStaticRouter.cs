@@ -16,7 +16,7 @@ public class QuestStaticRouter(JsonUtil jsonUtil, QuestCallbacks questCallbacks)
                 "/client/quest/chains",
                 async (url, info, sessionID, output, cancellationToken) => await questCallbacks.GetQuestChains(url, info, sessionID)
             ),
-            new RouteAction<EmptyRequestData>(
+            new RouteAction<CompletableItemQuestsRequest>(
                 "/client/completable-item/quests/list",
                 async (url, info, sessionID, output, cancellationToken) =>
                     await questCallbacks.GetCompletableItemQuests(url, info, sessionID)

@@ -1018,6 +1018,7 @@ public class QuestHelper(
 
         const QuestStatusEnum newQuestState = QuestStatusEnum.Success;
         UpdateQuestState(pmcData, newQuestState, completedQuestId);
+        RecordCompletableItems(pmcData, completedQuestId);
         var questRewards = questRewardHelper.ApplyQuestReward(pmcData, request.QuestId, newQuestState, sessionId, completeQuestResponse);
 
         // Check for linked failed + unrestartable quests (only get quests not already failed
@@ -1090,10 +1091,15 @@ public class QuestHelper(
         foreach (var quest in allQuests)
         {
             // Player already accepted the quest, show it regardless of status
-            var questInProfile = profile.Quests!.FirstOrDefault(x => x.QId == quest.Id);
+            // A Locked entry is the client's own bookkeeping written back after a raid, not an accepted quest
+            var questInProfile = profile.Quests!.FirstOrDefault(x => x.QId == quest.Id && x.Status != QuestStatusEnum.Locked);
             if (questInProfile is not null)
             {
-                quest.SptStatus = questInProfile.Status;
+                // The client writes hidden quests back as AvailableForStart, a state they can never leave by hand
+                quest.SptStatus =
+                    questInProfile.Status == QuestStatusEnum.AvailableForStart && quest.NotDisplayedQuest == true
+                        ? StartStorylineQuest(profile, quest.Id)
+                        : questInProfile.Status;
                 questsToShowPlayer.Add(quest);
                 continue;
             }
@@ -1135,6 +1141,21 @@ public class QuestHelper(
                     logger.Debug($"Unable to show quest: {quest.Name} as its for a trader: {quest.TraderId} that no longer exists.");
                 }
 
+                continue;
+            }
+
+            // Gated on a note, tape or patch the player has not read yet, or on story progress the
+            // client would otherwise evaluate itself and show as a locked quest
+            if (!CompletableItemRequirementsMet(quest, profile) || !GlobalVariableRequirementsMet(quest, profile))
+            {
+                continue;
+            }
+
+            // The raid starts these itself when the item is read, this catches a raid that was quit before then
+            if (AutoStartConditionsMet(quest, profile))
+            {
+                quest.SptStatus = StartStorylineQuest(profile, quest.Id);
+                questsToShowPlayer.Add(quest);
                 continue;
             }
 
@@ -1257,10 +1278,86 @@ public class QuestHelper(
         return UpdateQuestsForGameEdition(cloner.Clone(questsToShowPlayer)!, profile.Info!.GameVersion!);
     }
 
+    protected static bool CompletableItemRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
+    {
+        return (quest.Conditions?.AvailableForStart ?? [])
+            .Where(condition => condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null)
+            .All(condition => profile.CompletableItems?.GetValueOrDefault(condition.Target!.Item!) ?? false);
+    }
+
+    protected static bool AutoStartConditionsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
+    {
+        var conditions = (quest.Conditions?.AutoStart ?? [])
+            .Where(condition => condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null)
+            .ToList();
+
+        return conditions.Count > 0
+            && conditions.All(condition => profile.CompletableItems?.GetValueOrDefault(condition.Target!.Item!) ?? false);
+    }
+
+    /// <summary>A finished quest with a note, tape or patch among its objectives means that item was read.</summary>
+    public void RecordCompletableItems(PmcData profile, MongoId questId)
+    {
+        if (!templateTable.Quests.TryGetValue(questId, out var quest))
+        {
+            return;
+        }
+
+        foreach (
+            var condition in (quest.Conditions?.AvailableForFinish ?? []).Where(condition =>
+                condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null
+            )
+        )
+        {
+            profile.CompletableItems ??= [];
+            profile.CompletableItems[condition.Target!.Item!] = true;
+        }
+    }
+
+    protected bool GlobalVariableRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
+    {
+        return (quest.Conditions?.AvailableForStart ?? [])
+            .Where(condition => condition.ConditionType == "GlobalVariableValue" && condition.Target?.Item is not null)
+            .All(condition =>
+            {
+                var current = GetVariableValue(profile, condition.Target!.Item!);
+                var required = condition.Value ?? 0;
+
+                return condition.CompareMethod switch
+                {
+                    "==" => current == required,
+                    ">" => current > required,
+                    _ => current >= required,
+                };
+            });
+    }
+
+    // A condition may name a variable group, whose value is the sum of its member variables. Trader
+    // dialogue and quest rewards set the members, so a trader's side quests open up as the story advances.
+    protected int GetVariableValue(PmcData profile, MongoId variableId)
+    {
+        var variables = profile.Variables ?? [];
+        var group = templateTable.VariableGroups.FirstOrDefault(group => group.Id == variableId);
+
+        return group is null ? variables.GetValueOrDefault(variableId) : group.Variables.Sum(member => variables.GetValueOrDefault(member));
+    }
+
     // Live starts the Tour chapter itself seconds after the character is created. Every other chapter
     // starts together with the first of its tasks unlocked by a finished quest, and stays hidden until then.
+    // Hidden quests have no trader screen to accept them from, so they start the moment they unlock.
     // Returns the status a quest should be shown with, or null when it must stay hidden.
     protected QuestStatusEnum? ResolveStorylineStatus(PmcData profile, Models.Eft.Common.Tables.Quest quest, bool unlockedByQuest)
+    {
+        var status = ResolveChapterStatus(profile, quest, unlockedByQuest);
+        if (status == QuestStatusEnum.AvailableForStart && quest.NotDisplayedQuest == true)
+        {
+            return StartStorylineQuest(profile, quest.Id);
+        }
+
+        return status;
+    }
+
+    protected QuestStatusEnum? ResolveChapterStatus(PmcData profile, Models.Eft.Common.Tables.Quest quest, bool unlockedByQuest)
     {
         if (IsStoryChapter(quest.Id))
         {
@@ -1294,13 +1391,23 @@ public class QuestHelper(
     {
         profile.Quests ??= [];
 
+        var startedAt = timeUtil.GetTimeStamp();
         var existing = profile.Quests.FirstOrDefault(profileQuest => profileQuest.QId == questId);
         if (existing is not null)
         {
-            return existing.Status;
+            if (existing.Status != QuestStatusEnum.AvailableForStart)
+            {
+                return existing.Status;
+            }
+
+            existing.Status = QuestStatusEnum.Started;
+            existing.StartTime = startedAt;
+            existing.StatusTimers ??= [];
+            existing.StatusTimers[QuestStatusEnum.Started] = startedAt;
+
+            return QuestStatusEnum.Started;
         }
 
-        var startedAt = timeUtil.GetTimeStamp();
         profile.Quests.Add(
             new QuestStatus
             {

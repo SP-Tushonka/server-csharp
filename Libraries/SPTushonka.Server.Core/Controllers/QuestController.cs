@@ -199,13 +199,66 @@ public class QuestController(
 
         CompleteQuest(pmcData, new CompleteQuestRequestData { QuestId = request.QuestId }, sessionId);
 
-        // Anything that became available off the back of that completion is what the client starts next
+        // Quests the server started off the back of that completion, so the raid's quest book learns about
+        // them. Tasks that merely became available stay with their trader until the player accepts them.
         var started = questHelper
             .GetClientQuests(sessionId)
-            .Where(quest => !before.Contains(quest.Id) && quest.SptStatus == QuestStatusEnum.AvailableForStart)
+            .Where(quest => !before.Contains(quest.Id) && quest.SptStatus == QuestStatusEnum.Started)
             .ToList();
 
-        return new AutoStartQuestsResponse { Templates = started, DeletedQuestItems = [] };
+        return new AutoStartQuestsResponse { Templates = MarkAutoStarted(started), DeletedQuestItems = [] };
+    }
+
+    // The client only creates a quest from an auto start template whose appear status is already Started
+    protected static List<Quest> MarkAutoStarted(List<Quest> templates)
+    {
+        foreach (var template in templates)
+        {
+            template.Status = QuestStatusEnum.Started;
+        }
+
+        return templates;
+    }
+
+    /// <summary>
+    ///     Handle client/completable-item/quests/list
+    ///     The raid asks this after a note, tape or patch is read, then starts what comes back itself
+    /// </summary>
+    /// <param name="sessionId">Session/Player id</param>
+    /// <param name="request">Template id of the item the player completed</param>
+    /// <returns>Quests that item auto starts and the profile has not started yet</returns>
+    public List<Quest> GetCompletableItemQuests(MongoId sessionId, CompletableItemQuestsRequest request)
+    {
+        var pmcData = profileHelper.GetPmcProfile(sessionId);
+        if (pmcData is null)
+        {
+            return [];
+        }
+
+        var alreadyStarted =
+            pmcData
+                .Quests?.Where(quest => quest.Status is not (QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart))
+                .Select(quest => quest.QId)
+                .ToHashSet()
+            ?? [];
+
+        var quests = questHelper
+            .GetQuestsFromDb()
+            .Where(quest =>
+                !alreadyStarted.Contains(quest.Id)
+                && !questHelper.QuestIsForOtherSide(pmcData.Info?.Side, quest.Id)
+                && (quest.Conditions?.AutoStart ?? []).Any(condition =>
+                    condition.ConditionType == "CompletableItem" && condition.Target?.Item == request.CompletableItemId
+                )
+            );
+
+        var templates = cloner.Clone(quests.ToList()) ?? [];
+        foreach (var template in templates)
+        {
+            template.SptStatus = QuestStatusEnum.AvailableForStart;
+        }
+
+        return MarkAutoStarted(templates);
     }
 
     public ItemEventRouterResponse CompleteQuest(PmcData pmcData, CompleteQuestRequestData request, MongoId sessionId)

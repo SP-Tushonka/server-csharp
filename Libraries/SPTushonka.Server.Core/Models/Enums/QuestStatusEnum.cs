@@ -12,4 +12,5 @@ public enum QuestStatusEnum
     MarkedAsFailed = 7,
     Expired = 8,
     AvailableAfter = 9,
+    AutoStart = 10,
 }

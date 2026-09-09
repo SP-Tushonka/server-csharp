@@ -102,8 +102,11 @@ namespace GenerateQuestFile
                 //CopyExistingRandomIds(originalQuest, quest.Value);
             }
 
-            // Iterate over quest objects a final time and add hard coded quest requirements if they dont already exist
-            foreach (var quest in questsToOutputToFile)
+            // Iterate over quest objects a final time and add hard coded quest requirements if they dont already exist.
+            // The table predates the 1.1 rework that replaced quest and level gates with story variables, so it
+            // only applies to quests no dump carries.
+            var liveQuestIds = mergedLiveData.Select(quest => quest.Id).ToHashSet();
+            foreach (var quest in questsToOutputToFile.Where(quest => !liveQuestIds.Contains(quest.Key)))
             {
                 var questRequirements = QuestRequirements.GetQuestRequirements(quest.Key);
                 if (questRequirements is null || questRequirements.Count == 0)

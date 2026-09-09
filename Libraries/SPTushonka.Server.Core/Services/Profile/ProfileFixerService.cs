@@ -42,6 +42,30 @@ public partial class ProfileFixerService(
 {
     private const string PveGameMode = "pve";
 
+    // Profiles from before quest completion recorded read items still need those items for the
+    // quests that auto start from them
+    protected void RecordCompletableItemsFromFinishedQuests(PmcData pmcData)
+    {
+        var finished = (pmcData.Quests ?? []).Where(quest => quest.Status == QuestStatusEnum.Success).Select(quest => quest.QId);
+        foreach (var questId in finished)
+        {
+            if (!templateTable.Quests.TryGetValue(questId, out var quest))
+            {
+                continue;
+            }
+
+            foreach (
+                var condition in (quest.Conditions?.AvailableForFinish ?? []).Where(condition =>
+                    condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null
+                )
+            )
+            {
+                pmcData.CompletableItems ??= [];
+                pmcData.CompletableItems.TryAdd(condition.Target!.Item!, true);
+            }
+        }
+    }
+
     /// <summary>
     ///     The client errors with "Battle pass document limit data is missing" when spawning raid loot
     ///     if the profile has none. SPT only runs pve, so that mode's limit applies.
@@ -97,6 +121,7 @@ public partial class ProfileFixerService(
         VerifyQuestProductionUnlocks(pmcProfile);
         FixOrphanedInsurance(pmcProfile);
         AddMissingBattlePassDocumentLimits(pmcProfile);
+        RecordCompletableItemsFromFinishedQuests(pmcProfile);
         CheckForAndFixCircularParentReferences(pmcProfile);
 
         if (pmcProfile.Hideout is not null)

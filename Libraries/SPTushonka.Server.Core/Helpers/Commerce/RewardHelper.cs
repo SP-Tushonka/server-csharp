@@ -104,6 +104,16 @@ public class RewardHelper(
                 case RewardType.LocationUnlock:
                     UnlockLocation(reward.Target!, pmcProfile);
                     break;
+                case RewardType.GlobalVariable:
+                    pmcProfile.Variables ??= [];
+                    pmcProfile.Variables[reward.Target!] = Convert.ToInt32(reward.Value);
+                    if (questResponse is not null)
+                    {
+                        questResponse.ProfileChanges[sessionId!.Value].VariableValues ??= [];
+                        questResponse.ProfileChanges[sessionId.Value].VariableValues![reward.Target!] = Convert.ToInt32(reward.Value);
+                    }
+
+                    break;
                 case RewardType.Item:
                     // Item rewards are retrieved by getRewardItems() below, and returned to be handled by caller
                     break;

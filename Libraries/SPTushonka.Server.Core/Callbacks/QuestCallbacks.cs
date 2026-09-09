@@ -123,10 +123,9 @@ public class QuestCallbacks(
     ///     Handle client/completable-item/quests/list
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetCompletableItemQuests(string url, EmptyRequestData info, MongoId sessionID)
+    public ValueTask<string> GetCompletableItemQuests(string url, CompletableItemQuestsRequest info, MongoId sessionID)
     {
-        //Todo: Implement!
-        return new ValueTask<string>(httpResponseUtil.GetBody<List<object>>([]));
+        return new ValueTask<string>(httpResponseUtil.GetBody(questController.GetCompletableItemQuests(sessionID, info)));
     }
 
     /// <summary>
