@@ -1199,12 +1199,23 @@ public class FenceService(
                 continue;
             }
 
+            // The armor template has this plate slot, but this particular preset may not actually contain a plate in it
+            var modItemToAdjust = armorItemAndMods.FirstOrDefault(mod =>
+                string.Equals(mod.SlotId, plateSlot.Name, StringComparison.OrdinalIgnoreCase)
+            );
+
+            if (modItemToAdjust == null)
+            {
+                continue;
+            }
+
             var modItemDbDetails = itemHelper.GetItem(plateTpl.Value).Value;
 
             // Chance to remove plate
             var plateExistsChance = traderConfig.Fence.ChancePlateExistsInArmorPercent[
                 modItemDbDetails?.Properties?.ArmorClass?.ToString() ?? "3"
             ];
+
             if (!randomUtil.GetChance100(plateExistsChance))
             {
                 // Remove plate from armor
@@ -1217,22 +1228,9 @@ public class FenceService(
 
             var durabilityValues = GetRandomisedArmorDurabilityValues(modItemDbDetails, traderConfig.Fence.ArmorMaxDurabilityPercentMinMax);
 
-            // Find items mod to apply durability changes to
-            var modItemToAdjust = armorItemAndMods.FirstOrDefault(mod =>
-                string.Equals(mod.SlotId, plateSlot.Name, StringComparison.OrdinalIgnoreCase)
-            );
-
-            if (modItemToAdjust == null)
-            {
-                logger.Warning(
-                    $"Unable to randomise armor items {armorItemAndMods.First().Template} {plateSlot.Name} slot as it cannot be found, skipping"
-                );
-                continue;
-            }
-
             modItemToAdjust.AddUpd();
 
-            if (modItemToAdjust?.Upd?.Repairable == null)
+            if (modItemToAdjust.Upd?.Repairable == null)
             {
                 modItemToAdjust.Upd.Repairable = new UpdRepairable
                 {
