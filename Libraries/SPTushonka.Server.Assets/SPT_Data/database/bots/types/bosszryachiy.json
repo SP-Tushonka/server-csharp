@@ -36,17 +36,17 @@
     "weaponMods": {
       "mod_magazine": 100,
       "mod_stock": 74,
-      "mod_mount_000": 34,
+      "mod_mount_000": 35,
       "mod_mount_002": 46,
       "mod_muzzle": 100,
       "mod_mount": 0,
-      "mod_sight_front": 5,
+      "mod_sight_front": 6,
       "mod_mount_001": 0,
       "mod_tactical": 0,
-      "mod_scope": 98,
+      "mod_scope": 99,
       "mod_foregrip": 97,
       "mod_bipod": 100,
-      "mod_charge": 1,
+      "mod_charge": 2,
       "mod_reciever": 100,
       "mod_tactical_000": 0,
       "mod_tactical_001": 0,
@@ -2343,9 +2343,9 @@
       },
       "Backpack": {},
       "FirstPrimaryWeapon": {
-        "5c46fbd72e2216398b5a8c9c": 373,
-        "68aee763130c00663d08aea8": 24,
-        "67d0576f29f580ebc10efd08": 6
+        "5c46fbd72e2216398b5a8c9c": 347,
+        "68aee763130c00663d08aea8": 25,
+        "67d0576f29f580ebc10efd08": 9
       },
       "SecondPrimaryWeapon": {
         "57dc2fa62459775949412633": 1
@@ -2363,8 +2363,8 @@
     },
     "Ammo": {
       "Caliber762x54R": {
-        "5e023d48186a883be655e551": 85,
-        "5e023cf8186a883be655e54f": 8
+        "5e023cf8186a883be655e54f": 34,
+        "5e023d48186a883be655e551": 313
       },
       "Caliber545x39": {
         "56dff4a2d2720bbd668b456a": 1
@@ -2373,8 +2373,8 @@
         "5a26abfac4a28232980eabff": 1
       },
       "Caliber93x64": {
-        "68aeed8a8906b00bc800fdd6": 44,
-        "68bac6ca653ee6b1e406d978": 11,
+        "68aeed8a8906b00bc800fdd6": 48,
+        "68bac6ca653ee6b1e406d978": 9,
         "68bad8376cb22acf1107a586": 2
       },
       "Caliber127x99": {
@@ -2384,26 +2384,26 @@
     "items": {
       "Backpack": {},
       "Pockets": {
-        "59f99a7d86f7745b134aa97b": 28,
-        "60098ad7c2240c0fe85c570a": 14,
-        "590c678286f77426c9660122": 14,
+        "59f99a7d86f7745b134aa97b": 50,
+        "60098ad7c2240c0fe85c570a": 25,
+        "590c678286f77426c9660122": 25,
         "68aef9bf4efeccb5220d25c6": 1
       },
       "SecuredContainer": {
-        "5e023d48186a883be655e551": 9571,
-        "56dff4a2d2720bbd668b456a": 3802,
-        "5a26abfac4a28232980eabff": 1901,
-        "68aeed8a8906b00bc800fdd6": 515,
-        "5e023cf8186a883be655e54f": 960,
-        "68bac6ca653ee6b1e406d978": 150,
-        "67dc255ee3028a8b120efc48": 180,
+        "5e023cf8186a883be655e54f": 991,
+        "56dff4a2d2720bbd668b456a": 3792,
+        "5a26abfac4a28232980eabff": 1896,
+        "5e023d48186a883be655e551": 9365,
+        "68aeed8a8906b00bc800fdd6": 600,
+        "68bac6ca653ee6b1e406d978": 120,
+        "67dc255ee3028a8b120efc48": 270,
         "68bad8376cb22acf1107a586": 30
       },
       "SpecialLoot": {},
       "TacticalVest": {
-        "5c88f24b2e22160bc12c69a6": 177,
-        "55d482194bdc2d1d4e8b456b": 197,
-        "67d418d0ffb910d21f04720e": 4
+        "5c88f24b2e22160bc12c69a6": 277,
+        "55d482194bdc2d1d4e8b456b": 305,
+        "67d418d0ffb910d21f04720e": 10
       }
     },
     "mods": {
@@ -2581,15 +2581,15 @@
       },
       "68aee8f8130c00663d08aeb3": {
         "mod_scope": [
-          "6567e751a715f85433025998",
-          "62811f461d5df4475f46a332"
+          "62811f461d5df4475f46a332",
+          "6567e751a715f85433025998"
         ]
       },
-      "6567e751a715f85433025998": {
+      "62811f461d5df4475f46a332": {
         "mod_scope": [
-          "617151c1d92c473c770214ab",
-          "618ba27d9008e4636a67f61d",
-          "6567e7681265c8a131069b0f"
+          "62850c28da09541f43158cca",
+          "5aa66be6e5b5b0214e506e97",
+          "61714eec290d254f5e6b2ffc"
         ]
       },
       "67d0576f29f580ebc10efd08": {
@@ -2637,11 +2637,11 @@
           "5aa66be6e5b5b0214e506e97"
         ]
       },
-      "62811f461d5df4475f46a332": {
+      "6567e751a715f85433025998": {
         "mod_scope": [
-          "62850c28da09541f43158cca",
-          "5aa66be6e5b5b0214e506e97",
-          "61714eec290d254f5e6b2ffc"
+          "618ba27d9008e4636a67f61d",
+          "617151c1d92c473c770214ab",
+          "6567e7681265c8a131069b0f"
         ]
       }
     }
