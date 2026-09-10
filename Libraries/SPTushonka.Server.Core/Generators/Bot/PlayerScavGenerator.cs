@@ -112,6 +112,11 @@ public class PlayerScavGenerator(
         scavData.RagfairInfo = pmcDataClone.RagfairInfo;
         scavData.UnlockedInfo = pmcDataClone.UnlockedInfo;
 
+        // ConnectConditionHideoutArea reads Profile.Hideout.Areas without a null check, and every prestige
+        // template with a hideout condition runs through it as the player spawns. An empty area list makes
+        // the connector's own Any() check bail out instead
+        scavData.Hideout ??= profileHelper.CreateEmptyHideout();
+
         // Persist previous scav data into new scav
         scavData.Id = existingScavDataClone.Id ?? pmcDataClone.Savage;
         scavData.SessionId = existingScavDataClone.SessionId ?? pmcDataClone.SessionId;

@@ -108,11 +108,33 @@ public class ProfileHelper(
     }
 
     /// <summary>
+    ///     Builds an empty hideout, used for filling the player scav with data
+    /// </summary>
+    /// <returns>A hideout with no areas, production or improvements</returns>
+    public Hideout CreateEmptyHideout()
+    {
+        return new Hideout
+        {
+            Areas = [],
+            Production = [],
+            Improvements = [],
+            MannequinPoses = [],
+            Customization = [],
+            HideoutCounters = new HideoutCounters(),
+        };
+    }
+
+    /// <summary>
     ///     Sanitize any information from the profile that the client does not expect to receive
     /// </summary>
     /// <param name="clonedProfile">A clone of the full player profile</param>
     protected void SanitizeProfileForClient(SptProfile clonedProfile)
     {
+        if (clonedProfile.CharacterData?.ScavData is not null)
+        {
+            clonedProfile.CharacterData.ScavData.Hideout ??= CreateEmptyHideout();
+        }
+
         if (clonedProfile.CharacterData?.PmcData?.TradersInfo?.Values is null)
         {
             return;
