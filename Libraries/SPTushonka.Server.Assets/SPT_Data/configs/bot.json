@@ -172,6 +172,20 @@
           "minLimitPercent": 15
         }
       },
+      "assaulttutorial": {
+        "armor": {
+          "maxDelta": 50,
+          "minDelta": 0,
+          "minLimitPercent": 15
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 85,
+          "maxDelta": 45,
+          "minDelta": 30,
+          "minLimitPercent": 15
+        }
+      },
       "boss": {
         "armor": {
           "highestMaxPercent": 100,
