@@ -368,12 +368,19 @@ public class QuestController(
             }
 
             // Remove the right quantity of given items
-            var itemCountToRemove = Math.Min(itemHandover.Count ?? 0, handedInCount - totalItemCountToRemove);
+            var itemCountRequestedByClient = itemHandover.Count ?? 0;
+            var itemStackSize = matchingItemInProfile.GetItemStackSize();
+
+            var itemCountToRemove = Math.Min(Math.Min(itemCountRequestedByClient, itemStackSize), handedInCount - totalItemCountToRemove);
+
             totalItemCountToRemove += itemCountToRemove;
-            if (itemHandover.Count - itemCountToRemove > 0)
+
+            if (itemCountToRemove < itemStackSize)
             {
-                // Remove single item with no children
-                questHelper.ChangeItemStack(pmcData, itemHandover.Id, (int)(itemHandover.Count - itemCountToRemove), sessionID, output);
+                // Remove part of the stack, leaving the remainder in the inventory.
+                var remainingStackSize = itemStackSize - (int)itemCountToRemove;
+
+                questHelper.ChangeItemStack(pmcData, itemHandover.Id, remainingStackSize, sessionID, output);
 
                 // Complete - handedInCount == totalItemCountToRemove
                 if (Math.Abs(totalItemCountToRemove - handedInCount) < 0.01)
