@@ -18,6 +18,7 @@ public static class BaseClasses
     public static readonly MongoId BACKPACK = new MongoId("5448e53e4bdc2d60728b4567");
     public static readonly MongoId BARREL = new MongoId("555ef6e44bdc2de9068b457e");
     public static readonly MongoId BARTER_ITEM = new MongoId("5448eb774bdc2d0a728b4567");
+    public static readonly MongoId BATTLE_PASS_DOCUMENT = new MongoId("6a28212a0368f4438b0d0a45");
     public static readonly MongoId BATTERY = new MongoId("57864ee62459775490116fc1");
     public static readonly MongoId BIPOD = new MongoId("55818afb4bdc2dde698b456d");
     public static readonly MongoId BUILDING_MATERIAL = new MongoId("57864ada245977548638de91");

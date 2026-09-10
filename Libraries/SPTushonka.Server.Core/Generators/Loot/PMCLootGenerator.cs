@@ -18,6 +18,7 @@ namespace SPTarkov.Server.Core.Generators.Loot;
 public class PMCLootGenerator(
     TemplateTable templateTable,
     BotTable botTable,
+    LocationTable locationTable,
     ItemHelper itemHelper,
     ItemFilterService itemFilterService,
     RagfairPriceService ragfairPriceService,
@@ -197,8 +198,26 @@ public class PMCLootGenerator(
         blacklist.UnionWith(itemFilterService.GetItemRewardBlacklist());
         blacklist.UnionWith(itemFilterService.GetBlacklistedLootableItems());
         blacklist.UnionWith(seasonalEventService.GetInactiveSeasonalEventItems());
+        blacklist.UnionWith(GetSecretExitItems());
 
         return blacklist;
+    }
+
+    protected HashSet<MongoId> GetSecretExitItems()
+    {
+        var items = new HashSet<MongoId>();
+        foreach (var location in locationTable.GetDictionary().Values)
+        {
+            foreach (var exit in location.Base?.SecretExits ?? [])
+            {
+                if (MongoId.IsValidMongoId(exit.Id))
+                {
+                    items.Add(exit.Id);
+                }
+            }
+        }
+
+        return items;
     }
 
     /// <summary>

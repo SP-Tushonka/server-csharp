@@ -67,6 +67,11 @@ public class FenceBaseAssortGenerator(
                 continue;
             }
 
+            if (itemHelper.IsOfBaseclass(itemId, BaseClasses.BATTLE_PASS_DOCUMENT))
+            {
+                continue;
+            }
+
             // Item base type blacklisted
             if (traderConfig.Fence.Blacklist.Count > 0)
             {
