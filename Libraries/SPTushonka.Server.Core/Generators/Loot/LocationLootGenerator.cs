@@ -473,11 +473,14 @@ public class LocationLootGenerator(
         // Filter out items picked that are already in the above `tplsForced` array
         // A container whose count covers its whole pool holds every item once. The Terminal quest
         // safes rely on that to always contain their keys.
-        var chosenTpls = locationConfig.AllowDuplicateItemsInStaticContainers && itemCountToAdd < containerLootPool.Count
-            ? containerLootPool.Draw(itemCountToAdd).Where(tpl => !tplsForced.Contains(tpl) && !counterTrackerHelper.IncrementCount(tpl))
-            : containerLootPool
-                .DrawAndRemove(itemCountToAdd, lockList)
-                .Where(tpl => !tplsForced.Contains(tpl) && !counterTrackerHelper.IncrementCount(tpl));
+        var chosenTpls =
+            locationConfig.AllowDuplicateItemsInStaticContainers && itemCountToAdd < containerLootPool.Count
+                ? containerLootPool
+                    .Draw(itemCountToAdd)
+                    .Where(tpl => !tplsForced.Contains(tpl) && !counterTrackerHelper.IncrementCount(tpl))
+                : containerLootPool
+                    .DrawAndRemove(itemCountToAdd, lockList)
+                    .Where(tpl => !tplsForced.Contains(tpl) && !counterTrackerHelper.IncrementCount(tpl));
 
         // Add forced loot to chosen item pool
         var tplsToAddToContainer = tplsForced.Concat(chosenTpls);
@@ -831,7 +834,7 @@ public class LocationLootGenerator(
                 continue;
             }
 
-            var createItemResult = CreateDynamicLootItem(chosenItem, spawnPoint.Template.Items, staticAmmoDist);
+            var createItemResult = CreateDynamicLootItem(chosenItem, spawnPoint.Template.Items, staticAmmoDist, locationName);
 
             // If count reaches max, skip adding item to loot
             if (counterTrackerHelper.IncrementCount(createItemResult.Items.FirstOrDefault().Template))
@@ -889,7 +892,7 @@ public class LocationLootGenerator(
             }
 
             var chosenItem = forcedLootLocation.Template.Items.FirstOrDefault(item => item.Id == rootItem.Id);
-            var createItemResult = CreateDynamicLootItem(chosenItem, forcedLootLocation.Template.Items, staticAmmoDist);
+            var createItemResult = CreateDynamicLootItem(chosenItem, forcedLootLocation.Template.Items, staticAmmoDist, locationName);
 
             // Update root ID with the above dynamically generated ID
             forcedLootLocation.Template.Root = createItemResult.Items.FirstOrDefault().Id;
@@ -929,7 +932,8 @@ public class LocationLootGenerator(
     protected ContainerItem CreateDynamicLootItem(
         SptLootItem chosenItem,
         IEnumerable<SptLootItem> lootItems,
-        Dictionary<string, IEnumerable<StaticAmmoDetails>> staticAmmoDist
+        Dictionary<string, IEnumerable<StaticAmmoDetails>> staticAmmoDist,
+        string locationName
     )
     {
         var chosenTpl = chosenItem.Template;
@@ -972,9 +976,13 @@ public class LocationLootGenerator(
             // Create array with just magazine
             List<Item> magazineItem = [new() { Id = new MongoId(), Template = chosenTpl }];
 
-            if (randomUtil.GetChance100(locationConfig.StaticMagazineLootHasAmmoChancePercent))
-            // Add randomised amount of cartridges
+            var shouldFillMagazine =
+                locationName.Equals("sandbox_start", StringComparison.OrdinalIgnoreCase)
+                || randomUtil.GetChance100(locationConfig.StaticMagazineLootHasAmmoChancePercent);
+
+            if (shouldFillMagazine)
             {
+                // Add randomised amount of cartridges
                 itemHelper.FillMagazineWithRandomCartridge(
                     magazineItem,
                     itemDbTemplate, // Magazine template
