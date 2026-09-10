@@ -101,7 +101,8 @@ public class BaseClassesIdGenerator(
     {
         var enumFileData =
             "using SPTarkov.Server.Core.Models.Common;\n\n"
-            + "// This is an auto generated file, do not modify. Re-generate by running MongoIdTplGenerator.exe";
+            + "// This is an auto generated file, do not modify. Re-generate by running MongoIdTplGenerator.exe\n"
+            + "namespace SPTarkov.Server.Core.Models.Enums;\n";
 
         foreach (var (enumName, data) in enumEntries)
         {

@@ -1,4 +1,5 @@
-﻿using SPTarkov.Server.Core.Models.Spt.Tables;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace SPTarkov.Server.Helpers;
 
@@ -27,4 +28,20 @@ public sealed record DatabaseTables
     public required ServerTable Server { get; init; }
 
     public required SettingsTable Settings { get; init; }
+
+    public void AddToServices(IServiceCollection services)
+    {
+        services.AddSingleton(Bots);
+        services.AddSingleton(Hideout);
+        services.AddSingleton(Locales);
+        services.AddSingleton(Locations);
+        services.AddSingleton(Match);
+        services.AddSingleton(Templates);
+        services.AddSingleton(Traders);
+        services.AddSingleton(Globals);
+        services.AddSingleton(Season);
+        services.AddSingleton(Shop);
+        services.AddSingleton(Server);
+        services.AddSingleton(Settings);
+    }
 }

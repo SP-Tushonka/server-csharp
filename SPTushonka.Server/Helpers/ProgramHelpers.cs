@@ -56,18 +56,7 @@ public static class ProgramHelpers
             return builder;
         }
 
-        builder.Services.AddSingleton(databaseTables.Bots);
-        builder.Services.AddSingleton(databaseTables.Hideout);
-        builder.Services.AddSingleton(databaseTables.Locales);
-        builder.Services.AddSingleton(databaseTables.Locations);
-        builder.Services.AddSingleton(databaseTables.Match);
-        builder.Services.AddSingleton(databaseTables.Templates);
-        builder.Services.AddSingleton(databaseTables.Traders);
-        builder.Services.AddSingleton(databaseTables.Globals);
-        builder.Services.AddSingleton(databaseTables.Season);
-        builder.Services.AddSingleton(databaseTables.Shop);
-        builder.Services.AddSingleton(databaseTables.Server);
-        builder.Services.AddSingleton(databaseTables.Settings);
+        databaseTables.AddToServices(builder.Services);
 
         return builder;
     }
@@ -169,7 +158,10 @@ public static class ProgramHelpers
                 .EnumerateFiles(globalPath, "*.json")
                 .ToDictionary(
                     GetLocaleKey,
-                    file => new LazyLoad<GlobalLocaleDictionary>(() => DeserializeFromFile<GlobalLocaleDictionary>(file) ?? [], cacheValue: true),
+                    file => new LazyLoad<GlobalLocaleDictionary>(
+                        () => DeserializeFromFile<GlobalLocaleDictionary>(file) ?? [],
+                        cacheValue: true
+                    ),
                     StringComparer.OrdinalIgnoreCase
                 ),
             Menu = Directory

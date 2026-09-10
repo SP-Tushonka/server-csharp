@@ -59,6 +59,11 @@ public class QuestTplMongoIdGenerator(
             var locale = localeService.GetLocaleDb()[$"{id} name"].Replace(" ", "_").Replace("-", "_");
 
             locale = localeUtil.SanitizeEnumKey(locale);
+            if (locale.Length == 0)
+            {
+                logger.Warning($"Quest {id} has no usable name, skipped");
+                continue;
+            }
 
             if (!result.TryAdd(locale, id))
             {
@@ -73,7 +78,8 @@ public class QuestTplMongoIdGenerator(
     {
         var enumFileData =
             "using SPTarkov.Server.Core.Models.Common;\n\n"
-            + "// This is an auto generated file, do not modify. Re-generate by running MongoIdTplGenerator.exe";
+            + "// This is an auto generated file, do not modify. Re-generate by running MongoIdTplGenerator.exe\n"
+            + "namespace SPTarkov.Server.Core.Models.Enums;\n";
 
         enumFileData += $"\npublic static class QuestTpl\n{{\n";
 

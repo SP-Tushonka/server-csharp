@@ -67,7 +67,7 @@ public class FenceBaseAssortGenerator(
                 continue;
             }
 
-            if (itemHelper.IsOfBaseclass(itemId, BaseClasses.BATTLE_PASS_DOCUMENT))
+            if (itemHelper.IsOfBaseclasses(itemId, [BaseClasses.BATTLE_PASS_DOCUMENT, BaseClasses.COMPLETABLE]))
             {
                 continue;
             }

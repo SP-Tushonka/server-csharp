@@ -98,6 +98,8 @@ public class DependencyInjectionValidationTests
         AddStub<TemplateTable>(services);
         AddStub<TradersTable>(services);
         AddStub<GlobalTable>(services);
+        AddStub<SeasonTable>(services);
+        AddStub<ShopTable>(services);
         AddStub<ServerTable>(services);
         AddStub<SettingsTable>(services);
     }

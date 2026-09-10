@@ -7,11 +7,12 @@ public static class Weapons
 {
     public static readonly MongoId ASSAULTCARBINE_762X39_OP_SKS = new MongoId("587e02ff24597743df3deaeb");
     public static readonly MongoId ASSAULTCARBINE_762X39_SKS = new MongoId("574d967124597745970e7c94");
-    public static readonly MongoId ASSAULTCARBINE_762X51_VPO_101_VEPR_HUNTER = new MongoId("5c501a4d2e221602b412b540");
+    public static readonly MongoId ASSAULTCARBINE_762X51_VPO_101 = new MongoId("5c501a4d2e221602b412b540");
     public static readonly MongoId ASSAULTCARBINE_762X54R_AVT_40 = new MongoId("6410733d5dd49d77bd07847e");
     public static readonly MongoId ASSAULTCARBINE_762X54R_SVT_40 = new MongoId("643ea5b23db6f9f57107d9fd");
     public static readonly MongoId ASSAULTCARBINE_9X39_9A_91 = new MongoId("644674a13d52156624001fbc");
     public static readonly MongoId ASSAULTCARBINE_9X39_AS_VAL = new MongoId("57c44b372459772d2b39b8ce");
+    public static readonly MongoId ASSAULTCARBINE_9X39_AS_VAL_MOD4 = new MongoId("6871284e9a353bb50606f3ed");
     public static readonly MongoId ASSAULTCARBINE_9X39_SR_3M = new MongoId("651450ce0e00edc794068371");
     public static readonly MongoId ASSAULTCARBINE_9X39_VSK_94 = new MongoId("645e0c6b3b381ede770e1cc9");
     public static readonly MongoId ASSAULTRIFLE_127X55_ASH_12 = new MongoId("5cadfbf7ae92152ac412eeef");
@@ -28,6 +29,8 @@ public static class Weapons
     public static readonly MongoId ASSAULTRIFLE_545X39_AKS_74U = new MongoId("57dc2fa62459775949412633");
     public static readonly MongoId ASSAULTRIFLE_545X39_AKS_74UB = new MongoId("5839a40f24597726f856b511");
     public static readonly MongoId ASSAULTRIFLE_545X39_AKS_74UN = new MongoId("583990e32459771419544dd2");
+    public static readonly MongoId ASSAULTRIFLE_545X39_NL545_DI = new MongoId("68c16b9ab6b75a8a480520a6");
+    public static readonly MongoId ASSAULTRIFLE_545X39_NL545_GP = new MongoId("68c2940aecc41cc5490bd40e");
     public static readonly MongoId ASSAULTRIFLE_556X45_ADAR_2_15 = new MongoId("5c07c60e0db834002330051f");
     public static readonly MongoId ASSAULTRIFLE_556X45_AK_101 = new MongoId("5ac66cb05acfc40198510a10");
     public static readonly MongoId ASSAULTRIFLE_556X45_AK_102 = new MongoId("5ac66d015acfc400180ae6e4");
@@ -36,14 +39,20 @@ public static class Weapons
     public static readonly MongoId ASSAULTRIFLE_556X45_AUG_A3_BLACK = new MongoId("6718817435e3cfd9550d2c27");
     public static readonly MongoId ASSAULTRIFLE_556X45_G36 = new MongoId("623063e994fc3f7b302a9696");
     public static readonly MongoId ASSAULTRIFLE_556X45_HK_416A5 = new MongoId("5bb2475ed4351e00853264e3");
+    public static readonly MongoId ASSAULTRIFLE_556X45_HK_416A5_RAL_8000 = new MongoId("6a15ae2ae5267ba21c07f98f");
+    public static readonly MongoId ASSAULTRIFLE_556X45_M16A1 = new MongoId("68a639748e1fe612970728e9");
+    public static readonly MongoId ASSAULTRIFLE_556X45_M16A2 = new MongoId("68a6399922b1e0bd360afe56");
     public static readonly MongoId ASSAULTRIFLE_556X45_M4A1 = new MongoId("5447a9cd4bdc2dbd208b4567");
     public static readonly MongoId ASSAULTRIFLE_556X45_MDR = new MongoId("5c488a752e221602b412af63");
     public static readonly MongoId ASSAULTRIFLE_556X45_MK_16 = new MongoId("6184055050224f204c1da540");
     public static readonly MongoId ASSAULTRIFLE_556X45_MK_16_FDE = new MongoId("618428466ef05c2ce828f218");
+    public static readonly MongoId ASSAULTRIFLE_556X45_MODEL_1 = new MongoId("6895bb82c4519957df062f82");
     public static readonly MongoId ASSAULTRIFLE_556X45_TX_15_DML = new MongoId("5d43021ca4b9362eab4b5e25");
+    public static readonly MongoId ASSAULTRIFLE_556X45_TYPE_20 = new MongoId("6a3bffbebc377285900b85cf");
+    public static readonly MongoId ASSAULTRIFLE_58X42_QBZ_191 = new MongoId("69f9ebbcaae020b0db02f65d");
     public static readonly MongoId ASSAULTRIFLE_68X51_SPEAR_68 = new MongoId("65290f395ae2ae97b80fdf2d");
-    public static readonly MongoId ASSAULTRIFLE_762X35_MCX_300_BLK = new MongoId("5fbcc1d9016cce60e8341ab3");
-    public static readonly MongoId ASSAULTRIFLE_762X35_VELOCIRAPTOR_300_BLK = new MongoId("674d6121c09f69dfb201a888");
+    public static readonly MongoId ASSAULTRIFLE_762X35_MCX = new MongoId("5fbcc1d9016cce60e8341ab3");
+    public static readonly MongoId ASSAULTRIFLE_762X35_VELOCIRAPTOR = new MongoId("674d6121c09f69dfb201a888");
     public static readonly MongoId ASSAULTRIFLE_762X39_AK_103 = new MongoId("5ac66d2e5acfc43b321d4b53");
     public static readonly MongoId ASSAULTRIFLE_762X39_AK_104 = new MongoId("5ac66d725acfc43b321d4b60");
     public static readonly MongoId ASSAULTRIFLE_762X39_AKM = new MongoId("59d6088586f774275f37482f");
@@ -52,7 +61,8 @@ public static class Weapons
     public static readonly MongoId ASSAULTRIFLE_762X39_AKMSN = new MongoId("5abcbc27d8ce8700182eceeb");
     public static readonly MongoId ASSAULTRIFLE_762X39_MK47 = new MongoId("606587252535c57a13424cfd");
     public static readonly MongoId ASSAULTRIFLE_762X39_RD_704 = new MongoId("628a60ae6b1d481ff772e9c8");
-    public static readonly MongoId ASSAULTRIFLE_762X39_VPO_136_VEPR_KM = new MongoId("59e6152586f77473dc057aa1");
+    public static readonly MongoId ASSAULTRIFLE_762X39_VPO_136 = new MongoId("59e6152586f77473dc057aa1");
+    public static readonly MongoId ASSAULTRIFLE_762X51_AK_308 = new MongoId("689166b6c2d6fa42e7044756");
     public static readonly MongoId ASSAULTRIFLE_762X51_MDR = new MongoId("5dcbd56fdbd3d91b3e5468d5");
     public static readonly MongoId ASSAULTRIFLE_762X51_MK_17 = new MongoId("6183afd850224f204c1da514");
     public static readonly MongoId ASSAULTRIFLE_762X51_MK_17_FDE = new MongoId("6165ac306ef05c2ce828ef74");
@@ -86,8 +96,10 @@ public static class Weapons
     public static readonly MongoId MARKSMANRIFLE_762X51_RFB = new MongoId("5f2a9575926fd9352339381f");
     public static readonly MongoId MARKSMANRIFLE_762X51_RSASS = new MongoId("5a367e5dc4a282000e49738f");
     public static readonly MongoId MARKSMANRIFLE_762X51_SR_25 = new MongoId("5df8ce05b11454561e39243b");
+    public static readonly MongoId MARKSMANRIFLE_762X51_SR_25_TAUPE = new MongoId("6932abeb5403890d0c09c926");
     public static readonly MongoId MARKSMANRIFLE_762X54R_SVDS = new MongoId("5c46fbd72e2216398b5a8c9c");
     public static readonly MongoId MARKSMANRIFLE_86X70_MK_18_MJLNIR = new MongoId("5fc22d7c187fea44d52eda44");
+    public static readonly MongoId MARKSMANRIFLE_93X64_TKPD = new MongoId("68aee763130c00663d08aea8");
     public static readonly MongoId MARKSMANRIFLE_9X39_VSS_VINTOREZ = new MongoId("57838ad32459774a17445cd2");
     public static readonly MongoId PISTOL_127X33_DESERT_EAGLE_L5 = new MongoId("669fa3f88abd2662d80eee77");
     public static readonly MongoId PISTOL_127X33_DESERT_EAGLE_L6 = new MongoId("669fa39b48fc9f8db6035a0c");
@@ -132,6 +144,7 @@ public static class Weapons
     public static readonly MongoId SHOTGUN_12G_MP_43_1C = new MongoId("5580223e4bdc2d1c128b457f");
     public static readonly MongoId SHOTGUN_12G_SAIGA_12K = new MongoId("576165642459773c7a400233");
     public static readonly MongoId SHOTGUN_12G_SAIGA_12K_FA = new MongoId("674fe9a75e51f1c47c04ec23");
+    public static readonly MongoId SHOTGUN_12G_SAIGA_12K_FA_RL_REDLINE = new MongoId("6981d72ed009ad83920da43a");
     public static readonly MongoId SHOTGUN_12G_SAWED_OFF = new MongoId("64748cb8de82c85eaf0a273a");
     public static readonly MongoId SHOTGUN_20G_TOZ_106 = new MongoId("5a38e6bac4a2826c6e06d79b");
     public static readonly MongoId SHOTGUN_23X75_KS_23M = new MongoId("5e848cc2988a8701445df1e8");
@@ -166,6 +179,7 @@ public static class Weapons
     public static readonly MongoId SNIPERRIFLE_762X54R_MOSIN_INFANTRY = new MongoId("5bfd297f0db834001a669119");
     public static readonly MongoId SNIPERRIFLE_762X54R_MOSIN_SNIPER = new MongoId("5ae08f0a5acfc408fb1398a1");
     public static readonly MongoId SNIPERRIFLE_762X54R_SV_98 = new MongoId("55801eed4bdc2d89578b4588");
+    public static readonly MongoId SNIPERRIFLE_784X49_MXLR = new MongoId("67c6de3ce39861860909e8e5");
     public static readonly MongoId SNIPERRIFLE_86X70_AXMC = new MongoId("627e14b21713922ded6f2c15");
     public static readonly MongoId SNIPERRIFLE_86X70_TRG_M10 = new MongoId("673cab3e03c6a20581028bc1");
 }

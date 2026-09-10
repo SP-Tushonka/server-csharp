@@ -18,8 +18,8 @@ public static class BaseClasses
     public static readonly MongoId BACKPACK = new MongoId("5448e53e4bdc2d60728b4567");
     public static readonly MongoId BARREL = new MongoId("555ef6e44bdc2de9068b457e");
     public static readonly MongoId BARTER_ITEM = new MongoId("5448eb774bdc2d0a728b4567");
-    public static readonly MongoId BATTLE_PASS_DOCUMENT = new MongoId("6a28212a0368f4438b0d0a45");
     public static readonly MongoId BATTERY = new MongoId("57864ee62459775490116fc1");
+    public static readonly MongoId BATTLE_PASS_DOCUMENT = new MongoId("6a28212a0368f4438b0d0a45");
     public static readonly MongoId BIPOD = new MongoId("55818afb4bdc2dde698b456d");
     public static readonly MongoId BUILDING_MATERIAL = new MongoId("57864ada245977548638de91");
     public static readonly MongoId BUILT_IN_INSERTS = new MongoId("65649eb40bf0ed77b8044453");
@@ -28,9 +28,11 @@ public static class BaseClasses
     public static readonly MongoId COMPACT_COLLIMATOR = new MongoId("55818acf4bdc2dde698b456b");
     public static readonly MongoId COMPASS = new MongoId("5f4fbaaca5573a5ac31db429");
     public static readonly MongoId COMPENSATOR = new MongoId("550aa4af4bdc2dd4348b456e");
+    public static readonly MongoId COMPLETABLE = new MongoId("664b81bfa322b5b99a037a03");
     public static readonly MongoId COMPOUND_ITEM = new MongoId("566162e44bdc2d3f298b4573");
     public static readonly MongoId CULTIST_AMULET = new MongoId("64b69b0c8f3be32ed22682f8");
     public static readonly MongoId CYLINDER_MAGAZINE = new MongoId("610720f290b75a49ff2e5e25");
+    public static readonly MongoId DIALOG_ITEM = new MongoId("684070bd2f743ae53b0b80ec");
     public static readonly MongoId DRINK = new MongoId("5448e8d64bdc2dce718b4568");
     public static readonly MongoId DRUGS = new MongoId("5448f3a14bdc2d27728b4569");
     public static readonly MongoId ELECTRONICS = new MongoId("57864a66245977548f04a81f");
@@ -84,6 +86,7 @@ public static class BaseClasses
     public static readonly MongoId MUZZLE = new MongoId("5448fe394bdc2d0d028b456c");
     public static readonly MongoId MUZZLE_COMBO = new MongoId("550aa4dd4bdc2dc9348b4569");
     public static readonly MongoId NIGHT_VISION = new MongoId("5a2c3a9486f774688b05e574");
+    public static readonly MongoId NOTES = new MongoId("67a27459e3515dec4105927b");
     public static readonly MongoId OPTIC_SCOPE = new MongoId("55818ae44bdc2dde698b456c");
     public static readonly MongoId OTHER = new MongoId("590c745b86f7743cc433c5f2");
     public static readonly MongoId PISTOL = new MongoId("5447b5cf4bdc2d65278b4567");
@@ -96,6 +99,7 @@ public static class BaseClasses
     public static readonly MongoId RAIL_COVERS = new MongoId("55818b1d4bdc2d5b648b4572");
     public static readonly MongoId RANDOM_LOOT_CONTAINER = new MongoId("62f109593b54472778797866");
     public static readonly MongoId RECEIVER = new MongoId("55818a304bdc2db5418b457d");
+    public static readonly MongoId RECORDER = new MongoId("650afb5c1b1a473fcb3a7d55");
     public static readonly MongoId REPAIR_KITS = new MongoId("616eb7aea207f41933308f46");
     public static readonly MongoId REVOLVER = new MongoId("617f1ef5e8b54b0998387733");
     public static readonly MongoId ROCKET = new MongoId("677ae5df4be46b83620bf055");
@@ -119,10 +123,12 @@ public static class BaseClasses
     public static readonly MongoId STIMULATOR = new MongoId("5448f3a64bdc2d60728b456a");
     public static readonly MongoId STOCK = new MongoId("55818a594bdc2db9688b456a");
     public static readonly MongoId TACTICAL_COMBO = new MongoId("55818b164bdc2ddc698b456c");
+    public static readonly MongoId TAPES = new MongoId("6516b0f21e733a595c1016fb");
     public static readonly MongoId THERMAL_VISION = new MongoId("5d21f59b6dbe99052b54ef83");
     public static readonly MongoId THROW_WEAP = new MongoId("543be6564bdc2df4348b4568");
     public static readonly MongoId TOOL = new MongoId("57864bb7245977548b3b66c2");
     public static readonly MongoId VEST = new MongoId("5448e5284bdc2dcb718b4567");
     public static readonly MongoId VISORS = new MongoId("5448e5724bdc2ddf718b4568");
+    public static readonly MongoId VOLUMETRIC_THROW_WEAPON = new MongoId("69f071ae35c3b5e6dd00df07");
     public static readonly MongoId WEAPON = new MongoId("5422acb9af1c889c16000029");
 }

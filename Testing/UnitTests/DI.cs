@@ -78,16 +78,7 @@ public class DI
 
         var locales = ProgramHelpers.CreateEarlyLocaleTable() ?? throw new InvalidOperationException("Locales aren't loaded lmao");
         var db = SetupDB(configuration, locales, mockLogger);
-        services.AddSingleton(db.Bots);
-        services.AddSingleton(db.Hideout);
-        services.AddSingleton(db.Locales);
-        services.AddSingleton(db.Locations);
-        services.AddSingleton(db.Match);
-        services.AddSingleton(db.Templates);
-        services.AddSingleton(db.Traders);
-        services.AddSingleton(db.Globals);
-        services.AddSingleton(db.Server);
-        services.AddSingleton(db.Settings);
+        db.AddToServices(services);
 
         foreach (var configEntry in configuration)
         {

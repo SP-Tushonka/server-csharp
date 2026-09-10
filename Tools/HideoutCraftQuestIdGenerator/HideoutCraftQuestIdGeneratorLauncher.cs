@@ -1,11 +1,13 @@
 using HideoutCraftQuestIdGenerator.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Services.Hosted;
 using SPTarkov.Server.Core.Utils;
+using SPTarkov.Server.Helpers;
 
 namespace HideoutCraftQuestIdGenerator;
 
@@ -20,6 +22,9 @@ public class HideoutCraftQuestIdGeneratorLauncher
             var configuration = await SPTConfigLoader.Initialize();
 
             var serviceCollection = new ServiceCollection();
+            serviceCollection.AddSingleton(typeof(ISptLogger<>), typeof(SptBasicLogger<>));
+            serviceCollection.AddHttpContextAccessor();
+            serviceCollection.AddHttpClient();
 
             foreach (var configEntry in configuration)
             {
@@ -37,6 +42,13 @@ public class HideoutCraftQuestIdGeneratorLauncher
             diHandler.AddInjectableTypesFromTypeAssembly(typeof(HideoutCraftQuestIdGeneratorLauncher));
             diHandler.AddInjectableTypesFromTypeAssembly(typeof(SPTStartupHostedService));
             diHandler.InjectAll();
+
+            serviceCollection.AddSingleton(ProgramHelpers.CreateEarlyLocaleTable());
+            serviceCollection.AddSingleton<DatabaseImporter>();
+            var tables =
+                await serviceCollection.BuildServiceProvider().GetRequiredService<DatabaseImporter>().LoadDatabaseAsync(false)
+                ?? throw new InvalidOperationException("Database failed to load");
+            tables.AddToServices(serviceCollection);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             await serviceProvider.GetRequiredService<HideoutCraftQuestIdGenerator>().Run();
