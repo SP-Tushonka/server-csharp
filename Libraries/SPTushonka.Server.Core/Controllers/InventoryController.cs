@@ -6,6 +6,7 @@ using SPTarkov.Server.Core.Generators.Loot;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Helpers.Traders;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -45,6 +46,7 @@ public class InventoryController(
     ServerLocalisationService serverLocalisationService,
     LootGenerator lootGenerator,
     EventOutputHolder eventOutputHolder,
+    QuestHelper questHelper,
     ICloner cloner
 )
 {
@@ -159,6 +161,13 @@ public class InventoryController(
         var fullProfile = profileHelper.GetFullProfile(sessionId);
         fullProfile.DialogueProgress ??= [];
 
+        // A conversation's own effects are applied by the client as it plays, but whatever the server
+        // derives from them has to travel back in this response, or the trader screen keeps the state it
+        // had until the client is restarted
+        var questsBeforeTalking = cloner.Clone(questHelper.GetClientQuests(sessionId)) ?? [];
+        var statusesBeforeTalking = (pmcData.Quests ?? []).ToDictionary(quest => quest.QId, quest => quest.Status);
+        var changedVariables = new Dictionary<MongoId, int>();
+
         foreach (var node in request.DialogueProgress ?? [])
         {
             if (!fullProfile.DialogueProgress.Any(visited => visited.DialogueId == node.DialogueId && visited.NodeId == node.NodeId))
@@ -166,11 +175,35 @@ public class InventoryController(
                 fullProfile.DialogueProgress.Add(node);
             }
 
-            ApplyDialogueVariables(pmcData, node);
+            ApplyDialogueVariables(pmcData, node, changedVariables);
         }
+
+        if (!output.ProfileChanges.TryGetValue(sessionId, out var profileChanges))
+        {
+            return;
+        }
+
+        if (changedVariables.Count > 0)
+        {
+            profileChanges.VariableValues ??= [];
+            foreach (var (variableId, value) in changedVariables)
+            {
+                profileChanges.VariableValues[variableId] = value;
+            }
+        }
+
+        profileChanges.Quests ??= [];
+        profileChanges.Quests.AddRange(questHelper.GetDeltaQuests(questsBeforeTalking, questHelper.GetClientQuests(sessionId)));
+
+        profileChanges.QuestsStatus ??= [];
+        profileChanges.QuestsStatus.AddRange(
+            (pmcData.Quests ?? []).Where(quest =>
+                !statusesBeforeTalking.TryGetValue(quest.QId, out var previous) || previous != quest.Status
+            )
+        );
     }
 
-    private void ApplyDialogueVariables(PmcData pmcData, NodePathTraveled node)
+    private void ApplyDialogueVariables(PmcData pmcData, NodePathTraveled node, Dictionary<MongoId, int> changedVariables)
     {
         var dialogue = templateTable.Dialogue.Elements.FirstOrDefault(element => element.Id == node.DialogueId);
 
@@ -215,10 +248,12 @@ public class InventoryController(
                     continue;
                 }
 
+                var id = new MongoId(variableId.GetString());
+                var parsedValue = value.TryGetInt32(out var parsed) ? parsed : (int)value.GetDouble();
+
                 pmcData.Variables ??= [];
-                pmcData.Variables[new MongoId(variableId.GetString())] = value.TryGetInt32(out var parsed)
-                    ? parsed
-                    : (int)value.GetDouble();
+                pmcData.Variables[id] = parsedValue;
+                changedVariables[id] = parsedValue;
             }
 
             return;

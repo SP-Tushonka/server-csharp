@@ -198,4 +198,7 @@ public record TraderData
 
     [JsonPropertyName("disabled")]
     public bool? Disabled { get; set; }
+    
+    [JsonPropertyName("dialogueAvailable")]
+    public bool? DialogueAvailable { get; set; }
 }

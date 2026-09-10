@@ -264,6 +264,7 @@ public class EventOutputHolder(ProfileHelper profileHelper, TimeUtil timeUtil, I
                 Loyalty = trader.Value.LoyaltyLevel,
                 Standing = trader.Value.Standing,
                 Unlocked = trader.Value.Unlocked,
+                DialogueAvailable = trader.Value.DialogueAvailable,
             }
         );
     }
