@@ -1,6 +1,6 @@
 name: "Bug Report - Bleeding Edge 5.0"
 description: "Report a bug in a pre-release (5.0) version of the SPT project."
-labels: ["triage", "bleeding edge"]
+labels: ["SPT-5.0"]
 body:
   - type: markdown
     attributes:
@@ -91,7 +91,7 @@ body:
     id: log_client
     attributes:
       label: "Client Log"
-      description: "Upload a copy of your *entire* client log: `/Logs/log_<date>_<version>/<date>_<version> traces.log`."
+      description: "Upload a copy of your *entire* output log from `/Logs/log_<date>_<version>/`."
       placeholder: "Attach the log file. Do not paste the contents."
     validations:
       required: true
