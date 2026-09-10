@@ -110,7 +110,7 @@ public class QuestController(
         }
 
         // Get messageId of text to send to player as text message in game
-        var messageId = questHelper.GetMessageIdForQuestStart(questFromDb.StartedMessageText, questFromDb.Description);
+        var messageId = questHelper.GetMessageIdForQuestStart(questFromDb);
 
         // Apply non-item rewards to profile + return item rewards
         var startedQuestRewardItems = questRewardHelper.ApplyQuestReward(
@@ -122,14 +122,18 @@ public class QuestController(
         );
 
         // Send started text + any starting reward items found above to player
-        mailSendService.SendLocalisedNpcMessageToPlayer(
-            sessionID,
-            questFromDb.TraderId,
-            MessageType.QuestStart,
-            messageId,
-            startedQuestRewardItems.ToList(),
-            timeUtil.GetHoursAsSeconds((int)questHelper.GetMailItemRedeemTimeHoursForProfile(pmcData))
-        );
+        var startedRewards = startedQuestRewardItems.ToList();
+        if (questHelper.QuestMessageIsWorthSending(questFromDb, messageId, startedRewards))
+        {
+            mailSendService.SendLocalisedNpcMessageToPlayer(
+                sessionID,
+                questFromDb.TraderId,
+                MessageType.QuestStart,
+                messageId,
+                startedRewards,
+                timeUtil.GetHoursAsSeconds((int)questHelper.GetMailItemRedeemTimeHoursForProfile(pmcData))
+            );
+        }
 
         // Having accepted new quest, look for newly unlocked quests and inform client of them
         var newlyAccessibleQuests = questHelper.GetNewlyAccessibleQuestsWhenStartingQuest(acceptedQuest.QuestId, sessionID);

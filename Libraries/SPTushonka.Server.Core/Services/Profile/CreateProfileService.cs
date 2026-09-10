@@ -351,14 +351,15 @@ public class CreateProfileService(
 
             // Get messageId of text to send to player as text message in game
             // Copy of code from QuestController.acceptQuest()
-            var messageId = questHelper.GetMessageIdForQuestStart(questFromDb.StartedMessageText, questFromDb.Description);
-            var itemRewards = questRewardHelper.ApplyQuestReward(
-                profileDetails.CharacterData.PmcData,
-                quest.QId,
-                QuestStatusEnum.Started,
-                sessionID,
-                response
-            );
+            var messageId = questHelper.GetMessageIdForQuestStart(questFromDb);
+            var itemRewards = questRewardHelper
+                .ApplyQuestReward(profileDetails.CharacterData.PmcData, quest.QId, QuestStatusEnum.Started, sessionID, response)
+                .ToList();
+
+            if (!questHelper.QuestMessageIsWorthSending(questFromDb, messageId, itemRewards))
+            {
+                continue;
+            }
 
             mailSendService.SendLocalisedNpcMessageToPlayer(
                 sessionID,

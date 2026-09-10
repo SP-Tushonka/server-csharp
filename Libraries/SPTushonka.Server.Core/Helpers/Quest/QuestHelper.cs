@@ -703,14 +703,15 @@ public class QuestHelper(
         // Quest found and no repeatable found
         if (quest is not null && matchingRepeatableQuest is null)
         {
-            if (quest.FailMessageText!.Trim().Length != 0)
+            var failRewards = questRewards.ToList();
+            if (QuestMessageIsWorthSending(quest, quest.FailMessageText, failRewards))
             {
                 mailSendService.SendLocalisedNpcMessageToPlayer(
                     sessionId,
                     quest.TraderId,
                     MessageType.QuestFail,
-                    quest.FailMessageText,
-                    questRewards.ToList(),
+                    quest.FailMessageText ?? "",
+                    failRewards,
                     timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(pmcData))
                 );
             }
@@ -755,24 +756,44 @@ public class QuestHelper(
     /// <summary>
     ///     Get a quests startedMessageText key from db, if no startedMessageText key found, use description key instead
     /// </summary>
-    /// <param name="startedMessageTextId">startedMessageText property from Quest</param>
-    /// <param name="questDescriptionId">description property from Quest</param>
+    /// <param name="quest">Quest the message belongs to</param>
     /// <returns>message id</returns>
-    public string GetMessageIdForQuestStart(string startedMessageTextId, string questDescriptionId)
+    public string GetMessageIdForQuestStart(Models.Eft.Common.Tables.Quest quest)
     {
         // Blank or is a guid, use description instead
-        var startedMessageText = GetQuestLocaleIdFromDb(startedMessageTextId);
+        var startedMessageText = GetQuestMessageText(quest, quest.StartedMessageText);
         if (
-            startedMessageText is null
-            || startedMessageText.Trim() == ""
+            startedMessageText.Trim() == ""
             || string.Equals(startedMessageText, "test", StringComparison.OrdinalIgnoreCase)
             || startedMessageText.Length == 24
         )
         {
-            return questDescriptionId;
+            return quest.Description;
         }
 
-        return startedMessageTextId;
+        return quest.StartedMessageText!;
+    }
+
+    /// <summary>
+    ///     Resolve a quest message id to the text the client will show for it
+    /// </summary>
+    /// <param name="quest">Quest the message belongs to</param>
+    /// <param name="questMessageId">Quest message id to look up</param>
+    /// <returns>Localised text, blank when the id resolves to nothing</returns>
+    public string GetQuestMessageText(Models.Eft.Common.Tables.Quest quest, string? questMessageId)
+    {
+        if (string.IsNullOrEmpty(questMessageId))
+        {
+            return "";
+        }
+
+        var questLocale = GetQuestLocale(quest);
+        if (questLocale is not null && questLocale.TryGetValue(questMessageId, out var questText))
+        {
+            return questText ?? "";
+        }
+
+        return GetQuestLocaleIdFromDb(questMessageId) ?? "";
     }
 
     /// <summary>
@@ -784,6 +805,21 @@ public class QuestHelper(
     {
         var locale = localeService.GetLocaleDb();
         return locale!.GetValueOrDefault(questMessageId, null);
+    }
+
+    private Dictionary<string, string>? GetQuestLocale(Models.Eft.Common.Tables.Quest quest)
+    {
+        if (quest.Localization is null)
+        {
+            return null;
+        }
+
+        if (quest.Localization.TryGetValue(localeService.GetDesiredGameLocale(), out var chosenLocale))
+        {
+            return chosenLocale;
+        }
+
+        return quest.Localization.GetValueOrDefault("en");
     }
 
     /// <summary>
@@ -1614,7 +1650,7 @@ public class QuestHelper(
             return;
         }
 
-        if (quest.TraderId == Models.Enums.Traders.STORYLINE)
+        if (!QuestMessageIsWorthSending(quest, quest.SuccessMessageText, questRewards))
         {
             return;
         }
@@ -1627,6 +1663,24 @@ public class QuestHelper(
             questRewards,
             timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(pmcData))
         );
+    }
+
+    /// <summary>
+    ///     Decide whether a quest mail is worth sending. A quest whose locale entry is blank reaches the
+    ///     messenger as an empty message, which is only useful when items are attached
+    /// </summary>
+    /// <param name="quest">Quest the message belongs to</param>
+    /// <param name="questMessageId">Quest message id the mail would carry</param>
+    /// <param name="rewards">Items attached to the mail</param>
+    /// <returns>True when the mail has something to show</returns>
+    public bool QuestMessageIsWorthSending(Models.Eft.Common.Tables.Quest quest, string? questMessageId, ICollection<Item>? rewards)
+    {
+        if (rewards?.Count > 0)
+        {
+            return true;
+        }
+
+        return GetQuestMessageText(quest, questMessageId).Trim().Length != 0;
     }
 
     /// <summary>
