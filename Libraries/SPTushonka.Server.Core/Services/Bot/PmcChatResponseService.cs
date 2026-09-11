@@ -290,7 +290,7 @@ public class PmcChatResponseService(
         return new UserDialogInfo
         {
             Id = pmcVictim.ProfileId.Value,
-            Aid = int.Parse(pmcVictim.AccountId),
+            Aid = int.TryParse(pmcVictim.AccountId, out var aid) ? aid : 0,
             Info = new UserDialogDetails
             {
                 Nickname = pmcVictim.Name,

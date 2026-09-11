@@ -1506,7 +1506,7 @@ public class HideoutHelper(
                 continue;
             }
 
-            if (int.Parse(dogtag.Upd.Dogtag.AccountId) == pmcData.Aid)
+            if (int.TryParse(dogtag.Upd.Dogtag.AccountId, out var aid) && aid == pmcData.Aid)
             {
                 continue;
             }
