@@ -1,4 +1,5 @@
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -29,6 +30,7 @@ public class BattlePassDocumentLimitService(SaveServer saveServer, SeasonTable s
 
     /// <summary>
     ///     Top a profile's document allowance back up for every pass whose reset time has passed.
+    ///     A full allowance keeps its reset rolling forward.
     /// </summary>
     public void RefillExpiredLimits(PmcData pmcData)
     {
@@ -41,24 +43,69 @@ public class BattlePassDocumentLimitService(SaveServer saveServer, SeasonTable s
 
         foreach (var (battlePassId, limit) in pmcData.BattlePassDocumentLimitData)
         {
-            if (limit.NextResetTime > now)
+            var totalLimit = GetTotalLimit(battlePassId) ?? limit.TotalLimit;
+            if (limit.NextResetTime is null || limit.NextResetTime <= now)
+            {
+                limit.RemainingLimit = totalLimit;
+            }
+
+            limit.TotalLimit = totalLimit;
+
+            // The reset counts from the first document picked up, so a full allowance has not started it yet
+            if (limit.RemainingLimit >= totalLimit)
+            {
+                limit.NextResetTime = now + (limit.ResetInterval ?? 0);
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Charge the season documents a raid added to the player's equipment against each pass's allowance.
+    /// </summary>
+    public void ConsumeRaidDocuments(PmcData serverProfile, PmcData postRaidProfile)
+    {
+        if (serverProfile.BattlePassDocumentLimitData is null)
+        {
+            return;
+        }
+
+        foreach (var (battlePassId, limit) in serverProfile.BattlePassDocumentLimitData)
+        {
+            var documents = seasonTable
+                .BattlePass?.BattlePasses?.FirstOrDefault(pass => pass.Id == battlePassId)
+                ?.Documents?.Select(document => document.ItemId)
+                .ToHashSet();
+            if (documents is null || documents.Count == 0)
             {
                 continue;
             }
 
-            var totalLimit = GetTotalLimit(battlePassId) ?? limit.TotalLimit;
-            var resetInterval = limit.ResetInterval ?? 0;
-            var nextReset = resetInterval > 0 ? limit.NextResetTime!.Value : now;
-
-            while (resetInterval > 0 && nextReset <= now)
+            var gained = CountEquippedDocuments(postRaidProfile, documents) - CountEquippedDocuments(serverProfile, documents);
+            if (gained <= 0)
             {
-                nextReset += resetInterval;
+                continue;
             }
 
-            limit.RemainingLimit = totalLimit;
-            limit.TotalLimit = totalLimit;
-            limit.NextResetTime = nextReset;
+            if (limit.RemainingLimit >= limit.TotalLimit)
+            {
+                limit.NextResetTime = timeUtil.GetTimeStamp() + (limit.ResetInterval ?? 0);
+            }
+
+            limit.RemainingLimit = Math.Max(0, (limit.RemainingLimit ?? 0) - gained);
         }
+    }
+
+    private static int CountEquippedDocuments(PmcData profile, HashSet<MongoId> documents)
+    {
+        if (profile.Inventory?.Items is null || profile.Inventory.Equipment is null)
+        {
+            return 0;
+        }
+
+        return profile
+            .Inventory.Items.GetItemWithChildren(profile.Inventory.Equipment.Value)
+            .Where(item => documents.Contains(item.Template))
+            .Sum(item => item.GetItemStackSize());
     }
 
     private int? GetTotalLimit(MongoId battlePassId)

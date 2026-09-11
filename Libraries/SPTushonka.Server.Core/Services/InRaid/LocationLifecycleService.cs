@@ -61,6 +61,7 @@ public class LocationLifecycleService(
     InsuranceService insuranceService,
     MatchBotDetailsCacheService matchBotDetailsCacheService,
     BtrDeliveryService btrDeliveryService,
+    BattlePassDocumentLimitService battlePassDocumentLimitService,
     LocationConfig locationConfig,
     InRaidConfig inRaidConfig,
     TraderConfig traderConfig,
@@ -838,6 +839,8 @@ public class LocationLifecycleService(
         // MUST occur BEFORE inventory actions (setInventory()) occur
         // Player died, get quest items they lost for use later
         var lostQuestItems = postRaidProfile.GetQuestItemsInProfile();
+
+        battlePassDocumentLimitService.ConsumeRaidDocuments(serverPmcProfile, postRaidProfile);
 
         // Update inventory
         inRaidHelper.SetInventory(sessionId, serverPmcProfile, postRaidProfile, isSurvived, isTransfer);
