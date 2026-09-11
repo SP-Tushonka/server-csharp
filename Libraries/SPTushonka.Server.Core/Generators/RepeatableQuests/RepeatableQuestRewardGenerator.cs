@@ -389,7 +389,10 @@ public class RepeatableQuestRewardGenerator(
             }
 
             // No budget for more items, end loop
-            break;
+            if (calculatedItemRewardBudget <= 0)
+            {
+                break;
+            }
         }
 
         return itemsToReturn;
