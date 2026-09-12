@@ -103,7 +103,7 @@ public class LocationLootGenerator(
 
         var staticContainerData = mapData.StaticContainers.Value;
         var staticWeaponsOnMap = staticContainerData.StaticWeapons;
-        
+
         if (staticWeaponsOnMap is null)
         {
             logger.Error(serverLocalisationService.GetText("location-unable_to_find_static_weapon_for_map", locationId));
@@ -870,7 +870,7 @@ public class LocationLootGenerator(
         var seasonalEventActive = seasonalEventService.SeasonalEventEnabled();
         var seasonalItemTplBlacklist = seasonalEventService.GetInactiveSeasonalEventItems();
 
-        foreach (var forcedLootLocation in forcedSpawnPoints)
+        foreach (var forcedLootLocation in ChooseForcedPositions(forcedSpawnPoints))
         {
             var locationTemplateToAdd = forcedLootLocation.Template;
             var rootItem = locationTemplateToAdd.Items.FirstOrDefault();
@@ -915,6 +915,40 @@ public class LocationLootGenerator(
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///     Pick where each forced item spawns this raid. A quest item that can appear in several places is
+    ///     listed once per place under the same template id, each entry carrying the chance of that place.
+    ///     One of those entries is drawn by that chance, so the item spawns once and moves between raids.
+    ///     Entries with different ids are separate items and all spawn.
+    /// </summary>
+    public List<Spawnpoint> ChooseForcedPositions(IEnumerable<Spawnpoint> forcedSpawnPoints)
+    {
+        var chosen = new List<Spawnpoint>();
+
+        foreach (var alternatives in forcedSpawnPoints.GroupBy(point => point.Template.Id))
+        {
+            var positions = alternatives.ToList();
+
+            if (positions.Count == 1)
+            {
+                chosen.Add(positions[0]);
+                continue;
+            }
+
+            var distribution = new ProbabilityObjectArray<int, double>(cloner);
+
+            for (var i = 0; i < positions.Count; i++)
+            {
+                var probability = positions[i].Probability ?? 1;
+                distribution.Add(new ProbabilityObject<int, double>(i, probability, probability));
+            }
+
+            chosen.Add(positions[distribution.Draw()[0]]);
+        }
+
+        return chosen;
     }
 
     /// <summary>
