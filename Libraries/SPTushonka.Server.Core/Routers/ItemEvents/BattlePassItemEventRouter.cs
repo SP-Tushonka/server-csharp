@@ -15,5 +15,14 @@ public sealed class BattlePassItemEventRouter(BattlePassCallbacks battlePassCall
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await battlePassCallbacks.UnlockReward(pmcData, body, sessionID)
         ),
-    ])
-{ }
+        new ItemRouteAction<BattlePassExchangeDocumentsRequest>(
+            ItemEventActions.BATTLE_PASS_EXCHANGE_DOCUMENTS,
+            async (url, pmcData, body, sessionID, output, cancellationToken) =>
+                await battlePassCallbacks.ExchangeDocuments(pmcData, body, sessionID)
+        ),
+        new ItemRouteAction<BattlePassExchangeDocumentsRequest>(
+            ItemEventActions.BATTLE_PASS_EXCHANGE_DOCUMENTS_FOR_ITEM,
+            async (url, pmcData, body, sessionID, output, cancellationToken) =>
+                await battlePassCallbacks.ExchangeDocumentsForItem(pmcData, body, sessionID)
+        ),
+    ]) { }

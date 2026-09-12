@@ -28,6 +28,8 @@ public record ItemEventActions
     public const string REMOVE_EQUIPMENT_BUILD = "RemoveEquipmentBuild";
     public const string REDEEM_PROFILE_REWARD = "RedeemProfileReward";
     public const string BATTLE_PASS_UNLOCK_REWARD = "BattlePassUnlockReward";
+    public const string BATTLE_PASS_EXCHANGE_DOCUMENTS = "BattlePassExchangeDocuments";
+    public const string BATTLE_PASS_EXCHANGE_DOCUMENTS_FOR_ITEM = "BattlePassExchangeDocumentsForItem";
     public const string SET_FAVORITE_ITEMS = "SetFavoriteItems";
     public const string QUEST_FAIL = "QuestFail";
     public const string PIN_LOCK = "PinLock";

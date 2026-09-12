@@ -13,12 +13,28 @@ public class BattlePassCallbacks(BattlePassController battlePassController)
     /// <summary>
     ///     Handle BattlePassUnlockReward event
     /// </summary>
-    public ValueTask<ItemEventRouterResponse> UnlockReward(
+    public ValueTask<ItemEventRouterResponse> UnlockReward(PmcData pmcData, BattlePassUnlockRewardRequest info, MongoId sessionID)
+    {
+        return new ValueTask<ItemEventRouterResponse>(battlePassController.UnlockReward(pmcData, info, sessionID));
+    }
+
+    /// <summary>
+    ///     Handle BattlePassExchangeDocuments event
+    /// </summary>
+    public ValueTask<ItemEventRouterResponse> ExchangeDocuments(PmcData pmcData, BattlePassExchangeDocumentsRequest info, MongoId sessionID)
+    {
+        return new ValueTask<ItemEventRouterResponse>(battlePassController.ExchangeDocuments(pmcData, info, sessionID));
+    }
+
+    /// <summary>
+    ///     Handle BattlePassExchangeDocumentsForItem event
+    /// </summary>
+    public ValueTask<ItemEventRouterResponse> ExchangeDocumentsForItem(
         PmcData pmcData,
-        BattlePassUnlockRewardRequest info,
+        BattlePassExchangeDocumentsRequest info,
         MongoId sessionID
     )
     {
-        return new ValueTask<ItemEventRouterResponse>(battlePassController.UnlockReward(pmcData, info, sessionID));
+        return new ValueTask<ItemEventRouterResponse>(battlePassController.ExchangeDocumentsForItem(pmcData, info, sessionID));
     }
 }
