@@ -42,6 +42,12 @@ public record QuestConfig : BaseConfig
     public required Dictionary<MongoId, HashSet<string>> ProfileWhitelist { get; set; }
 
     /// <summary>
+    ///     Quests live sends without start conditions yet never offers a fresh account
+    /// </summary>
+    [JsonPropertyName("withheldQuests")]
+    public required HashSet<MongoId> WithheldQuests { get; set; }
+
+    /// <summary>
     ///     Holds repeatable quest template ids for pmc's and scav's
     /// </summary>
     [JsonPropertyName("repeatableQuestTemplateIds")]

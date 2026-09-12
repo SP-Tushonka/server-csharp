@@ -32,6 +32,9 @@ public record TemplateTable
     [JsonPropertyName("variableGroups")]
     public required List<VariableGroupData> VariableGroups { get; init; }
 
+    [JsonPropertyName("questVariables")]
+    public required Dictionary<MongoId, QuestVariableGroup> QuestVariables { get; init; }
+
     [JsonPropertyName("subtitleTracks")]
     public required List<SubtitleGroupData> SubtitleTracks { get; init; }
 

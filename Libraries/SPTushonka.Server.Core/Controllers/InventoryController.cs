@@ -1,4 +1,3 @@
-using System.Text.Json;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -213,50 +212,22 @@ public class InventoryController(
             return;
         }
 
-        // TODO: This shit is disgusting and needs fixing
-        foreach (var line in dialogue.Lines)
+        var line = dialogue.Lines.FirstOrDefault(line => line.Id == node.NodeId);
+        foreach (var action in line?.Actions ?? [])
         {
-            if (line is not JsonElement lineJson)
+            if (action.Type != "SetVariable" || action.SaveScope != "Profile")
             {
                 continue;
             }
 
-            if (!lineJson.TryGetProperty("Id", out var lineId) || lineId.GetString() != node.NodeId)
+            if (action.VariableId is null || action.Value?.Int is null)
             {
                 continue;
             }
 
-            if (!lineJson.TryGetProperty("Actions", out var actions))
-            {
-                return;
-            }
-
-            foreach (var action in actions.EnumerateArray())
-            {
-                if (!action.TryGetProperty("type", out var type) || type.GetString() != "SetVariable")
-                {
-                    continue;
-                }
-
-                if (!action.TryGetProperty("saveScope", out var scope) || scope.GetString() != "Profile")
-                {
-                    continue;
-                }
-
-                if (!action.TryGetProperty("variableId", out var variableId) || !action.TryGetProperty("value", out var value))
-                {
-                    continue;
-                }
-
-                var id = new MongoId(variableId.GetString());
-                var parsedValue = value.TryGetInt32(out var parsed) ? parsed : (int)value.GetDouble();
-
-                pmcData.Variables ??= [];
-                pmcData.Variables[id] = parsedValue;
-                changedVariables[id] = parsedValue;
-            }
-
-            return;
+            pmcData.Variables ??= [];
+            pmcData.Variables[action.VariableId.Value] = action.Value.Int.Value;
+            changedVariables[action.VariableId.Value] = action.Value.Int.Value;
         }
     }
 

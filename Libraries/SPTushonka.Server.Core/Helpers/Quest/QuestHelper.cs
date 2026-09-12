@@ -32,6 +32,7 @@ public class QuestHelper(
     LocaleService localeService,
     ProfileHelper profileHelper,
     QuestRewardHelper questRewardHelper,
+    QuestVariableHelper questVariableHelper,
     RewardHelper rewardHelper,
     ServerLocalisationService serverLocalisationService,
     SeasonalEventService seasonalEventService,
@@ -44,6 +45,8 @@ public class QuestHelper(
     private static readonly MongoId _guideChapterId = new("68cbd33676fe74b1e80bfd91");
 
     private Dictionary<MongoId, MongoId>? _taskChapters;
+    private Dictionary<MongoId, HashSet<MongoId>>? _chapterStarters;
+    private HashSet<MongoId>? _dialogueAcceptedQuests;
 
     /// <summary>
     /// List of <see cref="Quest"/> conditions that require trader sales be tracked and incremented, keyed by <see cref="Quest.Id"/>
@@ -320,6 +323,11 @@ public class QuestHelper(
                 }
 
                 if (QuestIsProfileBlacklisted(profile?.Info?.GameVersion, quest.Id))
+                {
+                    return false;
+                }
+
+                if (questConfig.WithheldQuests.Contains(quest.Id))
                 {
                     return false;
                 }
@@ -1055,6 +1063,7 @@ public class QuestHelper(
         const QuestStatusEnum newQuestState = QuestStatusEnum.Success;
         UpdateQuestState(pmcData, newQuestState, completedQuestId);
         RecordCompletableItems(pmcData, completedQuestId);
+        questVariableHelper.RecordCompletion(pmcData, completedQuestId, profileChanges);
         var questRewards = questRewardHelper.ApplyQuestReward(pmcData, request.QuestId, newQuestState, sessionId, completeQuestResponse);
 
         // Check for linked failed + unrestartable quests (only get quests not already failed
@@ -1136,6 +1145,7 @@ public class QuestHelper(
                     questInProfile.Status == QuestStatusEnum.AvailableForStart && quest.NotDisplayedQuest == true
                         ? StartStorylineQuest(profile, quest.Id)
                         : questInProfile.Status;
+                StartChapterOfActiveTask(profile, quest.Id, quest.SptStatus.Value);
                 questsToShowPlayer.Add(quest);
                 continue;
             }
@@ -1148,6 +1158,11 @@ public class QuestHelper(
 
             // Quest is blacklisted for this game version
             if (QuestIsProfileBlacklisted(profile.Info.GameVersion, quest.Id))
+            {
+                continue;
+            }
+
+            if (questConfig.WithheldQuests.Contains(quest.Id))
             {
                 continue;
             }
@@ -1409,10 +1424,26 @@ public class QuestHelper(
         var chapterStarted =
             profile.Quests?.Any(profileQuest => profileQuest.QId == chapterId && profileQuest.Status == QuestStatusEnum.Started) ?? false;
 
-        // Tasks not gated on another quest wait for the player once their chapter is running
+        // A finished starter task opens its chapter and the chapter's first task in the same moment, the
+        // rest of the tasks not gated on another quest wait for the player once their chapter is running
         if (!unlockedByQuest)
         {
-            return chapterStarted ? QuestStatusEnum.AvailableForStart : null;
+            if (!chapterStarted && !StarterCompleted(profile, chapterId.Value))
+            {
+                return null;
+            }
+
+            StartStorylineQuest(profile, chapterId.Value);
+
+            return quest.Id == FirstTaskOf(chapterId.Value) && StarterCompleted(profile, chapterId.Value)
+                ? StartStorylineQuest(profile, quest.Id)
+                : QuestStatusEnum.AvailableForStart;
+        }
+
+        // A task the player accepts in a trader dialogue waits there, and so does its chapter
+        if (AcceptedInDialogue(quest.Id))
+        {
+            return QuestStatusEnum.AvailableForStart;
         }
 
         if (!chapterStarted)
@@ -1421,6 +1452,34 @@ public class QuestHelper(
         }
 
         return StartStorylineQuest(profile, quest.Id);
+    }
+
+    /// <summary>A task that is active by any route, a raid, the client or an accepted dialogue, has started its chapter.</summary>
+    protected void StartChapterOfActiveTask(PmcData profile, MongoId taskId, QuestStatusEnum status)
+    {
+        if (status is QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart)
+        {
+            return;
+        }
+
+        var chapterId = ChapterOf(taskId);
+        if (chapterId is not null && !profile.Quests!.Any(profileQuest => profileQuest.QId == chapterId))
+        {
+            StartStorylineQuest(profile, chapterId.Value);
+        }
+    }
+
+    /// <summary>Quests an AcceptQuest dialogue action hands out.</summary>
+    protected bool AcceptedInDialogue(MongoId questId)
+    {
+        _dialogueAcceptedQuests ??= templateTable
+            .Dialogue.Elements.SelectMany(element => element.Lines)
+            .SelectMany(line => line.Actions)
+            .Where(action => action.Type == "AcceptQuest" && action.QuestId is not null)
+            .Select(action => action.QuestId!.Value)
+            .ToHashSet();
+
+        return _dialogueAcceptedQuests.Contains(questId);
     }
 
     protected QuestStatusEnum StartStorylineQuest(PmcData profile, MongoId questId)
@@ -1475,6 +1534,51 @@ public class QuestHelper(
         }
 
         return chapterId;
+    }
+
+    /// <summary>
+    ///     A hidden task that fails when its chapter is already running is that chapter's starter, the visit to
+    ///     the Labyrinth transit or Batya's camp. Live starts the chapter the second the starter completes.
+    /// </summary>
+    protected bool StarterCompleted(PmcData profile, MongoId chapterId)
+    {
+        _chapterStarters ??= BuildChapterStarters();
+
+        return _chapterStarters.TryGetValue(chapterId, out var starters)
+            && (
+                profile.Quests?.Any(profileQuest => starters.Contains(profileQuest.QId) && profileQuest.Status == QuestStatusEnum.Success)
+                ?? false
+            );
+    }
+
+    protected MongoId? FirstTaskOf(MongoId chapterId)
+    {
+        var first = templateTable
+            .Quests.GetValueOrDefault(chapterId)
+            ?.Conditions?.AvailableForFinish?.FirstOrDefault(condition =>
+                condition.ConditionType == "Quest" && condition.Target?.Item is not null
+            );
+
+        return first is null ? null : new MongoId(first.Target!.Item!);
+    }
+
+    private Dictionary<MongoId, HashSet<MongoId>> BuildChapterStarters()
+    {
+        var starters = new Dictionary<MongoId, HashSet<MongoId>>();
+        foreach (var (questId, quest) in templateTable.Quests)
+        {
+            foreach (var condition in (quest.Conditions?.Fail ?? []).Where(c => c.ConditionType == "Quest" && c.Target?.Item is not null))
+            {
+                var chapterId = new MongoId(condition.Target!.Item!);
+                if (IsStoryChapter(chapterId))
+                {
+                    starters.TryAdd(chapterId, []);
+                    starters[chapterId].Add(questId);
+                }
+            }
+        }
+
+        return starters;
     }
 
     private Dictionary<MongoId, MongoId> BuildTaskChapters()

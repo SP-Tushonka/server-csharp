@@ -20,6 +20,7 @@ public class SptJsonConverterRegistrator : IJsonConverterRegistrator
             new EnumerableConverterFactory(),
             new StringOrIntConverterFactory(),
             new FloatOrIrregularFloatArrayFactory(),
+            new TraderDialogConditionConverter(),
         ];
     }
 }

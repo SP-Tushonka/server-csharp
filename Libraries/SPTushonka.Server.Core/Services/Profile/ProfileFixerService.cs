@@ -5,6 +5,7 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers.Commerce;
 using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -31,6 +32,7 @@ public partial class ProfileFixerService(
     TradersTable tradersTable,
     JsonUtil jsonUtil,
     RewardHelper rewardHelper,
+    QuestVariableHelper questVariableHelper,
     HideoutHelper hideoutHelper,
     HideoutTable hideoutTable,
     ServerLocalisationService serverLocalisationService,
@@ -122,6 +124,7 @@ public partial class ProfileFixerService(
         FixOrphanedInsurance(pmcProfile);
         AddMissingBattlePassDocumentLimits(pmcProfile);
         RecordCompletableItemsFromFinishedQuests(pmcProfile);
+        questVariableHelper.SyncAll(pmcProfile);
         CheckForAndFixCircularParentReferences(pmcProfile);
 
         if (pmcProfile.Hideout is not null)
