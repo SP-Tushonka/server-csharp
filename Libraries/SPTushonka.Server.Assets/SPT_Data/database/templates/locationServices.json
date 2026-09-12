@@ -42,6 +42,31 @@
         },
         "TurnCheckSensitivity": 0.98
       },
+      "Lighthouse": {
+        "AccelerationSpeed": 0.3,
+        "BodySwingDamping": 0.6,
+        "BodySwingIntensity": 0.3,
+        "BodySwingReturnSpeed": 1,
+        "ChanceSpawn": 70,
+        "CheckTurnDistanceTime": 60,
+        "DecelerationSpeed": 1.5,
+        "DecreaseSpeedOnTurnLimit": 0.5,
+        "EndSplineDecelerationDistance": 3,
+        "MapID": "Lighthouse",
+        "MoveSpeed": 8,
+        "PauseDurationRange": {
+          "x": 60,
+          "y": 80,
+          "z": 0
+        },
+        "ReadyToDepartureTime": 15,
+        "SpawnPeriod": {
+          "x": 30,
+          "y": 60,
+          "z": 0
+        },
+        "TurnCheckSensitivity": 0.98
+      },
       "TarkovStreets": {
         "AccelerationSpeed": 0.3,
         "BodySwingDamping": 0.6,
