@@ -855,7 +855,8 @@ public class ProfileHelper(
                 rewardToStore.Type = CustomisationType.LIGHT;
                 break;
             case CustomisationTypeId.UPPER:
-                rewardToStore.Type = CustomisationType.UPPER;
+            case CustomisationTypeId.LOWER:
+                rewardToStore.Type = CustomisationType.SUITE;
                 break;
             case CustomisationTypeId.HEAD:
                 rewardToStore.Type = CustomisationType.HEAD;

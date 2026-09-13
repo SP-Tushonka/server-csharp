@@ -1,6 +1,10 @@
 using NUnit.Framework;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Eft.Profile;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
@@ -38,6 +42,19 @@ public class ProfileHelperTests
     {
         var result = _sut.AdjustSkillExpForLowLevels(startingProgress, addedProgress);
         Assert.AreEqual(expectedAdjustedProgress, result, 0.001);
+    }
+
+    [Test]
+    public void AddHideoutCustomisationUnlock_LowerSuit_StoresSuiteType()
+    {
+        var profile = new SptProfile { CustomisationUnlocks = [] };
+        var reward = new Reward { Type = RewardType.CustomizationDirect, Target = "6a3d24f45c4035ee7604811d" };
+
+        _sut.AddHideoutCustomisationUnlock(profile, reward, CustomisationSource.UNLOCKED_IN_GAME);
+
+        var unlock = profile.CustomisationUnlocks.Single();
+        Assert.That(unlock.Id, Is.EqualTo(new MongoId("6a3d24f45c4035ee7604811d")));
+        Assert.That(unlock.Type, Is.EqualTo(CustomisationType.SUITE));
     }
 
     private static IEnumerable<double[]> GetAdjustSkillExpForLowLevelsTestData()

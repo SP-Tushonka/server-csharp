@@ -134,6 +134,20 @@ public partial class ProfileFixerService(
     }
 
     /// <summary>
+    ///     Suit rewards were once stored with a type "Upper" the client does not know, rewrite them to the type live uses
+    /// </summary>
+    public void FixSuitUnlockTypes(SptProfile fullProfile)
+    {
+        foreach (var unlock in fullProfile.CustomisationUnlocks ?? [])
+        {
+            if (unlock.Type == "Upper")
+            {
+                unlock.Type = CustomisationType.SUITE;
+            }
+        }
+    }
+
+    /// <summary>
     ///     Resolve any dialogue attachments that were accidentally created using the player's equipment ID as
     ///     the stash root object ID
     /// </summary>

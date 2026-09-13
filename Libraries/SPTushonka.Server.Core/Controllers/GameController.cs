@@ -95,6 +95,8 @@ public class GameController(
         fullProfile.CharacterData!.PmcData!.WishList ??= new();
         fullProfile.CharacterData.ScavData!.WishList ??= new();
 
+        profileFixerService.FixSuitUnlockTypes(fullProfile);
+
         if (fullProfile.DialogueRecords is not null)
         {
             profileFixerService.CheckForAndFixDialogueAttachments(fullProfile);
