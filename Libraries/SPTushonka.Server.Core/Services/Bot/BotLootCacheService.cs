@@ -384,10 +384,7 @@ public class BotLootCacheService(
                 || IsFood(itemTemplate.Id)
                 || IsDrink(itemTemplate.Id)
                 || IsCurrency(itemTemplate.Id)
-                || itemTemplate.Properties.Height is null
-                || // lacks height
-                itemTemplate.Properties.Width is null
-        ); // lacks width
+        );
 
         // Get vest loot (excluding magazines, bullets, grenades, medical and healing/stim items)
         var filteredVestItems = new Dictionary<MongoId, double>();

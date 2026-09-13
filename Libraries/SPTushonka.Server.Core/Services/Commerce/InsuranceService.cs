@@ -159,7 +159,7 @@ public class InsuranceService(
 
         var traderMinReturnAsSeconds = trader.Insurance.MinReturnHour * TimeUtil.OneHourAsSeconds;
         var traderMaxReturnAsSeconds = trader.Insurance.MaxReturnHour * TimeUtil.OneHourAsSeconds;
-        var randomisedReturnTimeSeconds = randomUtil.GetDouble(traderMinReturnAsSeconds.Value, traderMaxReturnAsSeconds.Value);
+        var randomisedReturnTimeSeconds = randomUtil.GetDouble(traderMinReturnAsSeconds, traderMaxReturnAsSeconds);
 
         // Check for Mark of The Unheard in players special slots (only slot item can fit)
         var hasMarkOfUnheard = itemHelper.HasItemWithTpl(pmcData.Inventory.Items, ItemTpl.MARKOFUNKNOWN_MARK_OF_THE_UNHEARD, "SpecialSlot");
@@ -347,6 +347,6 @@ public class InsuranceService(
             itemHelper.GetStaticItemPrice(inventoryItem.Template)
             * (traderHelper.GetLoyaltyLevel(traderId, pmcData).InsurancePriceCoefficient / 100);
 
-        return Math.Ceiling(price ?? 1);
+        return Math.Ceiling(price);
     }
 }

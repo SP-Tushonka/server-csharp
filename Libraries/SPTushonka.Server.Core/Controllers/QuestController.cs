@@ -430,7 +430,7 @@ public class QuestController(
             }
         }
 
-        UpdateProfileTaskConditionCounterValue(pmcData, request.ConditionId, request.QuestId, totalItemCountToRemove);
+        UpdateProfileTaskConditionCounterValue(pmcData, request.ConditionId, request.QuestId, (int)totalItemCountToRemove);
 
         return output;
     }
@@ -494,7 +494,7 @@ public class QuestController(
     /// <param name="conditionId">Backend counter id to update</param>
     /// <param name="questId">Quest id counter is associated with</param>
     /// <param name="counterValue">Value to increment the backend counter with</param>
-    protected void UpdateProfileTaskConditionCounterValue(PmcData pmcData, MongoId conditionId, MongoId questId, double counterValue)
+    protected void UpdateProfileTaskConditionCounterValue(PmcData pmcData, MongoId conditionId, MongoId questId, int counterValue)
     {
         if (pmcData.TaskConditionCounters.GetValueOrDefault(conditionId) != null)
         {

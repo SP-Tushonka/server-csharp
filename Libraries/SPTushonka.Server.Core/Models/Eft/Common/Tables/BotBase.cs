@@ -160,16 +160,16 @@ public record MoneyTransferLimits
     ///     TODO: Implement
     /// </summary>
     [JsonPropertyName("nextResetTime")]
-    public double? NextResetTime { get; set; }
+    public long? NextResetTime { get; set; }
 
     [JsonPropertyName("remainingLimit")]
-    public double? RemainingLimit { get; set; }
+    public int? RemainingLimit { get; set; }
 
     [JsonPropertyName("totalLimit")]
-    public double? TotalLimit { get; set; }
+    public int? TotalLimit { get; set; }
 
     [JsonPropertyName("resetInterval")]
-    public double? ResetInterval { get; set; }
+    public int? ResetInterval { get; set; }
 }
 
 public record TaskConditionCounter
@@ -185,7 +185,8 @@ public record TaskConditionCounter
     }
 
     [JsonPropertyName("value")]
-    public double? Value { get; set; }
+    [JsonConverter(typeof(StringToNumberFactoryConverter))]
+    public int? Value { get; set; }
 
     /// <summary>
     ///     Quest id
@@ -500,7 +501,7 @@ public record EftStats
 
     public IEnumerable<Victim>? Victims { get; set; }
 
-    public double? TotalSessionExperience { get; set; }
+    public int? TotalSessionExperience { get; set; }
 
     public long? LastSessionDate { get; set; }
 
@@ -566,11 +567,11 @@ public record Victim
 
     public double? Distance { get; set; }
 
-    public double? Level { get; set; }
+    public int? Level { get; set; }
 
     public string? Weapon { get; set; }
 
-    public double? PrestigeLevel { get; set; }
+    public int? PrestigeLevel { get; set; }
 
     public string? ColliderType { get; set; }
 
@@ -610,7 +611,7 @@ public record CounterKeyValue
 
 public record Aggressor
 {
-    public double? PrestigeLevel { get; set; }
+    public int? PrestigeLevel { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string? AccountId { get; set; }
@@ -818,7 +819,8 @@ public record Production // use this instead of productive and scavcase
     /// <summary>
     ///     Seconds needed to fully craft
     /// </summary>
-    public double? ProductionTime { get; set; }
+    [JsonConverter(typeof(StringToNumberFactoryConverter))]
+    public int? ProductionTime { get; set; }
 
     public List<Item>? GivenItemsInStart { get; set; }
 
@@ -939,13 +941,13 @@ public record TraderInfo
     public int? LoyaltyLevel { get; set; }
 
     [JsonPropertyName("salesSum")]
-    public double? SalesSum { get; set; }
+    public long? SalesSum { get; set; }
 
     [JsonPropertyName("standing")]
     public double? Standing { get; set; }
 
     [JsonPropertyName("nextResupply")]
-    public double? NextResupply { get; set; }
+    public long? NextResupply { get; set; }
 
     [JsonPropertyName("unlocked")]
     public bool? Unlocked { get; set; }

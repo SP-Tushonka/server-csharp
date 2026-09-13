@@ -380,7 +380,7 @@ public class BotWeaponGenerator(
                 continue;
             }
 
-            var requiredSlots = modTemplate?.Properties?.Slots?.Where(slot => slot.Required.GetValueOrDefault(false)) ?? [];
+            var requiredSlots = modTemplate?.Properties?.Slots?.Where(slot => slot.Required) ?? [];
             if (!requiredSlots.Any())
             {
                 // No required slots, skip to next item in weapon
@@ -468,7 +468,7 @@ public class BotWeaponGenerator(
             botId,
             botConfig.SecureContainerAmmoStackCount,
             generatedWeaponResult.ChosenAmmoTemplate,
-            ammoTemplate.Value.Properties.StackMaxSize ?? 0,
+            ammoTemplate.Value.Properties.StackMaxSize,
             inventory
         );
     }

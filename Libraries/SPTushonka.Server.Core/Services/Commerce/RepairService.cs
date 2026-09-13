@@ -79,18 +79,14 @@ public class RepairService(
             repairItemIsArmor,
             repairItemDetails.Count.Value,
             false,
-            repairQualityMultiplier.Value,
+            repairQualityMultiplier,
             repairQualityMultiplier != 0 && repairConfig.ApplyRandomizeDurabilityLoss
         );
 
         // get repair price
         var itemRepairCost = items[itemToRepair.Template].Properties.RepairCost;
-        if (itemRepairCost is null)
-        {
-            logger.Error(serverLocalisationService.GetText("repair-unable_to_find_item_repair_cost", itemToRepair.Template.ToString()));
-        }
 
-        var repairCost = Math.Round(itemRepairCost.Value * repairItemDetails.Count.Value * repairRate.Value * repairConfig.PriceMultiplier);
+        var repairCost = Math.Round(itemRepairCost * repairItemDetails.Count.Value * repairRate * repairConfig.PriceMultiplier);
 
         if (logger.IsLogEnabled(LogLevel.Debug))
         {

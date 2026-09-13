@@ -7,13 +7,13 @@ namespace SPTarkov.Server.Core.Models.Eft.Hideout;
 public record HideoutProductionData
 {
     [JsonPropertyName("recipes")]
-    public List<HideoutProduction>? Recipes { get; set; }
+    public required List<HideoutProduction> Recipes { get; set; }
 
     [JsonPropertyName("scavRecipes")]
-    public List<ScavRecipe>? ScavRecipes { get; set; }
+    public required List<ScavRecipe> ScavRecipes { get; set; }
 
     [JsonPropertyName("cultistRecipes")]
-    public List<CultistRecipe>? CultistRecipes { get; set; }
+    public required List<CultistRecipe> CultistRecipes { get; set; }
 }
 
 public record HideoutProduction
@@ -22,13 +22,13 @@ public record HideoutProduction
     public MongoId Id { get; set; }
 
     [JsonPropertyName("areaType")]
-    public HideoutAreas? AreaType { get; set; }
+    public required HideoutAreas AreaType { get; set; }
 
     [JsonPropertyName("requirements")]
-    public List<Requirement>? Requirements { get; set; }
+    public required List<Requirement> Requirements { get; set; }
 
     [JsonPropertyName("productionTime")]
-    public double? ProductionTime { get; set; }
+    public required double ProductionTime { get; set; }
 
     /// <summary>
     ///     Tpl of item being crafted
@@ -37,25 +37,25 @@ public record HideoutProduction
     public MongoId EndProduct { get; set; }
 
     [JsonPropertyName("isEncoded")]
-    public bool? IsEncoded { get; set; }
+    public required bool IsEncoded { get; set; }
 
     [JsonPropertyName("locked")]
-    public bool? Locked { get; set; }
+    public required bool Locked { get; set; }
 
     [JsonPropertyName("needFuelForAllProductionTime")]
-    public bool? NeedFuelForAllProductionTime { get; set; }
+    public required bool NeedFuelForAllProductionTime { get; set; }
 
     [JsonPropertyName("continuous")]
-    public bool? Continuous { get; set; }
+    public required bool Continuous { get; set; }
 
     [JsonPropertyName("count")]
-    public int? Count { get; set; }
+    public required int Count { get; set; }
 
     [JsonPropertyName("productionLimitCount")]
-    public int? ProductionLimitCount { get; set; }
+    public required int ProductionLimitCount { get; set; }
 
     [JsonPropertyName("isCodeProduction")]
-    public bool? IsCodeProduction { get; set; }
+    public required bool IsCodeProduction { get; set; }
 }
 
 public record Requirement
@@ -100,25 +100,25 @@ public record ScavRecipe
     public MongoId Id { get; set; }
 
     [JsonPropertyName("requirements")]
-    public List<Requirement>? Requirements { get; set; }
+    public required List<Requirement> Requirements { get; set; }
 
     [JsonPropertyName("productionTime")]
-    public double? ProductionTime { get; set; }
+    public required double ProductionTime { get; set; }
 
     [JsonPropertyName("endProducts")]
-    public EndProducts? EndProducts { get; set; }
+    public required EndProducts EndProducts { get; set; }
 }
 
 public record EndProducts
 {
     [JsonPropertyName("Common")]
-    public MinMax<int>? Common { get; set; }
+    public required MinMax<int> Common { get; set; }
 
     [JsonPropertyName("Rare")]
-    public MinMax<int>? Rare { get; set; }
+    public required MinMax<int> Rare { get; set; }
 
     [JsonPropertyName("Superrare")]
-    public MinMax<int>? Superrare { get; set; }
+    public required MinMax<int> Superrare { get; set; }
 }
 
 public record CultistRecipe

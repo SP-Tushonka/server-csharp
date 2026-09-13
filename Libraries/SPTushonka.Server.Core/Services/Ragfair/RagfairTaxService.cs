@@ -91,7 +91,7 @@ public class RagfairTaxService(
 
         var tax = itemWorth * itemTaxMult * itemPriceMult + requirementsPrice * requirementTaxMult * requirementPriceMult;
         var discountedTax = tax * (1.0 - taxDiscountPercent);
-        var itemComissionMult = itemTemplate.Properties.RagFairCommissionModifier ?? 1;
+        var itemComissionMult = itemTemplate.Properties.RagFairCommissionModifier;
 
         if (item.Upd.Buff is not null)
         {
@@ -206,9 +206,7 @@ public class RagfairTaxService(
             var num2 = 0.01 * Math.Pow(0.0, upd.Repairable.MaxDurability.Value);
             worth =
                 worth * (upd.Repairable.MaxDurability.Value / (itemTemplate.Properties.Durability ?? 1) - num2)
-                - Math.Floor(
-                    (itemTemplate.Properties.RepairCost ?? 0) * (upd.Repairable.MaxDurability.Value - upd.Repairable.Durability.Value)
-                );
+                - Math.Floor(itemTemplate.Properties.RepairCost * (upd.Repairable.MaxDurability.Value - upd.Repairable.Durability.Value));
         }
 
         return worth * itemCount;

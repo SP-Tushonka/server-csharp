@@ -44,7 +44,7 @@ public record TraderServices
     public TraderService TransitItemsDelivery { get; set; }
 
     [JsonPropertyName("StoryCardBarter")]
-    public TraderService? StoryCardBarter { get; set; }
+    public required TraderService StoryCardBarter { get; set; }
 }
 
 public record TraderService

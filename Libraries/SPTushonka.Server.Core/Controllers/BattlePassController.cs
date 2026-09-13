@@ -111,7 +111,7 @@ public class BattlePassController(
             return httpResponseUtil.AppendErrorToOutput(output, "Unknown season document");
         }
 
-        return Exchange(pmcData, pass, request, received.ItemId, pass.ExchangeRate.Value, sessionId, output);
+        return Exchange(pmcData, pass, request, received.ItemId, pass.ExchangeRate, sessionId, output);
     }
 
     /// <summary>Trade season documents for the pass's container, at the document price the pass sets.</summary>
@@ -128,7 +128,7 @@ public class BattlePassController(
             return httpResponseUtil.AppendErrorToOutput(output, "Unknown season item");
         }
 
-        return Exchange(pmcData, pass, request, settings.ItemId, settings.RequiredDocuments.Value, sessionId, output);
+        return Exchange(pmcData, pass, request, settings.ItemId, settings.RequiredDocuments, sessionId, output);
     }
 
     /// <summary>

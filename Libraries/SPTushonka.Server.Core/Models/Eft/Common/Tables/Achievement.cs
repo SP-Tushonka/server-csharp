@@ -18,7 +18,7 @@ public record Achievement
     /// Unused in the client
     /// </summary>
     [JsonPropertyName("assetPath")]
-    public string? AssetPath { get; set; }
+    public required string AssetPath { get; set; }
 
     [JsonPropertyName("rewards")]
     public required IEnumerable<Reward> Rewards { get; set; }
@@ -27,19 +27,19 @@ public record Achievement
     public required AchievementQuestConditionTypes Conditions { get; set; }
 
     [JsonPropertyName("instantComplete")]
-    public bool? InstantComplete { get; set; }
+    public required bool InstantComplete { get; set; }
 
     [JsonPropertyName("showNotificationsInGame")]
-    public bool? ShowNotificationsInGame { get; set; }
+    public required bool ShowNotificationsInGame { get; set; }
 
     /// <summary>
     /// Unused in the client
     /// </summary>
     [JsonPropertyName("showProgress")]
-    public bool? ShowProgress { get; set; }
+    public required bool ShowProgress { get; set; }
 
     [JsonPropertyName("prefab")]
-    public string? prefab { get; set; }
+    public required string prefab { get; set; }
 
     [JsonPropertyName("rarity")]
     public required string Rarity { get; set; }
@@ -63,7 +63,7 @@ public record AchievementQuestConditionTypes
     public List<QuestCondition>? Started { get; set; }
 
     [JsonPropertyName("availableForFinish")]
-    public List<QuestCondition>? AvailableForFinish { get; set; }
+    public required List<QuestCondition> AvailableForFinish { get; set; }
 
     [JsonPropertyName("availableForStart")]
     public List<QuestCondition>? AvailableForStart { get; set; }

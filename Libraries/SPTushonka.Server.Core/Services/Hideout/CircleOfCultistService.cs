@@ -169,7 +169,7 @@ public class CircleOfCultistService(
     )
     {
         // Create circle production/craft object to add to player profile
-        var cultistProduction = hideoutHelper.InitProduction(recipeId, craftingTime, false);
+        var cultistProduction = hideoutHelper.InitProduction(recipeId, (int)Math.Round(craftingTime), false);
 
         // Flag as cultist circle for code to pick up later
         cultistProduction.SptIsCultistCircle = true;

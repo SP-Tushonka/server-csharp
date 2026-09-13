@@ -264,7 +264,7 @@ public class InventoryController(
             switch (mailEvent.Type)
             {
                 case "TraderSalesSum":
-                    pmcData.TradersInfo[mailEvent.Entity].SalesSum = mailEvent.Value;
+                    pmcData.TradersInfo[mailEvent.Entity].SalesSum = (long)Math.Round(mailEvent.Value ?? 0);
                     traderHelper.LevelUp(mailEvent.Entity, pmcData);
                     logger.Success($"Set trader {mailEvent.Entity}: Sales Sum to: {mailEvent.Value}");
                     break;

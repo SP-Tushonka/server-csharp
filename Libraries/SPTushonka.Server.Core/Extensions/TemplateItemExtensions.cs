@@ -26,7 +26,7 @@ public static class TemplateItemExtensions
     /// <returns>true if item is flagged as quest item</returns>
     public static bool IsQuestItem(this TemplateItem templateItem)
     {
-        if (templateItem.Properties.QuestItem.GetValueOrDefault(false))
+        if (templateItem.Properties.QuestItem)
         {
             return true;
         }

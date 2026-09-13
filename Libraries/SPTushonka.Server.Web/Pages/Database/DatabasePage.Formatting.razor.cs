@@ -30,14 +30,12 @@ public partial class DatabasePage
 
     private static string GetWeightLabel(TemplateItem item)
     {
-        return item.Properties?.Weight is null ? "n/a" : $"{item.Properties.Weight.Value:N2} kg";
+        return item.Properties is null ? "n/a" : $"{item.Properties.Weight:N2} kg";
     }
 
     private static string GetStackLabel(TemplateItem item)
     {
-        return item.Properties?.StackMaxSize is null
-            ? "n/a"
-            : item.Properties.StackMaxSize.Value.ToString("N0", CultureInfo.CurrentCulture);
+        return item.Properties is null ? "n/a" : item.Properties.StackMaxSize.ToString("N0", CultureInfo.CurrentCulture);
     }
 
     private static string GetRagfairLabel(TemplateItem item)

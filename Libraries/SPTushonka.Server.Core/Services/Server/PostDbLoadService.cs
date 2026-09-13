@@ -153,7 +153,7 @@ public class PostDbLoadService(
 
         SetLocationAirdropMinimumPlayers();
     }
-    
+
     protected void DisableForcedOnlineRaids()
     {
         foreach (var location in locationTable.GetDictionary().Values)
@@ -704,7 +704,7 @@ public class PostDbLoadService(
         foreach (var craft in hideoutTable.Production.Recipes)
         // Only adjust crafts ABOVE the override
         {
-            craft.ProductionTime = Math.Min(craft.ProductionTime.Value, overrideSeconds);
+            craft.ProductionTime = Math.Min(craft.ProductionTime, overrideSeconds);
         }
     }
 
@@ -724,7 +724,7 @@ public class PostDbLoadService(
             foreach (var (_, stage) in area.Stages)
             // Only adjust crafts ABOVE the override
             {
-                stage.ConstructionTime = Math.Min(stage.ConstructionTime.Value, overrideSeconds);
+                stage.ConstructionTime = Math.Min(stage.ConstructionTime, overrideSeconds);
             }
         }
     }
@@ -788,7 +788,7 @@ public class PostDbLoadService(
         foreach (
             var item in dbItems.Where(item =>
                 string.Equals(item.Type, "Item", StringComparison.OrdinalIgnoreCase)
-                && !item.Properties.CanSellOnRagfair.GetValueOrDefault(false)
+                && !item.Properties.CanSellOnRagfair
                 && !ragfairConfig.Dynamic.Blacklist.Custom.Contains(item.Id)
             )
         )

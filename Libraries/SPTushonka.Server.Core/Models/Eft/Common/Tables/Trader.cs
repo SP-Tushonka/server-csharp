@@ -158,80 +158,80 @@ public record ItemSellData
 public record TraderInsurance
 {
     [JsonPropertyName("availability")]
-    public bool? Availability { get; set; }
+    public required bool Availability { get; set; }
 
     // MongoId
     [JsonPropertyName("excluded_category")]
-    public List<MongoId>? ExcludedCategory { get; set; }
+    public required List<MongoId> ExcludedCategory { get; set; }
 
     // Confirmed in client
     [JsonPropertyName("max_return_hour")]
-    public int? MaxReturnHour { get; set; }
+    public required int MaxReturnHour { get; set; }
 
     [JsonPropertyName("max_storage_time")]
-    public double? MaxStorageTime { get; set; }
+    public required double MaxStorageTime { get; set; }
 
     // Confirmed in client
     [JsonPropertyName("min_payment")]
-    public int? MinPayment { get; set; }
+    public required int MinPayment { get; set; }
 
     // Confirmed in client
     [JsonPropertyName("min_return_hour")]
-    public int? MinReturnHour { get; set; }
+    public required int MinReturnHour { get; set; }
 }
 
 public record TraderLoyaltyLevel
 {
     [JsonPropertyName("buy_price_coef")]
-    public double? BuyPriceCoefficient { get; set; }
+    public required double BuyPriceCoefficient { get; set; }
 
     [JsonPropertyName("exchange_price_coef")]
-    public double? ExchangePriceCoefficient { get; set; }
+    public required double ExchangePriceCoefficient { get; set; }
 
     [JsonPropertyName("heal_price_coef")]
-    public double? HealPriceCoefficient { get; set; }
+    public required double HealPriceCoefficient { get; set; }
 
     [JsonPropertyName("insurance_price_coef")]
     [JsonConverter(typeof(StringToNumberFactoryConverter))]
-    public double? InsurancePriceCoefficient { get; set; }
+    public required double InsurancePriceCoefficient { get; set; }
 
     // Chceked on client
     [JsonPropertyName("minLevel")]
-    public int? MinLevel { get; set; }
+    public required int MinLevel { get; set; }
 
     [JsonPropertyName("minSalesSum")]
-    public long? MinSalesSum { get; set; }
+    public required long MinSalesSum { get; set; }
 
     [JsonPropertyName("minStanding")]
-    public double? MinStanding { get; set; }
+    public required double MinStanding { get; set; }
 
     [JsonPropertyName("repair_price_coef")]
-    public double? RepairPriceCoefficient { get; set; }
+    public required double RepairPriceCoefficient { get; set; }
 }
 
 public record TraderRepair
 {
     [JsonPropertyName("availability")]
-    public bool? Availability { get; set; }
+    public required bool Availability { get; set; }
 
     [JsonPropertyName("currency")]
     public string Currency { get; set; }
 
     [JsonPropertyName("currency_coefficient")]
-    public double? CurrencyCoefficient { get; set; }
+    public required double CurrencyCoefficient { get; set; }
 
     [JsonPropertyName("excluded_category")]
-    public List<MongoId>? ExcludedCategory { get; set; }
+    public required List<MongoId> ExcludedCategory { get; set; }
 
     /// <summary>
     ///     Doesn't exist in client object
     /// </summary>
     [JsonPropertyName("excluded_id_list")]
-    public List<string>? ExcludedIdList { get; set; }
+    public required List<string> ExcludedIdList { get; set; }
 
     [JsonPropertyName("quality")]
     [JsonConverter(typeof(StringToNumberFactoryConverter))]
-    public double? Quality { get; set; }
+    public required double Quality { get; set; }
 
     [JsonPropertyName("price_rate")]
     public double? PriceRate { get; set; }
@@ -314,10 +314,10 @@ public record SuitRequirements
     public List<string>? AchievementRequirements { get; set; }
 
     [JsonPropertyName("loyaltyLevel")]
-    public double? LoyaltyLevel { get; set; }
+    public int? LoyaltyLevel { get; set; }
 
     [JsonPropertyName("prestigeLevel")]
-    public double? PrestigeLevel { get; set; }
+    public int? PrestigeLevel { get; set; }
 
     [JsonPropertyName("profileLevel")]
     public double? ProfileLevel { get; set; }

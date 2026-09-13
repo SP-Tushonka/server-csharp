@@ -180,7 +180,7 @@ public class BotEquipmentModPoolService(
         if (itemDb?.Properties?.Slots is not null)
         // Loop over slots flagged as 'required'
         {
-            foreach (var slot in itemDb.Properties.Slots.Where(slot => slot.Required.GetValueOrDefault(false)))
+            foreach (var slot in itemDb.Properties.Slots.Where(slot => slot.Required))
             {
                 // Create dict entry for mod slot
                 result.TryAdd(slot.Name!, []);

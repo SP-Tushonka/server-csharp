@@ -56,7 +56,7 @@ public class RaidTimeAdjustmentService(
         }
 
         // Adjust the escape time limit
-        mapBase.EscapeTimeLimit = raidAdjustments.RaidTimeMinutes;
+        mapBase.EscapeTimeLimit = raidAdjustments.RaidTimeMinutes ?? mapBase.EscapeTimeLimit;
 
         // Adjust map exits
         foreach (var exitChange in raidAdjustments.ExitChanges)
@@ -236,7 +236,7 @@ public class RaidTimeAdjustmentService(
         var raidTimeRemainingPercent = 100 - chosenRaidReductionPercent;
 
         // How many minutes raid will last
-        var newRaidTimeMinutes = Math.Floor(randomUtil.ReduceValueByPercent(baseEscapeTimeMinutes ?? 1d, chosenRaidReductionPercent));
+        var newRaidTimeMinutes = Math.Floor(randomUtil.ReduceValueByPercent(baseEscapeTimeMinutes, chosenRaidReductionPercent));
 
         // Time player spawns into the raid if it was online
         var simulatedRaidStartTimeMinutes = baseEscapeTimeMinutes - newRaidTimeMinutes;

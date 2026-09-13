@@ -243,7 +243,7 @@ public class LootGenerator(
         var items = itemsDb.Where(item =>
             !itemBlacklist.Contains(item.Id)
             && string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase)
-            && !item.Properties.QuestItem.GetValueOrDefault(false)
+            && !item.Properties.QuestItem
             && itemTypeWhitelist.Contains(item.Parent)
         );
 
@@ -364,7 +364,7 @@ public class LootGenerator(
             max = itemLimits.Max;
         }
 
-        return randomUtil.GetInt(min ?? 1, max ?? 1);
+        return randomUtil.GetInt(min ?? 1, max);
     }
 
     /// <summary>
@@ -568,7 +568,7 @@ public class LootGenerator(
                 && string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase)
                 && itemFilterService.IsItemBlacklisted(item.Id)
                 && !(containerSettings.AllowBossItems || itemFilterService.IsBossItem(item.Id))
-                && item.Properties.QuestItem is null
+                && !item.Properties.QuestItem
             );
 
             if (!rewardItemPool.Any())

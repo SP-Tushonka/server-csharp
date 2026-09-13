@@ -70,6 +70,13 @@ public class StringToNumberFactoryConverter : JsonConverterFactory
             switch (reader.TokenType)
             {
                 case JsonTokenType.Number:
+                    if (IsIntegral(typeToConvert) && !reader.TryGetInt64(out _))
+                    {
+                        var underlyingType = Nullable.GetUnderlyingType(typeToConvert) ?? typeToConvert;
+
+                        return (T)Convert.ChangeType(Math.Round(reader.GetDouble()), underlyingType, CultureInfo.InvariantCulture);
+                    }
+
                     return JsonSerializer.Deserialize<T>(ref reader, options);
 
                 case JsonTokenType.Null:
@@ -77,6 +84,16 @@ public class StringToNumberFactoryConverter : JsonConverterFactory
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private static bool IsIntegral(Type type)
+        {
+            var underlyingType = Nullable.GetUnderlyingType(type) ?? type;
+
+            return underlyingType == typeof(byte)
+                || underlyingType == typeof(short)
+                || underlyingType == typeof(int)
+                || underlyingType == typeof(long);
         }
 
         public override void Write(Utf8JsonWriter writer, T? value, JsonSerializerOptions options)

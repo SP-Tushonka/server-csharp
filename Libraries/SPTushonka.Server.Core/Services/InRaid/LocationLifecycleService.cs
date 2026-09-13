@@ -145,14 +145,9 @@ public class LocationLifecycleService(
 
                 foreach (var transits in location.Transits)
                 {
-                    if (transits.Id is null)
-                    {
-                        continue;
-                    }
-
                     // ActivateAfterSeconds sets the timer on the generator, events is needed because it is checked again in the client
                     // To enable certain stuff for the Khorovod event
-                    if (matchingTransitWhitelist.Contains(transits.Id.Value))
+                    if (matchingTransitWhitelist.Contains(transits.Id))
                     {
                         transits.ActivateAfterSeconds = 300;
                         transits.Events = true;

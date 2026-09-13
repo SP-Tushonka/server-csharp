@@ -32,7 +32,7 @@ public record TemplateItem
     }
 
     [JsonPropertyName("_props")]
-    public TemplateItemProperties? Properties { get; set; }
+    public required TemplateItemProperties Properties { get; set; }
 
     [JsonPropertyName("_proto")]
     public string? Prototype
@@ -90,7 +90,7 @@ public record TemplateItemProperties
     public string? Description { get; set; }
 
     [JsonPropertyName("Weight")]
-    public double? Weight { get; set; }
+    public double Weight { get; set; }
 
     [JsonPropertyName("DialogId")]
     public MongoId? DialogId { get; set; }
@@ -107,15 +107,15 @@ public record TemplateItemProperties
 
     // Type confirmed via client
     [JsonPropertyName("Width")]
-    public int? Width { get; set; }
+    public int Width { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("Height")]
-    public int? Height { get; set; }
+    public int Height { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("StackMaxSize")]
-    public int? StackMaxSize { get; set; }
+    public int StackMaxSize { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("Rarity")]
@@ -135,7 +135,7 @@ public record TemplateItemProperties
     }
 
     [JsonPropertyName("LeftHandItem")]
-    public bool? LeftHandItem { get; set; }
+    public bool LeftHandItem { get; set; }
 
     [JsonPropertyName("Prefab")] // TODO: TYPE FUCKERY: can be a Prefab object or empty string or a string
     public Prefab? Prefab { get; set; }
@@ -147,10 +147,10 @@ public record TemplateItemProperties
     public string? AirDropTemplateId { get; set; }
 
     [JsonPropertyName("StackObjectsCount")]
-    public double? StackObjectsCount { get; set; }
+    public double StackObjectsCount { get; set; }
 
     [JsonPropertyName("NotShownInSlot")]
-    public bool? NotShownInSlot { get; set; }
+    public bool NotShownInSlot { get; set; }
 
     [JsonPropertyName("ParticleCapacity")]
     public double? ParticleCapacity { get; set; }
@@ -162,7 +162,7 @@ public record TemplateItemProperties
     public double? ParticleSize { get; set; }
 
     [JsonPropertyName("ExaminedByDefault")]
-    public bool? ExaminedByDefault { get; set; }
+    public bool ExaminedByDefault { get; set; }
 
     [JsonPropertyName("ExplosionRadius")]
     public double? ExplosionRadius { get; set; }
@@ -171,89 +171,89 @@ public record TemplateItemProperties
     public double? ExplosionStrength { get; set; }
 
     [JsonPropertyName("ExamineTime")]
-    public double? ExamineTime { get; set; }
+    public double ExamineTime { get; set; }
 
     [JsonPropertyName("IsUndiscardable")]
-    public bool? IsUndiscardable { get; set; }
+    public bool IsUndiscardable { get; set; }
 
     [JsonPropertyName("IsUnsaleable")]
-    public bool? IsUnsaleable { get; set; }
+    public bool IsUnsaleable { get; set; }
 
     [JsonPropertyName("IsUnbuyable")]
-    public bool? IsUnbuyable { get; set; }
+    public bool IsUnbuyable { get; set; }
 
     [JsonPropertyName("IsUngivable")]
-    public bool? IsUngivable { get; set; }
+    public bool IsUngivable { get; set; }
 
     [JsonPropertyName("IsUnremovable")]
-    public bool? IsUnRemovable { get; set; }
+    public bool IsUnRemovable { get; set; }
 
     [JsonPropertyName("IsLockedafterEquip")]
-    public bool? IsLockedAfterEquip { get; set; }
+    public bool IsLockedAfterEquip { get; set; }
 
     [JsonPropertyName("IsNotDeletableFromQuestStashAfterQuestComplete")]
-    public bool? IsNotDeletableFromQuestStashAfterQuestComplete { get; set; }
+    public bool IsNotDeletableFromQuestStashAfterQuestComplete { get; set; }
 
     [JsonPropertyName("IsSecretExitRequirement")]
-    public bool? IsSecretExitRequirement { get; set; }
+    public bool IsSecretExitRequirement { get; set; }
 
     [JsonPropertyName("IsRagfairCurrency")]
     public bool? IsRagfairCurrency { get; set; }
 
     [JsonPropertyName("IsSpecialSlotOnly")]
-    public bool? IsSpecialSlotOnly { get; set; }
+    public bool IsSpecialSlotOnly { get; set; }
 
     [JsonPropertyName("IsStationaryWeapon")]
     public bool? IsStationaryWeapon { get; set; }
 
     [JsonPropertyName("QuestItem")]
-    public bool? QuestItem { get; set; }
+    public bool QuestItem { get; set; }
 
     [JsonPropertyName("QuestStashMaxCount")]
-    public double? QuestStashMaxCount { get; set; }
+    public double QuestStashMaxCount { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("LootExperience")]
-    public int? LootExperience { get; set; }
+    public int LootExperience { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("ExamineExperience")]
-    public int? ExamineExperience { get; set; }
+    public int ExamineExperience { get; set; }
 
     [JsonPropertyName("HideEntrails")]
-    public bool? HideEntrails { get; set; }
+    public bool HideEntrails { get; set; }
 
     [JsonPropertyName("InsuranceDisabled")]
-    public bool? InsuranceDisabled { get; set; }
+    public bool InsuranceDisabled { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("RepairCost")]
-    public int? RepairCost { get; set; }
+    public int RepairCost { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("RepairSpeed")]
-    public int? RepairSpeed { get; set; }
+    public int RepairSpeed { get; set; }
 
     [JsonPropertyName("ExtraSizeLeft")]
-    public int? ExtraSizeLeft { get; set; }
+    public int ExtraSizeLeft { get; set; }
 
     [JsonPropertyName("ExtraSizeRight")]
-    public int? ExtraSizeRight { get; set; }
+    public int ExtraSizeRight { get; set; }
 
     [JsonPropertyName("ExtraSizeUp")]
-    public int? ExtraSizeUp { get; set; }
+    public int ExtraSizeUp { get; set; }
 
     [JsonPropertyName("FlareTypes")]
     public IEnumerable<string>? FlareTypes { get; set; }
 
     [JsonPropertyName("ExtraSizeDown")]
-    public int? ExtraSizeDown { get; set; }
+    public int ExtraSizeDown { get; set; }
 
     [JsonPropertyName("ExtraSizeForceAdd")]
-    public bool? ExtraSizeForceAdd { get; set; }
+    public bool ExtraSizeForceAdd { get; set; }
 
     [JsonPropertyName("MergesWithChildren")]
-    public bool? MergesWithChildren { get; set; }
+    public bool MergesWithChildren { get; set; }
 
     [JsonPropertyName("MetascoreGroup")]
     public string? MetascoreGroup
@@ -269,7 +269,7 @@ public record TemplateItemProperties
     public double? ObservedPlayerCompressorSendLevel { get; set; }
 
     [JsonPropertyName("CanSellOnRagfair")]
-    public bool? CanSellOnRagfair { get; set; }
+    public bool CanSellOnRagfair { get; set; }
 
     [JsonPropertyName("ComputableUnitDamage")]
     public Vector2? ComputableUnitDamage { get; set; }
@@ -284,13 +284,13 @@ public record TemplateItemProperties
     public bool? CanUnloadAmmoByPlayer { get; set; }
 
     [JsonPropertyName("CanRequireOnRagfair")]
-    public bool? CanRequireOnRagfair { get; set; }
+    public bool CanRequireOnRagfair { get; set; }
 
     [JsonPropertyName("ConflictingItems")]
     public HashSet<MongoId>? ConflictingItems { get; set; }
 
     [JsonPropertyName("Unlootable")]
-    public bool? Unlootable { get; set; }
+    public bool Unlootable { get; set; }
 
     [JsonPropertyName("UnlootableFromSlot")]
     public string? UnlootableFromSlot
@@ -304,20 +304,20 @@ public record TemplateItemProperties
 
     // Type confirmed via client
     [JsonPropertyName("AnimationVariantsNumber")]
-    public int? AnimationVariantsNumber { get; set; }
+    public int AnimationVariantsNumber { get; set; }
 
     [JsonPropertyName("DiscardingBlock")]
-    public bool? DiscardingBlock { get; set; }
+    public bool DiscardingBlock { get; set; }
 
     [JsonPropertyName("DropSoundType")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public ItemDropSoundType? DropSoundType { get; set; }
 
     [JsonPropertyName("RagFairCommissionModifier")]
-    public double? RagFairCommissionModifier { get; set; }
+    public double RagFairCommissionModifier { get; set; }
 
     [JsonPropertyName("RagfairLevelToTrade")]
-    public int? RagfairLevelToTrade { get; set; }
+    public int RagfairLevelToTrade { get; set; }
 
     [JsonPropertyName("RarityPvE")]
     public string? RarityPvE
@@ -327,10 +327,10 @@ public record TemplateItemProperties
     }
 
     [JsonPropertyName("IsAlwaysAvailableForInsurance")]
-    public bool? IsAlwaysAvailableForInsurance { get; set; }
+    public bool IsAlwaysAvailableForInsurance { get; set; }
 
     [JsonPropertyName("DiscardLimit")]
-    public double? DiscardLimit { get; set; }
+    public double DiscardLimit { get; set; }
 
     // Type confirmed via client
     [JsonPropertyName("MaxResource")]
@@ -1731,10 +1731,10 @@ public record WeaponRecoilTransformationCurveKey
 public record Prefab
 {
     [JsonPropertyName("path")]
-    public string? Path { get; set; }
+    public required string Path { get; set; }
 
     [JsonPropertyName("rcid")]
-    public string? Rcid { get; set; }
+    public required string Rcid { get; set; }
 }
 
 public record Grid
@@ -1801,28 +1801,28 @@ public record Slot
     }
 
     [JsonPropertyName("_id")]
-    public MongoId? Id { get; set; }
+    public required MongoId Id { get; set; }
 
     [JsonPropertyName("_parent")]
-    public MongoId? Parent { get; set; }
+    public required MongoId Parent { get; set; }
 
     [JsonPropertyName("_props")]
-    public SlotProperties? Properties { get; set; }
+    public required SlotProperties Properties { get; set; }
 
     [JsonPropertyName("_max_count")]
     public double? MaxCount { get; set; }
 
     [JsonPropertyName("_required")]
-    public bool? Required { get; set; }
+    public bool Required { get; set; }
 
     [JsonPropertyName("_isPlateSlot")]
-    public bool? IsPlateSlot { get; set; }
+    public bool IsPlateSlot { get; set; }
 
     [JsonPropertyName("_isPatronSlot")]
-    public bool? IsPatronSlot { get; set; }
+    public bool IsPatronSlot { get; set; }
 
     [JsonPropertyName("_mergeSlotWithChildren")]
-    public bool? MergeSlotWithChildren { get; set; }
+    public bool MergeSlotWithChildren { get; set; }
 
     [JsonPropertyName("_proto")]
     public string? Prototype
@@ -1835,7 +1835,7 @@ public record Slot
 public record SlotProperties
 {
     [JsonPropertyName("filters")]
-    public IEnumerable<SlotFilter>? Filters { get; set; }
+    public required IEnumerable<SlotFilter> Filters { get; set; }
 
     [JsonPropertyName("MaxStackCount")]
     public double? MaxStackCount { get; set; }
@@ -1859,7 +1859,7 @@ public record SlotFilter
     public IEnumerable<string>? ArmorPlateColliders { get; set; }
 
     [JsonPropertyName("Filter")]
-    public HashSet<MongoId>? Filter { get; set; }
+    public required HashSet<MongoId> Filter { get; set; }
 
     [JsonPropertyName("AnimationIndex")]
     public double? AnimationIndex { get; set; }
@@ -1919,10 +1919,10 @@ public record EffectsDamageProperties
     public double? Value { get; set; }
 
     [JsonPropertyName("delay")]
-    public double? Delay { get; set; }
+    public required double Delay { get; set; }
 
     [JsonPropertyName("duration")]
-    public double? Duration { get; set; }
+    public required double Duration { get; set; }
 
     [JsonPropertyName("fadeOut")]
     public double? FadeOut { get; set; }

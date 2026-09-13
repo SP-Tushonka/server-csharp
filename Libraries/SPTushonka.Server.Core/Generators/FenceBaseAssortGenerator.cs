@@ -257,7 +257,7 @@ public class FenceBaseAssortGenerator(
         }
 
         // Check for and add required soft inserts to armors
-        var requiredSlots = itemDbDetails.Properties.Slots.Where(slot => slot.Required ?? false).ToList();
+        var requiredSlots = itemDbDetails.Properties.Slots.Where(slot => slot.Required).ToList();
         var hasRequiredSlots = requiredSlots.Count > 0;
         if (hasRequiredSlots)
         {

@@ -122,10 +122,10 @@ public record SkillLevelMultiplier
 public record Position
 {
     [JsonPropertyName("x")]
-    public float? X { get; set; }
+    public required float X { get; set; }
 
     [JsonPropertyName("y")]
-    public float? Y { get; set; }
+    public required float Y { get; set; }
 }
 
 public record AreaRequirement : QteRequirement

@@ -721,20 +721,19 @@ public class InventoryHelper(
                         }
 
                         // Calculating child ExtraSize
-                        if (template.Properties.ExtraSizeForceAdd.GetValueOrDefault(false))
+                        if (template.Properties.ExtraSizeForceAdd)
                         {
-                            forcedUp += template.Properties.ExtraSizeUp.Value;
-                            forcedDown += template.Properties.ExtraSizeDown.Value;
-                            forcedLeft += template.Properties.ExtraSizeLeft.Value;
-                            forcedRight += template.Properties.ExtraSizeRight.Value;
+                            forcedUp += template.Properties.ExtraSizeUp;
+                            forcedDown += template.Properties.ExtraSizeDown;
+                            forcedLeft += template.Properties.ExtraSizeLeft;
+                            forcedRight += template.Properties.ExtraSizeRight;
                         }
                         else
                         {
-                            sizeUp = sizeUp < template.Properties.ExtraSizeUp ? template.Properties.ExtraSizeUp.Value : sizeUp;
-                            sizeDown = sizeDown < template.Properties.ExtraSizeDown ? template.Properties.ExtraSizeDown.Value : sizeDown;
-                            sizeLeft = sizeLeft < template.Properties.ExtraSizeLeft ? template.Properties.ExtraSizeLeft.Value : sizeLeft;
-                            sizeRight =
-                                sizeRight < template.Properties.ExtraSizeRight ? template.Properties.ExtraSizeRight.Value : sizeRight;
+                            sizeUp = sizeUp < template.Properties.ExtraSizeUp ? template.Properties.ExtraSizeUp : sizeUp;
+                            sizeDown = sizeDown < template.Properties.ExtraSizeDown ? template.Properties.ExtraSizeDown : sizeDown;
+                            sizeLeft = sizeLeft < template.Properties.ExtraSizeLeft ? template.Properties.ExtraSizeLeft : sizeLeft;
+                            sizeRight = sizeRight < template.Properties.ExtraSizeRight ? template.Properties.ExtraSizeRight : sizeRight;
                         }
                     }
                 }
@@ -744,7 +743,7 @@ public class InventoryHelper(
             }
         }
 
-        return (outX.Value + sizeLeft + sizeRight + forcedLeft + forcedRight, outY.Value + sizeUp + sizeDown + forcedUp + forcedDown);
+        return (outX + sizeLeft + sizeRight + forcedLeft + forcedRight, outY + sizeUp + sizeDown + forcedUp + forcedDown);
     }
 
     /// <summary>

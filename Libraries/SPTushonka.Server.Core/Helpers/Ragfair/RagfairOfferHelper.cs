@@ -80,17 +80,7 @@ public class RagfairOfferHelper(
                 continue;
             }
 
-            if (
-                !IsDisplayableOffer(
-                    searchRequest,
-                    itemsToAdd,
-                    traderAssorts,
-                    cachedOffer,
-                    offerRootItem,
-                    pmcData,
-                    playerIsFleaBanned
-                )
-            )
+            if (!IsDisplayableOffer(searchRequest, itemsToAdd, traderAssorts, cachedOffer, offerRootItem, pmcData, playerIsFleaBanned))
             {
                 continue;
             }
@@ -906,7 +896,7 @@ public class RagfairOfferHelper(
         if (itemHelper.ArmorItemCanHoldMods(offerRootItem.Template))
         {
             var offerRootTemplate = itemHelper.GetItem(offerRootItem.Template).Value;
-            var requiredPlateCount = offerRootTemplate.Properties.Slots?.Where(item => item.Required.GetValueOrDefault(false)).Count();
+            var requiredPlateCount = offerRootTemplate.Properties.Slots?.Where(item => item.Required).Count();
 
             return offer.Items.Count > requiredPlateCount;
         }

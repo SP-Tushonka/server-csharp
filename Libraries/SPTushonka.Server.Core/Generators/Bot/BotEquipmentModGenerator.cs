@@ -265,14 +265,14 @@ public class BotEquipmentModGenerator(
             }
 
             // Compatible item not found but slot REQUIRES item, get random item from db
-            if (!found && itemSlotTemplate.Required.GetValueOrDefault(false))
+            if (!found && itemSlotTemplate.Required)
             {
                 modTpl = GetRandomModTplFromItemDb(modTpl.Value, itemSlotTemplate, modSlotName, equipment);
                 found = modTpl is not null;
             }
 
             // Compatible item not found + not required - skip
-            if (!(found || itemSlotTemplate.Required.GetValueOrDefault(false)))
+            if (!(found || itemSlotTemplate.Required))
             {
                 continue;
             }
@@ -1001,10 +1001,7 @@ public class BotEquipmentModGenerator(
         }
 
         var spawnMod = randomUtil.RollChance(modSpawnChances.GetValueOrDefault(modSlotName.ToLowerInvariant()));
-        if (
-            !spawnMod
-            && (slotRequired.GetValueOrDefault(false) || (botEquipConfig.WeaponSlotIdsToMakeRequired?.Contains(modSlotName) ?? false))
-        )
+        if (!spawnMod && (slotRequired || (botEquipConfig.WeaponSlotIdsToMakeRequired?.Contains(modSlotName) ?? false)))
         // Edge case: Mod is required but spawn chance roll failed, choose default mod spawn for slot
         {
             return ModSpawn.DEFAULT_MOD;
@@ -1096,14 +1093,14 @@ public class BotEquipmentModGenerator(
             request.Weapon,
             request.ModSlot
         );
-        if (chosenModResult.SlotBlocked.GetValueOrDefault(false) && !parentSlot.Required.GetValueOrDefault(false))
+        if (chosenModResult.SlotBlocked.GetValueOrDefault(false) && !parentSlot.Required)
         // Don't bother trying to fit mod, slot is completely blocked
         {
             return null;
         }
 
         // Log if mod chosen was incompatible
-        if (chosenModResult.Incompatible.GetValueOrDefault(false) && !parentSlot.Required.GetValueOrDefault(false))
+        if (chosenModResult.Incompatible.GetValueOrDefault(false) && !parentSlot.Required)
         {
             if (logger.IsLogEnabled(LogLevel.Debug))
             {
@@ -1114,21 +1111,21 @@ public class BotEquipmentModGenerator(
         }
 
         // Get random mod to attach from items db for required slots if none found above
-        if (!(chosenModResult.Found ?? false) && parentSlot != null && (parentSlot.Required ?? false))
+        if (!(chosenModResult.Found ?? false) && parentSlot != null && parentSlot.Required)
         {
             chosenModResult.ChosenTemplate = GetRandomModTplFromItemDb(MongoId.Empty(), parentSlot, request.ModSlot, request.Weapon);
             chosenModResult.Found = true;
         }
 
         // Compatible item not found + not required
-        if (!chosenModResult.Found.GetValueOrDefault(false) && parentSlot is not null && !parentSlot.Required.GetValueOrDefault(false))
+        if (!chosenModResult.Found.GetValueOrDefault(false) && parentSlot is not null && !parentSlot.Required)
         {
             return null;
         }
 
         if (!(chosenModResult.Found ?? false) && parentSlot is not null)
         {
-            if (parentSlot.Required.GetValueOrDefault(false))
+            if (parentSlot.Required)
             {
                 logger.Warning(
                     $"Required slot unable to be filled, {request.ModSlot} on {request.ParentTemplate.Name} {request.ParentTemplate.Id} for weapon: {request.Weapon.First().Template}"
@@ -1598,7 +1595,7 @@ public class BotEquipmentModGenerator(
         if (!modToAdd.Value.Key)
         {
             // Parent slot must be filled but db object is invalid, show warning and return false
-            if (slotAddedToTemplate.Required ?? false)
+            if (slotAddedToTemplate.Required)
             {
                 logger.Warning(
                     serverLocalisationService.GetText(

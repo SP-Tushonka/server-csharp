@@ -711,8 +711,8 @@
 
             traderInfo.LoyaltyLevel = Math.Clamp(traderEdit.LoyaltyLevel, 1, traderEdit.MaxLoyaltyLevel);
             traderInfo.Standing = Math.Round(traderEdit.Standing, 2);
-            traderInfo.SalesSum = Math.Max(0d, traderEdit.SalesSum);
-            traderInfo.NextResupply = Math.Max(0d, traderEdit.NextResupply);
+            traderInfo.SalesSum = (long)Math.Round(Math.Max(0d, traderEdit.SalesSum));
+            traderInfo.NextResupply = (long)Math.Round(Math.Max(0d, traderEdit.NextResupply));
             traderInfo.Unlocked = traderEdit.Unlocked;
         }
     }
@@ -1391,7 +1391,7 @@
 
     private static double? GetProductionRemainingSeconds(Production production, long now)
     {
-        if (production.ProductionTime is not > 0d || (production.InProgress != true && production.StartTimestamp is not > 0))
+        if (production.ProductionTime is not > 0 || (production.InProgress != true && production.StartTimestamp is not > 0))
         {
             return null;
         }

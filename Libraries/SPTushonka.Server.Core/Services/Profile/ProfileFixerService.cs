@@ -99,7 +99,7 @@ public partial class ProfileFixerService(
                 continue;
             }
 
-            var resetInterval = (limits!.ResetHours ?? 0) * 3600;
+            var resetInterval = (limits!.ResetHours) * 3600;
 
             pmcData.BattlePassDocumentLimitData[battlePass.Id] = new ProfileBattlePassDocumentLimit
             {

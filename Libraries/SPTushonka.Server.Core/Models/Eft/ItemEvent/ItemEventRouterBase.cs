@@ -38,7 +38,7 @@ public record ProfileChange
     public string? Id { get; set; }
 
     [JsonPropertyName("experience")]
-    public double? Experience { get; set; }
+    public int? Experience { get; set; }
 
     [JsonPropertyName("quests")]
     public List<Quest>? Quests { get; set; }
@@ -185,7 +185,7 @@ public record DeletedItem
 public record TraderData
 {
     [JsonPropertyName("salesSum")]
-    public double? SalesSum { get; set; }
+    public long? SalesSum { get; set; }
 
     [JsonPropertyName("standing")]
     public double? Standing { get; set; }
@@ -198,7 +198,7 @@ public record TraderData
 
     [JsonPropertyName("disabled")]
     public bool? Disabled { get; set; }
-    
+
     [JsonPropertyName("dialogueAvailable")]
     public bool? DialogueAvailable { get; set; }
 }

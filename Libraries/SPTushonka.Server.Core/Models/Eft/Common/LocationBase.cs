@@ -8,37 +8,37 @@ namespace SPTarkov.Server.Core.Models.Eft.Common;
 public record LocationBase
 {
     [JsonPropertyName("AccessKeys")]
-    public IEnumerable<string>? AccessKeys { get; set; }
+    public required IEnumerable<string> AccessKeys { get; set; }
 
     [JsonPropertyName("AccessKeysPvE")]
-    public IEnumerable<string>? AccessKeysPvE { get; set; }
+    public required IEnumerable<string> AccessKeysPvE { get; set; }
 
     [JsonPropertyName("HighLevelLocationId")]
-    public string? HighLevelLocationId { get; set; }
+    public required string HighLevelLocationId { get; set; }
 
     [JsonPropertyName("AirdropParameters")]
     public List<AirdropParameter>? AirdropParameters { get; set; }
 
     [JsonPropertyName("NewSpawnForPlayers")]
-    public bool? NewSpawnForPlayers { get; set; }
+    public required bool NewSpawnForPlayers { get; set; }
 
     [JsonPropertyName("OfflineNewSpawn")]
-    public bool? OfflineNewSpawn { get; set; }
+    public required bool OfflineNewSpawn { get; set; }
 
     [JsonPropertyName("OfflineOldSpawn")]
-    public bool? OfflineOldSpawn { get; set; }
+    public required bool OfflineOldSpawn { get; set; }
 
     [JsonPropertyName("Area")]
-    public double? Area { get; set; }
+    public required double Area { get; set; }
 
     [JsonPropertyName("AveragePlayTime")]
-    public double? AveragePlayTime { get; set; }
+    public required double AveragePlayTime { get; set; }
 
     [JsonPropertyName("AveragePlayerLevel")]
-    public double? AveragePlayerLevel { get; set; }
+    public required double AveragePlayerLevel { get; set; }
 
     [JsonPropertyName("Banners")]
-    public List<Banner>? Banners { get; set; }
+    public required List<Banner> Banners { get; set; }
 
     [JsonPropertyName("BossLocationSpawn")]
     public List<BossLocationSpawn> BossLocationSpawn { get; set; }
@@ -47,34 +47,34 @@ public record LocationBase
     public List<Exit>? SecretExits { get; set; }
 
     [JsonPropertyName("BotStartPlayer")]
-    public int? BotStartPlayer { get; set; }
+    public required int BotStartPlayer { get; set; }
 
     [JsonPropertyName("BotAssault")]
-    public int? BotAssault { get; set; }
+    public required int BotAssault { get; set; }
 
     /// <summary>
     ///     Weighting on how likely a bot will be Easy difficulty
     /// </summary>
     [JsonPropertyName("BotEasy")]
-    public int? BotEasy { get; set; }
+    public required int BotEasy { get; set; }
 
     /// <summary>
     ///     Weighting on how likely a bot will be Hard difficulty
     /// </summary>
     [JsonPropertyName("BotHard")]
-    public int? BotHard { get; set; }
+    public required int BotHard { get; set; }
 
     /// <summary>
     ///     Weighting on how likely a bot will be Impossible difficulty
     /// </summary>
     [JsonPropertyName("BotImpossible")]
-    public int? BotImpossible { get; set; }
+    public required int BotImpossible { get; set; }
 
     [JsonPropertyName("BotLocationModifier")]
     public BotLocationModifier BotLocationModifier { get; set; }
 
     [JsonPropertyName("BotMarksman")]
-    public int? BotMarksman { get; set; }
+    public required int BotMarksman { get; set; }
 
     /// <summary>
     ///     Maximum Number of bots that are currently alive/loading/delayed
@@ -89,7 +89,7 @@ public record LocationBase
     public int? BotMaxPlayer { get; set; }
 
     [JsonPropertyName("BotMaxPvE")]
-    public int? BotMaxPvE { get; set; }
+    public required int BotMaxPvE { get; set; }
 
     /// <summary>
     ///     Is not used in 33420
@@ -101,34 +101,34 @@ public record LocationBase
     ///     Weighting on how likely a bot will be Normal difficulty
     /// </summary>
     [JsonPropertyName("BotNormal")]
-    public int? BotNormal { get; set; }
+    public required int BotNormal { get; set; }
 
     /// <summary>
     ///     How many bot slots that need to be open before trying to spawn new bots.
     /// </summary>
     [JsonPropertyName("BotSpawnCountStep")]
-    public int? BotSpawnCountStep { get; set; }
+    public required int BotSpawnCountStep { get; set; }
 
     /// <summary>
     ///     How often to check if bots are spawn-able. In seconds
     /// </summary>
     [JsonPropertyName("BotSpawnPeriodCheck")]
-    public int? BotSpawnPeriodCheck { get; set; }
+    public required int BotSpawnPeriodCheck { get; set; }
 
     /// <summary>
     ///     The bot spawn will toggle on and off in intervals of Off(Min/Max) and On(Min/Max)
     /// </summary>
     [JsonPropertyName("BotSpawnTimeOffMax")]
-    public int? BotSpawnTimeOffMax { get; set; }
+    public required int BotSpawnTimeOffMax { get; set; }
 
     [JsonPropertyName("BotSpawnTimeOffMin")]
-    public int? BotSpawnTimeOffMin { get; set; }
+    public required int BotSpawnTimeOffMin { get; set; }
 
     [JsonPropertyName("BotSpawnTimeOnMax")]
-    public int? BotSpawnTimeOnMax { get; set; }
+    public required int BotSpawnTimeOnMax { get; set; }
 
     [JsonPropertyName("BotSpawnTimeOnMin")]
-    public int? BotSpawnTimeOnMin { get; set; }
+    public required int BotSpawnTimeOnMin { get; set; }
 
     /// <summary>
     ///     How soon bots will be allowed to spawn
@@ -140,25 +140,25 @@ public record LocationBase
     ///     After this long bots will no longer spawn
     /// </summary>
     [JsonPropertyName("BotStop")]
-    public int? BotStop { get; set; }
+    public required int BotStop { get; set; }
 
     [JsonPropertyName("Description")]
     public string? Description { get; set; }
 
     [JsonPropertyName("DisabledForScav")]
-    public bool? DisabledForScav { get; set; }
+    public required bool DisabledForScav { get; set; }
 
     [JsonPropertyName("EventTrapsData")]
     public EventTrapsData? EventTrapsData { get; set; }
 
     [JsonPropertyName("DisabledScavExits")]
-    public string? DisabledScavExits { get; set; }
+    public required string DisabledScavExits { get; set; }
 
     [JsonPropertyName("Enabled")]
     public bool Enabled { get; set; }
 
     [JsonPropertyName("EnableCoop")]
-    public bool? EnableCoop { get; set; }
+    public required bool EnableCoop { get; set; }
 
     [JsonPropertyName("GlobalLootChanceModifier")]
     public double? GlobalLootChanceModifier { get; set; }
@@ -167,19 +167,19 @@ public record LocationBase
     public double? GlobalLootChanceModifierPvE { get; set; }
 
     [JsonPropertyName("GlobalContainerChanceModifier")]
-    public double? GlobalContainerChanceModifier { get; set; }
+    public required double GlobalContainerChanceModifier { get; set; }
 
     [JsonPropertyName("HeatmapCellSize")]
-    public Vector3? HeatmapCellSize { get; set; }
+    public required Vector3 HeatmapCellSize { get; set; }
 
     [JsonPropertyName("HeatmapLayers")]
-    public List<string>? HeatmapLayers { get; set; }
+    public required List<string> HeatmapLayers { get; set; }
 
     [JsonPropertyName("IconX")]
-    public double? IconX { get; set; }
+    public required double IconX { get; set; }
 
     [JsonPropertyName("IconY")]
-    public double? IconY { get; set; }
+    public required double IconY { get; set; }
 
     [JsonPropertyName("Id")]
     public required string Id { get; set; }
@@ -188,61 +188,61 @@ public record LocationBase
     public bool Insurance { get; set; }
 
     [JsonPropertyName("IsSecret")]
-    public bool? IsSecret { get; set; }
+    public required bool IsSecret { get; set; }
 
     [JsonPropertyName("Locked")]
-    public bool? Locked { get; set; }
+    public required bool Locked { get; set; }
 
     [JsonPropertyName("LockedByQuest")]
-    public bool? LockedByQuest { get; set; }
+    public required bool LockedByQuest { get; set; }
 
     [JsonPropertyName("HiddenWhenLockedByQuest")]
-    public bool? HiddenWhenLockedByQuest { get; set; }
+    public required bool HiddenWhenLockedByQuest { get; set; }
 
     [JsonPropertyName("Loot")]
-    public IEnumerable<SpawnpointTemplate>? Loot { get; set; }
+    public required IEnumerable<SpawnpointTemplate> Loot { get; set; }
 
     [JsonPropertyName("MatchMakerMinPlayersByWaitTime")]
     public List<MinPlayerWaitTime>? MatchMakerMinPlayersByWaitTime { get; set; }
 
     [JsonPropertyName("MaxBotPerZone")]
-    public int? MaxBotPerZone { get; set; }
+    public required int MaxBotPerZone { get; set; }
 
     [JsonPropertyName("MaxDistToFreePoint")]
-    public int? MaxDistToFreePoint { get; set; }
+    public required int MaxDistToFreePoint { get; set; }
 
     [JsonPropertyName("MaxPlayers")]
-    public int? MaxPlayers { get; set; }
+    public required int MaxPlayers { get; set; }
 
     [JsonPropertyName("MinDistToExitPoint")]
     public double? MinDistToExitPoint { get; set; }
 
     [JsonPropertyName("MinDistToFreePoint")]
-    public double? MinDistToFreePoint { get; set; }
+    public required double MinDistToFreePoint { get; set; }
 
     [JsonPropertyName("MinMaxBots")]
     public List<MinMaxBot> MinMaxBots { get; set; }
 
     [JsonPropertyName("MinPlayers")]
-    public int? MinPlayers { get; set; }
+    public required int MinPlayers { get; set; }
 
     [JsonPropertyName("MaxCoopGroup")]
-    public int? MaxCoopGroup { get; set; }
+    public required int MaxCoopGroup { get; set; }
 
     [JsonPropertyName("Name")]
-    public string? Name { get; set; }
+    public required string Name { get; set; }
 
     [JsonPropertyName("NonWaveGroupScenario")]
-    public NonWaveGroupScenario? NonWaveGroupScenario { get; set; }
+    public required NonWaveGroupScenario NonWaveGroupScenario { get; set; }
 
     [JsonPropertyName("NewSpawn")]
-    public bool? NewSpawn { get; set; }
+    public required bool NewSpawn { get; set; }
 
     [JsonPropertyName("OcculsionCullingEnabled")]
-    public bool? OcculsionCullingEnabled { get; set; }
+    public required bool OcculsionCullingEnabled { get; set; }
 
     [JsonPropertyName("OldSpawn")]
-    public bool? OldSpawn { get; set; }
+    public required bool OldSpawn { get; set; }
 
     [JsonPropertyName("OpenZones")]
     public string OpenZones { get; set; }
@@ -251,43 +251,43 @@ public record LocationBase
     public Preview? Preview { get; set; }
 
     [JsonPropertyName("PlayersRequestCount")]
-    public int? PlayersRequestCount { get; set; }
+    public required int PlayersRequestCount { get; set; }
 
     [JsonPropertyName("RequiredPlayerLevel")]
     public int? RequiredPlayerLevel { get; set; }
 
     [JsonPropertyName("RequiredPlayerLevelMin")]
-    public int? RequiredPlayerLevelMin { get; set; }
+    public required int RequiredPlayerLevelMin { get; set; }
 
     [JsonPropertyName("RequiredPlayerLevelMax")]
-    public int? RequiredPlayerLevelMax { get; set; }
+    public required int RequiredPlayerLevelMax { get; set; }
 
     [JsonPropertyName("MinPlayerLvlAccessKeys")]
-    public int? MinPlayerLvlAccessKeys { get; set; }
+    public required int MinPlayerLvlAccessKeys { get; set; }
 
     [JsonPropertyName("PmcMaxPlayersInGroup")]
-    public int? PmcMaxPlayersInGroup { get; set; }
+    public required int PmcMaxPlayersInGroup { get; set; }
 
     [JsonPropertyName("ScavMaxPlayersInGroup")]
-    public int? ScavMaxPlayersInGroup { get; set; }
+    public required int ScavMaxPlayersInGroup { get; set; }
 
     [JsonPropertyName("MinGroupSize")]
     public int? MinGroupSize { get; set; }
 
     [JsonPropertyName("Rules")]
-    public string? Rules { get; set; }
+    public required string Rules { get; set; }
 
     [JsonPropertyName("SafeLocation")]
     public bool? SafeLocation { get; set; }
 
     [JsonPropertyName("Scene")]
-    public Scene? Scene { get; set; }
+    public required Scene Scene { get; set; }
 
     [JsonPropertyName("NoGroupSpawn")]
     public bool? NoGroupSpawn { get; set; }
 
     [JsonPropertyName("SpawnPointParams")]
-    public IEnumerable<SpawnPointParam>? SpawnPointParams { get; set; }
+    public required IEnumerable<SpawnPointParam> SpawnPointParams { get; set; }
 
     [JsonPropertyName("areas")]
     public Dictionary<string, Area>? Areas { get; set; }
@@ -299,10 +299,10 @@ public record LocationBase
     public MongoId IdField { get; set; }
 
     [JsonPropertyName("doors")]
-    public List<object>? Doors { get; set; }
+    public required List<object> Doors { get; set; }
 
     [JsonPropertyName("EscapeTimeLimit")]
-    public double? EscapeTimeLimit { get; set; }
+    public required double EscapeTimeLimit { get; set; }
 
     [Obsolete("BSG fucked up another property name")]
     [JsonPropertyName("escape_time_limit")]
@@ -312,7 +312,7 @@ public record LocationBase
     }
 
     [JsonPropertyName("EscapeTimeLimitCoop")]
-    public int? EscapeTimeLimitCoop { get; set; }
+    public required int EscapeTimeLimitCoop { get; set; }
 
     [JsonPropertyName("EscapeTimeLimitPVE")]
     public int? EscapeTimeLimitPVE { get; set; }
@@ -325,16 +325,16 @@ public record LocationBase
     public int? ExitAccessTime { get; set; }
 
     [JsonPropertyName("ForceOnlineRaidInPVE")]
-    public bool? ForceOnlineRaidInPVE { get; set; }
+    public required bool ForceOnlineRaidInPVE { get; set; }
 
     [JsonPropertyName("ForceOfflineRaidInPVE")]
-    public bool? ForceOfflineRaidInPVE { get; set; }
+    public required bool ForceOfflineRaidInPVE { get; set; }
 
     [JsonPropertyName("SavageForceOnlineRaidInPVE")]
-    public bool? SavageForceOnlineRaidInPVE { get; set; }
+    public required bool SavageForceOnlineRaidInPVE { get; set; }
 
     [JsonPropertyName("SavageForceOfflineRaidInPVE")]
-    public bool? SavageForceOfflineRaidInPVE { get; set; }
+    public required bool SavageForceOfflineRaidInPVE { get; set; }
 
     [JsonPropertyName("ExitZones")]
     public string? ExitZones { get; set; }
@@ -358,7 +358,7 @@ public record LocationBase
     public IEnumerable<string>? FilterEx { get; set; }
 
     [JsonPropertyName("limits")]
-    public IEnumerable<Limit>? Limits { get; set; }
+    public required IEnumerable<Limit> Limits { get; set; }
 
     [JsonPropertyName("matching_min_seconds")]
     public int? MatchingMinSeconds { get; set; }
@@ -472,7 +472,7 @@ public record AccessRequirementsByUsage
 public record AccessRequirement
 {
     [JsonPropertyName("count")]
-    public int? Count { get; set; }
+    public required int Count { get; set; }
 }
 
 public record PasscodeLocationSettings
@@ -484,10 +484,10 @@ public record PasscodeLocationSettings
 public record PasscodeEntry
 {
     [JsonPropertyName("passcodeId")]
-    public string? PasscodeId { get; set; }
+    public required string PasscodeId { get; set; }
 
     [JsonPropertyName("passcodeListId")]
-    public string? PasscodeListId { get; set; }
+    public required string PasscodeListId { get; set; }
 }
 
 public record FixedWeatherLocationConfig
@@ -543,10 +543,10 @@ public record EventTrapsData
 public record Transit
 {
     [JsonPropertyName("activateAfterSec")]
-    public int? ActivateAfterSeconds { get; set; }
+    public required int ActivateAfterSeconds { get; set; }
 
     [JsonPropertyName("active")]
-    public bool? IsActive { get; set; }
+    public required bool IsActive { get; set; }
 
     [JsonPropertyName("events")]
     public bool? Events { get; set; }
@@ -555,25 +555,25 @@ public record Transit
     public bool? HideIfNoKey { get; set; }
 
     [JsonPropertyName("name")]
-    public string? Name { get; set; }
+    public required string Name { get; set; }
 
     [JsonPropertyName("conditions")]
-    public string? Conditions { get; set; }
+    public required string Conditions { get; set; }
 
     [JsonPropertyName("description")]
-    public string? Description { get; set; }
+    public required string Description { get; set; }
 
     [JsonPropertyName("id")]
-    public int? Id { get; set; }
+    public required int Id { get; set; }
 
     [JsonPropertyName("location")]
-    public string? Location { get; set; }
+    public required string Location { get; set; }
 
     [JsonPropertyName("target")]
-    public string? Target { get; set; }
+    public required string Target { get; set; }
 
     [JsonPropertyName("time")]
-    public long? Time { get; set; }
+    public required long Time { get; set; }
 
     [JsonPropertyName("referenceConditions")]
     public string? ReferenceConditions { get; set; }
@@ -591,64 +591,64 @@ public record Transit
 public record NonWaveGroupScenario
 {
     [JsonPropertyName("Chance")]
-    public double? Chance { get; set; }
+    public required double Chance { get; set; }
 
     [JsonPropertyName("Enabled")]
-    public bool? IsEnabled { get; set; }
+    public required bool IsEnabled { get; set; }
 
     [JsonPropertyName("MaxToBeGroup")]
-    public int? MaximumToBeGrouped { get; set; }
+    public required int MaximumToBeGrouped { get; set; }
 
     [JsonPropertyName("MinToBeGroup")]
-    public int? MinimumToBeGrouped { get; set; }
+    public required int MinimumToBeGrouped { get; set; }
 }
 
 public record Limit : MinMax<int>
 {
     [JsonPropertyName("items")]
-    public IEnumerable<string>? Items { get; set; }
+    public required IEnumerable<string> Items { get; set; }
 }
 
 public record AirdropParameter
 {
     [JsonPropertyName("AirdropPointDeactivateDistance")]
-    public int? AirdropPointDeactivateDistance { get; set; }
+    public required int AirdropPointDeactivateDistance { get; set; }
 
     [JsonPropertyName("MinPlayersCountToSpawnAirdrop")]
-    public int? MinimumPlayersCountToSpawnAirdrop { get; set; }
+    public required int MinimumPlayersCountToSpawnAirdrop { get; set; }
 
     [JsonPropertyName("PlaneAirdropChance")]
-    public double? PlaneAirdropChance { get; set; }
+    public required double PlaneAirdropChance { get; set; }
 
     [JsonPropertyName("PlaneAirdropCooldownMax")]
-    public int? PlaneAirdropCooldownMax { get; set; }
+    public required int PlaneAirdropCooldownMax { get; set; }
 
     [JsonPropertyName("PlaneAirdropCooldownMin")]
-    public int? PlaneAirdropCooldownMin { get; set; }
+    public required int PlaneAirdropCooldownMin { get; set; }
 
     [JsonPropertyName("PlaneAirdropEnd")]
-    public int? PlaneAirdropEnd { get; set; }
+    public required int PlaneAirdropEnd { get; set; }
 
     [JsonPropertyName("PlaneAirdropMax")]
-    public int? PlaneAirdropMax { get; set; }
+    public required int PlaneAirdropMax { get; set; }
 
     [JsonPropertyName("PlaneAirdropStartMax")]
-    public int? PlaneAirdropStartMax { get; set; }
+    public required int PlaneAirdropStartMax { get; set; }
 
     [JsonPropertyName("PlaneAirdropStartMin")]
-    public int? PlaneAirdropStartMin { get; set; }
+    public required int PlaneAirdropStartMin { get; set; }
 
     [JsonPropertyName("UnsuccessfulTryPenalty")]
-    public int? UnsuccessfulTryPenalty { get; set; }
+    public required int UnsuccessfulTryPenalty { get; set; }
 }
 
 public record Banner
 {
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("pic")]
-    public Pic? Picture { get; set; }
+    public required Pic Picture { get; set; }
 }
 
 public record Pic
@@ -739,40 +739,40 @@ public record BossLocationSpawn
 public record BossSupport
 {
     [JsonPropertyName("BossEscortAmount")]
-    public string? BossEscortAmount { get; set; }
+    public required string BossEscortAmount { get; set; }
 
     [JsonPropertyName("BossEscortDifficult")]
     public ListOrT<string> BossEscortDifficulty { get; set; }
 
     [JsonPropertyName("BossEscortType")]
-    public string? BossEscortType { get; set; }
+    public required string BossEscortType { get; set; }
 }
 
 public record BotLocationModifier
 {
     [JsonPropertyName("AccuracySpeed")]
-    public double? AccuracySpeed { get; set; }
+    public required double AccuracySpeed { get; set; }
 
     [JsonPropertyName("AdditionalHostilitySettings")]
     public IEnumerable<AdditionalHostilitySettings>? AdditionalHostilitySettings { get; set; }
 
     [JsonPropertyName("DistToActivate")]
-    public double? DistanceToActivate { get; set; }
+    public required double DistanceToActivate { get; set; }
 
     [JsonPropertyName("DistToActivatePvE")]
-    public double? DistanceToActivatePvE { get; set; }
+    public required double DistanceToActivatePvE { get; set; }
 
     [JsonPropertyName("DistToPersueAxemanCoef")]
     public double? DistanceToPursueAxemanCoefficient { get; set; }
 
     [JsonPropertyName("DistToSleep")]
-    public double? DistanceToSleep { get; set; }
+    public required double DistanceToSleep { get; set; }
 
     [JsonPropertyName("DistToSleepPvE")]
-    public double? DistanceToSleepPvE { get; set; }
+    public required double DistanceToSleepPvE { get; set; }
 
     [JsonPropertyName("GainSight")]
-    public double? GainSight { get; set; }
+    public required double GainSight { get; set; }
 
     [JsonPropertyName("IgnoreGreenAcidFollowPlayerEvent")]
     public bool? IgnoreGreenAcidFollowPlayerEvent { get; set; }
@@ -784,13 +784,13 @@ public record BotLocationModifier
     public double? MagnetPower { get; set; }
 
     [JsonPropertyName("MarksmanAccuratyCoef")]
-    public double? MarksmanAccuracyCoefficient { get; set; }
+    public required double MarksmanAccuracyCoefficient { get; set; }
 
     [JsonPropertyName("Scattering")]
-    public double? Scattering { get; set; }
+    public required double Scattering { get; set; }
 
     [JsonPropertyName("VisibleDistance")]
-    public double? VisibleDistance { get; set; }
+    public required double VisibleDistance { get; set; }
 
     [JsonPropertyName("MaxExfiltrationTime")]
     public double? MaxExfiltrationTime { get; set; }
@@ -799,10 +799,10 @@ public record BotLocationModifier
     public double? MinExfiltrationTime { get; set; }
 
     [JsonPropertyName("FogVisibilityDistanceCoef")]
-    public double? FogVisibilityDistanceCoef { get; set; }
+    public required double FogVisibilityDistanceCoef { get; set; }
 
     [JsonPropertyName("FogVisibilitySpeedCoef")]
-    public double? FogVisibilitySpeedCoef { get; set; }
+    public required double FogVisibilitySpeedCoef { get; set; }
 
     [JsonPropertyName("LockSpawnCheckRadius")]
     public double? FogVisibLockSpawnCheckRadiusilitySpeedCoef { get; set; }
@@ -829,10 +829,10 @@ public record BotLocationModifier
     public double? NonWaveSpawnBotsLimitPerPlayerPvE { get; set; }
 
     [JsonPropertyName("RainVisibilityDistanceCoef")]
-    public double? RainVisibilityDistanceCoef { get; set; }
+    public required double RainVisibilityDistanceCoef { get; set; }
 
     [JsonPropertyName("RainVisibilitySpeedCoef")]
-    public double? RainVisibilitySpeedCoef { get; set; }
+    public required double RainVisibilitySpeedCoef { get; set; }
 }
 
 public record AdditionalHostilitySettings
@@ -850,7 +850,7 @@ public record AdditionalHostilitySettings
     public string? BearPlayerBehaviour { get; set; }
 
     [JsonPropertyName("BotRole")]
-    public string? BotRole { get; set; }
+    public required string BotRole { get; set; }
 
     [JsonPropertyName("ChancedEnemies")]
     public List<ChancedEnemy>? ChancedEnemies { get; set; }
@@ -877,10 +877,10 @@ public record AdditionalHostilitySettings
 public record ChancedEnemy
 {
     [JsonPropertyName("EnemyChance")]
-    public int? EnemyChance { get; set; }
+    public required int EnemyChance { get; set; }
 
     [JsonPropertyName("Role")]
-    public string? Role { get; set; }
+    public required string Role { get; set; }
 }
 
 public record MinMaxBot : MinMax<int>
@@ -892,10 +892,10 @@ public record MinMaxBot : MinMax<int>
 public record MinPlayerWaitTime
 {
     [JsonPropertyName("minPlayers")]
-    public int? MinPlayers { get; set; }
+    public required int MinPlayers { get; set; }
 
     [JsonPropertyName("time")]
-    public long? Time { get; set; }
+    public required long Time { get; set; }
 }
 
 public record Preview
@@ -910,10 +910,10 @@ public record Preview
 public record Scene
 {
     [JsonPropertyName("path")]
-    public string? Path { get; set; }
+    public required string Path { get; set; }
 
     [JsonPropertyName("rcid")]
-    public string? Rcid { get; set; }
+    public required string Rcid { get; set; }
 }
 
 public record SpawnPointParam
@@ -922,31 +922,31 @@ public record SpawnPointParam
     public string? BotZoneName { get; set; }
 
     [JsonPropertyName("Categories")]
-    public IEnumerable<string>? Categories { get; set; }
+    public required IEnumerable<string> Categories { get; set; }
 
     [JsonPropertyName("ColliderParams")]
-    public ColliderParams? ColliderParams { get; set; }
+    public required ColliderParams ColliderParams { get; set; }
 
     [JsonPropertyName("CorePointId")]
     public int? CorePointId { get; set; }
 
     [JsonPropertyName("DelayToCanSpawnSec")]
-    public double? DelayToCanSpawnSec { get; set; }
+    public required double DelayToCanSpawnSec { get; set; }
 
     [JsonPropertyName("Id")]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("Infiltration")]
-    public string? Infiltration { get; set; }
+    public required string Infiltration { get; set; }
 
     [JsonPropertyName("Position")]
-    public Vector3? Position { get; set; }
+    public required Vector3 Position { get; set; }
 
     [JsonPropertyName("Rotation")]
-    public double? Rotation { get; set; }
+    public required double Rotation { get; set; }
 
     [JsonPropertyName("Sides")]
-    public IEnumerable<string>? Sides { get; set; }
+    public required IEnumerable<string> Sides { get; set; }
 }
 
 public record ColliderParams
@@ -959,13 +959,13 @@ public record ColliderParams
     }
 
     [JsonPropertyName("_props")]
-    public ColliderProperties? Properties { get; set; }
+    public required ColliderProperties Properties { get; set; }
 }
 
 public record ColliderProperties
 {
     [JsonPropertyName("Center")]
-    public Vector3? Center { get; set; }
+    public required Vector3 Center { get; set; }
 
     [JsonPropertyName("Size")]
     public Vector3? Size { get; set; }
@@ -1004,7 +1004,7 @@ public record Exit
     public bool? EligibleForScav { get; set; }
 
     [JsonPropertyName("ExfiltrationTime")]
-    public double? ExfiltrationTime { get; set; }
+    public required double ExfiltrationTime { get; set; }
 
     [JsonPropertyName("ExfiltrationTimePVE")]
     public double? ExfiltrationTimePVE { get; set; }
@@ -1018,7 +1018,7 @@ public record Exit
     public EquipmentSlots? RequiredSlot { get; set; }
 
     [JsonPropertyName("Id")]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("MaxTime")]
     public double? MaxTime { get; set; }
@@ -1034,7 +1034,7 @@ public record Exit
     public double? MinTimePVE { get; set; }
 
     [JsonPropertyName("Name")]
-    public string? Name { get; set; }
+    public required string Name { get; set; }
 
     [JsonPropertyName("PassageRequirement")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -1062,47 +1062,47 @@ public record AllExtractsExit : Exit
 public record MaxItemCountInLocation
 {
     [JsonPropertyName("TemplateId")]
-    public string? TemplateId { get; set; }
+    public required string TemplateId { get; set; }
 
     [JsonPropertyName("Value")]
-    public int? Value { get; set; }
+    public required int Value { get; set; }
 }
 
 public record Wave
 {
     [JsonPropertyName("BotPreset")]
-    public string? BotPreset { get; set; }
+    public required string BotPreset { get; set; }
 
     [JsonPropertyName("BotSide")]
-    public string? BotSide { get; set; }
+    public required string BotSide { get; set; }
 
     [JsonPropertyName("KeepZoneOnSpawn")]
     public bool? KeepZoneOnSpawn { get; set; }
 
     [JsonPropertyName("SpawnPoints")]
-    public string? SpawnPoints { get; set; }
+    public required string SpawnPoints { get; set; }
 
     [JsonPropertyName("WildSpawnType")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public WildSpawnType? WildSpawnType { get; set; }
+    public required WildSpawnType WildSpawnType { get; set; }
 
     [JsonPropertyName("isPlayers")]
-    public bool? IsPlayers { get; set; }
+    public required bool IsPlayers { get; set; }
 
     [JsonPropertyName("number")]
-    public int? Number { get; set; }
+    public required int Number { get; set; }
 
     [JsonPropertyName("slots_max")]
-    public int? SlotsMax { get; set; }
+    public required int SlotsMax { get; set; }
 
     [JsonPropertyName("slots_min")]
-    public int? SlotsMin { get; set; }
+    public required int SlotsMin { get; set; }
 
     [JsonPropertyName("time_max")]
-    public int? TimeMax { get; set; }
+    public required int TimeMax { get; set; }
 
     [JsonPropertyName("time_min")]
-    public int? TimeMin { get; set; }
+    public required int TimeMin { get; set; }
 
     /// <summary>
     ///     OPTIONAL - Needs to be unique - Used by custom wave service to ensure same wave isnt added multiple times
@@ -1117,7 +1117,7 @@ public record Wave
     ///     'pve' and/or 'regular'
     /// </summary>
     [JsonPropertyName("SpawnMode")]
-    public HashSet<string>? SpawnMode { get; set; }
+    public required HashSet<string> SpawnMode { get; set; }
 
     [JsonPropertyName("OpenZones")]
     public string? OpenZones { get; set; }
@@ -1126,56 +1126,56 @@ public record Wave
 public record LocationEvents
 {
     [JsonPropertyName("Halloween2024")]
-    public Halloween2024? Halloween2024 { get; set; }
+    public required Halloween2024 Halloween2024 { get; set; }
 
     public Khorovod? Khorovod { get; set; }
 }
 
 public record Khorovod
 {
-    public double? Chance { get; set; }
+    public required double Chance { get; set; }
 }
 
 public record Halloween2024
 {
     [JsonPropertyName("CrowdAttackBlockRadius")]
-    public double? CrowdAttackBlockRadius { get; set; }
+    public required double CrowdAttackBlockRadius { get; set; }
 
     [JsonPropertyName("CrowdAttackSpawnParams")]
-    public IEnumerable<CrowdAttackSpawnParam>? CrowdAttackSpawnParams { get; set; }
+    public required IEnumerable<CrowdAttackSpawnParam> CrowdAttackSpawnParams { get; set; }
 
     [JsonPropertyName("CrowdCooldownPerPlayerSec")]
-    public double? CrowdCooldownPerPlayerSec { get; set; }
+    public required double CrowdCooldownPerPlayerSec { get; set; }
 
     [JsonPropertyName("CrowdsLimit")]
-    public int? CrowdsLimit { get; set; }
+    public required int CrowdsLimit { get; set; }
 
     [JsonPropertyName("InfectedLookCoeff")]
-    public double? InfectedLookCoeff { get; set; }
+    public required double InfectedLookCoeff { get; set; }
 
     [JsonPropertyName("MaxCrowdAttackSpawnLimit")]
-    public int? MaxCrowdAttackSpawnLimit { get; set; }
+    public required int MaxCrowdAttackSpawnLimit { get; set; }
 
     [JsonPropertyName("MinInfectionPercentage")]
-    public double? MinInfectionPercentage { get; set; }
+    public required double MinInfectionPercentage { get; set; }
 
     [JsonPropertyName("MinSpawnDistToPlayer")]
-    public double? MinSpawnDistToPlayer { get; set; }
+    public required double MinSpawnDistToPlayer { get; set; }
 
     [JsonPropertyName("TargetPointSearchRadiusLimit")]
-    public double? TargetPointSearchRadiusLimit { get; set; }
+    public required double TargetPointSearchRadiusLimit { get; set; }
 
     [JsonPropertyName("ZombieCallDeltaRadius")]
-    public double? ZombieCallDeltaRadius { get; set; }
+    public required double ZombieCallDeltaRadius { get; set; }
 
     [JsonPropertyName("ZombieCallPeriodSec")]
-    public double? ZombieCallPeriodSec { get; set; }
+    public required double ZombieCallPeriodSec { get; set; }
 
     [JsonPropertyName("ZombieCallRadiusLimit")]
-    public double? ZombieCallRadiusLimit { get; set; }
+    public required double ZombieCallRadiusLimit { get; set; }
 
     [JsonPropertyName("ZombieMultiplier")]
-    public double? ZombieMultiplier { get; set; }
+    public required double ZombieMultiplier { get; set; }
 
     [JsonPropertyName("InfectionPercentage")]
     public double? InfectionPercentage { get; set; }
@@ -1186,34 +1186,34 @@ public record Halloween2024
 public record CrowdAttackSpawnParam
 {
     [JsonPropertyName("Difficulty")]
-    public string? Difficulty { get; set; }
+    public required string Difficulty { get; set; }
 
     [JsonPropertyName("Role")]
-    public string? Role { get; set; }
+    public required string Role { get; set; }
 
     [JsonPropertyName("Weight")]
-    public int? Weight { get; set; }
+    public required int Weight { get; set; }
 }
 
 public record Area
 {
     [JsonPropertyName("center")]
-    public Vector3? Center { get; set; }
+    public required Vector3 Center { get; set; }
 
     [JsonPropertyName("infiltrationZone")]
-    public string? InfiltrationZone { get; set; }
+    public required string InfiltrationZone { get; set; }
 
     [JsonPropertyName("orientation")]
-    public double? Orientation { get; set; }
+    public required double Orientation { get; set; }
 
     [JsonPropertyName("position")]
-    public Vector3? Position { get; set; }
+    public required Vector3 Position { get; set; }
 
     [JsonPropertyName("sides")]
-    public HashSet<string>? Sides { get; set; }
+    public required HashSet<string> Sides { get; set; }
 
     [JsonPropertyName("size")]
-    public Vector3? Size { get; set; }
+    public required Vector3 Size { get; set; }
 }
 
 public enum WildSpawnType

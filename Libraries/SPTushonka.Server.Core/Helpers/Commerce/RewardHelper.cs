@@ -323,7 +323,7 @@ public class RewardHelper(
                     production.AreaType == desiredHideoutAreaType
                     && production.EndProduct == rewardItemTpl.Value
                     && production.Requirements!.Any(req => req.Type is "QuestComplete")
-                    && production.Locked.GetValueOrDefault(false) // Craft would be locked if we're unlocking it
+                    && production.Locked // Craft would be locked if we're unlocking it
                     && production.Requirements!.Any(req => req.RequiredLevel == craftUnlockReward.LoyaltyLevel)
                 )
             )

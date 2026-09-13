@@ -154,7 +154,7 @@ public class HideoutHelper(
     ///     This convenience function initializes new Production Object
     ///     with all the constants.
     /// </summary>
-    public Production InitProduction(MongoId recipeId, double productionTime, bool? needFuelForAllProductionTime)
+    public Production InitProduction(MongoId recipeId, int productionTime, bool? needFuelForAllProductionTime)
     {
         return new Production
         {
@@ -478,7 +478,7 @@ public class HideoutHelper(
         }
 
         // Limit progress to total production time if progress is over (don't run for continuous crafts)
-        if (!(recipe.Continuous ?? false))
+        if (!recipe.Continuous)
         // If progress is larger than prod time, return ProductionTime, hard cap the value
         {
             production.Progress = Math.Min(production.Progress ?? 0, production.ProductionTime ?? 0);
@@ -801,7 +801,7 @@ public class HideoutHelper(
     /// <param name="recipeId">Recipe being crafted</param>
     /// <param name="applyHideoutManagementBonus">Should the hideout management bonus be applied to the calculation</param>
     /// <returns>Items craft time with bonuses subtracted</returns>
-    public double? GetAdjustedCraftTimeWithSkills(PmcData pmcData, MongoId recipeId, bool applyHideoutManagementBonus = false)
+    public int? GetAdjustedCraftTimeWithSkills(PmcData pmcData, MongoId recipeId, bool applyHideoutManagementBonus = false)
     {
         var globalSkillsDb = globalTable.Configuration.SkillsSettings;
 
@@ -821,7 +821,7 @@ public class HideoutHelper(
         {
             timeReductionSeconds += GetSkillProductionTimeReduction(
                 pmcData,
-                recipe.ProductionTime ?? 0,
+                recipe.ProductionTime,
                 SkillTypes.Crafting,
                 globalSkillsDb.Crafting.ProductionTimeReductionPerLevel
             );
@@ -832,7 +832,7 @@ public class HideoutHelper(
         {
             timeReductionSeconds += GetSkillProductionTimeReduction(
                 pmcData,
-                recipe.ProductionTime ?? 0,
+                recipe.ProductionTime,
                 SkillTypes.HideoutManagement,
                 globalSkillsDb.HideoutManagement.ConsumptionReductionPerLevel
             );
@@ -850,7 +850,8 @@ public class HideoutHelper(
             modifiedProductionTime = 5;
         }
 
-        return modifiedProductionTime;
+        // The client reads the time as an integer and rejects the whole response on a fraction
+        return (int)Math.Round(modifiedProductionTime);
     }
 
     /// <summary>
@@ -1190,7 +1191,7 @@ public class HideoutHelper(
             if (btcProduction.Products?.Count < coinSlotCount)
             // Has space to add a coin to production rewards
             {
-                AddBtcToProduction(btcProduction, bitcoinProdData.ProductionTime ?? 0);
+                AddBtcToProduction(btcProduction, bitcoinProdData.ProductionTime);
             }
             else
             // Filled up bitcoin storage

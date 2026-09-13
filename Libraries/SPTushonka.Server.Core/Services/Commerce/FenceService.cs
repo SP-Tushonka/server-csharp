@@ -1109,7 +1109,7 @@ public class FenceService(
             return;
         }
 
-        var requiredSlots = itemDbDetails.Properties.Slots?.Where(slot => slot.Required ?? false);
+        var requiredSlots = itemDbDetails.Properties.Slots?.Where(slot => slot.Required);
         if (requiredSlots is not null && requiredSlots.Any())
         {
             // Has soft inserts, randomise

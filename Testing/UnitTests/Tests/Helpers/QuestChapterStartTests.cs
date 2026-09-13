@@ -140,6 +140,15 @@ public class QuestChapterStartTests
                         Unlocked = true,
                     }
                 },
+                {
+                    Traders.THERAPIST,
+                    new TraderInfo
+                    {
+                        LoyaltyLevel = 1,
+                        Standing = 0,
+                        Unlocked = true,
+                    }
+                },
             },
             Variables = [],
         };

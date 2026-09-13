@@ -11,7 +11,7 @@ namespace SPTarkov.Server.Core.Models.Eft.BattlePass;
 public record BattlePassActiveResponse
 {
     [JsonPropertyName("battlePasses")]
-    public List<BattlePass>? BattlePasses { get; set; }
+    public required List<BattlePass> BattlePasses { get; set; }
 }
 
 public record BattlePass
@@ -20,28 +20,28 @@ public record BattlePass
     public MongoId Id { get; set; }
 
     [JsonPropertyName("exchangeRate")]
-    public int? ExchangeRate { get; set; }
+    public required int ExchangeRate { get; set; }
 
     [JsonPropertyName("itemExchangeSettings")]
-    public BattlePassItemExchangeSettings? ItemExchangeSettings { get; set; }
+    public required BattlePassItemExchangeSettings ItemExchangeSettings { get; set; }
 
     [JsonPropertyName("pages")]
-    public List<BattlePassPage>? Pages { get; set; }
+    public required List<BattlePassPage> Pages { get; set; }
 
     [JsonPropertyName("documents")]
-    public List<BattlePassDocument>? Documents { get; set; }
+    public required List<BattlePassDocument> Documents { get; set; }
 
     [JsonPropertyName("documentLimits")]
-    public BattlePassDocumentLimits? DocumentLimits { get; set; }
+    public required BattlePassDocumentLimits DocumentLimits { get; set; }
 }
 
 public record BattlePassItemExchangeSettings
 {
     [JsonPropertyName("requiredDocuments")]
-    public int? RequiredDocuments { get; set; }
+    public required int RequiredDocuments { get; set; }
 
     [JsonPropertyName("image")]
-    public string? Image { get; set; }
+    public required string Image { get; set; }
 
     [JsonPropertyName("itemId")]
     public MongoId ItemId { get; set; }
@@ -50,10 +50,10 @@ public record BattlePassItemExchangeSettings
 public record BattlePassPage
 {
     [JsonPropertyName("prevPageItemsRequirement")]
-    public int? PrevPageItemsRequirement { get; set; }
+    public required int PrevPageItemsRequirement { get; set; }
 
     [JsonPropertyName("rewards")]
-    public List<BattlePassPageReward>? Rewards { get; set; }
+    public required List<BattlePassPageReward> Rewards { get; set; }
 }
 
 public record BattlePassPageReward
@@ -62,16 +62,16 @@ public record BattlePassPageReward
     public MongoId Id { get; set; }
 
     [JsonPropertyName("location")]
-    public RewardGridLocation? Location { get; set; }
+    public required RewardGridLocation Location { get; set; }
 
     [JsonPropertyName("rewards")]
-    public List<Reward>? Rewards { get; set; }
+    public required List<Reward> Rewards { get; set; }
 
     [JsonPropertyName("imageUrl")]
-    public string? ImageUrl { get; set; }
+    public required string ImageUrl { get; set; }
 
     [JsonPropertyName("bigImageUrl")]
-    public string? BigImageUrl { get; set; }
+    public required string BigImageUrl { get; set; }
 
     [JsonPropertyName("cost")]
     public Dictionary<MongoId, int>? Cost { get; set; }
@@ -83,10 +83,10 @@ public record BattlePassDocument
     public MongoId Id { get; set; }
 
     [JsonPropertyName("imageUrl")]
-    public string? ImageUrl { get; set; }
+    public required string ImageUrl { get; set; }
 
     [JsonPropertyName("unavailableImageUrl")]
-    public string? UnavailableImageUrl { get; set; }
+    public required string UnavailableImageUrl { get; set; }
 
     [JsonPropertyName("itemId")]
     public MongoId ItemId { get; set; }
@@ -95,17 +95,17 @@ public record BattlePassDocument
 public record BattlePassDocumentLimits
 {
     [JsonPropertyName("resetHours")]
-    public int? ResetHours { get; set; }
+    public required int ResetHours { get; set; }
 
     [JsonPropertyName("limitsByGameMode")]
-    public List<BattlePassGameModeLimit>? LimitsByGameMode { get; set; }
+    public required List<BattlePassGameModeLimit> LimitsByGameMode { get; set; }
 }
 
 public record BattlePassGameModeLimit
 {
     [JsonPropertyName("gameMode")]
-    public string? GameMode { get; set; }
+    public required string GameMode { get; set; }
 
     [JsonPropertyName("totalLimit")]
-    public int? TotalLimit { get; set; }
+    public required int TotalLimit { get; set; }
 }

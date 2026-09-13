@@ -137,7 +137,7 @@ public class HideoutController(
 
             var timestamp = timeUtil.GetTimeStamp();
 
-            profileHideoutArea.CompleteTime = (int)Math.Round(timestamp + ctime.Value);
+            profileHideoutArea.CompleteTime = (int)Math.Round(timestamp + ctime);
             profileHideoutArea.Constructing = true;
         }
     }
@@ -200,7 +200,7 @@ public class HideoutController(
         }
 
         // Upgrade includes a container improvement/addition
-        if (hideoutStage.Container.HasValue && !hideoutStage.Container.Value.IsEmpty)
+        if (!hideoutStage.Container.IsEmpty)
         {
             AddContainerImprovementToProfile(output, sessionID, pmcData, profileHideoutArea, hideoutData, hideoutStage);
         }
@@ -333,13 +333,13 @@ public class HideoutController(
         if (existingInventoryItem is not null)
         {
             // Update existing items container tpl to point to new id (tpl)
-            existingInventoryItem.Template = hideoutStage.Container.Value;
+            existingInventoryItem.Template = hideoutStage.Container;
 
             return;
         }
 
         // Add new item as none exists (don't inform client of newContainerItem, will be done in `profileChanges.changedHideoutStashes`)
-        var newContainerItem = new Item { Id = dbHideoutArea.Id, Template = hideoutStage.Container.Value };
+        var newContainerItem = new Item { Id = dbHideoutArea.Id, Template = hideoutStage.Container };
         pmcData.Inventory.Items.Add(newContainerItem);
     }
 
@@ -678,7 +678,7 @@ public class HideoutController(
             recipe.ProductionTime
             - hideoutHelper.GetSkillProductionTimeReduction(
                 pmcData,
-                recipe.ProductionTime ?? 0,
+                recipe.ProductionTime,
                 SkillTypes.Crafting,
                 globalTable.Configuration.SkillsSettings.Crafting.CraftTimeReductionPerLevel
             );
@@ -829,7 +829,7 @@ public class HideoutController(
         // Variables for management of skill
         double craftingExpAmount = 0;
         var counterHoursCrafting = GetCustomSptHoursCraftingTaskConditionCounter(pmcData, recipe);
-        var totalCraftingHours = counterHoursCrafting.Value;
+        double totalCraftingHours = counterHoursCrafting.Value ?? 0;
 
         // Array of arrays of item + children
         List<List<Item>> itemAndChildrenToSendToPlayer = [];
@@ -844,7 +844,7 @@ public class HideoutController(
         UnstackRewardIntoValidSize(recipe, itemAndChildrenToSendToPlayer, rewardIsPreset);
 
         // Recipe has an `isEncoded` requirement for reward(s), Add `RecodableComponent` property
-        if (recipe.IsEncoded ?? false)
+        if (recipe.IsEncoded)
         {
             foreach (var rewardItems in itemAndChildrenToSendToPlayer)
             {
@@ -879,7 +879,7 @@ public class HideoutController(
         if (totalCraftingHours / hideoutConfig.HoursForSkillCrafting >= 1)
         {
             // Spent enough time crafting to get a bonus xp multiplier
-            var multiplierCrafting = Math.Floor(totalCraftingHours.Value / hideoutConfig.HoursForSkillCrafting);
+            var multiplierCrafting = Math.Floor(totalCraftingHours / hideoutConfig.HoursForSkillCrafting);
             craftingExpAmount += (int)(1 * multiplierCrafting);
             totalCraftingHours -= hideoutConfig.HoursForSkillCrafting * multiplierCrafting;
         }
@@ -965,21 +965,21 @@ public class HideoutController(
         area.LastRecipe = request.RecipeId;
 
         // Update profiles hours crafting value
-        counterHoursCrafting.Value = totalCraftingHours;
+        counterHoursCrafting.Value = (int)Math.Round(totalCraftingHours);
 
         // Continuous crafts have special handling in EventOutputHolder.updateOutputProperties()
         hideoutProduction.SptIsComplete = true;
-        hideoutProduction.SptIsContinuous = recipe.Continuous ?? false;
+        hideoutProduction.SptIsContinuous = recipe.Continuous;
 
         // Continuous recipes need the craft time refreshed as it gets created once on initial craft and stays the same regardless of what
         // production.json is set to
-        if (recipe.Continuous.GetValueOrDefault(false))
+        if (recipe.Continuous)
         {
             hideoutProduction.ProductionTime = hideoutHelper.GetAdjustedCraftTimeWithSkills(pmcData, recipe.Id, true);
         }
 
         // Flag normal (not continuous) crafts as complete
-        if (!recipe.Continuous ?? false)
+        if (!recipe.Continuous)
         {
             hideoutProduction.InProgress = false;
         }
@@ -1573,7 +1573,7 @@ public class HideoutController(
             return output;
         }
 
-        pmcData.Hideout.Customization[GetHideoutCustomisationType(itemDetails.Type)] = itemDetails.ItemId.Value;
+        pmcData.Hideout.Customization[GetHideoutCustomisationType(itemDetails.Type)] = itemDetails.ItemId;
 
         return output;
     }
@@ -1620,7 +1620,7 @@ public class HideoutController(
     )
     {
         // Each slot is a single Mannequin
-        var slots = itemHelper.GetItem(equipmentPresetStage.Container.Value).Value.Properties.Slots;
+        var slots = itemHelper.GetItem(equipmentPresetStage.Container).Value.Properties.Slots;
         foreach (var mannequinSlot in slots)
         {
             // Check if we've already added this mannequin

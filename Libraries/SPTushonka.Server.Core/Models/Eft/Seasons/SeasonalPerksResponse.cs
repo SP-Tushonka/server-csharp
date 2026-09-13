@@ -9,10 +9,10 @@ namespace SPTarkov.Server.Core.Models.Eft.Seasons;
 public record SeasonalPerksResponse
 {
     [JsonPropertyName("common")]
-    public List<SeasonalPerk>? Common { get; set; }
+    public required List<SeasonalPerk> Common { get; set; }
 
     [JsonPropertyName("personal")]
-    public List<SeasonalPerk>? Personal { get; set; }
+    public required List<SeasonalPerk> Personal { get; set; }
 }
 
 public record SeasonalPerk
@@ -21,25 +21,25 @@ public record SeasonalPerk
     public MongoId Id { get; set; }
 
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public required string Type { get; set; }
 
     [JsonPropertyName("imageUrl")]
-    public string? ImageUrl { get; set; }
+    public required string ImageUrl { get; set; }
 
     [JsonPropertyName("points")]
     public int? Points { get; set; }
 
     [JsonPropertyName("effects")]
-    public List<SeasonalPerkEffect>? Effects { get; set; }
+    public required List<SeasonalPerkEffect> Effects { get; set; }
 
     [JsonPropertyName("mutuallyExclusiveSeasonalPerkIds")]
-    public List<MongoId>? MutuallyExclusiveSeasonalPerkIds { get; set; }
+    public required List<MongoId> MutuallyExclusiveSeasonalPerkIds { get; set; }
 }
 
 public record SeasonalPerkEffect
 {
     [JsonPropertyName("effectId")]
-    public string? EffectId { get; set; }
+    public required string EffectId { get; set; }
 
     [JsonPropertyName("mode")]
     public string? Mode { get; set; }
@@ -93,52 +93,52 @@ public record SeasonalPerkEffect
 public record SeasonalPerkItemFilter
 {
     [JsonPropertyName("include")]
-    public List<SeasonalPerkFilterEntry>? Include { get; set; }
+    public required List<SeasonalPerkFilterEntry> Include { get; set; }
 
     [JsonPropertyName("exclude")]
-    public List<SeasonalPerkFilterEntry>? Exclude { get; set; }
+    public required List<SeasonalPerkFilterEntry> Exclude { get; set; }
 }
 
 public record SeasonalPerkFilterEntry
 {
     [JsonPropertyName("field")]
-    public string? Field { get; set; }
+    public required string Field { get; set; }
 
     [JsonPropertyName("value")]
-    public string? Value { get; set; }
+    public required string Value { get; set; }
 }
 
 public record SeasonalPerkSubEffects
 {
     [JsonPropertyName("energyRecovery")]
-    public SeasonalPerkSubEffect? EnergyRecovery { get; set; }
+    public required SeasonalPerkSubEffect EnergyRecovery { get; set; }
 
     [JsonPropertyName("healthRegeneration")]
-    public SeasonalPerkSubEffect? HealthRegeneration { get; set; }
+    public required SeasonalPerkSubEffect HealthRegeneration { get; set; }
 
     [JsonPropertyName("hydrationRecovery")]
-    public SeasonalPerkSubEffect? HydrationRecovery { get; set; }
+    public required SeasonalPerkSubEffect HydrationRecovery { get; set; }
 
     [JsonPropertyName("onPainkillers")]
-    public SeasonalPerkSubEffect? OnPainkillers { get; set; }
+    public required SeasonalPerkSubEffect OnPainkillers { get; set; }
 
     [JsonPropertyName("pain")]
-    public SeasonalPerkSubEffect? Pain { get; set; }
+    public required SeasonalPerkSubEffect Pain { get; set; }
 
     [JsonPropertyName("tremor")]
-    public SeasonalPerkSubEffect? Tremor { get; set; }
+    public required SeasonalPerkSubEffect Tremor { get; set; }
 
     [JsonPropertyName("tunnelVision")]
-    public SeasonalPerkSubEffect? TunnelVision { get; set; }
+    public required SeasonalPerkSubEffect TunnelVision { get; set; }
 }
 
 public record SeasonalPerkSubEffect
 {
     [JsonPropertyName("enabled")]
-    public bool? Enabled { get; set; }
+    public required bool Enabled { get; set; }
 
     [JsonPropertyName("durationSeconds")]
-    public int? DurationSeconds { get; set; }
+    public required int DurationSeconds { get; set; }
 
     [JsonPropertyName("amount")]
     public int? Amount { get; set; }

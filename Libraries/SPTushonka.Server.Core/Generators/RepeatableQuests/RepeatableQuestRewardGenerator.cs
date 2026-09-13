@@ -414,7 +414,7 @@ public class RepeatableQuestRewardGenerator(
         var stackSizeThatFitsBudget = Math.Round(stackRoubleBudget / singleCartridgePrice);
 
         // Get itemDbs max stack size for ammo - don't go above 100 (some mods mess around with stack sizes)
-        var stackMaxCount = Math.Min(itemSelected.Properties.StackMaxSize.Value, 100);
+        var stackMaxCount = Math.Min(itemSelected.Properties.StackMaxSize, 100);
 
         // Ensure stack size is at least 1 + is no larger than the max possible stack size
         return (int)Math.Clamp(stackSizeThatFitsBudget, 1, stackMaxCount);

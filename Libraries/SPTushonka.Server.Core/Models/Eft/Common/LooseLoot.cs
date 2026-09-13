@@ -30,31 +30,31 @@ public record SpawnpointTemplate
     /// Not a mongoId
     /// </summary>
     [JsonPropertyName("Id")]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("IsContainer")]
-    public bool? IsContainer { get; set; }
+    public required bool IsContainer { get; set; }
 
     [JsonPropertyName("useGravity")]
-    public bool? UseGravity { get; set; }
+    public required bool UseGravity { get; set; }
 
     [JsonPropertyName("randomRotation")]
-    public bool? RandomRotation { get; set; }
+    public required bool RandomRotation { get; set; }
 
     [JsonPropertyName("Position")]
-    public Vector3? Position { get; set; }
+    public required Vector3 Position { get; set; }
 
     [JsonPropertyName("Rotation")]
-    public Vector3? Rotation { get; set; }
+    public required Vector3 Rotation { get; set; }
 
     [JsonPropertyName("IsAlwaysSpawn")]
-    public bool? IsAlwaysSpawn { get; set; }
+    public required bool IsAlwaysSpawn { get; set; }
 
     [JsonPropertyName("IsGroupPosition")]
-    public bool? IsGroupPosition { get; set; }
+    public required bool IsGroupPosition { get; set; }
 
     [JsonPropertyName("GroupPositions")]
-    public IEnumerable<GroupPosition>? GroupPositions { get; set; }
+    public required IEnumerable<GroupPosition> GroupPositions { get; set; }
 
     [JsonPropertyName("Root")]
     public string? Root
@@ -64,7 +64,7 @@ public record SpawnpointTemplate
     }
 
     [JsonPropertyName("Items")]
-    public IEnumerable<SptLootItem>? Items { get; set; }
+    public required IEnumerable<SptLootItem> Items { get; set; }
 }
 
 public record SptLootItem : Item
@@ -83,13 +83,13 @@ public record GroupPosition
     }
 
     [JsonPropertyName("Weight")]
-    public double? Weight { get; set; }
+    public required double Weight { get; set; }
 
     [JsonPropertyName("Position")]
-    public Vector3? Position { get; set; }
+    public required Vector3 Position { get; set; }
 
     [JsonPropertyName("Rotation")]
-    public Vector3? Rotation { get; set; }
+    public required Vector3 Rotation { get; set; }
 }
 
 public record Spawnpoint

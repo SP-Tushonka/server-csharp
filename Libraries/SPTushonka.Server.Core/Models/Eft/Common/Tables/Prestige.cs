@@ -45,13 +45,13 @@ public record TransferConfigs
 public record StashPrestigeConfig
 {
     [JsonPropertyName("xCellCount")]
-    public int? XCellCount { get; set; }
+    public required int XCellCount { get; set; }
 
     [JsonPropertyName("yCellCount")]
-    public int? YCellCount { get; set; }
+    public required int YCellCount { get; set; }
 
     [JsonPropertyName("filters")]
-    public StashPrestigeFilters? Filters { get; set; }
+    public required StashPrestigeFilters Filters { get; set; }
 }
 
 public record StashPrestigeFilters

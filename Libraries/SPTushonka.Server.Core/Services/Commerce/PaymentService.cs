@@ -127,7 +127,7 @@ public class PaymentService(
                 );
 
                 // Only update traders
-                pmcData.TradersInfo[requestTransactionId].SalesSum += costOfPurchaseInCurrency;
+                pmcData.TradersInfo[requestTransactionId].SalesSum += (long)Math.Round(costOfPurchaseInCurrency);
             }
         }
 
@@ -142,7 +142,7 @@ public class PaymentService(
                 trader.Currency.Value.GetCurrencyTpl()
             );
 
-            pmcData.TradersInfo[requestTransactionId].SalesSum += costOfPurchaseInCurrency;
+            pmcData.TradersInfo[requestTransactionId].SalesSum += (long)Math.Round(costOfPurchaseInCurrency);
         }
 
         if (payToTrader)
@@ -280,7 +280,7 @@ public class PaymentService(
         }
 
         // Calcualte new total sale sum with trader item sold to
-        var saleSum = pmcData.TradersInfo[request.TransactionId].SalesSum + amountToSend;
+        var saleSum = pmcData.TradersInfo[request.TransactionId].SalesSum + (long)Math.Round(amountToSend ?? 0);
 
         pmcData.TradersInfo[request.TransactionId].SalesSum = saleSum;
         traderHelper.LevelUp(request.TransactionId, pmcData);

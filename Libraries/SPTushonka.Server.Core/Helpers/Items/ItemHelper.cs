@@ -1099,8 +1099,7 @@ public class ItemHelper(
         var isRequiredSlot = false;
         if (parentTemplate.Key && parentTemplate.Value?.Properties?.Slots != null)
         {
-            isRequiredSlot =
-                parentTemplate.Value?.Properties?.Slots?.Any(slot => slot.Name == item.SlotId && (slot.Required ?? false)) ?? false;
+            isRequiredSlot = parentTemplate.Value?.Properties?.Slots?.Any(slot => slot.Name == item.SlotId && slot.Required) ?? false;
         }
 
         return itemTemplate.Key && parentTemplate.Key && !(isNotRaidModdable || isRequiredSlot);
@@ -1224,18 +1223,17 @@ public class ItemHelper(
             // Calculating child ExtraSize
             if (itemDbTemplate?.Properties?.ExtraSizeForceAdd ?? false)
             {
-                forcedUp += itemDbTemplate.Properties.ExtraSizeUp!.Value;
-                forcedDown += itemDbTemplate.Properties.ExtraSizeDown!.Value;
-                forcedLeft += itemDbTemplate.Properties.ExtraSizeLeft!.Value;
-                forcedRight += itemDbTemplate.Properties.ExtraSizeRight!.Value;
+                forcedUp += itemDbTemplate.Properties.ExtraSizeUp;
+                forcedDown += itemDbTemplate.Properties.ExtraSizeDown;
+                forcedLeft += itemDbTemplate.Properties.ExtraSizeLeft;
+                forcedRight += itemDbTemplate.Properties.ExtraSizeRight;
             }
             else
             {
-                sizeUp = sizeUp < itemDbTemplate?.Properties?.ExtraSizeUp ? itemDbTemplate.Properties.ExtraSizeUp.Value : sizeUp;
-                sizeDown = sizeDown < itemDbTemplate?.Properties?.ExtraSizeDown ? itemDbTemplate.Properties.ExtraSizeDown.Value : sizeDown;
-                sizeLeft = sizeLeft < itemDbTemplate?.Properties?.ExtraSizeLeft ? itemDbTemplate.Properties.ExtraSizeLeft.Value : sizeLeft;
-                sizeRight =
-                    sizeRight < itemDbTemplate?.Properties?.ExtraSizeRight ? itemDbTemplate.Properties.ExtraSizeRight.Value : sizeRight;
+                sizeUp = sizeUp < itemDbTemplate?.Properties?.ExtraSizeUp ? itemDbTemplate.Properties.ExtraSizeUp : sizeUp;
+                sizeDown = sizeDown < itemDbTemplate?.Properties?.ExtraSizeDown ? itemDbTemplate.Properties.ExtraSizeDown : sizeDown;
+                sizeLeft = sizeLeft < itemDbTemplate?.Properties?.ExtraSizeLeft ? itemDbTemplate.Properties.ExtraSizeLeft : sizeLeft;
+                sizeRight = sizeRight < itemDbTemplate?.Properties?.ExtraSizeRight ? itemDbTemplate.Properties.ExtraSizeRight : sizeRight;
             }
         }
 
@@ -1579,13 +1577,13 @@ public class ItemHelper(
         foreach (var slot in itemToAddTemplate.Properties?.Slots ?? [])
         {
             // If only required mods is requested, skip non-essential
-            if (requiredOnly && !(slot.Required ?? false))
+            if (requiredOnly && !slot.Required)
             {
                 continue;
             }
 
             // Roll chance for non-required slot mods
-            if (modSpawnChanceDict is not null && !(slot.Required ?? false))
+            if (modSpawnChanceDict is not null && !slot.Required)
             {
                 // only roll chance to not include mod if dict exists and has value for this mod type (e.g. front_plate)
                 if (modSpawnChanceDict.TryGetValue(slot.Name?.ToLowerInvariant() ?? string.Empty, out var value))

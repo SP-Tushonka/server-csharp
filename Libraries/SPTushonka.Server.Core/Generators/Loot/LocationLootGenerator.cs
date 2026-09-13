@@ -287,7 +287,7 @@ public class LocationLootGenerator(
     {
         return staticContainers.Where(staticContainer =>
             staticContainer.Probability != 1
-            && !staticContainer.Template.IsAlwaysSpawn.GetValueOrDefault(false)
+            && !staticContainer.Template.IsAlwaysSpawn
             && !locationConfig.ContainerRandomisationSettings.ContainerTypesToNotRandomise.Contains(
                 staticContainer.Template.Items.FirstOrDefault().Template
             )
@@ -303,7 +303,7 @@ public class LocationLootGenerator(
     {
         return staticContainersOnMap.Where(staticContainer =>
             staticContainer.Probability == 1
-            || staticContainer.Template.IsAlwaysSpawn.GetValueOrDefault(false)
+            || staticContainer.Template.IsAlwaysSpawn
             || locationConfig.ContainerRandomisationSettings.ContainerTypesToNotRandomise.Contains(
                 staticContainer.Template.Items.FirstOrDefault().Template
             )
@@ -682,7 +682,7 @@ public class LocationLootGenerator(
 
         // Build the list of forced loot from both `SpawnpointsForced` and any point marked `IsAlwaysSpawn`
         dynamicForcedSpawnPoints.AddRange(dynamicLootDist.SpawnpointsForced);
-        dynamicForcedSpawnPoints.AddRange(dynamicLootDist.Spawnpoints.Where(point => point.Template.IsAlwaysSpawn.GetValueOrDefault()));
+        dynamicForcedSpawnPoints.AddRange(dynamicLootDist.Spawnpoints.Where(point => point.Template.IsAlwaysSpawn));
 
         loot.AddRange(GetForcedDynamicLoot(dynamicForcedSpawnPoints, locationName, staticAmmoDist));
 
@@ -715,7 +715,7 @@ public class LocationLootGenerator(
             }
 
             // We've handled IsAlwaysSpawn above, so skip them
-            if (spawnPoint.Template.IsAlwaysSpawn ?? false)
+            if (spawnPoint.Template.IsAlwaysSpawn)
             {
                 continue;
             }

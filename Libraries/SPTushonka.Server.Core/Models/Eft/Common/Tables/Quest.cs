@@ -25,13 +25,13 @@ public record Quest
     public required string Description { get; set; }
 
     [JsonPropertyName("failMessageText")]
-    public string? FailMessageText { get; set; }
+    public required string FailMessageText { get; set; }
 
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
     [JsonPropertyName("note")]
-    public string? Note { get; set; }
+    public required string Note { get; set; }
 
     [JsonPropertyName("traderId")]
     public required MongoId TraderId { get; set; }
@@ -50,22 +50,22 @@ public record Quest
     public bool? IsStoryQuest { get; set; }
 
     [JsonPropertyName("isKey")]
-    public bool? IsKey { get; set; }
+    public required bool IsKey { get; set; }
 
     [JsonPropertyName("restartable")]
     public required bool Restartable { get; set; }
 
     [JsonPropertyName("instantComplete")]
-    public bool? InstantComplete { get; set; }
+    public required bool InstantComplete { get; set; }
 
     [JsonPropertyName("secretQuest")]
-    public bool? SecretQuest { get; set; }
+    public required bool SecretQuest { get; set; }
 
     [JsonPropertyName("startedMessageText")]
-    public string? StartedMessageText { get; set; }
+    public required string StartedMessageText { get; set; }
 
     [JsonPropertyName("successMessageText")]
-    public string? SuccessMessageText { get; set; }
+    public required string SuccessMessageText { get; set; }
 
     [JsonPropertyName("acceptPlayerMessage")]
     public string AcceptPlayerMessage { get; set; }
@@ -74,10 +74,10 @@ public record Quest
     public string AcceptanceAndFinishingSource { get; set; }
 
     [JsonPropertyName("declinePlayerMessage")]
-    public string? DeclinePlayerMessage { get; set; }
+    public required string DeclinePlayerMessage { get; set; }
 
     [JsonPropertyName("completePlayerMessage")]
-    public string? CompletePlayerMessage { get; set; }
+    public required string CompletePlayerMessage { get; set; }
 
     [JsonPropertyName("templateId")]
     public string? TemplateId { get; set; }
@@ -89,10 +89,10 @@ public record Quest
     ///     Becomes 'AppearStatus' inside client
     /// </summary>
     [JsonPropertyName("status")]
-    public QuestStatusEnum? Status { get; set; }
+    public required QuestStatusEnum Status { get; set; }
 
     [JsonPropertyName("changeQuestMessageText")]
-    public string? ChangeQuestMessageText { get; set; }
+    public required string ChangeQuestMessageText { get; set; }
 
     /// <summary>
     ///     "Pmc" or "Scav"
@@ -101,16 +101,16 @@ public record Quest
     public required string Side { get; set; }
 
     [JsonPropertyName("progressSource")]
-    public string? ProgressSource { get; set; }
+    public required string ProgressSource { get; set; }
 
     [JsonPropertyName("rankingModes")]
-    public List<string>? RankingModes { get; set; }
+    public required List<string> RankingModes { get; set; }
 
     [JsonPropertyName("gameModes")]
-    public List<string>? GameModes { get; set; }
+    public required List<string> GameModes { get; set; }
 
     [JsonPropertyName("arenaLocations")]
-    public List<string>? ArenaLocations { get; set; }
+    public required List<string> ArenaLocations { get; set; }
 
     [JsonPropertyName("dialogueId")]
     public MongoId? DialogueId { get; set; }
@@ -155,7 +155,7 @@ public record QuestStatus
     public required MongoId QId { get; set; }
 
     [JsonPropertyName("startTime")]
-    public required double StartTime { get; set; }
+    public required long StartTime { get; set; }
 
     [JsonPropertyName("status")]
     public required QuestStatusEnum Status { get; set; }
@@ -167,7 +167,7 @@ public record QuestStatus
     public List<string>? CompletedConditions { get; set; }
 
     [JsonPropertyName("availableAfter")]
-    public double? AvailableAfter { get; set; }
+    public long? AvailableAfter { get; set; }
 }
 
 public record QuestConditionTypes
@@ -176,16 +176,16 @@ public record QuestConditionTypes
     public List<QuestCondition>? Started { get; set; }
 
     [JsonPropertyName("AvailableForFinish")]
-    public List<QuestCondition>? AvailableForFinish { get; set; }
+    public required List<QuestCondition> AvailableForFinish { get; set; }
 
     [JsonPropertyName("AvailableForStart")]
-    public List<QuestCondition>? AvailableForStart { get; set; }
+    public required List<QuestCondition> AvailableForStart { get; set; }
 
     [JsonPropertyName("Success")]
     public List<QuestCondition>? Success { get; set; }
 
     [JsonPropertyName("Fail")]
-    public List<QuestCondition>? Fail { get; set; }
+    public required List<QuestCondition> Fail { get; set; }
 
     [JsonPropertyName("AutoStart")]
     public List<QuestCondition>? AutoStart { get; set; }
@@ -388,13 +388,13 @@ public record QuestConditionProperties
     public bool DynamicLocale { get; set; }
 
     [JsonPropertyName("visibilityConditions")]
-    public List<object>? VisibilityConditions { get; set; }
+    public required List<object> VisibilityConditions { get; set; }
 
     [JsonPropertyName("globalQuestCounterId")]
-    public string? GlobalQuestCounterId { get; set; }
+    public required string GlobalQuestCounterId { get; set; }
 
     [JsonPropertyName("parentId")]
-    public string? ParentId { get; set; }
+    public required string ParentId { get; set; }
 
     [JsonPropertyName("entryPoint")]
     public object? EntryPoint { get; set; }
@@ -409,10 +409,10 @@ public record QuestConditionProperties
 public record QuestConditionCounter
 {
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("conditions")]
-    public List<QuestConditionCounterCondition>? Conditions { get; set; }
+    public required List<QuestConditionCounterCondition> Conditions { get; set; }
 }
 
 public record QuestConditionCounterCondition
@@ -508,19 +508,19 @@ public record QuestConditionCounterCondition
 public record EnemyHealthEffect
 {
     [JsonPropertyName("bodyParts")]
-    public List<string>? BodyParts { get; set; }
+    public required List<string> BodyParts { get; set; }
 
     [JsonPropertyName("effects")]
-    public List<string>? Effects { get; set; }
+    public required List<string> Effects { get; set; }
 }
 
 public record ValueCompare
 {
     [JsonPropertyName("compareMethod")]
-    public string? CompareMethod { get; set; }
+    public required string CompareMethod { get; set; }
 
     [JsonPropertyName("value")]
-    public double? Value { get; set; }
+    public required double Value { get; set; }
 }
 
 public record CounterConditionDistance
@@ -544,10 +544,10 @@ public record DaytimeCounter
 public record VisibilityCondition
 {
     [JsonPropertyName("id")]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("target")]
-    public string? Target { get; set; }
+    public required string Target { get; set; }
 
     [JsonPropertyName("value")]
     public int? Value { get; set; }
@@ -565,20 +565,20 @@ public record VisibilityCondition
 public record QuestMailSettings
 {
     [JsonPropertyName("isEnabled")]
-    public bool? IsEnabled { get; set; }
+    public required bool IsEnabled { get; set; }
 
     [JsonPropertyName("fromTraderId")]
-    public MongoId? FromTraderId { get; set; }
+    public required MongoId FromTraderId { get; set; }
 
     [JsonPropertyName("entryPoint")]
-    public string? EntryPoint { get; set; }
+    public required string EntryPoint { get; set; }
 
     [JsonPropertyName("dialogueId")]
-    public MongoId? DialogueId { get; set; }
+    public required MongoId DialogueId { get; set; }
 
     [JsonPropertyName("dialogueTraderId")]
-    public MongoId? DialogueTraderId { get; set; }
+    public required MongoId DialogueTraderId { get; set; }
 
     [JsonPropertyName("whileAvailableMessageText")]
-    public string? WhileAvailableMessageText { get; set; }
+    public required string WhileAvailableMessageText { get; set; }
 }

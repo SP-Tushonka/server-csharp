@@ -38,7 +38,7 @@ public class LocationLootGeneratorTests
             );
             var drives = loot.Where(point => point.Id!.StartsWith(HardDrive)).ToList();
             Assert.That(drives, Has.Count.EqualTo(1), "one hard drive per raid");
-            var position = drives[0].Position!.Value;
+            var position = drives[0].Position;
             positions.Add($"{position.X},{position.Y},{position.Z}");
         }
 

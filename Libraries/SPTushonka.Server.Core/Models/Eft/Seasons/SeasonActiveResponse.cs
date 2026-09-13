@@ -56,14 +56,14 @@ public record SeasonalReward
 public record RewardGridLocation
 {
     [JsonPropertyName("x")]
-    public int? X { get; set; }
+    public required int X { get; set; }
 
     [JsonPropertyName("y")]
-    public int? Y { get; set; }
+    public required int Y { get; set; }
 
     [JsonPropertyName("w")]
-    public int? W { get; set; }
+    public required int W { get; set; }
 
     [JsonPropertyName("h")]
-    public int? H { get; set; }
+    public required int H { get; set; }
 }

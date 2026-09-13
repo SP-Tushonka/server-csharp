@@ -100,7 +100,7 @@ public class ScavCaseRewardGenerator(
                         return false;
                     }
 
-                    if (item.Properties.QuestItem ?? false)
+                    if (item.Properties.QuestItem)
                     {
                         return false;
                     }
@@ -453,7 +453,7 @@ public class ScavCaseRewardGenerator(
     /// <returns>value to set stack count to</returns>
     protected int GetRandomisedAmmoRewardStackSize(TemplateItem itemToCalculate)
     {
-        return randomUtil.GetInt(scavCaseConfig.AmmoRewards.MinStackSize, itemToCalculate.Properties.StackMaxSize ?? 0);
+        return randomUtil.GetInt(scavCaseConfig.AmmoRewards.MinStackSize, itemToCalculate.Properties.StackMaxSize);
     }
 
     /// <summary>
