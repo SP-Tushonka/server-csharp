@@ -36,6 +36,7 @@ public static class Program
 
         var database = ServerDatabase();
         var quests = Json.DeserializeFromFile<Dictionary<MongoId, Quest>>(Path.Combine(database, "templates", "quests.json"));
+        var achievements = Json.DeserializeFromFile<List<Achievement>>(Path.Combine(database, "templates", "achievements.json"));
         var pass = Json.DeserializeFromFile<BattlePassActiveResponse>(Path.Combine(database, "season", "battlePass.json"));
         var handbook = Json.DeserializeFromFile<HandbookBase>(Path.Combine(database, "templates", "handbook.json"));
         _handbookPrices = handbook.Items.ToDictionary(item => item.Id, item => item.Price ?? 0);
@@ -73,7 +74,7 @@ public static class Program
             );
 
             StripSeasonPassOffers(assort, traderId, passRewards, passOffers);
-            var questAssort = BuildQuestAssort(assort, traderId, quests, currency);
+            var questAssort = BuildQuestAssort(assort, traderId, quests, achievements, currency);
 
             var traderOutput = Path.Combine(output, "traders", traderId);
             Directory.CreateDirectory(traderOutput);
@@ -185,6 +186,7 @@ public static class Program
         TraderAssort assort,
         MongoId traderId,
         Dictionary<MongoId, Quest> quests,
+        List<Achievement> achievements,
         MongoId currency
     )
     {
@@ -193,6 +195,7 @@ public static class Program
             ["started"] = [],
             ["success"] = [],
             ["fail"] = [],
+            ["achievement"] = [],
         };
 
         foreach (var (questId, quest) in quests)
@@ -210,30 +213,57 @@ public static class Program
                     )
                 )
                 {
-                    var match = FindOffer(assort, reward) ?? Inject(assort, reward, currency, questId);
-                    if (match is null)
-                    {
-                        continue;
-                    }
-
-                    // The server keys unlocks by offer, so an offer two quests share stays with the first
-                    var taken = questAssort.Values.FirstOrDefault(entry => entry.ContainsKey(match.Id));
-                    if (taken is not null)
-                    {
-                        Console.WriteLine($"  offer {match.Template} already unlocked by quest {taken[match.Id]}, {questId} skipped");
-                        continue;
-                    }
-
-                    bucket[match.Id] = questId;
+                    Assign(assort, questAssort, bucket, reward, questId, currency);
                 }
+            }
+        }
+
+        foreach (var achievement in achievements)
+        {
+            foreach (
+                var reward in (achievement.Rewards ?? []).Where(entry =>
+                    entry.Type == RewardType.AssortmentUnlock && entry.TraderId?.ToString() == traderId
+                )
+            )
+            {
+                Assign(assort, questAssort, questAssort["achievement"], reward, achievement.Id, currency);
             }
         }
 
         return questAssort;
     }
 
-    // Reward item ids are regenerated per dump, so offers are matched by template and tier
-    private static Item FindOffer(TraderAssort assort, Reward reward)
+    private static void Assign(
+        TraderAssort assort,
+        Dictionary<string, Dictionary<MongoId, MongoId>> questAssort,
+        Dictionary<MongoId, MongoId> bucket,
+        Reward reward,
+        MongoId unlockId,
+        MongoId currency
+    )
+    {
+        var taken = questAssort.Values.SelectMany(entry => entry.Keys).ToHashSet();
+        var match = FindOffer(assort, reward, taken) ?? Inject(assort, reward, currency, unlockId);
+        if (match is null)
+        {
+            return;
+        }
+
+        // The server keys unlocks by offer, so an offer two unlocks share stays with the first
+        if (taken.Contains(match.Id))
+        {
+            var owner = questAssort.Values.First(entry => entry.ContainsKey(match.Id))[match.Id];
+            Console.WriteLine($"  offer {match.Template} already unlocked by {owner}, {unlockId} skipped");
+            return;
+        }
+
+        bucket[match.Id] = unlockId;
+    }
+
+    // Reward item ids are regenerated per dump, so offers are matched by template and tier.
+    // A trader can sell one template at several tiers with a quest per tier, so an offer
+    // another unlock already owns is only a last resort.
+    private static Item FindOffer(TraderAssort assort, Reward reward, HashSet<MongoId> taken = null)
     {
         var root = reward.Items?.FirstOrDefault(item => item.Id == reward.Target);
         if (root is null)
@@ -241,13 +271,17 @@ public static class Program
             return null;
         }
 
+        taken ??= [];
         var candidates = assort.Items.Where(item => item.ParentId == "hideout" && item.Template == root.Template).ToList();
-        return candidates.FirstOrDefault(item => assort.LoyalLevelItems.GetValueOrDefault(item.Id) == reward.LoyaltyLevel)
+        var free = candidates.Where(item => !taken.Contains(item.Id)).ToList();
+        return free.FirstOrDefault(item => assort.LoyalLevelItems.GetValueOrDefault(item.Id) == reward.LoyaltyLevel)
+            ?? free.FirstOrDefault()
+            ?? candidates.FirstOrDefault(item => assort.LoyalLevelItems.GetValueOrDefault(item.Id) == reward.LoyaltyLevel)
             ?? candidates.FirstOrDefault();
     }
 
     // No captured profile had unlocked this offer, so it goes in with a handbook derived price
-    private static Item Inject(TraderAssort assort, Reward reward, MongoId currency, MongoId questId)
+    private static Item Inject(TraderAssort assort, Reward reward, MongoId currency, MongoId unlockId)
     {
         var root = reward.Items?.FirstOrDefault(item => item.Id == reward.Target);
         if (root is null)
@@ -266,7 +300,7 @@ public static class Program
         [
             [new BarterScheme { Template = currency, Count = DerivedPrice(reward.Items, currency) }],
         ];
-        Console.WriteLine($"  quest offer {root.Template} for quest {questId} not in any dump, added with a handbook price");
+        Console.WriteLine($"  offer {root.Template} for {unlockId} not in any dump, added with a handbook price");
 
         return root;
     }

@@ -13,12 +13,12 @@ namespace SPTarkov.Server.Core.Helpers.Traders;
 public class AssortHelper(ISptLogger<AssortHelper> logger, ServerLocalisationService serverLocalisationService)
 {
     /// <summary>
-    ///     Remove assorts from a trader that have not been unlocked yet (via player completing corresponding quest)
+    ///     Remove assorts from a trader that have not been unlocked yet (via player completing corresponding quest or achievement)
     /// </summary>
     /// <param name="pmcProfile"></param>
     /// <param name="traderId">Traders id assort belongs to</param>
     /// <param name="traderAssorts">All assort items from same trader</param>
-    /// <param name="mergedQuestAssorts">Dict of quest assort to quest id unlocks for all traders (key = started/failed/complete)</param>
+    /// <param name="mergedQuestAssorts">Dict of quest assort to quest id unlocks for all traders (key = started/failed/complete/achievement)</param>
     /// <param name="isFlea">Is the trader assort being modified the flea market</param>
     /// <returns>items minus locked quest assorts</returns>
     public TraderAssort StripLockedQuestAssort(
@@ -39,9 +39,21 @@ public class AssortHelper(ISptLogger<AssortHelper> logger, ServerLocalisationSer
             return traderAssorts;
         }
 
+        mergedQuestAssorts.TryGetValue("achievement", out var achievementAssorts);
+
         // Iterate over all assorts, removing items that haven't yet been unlocked by quests (ASSORTMENT_UNLOCK)
         foreach (var (assortId, _) in traderAssorts.LoyalLevelItems)
         {
+            if (achievementAssorts is not null && achievementAssorts.TryGetValue(assortId, out var achievementId))
+            {
+                if (!(pmcProfile.Achievements?.ContainsKey(achievementId) ?? false))
+                {
+                    strippedTraderAssorts = traderAssorts.RemoveItemFromAssort(assortId, isFlea);
+                }
+
+                continue;
+            }
+
             // Get quest id that unlocks assort + statuses quest can be in to show assort
             var unlockValues = GetQuestIdAndStatusThatShowAssort(mergedQuestAssorts, assortId);
             if (unlockValues is null)

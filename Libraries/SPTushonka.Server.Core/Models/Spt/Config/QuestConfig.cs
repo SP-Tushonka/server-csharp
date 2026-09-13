@@ -48,6 +48,12 @@ public record QuestConfig : BaseConfig
     public required HashSet<MongoId> WithheldQuests { get; set; }
 
     /// <summary>
+    ///     We have no idea when these unlock at the moment.. Keep them hidden
+    /// </summary>
+    [JsonPropertyName("hiddenVariableGates")]
+    public required Dictionary<MongoId, HiddenVariableGate> HiddenVariableGates { get; set; }
+
+    /// <summary>
     ///     Holds repeatable quest template ids for pmc's and scav's
     /// </summary>
     [JsonPropertyName("repeatableQuestTemplateIds")]
@@ -638,4 +644,15 @@ public record BossInfo
     /// </summary>
     [JsonPropertyName("isPmc")]
     public bool? IsPmc { get; set; }
+}
+
+public record HiddenVariableGate
+{
+    /// <summary>The variable group whose sum is compared</summary>
+    [JsonPropertyName("target")]
+    public required MongoId Target { get; set; }
+
+    /// <summary>The lowest sum that offers the quest</summary>
+    [JsonPropertyName("value")]
+    public required int Value { get; set; }
 }

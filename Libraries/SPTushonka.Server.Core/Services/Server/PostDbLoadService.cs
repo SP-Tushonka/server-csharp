@@ -760,22 +760,16 @@ public class PostDbLoadService(
                 continue;
             }
 
-            // Merge started/success/fail quest assorts into one dictionary
-            var mergedQuestAssorts = new Dictionary<MongoId, MongoId>();
-            mergedQuestAssorts = mergedQuestAssorts
-                .Concat(traderData.QuestAssort["started"])
-                .Concat(traderData.QuestAssort["success"])
-                .Concat(traderData.QuestAssort["fail"])
-                .ToDictionary();
-
-            // Loop over all assorts for trader
-            foreach (var (assortKey, questKey) in mergedQuestAssorts)
-            // Does assort key exist in trader assort file
+            // Does every offer in the unlock buckets exist in the trader assort file
+            foreach (var (assortKey, unlockKey) in traderData.QuestAssort.Values.SelectMany(bucket => bucket))
             {
                 if (!traderAssorts.LoyalLevelItems.ContainsKey(assortKey))
                 {
-                    // Reverse lookup of enum key by value
-                    var messageValues = new { traderName = traderId, questName = quests[questKey]?.Name ?? "UNKNOWN" };
+                    var messageValues = new
+                    {
+                        traderName = traderId,
+                        questName = quests.GetValueOrDefault(unlockKey)?.Name ?? unlockKey.ToString(),
+                    };
                     logger.Warning(serverLocalisationService.GetText("assort-missing_quest_assort_unlock", messageValues));
                 }
             }

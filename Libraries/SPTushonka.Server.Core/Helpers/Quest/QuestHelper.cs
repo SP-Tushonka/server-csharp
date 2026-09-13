@@ -327,7 +327,7 @@ public class QuestHelper(
                     return false;
                 }
 
-                if (questConfig.WithheldQuests.Contains(quest.Id))
+                if (questConfig.WithheldQuests.Contains(quest.Id) || !HiddenGateMet(quest.Id, profile))
                 {
                     return false;
                 }
@@ -1162,7 +1162,7 @@ public class QuestHelper(
                 continue;
             }
 
-            if (questConfig.WithheldQuests.Contains(quest.Id))
+            if (questConfig.WithheldQuests.Contains(quest.Id) || !HiddenGateMet(quest.Id, profile))
             {
                 continue;
             }
@@ -1381,6 +1381,17 @@ public class QuestHelper(
                     _ => current >= required,
                 };
             });
+    }
+
+    /// <summary>Whether the profile has reached the group value live silently asks of this quest, if any.</summary>
+    protected bool HiddenGateMet(MongoId questId, PmcData? profile)
+    {
+        if (!questConfig.HiddenVariableGates.TryGetValue(questId, out var gate))
+        {
+            return true;
+        }
+
+        return profile is not null && GetVariableValue(profile, gate.Target) >= gate.Value;
     }
 
     // A condition may name a variable group, whose value is the sum of its member variables. Trader

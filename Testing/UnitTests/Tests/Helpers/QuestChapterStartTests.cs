@@ -91,6 +91,41 @@ public class QuestChapterStartTests
         Assert.That(_saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!.Any(q => q.QId == dialogueTask), Is.False);
     }
 
+    [Test]
+    public void GetClientQuests_WithheldQuest_IsNotOffered()
+    {
+        // Green Corridor ships without start conditions but live never offers it to a fresh account
+        var greenCorridor = new MongoId("639136d68ba6894d155e77cf");
+        var sessionId = AddProfile();
+
+        var shown = _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(shown.Any(q => q.Id == greenCorridor), Is.False);
+    }
+
+    [Test]
+    public void GetClientQuests_HiddenGate_OpensAtTheGroupValue()
+    {
+        // Health Care Privacy - Part 1 ships without start conditions, live offers it once three Therapist flags are set
+        var healthCarePrivacy = new MongoId("5a68661a86f774500f48afb0");
+        var therapistMembers = new[]
+        {
+            new MongoId("6a4e3cb1d243ff547dd39138"),
+            new MongoId("6a4e3cc523afea2e6bc1bf92"),
+            new MongoId("6a4e3cce19d8756cf9cc0ce4"),
+        };
+        var sessionId = AddProfile();
+        var variables = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Variables!;
+        variables[therapistMembers[0]] = 1;
+        variables[therapistMembers[1]] = 1;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == healthCarePrivacy), Is.False, "two flags");
+
+        variables[therapistMembers[2]] = 1;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == healthCarePrivacy), Is.True, "three flags");
+    }
+
     private MongoId AddProfile(params MongoId[] completed)
     {
         var sessionId = new MongoId();
