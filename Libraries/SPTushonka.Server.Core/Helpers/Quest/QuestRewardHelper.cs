@@ -133,12 +133,18 @@ public class QuestRewardHelper(
         // Get a total of the quest money reward percent bonuses
         var moneyRewardBonusPercent = moneyRewardBonuses.Aggregate(0D, (accumulate, bonus) => accumulate + bonus.Value ?? 0);
 
+        // No Intel Center bonus present - Hideout Management can't boost nothing, so no boost at all
+        if (moneyRewardBonusPercent <= 0)
+        {
+            return 0;
+        }
+
         // Calculate hideout management bonus as a percentage (up to 51% bonus)
         var hideoutManagementSkill = pmcData.GetSkillFromProfile(SkillTypes.HideoutManagement);
 
         // 5100 becomes 0.51, add 1 to it, 1.51
         // We multiply the money reward bonuses by the hideout management skill multiplier, giving the new result
-        var hideoutManagementBonusMultiplier = hideoutManagementSkill != null ? 2 + hideoutManagementSkill.Progress / 1000 : 1;
+        var hideoutManagementBonusMultiplier = hideoutManagementSkill != null ? 1 + hideoutManagementSkill.Progress / 10000 : 1;
 
         // e.g 15% * 1.4
         return moneyRewardBonusPercent + hideoutManagementBonusMultiplier;
