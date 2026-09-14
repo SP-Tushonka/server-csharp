@@ -1383,7 +1383,7 @@ public class QuestHelper(
             });
     }
 
-    /// <summary>Whether the profile has reached the group value live silently asks of this quest, if any.</summary>
+    /// <summary>Whether the profile has reached the group value or trader standing live silently asks of this quest, if any.</summary>
     protected bool HiddenGateMet(MongoId questId, PmcData? profile)
     {
         if (!questConfig.HiddenVariableGates.TryGetValue(questId, out var gate))
@@ -1391,7 +1391,29 @@ public class QuestHelper(
             return true;
         }
 
-        return profile is not null && GetVariableValue(profile, gate.Target) >= gate.Value;
+        if (profile is null)
+        {
+            return false;
+        }
+
+        if (gate.Trader is not null)
+        {
+            return profile.TradersInfo is not null
+                && profile.TradersInfo.TryGetValue(gate.Trader.Value, out var traderInfo)
+                && (traderInfo.Standing ?? 0) >= (gate.Standing ?? 0);
+        }
+
+        if (gate.Target is not null)
+        {
+            return GetVariableValue(profile, gate.Target.Value) >= (gate.Value ?? 0);
+        }
+
+        if (gate.Level is not null && (profile.Info?.Level ?? 0) < gate.Level.Value)
+        {
+            return false;
+        }
+
+        return (gate.Quests ?? []).All(prerequisite => profile.GetQuestStatus(prerequisite) == QuestStatusEnum.Success);
     }
 
     // A condition may name a variable group, whose value is the sum of its member variables. Trader

@@ -106,24 +106,67 @@ public class QuestChapterStartTests
     [Test]
     public void GetClientQuests_HiddenGate_OpensAtTheGroupValue()
     {
-        // Health Care Privacy - Part 1 ships without start conditions, live offers it once three Therapist flags are set
-        var healthCarePrivacy = new MongoId("5a68661a86f774500f48afb0");
-        var therapistMembers = new[]
+        // Big Game ships without start conditions, live offers it once four Jaeger LL1 flags are set
+        var bigGame = new MongoId("64e7b971f9d6fa49d6769b44");
+        var jaegerMembers = new[]
         {
-            new MongoId("6a4e3cb1d243ff547dd39138"),
-            new MongoId("6a4e3cc523afea2e6bc1bf92"),
-            new MongoId("6a4e3cce19d8756cf9cc0ce4"),
+            "6a42a5bb96edcaff82c441c4",
+            "6a42a5d2898c034ebfa35d07",
+            "6a42a5e6c375b2db1ac867a5",
+            "6a42a6075ed52695759e8e66",
         };
         var sessionId = AddProfile();
-        var variables = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Variables!;
-        variables[therapistMembers[0]] = 1;
-        variables[therapistMembers[1]] = 1;
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.TradersInfo![Traders.JAEGER] = new TraderInfo
+        {
+            LoyaltyLevel = 1,
+            Standing = 0,
+            Unlocked = true,
+        };
+        var variables = pmc.Variables!;
+        foreach (var member in jaegerMembers.Take(3))
+        {
+            variables[new MongoId(member)] = 1;
+        }
 
-        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == healthCarePrivacy), Is.False, "two flags");
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == bigGame), Is.False, "three flags");
 
-        variables[therapistMembers[2]] = 1;
+        variables[new MongoId(jaegerMembers[3])] = 1;
 
-        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == healthCarePrivacy), Is.True, "three flags");
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == bigGame), Is.True, "four flags");
+    }
+
+    [Test]
+    public void GetClientQuests_HiddenGate_OpensAtTheTraderStanding()
+    {
+        // Health Care Privacy - Part 1 ships without start conditions, live offers it at Therapist standing 0.5
+        var healthCarePrivacy = new MongoId("5a68661a86f774500f48afb0");
+        var therapist = new MongoId("54cb57776803fa99248b456e");
+        var sessionId = AddProfile();
+        var traders = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.TradersInfo!;
+        if (!traders.ContainsKey(therapist))
+        {
+            traders[therapist] = new TraderInfo { Unlocked = true };
+        }
+
+        traders[therapist].Standing = 0.4;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == healthCarePrivacy), Is.False, "standing 0.4");
+
+        traders[therapist].Standing = 0.5;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == healthCarePrivacy), Is.True, "standing 0.5");
+    }
+
+    [Test]
+    public void GetClientQuests_HiddenGate_OpensAfterThePrerequisiteQuest()
+    {
+        // Breathing Room ships without start conditions, live still asks for Friend from Norvinsk - Part 5
+        var breathingRoom = new MongoId("6864fcef9809a149400dd2ee");
+        var friendFromNorvinsk5 = new MongoId("686404d348e7bb4146002cac");
+
+        Assert.That(_questHelper.GetClientQuests(AddProfile()).Any(q => q.Id == breathingRoom), Is.False, "without");
+        Assert.That(_questHelper.GetClientQuests(AddProfile(friendFromNorvinsk5)).Any(q => q.Id == breathingRoom), Is.True, "with");
     }
 
     private MongoId AddProfile(params MongoId[] completed)

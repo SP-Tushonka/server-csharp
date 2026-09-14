@@ -650,9 +650,25 @@ public record HiddenVariableGate
 {
     /// <summary>The variable group whose sum is compared</summary>
     [JsonPropertyName("target")]
-    public required MongoId Target { get; set; }
+    public MongoId? Target { get; set; }
 
     /// <summary>The lowest sum that offers the quest</summary>
     [JsonPropertyName("value")]
-    public required int Value { get; set; }
+    public int? Value { get; set; }
+
+    /// <summary>The trader whose standing is compared instead of a group</summary>
+    [JsonPropertyName("trader")]
+    public MongoId? Trader { get; set; }
+
+    /// <summary>The lowest standing that offers the quest</summary>
+    [JsonPropertyName("standing")]
+    public double? Standing { get; set; }
+
+    /// <summary>Quests that must be completed, the prerequisites live stripped from the wire but still enforces</summary>
+    [JsonPropertyName("quests")]
+    public List<MongoId>? Quests { get; set; }
+
+    /// <summary>The lowest player level that offers the quest</summary>
+    [JsonPropertyName("level")]
+    public int? Level { get; set; }
 }
