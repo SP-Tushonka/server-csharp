@@ -1136,15 +1136,12 @@ public class QuestHelper(
         foreach (var quest in allQuests)
         {
             // Player already accepted the quest, show it regardless of status
-            // A Locked entry is the client's own bookkeeping written back after a raid, not an accepted quest
-            var questInProfile = profile.Quests!.FirstOrDefault(x => x.QId == quest.Id && x.Status != QuestStatusEnum.Locked);
+            var questInProfile = profile.Quests!.FirstOrDefault(x =>
+                x.QId == quest.Id && x.Status is not (QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart)
+            );
             if (questInProfile is not null)
             {
-                // The client writes hidden quests back as AvailableForStart, a state they can never leave by hand
-                quest.SptStatus =
-                    questInProfile.Status == QuestStatusEnum.AvailableForStart && quest.NotDisplayedQuest == true
-                        ? StartStorylineQuest(profile, quest.Id)
-                        : questInProfile.Status;
+                quest.SptStatus = questInProfile.Status;
                 StartChapterOfActiveTask(profile, quest.Id, quest.SptStatus.Value);
                 questsToShowPlayer.Add(quest);
                 continue;
@@ -1457,8 +1454,9 @@ public class QuestHelper(
         var chapterStarted =
             profile.Quests?.Any(profileQuest => profileQuest.QId == chapterId && profileQuest.Status == QuestStatusEnum.Started) ?? false;
 
-        // A finished starter task opens its chapter and the chapter's first task in the same moment, the
-        // rest of the tasks not gated on another quest wait for the player once their chapter is running
+        // A finished starter task opens its chapter and the chapter's first task in the same moment, every
+        // later task not gated on another quest starts when the task listed before it in the chapter is done.
+        // Until then live does not list the task at all
         if (!unlockedByQuest)
         {
             if (!chapterStarted && !StarterCompleted(profile, chapterId.Value))
@@ -1468,9 +1466,7 @@ public class QuestHelper(
 
             StartStorylineQuest(profile, chapterId.Value);
 
-            return quest.Id == FirstTaskOf(chapterId.Value) && StarterCompleted(profile, chapterId.Value)
-                ? StartStorylineQuest(profile, quest.Id)
-                : QuestStatusEnum.AvailableForStart;
+            return PredecessorCompleted(profile, chapterId.Value, quest.Id) ? StartStorylineQuest(profile, quest.Id) : null;
         }
 
         // A task the player accepts in a trader dialogue waits there, and so does its chapter
@@ -1584,15 +1580,20 @@ public class QuestHelper(
             );
     }
 
-    protected MongoId? FirstTaskOf(MongoId chapterId)
+    /// <summary>The chapter starter for the first task, otherwise the task listed before this one in the chapter.</summary>
+    protected bool PredecessorCompleted(PmcData profile, MongoId chapterId, MongoId taskId)
     {
-        var first = templateTable
-            .Quests.GetValueOrDefault(chapterId)
-            ?.Conditions?.AvailableForFinish?.FirstOrDefault(condition =>
-                condition.ConditionType == "Quest" && condition.Target?.Item is not null
-            );
+        var tasks = (templateTable.Quests.GetValueOrDefault(chapterId)?.Conditions?.AvailableForFinish ?? [])
+            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
+            .Select(condition => new MongoId(condition.Target!.Item!))
+            .ToList();
+        var index = tasks.IndexOf(taskId);
+        if (index == 0)
+        {
+            return StarterCompleted(profile, chapterId);
+        }
 
-        return first is null ? null : new MongoId(first.Target!.Item!);
+        return index > 0 && profile.GetQuestStatus(tasks[index - 1]) == QuestStatusEnum.Success;
     }
 
     private Dictionary<MongoId, HashSet<MongoId>> BuildChapterStarters()

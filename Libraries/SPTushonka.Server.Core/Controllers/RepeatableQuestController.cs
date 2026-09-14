@@ -67,7 +67,10 @@ public class RepeatableQuestController(
     {
         // Create and store quest status object inside player profile
         var newRepeatableQuest = questHelper.GetQuestReadyForProfile(pmcData, QuestStatusEnum.Started, acceptedQuest);
-        pmcData.Quests.Add(newRepeatableQuest);
+        if (!pmcData.Quests.Contains(newRepeatableQuest))
+        {
+            pmcData.Quests.Add(newRepeatableQuest);
+        }
 
         // Look for the generated quest cache in profile.RepeatableQuests
         var repeatableQuestProfile = GetRepeatableQuestFromProfile(pmcData, acceptedQuest.QuestId);

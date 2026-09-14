@@ -78,6 +78,46 @@ public class QuestChapterStartTests
     }
 
     [Test]
+    public void GetClientQuests_PreviousChapterTaskDone_StartsTheUngatedTask()
+    {
+        // Falling Skies' second task has no start conditions, live starts it the moment the first task is done
+        var fallingSkiesStarter = new MongoId("6914f60df06f0ee753006191");
+        var firstTask = new MongoId("68dfa85efdedf14d640a6ee0");
+        var praporTask = new MongoId("678f6bd1e8d46e40ff021605");
+
+        var shown = _questHelper.GetClientQuests(AddProfile(fallingSkiesStarter));
+        Assert.That(shown.Any(q => q.Id == praporTask), Is.False, "first task open");
+
+        shown = _questHelper.GetClientQuests(AddProfile(fallingSkiesStarter, firstTask));
+        Assert.That(shown.Single(q => q.Id == praporTask).SptStatus, Is.EqualTo(QuestStatusEnum.Started), "first task done");
+    }
+
+    [Test]
+    public void GetClientQuests_RecordWrittenBackAsAvailableForStart_IsResolvedAgain()
+    {
+        // A raid save carries the client's AvailableForStart record for a task the server has since unlocked
+        var fallingSkiesStarter = new MongoId("6914f60df06f0ee753006191");
+        var firstTask = new MongoId("68dfa85efdedf14d640a6ee0");
+        var praporTask = new MongoId("678f6bd1e8d46e40ff021605");
+        var sessionId = AddProfile(fallingSkiesStarter, firstTask);
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        quests.Add(
+            new QuestStatus
+            {
+                QId = praporTask,
+                StartTime = 0,
+                Status = QuestStatusEnum.AvailableForStart,
+                StatusTimers = [],
+            }
+        );
+
+        var shown = _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(shown.Single(q => q.Id == praporTask).SptStatus, Is.EqualTo(QuestStatusEnum.Started));
+        Assert.That(quests.Single(q => q.QId == praporTask).Status, Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [Test]
     public void GetClientQuests_TaskAcceptedInDialogue_WaitsForThePlayer()
     {
         // Falling Skies task handed out by a Prapor dialogue line, unlocked by 678f6bd1
