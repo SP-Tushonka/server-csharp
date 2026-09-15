@@ -249,4 +249,12 @@ public class DataCallbacks(
     {
         return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.Endings));
     }
+
+    /// <summary>
+    /// Handle /client/leagues/ranks
+    /// </summary>
+    public ValueTask<string> GetLeagueRanks(string url, EmptyRequestData _, MongoId sessionID)
+    {
+        return new ValueTask<string>(httpResponseUtil.GetUnclearedBody(templateTable.LeagueRanks));
+    }
 }

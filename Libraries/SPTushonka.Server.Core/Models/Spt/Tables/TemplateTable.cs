@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Eft.Leagues;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Eft.Quests;
 
@@ -43,6 +44,9 @@ public record TemplateTable
 
     [JsonPropertyName("endings")]
     public required EndingsResponse Endings { get; init; }
+
+    [JsonPropertyName("leagueRanks")]
+    public required List<LeagueRank> LeagueRanks { get; init; }
 
     [JsonPropertyName("repeatableQuests")]
     public required RepeatableQuestDatabase RepeatableQuests { get; init; }

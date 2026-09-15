@@ -2065,10 +2065,10 @@
     {
       "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0",
+      "BossEscortAmount": "3",
       "BossEscortDifficult": "normal",
-      "BossEscortType": "bossKilla",
-      "BossName": "bossTagilla",
+      "BossEscortType": "followerBully",
+      "BossName": "bossBully",
       "BossZone": "Zone2ScavPort29",
       "Delay": 40,
       "ForceSpawn": true,
@@ -2077,12 +2077,12 @@
       "ShowOnTarkovMap": true,
       "ShowOnTarkovMapPvE": true,
       "SpawnMode": [
-        "pve",
         "regular",
+        "pve",
         "pvp-season"
       ],
       "Supports": null,
-      "Time": 5790,
+      "Time": 5690,
       "TriggerId": "T4",
       "TriggerName": "botEvent"
     }

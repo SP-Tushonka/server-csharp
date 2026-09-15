@@ -10082,5 +10082,97 @@
     "progressBarEnabled": false,
     "side": "All",
     "index": 49999999
+  },
+  {
+    "id": "6a59f6fb65aa8755e000b95f",
+    "imageUrl": "/files/achievement/6a59f49d625222137906a5bd.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "6a9ffe52783682ed2912ecec",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "value": 2,
+          "compareMethod": ">=",
+          "conditionType": "LeagueRank"
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": false,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Seasonal",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 2999999
+  },
+  {
+    "id": "6a59f777625222137906a5c5",
+    "imageUrl": "/files/achievement/6a59f4a36e0784a8de0ecfee.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "6a9ffe9c7955b30605f519ac",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "value": 7,
+          "compareMethod": ">=",
+          "conditionType": "LeagueRank"
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": false,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Seasonal",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 3999999
   }
 ]

@@ -84,6 +84,10 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
                 "/client/ending/list",
                 async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetEndingList(url, info, sessionID)
             ),
+            new RouteAction<EmptyRequestData>(
+                "/client/leagues/ranks",
+                async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetLeagueRanks(url, info, sessionID)
+            ),
         ]
     )
 { }
