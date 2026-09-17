@@ -316,80 +316,83 @@ public class RepeatableQuestRewardGenerator(
     /// <param name="maxItemCount"> Total number of items to reward </param>
     /// <param name="itemRewardBudget"> Rouble budget all item rewards must fit in </param>
     /// <param name="repeatableConfig"> Config for quest type </param>
-    /// <returns> Dictionary of items and stack size</returns>
+    /// <param name="chanceToIncreaseStackSizePercent">Percentage chance to double/triple/quadruple stack size of reward item (stackable and not weapon, armor or ammo)</param>
+    /// <returns> Dictionary of items to reward and corrisponding stack size</returns>
     protected Dictionary<TemplateItem, int> GetRewardableItemsFromPoolWithinBudget(
         List<TemplateItem> itemPool,
         int maxItemCount,
         double itemRewardBudget,
-        RepeatableQuestConfig repeatableConfig
+        RepeatableQuestConfig repeatableConfig,
+        int chanceToIncreaseStackSizePercent = 25
     )
     {
+        // Filter out ammo that can't stack high enough before we start picking
+        var validItems = itemPool
+            .Where(item => !itemHelper.IsOfBaseclass(item.Id, BaseClasses.AMMO) || item.Properties?.StackMaxSize >= repeatableConfig.RewardAmmoStackMinSize)
+            .ToList();
+
+        // Prep item pool we pick from + return container
+        var exhaustibleItemPool = new ExhaustableArray<TemplateItem>(validItems, randomUtil, cloner);
         var itemsToReturn = new Dictionary<TemplateItem, int>();
-        var exhaustibleItemPool = new ExhaustableArray<TemplateItem>(itemPool, randomUtil, cloner);
 
-        for (var i = 0; i < maxItemCount; i++)
+        for (var i = 0; i < maxItemCount && itemRewardBudget > 0; i++)
         {
-            // Default stack size to 1
-            var rewardItemStackCount = 1;
-
             // Get a random item
             var chosenItemFromPool = exhaustibleItemPool.GetRandomValue();
             if (chosenItemFromPool is null || !exhaustibleItemPool.HasValues())
             {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    // Budget is above 0 but pool is empty, log and exit loop
+                    logger.Debug($"Reward pool empty/null with: {itemRewardBudget} roubles of budget remaining, {itemsToReturn.Count} items picked");
+                }
+
+                // Pool is empty/bad, exit
                 break;
             }
+
+            // Default stack size to 1
+            var rewardItemStackCount = 1;
 
             // Handle edge case - ammo
             if (itemHelper.IsOfBaseclass(chosenItemFromPool.Id, BaseClasses.AMMO))
             {
-                // Don't reward ammo that stacks to less than what's allowed in config
-                if (chosenItemFromPool.Properties?.StackMaxSize < repeatableConfig.RewardAmmoStackMinSize)
-                {
-                    i--;
-                    continue;
-                }
-
-                // Choose the smallest value between budget, fitting size and stack max
+                // Choose the smallest value inside budget, fitting size and stack max
                 rewardItemStackCount = CalculateAmmoStackSizeThatFitsBudget(chosenItemFromPool, itemRewardBudget, maxItemCount);
             }
-
-            // 25% chance to double, triple or quadruple reward stack
-            // (Only occurs when item is stackable and not weapon, armor or ammo)
-            if (CanIncreaseRewardItemStackSize(chosenItemFromPool, 70000, 25))
+            else if (CanIncreaseRewardItemStackSize(chosenItemFromPool, 70000, chanceToIncreaseStackSizePercent)) // ELseIf so it's not called when item is ammo
             {
+                // 25% chance to double, triple or quadruple reward stack
+                // (Only occurs when item is stackable and not weapon, armor or ammo)
                 rewardItemStackCount = GetRandomisedRewardItemStackSizeByPrice(chosenItemFromPool);
             }
 
-            itemsToReturn.Add(chosenItemFromPool, rewardItemStackCount);
+            // Add chosen item + count to reward pool
+            if (!itemsToReturn.TryAdd(chosenItemFromPool, rewardItemStackCount))
+            {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    logger.Debug($"Failed to add item: {chosenItemFromPool.Id} to reward pool, item already added");
+                }
 
-            var itemCost = presetHelper.GetDefaultPresetOrItemPrice(chosenItemFromPool.Id);
-            var calculatedItemRewardBudget = itemRewardBudget - rewardItemStackCount * itemCost;
+                continue;
+            }
+
+            // Remove cost of item just added to reward pool from budget
+            var singleItemPrice = presetHelper.GetDefaultPresetOrItemPrice(chosenItemFromPool.Id);
+            if (singleItemPrice > itemRewardBudget && !exhaustibleItemPool.HasValues())
+            {
+                // Item chosen exceeds budget and item pool has nothing else, don't add and exit loop
+                break;
+            }
+
+            var stackedItemPrice = singleItemPrice * rewardItemStackCount;
+            itemRewardBudget -= stackedItemPrice;
+
             if (logger.IsLogEnabled(LogLevel.Debug))
             {
-                logger.Debug($"Added item: {chosenItemFromPool.Id} with price: {rewardItemStackCount * itemCost}");
+                logger.Debug($"Added item: {chosenItemFromPool.Id} with rouble price: {stackedItemPrice}, budget is now: {itemRewardBudget}");
             }
-
-            // If we still have budget narrow down possible items
-            if (calculatedItemRewardBudget > 0)
-            {
-                // Filter possible reward items to only items with a price below the remaining budget
-                exhaustibleItemPool = new ExhaustableArray<TemplateItem>(
-                    FilterRewardPoolWithinBudget(itemPool, calculatedItemRewardBudget, 0),
-                    randomUtil,
-                    cloner
-                );
-
-                if (!exhaustibleItemPool.HasValues())
-                {
-                    if (logger.IsLogEnabled(LogLevel.Debug))
-                    {
-                        logger.Debug($"Reward pool empty with: {calculatedItemRewardBudget} roubles of budget remaining");
-                    }
-                }
-            }
-
-            // No budget for more items, end loop
-            break;
         }
 
         return itemsToReturn;
@@ -402,24 +405,45 @@ public class RepeatableQuestRewardGenerator(
     /// <param name="itemSelected"> Cartridge template </param>
     /// <param name="roublesBudget"> Rouble budget </param>
     /// <param name="rewardNumItems"> Count of rewarded items </param>
+    /// <param name="maxAmmoStackCountDefault">DEFAULT Max stack size for ammo if Properties.StackMaxSize not found / smaller than found value</param>
     /// <returns> Count that fits budget (min 1) </returns>
-    protected int CalculateAmmoStackSizeThatFitsBudget(TemplateItem itemSelected, double roublesBudget, int rewardNumItems)
+    protected int CalculateAmmoStackSizeThatFitsBudget(TemplateItem itemSelected, double roublesBudget, int rewardNumItems, int maxAmmoStackCountDefault = 100)
     {
+        var singleCartridgePrice = handbookHelper.GetTemplatePrice(itemSelected.Id);
+        if (singleCartridgePrice <= 0 || rewardNumItems <= 0 || roublesBudget <= 0)
+        {
+            if (logger.IsLogEnabled(LogLevel.Debug))
+            {
+                logger.Debug($"Ammo: {itemSelected.Id} or input params were invalid and stack size cannot be chosen, defaulting to 1." +
+                    $" singleCartridgePrice = {singleCartridgePrice}," +
+                    $" rewardNumItems = {rewardNumItems}," +
+                    $" roublesBudget = {roublesBudget}");
+            }
+
+            // Guard against bad values, e.g. modded ammo
+            return 1;
+        }
+
         // Calculate budget per reward item
         var stackRoubleBudget = roublesBudget / rewardNumItems;
 
-        var singleCartridgePrice = handbookHelper.GetTemplatePrice(itemSelected.Id);
-
         // Get a stack size of ammo that fits rouble budget
-        var stackSizeThatFitsBudget = Math.Round(stackRoubleBudget / singleCartridgePrice);
+        var stackSizeThatFitsBudget = Math.Floor(stackRoubleBudget / singleCartridgePrice);
 
-        // Get itemDbs max stack size for ammo - don't go above 100 (some mods mess around with stack sizes)
-        var stackMaxCount = Math.Min(itemSelected.Properties.StackMaxSize.Value, 100);
+        // Get itemDbs max stack size for ammo - don't go above maxAmmoStackCountDefault (some mods mess around with stack sizes)
+        var stackMaxCount = Math.Min(itemSelected.Properties?.StackMaxSize ?? 1, maxAmmoStackCountDefault);
 
         // Ensure stack size is at least 1 + is no larger than the max possible stack size
         return (int)Math.Clamp(stackSizeThatFitsBudget, 1, stackMaxCount);
     }
 
+    /// <summary>
+    /// Check if a reward item is eligible to have its stack size increased.
+    /// </summary>
+    /// <param name="item">Item to check</param>
+    /// <param name="maxRoublePriceToStack">Maximum rouble price to allow stacking</param>
+    /// <param name="randomChanceToPass">Default 100%</param>
+    /// <returns>True = Stack size can be increased</returns>
     protected bool CanIncreaseRewardItemStackSize(TemplateItem item, int maxRoublePriceToStack, int randomChanceToPass = 100)
     {
         var isEligibleForStackSizeIncrease =
