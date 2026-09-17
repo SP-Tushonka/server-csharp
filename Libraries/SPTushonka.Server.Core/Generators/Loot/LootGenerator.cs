@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
@@ -517,32 +518,77 @@ public class LootGenerator(
     {
         List<List<Item>> rewards = [];
 
+        // Get only valid ammo boxes from db
+        var ammoBoxesDetails = containerSettings.AmmoBoxWhitelist.Select(tpl =>
+        {
+            var itemDetails = itemHelper.GetItem(tpl);
+            if (!itemDetails.Key)
+            {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    logger.Debug($"Invalid item: {tpl} found when processing ammo box whitelist, skipping");
+                }
+                return null;
+            }
+
+            return itemDetails.Value;
+        }).Where(x => x is not null).ToList();
+
+        // Get all items not quest related + not globally blacklisted
+        var preFilteredItemPool = templateTable.Items.Values.Where(item =>
+            string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase) // Must be an item, not a base node
+            && !itemFilterService.IsItemBlacklisted(item.Id) // Not blacklisted globally
+            && item.Properties is not null
+            && !item.Properties.QuestItem.GetValueOrDefault(false) // Treat null value as false (modded items can be null)
+        ).ToList(); // Store in memory to prevent multiple enumerations of the same query
+
         foreach (var (rewardKey, settings) in containerSettings.RewardTypeLimits)
         {
-            var rewardCount = randomUtil.GetInt(settings.Min, settings.Max);
-            if (rewardCount == 0)
+            if (containerSettings.RewardTypeLimits is null)
             {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    logger.Debug($"containerSettings.RewardTypeLimits is null for {rewardKey}, skipping");
+                }
+
+                continue;
+            }
+
+            var rewardCount = randomUtil.GetInt(settings.Min, settings.Max);
+            if (rewardCount <= 0)
+            {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    logger.Debug($"GetSealedContainerNonWeaponModRewards() Reward count: {rewardCount} for {rewardKey}, skipping");
+                }
+
                 continue;
             }
 
             // Edge case - ammo boxes
             if (rewardKey == BaseClasses.AMMO_BOX)
             {
-                // Get ammo boxes from db
-                var ammoBoxesDetails = containerSettings.AmmoBoxWhitelist.Select(tpl =>
-                {
-                    var itemDetails = itemHelper.GetItem(tpl);
-                    return itemDetails.Value;
-                });
-
                 // Need to find boxes that matches weapons caliber
-                var weaponCaliber = weaponDetailsDb.Properties.AmmoCaliber;
-                var ammoBoxesMatchingCaliber = ammoBoxesDetails.Where(x => x.Properties.AmmoCaliber == weaponCaliber);
-                if (!ammoBoxesMatchingCaliber.Any())
+                var weaponCaliber = weaponDetailsDb.Properties?.AmmoCaliber;
+                if (weaponCaliber is null)
+                {
+                    // Prevent a null to null compare below when working out ammoBoxesMatchingCaliber
+                    if (logger.IsLogEnabled(LogLevel.Debug))
+                    {
+                        logger.Debug($"AmmoCaliber is null for {weaponDetailsDb.Id}, skipping");
+                    }
+
+                    continue;
+                }
+
+                var ammoBoxesMatchingCaliber = ammoBoxesDetails
+                    .Where(ammoBox => ammoBox?.Properties?.AmmoCaliber == weaponCaliber)
+                    .ToList(); // Store in memory to prevent multiple enumerations of the same query below with size check + GetArrayValue()
+                if (ammoBoxesMatchingCaliber.Count == 0)
                 {
                     if (logger.IsLogEnabled(LogLevel.Debug))
                     {
-                        logger.Debug($"No ammo box with caliber {weaponCaliber} found, skipping");
+                        logger.Debug($"No ammo box with caliber: {weaponCaliber} found, skipping");
                     }
 
                     continue;
@@ -562,20 +608,17 @@ public class LootGenerator(
                 continue;
             }
 
-            // Get all items of the desired type + not quest items + not globally blacklisted
-            var rewardItemPool = templateTable.Items.Values.Where(item =>
-                item.Parent == rewardKey
-                && string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase)
-                && itemFilterService.IsItemBlacklisted(item.Id)
-                && !(containerSettings.AllowBossItems || itemFilterService.IsBossItem(item.Id))
-                && item.Properties.QuestItem is null
-            );
+            // Get items with parent of chosen reward type + do boss item filtering
+            var rewardItemPool = preFilteredItemPool.Where(item =>
+                item.Parent == rewardKey // TODO: perhaps `itemHelper.IsOfBaseclass()` should be used as right now only direct descendends are allowed
+                && ((containerSettings.AllowBossItems && itemFilterService.IsBossItem(item.Id)) || (!containerSettings.AllowBossItems && !itemFilterService.IsBossItem(item.Id))) // Allow item if bossitems enabled + item is boss item OR boss items disabled + item isnt boss item
+            ).ToList(); // Make copy to leave original pristine + prevent multiple enumerations of the same query below with size check + GetArrayValue()
 
-            if (!rewardItemPool.Any())
+            if (rewardItemPool.Count == 0)
             {
                 if (logger.IsLogEnabled(LogLevel.Debug))
                 {
-                    logger.Debug($"No items with base type of {rewardKey} found, skipping");
+                    logger.Debug($"No items with base type of: {rewardKey} found, skipping");
                 }
 
                 continue;
@@ -614,23 +657,38 @@ public class LootGenerator(
 
         foreach (var (rewardKey, settings) in containerSettings.WeaponModRewardLimits)
         {
+            if (containerSettings.WeaponModRewardLimits is null)
+            {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    logger.Debug($"containerSettings.WeaponModRewardLimits is null for {rewardKey}, skipping");
+                }
+
+                continue;
+            }
+
             var rewardCount = randomUtil.GetInt(settings.Min, settings.Max);
 
             // Nothing to add, skip reward type
-            if (rewardCount == 0)
+            if (rewardCount <= 0)
             {
+                if (logger.IsLogEnabled(LogLevel.Debug))
+                {
+                    logger.Debug($"GetSealedContainerWeaponModRewards() Reward count: {rewardCount} for {rewardKey}, skipping");
+                }
+
                 continue;
             }
 
             // Get items that fulfil reward type criteria from items that fit on gun
             var relatedItems = linkedItemsToWeapon?.Where(item =>
                 item?.Parent == rewardKey && !itemFilterService.IsItemBlacklisted(item.Id)
-            );
-            if (relatedItems is null || !relatedItems.Any())
+            ).ToList(); // Prevent multiple enumerations of the same query below with size check + GetArrayValue()
+            if (relatedItems is null || relatedItems.Count == 0)
             {
                 if (logger.IsLogEnabled(LogLevel.Debug))
                 {
-                    logger.Debug($"No items found to fulfil reward type: {rewardKey} for weapon: {chosenWeaponPreset.Name}, skipping type");
+                    logger.Debug($"No items found to fulfil reward parent type: {rewardKey} for weapon: {chosenWeaponPreset.Name}, skipping type");
                 }
 
                 continue;
