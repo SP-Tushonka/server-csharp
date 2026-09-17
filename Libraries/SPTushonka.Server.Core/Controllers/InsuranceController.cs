@@ -16,7 +16,6 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Services.Ragfair;
@@ -634,7 +633,10 @@ public class InsuranceController(
     protected bool IsMapLabsAndInsuranceDisabled(Insurance insurance)
     {
         var location = insurance.SystemData?.Location;
-        if (!string.Equals(location, "laboratory", StringComparison.OrdinalIgnoreCase) && !string.Equals(location, "laboratory_dark", StringComparison.OrdinalIgnoreCase))
+        if (
+            !string.Equals(location, "laboratory", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(location, "laboratory_dark", StringComparison.OrdinalIgnoreCase)
+        )
         {
             return false;
         }
@@ -709,7 +711,11 @@ public class InsuranceController(
         const int conversionFactor = 100;
 
         var returnChance = randomUtil.GetInt(0, maxRoll) / conversionFactor;
-        var traderReturnChance = insuranceConfig.ReturnChancePercent[traderId];
+        if (!insuranceConfig.ReturnChancePercent.TryGetValue(traderId, out var traderReturnChance))
+        {
+            logger.Warning(serverLocalisationService.GetText("insurance-trader_missing_return_chance", new { traderId = traderId }));
+            traderReturnChance = 75;
+        }
         var roll = returnChance >= traderReturnChance;
 
         // Log the roll with as much detail as possible.
