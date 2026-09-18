@@ -44,7 +44,7 @@ public static class TraderAssortExtensions
     public static void RemoveItemsFromAssort(this TraderAssort assortToFilter, HashSet<MongoId> itemsTplsToRemove)
     {
         assortToFilter.Items = assortToFilter
-            .Items.Where(item => item.ParentId == "hideout" && itemsTplsToRemove.Contains(item.Template))
+            .Items.Where(item => item.ParentId == "hideout" && !itemsTplsToRemove.Contains(item.Template))
             .ToList();
     }
 

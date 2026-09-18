@@ -128,6 +128,7 @@
   "inraid-unable_to_migrate_pmc_quest_not_found_in_profile": "Unable to migrate post-raid quest: %s data to profile, cannot find quest in profile",
   "insurance-item_not_found_in_post_raid_data": "Unable to find insured inventory item with id: %s in post-raid data",
   "insurance-missing_insurance_price_multiplier": "No insurance multiplier found for trader: %s, check it exists in InsuranceConfig.js, falling back to default value of: 0.3",
+  "insurance-trader_missing_return_chance": "Trader is not configured for a return chance: {{traderId}}, falling back to default value of: 75%",
   "insurance-post_raid_item_not_found": "Insured item: %s not found in post-raid inventory",
   "insurance-pre_raid_item_not_found": "Pre raid inventory item: %s was not found",
   "insurance-trader_lacks_dialogue_property": "Trader: %s does not have a dialogue property, unable to send insurance items",

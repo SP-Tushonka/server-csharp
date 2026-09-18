@@ -134,8 +134,9 @@ public class BotEquipmentModGenerator(
         foreach (var (modSlotName, modPool) in orderedCompatibleModsPool)
         {
             // Skip backplate slot if there's no front plate and bot should skip it via config
+            var isBackPlateSlot = modSlotName.Equals("back_plate", StringComparison.OrdinalIgnoreCase);
             if (
-                modSlotName.Equals("back_plate", StringComparison.OrdinalIgnoreCase)
+                isBackPlateSlot
                 && settings.BotEquipmentConfig.SkipBackPlateIfFrontPlateMissing.GetValueOrDefault(false)
                 && !frontPlateSpawned
             )
@@ -194,15 +195,15 @@ public class BotEquipmentModGenerator(
             }
 
             // Slot can hold armor plates + we are filtering possible items by bot level, handle
+            var modSlotNameLower = modSlotName.ToLowerInvariant();
             if (
                 settings.BotEquipmentConfig.FilterPlatesByLevel.GetValueOrDefault(false)
-                && itemHelper.IsRemovablePlateSlot(modSlotName.ToLowerInvariant())
+                && itemHelper.IsRemovablePlateSlot(modSlotNameLower)
             )
             {
                 int? frontPlateArmorClass = null;
                 if (
-                    modSlotName.Equals("back_plate", StringComparison.OrdinalIgnoreCase)
-                    && settings.BotEquipmentConfig.LimitPlateClassToFrontPlateClass.GetValueOrDefault(false)
+                    isBackPlateSlot && settings.BotEquipmentConfig.LimitPlateClassToFrontPlateClass.GetValueOrDefault(false)
                 )
                 {
                     var frontPlate = equipment.FirstOrDefault(item =>
@@ -217,7 +218,7 @@ public class BotEquipmentModGenerator(
 
                 var plateSlotFilteringOutcome = FilterPlateModsForSlotByLevel(
                     settings,
-                    modSlotName.ToLowerInvariant(),
+                    modSlotNameLower,
                     compatibleModsPool.GetValueOrDefault(modSlotName),
                     parentTemplate,
                     frontPlateArmorClass
@@ -267,7 +268,19 @@ public class BotEquipmentModGenerator(
             // Compatible item not found but slot REQUIRES item, get random item from db
             if (!found && itemSlotTemplate.Required)
             {
-                modTpl = GetRandomModTplFromItemDb(modTpl.Value, itemSlotTemplate, modSlotName, equipment);
+                // Can be null when exhaustableModPool has no values at start of while loop
+                if (modTpl.HasValue)
+                {
+                    modTpl = GetRandomModTplFromItemDb(modTpl.Value, itemSlotTemplate, modSlotName, equipment);
+                }
+                else
+                {
+                    if (logger.IsLogEnabled(LogLevel.Debug))
+                    {
+                        logger.Debug($"Required slot: {modSlotName} requires mod but exhaustable pool was empty, modTpl is null");
+                    }
+                }
+                
                 found = modTpl is not null;
             }
 
@@ -320,6 +333,7 @@ public class BotEquipmentModGenerator(
         int? maxArmorLevel = null
     )
     {
+        // Set defaults if all else fails
         var result = new FilterPlateModsForSlotByLevelResult { Result = Result.UNKNOWN_FAILURE, PlateModTemplates = null };
 
         // Not pmc or not a plate slot, return original mod pool array
@@ -360,7 +374,7 @@ public class BotEquipmentModGenerator(
         }
 
         // Convert the array of ids into database items
-        var platesFromDb = existingPlateTplPool.Select(plateTpl => itemHelper.GetItem(plateTpl).Value);
+        var platesFromDb = existingPlateTplPool.Select(plateTpl => itemHelper.GetItem(plateTpl).Value).ToList();
 
         // Filter plates to the chosen level based on its armorClass property
         var platesOfDesiredLevel = platesFromDb.Where(item =>
@@ -378,32 +392,36 @@ public class BotEquipmentModGenerator(
         // no plates found that fit requirements, lets get creative
 
         // Get lowest and highest plate classes available for this armor
-        var minMaxArmorPlateClass = GetMinMaxArmorPlateClass(platesFromDb.ToList());
+        var minMaxArmorPlateClass = GetMinMaxArmorPlateClass(platesFromDb);
 
-        // Increment plate class level in attempt to get usable plate
+        
         var findCompatiblePlateAttempts = 0;
         const int maxAttempts = 3;
+        var plateLevel = int.Parse(chosenArmorPlateLevelString);
+
+        // Starting plate level to look for is higher than what armor item can handle, set to min posible for armor item (best to have a low-tier plate than top-tier at this stage)
+        if (plateLevel > minMaxArmorPlateClass.Max)
+        {
+            plateLevel = minMaxArmorPlateClass.Min;
+        }
+
+        // Increment plate class level in attempt to get usable plate
         for (var i = 0; i < maxAttempts; i++)
         {
-            var chosenArmorPlateLevelDouble = int.Parse(chosenArmorPlateLevelString) + 1;
-            chosenArmorPlateLevelString = chosenArmorPlateLevelDouble.ToString();
-
-            // New chosen plate class is higher than max, then set to min and check if valid
-            if (chosenArmorPlateLevelDouble > minMaxArmorPlateClass.Max)
-            {
-                chosenArmorPlateLevelString = minMaxArmorPlateClass.Min.ToString();
-            }
-
             findCompatiblePlateAttempts++;
 
-            platesOfDesiredLevel = platesFromDb.Where(item => item.Properties.ArmorClass == chosenArmorPlateLevelDouble);
-            // Valid plates found, exit
+            // Look for plates with desired level
+            platesOfDesiredLevel = platesFromDb.Where(item => item.Properties.ArmorClass == plateLevel);
             if (platesOfDesiredLevel.Any())
             {
+                // Valid plates found, exit
                 break;
             }
 
-            // No valid plate class found in 3 tries, attempt default plates
+            // No plates found at desired level, increment and try again
+            plateLevel++;
+
+            // No valid plate class found after 3 tries, fall back to default plates for armor item as defined in item db
             if (findCompatiblePlateAttempts >= maxAttempts)
             {
                 if (logger.IsLogEnabled(LogLevel.Debug))
@@ -414,9 +432,9 @@ public class BotEquipmentModGenerator(
                 }
 
                 var defaultPlate = armorItem.GetDefaultPlateTpl(modSlot);
-                if (defaultPlate is not null)
+                if (defaultPlate is not null && !defaultPlate.Value.IsEmpty)
                 {
-                    // Return Default Plates cause couldn't get the lowest level available from original selection
+                    // Use default plate from itemdb, unable to use anything else, better than nothing
                     result.Result = Result.SUCCESS;
                     result.PlateModTemplates = [defaultPlate.Value];
 
@@ -433,6 +451,7 @@ public class BotEquipmentModGenerator(
                     var plateItem = itemHelper.GetItem(defaultPresetPlateSlot.Template);
                     platesOfDesiredLevel = [plateItem.Value];
 
+                    // Exit loop and get flagged as success
                     break;
                 }
 

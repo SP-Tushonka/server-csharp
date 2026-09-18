@@ -28,6 +28,8 @@ public record ExhaustableArray<T> : IExhaustableArray<T>
             return default;
         }
 
+        // TODO: add fast path to handle a pool with a single element
+
         var index = _randomUtil.GetInt(0, pool.Count - 1);
         var element = pool.ElementAt(index);
         pool.Remove(element);
@@ -46,6 +48,10 @@ public record ExhaustableArray<T> : IExhaustableArray<T>
         return _cloner.Clone(element);
     }
 
+    /// <summary>
+    /// Does NOT remove values from the pool, just checks if there are any left
+    /// </summary>
+    /// <returns>True if values are available in the pool</returns>
     public bool HasValues()
     {
         return pool?.Count != 0;

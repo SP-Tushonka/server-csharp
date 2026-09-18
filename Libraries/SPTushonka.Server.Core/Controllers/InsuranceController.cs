@@ -709,7 +709,11 @@ public class InsuranceController(
         const int conversionFactor = 100;
 
         var returnChance = randomUtil.GetInt(0, maxRoll) / conversionFactor;
-        var traderReturnChance = insuranceConfig.ReturnChancePercent[traderId];
+        if (!insuranceConfig.ReturnChancePercent.TryGetValue(traderId, out var traderReturnChance))
+        {
+            logger.Warning(serverLocalisationService.GetText("insurance-trader_missing_return_chance", new { traderId = traderId }));
+            traderReturnChance = 75;
+        }
         var roll = returnChance >= traderReturnChance;
 
         // Log the roll with as much detail as possible.

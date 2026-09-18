@@ -16,6 +16,10 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
     protected readonly HashSet<string> EffectsToSkip = ["Dehydration", "Exhaustion"];
     private const int LightBleedingTimeInSeconds = 600;
     private const int HeavyBleedingTimeInSeconds = 900;
+    protected const double Deviation = 0.0001;
+    protected const double BaseEnergyRegenPerHour = 60;
+    protected const double BaseHydrationRegenPerHour = 60;
+    protected const double BaseHpRegenPerHour = 456.6;
 
     /// <summary>
     ///     Update player profile vitality values with changes from client request object
@@ -231,6 +235,126 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
                 if (matchingProfilePart.Effects.TryAdd(key, effectToAdd))
                 {
                     matchingProfilePart.Effects[key] = effectToAdd;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Advance energy, hydration, limb hp and effect timers by the time since health was last updated
+    /// </summary>
+    /// <param name="pmcProfile">Profile to adjust values for</param>
+    /// <param name="decreaseBodyPartEffectTimes">Replaces DecreaseBodyPartEffectTimes when given</param>
+    public void UpdateProfileHealthValues(
+        PmcData pmcProfile,
+        Action<PmcData, double, double>? decreaseBodyPartEffectTimes = null
+    )
+    {
+        var healthLastUpdated = pmcProfile.Health?.UpdateTime;
+        var currentTimeStamp = timeUtil.GetTimeStamp();
+        var diffSeconds = currentTimeStamp - healthLastUpdated;
+
+        // Update just occurred
+        if (healthLastUpdated >= currentTimeStamp)
+        {
+            return;
+        }
+
+        // Set new values, whatever is smallest
+        var energyRegenPerHour =
+            BaseEnergyRegenPerHour
+            + pmcProfile
+                .Bonuses!.Where(bonus => bonus.Type == BonusType.EnergyRegeneration)
+                .Aggregate(0d, (sum, bonus) => sum + bonus.Value!.Value);
+
+        var hydrationRegenPerHour =
+            BaseHydrationRegenPerHour
+            + pmcProfile
+                .Bonuses!.Where(bonus => bonus.Type == BonusType.HydrationRegeneration)
+                .Aggregate(0d, (sum, bonus) => sum + bonus.Value!.Value);
+
+        var hpRegenPerHour =
+            BaseHpRegenPerHour
+            + pmcProfile
+                .Bonuses!.Where(bonus => bonus.Type == BonusType.HealthRegeneration)
+                .Aggregate(0d, (sum, bonus) => sum + bonus.Value!.Value);
+
+        // Player has energy deficit
+        if (pmcProfile.Health?.Energy?.Current - pmcProfile.Health?.Energy?.Maximum <= Deviation)
+        {
+            // Set new value, whatever is smallest
+            pmcProfile.Health!.Energy!.Current += Math.Round(energyRegenPerHour * (diffSeconds!.Value / 3600));
+            if (pmcProfile.Health.Energy.Current > pmcProfile.Health.Energy.Maximum)
+            {
+                pmcProfile.Health.Energy.Current = pmcProfile.Health.Energy.Maximum;
+            }
+        }
+
+        // Player has hydration deficit
+        if (pmcProfile.Health?.Hydration?.Current - pmcProfile.Health?.Hydration?.Maximum <= Deviation)
+        {
+            pmcProfile.Health!.Hydration!.Current += Math.Round(hydrationRegenPerHour * (diffSeconds!.Value / 3600));
+            if (pmcProfile.Health.Hydration.Current > pmcProfile.Health.Hydration.Maximum)
+            {
+                pmcProfile.Health.Hydration.Current = pmcProfile.Health.Hydration.Maximum;
+            }
+        }
+
+        // Check all body parts
+        (decreaseBodyPartEffectTimes ?? DecreaseBodyPartEffectTimes)(pmcProfile, hpRegenPerHour, diffSeconds.Value);
+
+        // Update both values as they've both been updated
+        pmcProfile.Health.UpdateTime = currentTimeStamp;
+    }
+
+    /// <summary>
+    ///     Check for and update any timers on effect found on body parts
+    /// </summary>
+    /// <param name="pmcProfile">Player</param>
+    /// <param name="hpRegenPerHour"></param>
+    /// <param name="diffSeconds"></param>
+    public void DecreaseBodyPartEffectTimes(PmcData pmcProfile, double hpRegenPerHour, double diffSeconds)
+    {
+        var bodyParts = pmcProfile.Health!.BodyParts!.Select(bodyPartKvP => bodyPartKvP.Value).ToList();
+
+        // HP regeneration is an overall rate, so divide it across count of body parts
+        var hpRegenPerPart = hpRegenPerHour * (diffSeconds / 3600d) / bodyParts.Count;
+
+        foreach (var bodyPart in pmcProfile.Health!.BodyParts!.Select(bodyPartKvP => bodyPartKvP.Value))
+        {
+            // Check part hp
+            if (bodyPart.Health!.Current < bodyPart.Health.Maximum)
+            {
+                bodyPart.Health.Current += hpRegenPerPart;
+            }
+
+            if (bodyPart.Health.Current > bodyPart.Health.Maximum)
+            {
+                bodyPart.Health.Current = bodyPart.Health.Maximum;
+            }
+
+            if (bodyPart.Effects is null || bodyPart.Effects.Count == 0)
+            {
+                continue;
+            }
+
+            // Look for effects
+            foreach (var (effectId, effect) in bodyPart.Effects)
+            {
+                // Effects below 1 are intentional (e.g. -1). Do not modify or remove them
+                // Skipped effects are stored as null by ModifyProfileHealthProperties
+                if (effect is null || effect.Time < 1)
+                {
+                    continue;
+                }
+
+                // Decrease the effect duration by the elapsed time
+                effect.Time -= diffSeconds;
+
+                // Effect has now expired
+                if (effect.Time < 1)
+                {
+                    bodyPart.Effects.Remove(effectId);
                 }
             }
         }
