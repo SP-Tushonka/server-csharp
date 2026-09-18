@@ -6,4 +6,5 @@ public static class OnUpdateOrder
     public const int HideoutCallbacks = 2000;
     public const int InsuranceCallbacks = 3000;
     public const int BtrDeliveryCallbacks = 4000;
+    public const int HealthCallbacks = 5000;
 }
