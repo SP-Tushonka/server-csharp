@@ -134,8 +134,9 @@ public class BotEquipmentModGenerator(
         foreach (var (modSlotName, modPool) in orderedCompatibleModsPool)
         {
             // Skip backplate slot if there's no front plate and bot should skip it via config
+            var isBackPlateSlot = modSlotName.Equals("back_plate", StringComparison.OrdinalIgnoreCase);
             if (
-                modSlotName.Equals("back_plate", StringComparison.OrdinalIgnoreCase)
+                isBackPlateSlot
                 && settings.BotEquipmentConfig.SkipBackPlateIfFrontPlateMissing.GetValueOrDefault(false)
                 && !frontPlateSpawned
             )
@@ -194,15 +195,15 @@ public class BotEquipmentModGenerator(
             }
 
             // Slot can hold armor plates + we are filtering possible items by bot level, handle
+            var modSlotNameLower = modSlotName.ToLowerInvariant();
             if (
                 settings.BotEquipmentConfig.FilterPlatesByLevel.GetValueOrDefault(false)
-                && itemHelper.IsRemovablePlateSlot(modSlotName.ToLowerInvariant())
+                && itemHelper.IsRemovablePlateSlot(modSlotNameLower)
             )
             {
                 int? frontPlateArmorClass = null;
                 if (
-                    modSlotName.Equals("back_plate", StringComparison.OrdinalIgnoreCase)
-                    && settings.BotEquipmentConfig.LimitPlateClassToFrontPlateClass.GetValueOrDefault(false)
+                    isBackPlateSlot && settings.BotEquipmentConfig.LimitPlateClassToFrontPlateClass.GetValueOrDefault(false)
                 )
                 {
                     var frontPlate = equipment.FirstOrDefault(item =>
@@ -217,7 +218,7 @@ public class BotEquipmentModGenerator(
 
                 var plateSlotFilteringOutcome = FilterPlateModsForSlotByLevel(
                     settings,
-                    modSlotName.ToLowerInvariant(),
+                    modSlotNameLower,
                     compatibleModsPool.GetValueOrDefault(modSlotName),
                     parentTemplate,
                     frontPlateArmorClass
