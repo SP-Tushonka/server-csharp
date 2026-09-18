@@ -397,18 +397,19 @@ public class BotEquipmentModGenerator(
         const int maxAttempts = 3;
         for (var i = 0; i < maxAttempts; i++)
         {
-            var chosenArmorPlateLevelDouble = int.Parse(chosenArmorPlateLevelString) + 1;
-            chosenArmorPlateLevelString = chosenArmorPlateLevelDouble.ToString();
+            // TODO: are we off by one here?
+            var chosenArmorPlateLevelInt = int.Parse(chosenArmorPlateLevelString) + 1;
+            chosenArmorPlateLevelString = chosenArmorPlateLevelInt.ToString();
 
-            // New chosen plate class is higher than max, then set to min and check if valid
-            if (chosenArmorPlateLevelDouble > minMaxArmorPlateClass.Max)
+            // New chosen plate level is higher than max we want, set to min and check if valid
+            if (chosenArmorPlateLevelInt > minMaxArmorPlateClass.Max)
             {
                 chosenArmorPlateLevelString = minMaxArmorPlateClass.Min.ToString();
             }
 
             findCompatiblePlateAttempts++;
 
-            platesOfDesiredLevel = platesFromDb.Where(item => item.Properties.ArmorClass == chosenArmorPlateLevelDouble);
+            platesOfDesiredLevel = platesFromDb.Where(item => item.Properties.ArmorClass == chosenArmorPlateLevelInt);
             // Valid plates found, exit
             if (platesOfDesiredLevel.Any())
             {
