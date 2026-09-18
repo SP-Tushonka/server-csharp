@@ -12,6 +12,15 @@ public record HealthConfig : BaseConfig
 
     [JsonPropertyName("save")]
     public required HealthSave Save { get; set; }
+
+    /// <summary>
+    ///     How often the stored health of active profiles is advanced, in seconds
+    /// </summary>
+    [JsonPropertyName("runIntervalSeconds")]
+    public int RunIntervalSeconds { get; set; }
+
+    [JsonPropertyName("updateProfileHealthWhenActiveWithinMinutes")]
+    public int UpdateProfileHealthWhenActiveWithinMinutes { get; set; }
 }
 
 public record HealthMultipliers
