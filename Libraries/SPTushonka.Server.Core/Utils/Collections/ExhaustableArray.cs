@@ -28,6 +28,8 @@ public record ExhaustableArray<T> : IExhaustableArray<T>
             return default;
         }
 
+        // TODO: add fast path to handle a pool with a single element
+
         var index = _randomUtil.GetInt(0, pool.Count - 1);
         var element = pool.ElementAt(index);
         pool.Remove(element);
