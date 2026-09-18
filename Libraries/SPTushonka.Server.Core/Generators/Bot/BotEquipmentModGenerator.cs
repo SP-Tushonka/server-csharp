@@ -373,7 +373,7 @@ public class BotEquipmentModGenerator(
         }
 
         // Convert the array of ids into database items
-        var platesFromDb = existingPlateTplPool.Select(plateTpl => itemHelper.GetItem(plateTpl).Value);
+        var platesFromDb = existingPlateTplPool.Select(plateTpl => itemHelper.GetItem(plateTpl).Value).ToList();
 
         // Filter plates to the chosen level based on its armorClass property
         var platesOfDesiredLevel = platesFromDb.Where(item =>
@@ -391,7 +391,7 @@ public class BotEquipmentModGenerator(
         // no plates found that fit requirements, lets get creative
 
         // Get lowest and highest plate classes available for this armor
-        var minMaxArmorPlateClass = GetMinMaxArmorPlateClass(platesFromDb.ToList());
+        var minMaxArmorPlateClass = GetMinMaxArmorPlateClass(platesFromDb);
 
         
         var findCompatiblePlateAttempts = 0;
