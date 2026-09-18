@@ -267,7 +267,19 @@ public class BotEquipmentModGenerator(
             // Compatible item not found but slot REQUIRES item, get random item from db
             if (!found && itemSlotTemplate.Required.GetValueOrDefault(false))
             {
-                modTpl = GetRandomModTplFromItemDb(modTpl.Value, itemSlotTemplate, modSlotName, equipment);
+                // Can be null when exhaustableModPool has no values at start of while loop
+                if (modTpl.HasValue)
+                {
+                    modTpl = GetRandomModTplFromItemDb(modTpl.Value, itemSlotTemplate, modSlotName, equipment);
+                }
+                else
+                {
+                    if (logger.IsLogEnabled(LogLevel.Debug))
+                    {
+                        logger.Debug($"Required slot: {modSlotName} requires mod but exhaustable pool was empty, modTpl is null");
+                    }
+                }
+                
                 found = modTpl is not null;
             }
 
