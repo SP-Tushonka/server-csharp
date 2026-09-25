@@ -170,29 +170,7 @@
   "addOpenZonesToAllMaps": true,
   "addCustomBotWavesToMaps": true,
   "enableBotTypeLimits": true,
-  "botTypeLimits": {
-    "TarkovStreets": [
-      {
-        "type": "marksman",
-        "min": 2,
-        "max": 4
-      }
-    ],
-    "Woods": [
-      {
-        "type": "marksman",
-        "min": 2,
-        "max": 5
-      }
-    ],
-    "Bigmap": [
-      {
-        "type": "marksman",
-        "min": 2,
-        "max": 4
-      }
-    ]
-  },
+  "botTypeLimits": {},
   "containerRandomisationSettings": {
     "enabled": true,
     "maps": {
