@@ -11267,5 +11267,52 @@
         "type": "banners"
       }
     }
-  ]
+  ],
+  "BotMaxPlayer": 0,
+  "BotMaxTimePlayer": 0,
+  "Description": "Very Big Map",
+  "EscapeTimeLimitPVE": 35,
+  "GenerateLocalLootCache": true,
+  "GlobalLootChanceModifier": 0.4,
+  "GlobalLootChanceModifierPvE": 0.4,
+  "Insurance": true,
+  "MatchMakerMinPlayersByWaitTime": [
+    {
+      "minPlayers": 10,
+      "time": 30
+    },
+    {
+      "minPlayers": 9,
+      "time": 60
+    },
+    {
+      "minPlayers": 6,
+      "time": 300
+    },
+    {
+      "minPlayers": 3,
+      "time": 390
+    },
+    {
+      "minPlayers": 1,
+      "time": 450
+    }
+  ],
+  "MinDistToExitPoint": 30,
+  "Preview": {
+    "path": "",
+    "rcid": ""
+  },
+  "SafeLocation": false,
+  "exit_access_time": 60,
+  "exit_count": 2,
+  "exit_time": 1,
+  "filter_ex": [],
+  "matching_min_seconds": 60,
+  "sav_summon_seconds": 60,
+  "tmp_location_field_remove_me": 0,
+  "users_gather_seconds": 0,
+  "users_spawn_seconds_n": 15,
+  "users_spawn_seconds_n2": 25,
+  "users_summon_seconds": 0
 }

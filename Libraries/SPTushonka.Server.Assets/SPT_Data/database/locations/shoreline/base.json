@@ -11798,5 +11798,60 @@
         "type": "banners"
       }
     }
-  ]
+  ],
+  "BotMaxPlayer": 0,
+  "BotMaxTimePlayer": 0,
+  "Description": "The coastline that leads to the port.",
+  "EscapeTimeLimitPVE": 45,
+  "GenerateLocalLootCache": true,
+  "GlobalLootChanceModifier": 0.25,
+  "GlobalLootChanceModifierPvE": 0.25,
+  "Insurance": true,
+  "MatchMakerMinPlayersByWaitTime": [
+    {
+      "minPlayers": 12,
+      "time": 30
+    },
+    {
+      "minPlayers": 10,
+      "time": 35
+    },
+    {
+      "minPlayers": 8,
+      "time": 60
+    },
+    {
+      "minPlayers": 6,
+      "time": 300
+    },
+    {
+      "minPlayers": 4,
+      "time": 390
+    },
+    {
+      "minPlayers": 2,
+      "time": 450
+    },
+    {
+      "minPlayers": 1,
+      "time": 510
+    }
+  ],
+  "MinDistToExitPoint": 30,
+  "Preview": {
+    "path": "",
+    "rcid": ""
+  },
+  "SafeLocation": false,
+  "exit_access_time": 10,
+  "exit_count": 1,
+  "exit_time": 90,
+  "filter_ex": [],
+  "matching_min_seconds": 60,
+  "sav_summon_seconds": 60,
+  "tmp_location_field_remove_me": 0,
+  "users_gather_seconds": 0,
+  "users_spawn_seconds_n": 15,
+  "users_spawn_seconds_n2": 25,
+  "users_summon_seconds": 0
 }

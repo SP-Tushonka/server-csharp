@@ -8025,5 +8025,52 @@
         "type": "banners"
       }
     }
-  ]
+  ],
+  "BotMaxPlayer": 0,
+  "BotMaxTimePlayer": 0,
+  "Description": "The downtown Tarkov with banks, malls, hotels and all the other things a striving modern city could have needed.",
+  "EscapeTimeLimitPVE": 30,
+  "GenerateLocalLootCache": true,
+  "GlobalLootChanceModifier": 0.34,
+  "GlobalLootChanceModifierPvE": 0.34,
+  "Insurance": true,
+  "MatchMakerMinPlayersByWaitTime": [
+    {
+      "minPlayers": 9,
+      "time": 30
+    },
+    {
+      "minPlayers": 7,
+      "time": 35
+    },
+    {
+      "minPlayers": 5,
+      "time": 60
+    },
+    {
+      "minPlayers": 3,
+      "time": 360
+    },
+    {
+      "minPlayers": 1,
+      "time": 450
+    }
+  ],
+  "MinDistToExitPoint": 10,
+  "Preview": {
+    "path": "",
+    "rcid": ""
+  },
+  "SafeLocation": false,
+  "exit_access_time": 35,
+  "exit_count": 1,
+  "exit_time": 2,
+  "filter_ex": [],
+  "matching_min_seconds": 60,
+  "sav_summon_seconds": 60,
+  "tmp_location_field_remove_me": 0,
+  "users_gather_seconds": 0,
+  "users_spawn_seconds_n": 15,
+  "users_spawn_seconds_n2": 25,
+  "users_summon_seconds": 0
 }
