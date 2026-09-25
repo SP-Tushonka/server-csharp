@@ -1,0 +1,824 @@
+{
+  "containersGroups": {
+    "Terminal_Area_05_Administration": {
+      "minContainers": 20,
+      "maxContainers": 27
+    },
+    "Terminal_Area_07_OilStorage": {
+      "minContainers": 25,
+      "maxContainers": 42
+    },
+    "Terminal_Area_08_BulkCargo_B": {
+      "minContainers": 20,
+      "maxContainers": 30
+    },
+    "Terminal_Area_09_ContainerPort_B": {
+      "minContainers": 10,
+      "maxContainers": 16
+    },
+    "Terminal_Area_10_Extraction": {
+      "minContainers": 8,
+      "maxContainers": 14
+    }
+  },
+  "containers": {
+    "00012": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "Lootable_00000": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "Lootable_00001": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "Lootable_00002": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "Lootable_00003": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "Lootable_00004": {
+      "groupId": ""
+    },
+    "Lootable_00005": {
+      "groupId": ""
+    },
+    "Lootable_00006": {
+      "groupId": ""
+    },
+    "Lootable_00007": {
+      "groupId": ""
+    },
+    "Lootable_00008": {
+      "groupId": ""
+    },
+    "Lootable_00010": {
+      "groupId": ""
+    },
+    "Lootable_00072": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_ProfileEditor_00003": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_ProfileEditor_00004": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Anton_Petrov_TEMP_00001": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Area_02_BulkCargo_A_Courtyard_00001": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00000": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00001": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00002": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00003": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00004": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00006": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00007": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00008": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00009": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00010": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00011": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00012": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00014": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00015": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00016": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00017": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00018": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00019": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00020": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00021": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00022": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00023": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00024": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00025": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00026": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00027": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00028": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00029": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00031": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00032": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00033": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00034": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00036": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00037": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00038": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00039": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00041": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00042": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00044": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00045": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00046": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00047": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00048": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00049": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00050": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00051": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00054": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00057": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_03_Substation_Courtyard_00058": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_04_MarineStation_Indoor_00001": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_04_MarineStation_Outdoor_00009": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_04_MarineStation_Outdoor_00010": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_04_MarineStation_Outdoor_00011": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_04_MarineStation_Outdoor_00012": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_05_Administration_Indoor_00000": {
+      "groupId": ""
+    },
+    "container_Terminal_Area_05_Administration_Indoor_00001": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00000": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00001": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00002": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00003": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00004": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00005": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00006": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00007": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00008": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00009": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00010": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00011": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00012": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00013": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00014": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00015": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00016": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00017": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00018": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00019": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00020": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00021": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00022": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00023": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00024": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00025": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00026": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00027": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00028": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00029": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00030": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00031": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00032": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00033": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00034": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00035": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00036": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00037": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00038": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00039": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00040": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00041": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00042": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00043": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00044": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00045": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00046": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00047": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00048": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00049": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00050": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00051": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00052": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00053": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00054": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00055": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00056": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00057": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00058": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00059": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00060": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00061": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00062": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00063": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00064": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00065": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00066": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00067": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00068": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00069": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00070": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00071": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00072": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00073": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00074": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00075": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00076": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00077": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00078": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00079": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00080": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00081": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00082": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00083": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00084": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00085": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00086": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00087": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00088": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00089": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00090": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00091": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00092": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00093": {
+      "groupId": "Terminal_Area_07_OilStorage"
+    },
+    "container_Terminal_Design_Stuff_00094": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00095": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00096": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00097": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00098": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00099": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00100": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00101": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00102": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00103": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00104": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00105": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00106": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00107": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00108": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00109": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00110": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00111": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00112": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00113": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00114": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00115": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00116": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00117": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00118": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Design_Stuff_00119": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00120": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00121": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00122": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00123": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00124": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00125": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00126": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00127": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00128": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Design_Stuff_00129": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00130": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00131": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00132": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00133": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00134": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00135": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00136": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Design_Stuff_00137": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00138": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00139": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00140": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00141": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00142": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00143": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00144": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00145": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00146": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00147": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00148": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00149": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00150": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00151": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00152": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00153": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00154": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00155": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00156": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00157": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00158": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00159": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00160": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00161": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00162": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00163": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00164": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00165": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00166": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00167": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Design_Stuff_00185": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00186": {
+      "groupId": ""
+    },
+    "container_Terminal_Design_Stuff_00187": {
+      "groupId": ""
+    },
+    "container_Terminal_Igor_Kulakov_TEMP_00001": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Igor_Kulakov_TEMP_00002": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Igor_Kulakov_TEMP_00003": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Igor_Kulakov_TEMP_00004": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Igor_Kulakov_TEMP_00005": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Igor_Kulakov_TEMP_00006": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00001": {
+      "groupId": "Terminal_Area_05_Administration"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00002": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00003": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00004": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00005": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00006": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00007": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00008": {
+      "groupId": "Terminal_Area_08_BulkCargo_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00009": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00010": {
+      "groupId": ""
+    },
+    "container_Terminal_Natalia_Volkova_TEMP_00011": {
+      "groupId": ""
+    },
+    "container_Test_for_export_00000": {
+      "groupId": "Terminal_Area_09_ContainerPort_B"
+    },
+    "container_Test_for_export_00002": {
+      "groupId": "Terminal_Area_10_Extraction"
+    },
+    "container_shoreline_DesignStuff_00182": {
+      "groupId": ""
+    },
+    "container_shoreline_DesignStuff_00736": {
+      "groupId": ""
+    },
+    "container_shoreline_DesignStuff_00737": {
+      "groupId": ""
+    },
+    "n1": {
+      "groupId": "Terminal_Area_10_Extraction"
+    }
+  }
+}

@@ -55,7 +55,6 @@ public class LocationLifecycleService(
     SaveServer saveServer,
     HealthHelper healthHelper,
     PmcChatResponseService pmcChatResponseService,
-    PmcWaveGenerator pmcWaveGenerator,
     QuestHelper questHelper,
     InsuranceService insuranceService,
     MatchBotDetailsCacheService matchBotDetailsCacheService,
@@ -391,9 +390,6 @@ public class LocationLifecycleService(
         {
             return locationBaseClone;
         }
-
-        // Add custom PMCs to map every time its run
-        pmcWaveGenerator.ApplyWaveChangesToMap(locationBaseClone);
 
         // Generate loot for location
         locationBaseClone.Loot = locationLootGenerator.GenerateLocationLoot(name);

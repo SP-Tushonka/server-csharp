@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
@@ -139,14 +139,8 @@ public record PmcConfig : BaseConfig
     [JsonPropertyName("lootItemLimitsRub")]
     public required List<MinMaxLootItemValue> LootItemLimitsRub { get; set; }
 
-    [JsonPropertyName("removeExistingPmcWaves")]
-    public required bool RemoveExistingPmcWaves { get; set; }
-
     [JsonPropertyName("dogtags")]
     public required Dictionary<string, Dictionary<string, Dictionary<MongoId, double>>> DogtagSettings { get; set; }
-
-    [JsonPropertyName("customPmcWaves")]
-    public required Dictionary<string, List<BossLocationSpawn>> CustomPmcWaves { get; set; }
 }
 
 public record ForceArmbandSettings
