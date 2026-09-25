@@ -54,12 +54,6 @@ public record InRaidConfig : BaseConfig
     /// </summary>
     [JsonPropertyName("alwaysKeepFoundInRaidOnRaidEnd")]
     public bool AlwaysKeepFoundInRaidOnRaidEnd { get; set; }
-
-    /// <summary>
-    ///     Percentage chance a player scav hot is hostile to the player when scavving
-    /// </summary>
-    [JsonPropertyName("playerScavHostileChancePercent")]
-    public double PlayerScavHostileChancePercent { get; set; }
 }
 
 public record RaidMenuSettings

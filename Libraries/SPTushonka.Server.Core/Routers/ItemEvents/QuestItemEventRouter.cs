@@ -26,6 +26,14 @@ public sealed class QuestItemEventRouter(QuestCallbacks questCallbacks)
             ItemEventActions.ADD_QUEST_NOTE,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.AddQuestNote(pmcData, body, sessionID)
         ),
+        new ItemRouteAction<ReadQuestNoteRequest>(
+            ItemEventActions.READ_QUEST_NOTE,
+            async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.ReadQuestNote(pmcData, body, sessionID)
+        ),
+        new ItemRouteAction<CompleteItemRequest>(
+            ItemEventActions.COMPLETE_ITEM,
+            async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.CompleteItem(pmcData, body, sessionID)
+        ),
         new ItemRouteAction<ReadQuestDataRequest>(
             ItemEventActions.READ_QUEST_DATA,
             async (url, pmcData, body, sessionID, output, cancellationToken) => await questCallbacks.ReadQuestData(pmcData, body, sessionID)

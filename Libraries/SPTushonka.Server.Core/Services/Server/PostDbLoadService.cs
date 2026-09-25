@@ -83,6 +83,8 @@ public class PostDbLoadService(
 
         FixDogtagCaseNotAcceptingAllDogtags();
 
+        AddTraderBuyProhibitedItemsToRewardBlacklist();
+
         AdjustLooseLootSpawnProbabilities();
 
         AdjustLocationBotValues();
@@ -223,6 +225,35 @@ public class PostDbLoadService(
                 }
             }
         }
+    }
+
+    /// <summary>
+    ///     Add items all main traders refuse to buy (story, event and cosmetic items) to the reward item blacklist,
+    ///     prevents Fence, airdrops and quest rewards from offering items not flagged as quest items
+    /// </summary>
+    protected void AddTraderBuyProhibitedItemsToRewardBlacklist()
+    {
+        MongoId[] mainTraders = [Traders.PRAPOR, Traders.THERAPIST, Traders.SKIER, Traders.PEACEKEEPER, Traders.MECHANIC, Traders.RAGMAN, Traders.JAEGER];
+
+        HashSet<MongoId>? prohibitedByAll = null;
+        foreach (var traderId in mainTraders)
+        {
+            var prohibited = traderTable.GetTrader(traderId)?.Base.ItemsBuyProhibited?.IdList;
+            if (prohibited is null)
+            {
+                return;
+            }
+
+            if (prohibitedByAll is null)
+            {
+                prohibitedByAll = [.. prohibited];
+                continue;
+            }
+
+            prohibitedByAll.IntersectWith(prohibited);
+        }
+
+        itemConfig.RewardItemBlacklist.UnionWith(prohibitedByAll ?? []);
     }
 
     /// <summary>

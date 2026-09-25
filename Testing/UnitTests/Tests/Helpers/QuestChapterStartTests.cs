@@ -199,6 +199,20 @@ public class QuestChapterStartTests
     }
 
     [Test]
+    public void GetClientQuests_HiddenGate_OpensAtTheTraderLoyalty()
+    {
+        var mechanicQuest = new MongoId("68dbf539675bd8efd403ec10");
+        var sessionId = AddProfile();
+        var mechanic = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.TradersInfo![Traders.MECHANIC];
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == mechanicQuest), Is.False, "loyalty 1");
+
+        mechanic.LoyaltyLevel = 4;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == mechanicQuest), Is.True, "loyalty 4");
+    }
+
+    [Test]
     public void GetClientQuests_HiddenGate_OpensAfterThePrerequisiteQuest()
     {
         // Breathing Room ships without start conditions, live still asks for Friend from Norvinsk - Part 5

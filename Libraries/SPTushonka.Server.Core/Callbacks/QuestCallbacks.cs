@@ -43,6 +43,30 @@ public class QuestCallbacks(
     }
 
     /// <summary>
+    ///     Handle ReadQuestNote event
+    /// </summary>
+    /// <param name="pmcData">Players PMC profile</param>
+    /// <param name="info"></param>
+    /// <param name="sessionID">Session/player id</param>
+    /// <returns></returns>
+    public ValueTask<ItemEventRouterResponse> ReadQuestNote(PmcData pmcData, ReadQuestNoteRequest info, MongoId sessionID)
+    {
+        return new ValueTask<ItemEventRouterResponse>(questController.ReadQuestNote(pmcData, info, sessionID));
+    }
+
+    /// <summary>
+    ///     Handle CompleteItem event
+    /// </summary>
+    /// <param name="pmcData">Players PMC profile</param>
+    /// <param name="info"></param>
+    /// <param name="sessionID">Session/player id</param>
+    /// <returns></returns>
+    public ValueTask<ItemEventRouterResponse> CompleteItem(PmcData pmcData, CompleteItemRequest info, MongoId sessionID)
+    {
+        return new ValueTask<ItemEventRouterResponse>(questController.CompleteItem(pmcData, info, sessionID));
+    }
+
+    /// <summary>
     ///     Handle ReadQuestData event
     /// </summary>
     /// <param name="pmcData">Players PMC profile</param>

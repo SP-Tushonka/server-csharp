@@ -241,10 +241,10 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
     }
 
     /// <summary>
-    ///     Advance energy, hydration, limb hp and effect timers by the time since health was last updated
+    ///     Regenerate energy, hydration and limb hp and reduce effect timers by the time since health was last updated
     /// </summary>
     /// <param name="pmcProfile">Profile to adjust values for</param>
-    /// <param name="decreaseBodyPartEffectTimes">Replaces DecreaseBodyPartEffectTimes when given</param>
+    /// <param name="decreaseBodyPartEffectTimes">OPTIONAL - Used instead of DecreaseBodyPartEffectTimes</param>
     public void UpdateProfileHealthValues(
         PmcData pmcProfile,
         Action<PmcData, double, double>? decreaseBodyPartEffectTimes = null
@@ -342,7 +342,7 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
             foreach (var (effectId, effect) in bodyPart.Effects)
             {
                 // Effects below 1 are intentional (e.g. -1). Do not modify or remove them
-                // Skipped effects are stored as null by ModifyProfileHealthProperties
+                // Effects in EffectsToSkip are stored as null
                 if (effect is null || effect.Time < 1)
                 {
                     continue;

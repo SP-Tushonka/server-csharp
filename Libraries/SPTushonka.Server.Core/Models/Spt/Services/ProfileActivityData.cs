@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Eft.Match;
-using SPTarkov.Server.Core.Models.Spt.Location;
 
 namespace SPTarkov.Server.Core.Models.Spt.Services;
 
@@ -15,7 +14,6 @@ public class ProfileActivityData
 public class ProfileActivityRaidData
 {
     public GetRaidConfigurationRequestData? RaidConfiguration { get; set; } = null;
-    public RaidChanges? RaidAdjustments { get; set; } = null;
     public LocationTransit? LocationTransit { get; set; } = null;
 }
 

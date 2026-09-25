@@ -12,7 +12,6 @@ using SPTarkov.Server.Core.Models.Eft.Game;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
-using SPTarkov.Server.Core.Models.Spt.Location;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers.Ws;
@@ -44,7 +43,6 @@ public class GameController(
     ServerLocalisationService serverLocalisationService,
     PostDbLoadService postDbLoadService,
     SeasonalEventService seasonalEventService,
-    RaidTimeAdjustmentService raidTimeAdjustmentService,
     ProfileActivityService profileActivityService,
     SaveServer saveServer,
     BotConfig botConfig,
@@ -258,17 +256,6 @@ public class GameController(
     }
 
     /// <summary>
-    ///     Handle singleplayer/settings/getRaidTime
-    /// </summary>
-    /// <param name="sessionId">Session/Player id</param>
-    /// <param name="request"></param>
-    /// <returns></returns>
-    public RaidChanges GetRaidTime(MongoId sessionId, GetRaidTimeRequest request)
-    {
-        return raidTimeAdjustmentService.GetRaidAdjustments(sessionId, request);
-    }
-
-    /// <summary>
     /// </summary>
     /// <param name="sessionId">Session/Player id</param>
     /// <returns></returns>
@@ -291,7 +278,7 @@ public class GameController(
     }
 
     /// <summary>
-    ///     Advance the stored health of recently active profiles, the client counts it down live
+    ///     Update health values and effect timers of profiles active within the configured minutes
     /// </summary>
     public void UpdateActiveProfilesHealth()
     {

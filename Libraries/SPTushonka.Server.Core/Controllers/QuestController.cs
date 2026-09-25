@@ -45,12 +45,54 @@ public class QuestController(
         return questHelper.GetClientQuests(sessionId);
     }
 
+    /// <summary>
+    ///     Handle AddQuestNote event
+    ///     Add a quest note to the profile as unread
+    /// </summary>
+    /// <param name="pmcData">Player profile</param>
+    /// <param name="request">Add quest note request</param>
+    /// <param name="sessionID">Session id</param>
+    /// <returns>ItemEventRouterResponse</returns>
     public ItemEventRouterResponse AddQuestNote(PmcData pmcData, AddQuestNoteRequest request, MongoId sessionID)
     {
         var output = eventOutputHolder.GetOutput(sessionID);
+        pmcData.QuestNotes ??= [];
+        pmcData.QuestNotes.TryAdd(request.NoteId, false);
 
+        return output;
+    }
+
+    /// <summary>
+    ///     Handle ReadQuestNote event
+    ///     Flag a quest note as read
+    /// </summary>
+    /// <param name="pmcData">Player profile</param>
+    /// <param name="request">Read quest note request</param>
+    /// <param name="sessionID">Session id</param>
+    /// <returns>ItemEventRouterResponse</returns>
+    public ItemEventRouterResponse ReadQuestNote(PmcData pmcData, ReadQuestNoteRequest request, MongoId sessionID)
+    {
+        var output = eventOutputHolder.GetOutput(sessionID);
         pmcData.QuestNotes ??= [];
         pmcData.QuestNotes[request.NoteId] = true;
+
+        return output;
+    }
+
+    /// <summary>
+    ///     Handle CompleteItem event
+    ///     Flag a note or tape read outside of a raid as completed, the item itself is kept
+    /// </summary>
+    /// <param name="pmcData">Player profile</param>
+    /// <param name="request">Complete item request</param>
+    /// <param name="sessionID">Session id</param>
+    /// <returns>ItemEventRouterResponse</returns>
+    public ItemEventRouterResponse CompleteItem(PmcData pmcData, CompleteItemRequest request, MongoId sessionID)
+    {
+        var output = eventOutputHolder.GetOutput(sessionID);
+
+        pmcData.CompletableItems ??= [];
+        pmcData.CompletableItems[request.CompletableItemId] = true;
 
         return output;
     }
@@ -58,7 +100,6 @@ public class QuestController(
     public ItemEventRouterResponse ReadQuestData(PmcData pmcData, ReadQuestDataRequest request, MongoId sessionID)
     {
         var output = eventOutputHolder.GetOutput(sessionID);
-
         pmcData.ReadQuestData ??= [];
         if (!pmcData.ReadQuestData.Contains(request.QuestId))
         {

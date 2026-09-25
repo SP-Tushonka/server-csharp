@@ -289,15 +289,6 @@ public class GameCallbacks(
     }
 
     /// <summary>
-    ///     Handle singleplayer/settings/getRaidTime
-    /// </summary>
-    /// <returns></returns>
-    public ValueTask<string> GetRaidTime(string url, GetRaidTimeRequest request, MongoId sessionID)
-    {
-        return new ValueTask<string>(httpResponseUtil.NoBody(gameController.GetRaidTime(sessionID, request)));
-    }
-
-    /// <summary>
     ///     Handle /client/survey
     /// </summary>
     /// <returns></returns>

@@ -11,18 +11,6 @@ namespace SPTarkov.Server.Core.Callbacks;
 public class BotCallbacks(BotController botController, HttpResponseUtil httpResponseUtil)
 {
     /// <summary>
-    ///     Handle singleplayer/settings/bot/limit
-    ///     Is called by client to define each bot roles wave limit
-    /// </summary>
-    /// <returns></returns>
-    public ValueTask<string> GetBotLimit(string url, EmptyRequestData _, MongoId sessionID)
-    {
-        var splitUrl = url.Split('/');
-        var type = splitUrl[^1];
-        return new ValueTask<string>(httpResponseUtil.NoBody(botController.GetBotPresetGenerationLimit(type)));
-    }
-
-    /// <summary>
     ///     Handle singleplayer/settings/bot/difficulty
     /// </summary>
     /// <returns></returns>
@@ -52,17 +40,6 @@ public class BotCallbacks(BotController botController, HttpResponseUtil httpResp
     public async ValueTask<string> GenerateBots(string url, GenerateBotsRequestData info, MongoId sessionID)
     {
         return httpResponseUtil.GetBody(await botController.Generate(sessionID, info));
-    }
-
-    /// <summary>
-    ///     Handle singleplayer/settings/bot/maxCap
-    /// </summary>
-    /// <returns></returns>
-    public ValueTask<string> GetBotCap(string url, EmptyRequestData _, MongoId sessionID)
-    {
-        var splitUrl = url.Split('/');
-        var location = splitUrl[^1];
-        return new ValueTask<string>(httpResponseUtil.NoBody(botController.GetBotCap(location)));
     }
 
     /// <summary>

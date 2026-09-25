@@ -73,7 +73,7 @@ public class DumpReader(ServerData data)
                 .Select(action => new MongoId(action.GetProperty("qid").GetString()))
                 .ToList();
 
-            if (!response.RootElement.TryGetProperty("profileChanges", out var changes))
+            if (response.RootElement.ValueKind != JsonValueKind.Object || !response.RootElement.TryGetProperty("profileChanges", out var changes))
             {
                 return;
             }

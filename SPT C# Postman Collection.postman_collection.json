@@ -3658,53 +3658,6 @@
           "response": []
         },
         {
-          "name": "singleplayer/settings/getRaidTime",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "PHPSESSID",
-                "value": "{{PHPSESSID}}",
-                "type": "text"
-              },
-              {
-                "key": "cookie",
-                "value": "{{cookie}}",
-                "type": "text"
-              },
-              {
-                "key": "Accept-Encoding",
-                "value": "{{Accept-Encoding}}",
-                "type": "text"
-              },
-              {
-                "key": "requestcompressed",
-                "value": "{{requestcompressed}}",
-                "type": "text"
-              },
-              {
-                "key": "responsecompressed",
-                "value": "{{responsecompressed}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": "{{host}}/singleplayer/settings/getRaidTime"
-          },
-          "response": []
-        },
-        {
           "name": "client/survey",
           "request": {
             "auth": {

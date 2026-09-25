@@ -43,7 +43,6 @@ public class LocationLifecycleService(
     ProfileActivityService profileActivityService,
     BotNameService botNameService,
     ICloner cloner,
-    RaidTimeAdjustmentService raidTimeAdjustmentService,
     LocationLootGenerator locationLootGenerator,
     ServerLocalisationService serverLocalisationService,
     BotLootCacheService botLootCacheService,
@@ -62,6 +61,7 @@ public class LocationLifecycleService(
     MatchBotDetailsCacheService matchBotDetailsCacheService,
     BtrDeliveryService btrDeliveryService,
     BattlePassDocumentLimitService battlePassDocumentLimitService,
+    ProfileProgressService profileProgressService,
     LocationConfig locationConfig,
     InRaidConfig inRaidConfig,
     TraderConfig traderConfig,
@@ -130,6 +130,13 @@ public class LocationLifecycleService(
         hideoutConfig.RunIntervalSeconds = hideoutConfig.RunIntervalValues.InRaid;
 
         var location = GenerateLocationAndLoot(sessionId, request.Location, !request.ShouldSkipLootGeneration ?? true);
+
+        // Remove the items the location lists from the profile, transits already removed them at the end of the previous raid
+        if (profileProgressService.RemoveListedItems(playerProfile, request.Location))
+        {
+            await saveServer.SaveProfileAsync(sessionId, cancellationToken);
+        }
+
         var isRundansActive = globalTable.Configuration.RunddansSettings.Active;
 
         if (transitionType == TransitionType.EVENT)
@@ -388,27 +395,8 @@ public class LocationLifecycleService(
         // Add custom PMCs to map every time its run
         pmcWaveGenerator.ApplyWaveChangesToMap(locationBaseClone);
 
-        // Adjust raid values based raid type (e.g. Scav or PMC)
-        LocationConfig? locationConfigClone = null;
-        var raidAdjustments = profileActivityService.GetProfileActivityRaidData(sessionId)?.RaidAdjustments;
-        if (raidAdjustments is not null)
-        {
-            locationConfigClone = cloner.Clone(locationConfig); // Clone values so they can be used to reset originals later
-            raidTimeAdjustmentService.MakeAdjustmentsToMap(raidAdjustments, locationBaseClone);
-        }
-
         // Generate loot for location
         locationBaseClone.Loot = locationLootGenerator.GenerateLocationLoot(name);
-
-        // Reset loot multipliers back to original values
-        if (raidAdjustments is not null && locationConfigClone is not null)
-        {
-            logger.Debug("Resetting loot multipliers back to their original values");
-            locationConfig.StaticLootMultiplier = locationConfigClone.StaticLootMultiplier;
-            locationConfig.LooseLootMultiplier = locationConfigClone.LooseLootMultiplier;
-
-            profileActivityService.GetProfileActivityRaidData(sessionId).RaidAdjustments = null;
-        }
 
         return locationBaseClone;
     }
@@ -489,6 +477,12 @@ public class LocationLifecycleService(
         }
 
         HandlePostRaidPmc(sessionId, fullProfile, scavProfile, isDead, isSurvived, isTransfer, request, locationName);
+
+        // Remove the items the next location lists before the client reloads the profile for the transit
+        if (isTransfer && request.LocationTransit?.Location is not null)
+        {
+            profileProgressService.RemoveListedItems(fullProfile, request.LocationTransit.Location);
+        }
 
         // Handle car extracts
         if (request.Results.TookCarExtract(inRaidConfig.CarExtracts))
@@ -837,23 +831,51 @@ public class LocationLifecycleService(
 
         battlePassDocumentLimitService.ConsumeRaidDocuments(serverPmcProfile, postRaidProfile);
 
+        // Some locations (e.g. Terminal) limit what is saved from the raid
+        var options = profileProgressService.GetOptions(locationName);
+        var saveItems = options?.SaveItems ?? true;
+        var saveHealth = options?.SaveHealth ?? true;
+
         // Update inventory
-        inRaidHelper.SetInventory(sessionId, serverPmcProfile, postRaidProfile, isSurvived, isTransfer);
+        if (saveItems)
+        {
+            inRaidHelper.SetInventory(sessionId, serverPmcProfile, postRaidProfile, isSurvived, isTransfer);
+        }
 
         serverPmcProfile.Info.Level = postRaidProfile.Info.Level;
-        serverPmcProfile.Skills = postRaidProfile.Skills;
-        serverPmcProfile.Stats.Eft = postRaidProfile.Stats.Eft;
-        serverPmcProfile.Encyclopedia = postRaidProfile.Encyclopedia;
+        if (options?.SaveSkill ?? true)
+        {
+            serverPmcProfile.Skills = postRaidProfile.Skills;
+        }
+
+        if (options?.SaveStatistics ?? true)
+        {
+            serverPmcProfile.Stats.Eft = postRaidProfile.Stats.Eft;
+        }
+
+        if (options?.SaveEncyclopedia ?? true)
+        {
+            serverPmcProfile.Encyclopedia = postRaidProfile.Encyclopedia;
+        }
         serverPmcProfile.TaskConditionCounters = postRaidProfile.TaskConditionCounters;
         serverPmcProfile.CompletableItems = postRaidProfile.CompletableItems;
+        MergeQuestNotes(serverPmcProfile, postRaidProfile);
         serverPmcProfile.SurvivorClass = postRaidProfile.SurvivorClass;
 
         // MUST occur prior to profile achievements being overwritten by post-raid achievements
-        ProcessAchievementRewards(fullServerProfile, postRaidProfile.Achievements);
+        var postRaidAchievements = KeepListedAchievements(
+            serverPmcProfile.Achievements,
+            postRaidProfile.Achievements,
+            options?.SaveAchievementList
+        );
+        ProcessAchievementRewards(fullServerProfile, postRaidAchievements);
 
         // MUST occur AFTER ProcessAchievementRewards()
-        serverPmcProfile.Achievements = postRaidProfile.Achievements;
-        serverPmcProfile.Quests = ProcessPostRaidQuests(postRaidProfile.Quests);
+        serverPmcProfile.Achievements = postRaidAchievements;
+
+        serverPmcProfile.Quests = ProcessPostRaidQuests(
+            KeepListedQuests(serverPmcProfile.Quests, postRaidProfile.Quests ?? [], options?.SaveQuestList)
+        );
 
         // MUST occur AFTER processPostRaidQuests()
         LightkeeperQuestWorkaround(sessionId, postRaidProfile.Quests, preRaidProfileQuestDataClone, serverPmcProfile);
@@ -888,9 +910,12 @@ public class LocationLifecycleService(
         MergePmcAndScavEncyclopedias(serverPmcProfile, scavProfile);
 
         // Handle temp, hydration, limb hp/effects
-        healthHelper.ApplyHealthChangesToProfile(serverPmcProfile, postRaidProfile.Health, isDead);
+        if (saveHealth)
+        {
+            healthHelper.ApplyHealthChangesToProfile(serverPmcProfile, postRaidProfile.Health, isDead);
+        }
 
-        if (isTransfer)
+        if (isTransfer && saveHealth)
         {
             // Adjust limb hp and effects while transiting
             UpdateLimbValuesAfterTransit(serverPmcProfile.Health);
@@ -901,7 +926,7 @@ public class LocationLifecycleService(
 
         if (isDead)
         {
-            if (lostQuestItems.Any())
+            if (saveItems && lostQuestItems.Any())
             // MUST occur AFTER quests have post raid quest data has been merged "processPostRaidQuests()"
             // Player is dead + had quest items, check and fix any broken find item quests
             {
@@ -915,9 +940,11 @@ public class LocationLifecycleService(
                 pmcChatResponseService.SendKillerResponse(sessionId, serverPmcProfile, postRaidProfile.Stats.Eft.Aggressor);
             }
 
-            inRaidHelper.DeleteInventory(serverPmcProfile, sessionId);
-
-            serverPmcProfile.RemoveFiRStatusFromItemsInContainer("SecuredContainer");
+            if (saveItems)
+            {
+                inRaidHelper.DeleteInventory(serverPmcProfile, sessionId);
+                serverPmcProfile.RemoveFiRStatusFromItemsInContainer("SecuredContainer");
+            }
         }
 
         // Must occur AFTER killer messages have been sent
@@ -931,6 +958,93 @@ public class LocationLifecycleService(
         {
             pmcChatResponseService.SendVictimResponse(sessionId, victims, serverPmcProfile);
         }
+    }
+
+    /// <summary>
+    ///     Merge quest notes and read quest data from the post-raid profile into the server profile
+    ///     A note flagged as read on either profile stays read
+    /// </summary>
+    /// <param name="serverPmcProfile">Profile to update</param>
+    /// <param name="postRaidProfile">Profile sent by the client at the end of the raid</param>
+    public static void MergeQuestNotes(PmcData serverPmcProfile, PmcData postRaidProfile)
+    {
+        serverPmcProfile.QuestNotes ??= [];
+        foreach (var (noteId, read) in postRaidProfile.QuestNotes ?? [])
+        {
+            serverPmcProfile.QuestNotes[noteId] = read || serverPmcProfile.QuestNotes.GetValueOrDefault(noteId);
+        }
+
+        serverPmcProfile.ReadQuestData ??= [];
+        foreach (var questDataId in postRaidProfile.ReadQuestData ?? [])
+        {
+            if (!serverPmcProfile.ReadQuestData.Contains(questDataId))
+            {
+                serverPmcProfile.ReadQuestData.Add(questDataId);
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Get the achievements to store after a raid, only the listed achievements are taken from the post-raid profile
+    ///     All post-raid achievements are used when the location has no list
+    /// </summary>
+    /// <param name="current">Achievements on the server profile</param>
+    /// <param name="postRaid">Achievements from the post-raid profile</param>
+    /// <param name="listed">Achievements the location allows to be saved</param>
+    /// <returns>Achievements to store</returns>
+    protected static Dictionary<MongoId, long>? KeepListedAchievements(
+        Dictionary<MongoId, long>? current,
+        Dictionary<MongoId, long>? postRaid,
+        IEnumerable<ProfileProgressAchievementId>? listed
+    )
+    {
+        if (listed is null || postRaid is null)
+        {
+            return postRaid;
+        }
+
+        var result = new Dictionary<MongoId, long>(current ?? []);
+        foreach (var entry in listed)
+        {
+            if (entry.AchievementId is null)
+            {
+                continue;
+            }
+
+            var id = new MongoId(entry.AchievementId);
+            if (postRaid.TryGetValue(id, out var time))
+            {
+                result[id] = time;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///     Get the quests to store after a raid, only the listed quests are taken from the post-raid profile
+    ///     All post-raid quests are used when the location has no list
+    /// </summary>
+    /// <param name="current">Quests on the server profile</param>
+    /// <param name="postRaid">Quests from the post-raid profile</param>
+    /// <param name="listed">Quests the location allows to be saved</param>
+    /// <returns>Quests to store</returns>
+    protected static List<QuestStatus> KeepListedQuests(
+        List<QuestStatus>? current,
+        List<QuestStatus> postRaid,
+        IEnumerable<ProfileProgressQuestId>? listed
+    )
+    {
+        if (listed is null)
+        {
+            return postRaid;
+        }
+
+        var ids = listed.Where(entry => entry.QuestId is not null).Select(entry => new MongoId(entry.QuestId!)).ToHashSet();
+        var kept = (current ?? []).Where(quest => !ids.Contains(quest.QId)).ToList();
+        kept.AddRange(postRaid.Where(quest => ids.Contains(quest.QId)));
+
+        return kept;
     }
 
     /// <summary>

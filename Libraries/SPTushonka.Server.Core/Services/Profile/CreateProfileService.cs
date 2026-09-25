@@ -69,21 +69,21 @@ public class CreateProfileService(
         pmcData.Info.NeedWipeOptions = [];
         pmcData.Customization.Head = request.HeadId;
         pmcData.Health.UpdateTime = timeUtil.GetTimeStamp();
-        pmcData.Quests = [];
+        pmcData.Quests ??= [];
         pmcData.Hideout.Seed = Convert.ToHexStringLower(RandomNumberGenerator.GetBytes(16));
         pmcData.RepeatableQuests = [];
         pmcData.CarExtractCounts = [];
         pmcData.CoopExtractCounts = [];
-        pmcData.Achievements = [];
+        pmcData.Achievements ??= [];
 
         pmcData.WishList = new();
-        pmcData.Variables = new();
+        pmcData.Variables ??= new();
 
         // Process handling if the account has been forced to wipe
         // BSG keeps both the achievements, prestige level and the total in-game time in a wipe
-        if (account.CharacterData.PmcData.Achievements is not null)
+        foreach (var (achievementId, unlockedAt) in account.CharacterData.PmcData.Achievements ?? [])
         {
-            pmcData.Achievements = account.CharacterData.PmcData.Achievements;
+            pmcData.Achievements.TryAdd(achievementId, unlockedAt);
         }
 
         if (account.CharacterData.PmcData.Prestige is not null)

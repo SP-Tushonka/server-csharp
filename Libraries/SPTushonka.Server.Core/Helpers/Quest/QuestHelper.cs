@@ -141,9 +141,11 @@ public class QuestHelper(
         )
         {
             logger.Error(serverLocalisationService.GetText("quest-unable_to_find_trader_in_profile", questProperties.Target));
+
+            return false;
         }
 
-        return CompareAvailableForValues(trader!.LoyaltyLevel!.Value, questProperties.Value!.Value, questProperties.CompareMethod!);
+        return CompareAvailableForValues(trader.LoyaltyLevel!.Value, questProperties.Value!.Value, questProperties.CompareMethod!);
     }
 
     /// <summary>
@@ -1380,7 +1382,7 @@ public class QuestHelper(
             });
     }
 
-    /// <summary>Whether the profile has reached the group value or trader standing live silently asks of this quest, if any.</summary>
+    /// <summary>Whether the profile has reached the group value, trader standing or loyalty live silently asks of this quest, if any.</summary>
     protected bool HiddenGateMet(MongoId questId, PmcData? profile)
     {
         if (!questConfig.HiddenVariableGates.TryGetValue(questId, out var gate))
@@ -1395,9 +1397,14 @@ public class QuestHelper(
 
         if (gate.Trader is not null)
         {
-            return profile.TradersInfo is not null
-                && profile.TradersInfo.TryGetValue(gate.Trader.Value, out var traderInfo)
-                && (traderInfo.Standing ?? 0) >= (gate.Standing ?? 0);
+            if (profile.TradersInfo is null || !profile.TradersInfo.TryGetValue(gate.Trader.Value, out var traderInfo))
+            {
+                return false;
+            }
+
+            return gate.Loyalty is not null
+                ? (traderInfo.LoyaltyLevel ?? 1) >= gate.Loyalty.Value
+                : (traderInfo.Standing ?? 0) >= (gate.Standing ?? 0);
         }
 
         if (gate.Target is not null)

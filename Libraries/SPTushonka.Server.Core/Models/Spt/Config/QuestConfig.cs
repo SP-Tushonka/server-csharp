@@ -664,6 +664,10 @@ public record HiddenVariableGate
     [JsonPropertyName("standing")]
     public double? Standing { get; set; }
 
+    /// <summary>The lowest loyalty level with the trader that offers the quest, used instead of the standing</summary>
+    [JsonPropertyName("loyalty")]
+    public int? Loyalty { get; set; }
+
     /// <summary>Quests that must be completed, the prerequisites live stripped from the wire but still enforces</summary>
     [JsonPropertyName("quests")]
     public List<MongoId>? Quests { get; set; }

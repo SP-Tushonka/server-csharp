@@ -109,12 +109,6 @@ public record LocationConfig : BaseConfig
     public required Dictionary<string, HashSet<string>> LooseLootBlacklist { get; set; }
 
     /// <summary>
-    ///     Key: map, value: settings to control how long scav raids are
-    /// </summary>
-    [JsonPropertyName("scavRaidTimeSettings")]
-    public required ScavRaidTimeSettings ScavRaidTimeSettings { get; set; }
-
-    /// <summary>
     ///     Settings to adjust mods for lootable equipment in raid
     /// </summary>
     [JsonPropertyName("equipmentLootSettings")]
@@ -221,58 +215,4 @@ public record ContainerRandomisationSettings
 
     [JsonPropertyName("containerGroupMaxSizeMultiplier")]
     public double ContainerGroupMaxSizeMultiplier { get; set; }
-}
-
-public record ScavRaidTimeSettings
-{
-    [JsonPropertyName("settings")]
-    public required ScavRaidTimeConfigSettings Settings { get; set; }
-
-    [JsonPropertyName("maps")]
-    public required Dictionary<string, ScavRaidTimeLocationSettings?> Maps { get; set; }
-}
-
-public record ScavRaidTimeConfigSettings
-{
-    [JsonPropertyName("trainArrivalDelayObservedSeconds")]
-    public int TrainArrivalDelayObservedSeconds { get; set; }
-}
-
-public record ScavRaidTimeLocationSettings
-{
-    /// <summary>
-    ///     Should loot be reduced by same percent length of raid is reduced by
-    /// </summary>
-    [JsonPropertyName("reduceLootByPercent")]
-    public bool ReduceLootByPercent { get; set; }
-
-    /// <summary>
-    ///     Smallest % of container loot that should be spawned
-    /// </summary>
-    [JsonPropertyName("minStaticLootPercent")]
-    public double MinStaticLootPercent { get; set; }
-
-    /// <summary>
-    ///     Smallest % of loose loot that should be spawned
-    /// </summary>
-    [JsonPropertyName("minDynamicLootPercent")]
-    public double MinDynamicLootPercent { get; set; }
-
-    /// <summary>
-    ///     Chance raid time is reduced
-    /// </summary>
-    [JsonPropertyName("reducedChancePercent")]
-    public double ReducedChancePercent { get; set; }
-
-    /// <summary>
-    ///     How much should raid time be reduced - weighted
-    /// </summary>
-    [JsonPropertyName("reductionPercentWeights")]
-    public Dictionary<string, double> ReductionPercentWeights { get; set; } = [];
-
-    /// <summary>
-    ///     Should bot waves be removed / spawn times be adjusted
-    /// </summary>
-    [JsonPropertyName("adjustWaves")]
-    public bool AdjustWaves { get; set; }
 }

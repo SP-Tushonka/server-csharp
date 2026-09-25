@@ -366,27 +366,6 @@ public class BotController(
     }
 
     /// <summary>
-    ///     Get the max number of bots allowed on a map
-    ///     Looks up location player is entering when getting cap value
-    /// </summary>
-    /// <param name="location">The map location cap was requested for</param>
-    /// <returns>bot cap for map</returns>
-    public int GetBotCap(string location)
-    {
-        if (!botConfig.MaxBotCap.TryGetValue(location.ToLowerInvariant(), out var maxCap))
-        {
-            return botConfig.MaxBotCap["default"];
-        }
-
-        if (location == "default")
-        {
-            logger.Warning(serverLocalisationService.GetText("bot-no_bot_cap_found_for_location", location.ToLowerInvariant()));
-        }
-
-        return maxCap;
-    }
-
-    /// <summary>
     ///     Get weights for what each bot type should use as a brain - used by client
     /// </summary>
     /// <returns></returns>

@@ -138,7 +138,7 @@ public class BtrDeliveryService(
     /// Get a timestamp of when items given to the BTR driver should be sent to player.
     /// </summary>
     /// <returns>Timestamp to return items to player in seconds</returns>
-    protected double GetBTRDeliveryReturnTimestamp()
+    public double GetBTRDeliveryReturnTimestamp()
     {
         // If override in config is non-zero, use that
         if (btrDeliveryConfig.ReturnTimeOverrideSeconds > 0)
@@ -151,6 +151,9 @@ public class BtrDeliveryService(
             return timeUtil.GetTimeStamp() + btrDeliveryConfig.ReturnTimeOverrideSeconds;
         }
 
-        return timeUtil.GetTimeStamp();
+        var min = btrDeliveryConfig.ReturnTimeSeconds.Min;
+        var max = Math.Max(min, btrDeliveryConfig.ReturnTimeSeconds.Max);
+
+        return timeUtil.GetTimeStamp() + randomUtil.GetDouble(min, max);
     }
 }

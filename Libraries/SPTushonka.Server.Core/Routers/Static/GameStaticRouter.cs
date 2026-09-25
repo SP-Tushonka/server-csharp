@@ -93,10 +93,6 @@ public class GameStaticRouter(JsonUtil jsonUtil, GameCallbacks gameCallbacks)
                 "/client/report/send",
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.ReportNickname(url, info, sessionID)
             ),
-            new RouteAction<GetRaidTimeRequest>(
-                "/singleplayer/settings/getRaidTime",
-                async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetRaidTime(url, info, sessionID)
-            ),
             new RouteAction<EmptyRequestData>(
                 "/client/survey",
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GetSurvey(url, info, sessionID)

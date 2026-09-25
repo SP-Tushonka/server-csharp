@@ -246,7 +246,7 @@ public class ItemHelper(
     /// <br/>
     /// Not on the invalid base types array
     /// <br/>
-    /// Price above 0 roubles
+    /// Listed in the handbook with a price above 0 roubles
     /// <br/>
     /// </summary>
     /// <param name="tpl">Template id to check</param>
@@ -271,7 +271,7 @@ public class ItemHelper(
     /// Not quest item
     /// 'Item' type
     /// Not on the invalid base types array
-    /// Price above 0 roubles
+    /// Listed in the handbook with a price above 0 roubles
     /// </summary>
     /// <param name="item">Item from DB to check</param>
     /// <param name="invalidBaseTypes">OPTIONAL - Base types deemed invalid</param>
@@ -282,7 +282,8 @@ public class ItemHelper(
 
         return !(item.Properties?.QuestItem ?? false)
             && string.Equals(item.Type, "Item", StringComparison.OrdinalIgnoreCase)
-            && GetItemPrice(item.Id) > 0
+            // Handbook price only, internal parts like built-in helmet armor have a flea price but no handbook entry
+            && GetStaticItemPrice(item.Id) > 0
             && !itemFilterService.IsItemBlacklisted(item.Id)
             && baseTypes.All(x => !IsOfBaseclass(item.Id, x));
     }

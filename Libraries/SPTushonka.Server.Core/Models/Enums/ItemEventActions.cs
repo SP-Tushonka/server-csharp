@@ -62,4 +62,6 @@ public record ItemEventActions
     public const string SAVE_DIALOGUE_STATE = "SaveDialogueState";
     public const string READ_QUEST_DATA = "ReadQuestData";
     public const string ADD_QUEST_NOTE = "AddQuestNote";
+    public const string READ_QUEST_NOTE = "ReadQuestNote";
+    public const string COMPLETE_ITEM = "CompleteItem";
 }
