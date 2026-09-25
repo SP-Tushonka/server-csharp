@@ -120,10 +120,7 @@ public class BotController(
         var botTypes = Enum.GetValues<WildSpawnType>();
         foreach (var botType in botTypes)
         {
-            // If bot is usec/bear, swap to different name
-            var botTypeLower = botType.IsPmc()
-                ? (botType.GetPmcSideByRole() ?? "usec").ToLowerInvariant()
-                : botType.ToString().ToLowerInvariant();
+            var botTypeLower = botType.ToString().ToLowerInvariant();
 
             // Get details from db
             if (!botTypesDb.TryGetValue(botTypeLower, out var botDetails))
