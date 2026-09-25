@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
@@ -19,7 +19,8 @@ public class BotNameService(
     BotHelper botHelper,
     RandomUtil randomUtil,
     ServerLocalisationService serverLocalisationService,
-    BotConfig botConfig
+    BotConfig botConfig,
+    PmcConfig pmcConfig
 )
 {
     protected readonly Lock LockObject = new();
@@ -144,16 +145,12 @@ public class BotNameService(
     }
 
     /// <summary>
-    ///     Choose a random PMC name from bear or usec bot jsons
+    ///     Choose a random PMC name from either sides name pool
     /// </summary>
     /// <returns>PMC name as string</returns>
     protected string GetRandomPmcName()
     {
-        var bots = botTable.Types;
-
-        var pmcNames = new List<string>();
-        pmcNames.AddRange(bots["usec"].FirstNames);
-        pmcNames.AddRange(bots["bear"].FirstNames);
+        var pmcNames = pmcConfig.PmcNames.Values.SelectMany(pool => pool.FirstNames).ToList();
 
         return randomUtil.GetArrayValue(pmcNames);
     }

@@ -50,6 +50,7 @@ public class GameController(
     HideoutConfig hideoutConfig,
     HttpConfig httpConfig,
     HealthConfig healthConfig,
+    PmcConfig pmcConfig,
     BattlePassDocumentLimitService battlePassDocumentLimitService
 ) : IOnUpdate
 {
@@ -362,31 +363,23 @@ public class GameController(
     protected void AddPlayerToPmcNames(PmcData pmcProfile)
     {
         var playerName = pmcProfile.Info?.Nickname;
-        if (playerName is not null)
+        if (playerName is null)
         {
-            var bots = botTable.Types;
+            return;
+        }
 
-            // Official names can only be 15 chars in length
-            if (playerName.Length > botConfig.BotNameLengthLimit)
-            {
-                return;
-            }
+        // Official names can only be 15 chars in length
+        if (playerName.Length > botConfig.BotNameLengthLimit)
+        {
+            return;
+        }
 
+        foreach (var namePool in pmcConfig.PmcNames.Values)
+        {
             // Skip if player name exists already
-            if (bots!.TryGetValue("bear", out var bearBot))
+            if (!namePool.FirstNames.Contains(playerName))
             {
-                if (bearBot is not null && bearBot.FirstNames!.Any(x => x == playerName))
-                {
-                    bearBot.FirstNames!.Add(playerName);
-                }
-            }
-
-            if (bots.TryGetValue("bear", out var usecBot))
-            {
-                if (usecBot is not null && usecBot.FirstNames!.Any(x => x == playerName))
-                {
-                    usecBot.FirstNames!.Add(playerName);
-                }
+                namePool.FirstNames.Add(playerName);
             }
         }
     }

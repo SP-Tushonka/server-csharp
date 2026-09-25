@@ -1,8 +1,9 @@
-using System.Collections.Frozen;
+﻿using System.Collections.Frozen;
 using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Profile;
@@ -478,12 +479,12 @@ public class SeasonalEventService(
         AddPumpkinsToScavBackpacks();
         AdjustTraderIcons(eventType.Type);
 
-        if (botTable.Types.TryGetValue("bear", out var bear))
+        if (botTable.Types.TryGetValue(Roles.PmcBear, out var bear))
         {
             bear.BotAppearance.Head[new MongoId("6644d2da35d958070c02642c")] = 30;
         }
 
-        if (botTable.Types.TryGetValue("usec", out var usec))
+        if (botTable.Types.TryGetValue(Roles.PmcUsec, out var usec))
         {
             usec.BotAppearance.Head[new MongoId("6644d2da35d958070c02642c")] = 30;
         }

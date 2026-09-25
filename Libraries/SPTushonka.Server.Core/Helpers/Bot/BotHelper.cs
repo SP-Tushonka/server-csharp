@@ -101,6 +101,16 @@ public class BotHelper(ISptLogger<BotHelper> logger, BotTable botTable, RandomUt
     }
 
     /// <summary>
+    ///     Get the bot type key holding a PMC sides data
+    /// </summary>
+    /// <param name="side">usec/bear</param>
+    /// <returns>bot type key (pmcusec/pmcbear)</returns>
+    public string GetPmcTypeBySide(string side)
+    {
+        return string.Equals(side, Sides.Bear, StringComparison.OrdinalIgnoreCase) ? Roles.PmcBear : Roles.PmcUsec;
+    }
+
+    /// <summary>
     ///     Get the corresponding side when pmcBEAR or pmcUSEC is passed in
     /// </summary>
     /// <param name="botRole">role to get side for</param>
@@ -183,14 +193,13 @@ public class BotHelper(ISptLogger<BotHelper> logger, BotTable botTable, RandomUt
     protected List<string> GatherPmcNamesOfLength(string chosenFaction, int maxLength)
     {
         // Ensure faction is legit before gathering
-        if (!botTable.Types.TryGetValue(chosenFaction, out var chosenFactionDetails))
+        if (!pmcConfig.PmcNames.TryGetValue(chosenFaction, out var namePool))
         {
             logger.Error($"Unknown faction: {chosenFaction} Defaulting to: {Sides.Usec}");
-            chosenFaction = Sides.Usec.ToLowerInvariant();
-            chosenFactionDetails = botTable.Types[chosenFaction];
+            namePool = pmcConfig.PmcNames[Sides.Usec.ToLowerInvariant()];
         }
 
-        var matchingNames = chosenFactionDetails.FirstNames.Where(name => name.Length <= maxLength).ToList();
+        var matchingNames = namePool.FirstNames.Where(name => name.Length <= maxLength).ToList();
         if (matchingNames.Count != 0)
         {
             return matchingNames;
@@ -201,6 +210,6 @@ public class BotHelper(ISptLogger<BotHelper> logger, BotTable botTable, RandomUt
         );
 
         // Return a random string from names
-        return chosenFactionDetails.FirstNames.ToList();
+        return namePool.FirstNames.ToList();
     }
 }

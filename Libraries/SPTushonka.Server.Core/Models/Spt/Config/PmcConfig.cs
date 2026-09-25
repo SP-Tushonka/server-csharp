@@ -141,6 +141,21 @@ public record PmcConfig : BaseConfig
 
     [JsonPropertyName("dogtags")]
     public required Dictionary<string, Dictionary<string, Dictionary<MongoId, double>>> DogtagSettings { get; set; }
+
+    /// <summary>
+    ///     Name pools keyed by side (USEC/Bear)
+    /// </summary>
+    [JsonPropertyName("pmcNames")]
+    public required Dictionary<string, PmcNamePool> PmcNames { get; set; }
+}
+
+public record PmcNamePool
+{
+    [JsonPropertyName("firstName")]
+    public required List<string> FirstNames { get; set; }
+
+    [JsonPropertyName("lastName")]
+    public required List<string> LastNames { get; set; }
 }
 
 public record ForceArmbandSettings

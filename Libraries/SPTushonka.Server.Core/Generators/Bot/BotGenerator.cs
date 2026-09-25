@@ -141,13 +141,10 @@ public class BotGenerator(
         );
 
         // Get raw json data for bot (Cloned)
-        var botRole = botGenerationDetails.IsPmc
-            ? botBaseClone.Info.Side // Use side to get usec.json or bear.json when bot will be PMC
-            : botGenerationDetails.Role;
-        var botJsonTemplateClone = cloner.Clone(botHelper.GetBotTemplate(botRole));
+        var botJsonTemplateClone = cloner.Clone(botHelper.GetBotTemplate(botGenerationDetails.Role));
         if (botJsonTemplateClone is null)
         {
-            logger.Error($"Unable to retrieve: {botRole} bot template, cannot generate bot of this type");
+            logger.Error($"Unable to retrieve: {botGenerationDetails.Role} bot template, cannot generate bot of this type");
         }
 
         return GenerateBot(sessionId, botBaseClone, botJsonTemplateClone, botGenerationDetails);

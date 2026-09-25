@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using SPTarkov.Server.Core.Constants;
+using System.Reflection;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
@@ -424,11 +425,11 @@ public class CustomItemService(
         var botTypes = botTable.Types;
 
         // Add weapon base+mods into bear/usec data
-        botTypes["usec"].BotInventory.Mods[weaponTpl] = baseWeaponModObject;
-        botTypes["bear"].BotInventory.Mods[weaponTpl] = baseWeaponModObject;
+        botTypes[Roles.PmcUsec].BotInventory.Mods[weaponTpl] = baseWeaponModObject;
+        botTypes[Roles.PmcBear].BotInventory.Mods[weaponTpl] = baseWeaponModObject;
 
         // Add weapon to array of allowed weapons + weighting to be picked
-        botTypes["usec"].BotInventory.Equipment[Enum.Parse<EquipmentSlots>(weaponSlot)][weaponTpl] = weaponWeight;
-        botTypes["bear"].BotInventory.Equipment[Enum.Parse<EquipmentSlots>(weaponSlot)][weaponTpl] = weaponWeight;
+        botTypes[Roles.PmcUsec].BotInventory.Equipment[Enum.Parse<EquipmentSlots>(weaponSlot)][weaponTpl] = weaponWeight;
+        botTypes[Roles.PmcBear].BotInventory.Equipment[Enum.Parse<EquipmentSlots>(weaponSlot)][weaponTpl] = weaponWeight;
     }
 }
