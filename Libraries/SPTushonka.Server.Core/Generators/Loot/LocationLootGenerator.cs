@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
@@ -832,7 +832,7 @@ public class LocationLootGenerator(
                 continue;
             }
 
-            var createItemResult = CreateDynamicLootItem(chosenItem, spawnPoint.Template.Items, staticAmmoDist, locationName);
+            var createItemResult = CreateDynamicLootItem(chosenItem, spawnPoint.Template.Items, staticAmmoDist);
 
             // If count reaches max, skip adding item to loot
             if (counterTrackerHelper.IncrementCount(createItemResult.Items.FirstOrDefault().Template))
@@ -890,7 +890,7 @@ public class LocationLootGenerator(
             }
 
             var chosenItem = forcedLootLocation.Template.Items.FirstOrDefault(item => item.Id == rootItem.Id);
-            var createItemResult = CreateDynamicLootItem(chosenItem, forcedLootLocation.Template.Items, staticAmmoDist, locationName);
+            var createItemResult = CreateDynamicLootItem(chosenItem, forcedLootLocation.Template.Items, staticAmmoDist);
 
             // Update root ID with the above dynamically generated ID
             forcedLootLocation.Template.Root = createItemResult.Items.FirstOrDefault().Id;
@@ -964,8 +964,7 @@ public class LocationLootGenerator(
     protected ContainerItem CreateDynamicLootItem(
         SptLootItem chosenItem,
         IEnumerable<SptLootItem> lootItems,
-        Dictionary<string, IEnumerable<StaticAmmoDetails>> staticAmmoDist,
-        string locationName
+        Dictionary<string, IEnumerable<StaticAmmoDetails>> staticAmmoDist
     )
     {
         var chosenTpl = chosenItem.Template;
@@ -1008,11 +1007,7 @@ public class LocationLootGenerator(
             // Create array with just magazine
             List<Item> magazineItem = [new() { Id = new MongoId(), Template = chosenTpl }];
 
-            var shouldFillMagazine =
-                locationName.Equals("sandbox_start", StringComparison.OrdinalIgnoreCase)
-                || randomUtil.GetChance100(locationConfig.StaticMagazineLootHasAmmoChancePercent);
-
-            if (shouldFillMagazine)
+            if (randomUtil.GetChance100(locationConfig.MagazineLootHasAmmoChancePercent))
             {
                 // Add randomised amount of cartridges
                 itemHelper.FillMagazineWithRandomCartridge(
@@ -1115,7 +1110,7 @@ public class LocationLootGenerator(
         }
         else if (itemHelper.IsOfBaseclass(chosenTpl, BaseClasses.MAGAZINE))
         {
-            if (randomUtil.GetChance100(locationConfig.MagazineLootHasAmmoChancePercent))
+            if (randomUtil.GetChance100(locationConfig.StaticMagazineLootHasAmmoChancePercent))
             {
                 // Create array with just magazine
                 GenerateStaticMagazineItem(staticAmmoDist, rootItem, itemTemplate, items);
