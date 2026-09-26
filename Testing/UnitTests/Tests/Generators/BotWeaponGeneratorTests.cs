@@ -30,7 +30,7 @@ public class BotWeaponGeneratorTests
     [Test]
     public void GenerateWeaponByTpl_generate_m4_pmc()
     {
-        var usecTemplate = _botTable.Types["usec"];
+        var usecTemplate = _botTable.Types["pmcusec"];
         var botTemplateInventory = usecTemplate.BotInventory;
 
         // Create profile stub to allow `GenerateWeaponByTpl` to work
