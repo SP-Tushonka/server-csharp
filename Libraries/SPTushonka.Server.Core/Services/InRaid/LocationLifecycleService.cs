@@ -657,7 +657,11 @@ public class LocationLifecycleService(
             // Also adjust FiR status when exit was runthrough
             inRaidHelper.SetInventory(sessionId, scavProfile, postRaidProfile, isSurvived, isTransfer);
         }
-
+        if (isSurvived)
+        {
+            // Store looted items (keeping FiR status) so player can transfer them to their stash post-raid
+            inRaidHelper.SetInventory(sessionId, scavProfile, postRaidProfile, isSurvived, isTransfer);
+        }
         scavProfile.Info.Level = postRaidProfile.Info.Level;
         scavProfile.Skills = postRaidProfile.Skills;
         scavProfile.Stats = postRaidProfile.Stats;
