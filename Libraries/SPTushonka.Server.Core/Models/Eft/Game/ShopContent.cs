@@ -169,19 +169,26 @@ public sealed record ShopOffer
     [JsonPropertyName("detailImages")]
     public List<ShopDetailImage> DetailImages { get; set; } = [];
 
-    // What the buyer receives. Items reference a template, customisations a suite.
+    /// <summary>
+    ///     What the buyer receives. A bundle's items are the offers it is made of
+    /// </summary>
     [JsonPropertyName("items")]
     public List<ShopOfferItem> Items { get; set; } = [];
 
     [JsonPropertyName("tags")]
     public List<string> Tags { get; set; } = [];
 
-    // The offers a bundle is made of, listed as its contents with their own artwork.
+    /// <summary>
+    ///     Bundles this offer is sold in. Buying the offer does not deliver them
+    /// </summary>
     [JsonPropertyName("relatedOffers")]
     public List<ShopRelatedOffer> RelatedOffers { get; set; } = [];
 
     [JsonPropertyName("showBundleComposition")]
     public bool ShowBundleComposition { get; set; }
+
+    [JsonPropertyName("showRelatedOffers")]
+    public bool ShowRelatedOffers { get; set; }
 }
 
 public sealed record ShopRelatedOffer
@@ -219,6 +226,21 @@ public sealed record ShopDetailImage
 
 public sealed record ShopOfferItem
 {
+    /// <summary>
+    ///     Offer this entry stands for when it is part of a bundle
+    /// </summary>
+    [JsonPropertyName("id")]
+    public MongoId? OfferId { get; set; }
+
+    [JsonPropertyName("nameKey")]
+    public string? NameKey { get; set; }
+
+    [JsonPropertyName("descriptionKey")]
+    public string? DescriptionKey { get; set; }
+
+    [JsonPropertyName("images")]
+    public List<ShopRelatedImage> Images { get; set; } = [];
+
     [JsonPropertyName("_tpl")]
     public MongoId? Template { get; set; }
 
@@ -252,6 +274,39 @@ public sealed record ShopOfferItem
 
     [JsonPropertyName("amount")]
     public int Amount { get; set; }
+}
+
+public enum ShopPurchaseOutcome
+{
+    Success,
+    OfferNotFound,
+    PurchaseLimitExceeded,
+    NotDeliverable,
+    InsufficientBalance,
+}
+
+/// <summary>
+///     Result of a Shop purchase. The transaction is set on success and is what the game signs to complete it
+/// </summary>
+public sealed record ShopPurchaseReceipt(ShopPurchaseOutcome Outcome, string? TransactionId = null);
+
+public static class ShopPurchaseOutcomeExtensions
+{
+    /// <summary>
+    ///     Get the Shop locale key for a failed purchase
+    /// </summary>
+    /// <param name="result">Purchase outcome</param>
+    /// <returns>The key between common.notification. and .summary or .detail</returns>
+    public static string NotificationKey(this ShopPurchaseOutcome result)
+    {
+        return result switch
+        {
+            ShopPurchaseOutcome.OfferNotFound => "offerNotFoundError",
+            ShopPurchaseOutcome.PurchaseLimitExceeded => "purchaseLimitExceededError",
+            ShopPurchaseOutcome.InsufficientBalance => "insufficientBalanceError",
+            _ => "error",
+        };
+    }
 }
 
 public static class ShopOfferItemType

@@ -166,9 +166,14 @@ public class GameCallbacks(
     /// </summary>
     public async ValueTask<string> PurchaseShopOffer(string url, ShopPurchaseRequest info, MongoId sessionID)
     {
-        var bought = await tarcoinStoreService.TryPurchaseAsync(sessionID, info.OfferId ?? string.Empty, info.Count ?? 1);
+        var receipt = await tarcoinStoreService.TryPurchaseAsync(sessionID, info.OfferId ?? string.Empty, info.Count ?? 1);
 
-        return httpResponseUtil.NoBody(new ShopData<ShopPurchaseResult> { Data = new ShopPurchaseResult { Success = bought } });
+        return httpResponseUtil.NoBody(
+            new ShopData<ShopPurchaseResult>
+            {
+                Data = new ShopPurchaseResult { Success = receipt.Outcome == ShopPurchaseOutcome.Success, TransactionId = receipt.TransactionId },
+            }
+        );
     }
 
     /// <summary>
@@ -201,10 +206,11 @@ public class GameCallbacks(
     /// <summary>
     ///     Handle /v2/client/shop/purchase/sign
     /// </summary>
-    public ValueTask<string> SignShopPurchase(string url, EmptyRequestData info, MongoId sessionID)
+    public async ValueTask<string> SignShopPurchase(string url, ShopPurchaseSignRequest info, MongoId sessionID)
     {
-        //Todo: Implement!
-        return new ValueTask<string>(httpResponseUtil.NullResponse());
+        await tarcoinStoreService.SignPurchaseAsync(sessionID, info.TransactionId);
+
+        return httpResponseUtil.NullResponse();
     }
 
     /// <summary>

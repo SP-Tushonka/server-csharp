@@ -37,7 +37,7 @@ public class GameStaticRouter(JsonUtil jsonUtil, GameCallbacks gameCallbacks)
                 "/v2/client/shop/token/generate",
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.GenerateShopToken(url, info, sessionID)
             ),
-            new RouteAction<EmptyRequestData>(
+            new RouteAction<ShopPurchaseSignRequest>(
                 "/v2/client/shop/purchase/sign",
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.SignShopPurchase(url, info, sessionID)
             ),

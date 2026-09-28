@@ -124,16 +124,16 @@ public class RewardHelper(
                     AddAchievementToProfile(fullProfile, reward.Target!);
                     break;
                 case RewardType.StashRows:
-                    // Add specified stash rows from reward - requires client restart
-                    var bonusId = profileHelper.AddStashRowsBonusToProfile(sessionId!.Value, Convert.ToInt32(reward.Value));
+                    profileHelper.AddStashRowsBonusToProfile(sessionId!.Value, Convert.ToInt32(reward.Value));
 
+                    // The client adds the rows to the profile the change is keyed by
                     _ = notificationSendHelper.SendMessageAsync(
                         sessionId.Value,
                         new WsProfileChangeEvent
                         {
                             EventIdentifier = new MongoId(),
                             EventType = NotificationEventType.StashRows,
-                            Changes = new Dictionary<string, double?> { { bonusId!, reward.Value } },
+                            Changes = new Dictionary<string, double?> { { pmcProfile.Id.ToString(), reward.Value } },
                         }
                     );
 

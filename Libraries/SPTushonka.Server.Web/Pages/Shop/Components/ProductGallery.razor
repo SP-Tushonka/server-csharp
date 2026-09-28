@@ -1,0 +1,100 @@
+@using Microsoft.JSInterop
+@using SPTarkov.Server.Core.Models.Eft.Game
+@inject IJSRuntime JS
+
+<div class="product-gallery">
+    <div class="product-gallery__viewer">
+        <img @key="_shown" class="product-gallery__main-img @(_visible ? "product-gallery__main-img--visible" : null)"
+             src="@Current.Url" alt="" draggable="false" @onload="OnImageSettled" @onerror="OnImageSettled"/>
+
+        @if (_video)
+        {
+            <video class="product-gallery__video" src="/files/shop/Animation_NOISE_BG_EKRAN.webm"
+                   autoplay muted playsinline loop draggable="false"></video>
+        }
+
+        @if (Images.Count > 1)
+        {
+            <div class="product-gallery__thumbs">
+                @for (var index = 0; index < Images.Count; index++)
+                {
+                    var target = index;
+                    <div class="product-gallery__thumb @(_selected == target ? "product-gallery__thumb--active" : null)" @onclick="() => SwitchTo(target)">
+                        <img src="@Images[target].ThumbUrl" loading="lazy" class="w-full h-full object-cover" alt="" draggable="false"/>
+                        <div class="product-gallery__thumb__vignette"></div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public required List<ShopDetailImage> Images { get; set; }
+
+    private int _shown;
+    private int _selected;
+    private bool _visible;
+    private bool _video;
+    private bool _switching;
+    private TaskCompletionSource? _settled;
+
+    private ShopDetailImage Current => _shown < Images.Count ? Images[_shown] : new ShopDetailImage();
+
+    /// <summary>
+    ///     Handle the main image loading or failing. The first image fades in once loaded, and during a switch the load is awaited instead
+    /// </summary>
+    private void OnImageSettled()
+    {
+        if (_settled is not null)
+        {
+            _settled.TrySetResult();
+
+            return;
+        }
+
+        if (!_switching)
+        {
+            _visible = true;
+        }
+    }
+
+    /// <summary>
+    ///     Switch to another image. The image hides under the noise video, swaps after 300ms once the new one
+    ///     loads, then fades in, and clicks are taken again 300ms later
+    /// </summary>
+    /// <param name="index">Image to show</param>
+    private async Task SwitchTo(int index)
+    {
+        if (index == _selected || _switching)
+        {
+            return;
+        }
+
+        _switching = true;
+        _video = true;
+        _visible = false;
+        _ = JS.InvokeVoidAsync("shopSound", "OfferViewSwitchClick").AsTask();
+        _ = JS.InvokeVoidAsync("shopSound", "OfferViewSwitchAnimationStart").AsTask();
+        StateHasChanged();
+        await Task.Delay(300);
+
+        _settled = new TaskCompletionSource();
+        _shown = index;
+        _selected = index;
+        StateHasChanged();
+        await Task.WhenAny(_settled.Task, Task.Delay(5000));
+        _settled = null;
+
+        _video = false;
+        StateHasChanged();
+        await Task.Delay(32);
+
+        _visible = true;
+        StateHasChanged();
+        await Task.Delay(300);
+        _switching = false;
+    }
+}

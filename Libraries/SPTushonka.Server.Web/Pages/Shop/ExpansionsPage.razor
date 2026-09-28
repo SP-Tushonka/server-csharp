@@ -1,19 +1,21 @@
 ﻿@page "/shop/{Token}"
-@page "/shop/{Token}/item/{OfferId}"
+@page "/shop/{Token}/catalog-item/{OfferId}"
 @using SPTarkov.Server.Core.Models.Common
 @using SPTarkov.Server.Core.Models.Eft.Game
 @using SPTarkov.Server.Core.Services.Commerce
 @using SPTarkov.Server.Web.Layout
 @using SPTarkov.Server.Web.Pages.Shop.Components
+@using Microsoft.JSInterop
 
 @inject TarcoinStoreService TarcoinStoreService
 @inject NavigationManager Navigation
+@inject IJSRuntime JS
 
 @layout EmptyLayout
 
 <HeadContent>
-    @* Live's own stylesheet, extracted and de-scoped by Tools/import-shop-styles.py. The
-       components mirror their markup so the rules apply as they are. *@
+    @* The shop stylesheet, extracted and de-scoped by Tools/import-shop-styles.py. The components
+       use the same markup so the rules apply unchanged. *@
     <link rel="stylesheet" href="/SPTarkov.Server.Web/css/expansions-shop.css?v=@AssetVersion"/>
     @* Clears the glow SPT's own web ui paints on html and body. Loaded only by this page. *@
     <link rel="stylesheet" href="/SPTarkov.Server.Web/css/expansions-shop-host.css?v=@AssetVersion"/>
@@ -26,15 +28,14 @@
 <div class="shop-page">
     <div class="app-bg w-screen">
         <div class="parallax-wrapper">
-            @* Live overhangs the viewport by 150px and pulls it back by half, so the drift has
-               the same room either side. That is why their sheet's left of -100px is overridden
-               inline. *@
+            @* The layer overhangs the viewport by 150px and is pulled back by half, so the drift has
+               the same room either side. That is why the sheet's left of -100px is overridden inline. *@
             <div class="texture parallax-background"
                  style="background-image: url(/files/shop/ExpansionsHub_Background_Paralax_Store.jpg); background-size: contain; background-position: center center; background-repeat: no-repeat; width: calc(150px + 100vw); left: -75px;"></div>
         </div>
 
-        @* Live wraps the layout in a container of its own that isolates it, so the drifting
-           parallax layer below can never be composited together with it. *@
+        @* This container isolates the layout, so the drifting parallax layer below is never
+           composited together with it. *@
         <div class="loader-container">
             <div class="main-layout">
                 <ShopHeader Balance="_balance"/>
@@ -62,10 +63,10 @@
                                                           Price="_openPrice"
                                                           Token="@Token"
                                                           Category="@TarcoinStoreService.Localise(_selected?.NameKey, _language)"
-                                                          CanBuy="CanAfford(_openPrice)"
+                                                          CanBuy="CanAfford(_openPrice, 1)"
                                                           Purchased="_openBlock is not null && !_openBlock.Countable && _purchased.Contains(_openBlock.OfferId.ToString())"
                                                           PurchasedOffers="_purchased"
-                                                          OnBuy="Confirm"/>
+                                                          OnBuy="count => Confirm(_openBlock.OfferId.ToString(), count)"/>
                             }
                             else
                             {
@@ -75,7 +76,7 @@
                                             Token="@Token"
                                             Balance="_balance"
                                             PurchasedOffers="_purchased"
-                                            OnBuy="Confirm"/>
+                                            OnBuy="offerId => Confirm(offerId, 1)"/>
                             }
                             </ChildContent>
                         </ShopPageHost>
@@ -87,31 +88,18 @@
         <div class="app-glow-overlay"></div>
     </div>
 
-    @if (_message is not null)
-    {
-        <div class="s-toast">
-            <div class="s-toast__viewport s-toast__viewport--top-right">
-                <div class="s-toast__list">
-                    <div class="s-toast__item @(_messageFailed ? "s-toast__item--error" : "s-toast__item--success")">
-                        <div class="s-toast__content">
-                            <p class="s-toast__summary">@_message</p>
-                            <p class="s-toast__detail">@(_messageFailed ? "Nothing was taken from your wallet." : "Check your messages.")</p>
-                        </div>
-                        <button class="s-toast__close" @onclick="() => _message = null">&times;</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
     @if (_confirming is not null)
     {
         <PurchaseConfirmation Block="_confirming"
                               Price="_confirmPrice"
-                              CanBuy="CanAfford(_confirmPrice)"
-                              Revealing="_revealing"
+                              Count="_confirmCount"
+                              CanBuy="CanAfford(_confirmPrice, _confirmCount)"
+                              Phase="_phase"
                               OnConfirm="BuyAsync"
-                              OnCancel="() => _confirming = null"/>
+                              OnCancel="() => _confirming = null"
+                              OnCountdownComplete="StartReveal"
+                              OnWipeEnd="() => SetPurchasePhase(PurchasePhase.Accepted)"
+                              OnAccepted="CompletePurchaseFlow"/>
     }
 </div>
 </CascadingValue>
@@ -133,8 +121,6 @@
     private MongoId _sessionId;
     private int _balance;
     private HashSet<string> _purchased = [];
-    private string? _message;
-    private bool _messageFailed;
 
     private List<ShopMenuItem> _menu = [];
     private ShopMenuItem? _selected;
@@ -143,8 +129,11 @@
     private Dictionary<string, ShopPrice> _prices = new();
 
     private ShopBlock? _confirming;
-    private bool _revealing;
+    private PurchasePhase _phase;
+    private ShopPurchaseReceipt? _receipt;
+    private int _purchaseFlow;
     private ShopPrice? _confirmPrice;
+    private int _confirmCount = 1;
 
     private ShopBlock? _openBlock;
     private ShopOffer? _openOffer;
@@ -279,15 +268,16 @@
         _openPrice = TarcoinStoreService.GetPrices([OfferId]).FirstOrDefault();
     }
 
-    private bool CanAfford(ShopPrice? price)
+    private bool CanAfford(ShopPrice? price, int count)
     {
-        return !_sessionId.IsEmpty && price is not null && _balance >= price.AmountWithDiscount;
+        return !_sessionId.IsEmpty && price is not null && _balance >= price.AmountWithDiscount * count;
     }
 
-    private void Confirm(string offerId)
+    private void Confirm(string offerId, int count)
     {
         _confirming = FindBlock(offerId);
         _confirmPrice = TarcoinStoreService.GetPrices([offerId]).FirstOrDefault();
+        _confirmCount = _confirming is not null && _confirming.Countable ? count : 1;
     }
 
     private ShopBlock? FindBlock(string offerId)
@@ -299,31 +289,99 @@
             .FirstOrDefault(block => block.OfferId.ToString() == offerId);
     }
 
+    /// <summary>
+    ///     Buy the offer in the dialog. The two second countdown and the purchase start together, and a refusal
+    ///     returns to the confirm step at once. Otherwise the game is asked to sign the transaction two seconds
+    ///     after the reply, and the countdown reaching zero starts the reveal
+    /// </summary>
+    /// <param name="offerId">Offer being bought</param>
     private async Task BuyAsync(string offerId)
     {
-        if (_sessionId.IsEmpty)
+        if (_sessionId.IsEmpty || _phase != PurchasePhase.Confirm)
         {
-            _confirming = null;
             return;
         }
 
-        var offer = TarcoinStoreService.GetOffer(offerId);
-        var name = TarcoinStoreService.Localise(offer?.NameKey, _language);
-        var bought = await TarcoinStoreService.TryPurchaseAsync(_sessionId, offerId, 1);
+        _purchaseFlow++;
+        _receipt = null;
+        SetPurchasePhase(PurchasePhase.Transfer, "PurchaseTimerStart");
 
-        _balance = TarcoinStoreService.GetBalance(_sessionId);
-        _purchased = TarcoinStoreService.GetPurchasedOffers(_sessionId);
-        _messageFailed = !bought;
-        _message = bought ? $"{name} purchased" : $"Could not purchase {name}";
+        // Send the countdown out before the purchase runs, which does its work before its first await
+        await Task.Yield();
+        var receipt = await TarcoinStoreService.TryPurchaseAsync(_sessionId, offerId, _confirmCount);
 
-        if (bought)
+        if (receipt.Outcome != ShopPurchaseOutcome.Success)
         {
-            _revealing = true;
-            StateHasChanged();
-            await Task.Delay(1100);
-            _revealing = false;
+            SetPurchasePhase(PurchasePhase.Confirm, "PurchaseAnimationStop", "PurchaseTimerStop");
+            var key = receipt.Outcome.NotificationKey();
+            _ = JS.InvokeVoidAsync(
+                    "shopNotify",
+                    TarcoinStoreService.Localise($"common.notification.{key}.summary", _language),
+                    TarcoinStoreService.Localise($"common.notification.{key}.detail", _language)
+                )
+                .AsTask();
+
+            return;
+        }
+
+        _receipt = receipt;
+        await Task.Delay(2000);
+        _ = JS.InvokeVoidAsync("shopSignTransaction", receipt.TransactionId).AsTask();
+    }
+
+    /// <summary>
+    ///     Start the reveal. The wipe and scanline run for a second, then the accepted video plays. The dialog
+    ///     closes when the video ends, or five seconds after the reveal began
+    /// </summary>
+    private void StartReveal()
+    {
+        if (_phase != PurchasePhase.Transfer)
+        {
+            return;
+        }
+
+        SetPurchasePhase(PurchasePhase.Reveal, "PurchaseTimerStop", "PurchaseAnimationStart");
+        var flow = _purchaseFlow;
+        _ = CompletePurchaseFlowAfter(flow, 5000);
+    }
+
+    private async Task CompletePurchaseFlowAfter(int flow, int delayMs)
+    {
+        await Task.Delay(delayMs);
+        if (flow == _purchaseFlow)
+        {
+            await InvokeAsync(CompletePurchaseFlow);
+        }
+    }
+
+    /// <summary>
+    ///     Close the dialog. Only now does the page show the offer as received
+    /// </summary>
+    private void CompletePurchaseFlow()
+    {
+        if (_confirming is null || _phase is PurchasePhase.Confirm or PurchasePhase.Transfer)
+        {
+            return;
+        }
+
+        _purchaseFlow++;
+        if (_receipt is not null)
+        {
+            _balance = TarcoinStoreService.GetBalance(_sessionId);
+            _purchased = TarcoinStoreService.GetPurchasedOffers(_sessionId);
         }
 
         _confirming = null;
+        SetPurchasePhase(PurchasePhase.Confirm, "PurchaseTimerStop");
+    }
+
+    private void SetPurchasePhase(PurchasePhase next, params string[] sounds)
+    {
+        _phase = next;
+        StateHasChanged();
+        foreach (var sound in sounds)
+        {
+            _ = JS.InvokeVoidAsync("shopSound", sound).AsTask();
+        }
     }
 }

@@ -9,19 +9,14 @@
     <div class="catalog-item-page__body">
         <div class="catalog-item-page__content">
             <div class="product-tags catalog-item-page__tags pl-[13px]">
-                @foreach (var tag in Block.Tags)
+                @foreach (var tag in Block.Tags.Where(tag => ShopFormat.TagTexture(tag) is not null))
                 {
-                    <img class="textures-icon" src="/files/shop/ExpansionsHub_Tag_Full_4.png" alt="@tag" title="@tag"/>
+                    <img class="product-tags__item" src="@ShopFormat.TagTexture(tag)" alt="@tag" draggable="false"/>
                 }
             </div>
 
             <div class="catalog-item-page__gallery">
-                <div class="product-gallery">
-                    <div class="product-gallery__viewer">
-                        <img class="product-gallery__main-img product-gallery__main-img--visible"
-                             src="@(Block.PurchasePopupImage ?? Block.Images.FirstOrDefault())" alt=""/>
-                    </div>
-                </div>
+                <ProductGallery @key="Block.OfferId" Images="GalleryImages()"/>
                 <div class="catalog-item-page__gallery__bg-mask"></div>
             </div>
 
@@ -39,8 +34,7 @@
                 </div>
 
                 @{
-                    // The text carries its own newlines, including blank ones between the paragraph
-                    // and the bullets. Live drops the blanks and lays the rest out as lines.
+                    // The text carries its own newlines. Blank ones are dropped and the rest become line breaks
                     var description = Offer is not null && !string.IsNullOrEmpty(Offer.DescriptionKey)
                         ? TarcoinStoreService.Localise(Offer.DescriptionKey, Language)
                         : TarcoinStoreService.Localise(Block.SubtitleKey, Language);
@@ -60,27 +54,32 @@
                     </p>
                 </div>
 
-                @if (Offer is not null && Offer.RelatedOffers.Count > 0)
+                @{
+                    var contents = Contents();
+                    var linked = Offer?.ShowRelatedOffers == true ? Offer.RelatedOffers : [];
+                    var showingLinked = linked.Count > 0 && (_linkedTab || contents.Count == 0);
+                    var cards = showingLinked ? linked : contents;
+                }
+                @if (cards.Count > 0)
                 {
                     <div class="catalog-item-composition">
-                        @* Their tab width is calc(100% / var(--tab-columns)). Without the
-                           variable the declaration is invalid and the tabs collapse to their
-                           content. *@
+                        @* Tab width is calc(100% / var(--tab-columns)). Without the variable the
+                           declaration is invalid and the tabs collapse to their content. *@
                         <div class="s-tab-view" style="--tab-columns: 2;">
                             <div class="s-tab-view__nav">
-                                <button class="s-tab-view__tab s-tab-view__tab--active">
+                                @* An empty tab stays in the dom hidden because it sizes the other one. *@
+                                <button class="s-tab-view__tab @TabState(contents.Count, !showingLinked)" @onclick="() => _linkedTab = false">
                                     <span class="s-tab-view__tab-content">
                                         <div class="textures-icon textures-icon--tinted s-tab-view__tab-icon" style="@TintedIcon("ExpansionsHub_Offers_Icon.png")"></div>
                                         <span class="s-tab-view__tab-header">Edition contents</span>
-                                        <span class="s-tab-view__tab-badge">(@Offer.RelatedOffers.Count)</span>
+                                        <span class="s-tab-view__tab-badge">(@contents.Count)</span>
                                     </span>
                                 </button>
-                                @* Live keeps the second tab in the dom and hides it, which is what sizes the first. *@
-                                <button class="s-tab-view__tab s-tab-view__tab--hidden">
+                                <button class="s-tab-view__tab @TabState(linked.Count, showingLinked)" @onclick="() => _linkedTab = true">
                                     <span class="s-tab-view__tab-content">
                                         <div class="textures-icon textures-icon--tinted s-tab-view__tab-icon" style="@TintedIcon("ExpansionsHub_Offers_Icon.png")"></div>
                                         <span class="s-tab-view__tab-header">Linked bundles</span>
-                                        <span class="s-tab-view__tab-badge">(0)</span>
+                                        <span class="s-tab-view__tab-badge">(@linked.Count)</span>
                                     </span>
                                 </button>
                             </div>
@@ -95,13 +94,13 @@
                                         <div class="product-horizontal-carousel__fade-left"></div>
                                         <div class="product-horizontal-carousel__fade-right"></div>
                                         <div class="product-horizontal-carousel__track">
-                                            @foreach (var (part, index) in Offer.RelatedOffers.Select((part, index) => (part, index)))
+                                            @foreach (var (part, index) in cards.Select((part, index) => (part, index)))
                                             {
                                                 <div class="product-horizontal-carousel__slide product-horizontal-carousel__slide--square">
                                                     @{
                                                         var partOwned = PurchasedOffers?.Contains(part.Id.ToString()) ?? false;
                                                     }
-                                                    <a class="product-horizontal-carousel__media@(partOwned ? " product-horizontal-carousel__media--purchased" : "")" href="@($"/shop/{Token}/item/{part.Id}")">
+                                                    <a class="product-horizontal-carousel__media@(partOwned ? " product-horizontal-carousel__media--purchased" : "")" href="@($"/shop/{Token}/catalog-item/{part.Id}")">
                                                         <div class="product-horizontal-carousel__counter">@(index + 1)</div>
                                                         <img class="product-horizontal-carousel__image" src="@part.Images.FirstOrDefault()?.Url" alt=""/>
 
@@ -147,59 +146,73 @@
                     <div class="catalog-item-purchase__purchased-block">
                         <div class="texture absolute inset-0"
                              style="background-image: url(/files/shop/ExpansionsHub_PriceTag_Background_Received.png); background-size: cover; background-repeat: no-repeat;"></div>
-                        <span class="catalog-item-purchase__received">Received</span>
+                        <span class="catalog-item-purchase__received">@TarcoinStoreService.Localise("common.status.received", Language)</span>
                     </div>
                 }
                 else
                 {
+                    var free = ShopFormat.IsFree(Block.Tags);
+                    var percent = ShopFormat.DiscountPercent(Price);
+                    var discounted = percent is not null && Price!.AmountWithDiscount > 0;
+                    var priceTag = free ? "Free" : discounted ? "Sale" : "Default";
+
                     <div class="catalog-item-purchase__content">
                         <div class="texture !absolute inset-0"
-                             style="background-image: url(/files/shop/ExpansionsHub_PriceTag_Background_Default.png); background-size: cover; background-repeat: no-repeat;"></div>
+                             style="background-image: url(/files/shop/ExpansionsHub_PriceTag_Background_@(priceTag).png); background-size: cover; background-repeat: no-repeat;"></div>
 
-                        <div class="catalog-item-purchase__quantity-grid invisible">
+                        <div class="catalog-item-purchase__quantity-grid @(Block.Countable ? null : "invisible")">
                             <span></span>
-                            <span>Quantity:</span>
-                            <span class="font-bold">1</span>
+                            <span>@TarcoinStoreService.Localise("common.labels.quantity", Language):</span>
+                            <span class="font-bold">@Count</span>
                         </div>
 
                         <div class="catalog-item-purchase__price-row">
                             @if (!ShopFormat.IsTarcoinPriced(Block))
                             {
-                                <span class="product-card__received">Real money offer</span>
+                                <span class="catalog-item-purchase__price-check">@TarcoinStoreService.Localise($"custom.{Block.OfferId}.priceCaption", Language)</span>
                             }
-                            else if (Price is null)
-                            {
-                                <span class="product-card__received">Unavailable</span>
-                            }
-                            else
+                            else if (Price is not null)
                             {
                                 <div class="catalog-item-purchase__currency-block">
                                     <span class="catalog-item-purchase__currency">
                                         <img class="textures-icon h-full" src="/files/shop/ExpansionsHub_Currency_TC_Icon_1.png" alt=""/>
                                     </span>
                                 </div>
-                                <span class="catalog-item-purchase__price">@ShopFormat.Price(Price.AmountWithDiscount)</span>
+                                <span class="catalog-item-purchase__price">@ShopFormat.Price(Price.AmountWithDiscount * Count)</span>
+                                @if (discounted)
+                                {
+                                    <span class="catalog-item-purchase__old-price">@ShopFormat.Price(Price.Amount * Count)</span>
+                                }
                             }
                         </div>
 
                         <div class="catalog-item-purchase__discount-row">
-                            @if (Price is not null && Price.Amount > Price.AmountWithDiscount)
+                            @if ((free || discounted) && percent is not null)
                             {
-                                <span class="catalog-item-purchase__old-price">@ShopFormat.Price(Price.Amount)</span>
+                                <div class="ticket-wrapper">
+                                    <div class="ticket @(free ? "ticket-free" : "ticket-sale")">
+                                        <div class="ticket-body">-@(percent)%</div>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </div>
 
-                    <div class="catalog-item-purchase__buy-row px-[40px]">
+                    <div class="catalog-item-purchase__buy-row @(Block.Countable ? "pr-[40px]" : "px-[40px]")">
+                        @if (Block.Countable && ShopFormat.IsTarcoinPriced(Block))
+                        {
+                            <SCounter Value="Count" Max="999" ValueChanged="value => Count = value"/>
+                        }
                         <div class="purchase-single-button catalog-item-purchase__button">
-                            <button class="button btn-grid-overlay button--gold button--md !w-full !h-full"
+                            <button class="button btn-grid-overlay @(free ? "button--purple" : "button--gold") button--md !w-full !h-full"
                                     disabled="@(Price is null || !ShopFormat.IsTarcoinPriced(Block))"
-                                    @onclick="() => OnBuy.InvokeAsync(Block.OfferId.ToString())">
+                                    @onclick="() => OnBuy.InvokeAsync(Count)">
                                 <span class="button__content">
                                     <span class="button__label">
                                     <div class="flex gap-1 items-center">
-                                        <img class="textures-icon mb-[7px]" src="/files/shop/ExpansionsHub_MainButtons_Icon_1.png" alt=""/>
-                                        <span class="catalog-item-purchase__button-label">Buy</span>
+                                        <img class="textures-icon @(free ? null : "mb-[7px]")"
+                                             src="/files/shop/@(free ? "ExpansionsHub_MainButtons_Icon_Big_4.png" : "ExpansionsHub_MainButtons_Icon_1.png")" alt=""/>
+                                        <span class="catalog-item-purchase__button-label">@TarcoinStoreService.Localise(free ? "features.purchase.buttons.get" : "features.purchase.buttons.buy", Language)</span>
                                     </div>
                                     </span>
                                 </span>
@@ -214,10 +227,72 @@
 </div>
 
 @code {
-    // Their arrows are enabled from the rendered widths, so measure once this is live.
+    /// <summary>
+    ///     Enable the carousel arrows, which depend on the rendered widths
+    /// </summary>
+    /// <param name="firstRender">Whether this is the first render</param>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("shopLayoutCarousels");
+    }
+
+    private bool _linkedTab;
+    private string? _shownOfferId;
+
+    /// <summary>
+    ///     Counter's quantity, kept while the item stays open and reset to one for the next
+    /// </summary>
+    private int Count { get; set; } = 1;
+
+    protected override void OnParametersSet()
+    {
+        var offerId = Offer?.Id.ToString();
+        if (offerId != _shownOfferId)
+        {
+            _shownOfferId = offerId;
+            _linkedTab = false;
+            Count = 1;
+        }
+    }
+
+    private List<ShopRelatedOffer> Contents()
+    {
+        if (Offer is null || !Offer.ShowBundleComposition)
+        {
+            return [];
+        }
+
+        return Offer
+            .Items.Where(item => item.OfferId is not null)
+            .Select(item => new ShopRelatedOffer
+            {
+                Id = item.OfferId!.Value,
+                NameKey = item.NameKey,
+                DescriptionKey = item.DescriptionKey,
+                Images = item.Images,
+            })
+            .ToList();
+    }
+
+    /// <summary>
+    ///     Get the offer's detail images, or the tile banner when the offer has no catalog entry
+    /// </summary>
+    /// <returns>Images for the gallery</returns>
+    private List<ShopDetailImage> GalleryImages()
+    {
+        if (Offer is not null && Offer.DetailImages.Count > 0)
+        {
+            return Offer.DetailImages;
+        }
+
+        var banner = Block.PurchasePopupImage ?? Block.Images.FirstOrDefault();
+
+        return banner is null ? [] : [new ShopDetailImage { Url = banner, ThumbUrl = banner }];
+    }
+
+    private static string TabState(int count, bool active)
+    {
+        return count == 0 ? "s-tab-view__tab--hidden" : active ? "s-tab-view__tab--active" : "";
     }
 
     private static string TintedIcon(string file, string colour = "rgb(176, 186, 193)")
@@ -255,6 +330,9 @@
     [Parameter]
     public HashSet<string>? PurchasedOffers { get; set; }
 
+    /// <summary>
+    ///     Buy the offer, passing the counter's quantity
+    /// </summary>
     [Parameter]
-    public EventCallback<string> OnBuy { get; set; }
+    public EventCallback<int> OnBuy { get; set; }
 }

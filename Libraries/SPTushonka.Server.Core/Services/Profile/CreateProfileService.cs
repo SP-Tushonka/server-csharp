@@ -44,7 +44,8 @@ public class CreateProfileService(
     EventOutputHolder eventOutputHolder,
     PlayerScavGenerator playerScavGenerator,
     ICloner cloner,
-    MailSendService mailSendService
+    MailSendService mailSendService,
+    TarcoinStoreService tarcoinStoreService
 )
 {
     public async ValueTask<string> CreateProfile(MongoId sessionId, ProfileCreateRequestData request)
@@ -147,6 +148,8 @@ public class CreateProfileService(
         profileDetails.AddCustomisationUnlocksToProfile();
 
         profileDetails.AddSuitsToProfile(profileTemplateClone.Suits);
+
+        tarcoinStoreService.CarryOverPurchases(account, profileDetails);
 
         profileFixerService.CheckForAndFixPmcProfileIssues(profileDetails.CharacterData.PmcData);
 

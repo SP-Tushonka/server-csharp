@@ -16,4 +16,13 @@ public sealed record ShopPurchaseResult
 {
     [JsonPropertyName("success")]
     public bool Success { get; set; }
+
+    [JsonPropertyName("transactionId")]
+    public string? TransactionId { get; set; }
+}
+
+public sealed record ShopPurchaseSignRequest : IRequestData
+{
+    [JsonPropertyName("transactionId")]
+    public string? TransactionId { get; set; }
 }

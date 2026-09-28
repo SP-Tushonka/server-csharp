@@ -703,7 +703,17 @@ public class ProfileHelper(
     /// <returns>The stash rows bonus id, this is needed for ws notification if we send one</returns>
     public MongoId? AddStashRowsBonusToProfile(MongoId sessionId, int rowsToAdd)
     {
-        var profile = GetPmcProfile(sessionId);
+        return AddStashRowsBonusToProfile(GetPmcProfile(sessionId), rowsToAdd);
+    }
+
+    /// <summary>
+    ///     Add stash row bonus to profile or increments rows given count if it already exists
+    /// </summary>
+    /// <param name="profile">Profile to give rows to</param>
+    /// <param name="rowsToAdd">How many rows to give profile</param>
+    /// <returns>The stash rows bonus id, this is needed for ws notification if we send one</returns>
+    public static MongoId? AddStashRowsBonusToProfile(PmcData? profile, int rowsToAdd)
+    {
         if (profile?.Bonuses is null)
         {
             // Something is very wrong with profile to lack bonuses array, likely broken profile, exit early

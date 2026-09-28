@@ -205,6 +205,12 @@ public record ServerFeatures
     public required ChatbotFeatures ChatbotFeatures { get; set; }
 
     /// <summary>
+    ///     Show the Shop's real money offers, such as TarCoin packs and edition upgrades.
+    /// </summary>
+    [JsonPropertyName("showRealMoneyShopOffers")]
+    public bool ShowRealMoneyShopOffers { get; set; }
+
+    /// <summary>
     ///     Keyed to profile type e.g. "Standard" or "SPT Developer"
     /// </summary>
     [JsonPropertyName("createNewProfileTypesBlacklist")]

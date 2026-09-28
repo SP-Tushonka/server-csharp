@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Server;
@@ -14,9 +15,12 @@ public sealed class HttpFileUtil(HttpServerHelper httpServerHelper)
         var mimePath = httpServerHelper.GetMimeText(pathSlice[^1].Split(".")[^1]);
         var type = string.IsNullOrWhiteSpace(mimePath) ? httpServerHelper.GetMimeText("txt") : mimePath;
         var fileInfo = new FileInfo(filePath);
-        resp.Headers.Append("Content-Type", type);
-        resp.Headers.Append("Content-Length", fileInfo.Length.ToString());
 
-        await resp.SendFileAsync(filePath, cancellationToken);
+        // Ranges let a video element fetch only what it plays, and the validators let the browser keep
+        // what it already has. The result also treats a download the browser drops as finished.
+        var entityTag = new EntityTagHeaderValue($"\"{fileInfo.LastWriteTimeUtc.Ticks:x}-{fileInfo.Length:x}\"");
+        await Results
+            .File(fileInfo.FullName, type, lastModified: fileInfo.LastWriteTimeUtc, entityTag: entityTag, enableRangeProcessing: true)
+            .ExecuteAsync(resp.HttpContext);
     }
 }

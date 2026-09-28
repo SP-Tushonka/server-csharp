@@ -1,0 +1,62 @@
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+@* Quantity counter with increase on top and decrease below. The wheel steps it too. *@
+<div class="s-counter" @onwheel="Wheel" @onwheel:preventDefault @onwheel:stopPropagation>
+    <div class="texture absolute inset-0"
+         style="background-image: url(/files/shop/ExpansionsHub_PaymentCounter_Background.png); background-size: cover; background-position: center center; background-repeat: no-repeat;"></div>
+    <button class="button btn-grid-overlay button--dark button--sm button--square s-counter__button s-counter__button--increase"
+            disabled="@(Value >= Max)" @onclick="() => Step(1)">
+        <span class="button__content">
+            <span class="button__label">
+                <img class="textures-icon" src="/files/shop/ExpansionsHub_PaymentCounter_Icon_1.png" alt=""/>
+            </span>
+        </span>
+    </button>
+    <div class="s-counter__value" aria-live="polite" aria-atomic="true">@Value</div>
+    <button class="button btn-grid-overlay button--dark button--sm button--square s-counter__button s-counter__button--decrease"
+            disabled="@(Value <= Min)" @onclick="() => Step(-1)">
+        <span class="button__content">
+            <span class="button__label">
+                <img class="textures-icon" src="/files/shop/ExpansionsHub_PaymentCounter_Icon_3.png" alt=""/>
+            </span>
+        </span>
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public int Value { get; set; } = 1;
+
+    [Parameter]
+    public int Min { get; set; } = 1;
+
+    [Parameter]
+    public int Max { get; set; } = int.MaxValue;
+
+    [Parameter]
+    public EventCallback<int> ValueChanged { get; set; }
+
+    private Task Step(int delta)
+    {
+        var next = Math.Clamp(Value + delta, Min, Math.Max(Min, Max));
+
+        return next == Value ? Task.CompletedTask : ValueChanged.InvokeAsync(next);
+    }
+
+    /// <summary>
+    ///     Step the counter with the mouse wheel. The buttons carry their sound through the page script, the wheel has no element to hang it on
+    /// </summary>
+    /// <param name="args">Wheel movement</param>
+    private async Task Wheel(WheelEventArgs args)
+    {
+        var delta = args.DeltaY < 0 ? 1 : args.DeltaY > 0 ? -1 : 0;
+        if (delta == 0 || (delta > 0 ? Value >= Max : Value <= Min))
+        {
+            return;
+        }
+
+        _ = JS.InvokeVoidAsync("shopSound", "PlusButtonClick").AsTask();
+        await Step(delta);
+    }
+}

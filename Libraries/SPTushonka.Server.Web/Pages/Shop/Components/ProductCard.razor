@@ -4,7 +4,7 @@
 @inject TarcoinStoreService TarcoinStoreService
 
 <article class="product-card@(Purchased ? " product-card--purchased" : "")">
-    <a class="cursor-pointer" href="@($"/shop/{Token}/item/{Block.OfferId}")">
+    <a class="cursor-pointer" href="@($"/shop/{Token}/catalog-item/{Block.OfferId}")">
         @if (Block.Images.Count > 0)
         {
             <div class="product-card-carousel">
@@ -20,12 +20,12 @@
 
         <header class="product-card__top">
             <div class="product-tags product-card__tags">
-                @foreach (var tag in Block.Tags)
+                @foreach (var tag in Block.Tags.Where(tag => ShopFormat.TagTexture(tag) is not null))
                 {
-                    <img class="product-tags__item" src="/files/shop/ExpansionsHub_Tag_Full_4.png" alt="@tag" draggable="false"/>
+                    <img class="product-tags__item" src="@ShopFormat.TagTexture(tag)" alt="@tag" draggable="false"/>
                 }
             </div>
-            @* Live keeps this in the dom and hides it. It sizes the header's grid. *@
+            @* Hidden but kept in the dom because it sizes the header's grid. *@
             <div class="product-card__platforms !hidden">
                 <span class="product-card__platform-badge product-card__platform-badge--active">EFT</span>
             </div>
@@ -59,8 +59,8 @@
                     </div>
                 }
 
-                @* Live always renders this row. A widget offer is bought with real money through
-                   Xsolla, so it carries a cash price instead of a tarcoin one. *@
+                @* Always rendered. A widget offer is bought with real money through Xsolla, so it
+                   shows a cash price caption instead of a TarCoin price. *@
                 <div class="product-card__price-row">
                     @if (Purchased)
                     {
@@ -80,6 +80,15 @@
                             <img class="textures-icon" src="/files/shop/ExpansionsHub_Currency_TC_Icon_1.png" alt=""/>
                         </span>
                         <span class="product-card__price-current">@ShopFormat.Price(Price.AmountWithDiscount)</span>
+                        @if (ShopFormat.DiscountPercent(Price) is int percent && Price.AmountWithDiscount > 0)
+                        {
+                            <span class="product-card__price-old">@ShopFormat.Price(Price.Amount)</span>
+                            <div class="ticket-wrapper tracking-[2px]">
+                                <div class="ticket @(ShopFormat.IsFree(Block.Tags) ? "ticket-free" : "ticket-sale")">
+                                    <div class="ticket-body">-@(percent)%</div>
+                                </div>
+                            </div>
+                        }
                     }
                 </div>
             </div>

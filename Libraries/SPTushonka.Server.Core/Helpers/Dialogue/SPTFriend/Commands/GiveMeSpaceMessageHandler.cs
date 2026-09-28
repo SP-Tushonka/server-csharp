@@ -50,7 +50,7 @@ public class GiveMeSpaceMessageHandler(
         else
         {
             const int rowsToAdd = 2;
-            var bonusId = profileHelper.AddStashRowsBonusToProfile(sessionId, rowsToAdd);
+            profileHelper.AddStashRowsBonusToProfile(sessionId, rowsToAdd);
 
             _ = notificationSendHelper.SendMessageAsync(
                 sessionId,
@@ -58,7 +58,7 @@ public class GiveMeSpaceMessageHandler(
                 {
                     EventIdentifier = new MongoId(),
                     EventType = NotificationEventType.StashRows,
-                    Changes = new Dictionary<string, double?> { { bonusId, rowsToAdd } },
+                    Changes = new Dictionary<string, double?> { { profileHelper.GetPmcProfile(sessionId)!.Id.ToString(), rowsToAdd } },
                 }
             );
 

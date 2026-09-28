@@ -3,9 +3,8 @@
 @inject IJSRuntime JS
 
 <section class="p-2 h-full">
-    @* Live lays this out with gridstack. Items are positioned in multiples of two css variables
-       and its javascript sets the cell height from the rendered width so the cells come out
-       square. expansions-shop.js does the same here. *@
+    @* Laid out with gridstack. Items are positioned in multiples of two css variables, and
+       expansions-shop.js sets the cell height from the rendered width so the cells come out square. *@
     <div class="grid-stack gs-4 grid-stack-static grid-stack-animate"
          data-rows="@Rows"
          style="--gs-item-margin-top: 10px; --gs-item-margin-bottom: 10px; --gs-item-margin-right: 10px; --gs-item-margin-left: 10px; --gs-column-width: 25%;">
@@ -15,8 +14,8 @@
 
         <div class="grid-stack-item ui-draggable-disabled ui-resizable-disabled" style="@ItemStyle(block)">
             <div class="grid-stack-item-content grid-stack-item-content--default">
-                @* Their inner wrapper is what carries the card shadow, the hover lift and the orange
-                   accent underneath it. Without it the tiles sit flat. *@
+                @* The inner wrapper carries the card shadow, the hover lift and the orange accent
+                   underneath it. Without it the tiles sit flat. *@
                 <div class="grid-stack-item-content__inner">
                     <ProductCard Block="block"
                                  Price="price"
@@ -32,8 +31,11 @@
 </section>
 
 @code {
-    // Gridstack derives its cell height from the rendered width. Blazor replaces the prerendered
-    // grid with its own node, so the measurement has to be retaken once this component is live.
+    /// <summary>
+    ///     Retake the gridstack cell height, which comes from the rendered width. Blazor replaces the
+    ///     prerendered grid with its own node
+    /// </summary>
+    /// <param name="firstRender">Whether this is the first render</param>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("shopLayoutMosaic");
@@ -74,8 +76,12 @@
         return string.Join(" ", style);
     }
 
-    // Their parser reads the ratio backwards. "1:2" assigns the second number to the width and the
-    // first to the height, and read the other way round the pages do not tile.
+    /// <summary>
+    ///     Get a tile's size in grid cells. The ratio is rows first, so "1:2" is one row two columns wide.
+    ///     Read the other way round the pages do not tile
+    /// </summary>
+    /// <param name="block">Tile to measure</param>
+    /// <returns>Width and height in cells</returns>
     private static (int Width, int Height) Size(ShopBlock block)
     {
         var parts = (block.AspectRatio ?? "1:1").Split(':');

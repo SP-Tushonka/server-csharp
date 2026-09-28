@@ -62,6 +62,12 @@ public record SptProfile
     /// <summary>Stores Shop offers that are already bought, so the ones marked non-countable cannot be bought twice.</summary>
     [JsonPropertyName("purchasedShopOffers")]
     public HashSet<string>? PurchasedShopOffers { get; set; }
+
+    /// <summary>
+    ///     Stash rows bought in the Shop, kept apart from quest rewards so a wipe restores only these
+    /// </summary>
+    [JsonPropertyName("purchasedShopStashRows")]
+    public int? PurchasedShopStashRows { get; set; }
 }
 
 public record TraderPurchaseData

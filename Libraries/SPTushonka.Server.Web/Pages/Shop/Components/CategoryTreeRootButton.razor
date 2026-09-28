@@ -5,6 +5,7 @@
 
 <button type="button"
         class="category-tree__root-button btn-grid-overlay @(Active ? "category-tree__root-button--active" : "category-tree__root-button--default")"
+        data-sound-theme="@Tab.SoundTheme"
         @onclick="() => OnSelect.InvokeAsync(Tab)">
     @if (!string.IsNullOrEmpty(Tab.IconUrl))
     {
