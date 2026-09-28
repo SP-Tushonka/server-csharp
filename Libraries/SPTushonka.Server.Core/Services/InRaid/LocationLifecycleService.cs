@@ -475,9 +475,10 @@ public class LocationLifecycleService(
         HandlePostRaidPmc(sessionId, fullProfile, scavProfile, isDead, isSurvived, isTransfer, request, locationName);
 
         // Remove the items the next location lists before the client reloads the profile for the transit
-        if (isTransfer && request.LocationTransit?.Location is not null)
+        var transitDestination = isTransfer ? GetTransitDestination(request, locationName) : null;
+        if (transitDestination is not null)
         {
-            profileProgressService.RemoveListedItems(fullProfile, request.LocationTransit.Location);
+            profileProgressService.RemoveListedItems(fullProfile, transitDestination);
         }
 
         // Handle car extracts
@@ -496,6 +497,26 @@ public class LocationLifecycleService(
         // Save and backup the profile on raid end
         await saveServer.SaveProfileAsync(sessionId, cancellationToken);
         await backupService.InitializeAsync(cancellationToken);
+    }
+
+    /// <summary>
+    ///     Get the location a transit leads to. A client whose transit controller is not the local one sends no
+    ///     locationTransit, but its exit name is the transit point's name
+    /// </summary>
+    /// <param name="request">End raid request</param>
+    /// <param name="locationName">Location the player left</param>
+    /// <returns>Destination location id, null when the transit cannot be found</returns>
+    protected string? GetTransitDestination(EndLocalRaidRequestData request, string locationName)
+    {
+        if (request.LocationTransit?.Location is not null)
+        {
+            return request.LocationTransit.Location;
+        }
+
+        return locationTable
+            .GetLocation(locationName)
+            ?.Base?.Transits?.FirstOrDefault(transit => transit.Name == request.Results?.ExitName)
+            ?.Location;
     }
 
     /// <summary>

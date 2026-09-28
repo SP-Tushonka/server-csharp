@@ -14,11 +14,10 @@ public class BotLevelGenerator(GlobalTable globalTable, RandomUtil randomUtil)
     /// <summary>
     ///     Return a randomised bot level and exp value
     /// </summary>
-    /// <param name="levelDetails">Min and max of level for bot</param>
     /// <param name="botGenerationDetails">Details to help generate a bot</param>
     /// <param name="bot">Bot the level is being generated for</param>
     /// <returns>IRandomisedBotLevelResult object</returns>
-    public RandomisedBotLevelResult GenerateBotLevel(MinMax<int> levelDetails, BotGenerationDetails botGenerationDetails, BotBase bot)
+    public RandomisedBotLevelResult GenerateBotLevel(BotGenerationDetails botGenerationDetails, BotBase bot)
     {
         if (!botGenerationDetails.IsPmc)
         {
@@ -26,7 +25,8 @@ public class BotLevelGenerator(GlobalTable globalTable, RandomUtil randomUtil)
         }
 
         var expTable = globalTable.Configuration.Exp.Level.ExperienceTable;
-        var botLevelRange = GetRelativePmcBotLevelRange(botGenerationDetails, levelDetails, expTable.Length);
+        // Live's pmcUSEC and pmcBEAR templates carry a placeholder 0 to 1 level range
+        var botLevelRange = GetRelativePmcBotLevelRange(botGenerationDetails, new MinMax<int>(1, expTable.Length), expTable.Length);
 
         // ChooseBotLevel now returns int directly
         var level = ChooseBotLevel(botLevelRange.Min, botLevelRange.Max, 1, 1.15);

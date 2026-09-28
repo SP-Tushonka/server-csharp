@@ -188,7 +188,7 @@ public class BotGenerator(
     {
         botGenerationDetails.RoleLowercase = botGenerationDetails.Role.ToLowerInvariant();
 
-        var botLevelDetails = botLevelGenerator.GenerateBotLevel(botJsonTemplate.BotExperience.Level, botGenerationDetails, bot);
+        var botLevelDetails = botLevelGenerator.GenerateBotLevel(botGenerationDetails, bot);
 
         // Assign value for later use
         botGenerationDetails.BotLevel = botLevelDetails.Level.GetValueOrDefault();
