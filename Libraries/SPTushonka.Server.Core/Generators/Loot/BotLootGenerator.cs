@@ -493,15 +493,17 @@ public class BotLootGenerator(
             if (!key)
             {
                 logger.Warning($"Unable to process item tpl: {weightedItemTpl} for slots: {equipmentSlots} on bot: {botRole}");
-
+                pool.Remove(weightedItemTpl);
+                i--;
                 continue;
             }
 
-            if (itemSpawnLimits is not null && ItemHasReachedSpawnLimit(itemToAddTemplate, botRole, itemSpawnLimits))
+            MongoId? matchedLimitId = null;
+
+            if (itemSpawnLimits is not null && ItemHasReachedSpawnLimit(itemToAddTemplate, botRole, itemSpawnLimits, out matchedLimitId))
             {
                 // Remove item from pool to prevent it being picked again
                 pool.Remove(weightedItemTpl);
-
                 i--;
                 continue;
             }
@@ -595,6 +597,11 @@ public class BotLootGenerator(
 
             // Item added okay, reset counter for next item
             fitItemIntoContainerAttempts = 0;
+
+            if (itemSpawnLimits is not null)
+            {
+                CommitSpawnLimitUsage(matchedLimitId, itemSpawnLimits);
+            }
 
             // Stop adding items to bots pool if rolling total is over total limit
             if (totalValueLimitRub > 0)
@@ -752,8 +759,15 @@ public class BotLootGenerator(
     /// <param name="botRole">Bot type</param>
     /// <param name="itemSpawnLimits"></param>
     /// <returns>true if item has reached spawn limit</returns>
-    protected bool ItemHasReachedSpawnLimit(TemplateItem? itemTemplate, string botRole, ItemSpawnLimitSettings? itemSpawnLimits)
+    protected bool ItemHasReachedSpawnLimit(
+        TemplateItem? itemTemplate,
+        string botRole,
+        ItemSpawnLimitSettings? itemSpawnLimits,
+        out MongoId? matchedLimitId
+    )
     {
+        matchedLimitId = null;
+
         // PMCs and scavs have different sections of bot config for spawn limits
         if (itemSpawnLimits is not null && itemSpawnLimits.GlobalLimits?.Count == 0)
         // No items found in spawn limit, drop out
@@ -774,42 +788,45 @@ public class BotLootGenerator(
             return false;
         }
 
-        // Use tryAdd to see if it exists, and automatically add 1
-        if (!itemSpawnLimits.CurrentLimits.TryAdd(idToCheckFor.Value, 1))
-        // if it does exist, come in here and increment item count with this bot type
-        {
-            itemSpawnLimits.CurrentLimits[idToCheckFor.Value]++;
-        }
+        matchedLimitId = idToCheckFor;
 
-        // Check if over limit
-        var currentLimitCount = itemSpawnLimits.CurrentLimits[idToCheckFor.Value];
-        if (itemSpawnLimits.CurrentLimits[idToCheckFor.Value] > itemSpawnLimits.GlobalLimits[idToCheckFor.Value])
+        itemSpawnLimits.CurrentLimits.TryGetValue(idToCheckFor.Value, out var currentLimitCount);
+        var globalLimits = itemSpawnLimits.GlobalLimits[idToCheckFor.Value];
+
+        if (currentLimitCount >= globalLimits)
         {
-            // Prevent edge-case of small loot pools + code trying to add limited item over and over infinitely
-            if (currentLimitCount > currentLimitCount * 10)
+            if (logger.IsLogEnabled(LogLevel.Debug))
             {
-                if (logger.IsLogEnabled(LogLevel.Debug))
-                {
-                    logger.Debug(
-                        serverLocalisationService.GetText(
-                            "bot-item_spawn_limit_reached_skipping_item",
-                            new
-                            {
-                                botRole,
-                                itemName = itemTemplate.Name,
-                                attempts = currentLimitCount,
-                            }
-                        )
-                    );
-                }
-
-                return false;
+                logger.Debug(
+                    serverLocalisationService.GetText(
+                        "bot-item_spawn_limit_reached_skipping_item",
+                        new
+                        {
+                            botRole,
+                            itemName = itemTemplate.Name,
+                            attempts = currentLimitCount,
+                        }
+                    )
+                );
             }
 
             return true;
         }
 
         return false;
+    }
+
+    protected static void CommitSpawnLimitUsage(MongoId? matchedLimitId, ItemSpawnLimitSettings? itemSpawnLimits)
+    {
+        if (itemSpawnLimits is null || matchedLimitId is null)
+        {
+            return;
+        }
+
+        if (itemSpawnLimits.CurrentLimits != null && !itemSpawnLimits.CurrentLimits.TryAdd(matchedLimitId.Value, 1))
+        {
+            itemSpawnLimits.CurrentLimits[matchedLimitId.Value]++;
+        }
     }
 
     /// <summary>
