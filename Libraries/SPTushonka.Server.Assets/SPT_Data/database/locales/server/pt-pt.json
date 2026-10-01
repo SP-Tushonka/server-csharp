@@ -49,6 +49,7 @@
   "bot-weapon_missing_magazine_or_chamber": "Arma com tpl: {{weaponId}} não tem carregador ou câmara - {{botRole}}",
   "bot-weapon_missing_mod_slot": "Slot '{{modSlot}}' não existe para a arma: {{weaponId}} {{weaponName}} em {{botRole}}",
   "bot-weapons_required_slot_missing_item": "Slot obrigatório '{{modSlot}}' em {{modName}} {{slotId}} estava vazio em {{botRole}}",
+  "chatbot-forced_event_enabled": "O evento %s foi ativado. Reinicie o seu cliente de jogo antes de iniciar uma raid",
   "client_request": "[Pedido do Cliente] %s",
   "client_request_ip": "[Pedido do Cliente] {{ip}} {{url}}",
   "customisation-item_already_purchased": "Item de vestuário {{itemId}} {{itemName}} já foi comprado",
@@ -578,6 +579,7 @@
   "watermark-discord_url": "https://discord.sp-tushonka.com",
   "watermark-do_not_report": "NÃO REPORTAR",
   "watermark-free_of_charge": "Este trabalho é gratuito",
+  "watermark-issue_tracker_url": "https://github.com/SP-Tushonka/server-csharp/",
   "watermark-modding_disabled": "ESTA VERSÃO IMPOSSIBILITA O USO DE MODS PARA SERVER",
   "watermark-no_support": "NENHUM SUPORTE SERÁ DADO",
   "watermark-not_an_issue": "ISTO NÃO É UM PROBLEMA",
@@ -591,6 +593,5 @@
   "websocket-pinging_player": "[WS] Pingando jogador: %s",
   "websocket-received_message": "[WS] Mensagem recebida do utilizador %s ",
   "websocket-socket_lost_deleting_handle": "[WS] Socket perdido, excluindo handle",
-  "websocket-started": "Websocket iniciado em %s",
-  "chatbot-forced_event_enabled": "O evento %s foi ativado. Reinicie o seu cliente de jogo antes de iniciar uma raid"
+  "websocket-started": "Websocket iniciado em %s"
 }
