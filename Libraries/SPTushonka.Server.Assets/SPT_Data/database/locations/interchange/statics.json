@@ -37,12 +37,24 @@
       "maxContainers": 17
     },
     "OLI": {
-      "minContainers": 32,
-      "maxContainers": 36
+      "minContainers": 34,
+      "maxContainers": 38
     },
     "Other": {
       "minContainers": 7,
       "maxContainers": 9
+    },
+    "PMC_GROUP_01": {
+      "minContainers": 3,
+      "maxContainers": 5
+    },
+    "PMC_GROUP_02": {
+      "minContainers": 3,
+      "maxContainers": 5
+    },
+    "PMC_GROUP_03": {
+      "minContainers": 3,
+      "maxContainers": 5
     },
     "Parking": {
       "minContainers": 8,
@@ -73,8 +85,8 @@
       "maxContainers": 41
     },
     "UndergroundParking": {
-      "minContainers": 44,
-      "maxContainers": 52
+      "minContainers": 45,
+      "maxContainers": 53
     }
   },
   "containers": {
@@ -113,6 +125,15 @@
     },
     "Lootable_00072": {
       "groupId": "Stashes_Shopping_mall"
+    },
+    "container_ProfileEditor_00003": {
+      "groupId": "PMC_GROUP_01"
+    },
+    "container_ProfileEditor_00004": {
+      "groupId": "PMC_GROUP_01"
+    },
+    "container_ProfileEditor_00005": {
+      "groupId": "PMC_GROUP_01"
     },
     "container_Shopping_Mall_ARRS_00004": {
       "groupId": ""
@@ -903,6 +924,15 @@
     "container_Shopping_Mall_DesignStuff_00262": {
       "groupId": ""
     },
+    "container_Shopping_Mall_DesignStuff_00263": {
+      "groupId": "PMC_GROUP_02"
+    },
+    "container_Shopping_Mall_DesignStuff_00264": {
+      "groupId": "PMC_GROUP_02"
+    },
+    "container_Shopping_Mall_DesignStuff_00265": {
+      "groupId": "PMC_GROUP_02"
+    },
     "container_Shopping_Mall_DesignStuff_00267": {
       "groupId": ""
     },
@@ -936,14 +966,23 @@
     "container_Shopping_Mall_DesignStuff_00278": {
       "groupId": ""
     },
+    "container_Shopping_Mall_DesignStuff_00279": {
+      "groupId": "PMC_GROUP_02"
+    },
     "container_Shopping_Mall_DesignStuff_00280": {
       "groupId": ""
+    },
+    "container_Shopping_Mall_DesignStuff_00281": {
+      "groupId": "PMC_GROUP_02"
     },
     "container_Shopping_Mall_DesignStuff_00282": {
       "groupId": ""
     },
     "container_Shopping_Mall_DesignStuff_00283": {
       "groupId": ""
+    },
+    "container_Shopping_Mall_DesignStuff_00314": {
+      "groupId": "PMC_GROUP_02"
     },
     "container_Shopping_Mall_DesignStuff_00350": {
       "groupId": ""
@@ -2040,6 +2079,9 @@
     "container_Shopping_Mall_DesignStuff_00714": {
       "groupId": "Ultra"
     },
+    "container_Shopping_Mall_DesignStuff_00715": {
+      "groupId": "PMC_GROUP_03"
+    },
     "container_Shopping_Mall_DesignStuff_00716": {
       "groupId": "Ultra"
     },
@@ -2069,6 +2111,9 @@
     },
     "container_Shopping_Mall_DesignStuff_00725": {
       "groupId": "Ultra"
+    },
+    "container_Shopping_Mall_DesignStuff_00726": {
+      "groupId": "PMC_GROUP_03"
     },
     "container_Shopping_Mall_DesignStuff_00727": {
       "groupId": "Ultra"
@@ -2103,8 +2148,14 @@
     "container_Shopping_Mall_DesignStuff_00737": {
       "groupId": "Ultra"
     },
+    "container_Shopping_Mall_DesignStuff_00738": {
+      "groupId": "PMC_GROUP_03"
+    },
     "container_Shopping_Mall_DesignStuff_00739": {
       "groupId": "Ultra"
+    },
+    "container_Shopping_Mall_DesignStuff_00740": {
+      "groupId": "PMC_GROUP_03"
     },
     "container_Shopping_Mall_DesignStuff_00741": {
       "groupId": "Ultra"
@@ -2559,6 +2610,27 @@
     "container_Shopping_Mall_DesignStuff_00891": {
       "groupId": "Road"
     },
+    "container_Shopping_Mall_DesignStuff_00892": {
+      "groupId": "PMC_GROUP_03"
+    },
+    "container_Shopping_Mall_DesignStuff_00893": {
+      "groupId": "PMC_GROUP_03"
+    },
+    "container_Shopping_Mall_DesignStuff_00894": {
+      "groupId": "UndergroundParking"
+    },
+    "container_Shopping_Mall_DesignStuff_00895": {
+      "groupId": "UndergroundParking"
+    },
+    "container_Shopping_Mall_DesignStuff_00896": {
+      "groupId": "OLI"
+    },
+    "container_Shopping_Mall_DesignStuff_00897": {
+      "groupId": "OLI"
+    },
+    "container_Shopping_Mall_DesignStuff_00898": {
+      "groupId": "OLI"
+    },
     "container_Shopping_Mall_MDEX_00000": {
       "groupId": ""
     },
@@ -2579,6 +2651,15 @@
     },
     "container_Test_for_export_00002": {
       "groupId": "Other"
+    },
+    "container_Woods_Blockout2b_00007": {
+      "groupId": "PMC_GROUP_01"
+    },
+    "container_Woods_Blockout2b_00013": {
+      "groupId": "PMC_GROUP_01"
+    },
+    "container_Woods_Blockout2b_00021": {
+      "groupId": "PMC_GROUP_01"
     },
     "n1": {
       "groupId": "Ultra"

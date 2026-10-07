@@ -1,7 +1,7 @@
 {
   "elements": [
     {
-      "id": "672df12f97f0469cea52f55e",
+      "id": "6aad4b9ebe4ab598ffc34517",
       "conditions": [
         {
           "index": 0,
@@ -12,7 +12,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "672df325cea63f5a813f7227",
+          "id": "6aad4b9eca4dd1f556c3e7a0",
           "props": {
             "index": 0,
             "dynamicLocale": false,
@@ -24,117 +24,9 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "value": 25,
+          "value": 15,
           "compareMethod": ">=",
           "conditionType": "Level"
-        },
-        {
-          "index": 2,
-          "dynamicLocale": false,
-          "visibilityConditions": [],
-          "globalQuestCounterId": "",
-          "parentId": "",
-          "dialogId": null,
-          "entryPoint": null,
-          "fromTraderId": null,
-          "id": "6761fe66b41bc1e8222b5b6e",
-          "props": {
-            "index": 2,
-            "dynamicLocale": false,
-            "visibilityConditions": [],
-            "globalQuestCounterId": "",
-            "parentId": "",
-            "entryPoint": null,
-            "dialogId": null,
-            "fromTraderId": null
-          },
-          "questNoteId": null,
-          "target": "6761f28a022f60bb320f3e95",
-          "status": [
-            4
-          ],
-          "availableAfter": 0,
-          "dispersion": 0,
-          "isFinisher": false,
-          "conditionType": "Quest"
-        },
-        {
-          "index": 2,
-          "dynamicLocale": false,
-          "visibilityConditions": [],
-          "globalQuestCounterId": "",
-          "parentId": "",
-          "dialogId": null,
-          "entryPoint": null,
-          "fromTraderId": null,
-          "id": "6761efd8f619f2e097536690",
-          "props": {
-            "index": 2,
-            "dynamicLocale": false,
-            "visibilityConditions": [],
-            "globalQuestCounterId": "",
-            "parentId": "",
-            "entryPoint": null,
-            "dialogId": null,
-            "fromTraderId": null
-          },
-          "questNoteId": null,
-          "value": 1,
-          "compareMethod": ">=",
-          "areaType": 11,
-          "conditionType": "HideoutArea"
-        },
-        {
-          "index": 3,
-          "dynamicLocale": false,
-          "visibilityConditions": [],
-          "globalQuestCounterId": "",
-          "parentId": "",
-          "dialogId": null,
-          "entryPoint": null,
-          "fromTraderId": null,
-          "id": "6761efeabbe49f4699336bf5",
-          "props": {
-            "index": 3,
-            "dynamicLocale": false,
-            "visibilityConditions": [],
-            "globalQuestCounterId": "",
-            "parentId": "",
-            "entryPoint": null,
-            "dialogId": null,
-            "fromTraderId": null
-          },
-          "questNoteId": null,
-          "value": 2,
-          "compareMethod": ">=",
-          "areaType": 9,
-          "conditionType": "HideoutArea"
-        },
-        {
-          "index": 4,
-          "dynamicLocale": false,
-          "visibilityConditions": [],
-          "globalQuestCounterId": "",
-          "parentId": "",
-          "dialogId": null,
-          "entryPoint": null,
-          "fromTraderId": null,
-          "id": "69fa1d6e65a035c5d3b553d8",
-          "props": {
-            "index": 4,
-            "dynamicLocale": false,
-            "visibilityConditions": [],
-            "globalQuestCounterId": "",
-            "parentId": "",
-            "entryPoint": null,
-            "dialogId": null,
-            "fromTraderId": null
-          },
-          "questNoteId": null,
-          "value": 2,
-          "compareMethod": ">=",
-          "areaType": 8,
-          "conditionType": "HideoutArea"
         },
         {
           "index": 5,
@@ -145,7 +37,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "675d724875542400d1f90100",
+          "id": "6aad4b9e1738478ff931f823",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -160,7 +52,7 @@
           "target": [
             "5449016a4bdc2d6f028b456f"
           ],
-          "value": 10000000,
+          "value": 5000000,
           "minDurability": 0.0,
           "maxDurability": 100.0,
           "dogtagLevel": 0,
@@ -172,11 +64,9 @@
       "rewards": [
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/6767341d5b13f778d10f1950.png",
@@ -191,11 +81,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/6767340793816ce19c0c8660.png",
@@ -210,11 +98,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676733ff4fe29db8170e5a0f.png",
@@ -229,11 +115,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/6767340bed053537070a13da.png",
@@ -248,12 +132,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "arena",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801645d80f6cea04f0bc.png",
@@ -269,47 +150,47 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/676733dca49c2307370ea30f.png",
-            "bigImage": "/files/prestige/reward/big/67673232a49c2307370ea305.png",
+            "image": "/files/prestige/reward/small/6aba5f0a4174b7648c09e0c9.png",
+            "bigImage": "/files/prestige/reward/big/6ab28a35b498e98ee00d9b5c.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
           "id": "675d743af8c76434a9ead47b",
-          "target": "674dbf593bee1152d407f005",
+          "target": "6ab2d50ed788b98b9e0ed79e",
           "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/6767343d9680f649230b1c8f.png",
-            "bigImage": "/files/prestige/reward/big/6767329bed053537070a13d5.png",
+            "image": "/files/prestige/reward/small/6aba927515300097220cfe23.png",
+            "bigImage": "/files/prestige/reward/big/6aba92199f756d2086063586.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "675d745aaf070f34a1f403c7",
-          "target": "b4f6806cd7bdb67d6a389e0e",
+          "id": "6aad4b9e6e492b905b60025d",
+          "target": "3ea1becc83e7699dbe7377e2",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "b4f6806cd7bdb67d6a389e0e",
-              "_tpl": "6759bb94b8913ff13e049669",
+              "_id": "3ea1becc83e7699dbe7377e2",
+              "_tpl": "6aa2d63bcff7211b380d9f77",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -321,11 +202,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676733e5276497e8c60a7e6d.png",
@@ -354,11 +233,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/67673431a49c2307370ea311.png",
@@ -373,20 +250,40 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
-            "pvp-season"
+            "pvp-season",
+            "arena"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/6842ca183a9cb5e0a609b26c.png",
-            "bigImage": "/files/prestige/reward/big/683db75f3102b7f7030b0e0a.png",
+            "image": "/files/prestige/reward/small/6aba516eefdab81ad501a464.png",
+            "bigImage": "/files/prestige/reward/big/6aba5161d1a3cb25ee0b0cd9.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842fc2ea285406df4ad89c6",
+          "id": "6aad7bfe7344243a2e9571fc",
+          "value": 50,
+          "type": "Tarcoin"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve",
+            "pvp-season",
+            "regular"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba9c5933724507e800f5fe.png",
+            "bigImage": "/files/prestige/reward/big/6aba9c1bc05ae97ca70b26ca.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aad4b9ed72d90fa897453cb",
           "type": "Stub"
         }
       ],
@@ -609,17 +506,17 @@
           }
         },
         "skillConfig": {
-          "transferMultiplier": 0.95
+          "transferMultiplier": 0.9
         },
         "masteringConfig": {
-          "transferMultiplier": 0.95
+          "transferMultiplier": 0.9
         }
       },
-      "image": "/files/prestige/675864eb86778bc82004127c.png",
-      "bigImage": "/files/prestige/675864f826d0e0d6b602ce17.png"
+      "image": "/files/prestige/6aba55e4b7060003910982e6.png",
+      "bigImage": "/files/prestige/6aba5672c44cd35a2204d44f.png"
     },
     {
-      "id": "672df4281ab8d9c8849a0c88",
+      "id": "6aad4b9ef51244f6fc01b426",
       "conditions": [
         {
           "index": 0,
@@ -630,7 +527,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "672df4281e1344e35bcbd670",
+          "id": "6aad4b9e227cc680d163a327",
           "props": {
             "index": 0,
             "dynamicLocale": false,
@@ -642,7 +539,7 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "value": 30,
+          "value": 25,
           "compareMethod": ">=",
           "conditionType": "Level"
         },
@@ -655,7 +552,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "67620a1f2e64e3f5c982585c",
+          "id": "6aad4b9e32cb8f7fc190bde3",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -667,7 +564,7 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "target": "6761ff17cdc36bd66102e9d0",
+          "target": "6aad73ddedf6e9696e0f60d4",
           "status": [
             4
           ],
@@ -685,7 +582,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b4fb5e544e401b87a534",
+          "id": "6aad4b9ee3bbc34d6d4a83af",
           "props": {
             "index": 3,
             "dynamicLocale": false,
@@ -715,7 +612,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6761f0951e241947b3439dbd",
+          "id": "6aad4b9ebc1055085dac7473",
           "props": {
             "index": 3,
             "dynamicLocale": false,
@@ -741,7 +638,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6761f08995d00b8a8594bfbf",
+          "id": "6aad4b9e2743ce3d761d5e73",
           "props": {
             "index": 4,
             "dynamicLocale": false,
@@ -767,7 +664,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6761f0a11961e431bb8b7915",
+          "id": "6aad4b9e95f674f88c9d351a",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -793,7 +690,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6761f0e136ae4b74063f0301",
+          "id": "6aad4b9e442f82dea5e07b8b",
           "props": {
             "index": 6,
             "dynamicLocale": false,
@@ -819,7 +716,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6761f0db439c5eb5cb24748e",
+          "id": "6aad4b9e4a7aa6b04de82571",
           "props": {
             "index": 7,
             "dynamicLocale": false,
@@ -845,7 +742,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "69fa25f6b7ae74e8f89c5081",
+          "id": "6aad4b9eb4ec13d5d251a26b",
           "props": {
             "index": 8,
             "dynamicLocale": false,
@@ -871,7 +768,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "675d71e9bd393adc11c40d14",
+          "id": "6aad4b9e0f241651919241bd",
           "props": {
             "index": 9,
             "dynamicLocale": false,
@@ -886,7 +783,7 @@
           "target": [
             "5449016a4bdc2d6f028b456f"
           ],
-          "value": 15000000,
+          "value": 10000000,
           "minDurability": 0.0,
           "maxDurability": 100.0,
           "dogtagLevel": 0,
@@ -898,44 +795,26 @@
       "rewards": [
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/676ab01ff444b79e7306741b.png",
-            "bigImage": "/files/prestige/reward/big/676aaff96fd0e0b7f20715db.png",
+            "image": "/files/prestige/reward/small/6767342c4fe29db8170e5a10.png",
+            "bigImage": "/files/prestige/reward/big/67673283aa94e661930dadfc.png",
             "isBigImage": true
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "672df428fbdea27ec6abfd42",
-          "target": "1c38ef78bae2f75c5d52b983",
-          "value": 1,
-          "isEncoded": false,
-          "findInRaid": true,
-          "items": [
-            {
-              "_id": "1c38ef78bae2f75c5d52b983",
-              "_tpl": "674d90b55704568fe60bc8f5",
-              "upd": {
-                "SpawnedInSession": true,
-                "StackObjectsCount": 1
-              }
-            }
-          ],
-          "isDeliverByMail": true,
-          "type": "Item"
+          "id": "675b0d14dd24b1cb7c2c2e7d",
+          "target": "67585108def253bd97084552",
+          "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801b77d346999f0ac3b1.png",
@@ -951,11 +830,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801f9767102f9807a17b.png",
@@ -971,12 +848,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "arena",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801645d80f6cea04f0bc.png",
@@ -992,101 +866,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/6767342c4fe29db8170e5a10.png",
-            "bigImage": "/files/prestige/reward/big/67673283aa94e661930dadfc.png",
-            "isBigImage": true
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "675b0d14dd24b1cb7c2c2e7d",
-          "target": "67585108def253bd97084552",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/676733fb8073dabc2e06df2c.png",
-            "bigImage": "/files/prestige/reward/big/676732538073dabc2e06df28.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "675d7107ad3b67a1b9465653",
-          "target": "675184a9490b32072c06f1a7",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/676733e15b13f778d10f194e.png",
-            "bigImage": "/files/prestige/reward/big/67673239b3ee94a38c056c27.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "675d712cf1d6153a75d77db1",
-          "target": "675dcfea7ae1a8792107ca99",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/67673438276497e8c60a7e6f.png",
-            "bigImage": "/files/prestige/reward/big/676732974fe29db8170e5a09.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "675d71551692b38879ad814b",
-          "target": "778dc6bb0ae8a4588e21110b",
-          "value": 1,
-          "isEncoded": false,
-          "findInRaid": true,
-          "items": [
-            {
-              "_id": "778dc6bb0ae8a4588e21110b",
-              "_tpl": "6759e07e4ff23436160d7fed",
-              "upd": {
-                "SpawnedInSession": true,
-                "StackObjectsCount": 1
-              }
-            }
-          ],
-          "isDeliverByMail": true,
-          "type": "Item"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676734278073dabc2e06df2d.png",
@@ -1101,11 +883,131 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/676733fb8073dabc2e06df2c.png",
+            "bigImage": "/files/prestige/reward/big/676732538073dabc2e06df28.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "675d7107ad3b67a1b9465653",
+          "target": "675184a9490b32072c06f1a7",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba5f5e9f756d2086063579.png",
+            "bigImage": "/files/prestige/reward/big/6ab28a3e1c7d617b290dd2ad.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "675d712cf1d6153a75d77db1",
+          "target": "6ab2d6d2b498e98ee00d9b65",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba516eefdab81ad501a464.png",
+            "bigImage": "/files/prestige/reward/big/6aba5161d1a3cb25ee0b0cd9.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6ab27c1b787b5ff9804b7c62",
+          "value": 50,
+          "type": "Tarcoin"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba96b89ce03dadbc05d8f1.png",
+            "bigImage": "/files/prestige/reward/big/6aba957b8439dfb5a20ed6e7.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aad4b9e2fde113b69e9d370",
+          "target": "a9ec81ebda0b156d4608a891",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "a9ec81ebda0b156d4608a891",
+              "_tpl": "6aa948d1a7cdc313b50cdd11",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba927c6ef7c5ce280e3722.png",
+            "bigImage": "/files/prestige/reward/big/6aba92240dc96a089a0dc97b.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aad4b9e2f2326c79bffe622",
+          "target": "734a4f10d222f067e49f6045",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "734a4f10d222f067e49f6045",
+              "_tpl": "6aa2d653b30d09615d006ee7",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676734355b13f778d10f1951.png",
@@ -1120,11 +1022,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676733ea1814da542d050f2c.png",
@@ -1153,8 +1053,8 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
@@ -1166,7 +1066,7 @@
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842fbd6007b16f2aad926ac",
+          "id": "6aad4b9e5ee584994e1e59c2",
           "type": "Stub"
         }
       ],
@@ -1376,17 +1276,17 @@
           }
         },
         "skillConfig": {
-          "transferMultiplier": 0.9
+          "transferMultiplier": 0.8
         },
         "masteringConfig": {
-          "transferMultiplier": 0.9
+          "transferMultiplier": 0.8
         }
       },
-      "image": "/files/prestige/682b39c18a28d3c859088f5f.png",
-      "bigImage": "/files/prestige/682b39cb4e93305029030ca8.png"
+      "image": "/files/prestige/6aba563e51524332e709ebac.png",
+      "bigImage": "/files/prestige/6aba567851524332e709ebad.png"
     },
     {
-      "id": "683da91d6f472cfa738c52f2",
+      "id": "6aad4b9e585f726d1e35dd9f",
       "conditions": [
         {
           "index": 0,
@@ -1397,7 +1297,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91dc19b0046298f13ba",
+          "id": "6aad4b9e4ed2e21d4b5d288c",
           "props": {
             "index": 0,
             "dynamicLocale": false,
@@ -1422,7 +1322,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91de231c42903872790",
+          "id": "6aad4b9ede0d981b60e5e3ad",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -1434,7 +1334,7 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "target": "6848100b00afffa81f09e365",
+          "target": "6aad73e67a336545ed0657f3",
           "status": [
             4
           ],
@@ -1452,7 +1352,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b268bcb81877fcb9e418",
+          "id": "6aad4b9ee956c9188bb8ef83",
           "props": {
             "index": 3,
             "dynamicLocale": false,
@@ -1482,7 +1382,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b271202f7cdaec16abb5",
+          "id": "6aad4b9e941b03e890b87935",
           "props": {
             "index": 4,
             "dynamicLocale": false,
@@ -1512,7 +1412,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91df9d6f7178e4028bf",
+          "id": "6aad4b9e6ce8bca703935dac",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -1538,7 +1438,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91db5a1742fce1ab919",
+          "id": "6aad4b9e53d5714461d48b37",
           "props": {
             "index": 6,
             "dynamicLocale": false,
@@ -1564,7 +1464,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91da64e2f4c163c0a71",
+          "id": "6aad4b9e757bf0970039c837",
           "props": {
             "index": 7,
             "dynamicLocale": false,
@@ -1590,7 +1490,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91d3ba6beee15ae15e5",
+          "id": "6aad4b9eb0f92cc375519b74",
           "props": {
             "index": 8,
             "dynamicLocale": false,
@@ -1616,7 +1516,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91de6fa1f57116cd578",
+          "id": "6aad4b9e6c6ae4f12a5da106",
           "props": {
             "index": 8,
             "dynamicLocale": false,
@@ -1642,7 +1542,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "69fa26c1b2f4480e879ce0cd",
+          "id": "6aad4b9e874e1622ffc8aeb2",
           "props": {
             "index": 9,
             "dynamicLocale": false,
@@ -1668,7 +1568,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "683da91dcbaecbd131ba3a36",
+          "id": "6aad4b9eb5f7d88950865fa4",
           "props": {
             "index": 10,
             "dynamicLocale": false,
@@ -1695,11 +1595,9 @@
       "rewards": [
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/67673412a49c2307370ea310.png",
@@ -1714,47 +1612,47 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db7f2a8ab4447590fef6c.png",
-            "bigImage": "/files/prestige/reward/big/683db43a8abee978cc0b310c.png",
+            "image": "/files/prestige/reward/small/6aba5f6696b97fcbc3053818.png",
+            "bigImage": "/files/prestige/reward/big/6aba60084174b7648c09e0cb.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
           "id": "6842c967f7807b2895222ec9",
-          "target": "6841818c20f5c35b53017729",
+          "target": "6ab65b4106cd626cda0a2e3c",
           "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db9e43102b7f7030b0e0d.png",
-            "bigImage": "/files/prestige/reward/big/683db5d355241b17d40de945.png",
+            "image": "/files/prestige/reward/small/6aba965e15300097220cfe28.png",
+            "bigImage": "/files/prestige/reward/big/6aba95bd9f756d208606358b.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842c945768eced84bd40e85",
-          "target": "fa5c47f896a4bbb9aa0a3c26",
+          "id": "6aad4b9e27a9ea4f3d5590c2",
+          "target": "da391a74be44c0215e0ac42e",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "fa5c47f896a4bbb9aa0a3c26",
-              "_tpl": "6841b6b674a3c16f5e03d653",
+              "_id": "da391a74be44c0215e0ac42e",
+              "_tpl": "6aa2d19ecff7211b380d9f6f",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -1766,12 +1664,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "arena",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801645d80f6cea04f0bc.png",
@@ -1787,11 +1682,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/684abdc9ad66a32a180a7398.png",
@@ -1806,28 +1699,28 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db800bc09186e3502392d.png",
-            "bigImage": "/files/prestige/reward/big/683db45c7db340a9a202f952.png",
+            "image": "/files/prestige/reward/small/6aba9284b706000391098302.png",
+            "bigImage": "/files/prestige/reward/big/6aba922dd3b0fcdc5a074e02.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842c990daa15ec334d9e358",
-          "target": "d4f5fb53c09c2cbd132c05f2",
+          "id": "6aad4b9ea04f8cc958020368",
+          "target": "ba7383fdb0f533258e8b0c62",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "d4f5fb53c09c2cbd132c05f2",
-              "_tpl": "6841b179322db20d190b4b99",
+              "_id": "ba7383fdb0f533258e8b0c62",
+              "_tpl": "6aa2d686667ebebca605d8fa",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -1839,11 +1732,82 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba968571cc081f9c0d8d28.png",
+            "bigImage": "/files/prestige/reward/big/6aba95e8d3b0fcdc5a074e08.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6842ef20bf310d6fd19c819c",
+          "target": "6ab66eb051f69f0feb032ef7",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba516eefdab81ad501a464.png",
+            "bigImage": "/files/prestige/reward/big/6aba5161d1a3cb25ee0b0cd9.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aba948f9d12068bc4ba3838",
+          "value": 100,
+          "type": "Tarcoin"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/684abda5ad66a32a180a7395.png",
+            "bigImage": "/files/prestige/reward/big/684abd91b59b2cdfc10ce74a.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6842eff568fe21742b7e2794",
+          "target": "684696e8199c6a77dc0f9bc8",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/683db7d03102b7f7030b0e0b.png",
+            "bigImage": "/files/prestige/reward/big/683db41d9248b507f60a19c6.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6842ef0cefd524b9eb836370",
+          "target": "683dacd53a9ebd9a650ce8a0",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db9ce433949ccc70ccdf9.png",
@@ -1872,65 +1836,8 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db7d03102b7f7030b0e0b.png",
-            "bigImage": "/files/prestige/reward/big/683db41d9248b507f60a19c6.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "6842ef0cefd524b9eb836370",
-          "target": "683dacd53a9ebd9a650ce8a0",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/684abda5ad66a32a180a7395.png",
-            "bigImage": "/files/prestige/reward/big/684abd91b59b2cdfc10ce74a.png",
-            "isBigImage": true
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "6842eff568fe21742b7e2794",
-          "target": "684696e8199c6a77dc0f9bc8",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683dba06dc5dfe2acd0debce.png",
-            "bigImage": "/files/prestige/reward/big/683db62557f38ea79c0073e5.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "6842ef20bf310d6fd19c819c",
-          "target": "6841c50c3fcc417de40a676a",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
@@ -1942,7 +1849,7 @@
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842ee4e110d3f922de72162",
+          "id": "6aad4b9e185c2a73d0ec6146",
           "type": "Stub"
         }
       ],
@@ -2152,17 +2059,17 @@
           }
         },
         "skillConfig": {
-          "transferMultiplier": 0.85
+          "transferMultiplier": 0.7
         },
         "masteringConfig": {
-          "transferMultiplier": 0.85
+          "transferMultiplier": 0.7
         }
       },
-      "image": "/files/prestige/682b39eeeaa00df0990783ce.png",
-      "bigImage": "/files/prestige/682b39f6254221461f05e10c.png"
+      "image": "/files/prestige/6aba56443b21bc082e08d1f0.png",
+      "bigImage": "/files/prestige/6aba5684d1a3cb25ee0b0db1.png"
     },
     {
-      "id": "6842f121000d98ce33b9a60f",
+      "id": "6aad4b9e8f51b29d5e0bb0b2",
       "conditions": [
         {
           "index": 0,
@@ -2173,7 +2080,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f121cef417ef53cc90a0",
+          "id": "6aad4b9e46e3185939534424",
           "props": {
             "index": 0,
             "dynamicLocale": false,
@@ -2198,7 +2105,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f121c033d3512e2682d2",
+          "id": "6aad4b9e6a4b8aa8a5c81871",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -2210,7 +2117,7 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "target": "68481881f43abfdda2058369",
+          "target": "6aad74057a336545ed065807",
           "status": [
             4
           ],
@@ -2228,7 +2135,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b3380d5149ac49154259",
+          "id": "6aad4b9e84b976cb6bbb1ab2",
           "props": {
             "index": 3,
             "dynamicLocale": false,
@@ -2258,7 +2165,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b32e913ceeecc2e5c2b4",
+          "id": "6aad4b9ec8469463c507b705",
           "props": {
             "index": 3,
             "dynamicLocale": false,
@@ -2288,7 +2195,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f121b2b5feddbb55172d",
+          "id": "6aad4b9e9136d0bd1da324ce",
           "props": {
             "index": 4,
             "dynamicLocale": false,
@@ -2314,7 +2221,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f121b524778424c2faab",
+          "id": "6aad4b9e9584d214fbecf492",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -2340,7 +2247,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f12139a9154e5a9014cd",
+          "id": "6aad4b9e792316e3a2d76731",
           "props": {
             "index": 6,
             "dynamicLocale": false,
@@ -2366,7 +2273,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f121ddf9d10aa5a1c254",
+          "id": "6aad4b9e9f761515e67f342e",
           "props": {
             "index": 7,
             "dynamicLocale": false,
@@ -2392,7 +2299,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f12162f7d28696db3a3e",
+          "id": "6aad4b9e2f936f81e64fb5b7",
           "props": {
             "index": 8,
             "dynamicLocale": false,
@@ -2418,7 +2325,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "69fa271c5df83bfc367bba15",
+          "id": "6aad4b9e4134c19bdc5d105b",
           "props": {
             "index": 9,
             "dynamicLocale": false,
@@ -2444,7 +2351,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6842f121065f0486f7c5bb56",
+          "id": "6aad4b9e094fcc0128511dd1",
           "props": {
             "index": 10,
             "dynamicLocale": false,
@@ -2471,11 +2378,9 @@
       "rewards": [
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/684abdd07b2090d3020a1d19.png",
@@ -2490,12 +2395,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "arena",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801645d80f6cea04f0bc.png",
@@ -2511,30 +2413,28 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db9f14efbd1959b0039ae.png",
-            "bigImage": "/files/prestige/reward/big/683db5f5675dbd613909cac1.png",
+            "image": "/files/prestige/reward/small/6aba969d272d0c33ce05272c.png",
+            "bigImage": "/files/prestige/reward/big/6aba95b2272d0c33ce05272a.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
           "id": "6842f6d61c9d927b2349a185",
-          "target": "6841c7963fcc417de40a676c",
+          "target": "6aa40cf673e497d3080a99bc",
           "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db7dc4efbd1959b0039ac.png",
@@ -2549,11 +2449,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/684abdd6e361378c540d21e9.png",
@@ -2568,11 +2466,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db9d2f014f6c51008371d.png",
@@ -2601,63 +2497,48 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db7f9dc5dfe2acd0debcc.png",
-            "bigImage": "/files/prestige/reward/big/683db44168d0c86684039740.png",
+            "image": "/files/prestige/reward/small/6aba5f6ed1a3cb25ee0b0dbe.png",
+            "bigImage": "/files/prestige/reward/big/6aba600e07545e540707511c.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
           "id": "6842f9b9eb9fe022e0428881",
-          "target": "6841b11620f5c35b5301772b",
+          "target": "6ab65b5245e09f045f049cbd",
           "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
-            "pvp-season"
+            "pvp-season",
+            "arena"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683db80a164933a0450b3bad.png",
-            "bigImage": "/files/prestige/reward/big/683db462d079529a0907a7ff.png",
+            "image": "/files/prestige/reward/small/6aba516eefdab81ad501a464.png",
+            "bigImage": "/files/prestige/reward/big/6aba5161d1a3cb25ee0b0cd9.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842fa056e463e017d8c76a8",
-          "target": "db8129ffc8ed57950c88e627",
-          "value": 1,
-          "isEncoded": false,
-          "findInRaid": true,
-          "items": [
-            {
-              "_id": "db8129ffc8ed57950c88e627",
-              "_tpl": "6841b1ff51bf8645f7067bca",
-              "upd": {
-                "SpawnedInSession": true,
-                "StackObjectsCount": 1
-              }
-            }
-          ],
-          "isDeliverByMail": true,
-          "type": "Item"
+          "id": "6aba9535d2ec9878f528c065",
+          "value": 100,
+          "type": "Tarcoin"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db7bff014f6c51008371b.png",
@@ -2672,8 +2553,41 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba92ab9ce03dadbc05d8ec.png",
+            "bigImage": "/files/prestige/reward/big/6aba924871cc081f9c0d8d1f.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aad4b9e7737574f239ec5d1",
+          "target": "7a71e104c6c0fa7afe326f47",
+          "value": 1,
+          "isEncoded": false,
+          "findInRaid": true,
+          "items": [
+            {
+              "_id": "7a71e104c6c0fa7afe326f47",
+              "_tpl": "6aa2d6d611d6c6361804dd5b",
+              "upd": {
+                "SpawnedInSession": true,
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "isDeliverByMail": true,
+          "type": "Item"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
@@ -2685,7 +2599,7 @@
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "6842f66bc045dd8b3c083e80",
+          "id": "6aad4b9e1c681956d5bb2946",
           "type": "Stub"
         }
       ],
@@ -2895,17 +2809,17 @@
           }
         },
         "skillConfig": {
-          "transferMultiplier": 0.8
+          "transferMultiplier": 0.6
         },
         "masteringConfig": {
-          "transferMultiplier": 0.8
+          "transferMultiplier": 0.6
         }
       },
-      "image": "/files/prestige/682b39faa79f41a98906fc95.png",
-      "bigImage": "/files/prestige/682b39fe8a28d3c859088f60.png"
+      "image": "/files/prestige/6aba564a4174b7648c09e0c0.png",
+      "bigImage": "/files/prestige/6aba568b4174b7648c09e0c1.png"
     },
     {
-      "id": "68d3ddb4fc101237e601d774",
+      "id": "6aad4b9e93a8eebfd000adc4",
       "conditions": [
         {
           "index": 0,
@@ -2916,7 +2830,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4082777aca7357284",
+          "id": "6aad4b9ea6607cdb66cc8fc6",
           "props": {
             "index": 0,
             "dynamicLocale": false,
@@ -2941,7 +2855,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb415034199b86b8d68",
+          "id": "6aad4b9e99ce879c58e04930",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -2971,7 +2885,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4c69f97506c68405f",
+          "id": "6aad4b9efdf14631a632c3c7",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -2983,7 +2897,7 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "target": "68d3eabc22a258476b064851",
+          "target": "6aad740f5e7f204c2d088f42",
           "status": [
             4
           ],
@@ -3001,7 +2915,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b4054e5ca32f6cf3d943",
+          "id": "6aad4b9e62954c04bacbb73b",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -3031,7 +2945,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "692d71e4d369471469312f40",
+          "id": "6aad4b9ee8b6d6888ed20835",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -3061,7 +2975,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "692d71f24b1a9ece85e445df",
+          "id": "6aad4b9e12ee9b46f9dbc5d6",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -3091,7 +3005,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4dbfce49d11eb96e6",
+          "id": "6aad4b9ec393c36abdcb735b",
           "props": {
             "index": 6,
             "dynamicLocale": false,
@@ -3117,7 +3031,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4288e9ebf7d9fd372",
+          "id": "6aad4b9ebe23a006eb52dc33",
           "props": {
             "index": 7,
             "dynamicLocale": false,
@@ -3143,7 +3057,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4e20dd5fd2bb1a3b1",
+          "id": "6aad4b9ea1a1c412da272358",
           "props": {
             "index": 8,
             "dynamicLocale": false,
@@ -3169,7 +3083,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb415cc358f89d70794",
+          "id": "6aad4b9e95e932d56473bdcd",
           "props": {
             "index": 9,
             "dynamicLocale": false,
@@ -3195,7 +3109,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb41d2772dc2d632a6e",
+          "id": "6aad4b9e64986db843f795c3",
           "props": {
             "index": 10,
             "dynamicLocale": false,
@@ -3221,7 +3135,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4c3a680af079c59a9",
+          "id": "6aad4b9e58e455a1a8965781",
           "props": {
             "index": 11,
             "dynamicLocale": false,
@@ -3253,7 +3167,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3ddb4fa5a084ed04ea23b",
+          "id": "6aad4b9e5caa4d6667a42498",
           "props": {
             "index": 12,
             "dynamicLocale": false,
@@ -3274,11 +3188,9 @@
       "rewards": [
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/68ff6f96dc56a7e0870c378a.png",
@@ -3293,12 +3205,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "arena",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801645d80f6cea04f0bc.png",
@@ -3314,30 +3223,28 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683dba00a8ab4447590fef6e.png",
-            "bigImage": "/files/prestige/reward/big/683db61c164933a0450b3ba5.png",
+            "image": "/files/prestige/reward/small/6aba9691acbdee00ee09f4e7.png",
+            "bigImage": "/files/prestige/reward/big/6aba9632acbdee00ee09f4e6.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
           "id": "68d3ddb41580f343f51c2044",
-          "target": "6841c7f03fcc417de40a676e",
+          "target": "6aa4105726814f849d09243f",
           "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db7e657f38ea79c0073ec.png",
@@ -3352,11 +3259,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/68ff6f92dac73164f6019478.png",
@@ -3371,11 +3276,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db9d8baa42e2bb402491e.png",
@@ -3404,47 +3307,48 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
-            "pvp-season"
+            "pvp-season",
+            "arena"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b1011d4890e1fb0fe450.png",
-            "bigImage": "/files/prestige/reward/big/68f6829accfbe971fd01a3fc.png",
+            "image": "/files/prestige/reward/small/6aba516eefdab81ad501a464.png",
+            "bigImage": "/files/prestige/reward/big/6aba5161d1a3cb25ee0b0cd9.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68f67f3450e8c5950cb484b3",
-          "target": "68f113af8c147e61f50fb520",
-          "type": "CustomizationDirect"
+          "id": "6aba94dd81024a46b136512a",
+          "value": 100,
+          "type": "Tarcoin"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "pve",
             "regular",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b17e025a92ed6d0381d5.png",
-            "bigImage": "/files/prestige/reward/big/68f683007cf076bf600f95e9.png",
+            "image": "/files/prestige/reward/small/6aba92ba272d0c33ce052723.png",
+            "bigImage": "/files/prestige/reward/big/6aba926b8439dfb5a20ed6e2.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68f680480b2d5e0ab83a0db1",
-          "target": "134a1a881838dc45bec3b71a",
+          "id": "6aad4b9eb2669971b7186c49",
+          "target": "8d42b874486c85783262b88a",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "134a1a881838dc45bec3b71a",
-              "_tpl": "68f0f8a1375a44d1ed01ea4b",
+              "_id": "8d42b874486c85783262b88a",
+              "_tpl": "6aa2d73de7613174f409815b",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -3456,11 +3360,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db7c7baa42e2bb402491c.png",
@@ -3475,28 +3377,47 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b1a9c3c5eb169c0a012a.png",
-            "bigImage": "/files/prestige/reward/big/68f682e82bc151c18c0ded5c.png",
+            "image": "/files/prestige/reward/small/6aba5f7751524332e709ebbb.png",
+            "bigImage": "/files/prestige/reward/big/6aba6028fe8ced629f0c5175.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f67f3450e8c5950cb484b3",
+          "target": "6ab65b7a2c7569c54d06b14e",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba96ac9f756d208606358d.png",
+            "bigImage": "/files/prestige/reward/big/6aba959f3b21bc082e08d21b.png",
             "isBigImage": true
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68f67f8025f83eddb22f8161",
-          "target": "8cf58eed6fd17dc3d71bbc19",
+          "id": "6aad4b9ef700927e9b3fd36b",
+          "target": "ae86b58699e6acf5a5f534c4",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "8cf58eed6fd17dc3d71bbc19",
-              "_tpl": "68f244ae22c8979ee308f4d8",
+              "_id": "ae86b58699e6acf5a5f534c4",
+              "_tpl": "6aa94a3ca7cdc313b50cdd15",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -3508,8 +3429,8 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
@@ -3521,7 +3442,7 @@
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68d3ddb4031c828b6bb0821c",
+          "id": "6aad4b9ebb9425501ac95a17",
           "type": "Stub"
         }
       ],
@@ -3731,17 +3652,17 @@
           }
         },
         "skillConfig": {
-          "transferMultiplier": 0.75
+          "transferMultiplier": 0.5
         },
         "masteringConfig": {
-          "transferMultiplier": 0.75
+          "transferMultiplier": 0.5
         }
       },
-      "image": "/files/prestige/682b3a024e93305029030ca9.png",
-      "bigImage": "/files/prestige/682b3a079da4875a0a063753.png"
+      "image": "/files/prestige/6aba565207545e5407075110.png",
+      "bigImage": "/files/prestige/6aba56b8fe8ced629f0c5165.png"
     },
     {
-      "id": "68d3e6f46a7ba36646713fa6",
+      "id": "6aad4b9efb9a702182dc9dcb",
       "conditions": [
         {
           "index": 0,
@@ -3752,7 +3673,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f49ce46cdad00a8225",
+          "id": "6aad4b9e079c0242dff8045d",
           "props": {
             "index": 0,
             "dynamicLocale": false,
@@ -3777,7 +3698,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f40b976d94f72dde5e",
+          "id": "6aad4b9e8df786db9d04e17e",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -3807,7 +3728,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f4853f46f0e4061c4f",
+          "id": "6aad4b9e20e475154a54b625",
           "props": {
             "index": 2,
             "dynamicLocale": false,
@@ -3819,7 +3740,7 @@
             "fromTraderId": null
           },
           "questNoteId": null,
-          "target": "68d3eb2b2712147eab000f21",
+          "target": "6aad741ff8ee02b31009ca11",
           "status": [
             4
           ],
@@ -3837,7 +3758,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "6929b471e8244491b70581a3",
+          "id": "6aad4b9e8e3c0402ed858907",
           "props": {
             "index": 3,
             "dynamicLocale": false,
@@ -3867,7 +3788,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f479d37030452be22d",
+          "id": "6aad4b9ec2bcd8a8009ab1cf",
           "props": {
             "index": 4,
             "dynamicLocale": false,
@@ -3893,7 +3814,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f4c3a6f61ae9dd0346",
+          "id": "6aad4b9ec20d3c09beab79a7",
           "props": {
             "index": 5,
             "dynamicLocale": false,
@@ -3919,7 +3840,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f4dff37d0dff3ee61d",
+          "id": "6aad4b9e7a6205fa7feb3255",
           "props": {
             "index": 6,
             "dynamicLocale": false,
@@ -3945,7 +3866,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f4267a3438dcfa0538",
+          "id": "6aad4b9efd047b19cdf4d843",
           "props": {
             "index": 7,
             "dynamicLocale": false,
@@ -3971,7 +3892,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f4884fefb665ba6d33",
+          "id": "6aad4b9e6564a3df76804eb4",
           "props": {
             "index": 8,
             "dynamicLocale": false,
@@ -3997,7 +3918,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f46425c6914bf40041",
+          "id": "6aad4b9e448c42ca47d299f4",
           "props": {
             "index": 9,
             "dynamicLocale": false,
@@ -4023,7 +3944,7 @@
           "dialogId": null,
           "entryPoint": null,
           "fromTraderId": null,
-          "id": "68d3e6f42716e9ceb94e9b6b",
+          "id": "6aad4b9e324f132851fc3d7f",
           "props": {
             "index": 10,
             "dynamicLocale": false,
@@ -4050,11 +3971,9 @@
       "rewards": [
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/683db9c9774e9c6edc0e878d.png",
@@ -4069,12 +3988,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "arena",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/676c801645d80f6cea04f0bc.png",
@@ -4090,47 +4006,47 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/683dba0bbc09186e3502392f.png",
-            "bigImage": "/files/prestige/reward/big/683db63c4efbd1959b0039a5.png",
+            "image": "/files/prestige/reward/small/6aba96778439dfb5a20ed6e9.png",
+            "bigImage": "/files/prestige/reward/big/6aba96269e9bfd4bf3092065.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
           "id": "68d3e6f4954f204a3bfd3b6d",
-          "target": "68f11506a1e799f1c3027c79",
+          "target": "6aa41155850607cb1402b9ef",
           "type": "CustomizationDirect"
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b0dfa2791a113600755f.png",
-            "bigImage": "/files/prestige/reward/big/68f6830427c1d0ea3500ccf9.png",
+            "image": "/files/prestige/reward/small/6aba92b39e9bfd4bf309205e.png",
+            "bigImage": "/files/prestige/reward/big/6aba9252c05ae97ca70b26bd.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68f680f3e8fd61ef42b9d85c",
-          "target": "e1d4a3f84fa0f6abbccd3edb",
+          "id": "6aad4b9e1f4a8496e778817f",
+          "target": "6f2f0c669032823a090632c5",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "e1d4a3f84fa0f6abbccd3edb",
-              "_tpl": "68f0f8f1a1e799f1c3027c71",
+              "_id": "6f2f0c669032823a090632c5",
+              "_tpl": "6aa2d75c667ebebca605d8fe",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -4142,28 +4058,28 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b11cac7491b8ea0f0410.png",
-            "bigImage": "/files/prestige/reward/big/68f6829655deae75be0f3bce.png",
+            "image": "/files/prestige/reward/small/6aba96c1c05ae97ca70b26c4.png",
+            "bigImage": "/files/prestige/reward/big/6aba958e71cc081f9c0d8d26.png",
             "isBigImage": true
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68f6815b50c8ab17c541b137",
-          "target": "6cd3197025c1593560cd4904",
+          "id": "6aad4b9ef3c7e38bc1ddba64",
+          "target": "3772ae402bb87762f09e2d39",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "6cd3197025c1593560cd4904",
-              "_tpl": "68f117b8121d878a2303eee0",
+              "_id": "3772ae402bb87762f09e2d39",
+              "_tpl": "6aa2cdbc667ebebca605d8df",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -4175,28 +4091,28 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
           "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b0cea41c2158dd0511f1.png",
-            "bigImage": "/files/prestige/reward/big/68f7b08a4c3cb1150e0aae79.png",
+            "image": "/files/prestige/reward/small/6aba96676ef7c5ce280e3729.png",
+            "bigImage": "/files/prestige/reward/big/6aba95ce9ce03dadbc05d8ef.png",
             "isBigImage": false
           },
           "isHidden": false,
           "isImportant": false,
-          "id": "68f68132036bd563a5822cbb",
-          "target": "5b9716d679658ee9ae03f1da",
+          "id": "6aad4b9ea34a0310165b5f0c",
+          "target": "9369b8af623140378228b87f",
           "value": 1,
           "isEncoded": false,
           "findInRaid": true,
           "items": [
             {
-              "_id": "5b9716d679658ee9ae03f1da",
-              "_tpl": "68f11224197b61ffe703b16f",
+              "_id": "9369b8af623140378228b87f",
+              "_tpl": "6aa2d17e3fe081d16109ab7d",
               "upd": {
                 "SpawnedInSession": true,
                 "StackObjectsCount": 1
@@ -4208,11 +4124,65 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "pve",
+          "availableInGameEditions": [],
+          "gameMode": [
             "regular",
+            "pve",
+            "pvp-season",
+            "arena"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba516eefdab81ad501a464.png",
+            "bigImage": "/files/prestige/reward/big/6aba5161d1a3cb25ee0b0cd9.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aba94f8c42e997f5bc590f6",
+          "value": 200,
+          "type": "Tarcoin"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
             "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/6aba5f7d15300097220cfe0d.png",
+            "bigImage": "/files/prestige/reward/big/6aba6032b7060003910982f2.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f681238a4da75ced8ba507",
+          "target": "6ab65b9d8e917e918e07e85e",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/68ff6f8d8e2dc3269f0b3727.png",
+            "bigImage": "/files/prestige/reward/big/68ff6f74d25abfe41705e205.png",
+            "isBigImage": true
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "68f6818ad48927b719531a79",
+          "target": "68f12827372e7bb1de0d7361",
+          "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/68f7b0c7622fb96dac03f229.png",
@@ -4241,67 +4211,9 @@
         },
         {
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b0eec3c5eb169c0a0127.png",
-            "bigImage": "/files/prestige/reward/big/68f6829ece049bd5c40a9f43.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "68f681238a4da75ced8ba507",
-          "target": "68f11478a1e799f1c3027c77",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "pve",
-            "regular",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68ff6f8d8e2dc3269f0b3727.png",
-            "bigImage": "/files/prestige/reward/big/68ff6f74d25abfe41705e205.png",
-            "isBigImage": true
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "68f6818ad48927b719531a79",
-          "target": "68f12827372e7bb1de0d7361",
-          "type": "CustomizationDirect"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
-          ],
-          "illustrationConfig": {
-            "image": "/files/prestige/reward/small/68f7b148525aa209660b3a24.png",
-            "bigImage": "/files/prestige/reward/big/68f6830e75ecb35e20030e81.png",
-            "isBigImage": false
-          },
-          "isHidden": false,
-          "isImportant": false,
-          "id": "68d3e6f4576fc57902760b63",
-          "type": "Stub"
-        },
-        {
-          "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
-            "regular",
-            "pve",
-            "pvp-season"
+          "availableInGameEditions": [],
+          "gameMode": [
+            "pve"
           ],
           "illustrationConfig": {
             "image": "/files/prestige/reward/small/68f7b19c622fb96dac03f22b.png",
@@ -4313,6 +4225,24 @@
           "id": "68f68170bd0962fc5597549d",
           "target": "68f0f556e3aa0f5eb903faca",
           "type": "CustomizationDirect"
+        },
+        {
+          "unknown": false,
+          "availableInGameEditions": [],
+          "gameMode": [
+            "regular",
+            "pve",
+            "pvp-season"
+          ],
+          "illustrationConfig": {
+            "image": "/files/prestige/reward/small/68f7b148525aa209660b3a24.png",
+            "bigImage": "/files/prestige/reward/big/68f6830e75ecb35e20030e81.png",
+            "isBigImage": false
+          },
+          "isHidden": false,
+          "isImportant": false,
+          "id": "6aad4b9e5140074171b0c11e",
+          "type": "Stub"
         }
       ],
       "transferConfigs": {
@@ -4521,14 +4451,14 @@
           }
         },
         "skillConfig": {
-          "transferMultiplier": 0.7
+          "transferMultiplier": 0.5
         },
         "masteringConfig": {
-          "transferMultiplier": 0.7
+          "transferMultiplier": 0.5
         }
       },
-      "image": "/files/prestige/68f76a7ad471e9840d005436.png",
-      "bigImage": "/files/prestige/68f67b8d94384861170dc712.png"
+      "image": "/files/prestige/6aba56588802346def0a90e3.png",
+      "bigImage": "/files/prestige/6aba56cf51524332e709ebae.png"
     }
   ]
 }

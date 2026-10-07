@@ -8,14 +8,14 @@ public static class ProcessorUtil
 {
     public static string GetSaneId(this SpawnpointTemplate x)
     {
-        return $"({x.Position?.X}, {x.Position?.Y}, {x.Position?.Z}, {Math.Round(x.Rotation?.X ?? 0, 3)},"
-            + $" {Math.Round(x.Rotation?.Y ?? 0, 3)}, {Math.Round(x.Rotation?.Z ?? 0, 3)},"
+        return $"({x.Position.X}, {x.Position.Y}, {x.Position.Z}, {Math.Round(x.Rotation.X, 3)},"
+            + $" {Math.Round(x.Rotation.Y, 3)}, {Math.Round(x.Rotation.Z, 3)},"
             + $" {x.UseGravity}, {x.IsGroupPosition})";
     }
 
     public static string GetLocationId(this SpawnpointTemplate x)
     {
-        return $"({x.Position?.X}, {x.Position?.Y}, {x.Position?.Z})";
+        return $"({x.Position.X}, {x.Position.Y}, {x.Position.Z})";
     }
 
     // Callers reassign Items on the copy, so the lists must not be shared with the source.

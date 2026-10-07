@@ -155,6 +155,7 @@ public static class Weapons
     public static readonly MongoId SMG_46X30_MP7A1 = new MongoId("5ba26383d4351e00334c93d9");
     public static readonly MongoId SMG_46X30_MP7A2 = new MongoId("5bd70322209c4d00d7167b8f");
     public static readonly MongoId SMG_57X28_P90 = new MongoId("5cc82d76e24e8d00134b4b83");
+    public static readonly MongoId SMG_57X28_P90_SCOURGE = new MongoId("6a78b7f8c2016eb33e0027cd");
     public static readonly MongoId SMG_762X25TT_PPSH41 = new MongoId("5ea03f7400685063ec28bfa8");
     public static readonly MongoId SMG_9X18PM_PP_91_01_KEDR_B = new MongoId("57f3c6bd24597738e730fa2f");
     public static readonly MongoId SMG_9X18PM_PP_91_KEDR = new MongoId("57d14d2524597714373db789");

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
@@ -24,6 +25,7 @@ public class TarcoinStoreService(
     MailSendService mailSendService,
     ProfileHelper profileHelper,
     NotificationSendHelper notificationSendHelper,
+    ItemHelper itemHelper,
     CoreConfig coreConfig
 )
 {
@@ -141,7 +143,17 @@ public class TarcoinStoreService(
 
         var offer = GetOffer(block.OfferId.ToString());
 
-        return offer is not null && IsDeliverable(offer);
+        return offer is not null && (IsDeliverable(offer) || IsPveUpgrade(offer));
+    }
+
+    /// <summary>
+    ///     Check whether an offer only unlocks PvE. Every SPT profile already has it, so the tile shows as received
+    /// </summary>
+    /// <param name="offer">Offer to check</param>
+    /// <returns>True for the PvE upgrade</returns>
+    public static bool IsPveUpgrade(ShopOffer offer)
+    {
+        return offer.Items.Count > 0 && offer.Items.All(item => item.Type == ShopOfferItemType.PveMode);
     }
 
     /// <summary>
@@ -179,7 +191,9 @@ public class TarcoinStoreService(
 
         return missing.Count == 0
             && deliverables.Count > 0
-            && deliverables.All(entry => entry.Template is not null || DeliverableTypes.Contains(entry.Type ?? string.Empty));
+            && deliverables.All(entry =>
+                entry.Template is not null || entry.GameReward?.ItemTemplate is not null || DeliverableTypes.Contains(entry.Type ?? string.Empty)
+            );
     }
 
     public ShopOffer? GetOffer(string offerId)
@@ -271,6 +285,25 @@ public class TarcoinStoreService(
 
         foreach (var entry in deliverables)
         {
+            var rewardTemplate = entry.GameReward?.ItemTemplate;
+            if (rewardTemplate is not null)
+            {
+                // A rouble reward runs to hundreds of millions, far past one stack
+                items.AddRange(
+                    itemHelper.SplitStack(
+                        new Item
+                        {
+                            Id = new MongoId(),
+                            Template = rewardTemplate.Value,
+                            Upd = new Upd { StackObjectsCount = (double)entry.GameReward!.Value * quantity },
+                        }
+                    )
+                );
+                bonusTypes.Add(BonusType.ReceiveItemBonus);
+
+                continue;
+            }
+
             if (entry.Template is not null)
             {
                 items.Add(
@@ -626,6 +659,11 @@ public class TarcoinStoreService(
     /// <returns>True when nothing of the offer is left to buy</returns>
     public bool HasPurchased(MongoId sessionId, ShopOffer offer)
     {
+        if (IsPveUpgrade(offer))
+        {
+            return true;
+        }
+
         if (offer.Countable)
         {
             return false;

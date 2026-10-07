@@ -86,6 +86,14 @@ window.shopExit = function () {
     };
 
     /**
+     * Play an offer's voice line preview in the game
+     * @param {string} soundId Sound named by the offer's demonstration item
+     */
+    window.shopPlaySoundPreview = function (soundId) {
+        post({ type: 'playSoundPreview', soundId: soundId });
+    };
+
+    /**
      * Show an error toast in the game
      * @param {string} summary Toast title
      * @param {string} detail Toast text

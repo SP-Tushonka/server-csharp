@@ -5,7 +5,7 @@
 <div class="product-gallery">
     <div class="product-gallery__viewer">
         <img @key="_shown" class="product-gallery__main-img @(_visible ? "product-gallery__main-img--visible" : null)"
-             src="@Current.Url" alt="" draggable="false" @onload="OnImageSettled" @onerror="OnImageSettled"/>
+             src="@(Current.Url ?? Current.ImageUrl)" alt="" draggable="false" @onload="OnImageSettled" @onerror="OnImageSettled"/>
 
         @if (_video)
         {
@@ -13,14 +13,19 @@
                    autoplay muted playsinline loop draggable="false"></video>
         }
 
-        @if (Images.Count > 1)
+        @if (Images.Count > 1 || (Images.Count == 1 && !IsImage(Images[0])))
         {
             <div class="product-gallery__thumbs">
                 @for (var index = 0; index < Images.Count; index++)
                 {
                     var target = index;
-                    <div class="product-gallery__thumb @(_selected == target ? "product-gallery__thumb--active" : null)" @onclick="() => SwitchTo(target)">
+                    var active = _selected == target || _previewing == target;
+                    <div class="product-gallery__thumb @(active ? "product-gallery__thumb--active" : null)" @onclick="() => OnThumbClick(target)">
                         <img src="@Images[target].ThumbUrl" loading="lazy" class="w-full h-full object-cover" alt="" draggable="false"/>
+                        @if (Images[target].Type == ShopDemonstrationItemType.Sound)
+                        {
+                            <img class="textures-icon product-gallery__thumb__icon" src="/files/shop/ExpansionsHub_Gallery_Icon_Sound.png" alt="" draggable="false"/>
+                        }
                         <div class="product-gallery__thumb__vignette"></div>
                     </div>
                 }
@@ -32,16 +37,59 @@
 @code {
     [Parameter]
     [EditorRequired]
-    public required List<ShopDetailImage> Images { get; set; }
+    public required List<ShopDemonstrationItem> Images { get; set; }
 
     private int _shown;
-    private int _selected;
+    private int _selected = -1;
+    private int _previewing = -1;
     private bool _visible;
     private bool _video;
     private bool _switching;
     private TaskCompletionSource? _settled;
 
-    private ShopDetailImage Current => _shown < Images.Count ? Images[_shown] : new ShopDetailImage();
+    private ShopDemonstrationItem Current => _shown < Images.Count ? Images[_shown] : new ShopDemonstrationItem();
+
+    protected override void OnInitialized()
+    {
+        _selected = Images.Count > 0 && IsImage(Images[0]) ? 0 : -1;
+    }
+
+    private static bool IsImage(ShopDemonstrationItem item)
+    {
+        return item.Type == ShopDemonstrationItemType.Image;
+    }
+
+    /// <summary>
+    ///     Handle a thumbnail click. A sound entry has the game play its voice line and stays lit for two
+    ///     seconds as live does, and an image entry is switched to
+    /// </summary>
+    /// <param name="index">Thumbnail clicked</param>
+    private async Task OnThumbClick(int index)
+    {
+        var item = Images[index];
+        if (IsImage(item))
+        {
+            await SwitchTo(index);
+
+            return;
+        }
+
+        if (item.Type != ShopDemonstrationItemType.Sound || string.IsNullOrEmpty(item.Sound))
+        {
+            return;
+        }
+
+        _previewing = index;
+        _ = JS.InvokeVoidAsync("shopPlaySoundPreview", item.Sound).AsTask();
+        StateHasChanged();
+        await Task.Delay(2000);
+
+        if (_previewing == index)
+        {
+            _previewing = -1;
+            StateHasChanged();
+        }
+    }
 
     /// <summary>
     ///     Handle the main image loading or failing. The first image fades in once loaded, and during a switch the load is awaited instead

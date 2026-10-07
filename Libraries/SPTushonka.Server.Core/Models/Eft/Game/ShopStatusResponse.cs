@@ -7,8 +7,11 @@ public sealed record ShopStatusResponse
     [JsonPropertyName("aid")]
     public int? Aid { get; set; }
 
+    /// <summary>
+    ///     Every label the shop menu carries, such as NEW or SALE, each set to 1
+    /// </summary>
     [JsonPropertyName("labels")]
-    public List<object>? Labels { get; set; }
+    public Dictionary<string, int>? Labels { get; set; }
 
     [JsonPropertyName("tarcoins")]
     public int? Tarcoins { get; set; }

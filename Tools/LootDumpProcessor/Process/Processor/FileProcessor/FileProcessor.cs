@@ -17,7 +17,7 @@ public class FileProcessor : IFileProcessor
 
         foreach (var item in parsedData.Data.LocationLoot.Loot)
         {
-            if (item.IsContainer ?? false)
+            if (item.IsContainer)
                 staticLoot.Add(item);
             else
                 looseLoot.Add(item);

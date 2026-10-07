@@ -24,9 +24,9 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
@@ -45,10 +45,10 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 75,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
+      "BossEscortAmount": "1,1,0,0,0,0,0,0",
+      "BossEscortDifficult": "hard",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
@@ -66,9 +66,9 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
@@ -87,9 +87,9 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1,1,0,0,0,0,0,0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
@@ -142,19 +142,19 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "assaultGroup"
+          "marksman"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 90,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 25,
             "Role": "pmcUSEC"
           }
         ],
@@ -205,19 +205,19 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "assaultGroup"
+          "marksman"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 90,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 25,
             "Role": "pmcBEAR"
           },
           {
@@ -251,10 +251,6 @@
       },
       {
         "BotRole": "assault",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -275,15 +271,15 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
       {
         "BotRole": "assaultGroup",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -304,6 +300,10 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       }
@@ -621,13 +621,13 @@
           "Radius": 41.97
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "0d672e90-1dbe-4b21-8175-183e5b9ec332",
       "Infiltration": "",
       "Position": {
         "x": -20.756,
-        "y": 0.166,
+        "y": 0.0596600622,
         "z": 22.769
       },
       "Rotation": 101.387489,
@@ -682,13 +682,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 4,
+      "CorePointId": 26,
       "DelayToCanSpawnSec": 4,
       "Id": "0f0c9b01-cff5-4188-ac0a-1dcc097564b3",
       "Infiltration": "",
       "Position": {
         "x": 31.813,
-        "y": 0.141,
+        "y": 0.175249279,
         "z": 21.202
       },
       "Rotation": 327.8234,
@@ -713,13 +713,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 4,
       "Id": "0f9a8bb9-c368-4049-a1d8-75132bc712e7",
       "Infiltration": "",
       "Position": {
         "x": 18.133,
-        "y": -2.668999,
+        "y": -2.64999962,
         "z": -19.516
       },
       "Rotation": 327.8234,
@@ -835,13 +835,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 19,
       "DelayToCanSpawnSec": 4,
       "Id": "145b66d8-92d4-4659-8125-e8a682b1feb3",
       "Infiltration": "",
       "Position": {
         "x": 57.7,
-        "y": 0.274,
+        "y": 0.283074319,
         "z": 53.413
       },
       "Rotation": 327.8234,
@@ -866,13 +866,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 4,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "168af0a0-61bf-48ba-8787-813ab47c800d",
       "Infiltration": "",
       "Position": {
         "x": 42.256,
-        "y": -2.613,
+        "y": -2.59999943,
         "z": -9.516
       },
       "Rotation": 327.8234,
@@ -1079,13 +1079,13 @@
           "Radius": 40
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 2,
       "DelayToCanSpawnSec": 4,
       "Id": "22b8fbef-c283-46c0-bf3d-ec6239d2eb40",
       "Infiltration": "",
       "Position": {
         "x": -19.94,
-        "y": 1.11607242,
+        "y": 1.12683165,
         "z": 62.87
       },
       "Rotation": 157.772064,
@@ -1110,13 +1110,13 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 4,
+      "CorePointId": 26,
       "DelayToCanSpawnSec": 4,
       "Id": "22fea334-d112-4faa-a0ea-fb11c0476146",
       "Infiltration": "",
       "Position": {
         "x": 31.75,
-        "y": 0.15318726,
+        "y": 0.121312544,
         "z": -0.3
       },
       "Rotation": 84.78185,
@@ -1202,13 +1202,13 @@
           "Radius": 35
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 15,
       "DelayToCanSpawnSec": 4,
       "Id": "27fae85d-5420-4958-bcce-e37567b7777a",
       "Infiltration": "",
       "Position": {
         "x": 8.07,
-        "y": 0.1,
+        "y": 0.0500011444,
         "z": -8.61
       },
       "Rotation": 0,
@@ -1233,13 +1233,13 @@
           "Radius": 27
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 3,
       "DelayToCanSpawnSec": 4,
       "Id": "285bc167-c3b1-4d6a-8942-11905bc6c707",
       "Infiltration": "",
       "Position": {
         "x": -32.087,
-        "y": -2.581647,
+        "y": -2.63875675,
         "z": 29.9733315
       },
       "Rotation": 0,
@@ -1446,14 +1446,14 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 13,
       "DelayToCanSpawnSec": 4,
       "Id": "301edf4d-5af4-43f2-8443-9593d1c111dd",
       "Infiltration": "",
       "Position": {
-        "x": 35.924,
-        "y": 4.55418539,
-        "z": 35.339
+        "x": 35.95819,
+        "y": 4.72818041,
+        "z": 35.42182
       },
       "Rotation": 56.28309,
       "Sides": [
@@ -1751,13 +1751,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 4,
+      "CorePointId": 18,
       "DelayToCanSpawnSec": 4,
       "Id": "405ab85f-d7f5-42c5-bded-e5e09dab5987",
       "Infiltration": "",
       "Position": {
         "x": 62.893,
-        "y": -2.63900042,
+        "y": -2.618575,
         "z": 5.398
       },
       "Rotation": 327.8234,
@@ -1963,13 +1963,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 9,
       "DelayToCanSpawnSec": 4,
       "Id": "4ee7dfc3-7415-4c07-9f2c-677c4ed48b06",
       "Infiltration": "",
       "Position": {
         "x": 15.249,
-        "y": 4.563,
+        "y": 4.550001,
         "z": 41.209
       },
       "Rotation": 327.8234,
@@ -1994,13 +1994,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 21,
       "DelayToCanSpawnSec": 4,
       "Id": "4fe9de1b-f899-4915-868c-298b22487d7a",
       "Infiltration": "",
       "Position": {
         "x": 0.015,
-        "y": -2.61,
+        "y": -2.64999962,
         "z": 55.868
       },
       "Rotation": 327.8234,
@@ -2085,13 +2085,13 @@
           "Radius": 41.97
         }
       },
-      "CorePointId": 4,
+      "CorePointId": 26,
       "DelayToCanSpawnSec": 4,
       "Id": "5104bc2e-7476-4b88-9691-51ab00c3b412",
       "Infiltration": "",
       "Position": {
         "x": 22.37,
-        "y": 0.86,
+        "y": 0.0614891052,
         "z": 4.33
       },
       "Rotation": 113.499405,
@@ -2299,13 +2299,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 25,
       "DelayToCanSpawnSec": 4,
       "Id": "61d6762d-f503-497d-8a38-8b4feba54988",
       "Infiltration": "",
       "Position": {
         "x": -44.299,
-        "y": 1.119,
+        "y": 1.10000038,
         "z": 38.871
       },
       "Rotation": 327.8234,
@@ -2420,13 +2420,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "68d7a75c-a96b-4c2a-98d2-79f172e53e09",
       "Infiltration": "",
       "Position": {
         "x": 10.528,
-        "y": 0.039,
+        "y": 0,
         "z": -43.562
       },
       "Rotation": 327.8234,
@@ -2482,13 +2482,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 7,
       "DelayToCanSpawnSec": 4,
       "Id": "6cb78601-5830-4147-8220-435f3b3597d6",
       "Infiltration": "",
       "Position": {
         "x": 33.024,
-        "y": 0.047,
+        "y": 0.0500011444,
         "z": -33.12
       },
       "Rotation": 327.8234,
@@ -2620,8 +2620,7 @@
       "BotZoneName": "BotZone",
       "Categories": [
         "Player",
-        "Bot",
-        "Boss"
+        "Bot"
       ],
       "ColliderParams": {
         "_parent": "SpawnSphereParams",
@@ -2634,13 +2633,13 @@
           "Radius": 41.97
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 4,
       "Id": "6ef1d3d7-3afc-43c8-99f6-0c8e3934a468",
       "Infiltration": "",
       "Position": {
         "x": -6.77,
-        "y": 0.17,
+        "y": 0.130768359,
         "z": 10.01
       },
       "Rotation": 327.8234,
@@ -2665,13 +2664,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 11,
       "DelayToCanSpawnSec": 4,
       "Id": "6f78474c-f8dc-42d1-8c42-7b06b337d0be",
       "Infiltration": "",
       "Position": {
         "x": -21.81,
-        "y": 2.735,
+        "y": 2.75889373,
         "z": 32.556
       },
       "Rotation": 327.8234,
@@ -2726,13 +2725,13 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "73335f64-094a-4a3d-9bd0-f0a3f87f33ec",
       "Infiltration": "",
       "Position": {
         "x": 4.73,
-        "y": 0.01,
+        "y": 0.0500011444,
         "z": -35.1
       },
       "Rotation": 0,
@@ -2908,13 +2907,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 8,
       "DelayToCanSpawnSec": 4,
       "Id": "809e2f0d-28a0-422b-a296-b55520182ec4",
       "Infiltration": "",
       "Position": {
         "x": 70.015,
-        "y": 0.254,
+        "y": 0.292911381,
         "z": -69.04
       },
       "Rotation": 327.8234,
@@ -3090,13 +3089,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 20,
       "DelayToCanSpawnSec": 4,
       "Id": "8c980ce9-d5aa-40b8-b493-8aec561e92f2",
       "Infiltration": "",
       "Position": {
         "x": -19.266,
-        "y": 0.26,
+        "y": 0.296784073,
         "z": -38.462
       },
       "Rotation": 327.8234,
@@ -3502,8 +3501,7 @@
       "BotZoneName": "BotZone",
       "Categories": [
         "Player",
-        "Bot",
-        "Boss"
+        "Bot"
       ],
       "ColliderParams": {
         "_parent": "SpawnSphereParams",
@@ -3516,13 +3514,13 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 13,
       "DelayToCanSpawnSec": 4,
       "Id": "a20a149a-fe90-4aeb-b38a-c713399f2308",
       "Infiltration": "",
       "Position": {
         "x": 36.043,
-        "y": 1.09,
+        "y": 1.05000114,
         "z": 38.348
       },
       "Rotation": 182.971283,
@@ -3940,13 +3938,13 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 24,
       "DelayToCanSpawnSec": 4,
       "Id": "b8650798-38bc-484b-a36d-cbb2255542b3",
       "Infiltration": "",
       "Position": {
         "x": -19.19,
-        "y": -3.78,
+        "y": -3.84999943,
         "z": -4.91
       },
       "Rotation": 0,
@@ -4243,13 +4241,13 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 13,
       "DelayToCanSpawnSec": 4,
       "Id": "cf11c1cc-4ae2-4fdb-a24d-a94d0384d53b",
       "Infiltration": "",
       "Position": {
         "x": 35.545,
-        "y": 8.231328,
+        "y": 8.1,
         "z": 36.41
       },
       "Rotation": 0,
@@ -4366,13 +4364,13 @@
           "Radius": 41.97
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 4,
       "Id": "d4ab2591-0aa5-4a5b-92bd-cd84e8674807",
       "Infiltration": "",
       "Position": {
         "x": 23.83,
-        "y": -2.604,
+        "y": -2.64999962,
         "z": -30.66
       },
       "Rotation": 0,
@@ -4458,13 +4456,13 @@
           "Radius": 50
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 4,
       "DelayToCanSpawnSec": 4,
       "Id": "d7d3841b-9cfe-4a53-834f-c6fccd5f45d9",
       "Infiltration": "",
       "Position": {
         "x": 26.467,
-        "y": -2.49,
+        "y": -2.64999962,
         "z": -34.414
       },
       "Rotation": 82.28416,
@@ -4582,13 +4580,13 @@
           "Radius": 35
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 20,
       "DelayToCanSpawnSec": 4,
       "Id": "dce33b9f-abb4-48e1-8130-151f2fdc1fb1",
       "Infiltration": "",
       "Position": {
         "x": -5.89,
-        "y": 0.08,
+        "y": 0.0518946424,
         "z": -27.46
       },
       "Rotation": 0,
@@ -4613,13 +4611,13 @@
           "Radius": 30.1
         }
       },
-      "CorePointId": 5,
+      "CorePointId": 21,
       "DelayToCanSpawnSec": 4,
       "Id": "de5f4480-573a-429f-9601-9a3933197000",
       "Infiltration": "",
       "Position": {
         "x": 2.104,
-        "y": 1.10050392,
+        "y": 1.06651366,
         "z": 63.056
       },
       "Rotation": 257.797272,
@@ -4752,7 +4750,8 @@
       "BotZoneName": "BotZone",
       "Categories": [
         "Player",
-        "Bot"
+        "Bot",
+        "Boss"
       ],
       "ColliderParams": {
         "_parent": "SpawnSphereParams",
@@ -4765,13 +4764,13 @@
           "Radius": 41.97
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 17,
       "DelayToCanSpawnSec": 4,
       "Id": "e42d53f2-f072-496c-a675-1adacd7c856b",
       "Infiltration": "",
       "Position": {
         "x": 15,
-        "y": 0.1483535,
+        "y": 0.09888601,
         "z": 3.79
       },
       "Rotation": 232.964813,
@@ -4796,13 +4795,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 3,
+      "CorePointId": 15,
       "DelayToCanSpawnSec": 4,
       "Id": "e4ca6ee0-3293-44bc-8962-10f98fd9b533",
       "Infiltration": "",
       "Position": {
         "x": -1.302,
-        "y": -2.638,
+        "y": -2.64999962,
         "z": -5.504
       },
       "Rotation": 327.8234,
@@ -5085,8 +5084,7 @@
       "BotZoneName": "BotZone",
       "Categories": [
         "Player",
-        "Bot",
-        "Boss"
+        "Bot"
       ],
       "ColliderParams": {
         "_parent": "SpawnSphereParams",
@@ -5099,13 +5097,13 @@
           "Radius": 21.1
         }
       },
-      "CorePointId": 4,
+      "CorePointId": 26,
       "DelayToCanSpawnSec": 4,
       "Id": "f74c98d2-189b-4fe7-aa53-4829aefa67a9",
       "Infiltration": "",
       "Position": {
         "x": 30.758,
-        "y": 0.26,
+        "y": 0.14522858,
         "z": 15.164
       },
       "Rotation": 184.842667,
@@ -5130,13 +5128,13 @@
           "Radius": 35
         }
       },
-      "CorePointId": 1,
+      "CorePointId": 14,
       "DelayToCanSpawnSec": 4,
       "Id": "f8a3b38a-85c4-4e3c-a425-2dd6f084406c",
       "Infiltration": "",
       "Position": {
         "x": 13.78,
-        "y": -2.291,
+        "y": -2.60000014,
         "z": -21.65
       },
       "Rotation": 81.2727051,
@@ -5192,13 +5190,13 @@
           "Radius": 30
         }
       },
-      "CorePointId": 2,
+      "CorePointId": 12,
       "DelayToCanSpawnSec": 4,
       "Id": "fc96a86a-b479-4533-afbf-05e2cb85f0dd",
       "Infiltration": "",
       "Position": {
         "x": 0.337,
-        "y": -2.648,
+        "y": -2.614015,
         "z": 14.702
       },
       "Rotation": 327.8234,

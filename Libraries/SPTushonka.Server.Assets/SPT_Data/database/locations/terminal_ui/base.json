@@ -2067,8 +2067,8 @@
       "BossDifficult": "normal",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
-      "BossEscortType": "bossKilla",
-      "BossName": "bossTagilla",
+      "BossEscortType": "bossTagilla",
+      "BossName": "bossKilla",
       "BossZone": "Zone2ScavPort29",
       "Delay": 40,
       "ForceSpawn": true,
@@ -2077,8 +2077,8 @@
       "ShowOnTarkovMap": true,
       "ShowOnTarkovMapPvE": true,
       "SpawnMode": [
-        "pve",
         "regular",
+        "pve",
         "pvp-season"
       ],
       "Supports": null,

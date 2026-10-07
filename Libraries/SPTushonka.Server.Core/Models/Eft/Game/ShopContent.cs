@@ -166,8 +166,11 @@ public sealed record ShopOffer
     [JsonPropertyName("countable")]
     public bool Countable { get; set; }
 
-    [JsonPropertyName("detailImages")]
-    public List<ShopDetailImage> DetailImages { get; set; } = [];
+    /// <summary>
+    ///     What the item page's gallery shows
+    /// </summary>
+    [JsonPropertyName("additionalDemonstrationItems")]
+    public List<ShopDemonstrationItem> DemonstrationItems { get; set; } = [];
 
     /// <summary>
     ///     What the buyer receives. A bundle's items are the offers it is made of
@@ -215,13 +218,32 @@ public sealed record ShopRelatedImage
     public string? AspectRatio { get; set; }
 }
 
-public sealed record ShopDetailImage
+public sealed record ShopDemonstrationItem
 {
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = ShopDemonstrationItemType.Image;
+
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 
+    // A sound entry carries its picture here instead of in url.
+    [JsonPropertyName("imageUrl")]
+    public string? ImageUrl { get; set; }
+
     [JsonPropertyName("thumbUrl")]
     public string? ThumbUrl { get; set; }
+
+    /// <summary>
+    ///     Voice line the game plays when a sound entry is clicked
+    /// </summary>
+    [JsonPropertyName("sound")]
+    public string? Sound { get; set; }
+}
+
+public static class ShopDemonstrationItemType
+{
+    public const string Image = "Image";
+    public const string Sound = "Sound";
 }
 
 public sealed record ShopOfferItem
@@ -274,6 +296,29 @@ public sealed record ShopOfferItem
 
     [JsonPropertyName("amount")]
     public int Amount { get; set; }
+
+    [JsonPropertyName("gameRewardConfig")]
+    public ShopGameReward? GameReward { get; set; }
+}
+
+/// <summary>
+///     A quest style reward a GAME_REWARD entry grants, such as an item stack sent by mail
+/// </summary>
+public sealed record ShopGameReward
+{
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
+    [JsonPropertyName("target")]
+    public MongoId? Target { get; set; }
+
+    [JsonPropertyName("value")]
+    public int Value { get; set; }
+
+    /// <summary>
+    ///     Get the item template this reward hands over, null when it is not an item
+    /// </summary>
+    public MongoId? ItemTemplate => Type == "Item" ? Target : null;
 }
 
 public enum ShopPurchaseOutcome
@@ -315,6 +360,8 @@ public static class ShopOfferItemType
     public const string BattlePassUniversalDocument = "EFT_BATTLE_PASS_UNIVERSAL_DOCUMENT";
     public const string StashRows = "STASH_ROWS";
     public const string GameEdition = "GAME_EDITION";
+    public const string PveMode = "PVE_MODE";
+    public const string GameReward = "GAME_REWARD";
 }
 
 public sealed record ShopPrice

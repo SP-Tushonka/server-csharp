@@ -140,6 +140,9 @@ public record BotBase
     [JsonPropertyName("Ending")]
     public ProfileEnding? Ending { get; set; }
 
+    [JsonPropertyName("PDT")]
+    public ProfilePdt? Pdt { get; set; }
+
     [JsonPropertyName("QuestNotes")]
     public Dictionary<MongoId, bool>? QuestNotes { get; set; }
 
@@ -285,6 +288,24 @@ public record Info
 
     // Confirmed in client
     public int? PrestigeLevel { get; set; }
+
+    /// <summary>
+    ///     Mode the prestige level counts in. Live sends regular even for a pve character
+    /// </summary>
+    public string? PrestigeGameMode { get; set; }
+
+    /// <summary>
+    ///     Prestige level per mode, regular and pve. Only a pmc has it
+    /// </summary>
+    public Dictionary<string, int>? PrestigeLevels { get; set; }
+
+    public string? SelectedPrestigeGameMode { get; set; }
+}
+
+public static class PrestigeGameModes
+{
+    public const string Regular = "regular";
+    public const string Pve = "pve";
 }
 
 public record BotInfoSettings

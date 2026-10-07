@@ -3,14 +3,14 @@
     {
       "AirdropPointDeactivateDistance": 100,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.2,
+      "PlaneAirdropChance": 0.14,
       "PlaneAirdropCooldownMax": 900,
-      "PlaneAirdropCooldownMin": 800,
-      "PlaneAirdropEnd": 1800,
-      "PlaneAirdropMax": 5,
-      "PlaneAirdropStartMax": 900,
-      "PlaneAirdropStartMin": 300,
-      "UnsuccessfulTryPenalty": 600
+      "PlaneAirdropCooldownMin": 780,
+      "PlaneAirdropEnd": 1500,
+      "PlaneAirdropMax": 2,
+      "PlaneAirdropStartMax": 600,
+      "PlaneAirdropStartMin": 240,
+      "UnsuccessfulTryPenalty": 300
     }
   ],
   "BossLocationSpawn": [
@@ -65,16 +65,62 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "easy",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneIDEAPark,ZoneTrucks",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneCenter,ZoneOLI",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 80,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -90,14 +136,14 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -113,14 +159,83 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
+      "BossPlayer": false,
+      "BossZone": "ZoneBearCamp,ZonePowerStation",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
+      "BossPlayer": false,
+      "BossZone": "ZoneIDEA,ZoneGoshan",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 80,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
+      "BossPlayer": false,
+      "BossZone": "",
+      "Delay": 0,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -136,14 +251,14 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -159,37 +274,14 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "pmcUSEC",
-      "BossName": "pmcUSEC",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -236,17 +328,19 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla",
-          "assault",
-          "assaultGroup"
+          "followerTagilla"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assault"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
+          },
+          {
+            "EnemyChance": 15,
             "Role": "pmcUSEC"
           }
         ],
@@ -255,7 +349,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "marksman"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -296,17 +391,19 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla",
-          "assault",
-          "assaultGroup"
+          "followerTagilla"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assault"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
+          },
+          {
+            "EnemyChance": 15,
             "Role": "pmcBEAR"
           },
           {
@@ -323,7 +420,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "marksman"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -365,10 +463,6 @@
       },
       {
         "BotRole": "assault",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -389,15 +483,15 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
       {
         "BotRole": "assaultGroup",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -418,6 +512,10 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       }
@@ -9066,7 +9164,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "NW Exfil",
+      "Name": "ex_interchange_pmc_railway",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -9088,7 +9186,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "SE Exfil",
+      "Name": "ex_interchange_pmc_emercom",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -9098,8 +9196,8 @@
     {
       "Chance": 50,
       "ChancePVE": 50,
-      "Count": 5000,
-      "CountPVE": 5000,
+      "Count": 20000,
+      "CountPVE": 20000,
       "EntryPoints": "MallSE,MallNW",
       "EventAvailable": false,
       "ExfiltrationTime": 60,
@@ -9110,7 +9208,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "PP Exfil",
+      "Name": "ex_interchange_pmc_auto",
       "PassageRequirement": "TransferItem",
       "PlayersCount": 4,
       "PlayersCountPVE": 4,
@@ -9124,15 +9222,15 @@
       "CountPVE": 0,
       "EntryPoints": "MallSE,MallNW",
       "EventAvailable": false,
-      "ExfiltrationTime": 90,
-      "ExfiltrationTimePVE": 90,
+      "ExfiltrationTime": 8,
+      "ExfiltrationTimePVE": 8,
       "ExfiltrationType": "Manual",
       "Id": "",
       "MaxTime": 0,
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "Saferoom Exfil",
+      "Name": "ex_interchange_pmc_saferoom",
       "PassageRequirement": "WorldEvent",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -9154,7 +9252,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "Interchange Cooperation",
+      "Name": "ex_interchange_coop_basement",
       "PassageRequirement": "ScavCooperation",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -9176,7 +9274,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "shopping_sniper_exit",
+      "Name": "ex_interchange_pmc_sniper",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -9221,31 +9319,31 @@
       "EligibleForScav": true,
       "ExfiltrationTime": 15,
       "Id": "6900a54ae85e475e590c96be",
-      "Name": "interchange_secret_extraction"
+      "Name": "ex_interchange_secret_basement"
     }
   ],
   "transits": [
     {
       "activateAfterSec": 60,
       "active": true,
-      "conditions": "INT_TRANSIT_6_COND",
-      "description": "INT_TRANSIT_6_DESC",
+      "conditions": "tr_interchange_customs_cond",
+      "description": "tr_interchange_customs_desc",
       "events": false,
       "id": 6,
       "location": "bigmap",
-      "name": "INT_TRANSIT_6",
+      "name": "tr_interchange_customs",
       "target": "56f40101d2720b2a4d8b45d6",
       "time": 20
     },
     {
       "activateAfterSec": 60,
       "active": true,
-      "conditions": "INT_TRANSIT_7_COND",
-      "description": "INT_TRANSIT_7_DESC",
+      "conditions": "tr_interchange_streets_cond",
+      "description": "tr_interchange_streets_desc",
       "events": false,
       "id": 7,
       "location": "TarkovStreets",
-      "name": "INT_TRANSIT_7",
+      "name": "tr_interchange_streets",
       "target": "5714dc692459777137212e12",
       "time": 20
     },

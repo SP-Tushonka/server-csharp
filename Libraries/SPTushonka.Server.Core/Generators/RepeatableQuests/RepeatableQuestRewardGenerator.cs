@@ -33,6 +33,8 @@ public class RepeatableQuestRewardGenerator(
     ICloner cloner
 )
 {
+    private static readonly string[] RewardGameModes = ["regular", "pve", "pvp-season"];
+
     /// <summary>
     ///     Generate the reward for a mission. A reward can consist of: <br />
     ///     - Experience <br />
@@ -92,7 +94,7 @@ public class RepeatableQuestRewardGenerator(
                     {
                         Id = new MongoId(),
                         Unknown = false,
-                        GameMode = [],
+                        GameMode = RewardGameModes,
                         AvailableInGameEditions = [],
                         Index = rewardIndex,
                         Value = rewardParams.RewardXP,
@@ -177,7 +179,7 @@ public class RepeatableQuestRewardGenerator(
             {
                 Id = new MongoId(),
                 Unknown = false,
-                GameMode = [],
+                GameMode = RewardGameModes,
                 AvailableInGameEditions = [],
                 Target = traderId,
                 Value = rewardParams.RewardReputation,
@@ -201,7 +203,7 @@ public class RepeatableQuestRewardGenerator(
             {
                 Id = new MongoId(),
                 Unknown = false,
-                GameMode = [],
+                GameMode = RewardGameModes,
                 AvailableInGameEditions = [],
                 Target = targetSkill,
                 Value = rewardParams.SkillPointReward,
@@ -584,7 +586,7 @@ public class RepeatableQuestRewardGenerator(
         {
             Id = new MongoId(),
             Unknown = false,
-            GameMode = [],
+            GameMode = RewardGameModes,
             AvailableInGameEditions = [],
             Index = index,
             Target = id,
@@ -628,7 +630,7 @@ public class RepeatableQuestRewardGenerator(
         {
             Id = new MongoId(),
             Unknown = false,
-            GameMode = [],
+            GameMode = RewardGameModes,
             AvailableInGameEditions = [],
             Index = index,
             Target = id,

@@ -1,16 +1,16 @@
 {
   "AirdropParameters": [
     {
-      "AirdropPointDeactivateDistance": 50,
+      "AirdropPointDeactivateDistance": 75,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.2,
-      "PlaneAirdropCooldownMax": 800,
-      "PlaneAirdropCooldownMin": 700,
+      "PlaneAirdropChance": 0.15,
+      "PlaneAirdropCooldownMax": 900,
+      "PlaneAirdropCooldownMin": 780,
       "PlaneAirdropEnd": 1500,
-      "PlaneAirdropMax": 5,
-      "PlaneAirdropStartMax": 900,
-      "PlaneAirdropStartMin": 300,
-      "UnsuccessfulTryPenalty": 600
+      "PlaneAirdropMax": 2,
+      "PlaneAirdropStartMax": 600,
+      "PlaneAirdropStartMin": 180,
+      "UnsuccessfulTryPenalty": 300
     }
   ],
   "BossLocationSpawn": [
@@ -112,7 +112,7 @@
       "TriggerName": "interactObject"
     },
     {
-      "BossChance": 30,
+      "BossChance": 80,
       "BossDifficult": "normal",
       "BossEscortAmount": "2,2,2,2,3",
       "BossEscortDifficult": "normal",
@@ -137,7 +137,7 @@
       "TriggerName": "interactObject"
     },
     {
-      "BossChance": 30,
+      "BossChance": 0,
       "BossDifficult": "normal",
       "BossEscortAmount": "2,2,2,2,3",
       "BossEscortDifficult": "normal",
@@ -162,16 +162,39 @@
       "TriggerName": "interactObject"
     },
     {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
+      "BossPlayer": false,
+      "BossZone": "ZonePTOR1,ZonePTOR2",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -185,16 +208,16 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1",
+      "BossChance": 80,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
-      "BossZone": "",
+      "BossZone": "ZoneSubCommand",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -210,14 +233,14 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
-      "BossZone": "",
+      "BossZone": "ZonePTOR1,ZoneBarrack",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -233,14 +256,106 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
+      "BossPlayer": false,
+      "BossZone": "ZonePTOR1,ZoneBarrack",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneBarrack",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
       "BossZone": "",
       "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 80,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneSubCommand",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 50,
+      "BossDifficult": "easy",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneBarrack,ZonePTOR2",
+      "Delay": 0,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -256,37 +371,14 @@
     {
       "BossChance": 50,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
-      "BossZone": "",
+      "BossZone": "ZoneBarrack,ZonePTOR2",
       "Delay": 0,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "pmcBEAR",
-      "BossName": "pmcBEAR",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -333,20 +425,19 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla",
-          "assaultGroup"
+          "followerTagilla"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 90,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 15,
             "Role": "pmcUSEC"
           }
         ],
@@ -355,7 +446,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "marksman"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -396,20 +488,19 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla",
-          "assaultGroup"
+          "followerTagilla"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 70,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 70,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 15,
             "Role": "pmcBEAR"
           },
           {
@@ -426,7 +517,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "marksman"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -492,11 +584,38 @@
         ]
       },
       {
-        "BotRole": "assault",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
+        "BotRole": "marksman",
+        "AlwaysFriends": [
+          "bossKilla",
+          "assault",
+          "assaultGroup",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "pmcBotBlackDivSeason"
         ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "assault",
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -516,17 +635,16 @@
           "exUsec",
           "followerBigPipe",
           "followerBirdEye",
-          "followerBully",
-          "pmcBot"
+          "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
       {
         "BotRole": "assaultGroup",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -546,8 +664,11 @@
           "exUsec",
           "followerBigPipe",
           "followerBirdEye",
-          "followerBully",
-          "pmcBot"
+          "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       }

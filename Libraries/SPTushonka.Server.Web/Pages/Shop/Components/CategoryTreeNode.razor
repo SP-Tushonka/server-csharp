@@ -17,7 +17,14 @@
             <span class="category-tree-node__marker">-</span>
         }
         <span class="category-tree-node__label">@TarcoinStoreService.Localise(Node.NameKey, Language)</span>
-        <span class="category-tree-node__state-icons"></span>
+        <span class="category-tree-node__state-icons" aria-hidden="true">
+            @* A sub menu entry only draws NEW and FREE. *@
+            @foreach (var label in Node.Labels.Where(label => label is "NEW" or "FREE"))
+            {
+                <img class="textures-icon category-tree-node__state-icon category-tree-node__state-icon--@label.ToLowerInvariant()"
+                     src="@ShopFormat.MarkerTexture(label)" alt="" draggable="false"/>
+            }
+        </span>
     </button>
 </div>
 

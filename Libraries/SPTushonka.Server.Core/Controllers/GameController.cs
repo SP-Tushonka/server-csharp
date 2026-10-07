@@ -122,6 +122,10 @@ public class GameController(
 
         profileFixerService.CheckForAndRemoveInvalidTraders(fullProfile);
         profileFixerService.CheckForAndFixPmcProfileIssues(pmcProfile);
+        if (fullProfile.CharacterData.ScavData is not null)
+        {
+            profileFixerService.AddMissingModeFields(fullProfile.CharacterData.ScavData, false);
+        }
 
         if (pmcProfile.Hideout is not null)
         {

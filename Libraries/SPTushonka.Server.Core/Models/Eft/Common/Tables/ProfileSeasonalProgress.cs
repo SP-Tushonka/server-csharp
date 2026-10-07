@@ -40,4 +40,22 @@ public record ProfileEnding
 
     [JsonPropertyName("achieved")]
     public List<string>? Achieved { get; set; }
+
+    /// <summary>
+    ///     Endings open to the character, keyed by mode. Live sends regular and pve, both empty
+    /// </summary>
+    [JsonPropertyName("available")]
+    public Dictionary<string, List<string>>? Available { get; set; }
+}
+
+/// <summary>
+///     The 1.2 operator and candidate account link. Live sends no operator and no candidates
+/// </summary>
+public record ProfilePdt
+{
+    [JsonPropertyName("OperatorAccountId")]
+    public string? OperatorAccountId { get; set; }
+
+    [JsonPropertyName("CandidateAccountIds")]
+    public List<string> CandidateAccountIds { get; set; } = [];
 }

@@ -263,6 +263,8 @@ public class BotGenerator(
             bot.Info.PrestigeLevel = 0;
         }
 
+        bot.Info.PrestigeGameMode ??= PrestigeGameModes.Regular;
+
         if (botGenerationDetails.IsPmc)
         {
             bot.Info.IsStreamerModeAvailable = true; // Set to true so client patches can pick it up later - client sometimes alters botrole to assaultGroup

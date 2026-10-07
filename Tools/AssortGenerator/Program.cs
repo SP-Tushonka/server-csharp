@@ -97,6 +97,7 @@ public static class Program
         foreach (var path in paths)
         {
             var dump = Json.DeserializeFromFile<TraderAssort>(path);
+            DropRekeyedOffers(items, barter, loyalty, dump);
             foreach (var item in dump.Items)
             {
                 items[item.Id] = item;
@@ -139,6 +140,54 @@ public static class Program
             BarterScheme = barter.Where(entry => keptRoots.Contains(entry.Key)).ToDictionary(entry => entry.Key, entry => entry.Value),
             LoyalLevelItems = loyalty.Where(entry => keptRoots.Contains(entry.Key)).ToDictionary(entry => entry.Key, entry => entry.Value),
         };
+    }
+
+    // A client update re-keys every offer (1.2 did), so an older offer the newer dump carries under a new id is dropped
+    private static void DropRekeyedOffers(
+        Dictionary<MongoId, Item> items,
+        Dictionary<MongoId, List<List<BarterScheme>>> barter,
+        Dictionary<MongoId, int> loyalty,
+        TraderAssort dump
+    )
+    {
+        var dumpItems = dump.Items.ToDictionary(item => item.Id);
+        var incoming = dump
+            .Items.Where(item => item.ParentId == "hideout")
+            .Select(root => OfferKey(dumpItems, dump.BarterScheme, dump.LoyalLevelItems, root))
+            .ToHashSet();
+
+        var stale = items
+            .Values.Where(item => item.ParentId == "hideout" && !dumpItems.ContainsKey(item.Id))
+            .Where(root => incoming.Contains(OfferKey(items, barter, loyalty, root)))
+            .ToList();
+        foreach (var root in stale)
+        {
+            foreach (var child in Children(items, root.Id))
+            {
+                items.Remove(child.Id);
+            }
+
+            items.Remove(root.Id);
+            barter.Remove(root.Id);
+            loyalty.Remove(root.Id);
+        }
+    }
+
+    // The price is left out because an update reprices offers too, Peacekeeper's dollar prices moved in 1.2
+    private static string OfferKey(
+        Dictionary<MongoId, Item> items,
+        Dictionary<MongoId, List<List<BarterScheme>>> barter,
+        Dictionary<MongoId, int> loyalty,
+        Item root
+    )
+    {
+        var currencies = barter.TryGetValue(root.Id, out var scheme)
+            ? string.Join("|", scheme.Select(option => string.Join(",", option.Select(part => part.Template).Order())))
+            : "";
+        var parts = string.Join(",", Children(items, root.Id).Select(child => $"{child.SlotId}:{child.Template}").Order());
+        var level = loyalty.TryGetValue(root.Id, out var value) ? value : 0;
+
+        return $"{root.Template}/{level}/{root.Upd?.BuyRestrictionMax}/{currencies}/{parts}";
     }
 
     private static List<Item> Children(Dictionary<MongoId, Item> items, MongoId parentId)

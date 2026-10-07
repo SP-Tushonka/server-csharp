@@ -43,10 +43,10 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "hard",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -63,10 +63,10 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 75,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
+      "BossEscortAmount": "1,1,0,0,0,0,0,0",
+      "BossEscortDifficult": "hard",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -83,9 +83,9 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossChance": 100,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
@@ -103,10 +103,10 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
+      "BossChance": 75,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "1,1,0,0,0,0,0,0",
+      "BossEscortDifficult": "easy",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
@@ -157,19 +157,19 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "assaultGroup"
+          "marksman"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 90,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 25,
             "Role": "pmcUSEC"
           }
         ],
@@ -220,19 +220,19 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "assaultGroup"
+          "marksman"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 90,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 90,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 25,
             "Role": "pmcBEAR"
           },
           {
@@ -266,10 +266,6 @@
       },
       {
         "BotRole": "assault",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -290,15 +286,15 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
       {
         "BotRole": "assaultGroup",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -319,6 +315,10 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       }

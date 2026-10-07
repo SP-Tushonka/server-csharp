@@ -895,7 +895,7 @@ public class LocationLifecycleService(
         );
 
         // MUST occur AFTER processPostRaidQuests()
-        LightkeeperQuestWorkaround(sessionId, postRaidProfile.Quests, preRaidProfileQuestDataClone, serverPmcProfile);
+        CompleteQuestsFinishedInRaid(sessionId, postRaidProfile.Quests, preRaidProfileQuestDataClone, serverPmcProfile);
 
         serverPmcProfile.WishList = postRaidProfile.WishList;
 
@@ -1136,37 +1136,43 @@ public class LocationLifecycleService(
     }
 
     /// <summary>
-    ///     In 0.15 Lightkeeper quests do not give rewards in PvE, this issue also occurs in spt.
-    ///     We check for newly completed Lk quests and run them through the servers `CompleteQuest` process.
-    ///     This rewards players with items + craft unlocks + new trader assorts.
+    ///     Run quests the raid finished through the server's `CompleteQuest`, so rewards apply and the quests their
+    ///     completion fails are failed. Lightkeeper quests come back completed without rewards. Hidden instant
+    ///     quests, such as the starters of a story chapter's routes, come back only finishable
     /// </summary>
     /// <param name="sessionId"> Session ID </param>
     /// <param name="postRaidQuests"> Quest statuses post-raid </param>
     /// <param name="preRaidQuests"> Quest statuses pre-raid </param>
     /// <param name="pmcProfile"> Players profile </param>
-    protected void LightkeeperQuestWorkaround(
+    protected void CompleteQuestsFinishedInRaid(
         MongoId sessionId,
         List<QuestStatus> postRaidQuests,
         List<QuestStatus> preRaidQuests,
         PmcData pmcProfile
     )
     {
-        // LK quests that were not completed before raid but now are
-        var newlyCompletedLightkeeperQuests = postRaidQuests.Where(postRaidQuest =>
-            postRaidQuest.Status == QuestStatusEnum.Success
-            && // Quest is complete
-            preRaidQuests.Any(preRaidQuest =>
-                preRaidQuest.QId == postRaidQuest.QId
-                && // Get matching pre-raid quest
-                preRaidQuest.Status != QuestStatusEnum.Success
-            )
-            && // Completed quest was not completed before raid started
-            templateTable.Quests.TryGetValue(postRaidQuest.QId, out var quest)
-            && quest?.TraderId == Traders.LIGHTHOUSEKEEPER
-        ); // Quest is from LK
+        var finishedInRaid = postRaidQuests.Where(postRaidQuest =>
+        {
+            if (!templateTable.Quests.TryGetValue(postRaidQuest.QId, out var quest))
+            {
+                return false;
+            }
 
-        // Run server complete quest process to ensure player gets rewards
-        foreach (var questToComplete in newlyCompletedLightkeeperQuests)
+            // The client hands a visible instant quest in itself after the raid, a hidden one has nothing to hand in at
+            var hiddenInstant = quest.InstantComplete && quest.NotDisplayedQuest == true;
+            if (hiddenInstant && postRaidQuest.Status == QuestStatusEnum.AvailableForFinish)
+            {
+                return true;
+            }
+
+            var completedThisRaid =
+                postRaidQuest.Status == QuestStatusEnum.Success
+                && !preRaidQuests.Any(preRaidQuest => preRaidQuest.QId == postRaidQuest.QId && preRaidQuest.Status == QuestStatusEnum.Success);
+
+            return completedThisRaid && (hiddenInstant || quest.TraderId == Traders.LIGHTHOUSEKEEPER);
+        }).ToList();
+
+        foreach (var questToComplete in finishedInRaid)
         {
             questHelper.CompleteQuest(
                 pmcProfile,

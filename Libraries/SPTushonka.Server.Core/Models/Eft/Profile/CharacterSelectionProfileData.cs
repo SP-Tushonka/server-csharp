@@ -31,6 +31,9 @@ public record CharacterSelectionProfileData
     [JsonPropertyName("prestigeLevel")]
     public int? PrestigeLevel { get; set; }
 
+    [JsonPropertyName("prestigeGameMode")]
+    public string? PrestigeGameMode { get; set; }
+
     [JsonPropertyName("gameVersion")]
     public string? GameVersion { get; set; }
 

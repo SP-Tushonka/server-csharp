@@ -45,6 +45,22 @@ public static class ShopFormat
     }
 
     /// <summary>
+    ///     Get the marker texture a menu label draws beside its tab
+    /// </summary>
+    /// <param name="label">Label such as NEW or SALE</param>
+    /// <returns>Texture url, or null for a label that is not drawn</returns>
+    public static string? MarkerTexture(string label)
+    {
+        return label switch
+        {
+            "NEW" => "/files/shop/ExpansionsHub_Navigation_States_Icon_1.png",
+            "FREE" => "/files/shop/ExpansionsHub_Navigation_States_Icon_2.png",
+            "SALE" => "/files/shop/ExpansionsHub_Navigation_States_Icon_3.png",
+            _ => null,
+        };
+    }
+
+    /// <summary>
     ///     Check whether a tile is tagged as free
     /// </summary>
     /// <param name="tags">Tile tags</param>

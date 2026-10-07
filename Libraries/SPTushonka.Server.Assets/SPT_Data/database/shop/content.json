@@ -3,7 +3,10 @@
     {
       "iconUrl": "/files/shop/6a4a184d14c84dbcba0eb9e8.png",
       "id": "6a4a25c93f6f25450e4ace3f",
-      "labels": [],
+      "labels": [
+        "NEW",
+        "SALE"
+      ],
       "nameKey": "menu.6a4a25c93f6f25450e4ace3f.name",
       "order": 1,
       "pageId": "6a481ca9b88b2d3b4fd4bb5a",
@@ -20,6 +23,19 @@
       "pageId": "6a58a39c902e6f31dad7ae3f",
       "parentId": "6a63626830639f94292e2817",
       "selectedIconUrl": "/files/shop/6a635f4e19f0ae49350a23ec.png",
+      "soundTheme": null
+    },
+    {
+      "iconUrl": "/files/shop/6a26d18323f0137bfa0d2fd6.png",
+      "id": "6abcf98777f3ce13a15b8e9a",
+      "labels": [
+        "SALE"
+      ],
+      "nameKey": "menu.6abcf98777f3ce13a15b8e9a.name",
+      "order": 1,
+      "pageId": "6a03312d0e0e5cbd41a49bf6",
+      "parentId": "69fdbdce62f4875f5b27091f",
+      "selectedIconUrl": "/files/shop/6a392ae0afc97cb59a0d5c4b.png",
       "soundTheme": null
     },
     {
@@ -42,6 +58,17 @@
       "pageId": "6a1dde16e396dff503d4b19a",
       "parentId": "69cba38637ac2c6af8dacf42",
       "selectedIconUrl": "/files/shop/6a392b7a4987f9e04202bc6e.png",
+      "soundTheme": null
+    },
+    {
+      "iconUrl": "/files/shop/6abcf791905461805f0d2e02.png",
+      "id": "6abcf8b41b2c7977d8915054",
+      "labels": [],
+      "nameKey": "menu.6abcf8b41b2c7977d8915054.name",
+      "order": 2,
+      "pageId": "6aba66cea545e59aefec2492",
+      "parentId": "69fdbdce62f4875f5b27091f",
+      "selectedIconUrl": "/files/shop/6abcf7d5f5857b4ccc0430ff.png",
       "soundTheme": null
     },
     {
@@ -91,7 +118,9 @@
     {
       "iconUrl": "/files/shop/6a99ab3270a8af3bde01e76a.png",
       "id": "69fdbdbc25c209037f6039c8",
-      "labels": [],
+      "labels": [
+        "NEW"
+      ],
       "nameKey": "menu.69fdbdbc25c209037f6039c8.name",
       "order": 6,
       "pageId": "69fdfbb32d1623b9b4bae4db",
@@ -146,7 +175,9 @@
     {
       "iconUrl": "/files/shop/6a26d18323f0137bfa0d2fd6.png",
       "id": "69fdbdce62f4875f5b27091f",
-      "labels": [],
+      "labels": [
+        "SALE"
+      ],
       "nameKey": "menu.69fdbdce62f4875f5b27091f.name",
       "order": 8,
       "pageId": "6a03312d0e0e5cbd41a49bf6",
@@ -194,6 +225,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -226,6 +260,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -260,6 +297,9 @@
           ],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -292,6 +332,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -324,6 +367,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -356,6 +402,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -372,17 +421,17 @@
         {
           "additionalSubtitleKey": "bundle.6a4b72f9d3daa2e5f2032bfa.additionalSubtitle",
           "additionalSubtitleLabelKey": "bundle.6a4b72f9d3daa2e5f2032bfa.additionalSubtitleLabel",
-          "aspectRatio": "2:4",
+          "aspectRatio": "1:4",
           "countable": false,
           "images": [
-            "/files/shop/69fdfc15d8ba4655310ead6e.webp"
+            "/files/shop/6abe9dbf3fe5434dda06706b.webp"
           ],
           "itemsCount": 2,
           "nameKey": "bundle.6a4b72f9d3daa2e5f2032bfa.name",
           "offerId": "6a4b72f9d3daa2e5f2032bfa",
           "position": {
             "x": 0,
-            "y": 0
+            "y": 1
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
           "purchasePopupImage": "/files/shop/69fdfc15d8ba4655310ead6e.webp",
@@ -393,6 +442,83 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6abe5a23e16b19a11d6865d4.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6abe5a23e16b19a11d6865d4.additionalSubtitleLabel",
+          "aspectRatio": "1:2",
+          "countable": false,
+          "images": [
+            "/files/shop/6abd1265a4f0b55ae4003b5b.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6abe5a23e16b19a11d6865d4.name",
+          "offerId": "6abe5a23e16b19a11d6865d4",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abd1293f5857b4ccc043102.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6abe5a23e16b19a11d6865d4.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6abe5f0a431a09e79b1a0c11.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6abe5f0a431a09e79b1a0c11.additionalSubtitleLabel",
+          "aspectRatio": "1:2",
+          "countable": false,
+          "images": [
+            "/files/shop/6abd1359b724acd8e90f9add.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6abe5f0a431a09e79b1a0c11.name",
+          "offerId": "6abe5f0a431a09e79b1a0c11",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abd136c54a46e275e026fc3.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6abe5f0a431a09e79b1a0c11.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -428,10 +554,14 @@
           ],
           "subtitleKey": "offer.69c50372e275437e6a8f4c26.subtitle",
           "tags": [
-            "HOT"
+            "HOT",
+            "SALE"
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -469,6 +599,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -501,6 +634,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -533,6 +669,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -565,6 +704,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -597,6 +739,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -629,6 +774,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -661,6 +809,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -693,6 +844,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -725,6 +879,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -757,6 +914,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -789,6 +949,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -821,6 +984,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -853,6 +1019,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -885,6 +1054,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -917,6 +1089,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -946,9 +1121,14 @@
             "EFT"
           ],
           "subtitleKey": "offer.69c402930cb21eae19bf5197.subtitle",
-          "tags": [],
+          "tags": [
+            "HOT"
+          ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -978,9 +1158,14 @@
             "EFT"
           ],
           "subtitleKey": "offer.69c405d1cfe145639b161021.subtitle",
-          "tags": [],
+          "tags": [
+            "HOT"
+          ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1010,9 +1195,14 @@
             "EFT"
           ],
           "subtitleKey": "offer.69c405ffa68cd9010a9c39ec.subtitle",
-          "tags": [],
+          "tags": [
+            "HOT"
+          ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1045,6 +1235,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1079,6 +1272,9 @@
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1111,6 +1307,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1145,6 +1344,9 @@
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1179,6 +1381,9 @@
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1213,6 +1418,9 @@
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1245,6 +1453,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1274,9 +1485,14 @@
             "EFT"
           ],
           "subtitleKey": "offer.69c2555cc2a0bbc57a69c14f.subtitle",
-          "tags": [],
+          "tags": [
+            "HOT"
+          ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1309,6 +1525,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -1341,6 +1560,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -1378,6 +1600,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1410,6 +1635,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1442,6 +1670,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1474,6 +1705,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1506,6 +1740,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1538,6 +1775,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1570,6 +1810,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1602,6 +1845,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1634,6 +1880,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1666,6 +1915,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1698,6 +1950,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1730,6 +1985,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1762,6 +2020,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1794,6 +2055,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1826,6 +2090,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1858,6 +2125,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1890,6 +2160,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1922,6 +2195,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1954,6 +2230,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -1986,6 +2265,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2018,6 +2300,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2050,6 +2335,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2082,6 +2370,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2114,6 +2405,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2146,6 +2440,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2178,6 +2475,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2210,6 +2510,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -2242,6 +2545,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -2281,6 +2587,9 @@
           ],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2315,6 +2624,9 @@
           ],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2347,6 +2659,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2379,6 +2694,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2411,6 +2729,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2443,6 +2764,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2475,6 +2799,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2507,6 +2834,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2539,6 +2869,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2571,6 +2904,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2603,6 +2939,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2635,6 +2974,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2667,6 +3009,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2699,6 +3044,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2731,6 +3079,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2768,6 +3119,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -2805,6 +3159,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_s"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4490930"
             },
@@ -2837,6 +3194,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_m"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4490930"
             },
@@ -2869,6 +3229,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_l"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4490930"
             },
@@ -2901,6 +3264,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_2000_personal"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4898900"
             },
@@ -2933,6 +3299,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_xl"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4490930"
             },
@@ -2965,6 +3334,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_xxl"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4490930"
             },
@@ -2997,6 +3369,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_xxxl"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4490930"
             },
@@ -3034,6 +3409,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "edge_of_darkness_unheard_edition"
+            },
             "steam": {
               "link": ""
             },
@@ -3071,6 +3449,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": "bonus__game_store_currency__amount_2000_personal"
+            },
             "steam": {
               "link": "https://store.steampowered.com/app/4898900"
             },
@@ -3105,6 +3486,9 @@
           ],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3139,6 +3523,9 @@
           ],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3148,34 +3535,40 @@
           }
         },
         {
-          "additionalSubtitleKey": "offer.6a58a2d0429519fc74675ae4.additionalSubtitle",
-          "additionalSubtitleLabelKey": "offer.6a58a2d0429519fc74675ae4.additionalSubtitleLabel",
+          "additionalSubtitleKey": "offer.69c50372e275437e6a8f4c26.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.69c50372e275437e6a8f4c26.additionalSubtitleLabel",
           "aspectRatio": "1:2",
           "countable": false,
           "images": [
-            "/files/shop/6a68b418e039724b8508ae15.webp"
+            "/files/shop/6a481f541e0954b8a4009ae4.webp"
           ],
           "itemsCount": 1,
-          "nameKey": "offer.6a58a2d0429519fc74675ae4.name",
-          "offerId": "6a58a2d0429519fc74675ae4",
+          "nameKey": "offer.69c50372e275437e6a8f4c26.name",
+          "offerId": "69c50372e275437e6a8f4c26",
           "position": {
             "x": 2,
             "y": 1
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
-          "purchasePopupImage": "/files/shop/6a68b418e039724b8508ae15.webp",
+          "purchasePopupImage": "/files/shop/6a032eae0273e382250ff9e7.webp",
           "scope": [
             "EFT"
           ],
-          "subtitleKey": "offer.6a58a2d0429519fc74675ae4.subtitle",
-          "tags": [],
+          "subtitleKey": "offer.69c50372e275437e6a8f4c26.subtitle",
+          "tags": [
+            "HOT",
+            "SALE"
+          ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
-              "link": ""
+              "link": null
             },
             "xsolla": {
-              "sku": ""
+              "sku": null
             }
           }
         },
@@ -3205,6 +3598,9 @@
           ],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3214,31 +3610,34 @@
           }
         },
         {
-          "additionalSubtitleKey": "offer.69c2543d6a781e156fe07ef2.additionalSubtitle",
-          "additionalSubtitleLabelKey": "offer.69c2543d6a781e156fe07ef2.additionalSubtitleLabel",
+          "additionalSubtitleKey": "offer.69c402930cb21eae19bf5197.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.69c402930cb21eae19bf5197.additionalSubtitleLabel",
           "aspectRatio": "1:1",
           "countable": false,
           "images": [
-            "/files/shop/6a15c0058f8a9121030e91db.webp"
+            "/files/shop/6a15c0f612a8f302b60483d2.webp"
           ],
           "itemsCount": 1,
-          "nameKey": "offer.69c2543d6a781e156fe07ef2.name",
-          "offerId": "69c2543d6a781e156fe07ef2",
+          "nameKey": "offer.69c402930cb21eae19bf5197.name",
+          "offerId": "69c402930cb21eae19bf5197",
           "position": {
             "x": 0,
             "y": 4
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
-          "purchasePopupImage": "/files/shop/6a15c013df0b32c7d30022b4.webp",
+          "purchasePopupImage": "/files/shop/6a15c104df0b32c7d30022b6.webp",
           "scope": [
             "EFT"
           ],
-          "subtitleKey": "offer.69c2543d6a781e156fe07ef2.subtitle",
+          "subtitleKey": "offer.69c402930cb21eae19bf5197.subtitle",
           "tags": [
             "HOT"
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3248,31 +3647,34 @@
           }
         },
         {
-          "additionalSubtitleKey": "offer.69c40412689297cb084d457d.additionalSubtitle",
-          "additionalSubtitleLabelKey": "offer.69c40412689297cb084d457d.additionalSubtitleLabel",
+          "additionalSubtitleKey": "offer.69c405ffa68cd9010a9c39ec.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.69c405ffa68cd9010a9c39ec.additionalSubtitleLabel",
           "aspectRatio": "1:1",
           "countable": false,
           "images": [
-            "/files/shop/6a15bf76df0b32c7d30022b2.webp"
+            "/files/shop/6a15bad212a8f302b60483c7.webp"
           ],
           "itemsCount": 1,
-          "nameKey": "offer.69c40412689297cb084d457d.name",
-          "offerId": "69c40412689297cb084d457d",
+          "nameKey": "offer.69c405ffa68cd9010a9c39ec.name",
+          "offerId": "69c405ffa68cd9010a9c39ec",
           "position": {
             "x": 2,
             "y": 4
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
-          "purchasePopupImage": "/files/shop/6a15bf7212a8f302b60483ce.webp",
+          "purchasePopupImage": "/files/shop/6a15bacddb1231cce803fd4f.webp",
           "scope": [
             "EFT"
           ],
-          "subtitleKey": "offer.69c40412689297cb084d457d.subtitle",
+          "subtitleKey": "offer.69c405ffa68cd9010a9c39ec.subtitle",
           "tags": [
             "HOT"
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3282,31 +3684,34 @@
           }
         },
         {
-          "additionalSubtitleKey": "offer.6a1c5de948e6fcf3cf11898e.additionalSubtitle",
-          "additionalSubtitleLabelKey": "offer.6a1c5de948e6fcf3cf11898e.additionalSubtitleLabel",
+          "additionalSubtitleKey": "offer.69c2555cc2a0bbc57a69c14f.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.69c2555cc2a0bbc57a69c14f.additionalSubtitleLabel",
           "aspectRatio": "1:1",
           "countable": false,
           "images": [
-            "/files/shop/6a15c558cab5f5d8f203026c.webp"
+            "/files/shop/69e8a68af64caa28890db183.webp"
           ],
           "itemsCount": 1,
-          "nameKey": "offer.6a1c5de948e6fcf3cf11898e.name",
-          "offerId": "6a1c5de948e6fcf3cf11898e",
+          "nameKey": "offer.69c2555cc2a0bbc57a69c14f.name",
+          "offerId": "69c2555cc2a0bbc57a69c14f",
           "position": {
             "x": 1,
             "y": 4
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
-          "purchasePopupImage": "/files/shop/6a15c564ee72eb3f0d093f0d.webp",
+          "purchasePopupImage": "/files/shop/6a1c4e083eac4a52ae0e0bce.webp",
           "scope": [
             "EFT"
           ],
-          "subtitleKey": "offer.6a1c5de948e6fcf3cf11898e.subtitle",
+          "subtitleKey": "offer.69c2555cc2a0bbc57a69c14f.subtitle",
           "tags": [
             "HOT"
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3316,31 +3721,34 @@
           }
         },
         {
-          "additionalSubtitleKey": "offer.6a1c7347301f2a3d681f074a.additionalSubtitle",
-          "additionalSubtitleLabelKey": "offer.6a1c7347301f2a3d681f074a.additionalSubtitleLabel",
+          "additionalSubtitleKey": "offer.69c405d1cfe145639b161021.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.69c405d1cfe145639b161021.additionalSubtitleLabel",
           "aspectRatio": "1:1",
           "countable": false,
           "images": [
-            "/files/shop/6a15be368f8a9121030e91d7.webp"
+            "/files/shop/6a15c1d0db1231cce803fd5d.webp"
           ],
           "itemsCount": 1,
-          "nameKey": "offer.6a1c7347301f2a3d681f074a.name",
-          "offerId": "6a1c7347301f2a3d681f074a",
+          "nameKey": "offer.69c405d1cfe145639b161021.name",
+          "offerId": "69c405d1cfe145639b161021",
           "position": {
             "x": 3,
             "y": 4
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
-          "purchasePopupImage": "/files/shop/6a15be33df0b32c7d30022af.webp",
+          "purchasePopupImage": "/files/shop/6a15c1ccde88c3270a01362f.webp",
           "scope": [
             "EFT"
           ],
-          "subtitleKey": "offer.6a1c7347301f2a3d681f074a.subtitle",
+          "subtitleKey": "offer.69c405d1cfe145639b161021.subtitle",
           "tags": [
             "HOT"
           ],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3350,29 +3758,71 @@
           }
         },
         {
-          "additionalSubtitleKey": "bundle.6a96bfbd206a3a67556896fe.additionalSubtitle",
-          "additionalSubtitleLabelKey": "bundle.6a96bfbd206a3a67556896fe.additionalSubtitleLabel",
-          "aspectRatio": "1:4",
+          "additionalSubtitleKey": "offer.6abe5a23e16b19a11d6865d4.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6abe5a23e16b19a11d6865d4.additionalSubtitleLabel",
+          "aspectRatio": "1:2",
           "countable": false,
           "images": [
-            "/files/shop/6a9ab6b08032549231034088.webp"
+            "/files/shop/6abd1265a4f0b55ae4003b5b.webp"
           ],
-          "itemsCount": 3,
-          "nameKey": "bundle.6a96bfbd206a3a67556896fe.name",
-          "offerId": "6a96bfbd206a3a67556896fe",
+          "itemsCount": 1,
+          "nameKey": "offer.6abe5a23e16b19a11d6865d4.name",
+          "offerId": "6abe5a23e16b19a11d6865d4",
           "position": {
             "x": 0,
             "y": 0
           },
           "purchaseMethod": "INTERNAL_CURRENCY",
-          "purchasePopupImage": "/files/shop/6a8eaeb66d0898431e05020b.webp",
+          "purchasePopupImage": "/files/shop/6abd1293f5857b4ccc043102.webp",
           "scope": [
             "EFT"
           ],
-          "subtitleKey": "bundle.6a96bfbd206a3a67556896fe.subtitle",
-          "tags": [],
-          "type": "BUNDLE",
+          "subtitleKey": "offer.6abe5a23e16b19a11d6865d4.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6abe5f0a431a09e79b1a0c11.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6abe5f0a431a09e79b1a0c11.additionalSubtitleLabel",
+          "aspectRatio": "1:2",
+          "countable": false,
+          "images": [
+            "/files/shop/6abd1359b724acd8e90f9add.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6abe5f0a431a09e79b1a0c11.name",
+          "offerId": "6abe5f0a431a09e79b1a0c11",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abd136c54a46e275e026fc3.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6abe5f0a431a09e79b1a0c11.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -3410,6 +3860,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -3442,6 +3895,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -3474,6 +3930,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -3506,6 +3965,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -3538,6 +4000,9 @@
           "tags": [],
           "type": "OFFER",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -3575,6 +4040,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3607,6 +4075,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3639,6 +4110,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3671,6 +4145,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3703,6 +4180,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3735,6 +4215,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3767,6 +4250,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3799,6 +4285,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3831,6 +4320,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3863,6 +4355,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3895,6 +4390,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3927,6 +4425,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3959,6 +4460,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -3991,6 +4495,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4023,6 +4530,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4055,6 +4565,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4087,6 +4600,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4119,6 +4635,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4151,6 +4670,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4183,6 +4705,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4215,6 +4740,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4247,6 +4775,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4279,6 +4810,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4311,6 +4845,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4343,6 +4880,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4375,6 +4915,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": null
             },
@@ -4407,6 +4950,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -4439,6 +4985,9 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -4476,6 +5025,236 @@
           "tags": [],
           "type": "BUNDLE",
           "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "6aba66cea545e59aefec2492",
+      "blocks": [
+        {
+          "additionalSubtitleKey": "offer.6aba66869b516ba00b859031.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6aba66869b516ba00b859031.additionalSubtitleLabel",
+          "aspectRatio": "1:2",
+          "countable": false,
+          "images": [
+            "/files/shop/6abbb97fc6760b14d60a1045.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6aba66869b516ba00b859031.name",
+          "offerId": "6aba66869b516ba00b859031",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abbb99fbf12f476970aed21.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6aba66869b516ba00b859031.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6aba62d265ef794de733f1ad.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6aba62d265ef794de733f1ad.additionalSubtitleLabel",
+          "aspectRatio": "1:1",
+          "countable": false,
+          "images": [
+            "/files/shop/6abbb8ecc6760b14d60a1043.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6aba62d265ef794de733f1ad.name",
+          "offerId": "6aba62d265ef794de733f1ad",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abbb90f1775a13f97088cbf.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6aba62d265ef794de733f1ad.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6aba64032f5913a4b6345841.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6aba64032f5913a4b6345841.additionalSubtitleLabel",
+          "aspectRatio": "1:2",
+          "countable": false,
+          "images": [
+            "/files/shop/6abbb9556cb28d7321001f71.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6aba64032f5913a4b6345841.name",
+          "offerId": "6aba64032f5913a4b6345841",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abbb966d39ee2481a05230f.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6aba64032f5913a4b6345841.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6aba35c1d683d3d6cac7ba93.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6aba35c1d683d3d6cac7ba93.additionalSubtitleLabel",
+          "aspectRatio": "1:1",
+          "countable": false,
+          "images": [
+            "/files/shop/6abbb85dd39ee2481a05230c.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6aba35c1d683d3d6cac7ba93.name",
+          "offerId": "6aba35c1d683d3d6cac7ba93",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abbb86fdc0b2e0a4107091b.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6aba35c1d683d3d6cac7ba93.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6aba637a78fdfa8b1bcb1e65.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6aba637a78fdfa8b1bcb1e65.additionalSubtitleLabel",
+          "aspectRatio": "1:1",
+          "countable": false,
+          "images": [
+            "/files/shop/6abbb9373eed9c364b055d05.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6aba637a78fdfa8b1bcb1e65.name",
+          "offerId": "6aba637a78fdfa8b1bcb1e65",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abbb93e2cc5a0df8902e772.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6aba637a78fdfa8b1bcb1e65.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
+            "steam": {
+              "link": ""
+            },
+            "xsolla": {
+              "sku": ""
+            }
+          }
+        },
+        {
+          "additionalSubtitleKey": "offer.6aba620b4adb11a2d146b589.additionalSubtitle",
+          "additionalSubtitleLabelKey": "offer.6aba620b4adb11a2d146b589.additionalSubtitleLabel",
+          "aspectRatio": "1:1",
+          "countable": false,
+          "images": [
+            "/files/shop/6abbb8a06cb28d7321001f6f.webp"
+          ],
+          "itemsCount": 1,
+          "nameKey": "offer.6aba620b4adb11a2d146b589.name",
+          "offerId": "6aba620b4adb11a2d146b589",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "purchaseMethod": "INTERNAL_CURRENCY",
+          "purchasePopupImage": "/files/shop/6abbb8b0a6c8fab6aa06a99d.webp",
+          "scope": [
+            "EFT"
+          ],
+          "subtitleKey": "offer.6aba620b4adb11a2d146b589.subtitle",
+          "tags": [
+            "NEW"
+          ],
+          "type": "OFFER",
+          "widgetSettings": {
+            "payPro": {
+              "sku": null
+            },
             "steam": {
               "link": ""
             },
@@ -4495,13 +5274,15 @@
       "subtitleKey": "offer.69c2537379cbeea931debce5.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1709b283ba4813bb02c551.webp",
+          "type": "Image",
           "url": "/files/shop/6a170993983d1c278e0e9941.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1709bbe7753b567f08a442.webp",
+          "type": "Image",
           "url": "/files/shop/6a17099eecfc8a64e5083280.webp"
         }
       ],
@@ -4557,13 +5338,15 @@
       "subtitleKey": "offer.69c253c38e385e82a3a48be0.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170b01e7753b567f08a444.webp",
+          "type": "Image",
           "url": "/files/shop/6a170aefecfc8a64e5083282.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170b08525bed1943038f56.webp",
+          "type": "Image",
           "url": "/files/shop/6a170af883ba4813bb02c553.webp"
         }
       ],
@@ -4634,13 +5417,15 @@
       "subtitleKey": "offer.69c2541ac4a68806b8e4bf28.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170c85983d1c278e0e9949.webp",
+          "type": "Image",
           "url": "/files/shop/6a170c75e7753b567f08a449.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170c8decfc8a64e5083288.webp",
+          "type": "Image",
           "url": "/files/shop/6a170c7c525bed1943038f5b.webp"
         }
       ],
@@ -4696,13 +5481,15 @@
       "subtitleKey": "offer.69c2543d6a781e156fe07ef2.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17079d3130a622050c4fad.webp",
+          "type": "Image",
           "url": "/files/shop/6a170791e7ec645e1a0ddece.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1707a87a344ec0b50eec6d.webp",
+          "type": "Image",
           "url": "/files/shop/6a170788c6c280e0830fb33d.webp"
         }
       ],
@@ -4775,13 +5562,15 @@
       "subtitleKey": "offer.69c2545afb4c3b7b35c2da74.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1c7f6335c728370a090a0f.webp",
+          "type": "Image",
           "url": "/files/shop/6a1707c2c6c280e0830fb33e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1707d8e7ec645e1a0ddecf.webp",
+          "type": "Image",
           "url": "/files/shop/6a1707ba2995c5ec4001c3cf.webp"
         }
       ],
@@ -4837,13 +5626,15 @@
       "subtitleKey": "offer.69c2548bd7a14394405fd605.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170cfde7753b567f08a44b.webp",
+          "type": "Image",
           "url": "/files/shop/6a170ceaecfc8a64e5083289.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170d04525bed1943038f5d.webp",
+          "type": "Image",
           "url": "/files/shop/6a170cf383ba4813bb02c55a.webp"
         }
       ],
@@ -4914,13 +5705,15 @@
       "subtitleKey": "offer.69c25544086a1b958b5794ed.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170871c6c280e0830fb340.webp",
+          "type": "Image",
           "url": "/files/shop/6a1708607a344ec0b50eec6f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170879e7ec645e1a0dded1.webp",
+          "type": "Image",
           "url": "/files/shop/6a1708672995c5ec4001c3d1.webp"
         }
       ],
@@ -4961,13 +5754,15 @@
       "subtitleKey": "offer.69c255762549e4e06efd1e94.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170667ecfc8a64e5083278.webp",
+          "type": "Image",
           "url": "/files/shop/6a1705fd3130a622050c4fa8.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17067e7a344ec0b50eec6a.webp",
+          "type": "Image",
           "url": "/files/shop/6a1705eeecfc8a64e5083277.webp"
         }
       ],
@@ -5023,13 +5818,15 @@
       "subtitleKey": "offer.69c2624d3d11477454c55ede.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17075f7a344ec0b50eec6c.webp",
+          "type": "Image",
           "url": "/files/shop/6a1707463130a622050c4fac.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17076c2995c5ec4001c3ce.webp",
+          "type": "Image",
           "url": "/files/shop/6a17073de7ec645e1a0ddecd.webp"
         }
       ],
@@ -5085,13 +5882,15 @@
       "subtitleKey": "offer.69c4024b765974c0ea0a5085.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1709182995c5ec4001c3d2.webp",
+          "type": "Image",
           "url": "/files/shop/6a1708fb3130a622050c4fb0.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170926ecfc8a64e508327f.webp",
+          "type": "Image",
           "url": "/files/shop/6a1709057a344ec0b50eec70.webp"
         }
       ],
@@ -5147,13 +5946,15 @@
       "subtitleKey": "offer.69c4027c16fc6949595b2582.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170a4becfc8a64e5083281.webp",
+          "type": "Image",
           "url": "/files/shop/6a170a3a525bed1943038f54.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170a5383ba4813bb02c552.webp",
+          "type": "Image",
           "url": "/files/shop/6a170a42983d1c278e0e9942.webp"
         }
       ],
@@ -5194,13 +5995,15 @@
       "subtitleKey": "offer.69c402aabcc860aff10a802e.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17083ee7ec645e1a0dded0.webp",
+          "type": "Image",
           "url": "/files/shop/6a1c85e83eac4a52ae0e0bea.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1708463130a622050c4faf.webp",
+          "type": "Image",
           "url": "/files/shop/6a170820c6c280e0830fb33f.webp"
         }
       ],
@@ -5256,13 +6059,15 @@
       "subtitleKey": "offer.69c402c83d00743f04e77cc5.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170bc4e7753b567f08a447.webp",
+          "type": "Image",
           "url": "/files/shop/6a170bb3ecfc8a64e5083285.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170bcc525bed1943038f59.webp",
+          "type": "Image",
           "url": "/files/shop/6a170bbc83ba4813bb02c556.webp"
         }
       ],
@@ -5333,13 +6138,15 @@
       "subtitleKey": "offer.69c402dd09abf430375bb78b.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170c0e83ba4813bb02c557.webp",
+          "type": "Image",
           "url": "/files/shop/6a170bdb983d1c278e0e9947.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170c15e7753b567f08a448.webp",
+          "type": "Image",
           "url": "/files/shop/6a170be6ecfc8a64e5083286.webp"
         }
       ],
@@ -5410,13 +6217,15 @@
       "subtitleKey": "offer.69c403a8ac98f91bd502a884.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1711cbe7753b567f08a44e.webp",
+          "type": "Image",
           "url": "/files/shop/6a1711b783ba4813bb02c55d.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1711d2525bed1943038f60.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fef26a7069e39b005f5e7.webp"
         }
       ],
@@ -5487,13 +6296,15 @@
       "subtitleKey": "offer.69c403d5f86185a8c589ccb6.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1713c3ecfc8a64e5083294.webp",
+          "type": "Image",
           "url": "/files/shop/6a1713b0525bed1943038f67.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1713ca83ba4813bb02c565.webp",
+          "type": "Image",
           "url": "/files/shop/6a1713b9983d1c278e0e9955.webp"
         }
       ],
@@ -5564,13 +6375,15 @@
       "subtitleKey": "offer.69c404016f75657a8bc0bf83.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1714d6525bed1943038f6c.webp",
+          "type": "Image",
           "url": "/files/shop/6a1714c683ba4813bb02c569.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1714dc983d1c278e0e995a.webp",
+          "type": "Image",
           "url": "/files/shop/6a1714cce7753b567f08a45a.webp"
         }
       ],
@@ -5641,13 +6454,15 @@
       "subtitleKey": "offer.69c40412689297cb084d457d.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1714af983d1c278e0e9959.webp",
+          "type": "Image",
           "url": "/files/shop/6a15bf6edb1231cce803fd56.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1714b5ecfc8a64e5083298.webp",
+          "type": "Image",
           "url": "/files/shop/6a1714a4525bed1943038f6b.webp"
         }
       ],
@@ -5720,13 +6535,15 @@
       "subtitleKey": "offer.69c4042ca63a611ba16cf4fb.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17148683ba4813bb02c568.webp",
+          "type": "Image",
           "url": "/files/shop/6a171475983d1c278e0e9958.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17148de7753b567f08a459.webp",
+          "type": "Image",
           "url": "/files/shop/6a17147decfc8a64e5083297.webp"
         }
       ],
@@ -5782,13 +6599,15 @@
       "subtitleKey": "offer.69c4051e2b4f6bb24a1b3b6b.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17136d525bed1943038f66.webp",
+          "type": "Image",
           "url": "/files/shop/6a17135d83ba4813bb02c563.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171374983d1c278e0e9954.webp",
+          "type": "Image",
           "url": "/files/shop/6a171364e7753b567f08a454.webp"
         }
       ],
@@ -5844,13 +6663,15 @@
       "subtitleKey": "offer.69c4054f9fa30a824bc5e993.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171531525bed1943038f6e.webp",
+          "type": "Image",
           "url": "/files/shop/6a171516ecfc8a64e508329a.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17153dc6c280e0830fb35c.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715253130a622050c4fcc.webp"
         }
       ],
@@ -5906,13 +6727,15 @@
       "subtitleKey": "offer.69c4058c4893c6d48fb4a09c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171235525bed1943038f61.webp",
+          "type": "Image",
           "url": "/files/shop/6a17122083ba4813bb02c55e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17123c983d1c278e0e994f.webp",
+          "type": "Image",
           "url": "/files/shop/6a17122ae7753b567f08a44f.webp"
         }
       ],
@@ -5953,13 +6776,15 @@
       "subtitleKey": "offer.69c405bd081e28a87ea91658.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17139b83ba4813bb02c564.webp",
+          "type": "Image",
           "url": "/files/shop/6a171387ecfc8a64e5083293.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1713a1e7753b567f08a455.webp",
+          "type": "Image",
           "url": "/files/shop/6a1c9599bd8314fb750327ea.webp"
         }
       ],
@@ -6030,13 +6855,15 @@
       "subtitleKey": "offer.69c405eb1a8b338cbcbef5b1.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17145ee7753b567f08a458.webp",
+          "type": "Image",
           "url": "/files/shop/6a1c97d12275dc41120ab554.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171468525bed1943038f6a.webp",
+          "type": "Image",
           "url": "/files/shop/6a1c97b83eac4a52ae0e0bf1.webp"
         }
       ],
@@ -6092,13 +6919,15 @@
       "subtitleKey": "offer.69c406155b82612e0c619413.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1712e1ecfc8a64e5083291.webp",
+          "type": "Image",
           "url": "/files/shop/6a1712d1525bed1943038f64.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1712ea83ba4813bb02c562.webp",
+          "type": "Image",
           "url": "/files/shop/6a1712d9983d1c278e0e9952.webp"
         }
       ],
@@ -6139,13 +6968,15 @@
       "subtitleKey": "offer.69c4063fa6c1b52abc5d5e5c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17128883ba4813bb02c560.webp",
+          "type": "Image",
           "url": "/files/shop/6a171270983d1c278e0e9950.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17128fe7753b567f08a451.webp",
+          "type": "Image",
           "url": "/files/shop/6a171277ecfc8a64e508328f.webp"
         }
       ],
@@ -6216,21 +7047,25 @@
       "subtitleKey": "bundle.69c406ef12580b42af81a7ca.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1718d7ecfc8a64e50832a5.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e19edf0b32c7d30022cb.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718e93130a622050c4fd7.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e1ae3053171d500820ff.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718f1525bed1943038f79.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e1b6db1231cce803fd73.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718df83ba4813bb02c577.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e1a6455536976308492b.webp"
         }
       ],
@@ -6309,21 +7144,25 @@
       "subtitleKey": "bundle.69c4078bdf5403103afa9b63.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171a08ecfc8a64e50832a8.webp",
+          "type": "Image",
           "url": "/files/shop/6a15da08ee72eb3f0d093f16.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a193130a622050c4fda.webp",
+          "type": "Image",
           "url": "/files/shop/6a15da7d33ec1d007100b032.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a21525bed1943038f7c.webp",
+          "type": "Image",
           "url": "/files/shop/6a15daa3c4887b5f2f0b1005.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a1283ba4813bb02c57a.webp",
+          "type": "Image",
           "url": "/files/shop/6a15da3d8f8a9121030e91f0.webp"
         }
       ],
@@ -6398,21 +7237,25 @@
       "subtitleKey": "bundle.69c407db174260ec96f8b75b.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171a66525bed1943038f7d.webp",
+          "type": "Image",
           "url": "/files/shop/6a15d2f74555369763084924.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a78ecfc8a64e50832aa.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d2e1e2e2aec744f085498.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a7f83ba4813bb02c57c.webp",
+          "type": "Image",
           "url": "/files/shop/6a15d905cab5f5d8f2030276.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a70983d1c278e0e996b.webp",
+          "type": "Image",
           "url": "/files/shop/6a15d8173053171d500820fb.webp"
         }
       ],
@@ -6468,21 +7311,25 @@
       "subtitleKey": "bundle.69c408558cdcc9eb7970346d.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171ac783ba4813bb02c57d.webp",
+          "type": "Image",
           "url": "/files/shop/6a15dbe912a8f302b60483e8.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171ad7525bed1943038f7f.webp",
+          "type": "Image",
           "url": "/files/shop/6a15dc77db1231cce803fd71.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171adf983d1c278e0e996d.webp",
+          "type": "Image",
           "url": "/files/shop/6a15ddd1ee72eb3f0d093f18.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171acf3130a622050c4fdd.webp",
+          "type": "Image",
           "url": "/files/shop/6a15dc683053171d500820fd.webp"
         }
       ],
@@ -6568,21 +7415,25 @@
       "subtitleKey": "bundle.69c4091fe120a4299299e904.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171ba983ba4813bb02c581.webp",
+          "type": "Image",
           "url": "/files/shop/6a15ffe8de88c3270a01364c.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171bb9525bed1943038f83.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fff84555369763084939.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171bc0983d1c278e0e9971.webp",
+          "type": "Image",
           "url": "/files/shop/6a1600003053171d5008210c.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171bb13130a622050c4fe1.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fff0df0b32c7d30022d8.webp"
         }
       ],
@@ -6661,9 +7512,10 @@
       "subtitleKey": "offer.69c50372e275437e6a8f4c26.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a032e966f7f7582260af139.webp",
+          "type": "Image",
           "url": "/files/shop/6a032ebb93607a773900e7a8.webp"
         }
       ],
@@ -6675,7 +7527,8 @@
         }
       ],
       "tags": [
-        "HOT"
+        "HOT",
+        "SALE"
       ],
       "relatedOffers": [],
       "showBundleComposition": false,
@@ -6688,9 +7541,10 @@
       "subtitleKey": "offer.69c504e2f785a1a63dd307ee.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": true,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a47a419beda4e39b2097624.webp",
+          "type": "Image",
           "url": "/files/shop/6a47a48b47c0e1a6420178d3.webp"
         }
       ],
@@ -6714,9 +7568,10 @@
       "subtitleKey": "bundle.69c511e281e467e8b07f2d4a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2fc08768086a81fb0c8864.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fc0d18baff41ed60ae736.webp"
         }
       ],
@@ -6745,9 +7600,10 @@
       "subtitleKey": "bundle.69c5121e0709f5c2b37f6a65.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a38e6c937d6b153370bd55c.webp",
+          "type": "Image",
           "url": "/files/shop/6a38e6e0afc97cb59a0d5c2c.webp"
         }
       ],
@@ -6778,9 +7634,10 @@
       "subtitleKey": "bundle.69c512738bd3e988e7ee0089.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2fc13e9dc3e80a9e03da1d.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fc174efd97b69dd060471.webp"
         }
       ],
@@ -6809,9 +7666,10 @@
       "subtitleKey": "offer.69cbc91abcf236639dcefa5e.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a81f291cdfdc6b206ae17.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a81e23501e547ff053270.webp"
         }
       ],
@@ -6835,9 +7693,10 @@
       "subtitleKey": "offer.69cbd3f0b6f0bc9c4f983571.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a8258b0137d5cd307bfa8.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a824c886fbf3f660826da.webp"
         }
       ],
@@ -6861,9 +7720,10 @@
       "subtitleKey": "offer.69cbd41304b379f8a5625fe1.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a82ac886fbf3f660826db.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a82a117ba6a69c902b687.webp"
         }
       ],
@@ -6887,9 +7747,10 @@
       "subtitleKey": "offer.69cbd439056c7524c6bbc1ce.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a82f90cb8fc841a0944ea.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a82ec48e59c0e380d6af1.webp"
         }
       ],
@@ -6913,9 +7774,10 @@
       "subtitleKey": "offer.69cbd48124bbf4ebc72698ab.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a834c04203036c90935ba.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a834283841a4b9c0b4ace.webp"
         }
       ],
@@ -6939,9 +7801,10 @@
       "subtitleKey": "offer.69cbd4a684269806bde55f43.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a838f83841a4b9c0b4acf.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a837fdcf6f9db8301582b.webp"
         }
       ],
@@ -6965,13 +7828,15 @@
       "subtitleKey": "offer.6a1c5de948e6fcf3cf11898e.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170b69ecfc8a64e5083284.webp",
+          "type": "Image",
           "url": "/files/shop/6a170b52525bed1943038f57.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170b7183ba4813bb02c555.webp",
+          "type": "Image",
           "url": "/files/shop/6a170b5f983d1c278e0e9945.webp"
         }
       ],
@@ -7044,13 +7909,15 @@
       "subtitleKey": "offer.6a1c7347301f2a3d681f074a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17143aecfc8a64e5083296.webp",
+          "type": "Image",
           "url": "/files/shop/6a15be2f12a8f302b60483cb.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17144283ba4813bb02c567.webp",
+          "type": "Image",
           "url": "/files/shop/6a171430983d1c278e0e9957.webp"
         }
       ],
@@ -7123,13 +7990,15 @@
       "subtitleKey": "offer.6a1c8768eb10ae958e056f50.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170b94525bed1943038f58.webp",
+          "type": "Image",
           "url": "/files/shop/6a170b7ee7753b567f08a446.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170ba1983d1c278e0e9946.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fefcc4da886bf920e64a4.webp"
         }
       ],
@@ -7185,13 +8054,15 @@
       "subtitleKey": "offer.6a1c881d181291080a9ee938.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170d8c983d1c278e0e994d.webp",
+          "type": "Image",
           "url": "/files/shop/6a170d66ecfc8a64e508328b.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170d92ecfc8a64e508328c.webp",
+          "type": "Image",
           "url": "/files/shop/6a170d7083ba4813bb02c55c.webp"
         }
       ],
@@ -7247,13 +8118,15 @@
       "subtitleKey": "offer.6a1c980b5aa46dce19935303.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17140ce7753b567f08a457.webp",
+          "type": "Image",
           "url": "/files/shop/6a15bdd812a8f302b60483ca.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171413525bed1943038f69.webp",
+          "type": "Image",
           "url": "/files/shop/6a17140283ba4813bb02c566.webp"
         }
       ],
@@ -7309,13 +8182,15 @@
       "subtitleKey": "offer.6a1c98c8d071efd187acbe8e.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17160783ba4813bb02c571.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715e83130a622050c4fd0.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17160e3130a622050c4fd1.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715ee525bed1943038f72.webp"
         }
       ],
@@ -7356,21 +8231,25 @@
       "subtitleKey": "bundle.6a1d78d60c5d61844becb67b.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171afeecfc8a64e50832ac.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e6110bc40a22f30e0e0c.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b103130a622050c4fde.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e622df0b32c7d30022ce.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b18525bed1943038f80.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e62a455536976308492f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b0883ba4813bb02c57e.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e61a12a8f302b60483ef.webp"
         }
       ],
@@ -7441,21 +8320,25 @@
       "subtitleKey": "bundle.6a1d85d5e836ffce72e11044.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171d0aecfc8a64e50832b7.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e753ee72eb3f0d093f1d.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171d183130a622050c4fe9.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e76a33ec1d007100b03a.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171d20525bed1943038f8a.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e772c4887b5f2f0b100d.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171d1183ba4813bb02c588.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e75f8f8a9121030e91f8.webp"
         }
       ],
@@ -7526,9 +8409,10 @@
       "subtitleKey": "bundle.6a1dc240ba88cb8e60097acc.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a815217ba6a69c902b685.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a814083841a4b9c0b4ac9.webp"
         }
       ],
@@ -7741,9 +8625,10 @@
       "subtitleKey": "bundle.6a1dcc50dd87dd9c9ce36b54.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a80d383841a4b9c0b4ac8.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a80c012c21f6bfd0b5bd1.webp"
         }
       ],
@@ -7956,9 +8841,10 @@
       "subtitleKey": "bundle.6a1dcce9e38e8a06bec54415.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2ab33012c21f6bfd0b5be3.webp",
+          "type": "Image",
           "url": "/files/shop/6a2ab31c51ff841a6209f88c.webp"
         }
       ],
@@ -8366,9 +9252,10 @@
       "subtitleKey": "bundle.6a1dceb29cc7e8799658c88a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a74794a636c537a0c160b.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a745804203036c90935a6.webp"
         }
       ],
@@ -8431,9 +9318,10 @@
       "subtitleKey": "bundle.6a1dcf4c9948482439ee7261.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a750704203036c90935a7.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a74f9b0137d5cd307bf97.webp"
         }
       ],
@@ -8496,9 +9384,10 @@
       "subtitleKey": "bundle.6a1dcf9d8054ba2c8b642262.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a756951ff841a6209f86d.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a755083841a4b9c0b4ab9.webp"
         }
       ],
@@ -8578,9 +9467,10 @@
       "subtitleKey": "bundle.6a1dd02efa41230fc44b4efa.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a75e0b0137d5cd307bf99.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a75d012c21f6bfd0b5bc4.webp"
         }
       ],
@@ -8660,9 +9550,10 @@
       "subtitleKey": "bundle.6a1dd0821a91858b80af3c5d.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a763b83841a4b9c0b4abb.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a763017ba6a69c902b67b.webp"
         }
       ],
@@ -8735,9 +9626,10 @@
       "subtitleKey": "bundle.6a1dd14ae5ee456f39a8ba54.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a76ea51ff841a6209f871.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a76da4d8ef0b0f90b1181.webp"
         }
       ],
@@ -8814,9 +9706,10 @@
       "subtitleKey": "bundle.6a1dd1b2e7706dcc5eb72546.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a773c0cb8fc841a0944dc.webp",
+          "type": "Image",
           "url": "/files/shop/6a2aaf404d8ef0b0f90b119d.webp"
         }
       ],
@@ -8901,9 +9794,10 @@
       "subtitleKey": "bundle.6a1dd222cca8f7143c9d96ca.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a78e5886fbf3f660826d0.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a793204203036c90935af.webp"
         }
       ],
@@ -8984,9 +9878,10 @@
       "subtitleKey": "bundle.6a1dd2a1d79eea3afac2ee05.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a7a8012c21f6bfd0b5bcb.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a7a6351ff841a6209f875.webp"
         }
       ],
@@ -9059,9 +9954,10 @@
       "subtitleKey": "bundle.6a1dd336bc8f1d72ef8b75ff.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a7ed517ba6a69c902b682.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a7b4983841a4b9c0b4ac3.webp"
         }
       ],
@@ -9138,9 +10034,10 @@
       "subtitleKey": "bundle.6a1dd38ee276748f37a63c0e.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a806517ba6a69c902b683.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a804983841a4b9c0b4ac6.webp"
         }
       ],
@@ -9195,9 +10092,10 @@
       "subtitleKey": "bundle.6a1dd6485c64a0544ef2eaf7.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2a7fef0cb8fc841a0944e4.webp",
+          "type": "Image",
           "url": "/files/shop/6a2a7fdf48e59c0e380d6aea.webp"
         }
       ],
@@ -9248,9 +10146,10 @@
       "subtitleKey": "bundle.6a1dda2a1a6461e34eb32dcf.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a32a85a448eab30b706a6fd.webp",
+          "type": "Image",
           "url": "/files/shop/6a32a83437cfc306d009670a.webp"
         }
       ],
@@ -9275,17 +10174,21 @@
           ]
         },
         {
-          "id": "69c504f834ecb5f259c8fce3",
-          "nameKey": "offer.69c504f834ecb5f259c8fce3.name",
-          "descriptionKey": "offer.69c504f834ecb5f259c8fce3.description",
+          "id": "6a4b72f9d3daa2e5f2032bfa",
+          "nameKey": "bundle.6a4b72f9d3daa2e5f2032bfa.name",
+          "descriptionKey": "bundle.6a4b72f9d3daa2e5f2032bfa.description",
           "images": [
+            {
+              "aspectRatio": "1:1",
+              "url": "/files/shop/6a315273b66d5c49da008bd6.webp"
+            },
             {
               "aspectRatio": "2:4",
               "url": "/files/shop/69fdfc15d8ba4655310ead6e.webp"
             },
             {
-              "aspectRatio": "1:1",
-              "url": "/files/shop/6a315273b66d5c49da008bd6.webp"
+              "aspectRatio": "1:4",
+              "url": "/files/shop/6abe9dbf3fe5434dda06706b.webp"
             }
           ]
         },
@@ -9692,9 +10595,10 @@
       "subtitleKey": "offer.6a26eb537c34573f6c2dd27f.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2fbad5d0c1acdd4900d9a9.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fbabca7069e39b005f5c1.webp"
         }
       ],
@@ -9718,9 +10622,10 @@
       "subtitleKey": "bundle.6a2a879b62d8a4e121a50a86.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a2fc189d0c1acdd4900d9b2.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fc1bfa7069e39b005f5c9.webp"
         }
       ],
@@ -9749,9 +10654,10 @@
       "subtitleKey": "offer.6a3e7b40cddf5ba6232f490d.subtitle",
       "purchaseMethod": "WIDGET",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a16f35713b4ddf96a0729d1.webp",
+          "type": "Image",
           "url": "/files/shop/6a22d8856e646a0846060b53.webp"
         }
       ],
@@ -9775,9 +10681,10 @@
       "subtitleKey": "offer.6a46981da1132c0a632db21c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": true,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a47a4a9a287a342e405fbe7.webp",
+          "type": "Image",
           "url": "/files/shop/6a47a4f5a807f897200a4f4d.webp"
         }
       ],
@@ -9801,10 +10708,18 @@
       "subtitleKey": "bundle.6a4b72f9d3daa2e5f2032bfa.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
-          "thumbUrl": "/files/shop/6a315273b66d5c49da008bd6.webp",
-          "url": "/files/shop/6a1d953fded5910b7c059d6a.webp"
+          "imageUrl": "/files/shop/6a1d953fded5910b7c059d6a.webp",
+          "sound": "Bear_05_Nikita",
+          "thumbUrl": "/files/shop/6abfc4274cb855f7a001f70f.png",
+          "type": "Sound"
+        },
+        {
+          "imageUrl": "/files/shop/6a1d953fded5910b7c059d6a.webp",
+          "sound": "Usec_08_Nikita",
+          "thumbUrl": "/files/shop/6abf8e0586b66ad9ae069fe5.png",
+          "type": "Sound"
         }
       ],
       "items": [
@@ -9842,9 +10757,10 @@
       "subtitleKey": "offer.6a58a1a4e499e46c0ea3f150.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a68b2fa3f30d580c20e644b.webp",
+          "type": "Image",
           "url": "/files/shop/6a68b2ef3f30d580c20e644a.webp"
         }
       ],
@@ -9868,9 +10784,10 @@
       "subtitleKey": "offer.6a58a242d3b182f1d025ab0c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a68b380fe4e2bc60e00b9aa.webp",
+          "type": "Image",
           "url": "/files/shop/6a68b3700ff1c7961f068d5e.webp"
         }
       ],
@@ -9894,9 +10811,10 @@
       "subtitleKey": "offer.6a58a2d0429519fc74675ae4.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a68b463e039724b8508ae1b.webp",
+          "type": "Image",
           "url": "/files/shop/6a68b459c44bfb0e8100ce4b.webp"
         }
       ],
@@ -9920,9 +10838,10 @@
       "subtitleKey": "offer.6a58a327e02e6e9eb0767df7.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a68b68f03d420f5190645de.webp",
+          "type": "Image",
           "url": "/files/shop/6a68b685241352a2f80aba88.webp"
         }
       ],
@@ -9946,9 +10865,10 @@
       "subtitleKey": "offer.6a58a3615ab69ce9535dd036.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a68b6f1761c28c478007f79.webp",
+          "type": "Image",
           "url": "/files/shop/6a68b6e6231408b40801af5b.webp"
         }
       ],
@@ -9972,13 +10892,15 @@
       "subtitleKey": "offer.6a6342cb0c9b1cb867f470ac.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a63347189d309971007e75c.webp",
+          "type": "Image",
           "url": "/files/shop/6a633464f472e936a90192cf.webp"
         },
         {
           "thumbUrl": "/files/shop/6a63348de487b072ed098cb1.webp",
+          "type": "Image",
           "url": "/files/shop/6a633480f472e936a90192d0.webp"
         }
       ],
@@ -10023,13 +10945,15 @@
       "subtitleKey": "offer.6a6343dc50aeb5ede6659f37.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a6333cde487b072ed098cae.webp",
+          "type": "Image",
           "url": "/files/shop/6a6333c035e6ab73e40f662a.webp"
         },
         {
           "thumbUrl": "/files/shop/6a6333f1f75c13b82501e6f1.webp",
+          "type": "Image",
           "url": "/files/shop/6a6333de7429ffaebc01efce.webp"
         }
       ],
@@ -10074,21 +10998,25 @@
       "subtitleKey": "bundle.6a63456333e78899494ac198.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a63391f89d309971007e765.webp",
+          "type": "Image",
           "url": "/files/shop/6a63391367de0e2c7505bd13.webp"
         },
         {
           "thumbUrl": "/files/shop/6a633939e487b072ed098cb9.webp",
+          "type": "Image",
           "url": "/files/shop/6a63392ef472e936a90192d4.webp"
         },
         {
           "thumbUrl": "/files/shop/6a63394dc0c8a909e60e70a2.webp",
+          "type": "Image",
           "url": "/files/shop/6a633942d6692df41a0a70c3.webp"
         },
         {
           "thumbUrl": "/files/shop/6a63395dc0c8a909e60e70a3.webp",
+          "type": "Image",
           "url": "/files/shop/6a6339563e2bb67bb3018143.webp"
         }
       ],
@@ -10136,21 +11064,25 @@
       "subtitleKey": "bundle.6a6346b2964f57808d4971fc.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a6339b8f472e936a90192d6.webp",
+          "type": "Image",
           "url": "/files/shop/6a6339addf7cd68d410d1be2.webp"
         },
         {
           "thumbUrl": "/files/shop/6a6339d1f472e936a90192d7.webp",
+          "type": "Image",
           "url": "/files/shop/6a6339c6bfdc3ba598051295.webp"
         },
         {
           "thumbUrl": "/files/shop/6a6339e1c0c8a909e60e70a6.webp",
+          "type": "Image",
           "url": "/files/shop/6a6339d97429ffaebc01efdc.webp"
         },
         {
           "thumbUrl": "/files/shop/6a6339f489d309971007e76a.webp",
+          "type": "Image",
           "url": "/files/shop/6a6339ec7429ffaebc01efde.webp"
         }
       ],
@@ -10198,21 +11130,25 @@
       "subtitleKey": "bundle.69bc0c0e4f6c02392fbb086c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1d27d265ad89374103f314.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e3d2455536976308492d.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17188b983d1c278e0e9965.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e3e0db1231cce803fd75.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171892ecfc8a64e50832a4.webp",
+          "type": "Image",
           "url": "/files/shop/6a16f3ce7ff070eae30af6f0.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171883525bed1943038f77.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e3d93053171d50082101.webp"
         }
       ],
@@ -10283,21 +11219,25 @@
       "subtitleKey": "bundle.69bc0ea185fdc0bce2460424.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171847983d1c278e0e9964.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e5108f8a9121030e91f6.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17185983ba4813bb02c575.webp",
+          "type": "Image",
           "url": "/files/shop/6a16f3868f9a4b792b05eec4.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718623130a622050c4fd5.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e54733ec1d007100b038.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171851ecfc8a64e50832a3.webp",
+          "type": "Image",
           "url": "/files/shop/6a16f395392a2917530b378f.webp"
         }
       ],
@@ -10357,13 +11297,15 @@
       "subtitleKey": "offer.69c253161f04d10cf34403f0.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a15c354db1231cce803fd60.webp",
+          "type": "Image",
           "url": "/files/shop/6a17093f83ba4813bb02c550.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170980525bed1943038f53.webp",
+          "type": "Image",
           "url": "/files/shop/6a170948e7753b567f08a441.webp"
         }
       ],
@@ -10419,13 +11361,15 @@
       "subtitleKey": "offer.69c253a47dd2cbbc59470adc.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170a96525bed1943038f55.webp",
+          "type": "Image",
           "url": "/files/shop/6a170a7de7753b567f08a443.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170a9f983d1c278e0e9943.webp",
+          "type": "Image",
           "url": "/files/shop/6a15c5433053171d500820f1.webp"
         }
       ],
@@ -10481,13 +11425,15 @@
       "subtitleKey": "offer.69c253f7612208202bf08301.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170c3eecfc8a64e5083287.webp",
+          "type": "Image",
           "url": "/files/shop/6a170c28525bed1943038f5a.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170c4683ba4813bb02c558.webp",
+          "type": "Image",
           "url": "/files/shop/6a170c33983d1c278e0e9948.webp"
         }
       ],
@@ -10543,13 +11489,15 @@
       "subtitleKey": "offer.69c25470842fea1304b717c5.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170cb8525bed1943038f5c.webp",
+          "type": "Image",
           "url": "/files/shop/6a170ca483ba4813bb02c559.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170cc1983d1c278e0e994a.webp",
+          "type": "Image",
           "url": "/files/shop/6a170cade7753b567f08a44a.webp"
         }
       ],
@@ -10605,13 +11553,15 @@
       "subtitleKey": "offer.69c255276b5dc10551b6d21c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170b3883ba4813bb02c554.webp",
+          "type": "Image",
           "url": "/files/shop/6a170b20983d1c278e0e9944.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170b40e7753b567f08a445.webp",
+          "type": "Image",
           "url": "/files/shop/6a170b2becfc8a64e5083283.webp"
         }
       ],
@@ -10667,13 +11617,15 @@
       "subtitleKey": "offer.69c2555cc2a0bbc57a69c14f.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/69e8a5dadc6d9dd0ae053a5a.webp",
+          "type": "Image",
           "url": "/files/shop/69e8a648572d3435d30d479f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1705c1983d1c278e0e9938.webp",
+          "type": "Image",
           "url": "/files/shop/69e8a63c53d51ab54301c9a6.webp"
         }
       ],
@@ -10686,7 +11638,9 @@
           "type": "CUSTOMIZATION"
         }
       ],
-      "tags": [],
+      "tags": [
+        "HOT"
+      ],
       "relatedOffers": [
         {
           "id": "69c4078bdf5403103afa9b63",
@@ -10744,13 +11698,15 @@
       "subtitleKey": "offer.69c25876ceaae71964b3b3f7.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1707087a344ec0b50eec6b.webp",
+          "type": "Image",
           "url": "/files/shop/6a1706f93130a622050c4fab.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170722c6c280e0830fb33c.webp",
+          "type": "Image",
           "url": "/files/shop/6a1706e8e7ec645e1a0ddecc.webp"
         }
       ],
@@ -10806,13 +11762,15 @@
       "subtitleKey": "offer.69c402930cb21eae19bf5197.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1707fe2995c5ec4001c3d0.webp",
+          "type": "Image",
           "url": "/files/shop/6a1707f47a344ec0b50eec6e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1c518debd93a0b8c012805.webp",
+          "type": "Image",
           "url": "/files/shop/6a1707ec3130a622050c4fae.webp"
         }
       ],
@@ -10825,7 +11783,9 @@
           "type": "CUSTOMIZATION"
         }
       ],
-      "tags": [],
+      "tags": [
+        "HOT"
+      ],
       "relatedOffers": [
         {
           "id": "69c4081c734770f04793157a",
@@ -10868,13 +11828,15 @@
       "subtitleKey": "offer.69c4038e9e2eb2192b04c44d.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1c604a0a6a3dfe03004aa6.webp",
+          "type": "Image",
           "url": "/files/shop/6a15b89d3053171d500820d6.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171209ecfc8a64e508328d.webp",
+          "type": "Image",
           "url": "/files/shop/6a1711f8983d1c278e0e994e.webp"
         }
       ],
@@ -10930,13 +11892,15 @@
       "subtitleKey": "offer.69c403bfafffdac73300cb7c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1713e6983d1c278e0e9956.webp",
+          "type": "Image",
           "url": "/files/shop/6a1713d7e7753b567f08a456.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1713eeecfc8a64e5083295.webp",
+          "type": "Image",
           "url": "/files/shop/6a1713de525bed1943038f68.webp"
         }
       ],
@@ -10992,13 +11956,15 @@
       "subtitleKey": "offer.69c403e8410af9c067a9e887.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1714fde7753b567f08a45b.webp",
+          "type": "Image",
           "url": "/files/shop/6a1714eaecfc8a64e5083299.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1715092995c5ec4001c3ed.webp",
+          "type": "Image",
           "url": "/files/shop/6a1714f483ba4813bb02c56a.webp"
         }
       ],
@@ -11054,13 +12020,15 @@
       "subtitleKey": "offer.69c4044c4f8f26d286d6a507.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1715d0ecfc8a64e508329e.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715be525bed1943038f71.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1715d783ba4813bb02c570.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715c7983d1c278e0e995f.webp"
         }
       ],
@@ -11116,13 +12084,15 @@
       "subtitleKey": "offer.69c4053832fe5cd8cac32d9f.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17155e525bed1943038f6f.webp",
+          "type": "Image",
           "url": "/files/shop/6a17154c83ba4813bb02c56d.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171566983d1c278e0e995d.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715553130a622050c4fcd.webp"
         }
       ],
@@ -11178,13 +12148,15 @@
       "subtitleKey": "offer.69c40569b11c5c228397795a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a17125ce7753b567f08a450.webp",
+          "type": "Image",
           "url": "/files/shop/6a17124aecfc8a64e508328e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171262525bed1943038f62.webp",
+          "type": "Image",
           "url": "/files/shop/6a17125383ba4813bb02c55f.webp"
         }
       ],
@@ -11255,13 +12227,15 @@
       "subtitleKey": "offer.69c405a694d65b24a7a3c5c9.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1715883130a622050c4fce.webp",
+          "type": "Image",
           "url": "/files/shop/6a38eaaa4842684daf0064fe.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171590525bed1943038f70.webp",
+          "type": "Image",
           "url": "/files/shop/6a17157b83ba4813bb02c56e.webp"
         }
       ],
@@ -11317,13 +12291,15 @@
       "subtitleKey": "offer.69c405d1cfe145639b161021.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1715ab83ba4813bb02c56f.webp",
+          "type": "Image",
           "url": "/files/shop/6a17159b983d1c278e0e995e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1715b23130a622050c4fcf.webp",
+          "type": "Image",
           "url": "/files/shop/6a1715a2ecfc8a64e508329d.webp"
         }
       ],
@@ -11336,7 +12312,9 @@
           "type": "CUSTOMIZATION"
         }
       ],
-      "tags": [],
+      "tags": [
+        "HOT"
+      ],
       "relatedOffers": [
         {
           "id": "69c40a5891db1ce9aa53a40e",
@@ -11379,13 +12357,15 @@
       "subtitleKey": "offer.69c405ffa68cd9010a9c39ec.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171345983d1c278e0e9953.webp",
+          "type": "Image",
           "url": "/files/shop/6a17132de7753b567f08a453.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17134decfc8a64e5083292.webp",
+          "type": "Image",
           "url": "/files/shop/6a17133d525bed1943038f65.webp"
         }
       ],
@@ -11398,7 +12378,9 @@
           "type": "CUSTOMIZATION"
         }
       ],
-      "tags": [],
+      "tags": [
+        "HOT"
+      ],
       "relatedOffers": [
         {
           "id": "69c40a8a4b9521a3263414b7",
@@ -11441,13 +12423,15 @@
       "subtitleKey": "offer.69c4062bc34405c4ec3b3e4d.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1712b583ba4813bb02c561.webp",
+          "type": "Image",
           "url": "/files/shop/6a1712a0983d1c278e0e9951.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1712bde7753b567f08a452.webp",
+          "type": "Image",
           "url": "/files/shop/6a1712a8ecfc8a64e5083290.webp"
         }
       ],
@@ -11518,21 +12502,25 @@
       "subtitleKey": "bundle.69c4067eef1e04155694d061.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1718ab83ba4813bb02c576.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e2eeee72eb3f0d093f1a.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718bd525bed1943038f78.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e2fe33ec1d007100b036.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718c5983d1c278e0e9966.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e305c4887b5f2f0b1009.webp"
         },
         {
           "thumbUrl": "/files/shop/6a201bc74ea7d47d9c07de4c.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e2f58f8a9121030e91f4.webp"
         }
       ],
@@ -11603,21 +12591,25 @@
       "subtitleKey": "bundle.69c4071ac2fcf394f98af341.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1719ab3130a622050c4fd8.webp",
+          "type": "Image",
           "url": "/files/shop/6a16f475e90fe719370577a4.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1719c7983d1c278e0e9968.webp",
+          "type": "Image",
           "url": "/files/shop/6a17190d983d1c278e0e9967.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1719cfecfc8a64e50832a7.webp",
+          "type": "Image",
           "url": "/files/shop/6a103cd9c1c87a8bbe08eda9.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1719b5525bed1943038f7a.webp",
+          "type": "Image",
           "url": "/files/shop/6a17192983ba4813bb02c578.webp"
         }
       ],
@@ -11703,21 +12695,25 @@
       "subtitleKey": "bundle.69c407475a2023468598fb9e.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1719e083ba4813bb02c579.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d2839fe438dddde0a3a07.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1719f2525bed1943038f7b.webp",
+          "type": "Image",
           "url": "/files/shop/6a104ba9513a7bfd730af549.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1719f9983d1c278e0e9969.webp",
+          "type": "Image",
           "url": "/files/shop/6a104bb38a7f2d0c8b08a399.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1719e83130a622050c4fd9.webp",
+          "type": "Image",
           "url": "/files/shop/6a104b887647fe74de0a1fca.webp"
         }
       ],
@@ -11773,21 +12769,25 @@
       "subtitleKey": "bundle.69c407b7f280981081fd709a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171a3a983d1c278e0e996a.webp",
+          "type": "Image",
           "url": "/files/shop/69ef2e96fa03303c7f023a4b.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a4983ba4813bb02c57b.webp",
+          "type": "Image",
           "url": "/files/shop/69ef2ea95e46c6175a0bd3fd.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a513130a622050c4fdb.webp",
+          "type": "Image",
           "url": "/files/shop/6a2fee8a68086a81fb0c887e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171a41ecfc8a64e50832a9.webp",
+          "type": "Image",
           "url": "/files/shop/69ef2ea0bc548edc6b027e89.webp"
         }
       ],
@@ -11858,21 +12858,25 @@
       "subtitleKey": "bundle.69c4081c734770f04793157a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171a993130a622050c4fdc.webp",
+          "type": "Image",
           "url": "/files/shop/6a15df908f8a9121030e91f2.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171aac983d1c278e0e996c.webp",
+          "type": "Image",
           "url": "/files/shop/6a15dfa1c4887b5f2f0b1007.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171ab4ecfc8a64e50832ab.webp",
+          "type": "Image",
           "url": "/files/shop/6a15dfad8e6a1426b8064506.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171aa2525bed1943038f7e.webp",
+          "type": "Image",
           "url": "/files/shop/6a15df9833ec1d007100b034.webp"
         }
       ],
@@ -11951,21 +12955,25 @@
       "subtitleKey": "bundle.69c4089cabc9c53a11275bae.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171b2d983d1c278e0e996e.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e96bcab5f5d8f2030280.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b3b83ba4813bb02c57f.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e9d133ec1d007100b03c.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b413130a622050c4fdf.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e97eee72eb3f0d093f1f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b34ecfc8a64e50832ad.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e976de88c3270a013645.webp"
         }
       ],
@@ -12040,21 +13048,25 @@
       "subtitleKey": "bundle.69c408cae82732cc774e8e71.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171b5d525bed1943038f81.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e81adf0b32c7d30022d0.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b6eecfc8a64e50832ae.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e86a4555369763084931.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b7583ba4813bb02c580.webp",
+          "type": "Image",
           "url": "/files/shop/6a15e8733053171d50082105.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b67983d1c278e0e996f.webp",
+          "type": "Image",
           "url": "/files/shop/6a16ee3fcbbb1b466402842f.webp"
         }
       ],
@@ -12125,21 +13137,25 @@
       "subtitleKey": "bundle.69c408f5a000cccf427010e7.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171b843130a622050c4fe0.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fb818e6a1426b806450e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b93983d1c278e0e9970.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fb8f0bc40a22f30e0e10.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b9aecfc8a64e50832af.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fb9912a8f302b60483f3.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171b8b525bed1943038f82.webp",
+          "type": "Image",
           "url": "/files/shop/6a16ee7ce90fe7193705779f.webp"
         }
       ],
@@ -12195,21 +13211,25 @@
       "subtitleKey": "bundle.69c409719850154353f50f7c.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171beaecfc8a64e50832b0.webp",
+          "type": "Image",
           "url": "/files/shop/6a15ff39db1231cce803fd7f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171bf93130a622050c4fe2.webp",
+          "type": "Image",
           "url": "/files/shop/6a15ff55ee72eb3f0d093f25.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c00525bed1943038f84.webp",
+          "type": "Image",
           "url": "/files/shop/6a15ff5d8f8a9121030e9200.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171bf183ba4813bb02c582.webp",
+          "type": "Image",
           "url": "/files/shop/6a15ff490bc40a22f30e0e15.webp"
         }
       ],
@@ -12280,21 +13300,25 @@
       "subtitleKey": "bundle.69c409bf097ed54fb6bc0a33.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171c15983d1c278e0e9972.webp",
+          "type": "Image",
           "url": "/files/shop/6a16eed834e04846660a2ecd.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c377a344ec0b50eeca3.webp",
+          "type": "Image",
           "url": "/files/shop/6a16009012a8f302b60483fa.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c41983d1c278e0e9973.webp",
+          "type": "Image",
           "url": "/files/shop/6a160098ee72eb3f0d093f27.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c25e7ec645e1a0ddf04.webp",
+          "type": "Image",
           "url": "/files/shop/6a16eeeef2d21f02500a387d.webp"
         }
       ],
@@ -12365,21 +13389,25 @@
       "subtitleKey": "bundle.69c409f6498d5949208ef4ad.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171c52ecfc8a64e50832b3.webp",
+          "type": "Image",
           "url": "/files/shop/6a16010f8e6a1426b8064516.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c5f3130a622050c4fe5.webp",
+          "type": "Image",
           "url": "/files/shop/6a1601230bc40a22f30e0e17.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c66525bed1943038f86.webp",
+          "type": "Image",
           "url": "/files/shop/6a16012bde88c3270a01364e.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c5983ba4813bb02c584.webp",
+          "type": "Image",
           "url": "/files/shop/6a16ef0713b4ddf96a0729cd.webp"
         }
       ],
@@ -12450,21 +13478,25 @@
       "subtitleKey": "bundle.69c40a279000843bd02b4168.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171c76983d1c278e0e9974.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fc433053171d50082107.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c8983ba4813bb02c585.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fc56cab5f5d8f2030282.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c8f3130a622050c4fe6.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fc5fde88c3270a013647.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171c81ecfc8a64e50832b4.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fc4ddb1231cce803fd7b.webp"
         }
       ],
@@ -12550,21 +13582,25 @@
       "subtitleKey": "bundle.69c40a5891db1ce9aa53a40e.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171c9d525bed1943038f87.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fcf7c4887b5f2f0b1010.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cabecfc8a64e50832b5.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fd228e6a1426b8064510.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cb483ba4813bb02c586.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fd2c0bc40a22f30e0e12.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171ca4983d1c278e0e9975.webp",
+          "type": "Image",
           "url": "/files/shop/6a16ef2949c48b189905f6bd.webp"
         }
       ],
@@ -12639,21 +13675,25 @@
       "subtitleKey": "bundle.69c40a8a4b9521a3263414b7.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171cc33130a622050c4fe7.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fe6cc4887b5f2f0b1012.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cd1983d1c278e0e9976.webp",
+          "type": "Image",
           "url": "/files/shop/6a16ef408f9a4b792b05eebf.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cd9ecfc8a64e50832b6.webp",
+          "type": "Image",
           "url": "/files/shop/6a16ef55392a2917530b378c.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cca525bed1943038f88.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fe9f0bc40a22f30e0e14.webp"
         }
       ],
@@ -12717,21 +13757,25 @@
       "subtitleKey": "bundle.69c40ab1e01e7e3dcd59d12f.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171ce883ba4813bb02c587.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fdb83053171d50082109.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cf5525bed1943038f89.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fdc9cab5f5d8f2030284.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cfd983d1c278e0e9977.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fdd9de88c3270a013649.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171cef3130a622050c4fe8.webp",
+          "type": "Image",
           "url": "/files/shop/6a15fdc0db1231cce803fd7d.webp"
         }
       ],
@@ -12817,9 +13861,10 @@
       "subtitleKey": "offer.69c504f834ecb5f259c8fce3.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/69fdfc0b5edfc04eb20973fb.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d953fded5910b7c059d6a.webp"
         }
       ],
@@ -12844,13 +13889,15 @@
       "subtitleKey": "offer.6a1c5ef7371517e067ca1913.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a170d4f525bed1943038f5e.webp",
+          "type": "Image",
           "url": "/files/shop/6a170d14983d1c278e0e994b.webp"
         },
         {
           "thumbUrl": "/files/shop/6a170d57983d1c278e0e994c.webp",
+          "type": "Image",
           "url": "/files/shop/6a170d1becfc8a64e508328a.webp"
         }
       ],
@@ -12906,13 +13953,15 @@
       "subtitleKey": "offer.6a1c73efb7abe78d57d8d30b.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1716403130a622050c4fd2.webp",
+          "type": "Image",
           "url": "/files/shop/6a17161e525bed1943038f73.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171649525bed1943038f74.webp",
+          "type": "Image",
           "url": "/files/shop/6a171625983d1c278e0e9961.webp"
         }
       ],
@@ -12968,21 +14017,25 @@
       "subtitleKey": "bundle.6a1d79d7cbb0ac72696734de.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a171814ecfc8a64e50832a2.webp",
+          "type": "Image",
           "url": "/files/shop/6a1717ac983d1c278e0e9962.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1718273130a622050c4fd4.webp",
+          "type": "Image",
           "url": "/files/shop/6a1717b8ecfc8a64e50832a1.webp"
         },
         {
           "thumbUrl": "/files/shop/6a171830525bed1943038f76.webp",
+          "type": "Image",
           "url": "/files/shop/6a1717c483ba4813bb02c573.webp"
         },
         {
           "thumbUrl": "/files/shop/6a17181d83ba4813bb02c574.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d7b04fe438dddde0a3a15.webp"
         }
       ],
@@ -13053,21 +14106,25 @@
       "subtitleKey": "bundle.6a1d8783917b3e617ce0b0ea.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a1d86b52e2aec744f0854a2.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d86a265ad89374103f327.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1d86f0e12a578caf02a14d.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d86db6df2fe60da083026.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1d872008a77573de055a66.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d870cd76ddc3e1c0a8575.webp"
         },
         {
           "thumbUrl": "/files/shop/6a1d875512fefdff6609387c.webp",
+          "type": "Image",
           "url": "/files/shop/6a1d8736ded5910b7c059d67.webp"
         }
       ],
@@ -13123,7 +14180,7 @@
       "subtitleKey": "offer.6a4b7859733fdbb334057d5a.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [],
+      "additionalDemonstrationItems": [],
       "items": [
         {
           "customizationId": "690d4eda458927196f0775f8",
@@ -13145,13 +14202,15 @@
       "subtitleKey": "offer.6a633b6e135223d747796ad9.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a6335c3c0c8a909e60e7091.webp",
+          "type": "Image",
           "url": "/files/shop/6a6335b53e2bb67bb301813d.webp"
         },
         {
           "thumbUrl": "/files/shop/6a6335efbfdc3ba59805128d.webp",
+          "type": "Image",
           "url": "/files/shop/6a6335d57429ffaebc01efd2.webp"
         }
       ],
@@ -13196,13 +14255,15 @@
       "subtitleKey": "offer.6a63406253099ed87f52dd89.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a63352ef472e936a90192d1.webp",
+          "type": "Image",
           "url": "/files/shop/6a633524f45e39a93c0de045.webp"
         },
         {
           "thumbUrl": "/files/shop/6a633561e487b072ed098cb4.webp",
+          "type": "Image",
           "url": "/files/shop/6a633547a4491176da0231b9.webp"
         }
       ],
@@ -13247,7 +14308,7 @@
       "subtitleKey": "offer.6a831e000a66a685a19ace26.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [],
+      "additionalDemonstrationItems": [],
       "items": [
         {
           "customizationId": "6a86df2254304bc4eb06c37a",
@@ -13269,7 +14330,7 @@
       "subtitleKey": "offer.6a831ed7d79cf92819f74c87.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [],
+      "additionalDemonstrationItems": [],
       "items": [
         {
           "customizationId": "6a86df54697fb20fa70d37bd",
@@ -13291,7 +14352,7 @@
       "subtitleKey": "offer.6a831f1cd966101253d2d45f.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [],
+      "additionalDemonstrationItems": [],
       "items": [
         {
           "customizationId": "6a86de41697fb20fa70d37b8",
@@ -13313,33 +14374,40 @@
       "subtitleKey": "bundle.6a96bfbd206a3a67556896fe.subtitle",
       "purchaseMethod": "INTERNAL_CURRENCY",
       "countable": false,
-      "detailImages": [
+      "additionalDemonstrationItems": [
         {
           "thumbUrl": "/files/shop/6a9984b7153618595f056455.webp",
+          "type": "Image",
           "url": "/files/shop/6a9983a2840647b9c40f868c.webp"
         },
         {
           "thumbUrl": "/files/shop/6a9984c870a8af3bde01e765.webp",
+          "type": "Image",
           "url": "/files/shop/6a9983b42f68b5abe90a412f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a9984d21dded1ccdb099c93.webp",
+          "type": "Image",
           "url": "/files/shop/6a9983ce04b62cfec906af9f.webp"
         },
         {
           "thumbUrl": "/files/shop/6a9984de62a0b5ba86076120.webp",
+          "type": "Image",
           "url": "/files/shop/6a9983e4c78f78492d010301.webp"
         },
         {
           "thumbUrl": "/files/shop/6a9984e9840647b9c40f868e.webp",
+          "type": "Image",
           "url": "/files/shop/6a9983d7ab5f11511503e227.webp"
         },
         {
           "thumbUrl": "/files/shop/6a9984f32f68b5abe90a4131.webp",
+          "type": "Image",
           "url": "/files/shop/6a998400f9978c298f09f882.webp"
         },
         {
           "thumbUrl": "/files/shop/6a99864904b62cfec906afa1.webp",
+          "type": "Image",
           "url": "/files/shop/6a9983f643d6b51800005439.webp"
         }
       ],
@@ -13364,6 +14432,368 @@
         }
       ],
       "tags": [],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6abe5a23e16b19a11d6865d4",
+      "nameKey": "offer.6abe5a23e16b19a11d6865d4.name",
+      "descriptionKey": "offer.6abe5a23e16b19a11d6865d4.description",
+      "subtitleKey": "offer.6abe5a23e16b19a11d6865d4.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "imageUrl": "/files/shop/6abd12d58436a5a211091f0f.webp",
+          "sound": "Usec_09_Tony",
+          "thumbUrl": "/files/shop/6abf8e0586b66ad9ae069fe5.png",
+          "type": "Sound"
+        }
+      ],
+      "items": [
+        {
+          "customizationId": "6a1d7767b27e39cbd4054a37",
+          "customizationType": "voice",
+          "isApplyOnce": false,
+          "persistAfterWipe": true,
+          "type": "CUSTOMIZATION"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6abe5f0a431a09e79b1a0c11",
+      "nameKey": "offer.6abe5f0a431a09e79b1a0c11.name",
+      "descriptionKey": "offer.6abe5f0a431a09e79b1a0c11.description",
+      "subtitleKey": "offer.6abe5f0a431a09e79b1a0c11.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "imageUrl": "/files/shop/6abd13744eb3e59720080417.webp",
+          "sound": "Bear_07_Den",
+          "thumbUrl": "/files/shop/6abfc4274cb855f7a001f70f.png",
+          "type": "Sound"
+        }
+      ],
+      "items": [
+        {
+          "customizationId": "6abc1725b750ab704b028037",
+          "customizationType": "voice",
+          "isApplyOnce": false,
+          "persistAfterWipe": true,
+          "type": "CUSTOMIZATION"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6aba35c1d683d3d6cac7ba93",
+      "nameKey": "offer.6aba35c1d683d3d6cac7ba93.name",
+      "descriptionKey": "offer.6aba35c1d683d3d6cac7ba93.description",
+      "subtitleKey": "offer.6aba35c1d683d3d6cac7ba93.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "thumbUrl": "/files/shop/6abbb84c6cb28d7321001f6e.webp",
+          "type": "Image",
+          "url": "/files/shop/6abbb8812cc5a0df8902e770.webp"
+        }
+      ],
+      "items": [
+        {
+          "gameRewardConfig": {
+            "availableInGameEditions": [],
+            "deliverByMail": true,
+            "findInRaid": false,
+            "gameMode": [
+              "pve"
+            ],
+            "id": "6aba609cda756693fafe378e",
+            "illustration": {
+              "icon": "",
+              "image": ""
+            },
+            "index": 0,
+            "isEncoded": false,
+            "props": {
+              "isImportant": false
+            },
+            "target": "5449016a4bdc2d6f028b456f",
+            "type": "Item",
+            "unknown": false,
+            "value": 5000000
+          },
+          "isApplyOnce": false,
+          "persistAfterWipe": false,
+          "type": "GAME_REWARD"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6aba620b4adb11a2d146b589",
+      "nameKey": "offer.6aba620b4adb11a2d146b589.name",
+      "descriptionKey": "offer.6aba620b4adb11a2d146b589.description",
+      "subtitleKey": "offer.6aba620b4adb11a2d146b589.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "thumbUrl": "/files/shop/6abbb88edfde7372b70ac8e0.webp",
+          "type": "Image",
+          "url": "/files/shop/6abbb8b9d39ee2481a05230d.webp"
+        }
+      ],
+      "items": [
+        {
+          "gameRewardConfig": {
+            "availableInGameEditions": [],
+            "deliverByMail": true,
+            "findInRaid": false,
+            "gameMode": [
+              "pve"
+            ],
+            "id": "6aba62960da5807803b08a3a",
+            "illustration": {
+              "icon": "",
+              "image": ""
+            },
+            "index": 0,
+            "isEncoded": false,
+            "props": {
+              "isImportant": false
+            },
+            "target": "5449016a4bdc2d6f028b456f",
+            "type": "Item",
+            "unknown": false,
+            "value": 10000000
+          },
+          "isApplyOnce": false,
+          "persistAfterWipe": false,
+          "type": "GAME_REWARD"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6aba62d265ef794de733f1ad",
+      "nameKey": "offer.6aba62d265ef794de733f1ad.name",
+      "descriptionKey": "offer.6aba62d265ef794de733f1ad.description",
+      "subtitleKey": "offer.6aba62d265ef794de733f1ad.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "thumbUrl": "/files/shop/6abbb8c6dc0b2e0a4107091c.webp",
+          "type": "Image",
+          "url": "/files/shop/6abbb91bbf12f476970aed1f.webp"
+        }
+      ],
+      "items": [
+        {
+          "gameRewardConfig": {
+            "availableInGameEditions": [],
+            "deliverByMail": true,
+            "findInRaid": false,
+            "gameMode": [
+              "pve"
+            ],
+            "id": "6aba631bbfaa017df096d832",
+            "illustration": {
+              "icon": "",
+              "image": ""
+            },
+            "index": 0,
+            "isEncoded": false,
+            "props": {
+              "isImportant": false
+            },
+            "target": "5449016a4bdc2d6f028b456f",
+            "type": "Item",
+            "unknown": false,
+            "value": 25000000
+          },
+          "isApplyOnce": false,
+          "persistAfterWipe": false,
+          "type": "GAME_REWARD"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6aba637a78fdfa8b1bcb1e65",
+      "nameKey": "offer.6aba637a78fdfa8b1bcb1e65.name",
+      "descriptionKey": "offer.6aba637a78fdfa8b1bcb1e65.description",
+      "subtitleKey": "offer.6aba637a78fdfa8b1bcb1e65.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "thumbUrl": "/files/shop/6abbb928ee5f8ca06502608e.webp",
+          "type": "Image",
+          "url": "/files/shop/6abbb945dfde7372b70ac8e2.webp"
+        }
+      ],
+      "items": [
+        {
+          "gameRewardConfig": {
+            "availableInGameEditions": [],
+            "deliverByMail": true,
+            "findInRaid": false,
+            "gameMode": [
+              "pve"
+            ],
+            "id": "6aba63ebf0c4ebd63dc5e2b6",
+            "illustration": {
+              "icon": "",
+              "image": ""
+            },
+            "index": 0,
+            "isEncoded": false,
+            "props": {
+              "isImportant": false
+            },
+            "target": "5449016a4bdc2d6f028b456f",
+            "type": "Item",
+            "unknown": false,
+            "value": 50000000
+          },
+          "isApplyOnce": false,
+          "persistAfterWipe": false,
+          "type": "GAME_REWARD"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6aba64032f5913a4b6345841",
+      "nameKey": "offer.6aba64032f5913a4b6345841.name",
+      "descriptionKey": "offer.6aba64032f5913a4b6345841.description",
+      "subtitleKey": "offer.6aba64032f5913a4b6345841.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "thumbUrl": "/files/shop/6abbb950f167e921b40955e3.webp",
+          "type": "Image",
+          "url": "/files/shop/6abbb96edc0b2e0a4107091e.webp"
+        }
+      ],
+      "items": [
+        {
+          "gameRewardConfig": {
+            "availableInGameEditions": [],
+            "deliverByMail": true,
+            "findInRaid": false,
+            "gameMode": [
+              "pve"
+            ],
+            "id": "6aba643eef7592b05412d384",
+            "illustration": {
+              "icon": "",
+              "image": ""
+            },
+            "index": 0,
+            "isEncoded": false,
+            "props": {
+              "isImportant": false
+            },
+            "target": "5449016a4bdc2d6f028b456f",
+            "type": "Item",
+            "unknown": false,
+            "value": 100000000
+          },
+          "isApplyOnce": false,
+          "persistAfterWipe": false,
+          "type": "GAME_REWARD"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
+      "relatedOffers": [],
+      "showBundleComposition": false,
+      "showRelatedOffers": false
+    },
+    {
+      "id": "6aba66869b516ba00b859031",
+      "nameKey": "offer.6aba66869b516ba00b859031.name",
+      "descriptionKey": "offer.6aba66869b516ba00b859031.description",
+      "subtitleKey": "offer.6aba66869b516ba00b859031.subtitle",
+      "purchaseMethod": "INTERNAL_CURRENCY",
+      "countable": false,
+      "additionalDemonstrationItems": [
+        {
+          "thumbUrl": "/files/shop/6abbb978860bef30f306cd92.webp",
+          "type": "Image",
+          "url": "/files/shop/6abbb9a7ee5f8ca065026090.webp"
+        }
+      ],
+      "items": [
+        {
+          "gameRewardConfig": {
+            "availableInGameEditions": [],
+            "deliverByMail": true,
+            "findInRaid": false,
+            "gameMode": [
+              "pve"
+            ],
+            "id": "6aba66b0b1a6a7ac965ba617",
+            "illustration": {
+              "icon": "",
+              "image": ""
+            },
+            "index": 0,
+            "isEncoded": false,
+            "props": {
+              "isImportant": false
+            },
+            "target": "5449016a4bdc2d6f028b456f",
+            "type": "Item",
+            "unknown": false,
+            "value": 250000000
+          },
+          "isApplyOnce": false,
+          "persistAfterWipe": false,
+          "type": "GAME_REWARD"
+        }
+      ],
+      "tags": [
+        "NEW"
+      ],
       "relatedOffers": [],
       "showBundleComposition": false,
       "showRelatedOffers": false
@@ -13723,7 +15153,7 @@
     {
       "id": "69c50372e275437e6a8f4c26",
       "amount": 3000,
-      "amountWithDiscount": 3000,
+      "amountWithDiscount": 2550,
       "multiplier": 1,
       "status": "AVAILABLE"
     },
@@ -14256,6 +15686,62 @@
       "id": "6a831f1cd966101253d2d45f",
       "amount": 300,
       "amountWithDiscount": 300,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6abe5a23e16b19a11d6865d4",
+      "amount": 1000,
+      "amountWithDiscount": 1000,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6abe5f0a431a09e79b1a0c11",
+      "amount": 1000,
+      "amountWithDiscount": 1000,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6aba66869b516ba00b859031",
+      "amount": 6250,
+      "amountWithDiscount": 6250,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6aba62d265ef794de733f1ad",
+      "amount": 1125,
+      "amountWithDiscount": 1125,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6aba64032f5913a4b6345841",
+      "amount": 3500,
+      "amountWithDiscount": 3500,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6aba35c1d683d3d6cac7ba93",
+      "amount": 250,
+      "amountWithDiscount": 250,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6aba637a78fdfa8b1bcb1e65",
+      "amount": 2000,
+      "amountWithDiscount": 2000,
+      "multiplier": 1,
+      "status": "AVAILABLE"
+    },
+    {
+      "id": "6aba620b4adb11a2d146b589",
+      "amount": 475,
+      "amountWithDiscount": 475,
       "multiplier": 1,
       "status": "AVAILABLE"
     }
@@ -16177,7 +17663,56 @@
       "offer.6a8d5c38ab7868caa005f32a.description": "",
       "offer.6a8d5c38ab7868caa005f32a.name": "",
       "offer.6a8d5c38ab7868caa005f32a.subtitle": "",
-      "page.6a96c0b6beb5dfcb530f946a.name": ""
+      "page.6a96c0b6beb5dfcb530f946a.name": "",
+      "common.notification.payProCheckoutUrlError.detail": "Too many purchase attempts. Try again in 1 minute.",
+      "common.notification.payProCheckoutUrlError.summary": "Error",
+      "common.notification.xsollaTokenError.detail": "Too many attempts. Try again in 1 minute.",
+      "common.notification.xsollaTokenError.summary": "Error",
+      "discount.6ac38e2b5afeec91f90637ac.description": "",
+      "discount.6ac38e2b5afeec91f90637ac.name": "",
+      "menu.6aba6724649ebc4992dfa8d0.name": "PVE Upgrade",
+      "menu.6aba674ac3f514e6fa19963c.name": "In-game currency",
+      "menu.6abcf8b41b2c7977d8915054.name": "In-game currency",
+      "menu.6abcf98777f3ce13a15b8e9a.name": "PVE Upgrade",
+      "offer.6aba35c1d683d3d6cac7ba93.additionalSubtitle": "",
+      "offer.6aba35c1d683d3d6cac7ba93.additionalSubtitleLabel": "",
+      "offer.6aba35c1d683d3d6cac7ba93.description": "Get 5,000,000 roubles to use on your PvE character.\n\nThe currency will be sent via in-game messages after purchase.\n\n● Available only for PvE characters\n● Cannot be purchased for Main or Seasonal PvP characters\n● Lost if the PvE character is wiped",
+      "offer.6aba35c1d683d3d6cac7ba93.name": "5 000 000 RUB",
+      "offer.6aba35c1d683d3d6cac7ba93.subtitle": "In-game currency for your PvE character",
+      "offer.6aba60baea1d98ecc3ae5948.name": "",
+      "offer.6aba620b4adb11a2d146b589.additionalSubtitleLabel": "Save 5%",
+      "offer.6aba620b4adb11a2d146b589.description": "Get 10,000,000 roubles to use on your PvE character.\n\nComes with a 5% discount.\n\nThe currency will be sent via in-game messages after purchase.\n\n● Available only for PvE characters\n● Cannot be purchased for Main or Seasonal PvP characters\n● Lost if the PvE character is wiped",
+      "offer.6aba620b4adb11a2d146b589.name": "10 000 000 RUB",
+      "offer.6aba620b4adb11a2d146b589.subtitle": "In-game currency for your PvE character",
+      "offer.6aba62d265ef794de733f1ad.additionalSubtitleLabel": "Save 10%",
+      "offer.6aba62d265ef794de733f1ad.description": "Get 25,000,000 roubles to use on your PvE character.\n\nComes with a 10% discount.\n\nThe currency will be sent via in-game messages after purchase.\n\n● Available only for PvE characters\n● Cannot be purchased for Main or Seasonal PvP characters\n● Lost if the PvE character is wiped",
+      "offer.6aba62d265ef794de733f1ad.name": "25 000 000 RUB",
+      "offer.6aba62d265ef794de733f1ad.subtitle": "In-game currency for your PvE character",
+      "offer.6aba637a78fdfa8b1bcb1e65.additionalSubtitleLabel": "Save 20%",
+      "offer.6aba637a78fdfa8b1bcb1e65.description": "Get 50,000,000 roubles to use on your PvE character.\n\nComes with a 20% discount.\n\nThe currency will be sent via in-game messages after purchase.\n\n● Available only for PvE characters\n● Cannot be purchased for Main or Seasonal PvP characters\n● Lost if the PvE character is wiped",
+      "offer.6aba637a78fdfa8b1bcb1e65.name": "50 000 000 RUB",
+      "offer.6aba637a78fdfa8b1bcb1e65.subtitle": "In-game currency for your PvE character",
+      "offer.6aba64032f5913a4b6345841.additionalSubtitleLabel": "Save 30%",
+      "offer.6aba64032f5913a4b6345841.description": "Get 100,000,000 roubles to use on your PvE character.\n\nComes with a 30% discount.\n\nThe currency will be sent via in-game messages after purchase.\n\n● Available only for PvE characters\n● Cannot be purchased for Main or Seasonal PvP characters\n● Lost if the PvE character is wiped",
+      "offer.6aba64032f5913a4b6345841.name": "100 000 000 RUB",
+      "offer.6aba64032f5913a4b6345841.subtitle": "In-game currency for your PvE character",
+      "offer.6aba64c3868e4cb8ff6dbda5.name": "",
+      "offer.6aba66869b516ba00b859031.additionalSubtitleLabel": "Save 50%",
+      "offer.6aba66869b516ba00b859031.description": "Get 250,000,000 roubles to use on your PvE character.\n\nComes with a 50% discount.\n\nThe currency will be sent via in-game messages after purchase.\n\n● Available only for PvE characters\n● Cannot be purchased for Main or Seasonal PvP characters\n● Lost if the PvE character is wiped",
+      "offer.6aba66869b516ba00b859031.name": "250 000 000 RUB",
+      "offer.6aba66869b516ba00b859031.subtitle": "In-game currency for your PvE character",
+      "offer.6abe5a23e16b19a11d6865d4.additionalSubtitle": "",
+      "offer.6abe5a23e16b19a11d6865d4.additionalSubtitleLabel": "",
+      "offer.6abe5a23e16b19a11d6865d4.description": "A unique PMC voice pack for the USEC faction, featuring the voice of Tony, an Escape from Tarkov player and fan.\n\nThe voice captures Tony's character, combining American slang and Spanish flair with lively improvisation and vivid lines that make the voice truly distinctive.\n\nThe voice pack is recorded in English.\n\n● Intended for USEC characters;  \n● Activated immediately after purchase;  \n● The purchase is tied to the account and persists even after a character profile wipe.",
+      "offer.6abe5a23e16b19a11d6865d4.name": "USEC Voice Pack \"Tony\"",
+      "offer.6abe5a23e16b19a11d6865d4.subtitle": "An expressive voice with a Spanish flair",
+      "offer.6abe5f0a431a09e79b1a0c11.additionalSubtitle": "",
+      "offer.6abe5f0a431a09e79b1a0c11.additionalSubtitleLabel": "",
+      "offer.6abe5f0a431a09e79b1a0c11.description": "A unique PMC voice pack for the BEAR faction, featuring the voice of Den, the head of BSG's graphic design department and one of the main characters in Chronicles of Ryzhy, an Escape from Tarkov live action YouTube series.\n\nThe voice captures Den's character and features signature references, recognizable lines from Chronicles of Ryzhy, and profanity, adding a new personality to your BEAR.\n\nThe voice pack is recorded in Russian.\n\n● Intended for BEAR characters;  \n● Activated immediately after purchase;  \n● The purchase is tied to the account and persists even after a character profile wipe.",
+      "offer.6abe5f0a431a09e79b1a0c11.name": "BEAR Voice Pack \"Den\"",
+      "offer.6abe5f0a431a09e79b1a0c11.subtitle": "A voice of a character from Chronicles of Ryzhy",
+      "page.6aba66cea545e59aefec2492.name": "",
+      "pages.main.pveEmptyState": "Available for purchase \nin PVE Zone only"
     },
     "ch": {
       "bundle.69a849d25851b48ed23cf81f.description": "",

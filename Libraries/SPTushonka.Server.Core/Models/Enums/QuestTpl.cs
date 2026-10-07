@@ -517,4 +517,9 @@ public static class QuestTpl
     public static readonly MongoId FOG_OF_WAR = new MongoId("6a7637fed31fb1191903fc07");
     public static readonly MongoId HONEST_REVIEW = new MongoId("6a764077161e4b45b101566e");
     public static readonly MongoId PAY_THE_FARE = new MongoId("6a8b8266f47489e5720a63b7");
+    public static readonly MongoId INVASIVE_THERAPY = new MongoId("6a7ae35b2dbf91eb050af95a");
+    public static readonly MongoId AKIMBO = new MongoId("6a7af2e48fddc3979d0510b8");
+    public static readonly MongoId STIMULATING_DEMAND = new MongoId("6a7aef2360157cb5e3029a5f");
+    public static readonly MongoId IM_SOMETHING_OF_A_BTR_MYSELF = new MongoId("6a76457a80a94c0cbf0b07ae");
+    public static readonly MongoId SISYPHUS = new MongoId("6a7b0df31ea00c9a980e2742");
 }

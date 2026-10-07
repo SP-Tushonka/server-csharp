@@ -275,19 +275,19 @@
     }
 
     /// <summary>
-    ///     Get the offer's detail images, or the tile banner when the offer has no catalog entry
+    ///     Get the offer's demonstration items, or the tile banner when the offer has no catalog entry
     /// </summary>
-    /// <returns>Images for the gallery</returns>
-    private List<ShopDetailImage> GalleryImages()
+    /// <returns>Entries for the gallery</returns>
+    private List<ShopDemonstrationItem> GalleryImages()
     {
-        if (Offer is not null && Offer.DetailImages.Count > 0)
+        if (Offer is not null && Offer.DemonstrationItems.Count > 0)
         {
-            return Offer.DetailImages;
+            return Offer.DemonstrationItems;
         }
 
         var banner = Block.PurchasePopupImage ?? Block.Images.FirstOrDefault();
 
-        return banner is null ? [] : [new ShopDetailImage { Url = banner, ThumbUrl = banner }];
+        return banner is null ? [] : [new ShopDemonstrationItem { Url = banner, ThumbUrl = banner }];
     }
 
     private static string TabState(int count, bool active)

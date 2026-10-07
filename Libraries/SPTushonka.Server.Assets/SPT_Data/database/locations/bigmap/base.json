@@ -3,21 +3,21 @@
     {
       "AirdropPointDeactivateDistance": 50,
       "MinPlayersCountToSpawnAirdrop": 1,
-      "PlaneAirdropChance": 0.2,
-      "PlaneAirdropCooldownMax": 700,
-      "PlaneAirdropCooldownMin": 600,
-      "PlaneAirdropEnd": 1200,
-      "PlaneAirdropMax": 5,
-      "PlaneAirdropStartMax": 900,
-      "PlaneAirdropStartMin": 300,
-      "UnsuccessfulTryPenalty": 600
+      "PlaneAirdropChance": 0.15,
+      "PlaneAirdropCooldownMax": 900,
+      "PlaneAirdropCooldownMin": 780,
+      "PlaneAirdropEnd": 1500,
+      "PlaneAirdropMax": 2,
+      "PlaneAirdropStartMax": 600,
+      "PlaneAirdropStartMin": 180,
+      "UnsuccessfulTryPenalty": 300
     }
   ],
   "BossLocationSpawn": [
     {
       "BossChance": 75,
       "BossDifficult": "normal",
-      "BossEscortAmount": "4",
+      "BossEscortAmount": "2,3,4,4",
       "BossEscortDifficult": "normal",
       "BossEscortType": "followerBully",
       "BossName": "bossBully",
@@ -145,9 +145,84 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 100,
+      "BossDifficult": "easy",
+      "BossEscortAmount": "1",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneOldAZS,ZoneDormitory",
+      "Delay": 0,
+      "DependKarma": false,
+      "DependKarmaPVE": false,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 80,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,2,2,2,1,1,1,1,1,0",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneDormitory,ZoneGasStation,ZoneOldAZS,ZoneScavBase",
+      "Delay": 0,
+      "DependKarma": false,
+      "DependKarmaPVE": false,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 80,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "ZoneDormitory,ZoneGasStation,ZoneOldAZS,ZoneScavBase",
+      "Delay": 0,
+      "DependKarma": false,
+      "DependKarmaPVE": false,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 60,
+      "BossDifficult": "easy",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
@@ -156,7 +231,7 @@
       "Delay": 0,
       "DependKarma": false,
       "DependKarmaPVE": false,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -170,18 +245,18 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,2,2,2,1,1,1,1,1,0,2",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
-      "BossEscortType": "pmcBEAR",
-      "BossName": "pmcBEAR",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
       "BossPlayer": false,
-      "BossZone": "",
+      "BossZone": "ZoneFactorySide,ZoneWade",
       "Delay": 0,
       "DependKarma": false,
       "DependKarmaPVE": false,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -195,18 +270,18 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 80,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,2,2,2,1,1,1,1,1,0,2,3",
+      "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
-      "BossEscortType": "pmcBEAR",
-      "BossName": "pmcBEAR",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
       "BossPlayer": false,
-      "BossZone": "",
+      "BossZone": "ZoneCustoms,ZoneFactorySide,ZoneWade,ZoneBlockPost",
       "Delay": 0,
       "DependKarma": false,
       "DependKarmaPVE": false,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -220,9 +295,34 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 50,
+      "BossChance": 80,
+      "BossDifficult": "hard",
+      "BossEscortAmount": "0",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "pmcUSEC",
+      "BossName": "pmcUSEC",
+      "BossPlayer": false,
+      "BossZone": "ZoneCustoms,ZoneFactorySide,ZoneWade,ZoneBlockPost",
+      "Delay": 0,
+      "DependKarma": false,
+      "DependKarmaPVE": false,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
+      "BossChance": 60,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0",
+      "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
@@ -231,57 +331,7 @@
       "Delay": 0,
       "DependKarma": false,
       "DependKarmaPVE": false,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,2,2,2,1,1,1,1,1,0,2",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "pmcUSEC",
-      "BossName": "pmcUSEC",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "DependKarma": false,
-      "DependKarmaPVE": false,
-      "ForceSpawn": false,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 50,
-      "BossDifficult": "normal",
-      "BossEscortAmount": "0,0,2,2,2,1,1,1,1,1,0,2,3",
-      "BossEscortDifficult": "normal",
-      "BossEscortType": "pmcUSEC",
-      "BossName": "pmcUSEC",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "DependKarma": false,
-      "DependKarmaPVE": false,
-      "ForceSpawn": false,
+      "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
       "ShowOnTarkovMap": false,
@@ -328,20 +378,19 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla",
-          "assaultGroup"
+          "followerTagilla"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 80,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 80,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 25,
             "Role": "pmcUSEC"
           }
         ],
@@ -350,7 +399,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "marksman"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -391,20 +441,19 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla",
-          "assaultGroup"
+          "followerTagilla"
         ],
         "ChancedEnemies": [
           {
-            "EnemyChance": 100,
+            "EnemyChance": 80,
             "Role": "assault"
           },
           {
-            "EnemyChance": 100,
-            "Role": "marksman"
+            "EnemyChance": 80,
+            "Role": "assaultGroup"
           },
           {
-            "EnemyChance": 75,
+            "EnemyChance": 25,
             "Role": "pmcBEAR"
           },
           {
@@ -421,7 +470,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "marksman"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -444,7 +494,6 @@
         ],
         "AlwaysFriends": [
           "assault",
-          "assaultGroup",
           "marksman",
           "peacefullZryachiyEvent",
           "ravangeZryachiyEvent",
@@ -463,10 +512,6 @@
       },
       {
         "BotRole": "assault",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -487,15 +532,15 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
       {
         "BotRole": "assaultGroup",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
         "AlwaysFriends": [
           "bossKilla",
           "marksman",
@@ -516,6 +561,10 @@
           "followerBigPipe",
           "followerBirdEye",
           "followerBully"
+        ],
+        "Neutral": [
+          "pmcUSEC",
+          "pmcBEAR"
         ],
         "SavagePlayerBehaviour": "Neutral"
       }
@@ -10425,28 +10474,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "Crossroads",
-      "PassageRequirement": "None",
-      "PlayersCount": 0,
-      "PlayersCountPVE": 0,
-      "RequirementTip": ""
-    },
-    {
-      "Chance": 50,
-      "ChancePVE": 50,
-      "Count": 0,
-      "CountPVE": 0,
-      "EntryPoints": "Boiler Tanks",
-      "EventAvailable": false,
-      "ExfiltrationTime": 8,
-      "ExfiltrationTimePVE": 8,
-      "ExfiltrationType": "Individual",
-      "Id": "",
-      "MaxTime": 0,
-      "MaxTimePVE": 0,
-      "MinTime": 0,
-      "MinTimePVE": 0,
-      "Name": "Smuggler's Boat",
+      "Name": "ex_customs_pmc_crossroads",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10467,28 +10495,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "RUAF Roadblock",
-      "PassageRequirement": "None",
-      "PlayersCount": 0,
-      "PlayersCountPVE": 0,
-      "RequirementTip": ""
-    },
-    {
-      "Chance": 50,
-      "ChancePVE": 50,
-      "Count": 0,
-      "CountPVE": 0,
-      "EntryPoints": "Customs",
-      "EventAvailable": false,
-      "ExfiltrationTime": 8,
-      "ExfiltrationTimePVE": 8,
-      "ExfiltrationType": "Individual",
-      "Id": "",
-      "MaxTime": 0,
-      "MaxTimePVE": 0,
-      "MinTime": 0,
-      "MinTimePVE": 0,
-      "Name": "ZB-1012",
+      "Name": "ex_customs_pmc_trailerpark",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10509,7 +10516,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "ZB-1011",
+      "Name": "ex_customs_pmc_zb1011",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10520,17 +10527,17 @@
       "ChancePVE": 100,
       "Count": 0,
       "CountPVE": 0,
-      "EntryPoints": "Boiler Tanks",
+      "EntryPoints": "Customs",
       "EventAvailable": false,
-      "ExfiltrationTime": 8,
-      "ExfiltrationTimePVE": 8,
+      "ExfiltrationTime": 0,
+      "ExfiltrationTimePVE": 0,
       "ExfiltrationType": "Individual",
       "Id": "",
       "MaxTime": 0,
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "Trailer Park",
+      "Name": "ex_customs_pmc_rail_milbase",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10551,7 +10558,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "Old Gas Station",
+      "Name": "ex_customs_pmc_gasstation",
       "PassageRequirement": "None",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10560,8 +10567,8 @@
     {
       "Chance": 50,
       "ChancePVE": 50,
-      "Count": 5000,
-      "CountPVE": 5000,
+      "Count": 20000,
+      "CountPVE": 20000,
       "EntryPoints": "Customs,Boiler Tanks",
       "EventAvailable": false,
       "ExfiltrationTime": 60,
@@ -10572,7 +10579,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "Dorms V-Ex",
+      "Name": "ex_customs_pmc_auto",
       "PassageRequirement": "TransferItem",
       "PlayersCount": 4,
       "PlayersCountPVE": 4,
@@ -10593,7 +10600,28 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "EXFIL_ZB013",
+      "Name": "ex_customs_pmc_flare",
+      "PassageRequirement": "None",
+      "PlayersCount": 0,
+      "PlayersCountPVE": 0,
+      "RequirementTip": ""
+    },
+    {
+      "Chance": 100,
+      "ChancePVE": 100,
+      "Count": 0,
+      "CountPVE": 0,
+      "EntryPoints": "Customs,Boiler Tanks",
+      "EventAvailable": false,
+      "ExfiltrationTime": 8,
+      "ExfiltrationTimePVE": 8,
+      "ExfiltrationType": "Individual",
+      "Id": "",
+      "MaxTime": 0,
+      "MaxTimePVE": 0,
+      "MinTime": 0,
+      "MinTimePVE": 0,
+      "Name": "ex_customs_pmc_zb1013",
       "PassageRequirement": "WorldEvent",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10614,28 +10642,7 @@
       "MaxTimePVE": 0,
       "MinTime": 0,
       "MinTimePVE": 0,
-      "Name": "customs_sniper_exit",
-      "PassageRequirement": "None",
-      "PlayersCount": 0,
-      "PlayersCountPVE": 0,
-      "RequirementTip": ""
-    },
-    {
-      "Chance": 100,
-      "ChancePVE": 100,
-      "Count": 0,
-      "CountPVE": 0,
-      "EntryPoints": " Customs,Boiler Tanks",
-      "EventAvailable": false,
-      "ExfiltrationTime": 8,
-      "ExfiltrationTimePVE": 8,
-      "ExfiltrationType": "Individual",
-      "Id": "",
-      "MaxTime": 0,
-      "MaxTimePVE": 0,
-      "MinTime": 0,
-      "MinTimePVE": 0,
-      "Name": "Custom_scav_pmc",
+      "Name": "ex_customs_coop_boiler",
       "PassageRequirement": "ScavCooperation",
       "PlayersCount": 0,
       "PlayersCountPVE": 0,
@@ -10701,64 +10708,64 @@
     {
       "EligibleForPMC": true,
       "EligibleForScav": true,
-      "ExfiltrationTime": 15,
+      "ExfiltrationTime": 8,
       "Id": "675aaab74bca0b001d02f356",
-      "Name": "customs_secret_voron_boat"
+      "Name": "ex_customs_secret_voron_boat"
     },
     {
       "EligibleForPMC": true,
       "EligibleForScav": true,
-      "ExfiltrationTime": 15,
+      "ExfiltrationTime": 8,
       "Id": "675aaab74bca0b001d02f356",
-      "Name": "customs_secret_voron_bunker"
+      "Name": "ex_customs_secret_voron_bunker"
     }
   ],
   "transits": [
     {
       "activateAfterSec": 60,
       "active": true,
-      "conditions": "CUS_TRANSIT_9_COND",
-      "description": "CUS_TRANSIT_9_DESC",
+      "conditions": "tr_customs_reserve_cond",
+      "description": "tr_customs_reserve_desc",
       "events": false,
       "id": 9,
       "location": "RezervBase",
-      "name": "CUS_TRANSIT_9",
+      "name": "tr_customs_reserve",
       "target": "5704e5fad2720bc05b8b4567",
       "time": 20
     },
     {
       "activateAfterSec": 60,
       "active": true,
-      "conditions": "CUS_TRANSIT_10_COND",
-      "description": "CUS_TRANSIT_10_DESC",
+      "conditions": "tr_customs_factory_cond",
+      "description": "tr_customs_factory_desc",
       "events": false,
       "id": 10,
       "location": "factory4_day",
-      "name": "CUS_TRANSIT_10",
+      "name": "tr_customs_factory",
       "target": "55f2d3fd4bdc2d5f408b4567",
       "time": 20
     },
     {
       "activateAfterSec": 60,
       "active": true,
-      "conditions": "CUS_TRANSIT_11_COND",
-      "description": "CUS_TRANSIT_11_DESC",
+      "conditions": "tr_customs_interchange_cond",
+      "description": "tr_customs_interchange_desc",
       "events": false,
       "id": 11,
       "location": "Interchange",
-      "name": "CUS_TRANSIT_11",
+      "name": "tr_customs_interchange",
       "target": "5714dbc024597771384a510d",
       "time": 20
     },
     {
       "activateAfterSec": 60,
       "active": true,
-      "conditions": "CUS_TRANSIT_42_COND",
-      "description": "CUS_TRANSIT_42_DESC",
+      "conditions": "tr_customs_shoreline_cond",
+      "description": "tr_customs_shoreline_desc",
       "events": false,
       "id": 42,
       "location": "Shoreline",
-      "name": "CUS_TRANSIT_42",
+      "name": "tr_customs_shoreline",
       "target": "5704e554d2720bac5b8b456e",
       "time": 20
     }

@@ -219,6 +219,7 @@ public class ProfileController(
             Side = info?.Side,
             Level = info?.Level,
             PrestigeLevel = info?.PrestigeLevel ?? 0,
+            PrestigeGameMode = info?.PrestigeGameMode ?? PrestigeGameModes.Regular,
             GameVersion = info?.GameVersion,
             MemberCategory = info?.MemberCategory,
             AccountType = 0,
@@ -235,6 +236,7 @@ public class ProfileController(
                     MemberCategory = info?.MemberCategory,
                     SelectedMemberCategory = info?.SelectedMemberCategory,
                     PrestigeLevel = info?.PrestigeLevel,
+                    PrestigeGameMode = info?.PrestigeGameMode ?? PrestigeGameModes.Regular,
                     GameVersion = info?.GameVersion,
                 },
                 Customization = new Models.Eft.Match.Customization

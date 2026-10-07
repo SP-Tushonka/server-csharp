@@ -36,17 +36,17 @@
     "weaponMods": {
       "mod_magazine": 100,
       "mod_stock": 74,
-      "mod_mount_000": 35,
-      "mod_mount_002": 45,
+      "mod_mount_000": 34,
+      "mod_mount_002": 46,
       "mod_muzzle": 100,
       "mod_mount": 0,
       "mod_sight_front": 6,
       "mod_mount_001": 0,
       "mod_tactical": 0,
-      "mod_scope": 99,
+      "mod_scope": 98,
       "mod_foregrip": 97,
       "mod_bipod": 100,
-      "mod_charge": 2,
+      "mod_charge": 1,
       "mod_reciever": 100,
       "mod_tactical_000": 0,
       "mod_tactical_001": 0,
@@ -2343,9 +2343,9 @@
       },
       "Backpack": {},
       "FirstPrimaryWeapon": {
-        "5c46fbd72e2216398b5a8c9c": 470,
-        "68aee763130c00663d08aea8": 36,
-        "67d0576f29f580ebc10efd08": 11
+        "5c46fbd72e2216398b5a8c9c": 91,
+        "68aee763130c00663d08aea8": 6,
+        "67d0576f29f580ebc10efd08": 2
       },
       "SecondPrimaryWeapon": {
         "57dc2fa62459775949412633": 1
@@ -2363,8 +2363,8 @@
     },
     "Ammo": {
       "Caliber762x54R": {
-        "5e023cf8186a883be655e54f": 69,
-        "5e023d48186a883be655e551": 635
+        "5e023cf8186a883be655e54f": 11,
+        "5e023d48186a883be655e551": 80
       },
       "Caliber545x39": {
         "56dff4a2d2720bbd668b456a": 1
@@ -2373,9 +2373,8 @@
         "5a26abfac4a28232980eabff": 1
       },
       "Caliber93x64": {
-        "68aeed8a8906b00bc800fdd6": 66,
-        "68bac6ca653ee6b1e406d978": 17,
-        "68bad8376cb22acf1107a586": 2
+        "68aeed8a8906b00bc800fdd6": 15,
+        "68bac6ca653ee6b1e406d978": 2
       },
       "Caliber127x99": {
         "67dc255ee3028a8b120efc48": 1
@@ -2384,26 +2383,25 @@
     "items": {
       "Backpack": {},
       "Pockets": {
-        "59f99a7d86f7745b134aa97b": 64,
-        "60098ad7c2240c0fe85c570a": 32,
-        "590c678286f77426c9660122": 32,
+        "59f99a7d86f7745b134aa97b": 38,
+        "60098ad7c2240c0fe85c570a": 19,
+        "590c678286f77426c9660122": 19,
         "68aef9bf4efeccb5220d25c6": 1
       },
       "SecuredContainer": {
-        "5e023cf8186a883be655e54f": 1380,
-        "56dff4a2d2720bbd668b456a": 5152,
-        "5a26abfac4a28232980eabff": 2576,
-        "5e023d48186a883be655e551": 12690,
-        "68aeed8a8906b00bc800fdd6": 811,
-        "68bac6ca653ee6b1e406d978": 210,
-        "67dc255ee3028a8b120efc48": 330,
-        "68bad8376cb22acf1107a586": 30
+        "5e023cf8186a883be655e54f": 301,
+        "56dff4a2d2720bbd668b456a": 972,
+        "5a26abfac4a28232980eabff": 486,
+        "5e023d48186a883be655e551": 2375,
+        "68aeed8a8906b00bc800fdd6": 150,
+        "67dc255ee3028a8b120efc48": 60,
+        "68bac6ca653ee6b1e406d978": 30
       },
       "SpecialLoot": {},
       "TacticalVest": {
-        "5c88f24b2e22160bc12c69a6": 312,
-        "55d482194bdc2d1d4e8b456b": 343,
-        "67d418d0ffb910d21f04720e": 6
+        "5c88f24b2e22160bc12c69a6": 119,
+        "55d482194bdc2d1d4e8b456b": 131,
+        "67d418d0ffb910d21f04720e": 4
       }
     },
     "mods": {
@@ -2429,8 +2427,8 @@
       },
       "6516b129609aaf354b34b3a8": {
         "mod_pistolgrip": [
-          "68d5674bb2573b07dc0d225f",
-          "5b30ac585acfc433000eb79c"
+          "5b30ac585acfc433000eb79c",
+          "68d5674bb2573b07dc0d225f"
         ]
       },
       "5c471cb32e221602b177afaa": {
@@ -2479,8 +2477,8 @@
       },
       "6197b229af1f5202c57a9bea": {
         "mod_stock": [
-          "5649be884bdc2d79388b4577",
-          "5947e98b86f774778f1448bc"
+          "5947e98b86f774778f1448bc",
+          "5649be884bdc2d79388b4577"
         ]
       },
       "57dc2fa62459775949412633": {
@@ -2588,7 +2586,6 @@
       "62811f461d5df4475f46a332": {
         "mod_scope": [
           "62850c28da09541f43158cca",
-          "5aa66be6e5b5b0214e506e97",
           "61714eec290d254f5e6b2ffc"
         ]
       },
@@ -2639,8 +2636,6 @@
       },
       "6567e751a715f85433025998": {
         "mod_scope": [
-          "618ba27d9008e4636a67f61d",
-          "617151c1d92c473c770214ab",
           "6567e7681265c8a131069b0f"
         ]
       }

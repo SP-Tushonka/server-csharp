@@ -126,7 +126,7 @@ public class GameCallbacks(
                 Data = new ShopStatusResponse
                 {
                     Aid = profile?.ProfileInfo?.Aid,
-                    Labels = [],
+                    Labels = tarcoinStoreService.GetMenu().SelectMany(item => item.Labels).Distinct().ToDictionary(label => label, _ => 1),
                     Tarcoins = tarcoinStoreService.GetBalance(sessionID),
                 },
             }

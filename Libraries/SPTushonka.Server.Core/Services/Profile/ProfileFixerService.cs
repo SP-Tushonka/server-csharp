@@ -112,6 +112,37 @@ public partial class ProfileFixerService(
     }
 
     /// <summary>
+    ///     Fill the per mode fields 1.2 added to profiles with the values live sends for a pve character
+    /// </summary>
+    /// <param name="profile">Pmc or scav profile</param>
+    /// <param name="isPmc">Only a pmc carries prestige levels and the PDT link</param>
+    public void AddMissingModeFields(PmcData profile, bool isPmc)
+    {
+        if (profile.Info is not null)
+        {
+            profile.Info.PrestigeGameMode ??= PrestigeGameModes.Regular;
+            if (isPmc)
+            {
+                profile.Info.SelectedPrestigeGameMode ??= PrestigeGameModes.Regular;
+
+                // Both modes carry the one level SPT tracks, whichever the client reads
+                var level = profile.Info.PrestigeLevel ?? 0;
+                profile.Info.PrestigeLevels = new Dictionary<string, int> { [PrestigeGameModes.Regular] = level, [PrestigeGameModes.Pve] = level };
+            }
+        }
+
+        if (profile.Ending is not null)
+        {
+            profile.Ending.Available ??= new Dictionary<string, List<string>> { [PrestigeGameModes.Regular] = [], [PrestigeGameModes.Pve] = [] };
+        }
+
+        if (isPmc)
+        {
+            profile.Pdt ??= new ProfilePdt();
+        }
+    }
+
+    /// <summary>
     ///     Find issues in the pmc profile data that may cause issues and fix them
     /// </summary>
     /// <param name="pmcProfile">profile to check and fix</param>
@@ -123,6 +154,7 @@ public partial class ProfileFixerService(
         VerifyQuestProductionUnlocks(pmcProfile);
         FixOrphanedInsurance(pmcProfile);
         AddMissingBattlePassDocumentLimits(pmcProfile);
+        AddMissingModeFields(pmcProfile, true);
         RecordCompletableItemsFromFinishedQuests(pmcProfile);
         questVariableHelper.SyncAll(pmcProfile);
         CheckForAndFixCircularParentReferences(pmcProfile);

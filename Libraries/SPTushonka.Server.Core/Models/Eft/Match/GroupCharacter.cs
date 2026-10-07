@@ -91,6 +91,9 @@ public record VisualInfo
     [JsonPropertyName("PrestigeLevel")]
     public int? PrestigeLevel { get; set; }
 
+    [JsonPropertyName("PrestigeGameMode")]
+    public string? PrestigeGameMode { get; set; }
+
     [JsonPropertyName("SelectedMemberCategory")]
     public MemberCategory? SelectedMemberCategory { get; set; }
 }

@@ -17,6 +17,27 @@
     <span class="category-tree__root-footer z-10">
         <span class="category-tree__root-label">@TarcoinStoreService.Localise(Tab.NameKey, Language)</span>
     </span>
+
+    @* Live draws the first two labels, the first in the top slot and the second in the bottom one. *@
+    @if (Tab.Labels.Count > 0)
+    {
+        <span class="category-state-markers" aria-hidden="true">
+            <span class="category-state-markers__grid">
+                @for (var index = 0; index < Math.Min(2, Tab.Labels.Count); index++)
+                {
+                    var label = Tab.Labels[index].ToLowerInvariant();
+                    var slot = index == 0 ? "top" : "bottom";
+                    var texture = ShopFormat.MarkerTexture(Tab.Labels[index]);
+                    <span class="category-state-markers__glow category-state-markers__glow--@label category-state-markers__glow--@slot"></span>
+                    @if (texture is not null)
+                    {
+                        <img class="textures-icon category-state-markers__icon category-state-markers__icon--@label category-state-markers__icon--@slot"
+                             src="@texture" alt="" draggable="false"/>
+                    }
+                }
+            </span>
+        </span>
+    }
 </button>
 
 @code {

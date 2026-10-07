@@ -87,7 +87,6 @@ public class TarcoinStoreServiceTests
 
         Assert.That(shown, Does.Not.Contain("69cba58925b5e944b4d5116e"));
         Assert.That(shown, Does.Not.Contain("6a22dbe90b05431dfebe972c"));
-        Assert.That(shown, Does.Not.Contain("69fdbdce62f4875f5b27091f"));
         Assert.That(shown, Does.Contain("6a4a25c93f6f25450e4ace3f"));
     }
 
