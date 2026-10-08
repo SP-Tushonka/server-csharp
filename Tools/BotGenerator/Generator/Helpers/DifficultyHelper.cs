@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using Common.Models;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -16,6 +17,8 @@ namespace Generator.Helpers
 
         private static readonly string[] _difficulties = ["easy", "normal", "hard", "impossible"];
 
+        private static readonly JsonDocumentOptions documentOptions = new() { AllowTrailingCommas = true };
+
         public static async Task AddDifficultySettings(GeneratedBot botToUpdate, List<string> difficultyFilePaths)
         {
             // Read bot setting files from assets folder that match this bots type
@@ -26,12 +29,16 @@ namespace Generator.Helpers
             );
             foreach (var path in pathsWithBotType)
             {
-                await using FileStream fs = new(path, FileMode.Open, FileAccess.Read, FileShare.Read, bufferSize: 4096, useAsync: true);
+                var settings = await ReadSettings(path);
 
-                var serialisedDifficultySettings = await JsonSerializer.DeserializeAsync<DifficultyCategories>(fs, options);
+                // In PvE raids the client applies the role's PvE file over the regular one, it only lists what differs
+                var pvePath = path.Replace("_BotGlobalSettings", "_PvE_BotGlobalSettings");
+                if (File.Exists(pvePath))
+                {
+                    ApplyOverrides(settings, await ReadSettings(pvePath));
+                }
 
-                var difficultyOfFile = GetFileDifficultyFromPath(path);
-                difficultySettingsJsons.Add(difficultyOfFile, serialisedDifficultySettings);
+                difficultySettingsJsons.Add(GetFileDifficultyFromPath(path), settings.Deserialize<DifficultyCategories>(options));
             }
 
             foreach (var difficulty in _difficulties)
@@ -54,6 +61,30 @@ namespace Generator.Helpers
                 {
                     botToUpdate.Data.BotDifficulty[difficulty] = settings.Value;
                 }
+            }
+        }
+
+        private static async Task<JsonObject> ReadSettings(string path)
+        {
+            return JsonNode.Parse(await File.ReadAllTextAsync(path), documentOptions: documentOptions)!.AsObject();
+        }
+
+        /// <summary>
+        ///     Apply one settings file over another the way the client populates them, objects merge and every other value replaces
+        /// </summary>
+        /// <param name="settings">Settings to change</param>
+        /// <param name="overrides">Values to apply</param>
+        private static void ApplyOverrides(JsonObject settings, JsonObject overrides)
+        {
+            foreach (var (key, value) in overrides)
+            {
+                if (value is JsonObject child && settings[key] is JsonObject existing)
+                {
+                    ApplyOverrides(existing, child);
+                    continue;
+                }
+
+                settings[key] = value?.DeepClone();
             }
         }
 

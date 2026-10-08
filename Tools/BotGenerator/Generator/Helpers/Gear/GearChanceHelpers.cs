@@ -122,7 +122,7 @@ namespace Generator.Helpers.Gear
 
                 foreach (var slot in template.Properties.Slots)
                 {
-                    if (slot.Required ?? false)
+                    if (slot.Required)
                     {
                         continue;
                     }

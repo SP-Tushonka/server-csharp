@@ -30,6 +30,15 @@ public record UserDialogDetails
     [JsonPropertyName("Level")]
     public double? Level { get; set; }
 
+    [JsonPropertyName("PrestigeLevel")]
+    public int? PrestigeLevel { get; set; }
+
+    /// <summary>
+    ///     Mode the prestige level counts in, picks the prestige icon shown next to the name
+    /// </summary>
+    [JsonPropertyName("PrestigeGameMode")]
+    public string? PrestigeGameMode { get; set; }
+
     [JsonPropertyName("MemberCategory")]
     public MemberCategory? MemberCategory { get; set; }
 

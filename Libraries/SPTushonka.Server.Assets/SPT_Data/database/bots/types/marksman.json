@@ -256,7 +256,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 1
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -335,6 +336,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": true,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 18.7,
         "GrenadePrecision": 0.1,
         "STOP_WHEN_THROW_GRENADE": true,
@@ -397,7 +399,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -764,7 +766,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 1
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -843,6 +846,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": true,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 18.7,
         "GrenadePrecision": 0.1,
         "STOP_WHEN_THROW_GRENADE": true,
@@ -905,7 +909,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1272,7 +1276,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1351,6 +1356,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": true,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 18.7,
         "GrenadePrecision": 0.1,
         "STOP_WHEN_THROW_GRENADE": true,
@@ -1413,7 +1419,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1776,7 +1782,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 20
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1855,6 +1862,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": true,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 18.7,
         "GrenadePrecision": 0.01,
         "STOP_WHEN_THROW_GRENADE": true,
@@ -1918,7 +1926,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,

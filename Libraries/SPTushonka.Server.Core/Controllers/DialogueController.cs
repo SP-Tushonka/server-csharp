@@ -229,6 +229,8 @@ public class DialogueController(
                     Info = new UserDialogDetails
                     {
                         Level = profile.CharacterData?.PmcData?.Info?.Level,
+                        PrestigeLevel = profile.CharacterData?.PmcData?.Info?.PrestigeLevel,
+                        PrestigeGameMode = profile.CharacterData?.PmcData?.Info?.PrestigeGameMode,
                         Nickname = profile.CharacterData?.PmcData?.Info?.Nickname,
                         Side = profile.CharacterData?.PmcData?.Info?.Side,
                         MemberCategory = profile.CharacterData?.PmcData?.Info?.MemberCategory,
@@ -359,6 +361,8 @@ public class DialogueController(
                     Nickname = pmcProfile?.Info?.Nickname,
                     Side = pmcProfile?.Info?.Side,
                     Level = pmcProfile?.Info?.Level,
+                    PrestigeLevel = pmcProfile?.Info?.PrestigeLevel,
+                    PrestigeGameMode = pmcProfile?.Info?.PrestigeGameMode,
                     MemberCategory = pmcProfile?.Info?.MemberCategory,
                     SelectedMemberCategory = pmcProfile?.Info?.SelectedMemberCategory,
                 },

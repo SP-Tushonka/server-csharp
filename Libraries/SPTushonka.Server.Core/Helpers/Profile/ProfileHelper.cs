@@ -342,6 +342,8 @@ public class ProfileHelper(
                 Nickname = pmcProfile.Info!.Nickname,
                 Side = pmcProfile.Info.Side,
                 Level = pmcProfile.Info.Level,
+                PrestigeLevel = pmcProfile.Info.PrestigeLevel,
+                PrestigeGameMode = pmcProfile.Info.PrestigeGameMode,
                 MemberCategory = pmcProfile.Info.MemberCategory,
                 SelectedMemberCategory = pmcProfile.Info.SelectedMemberCategory,
             },

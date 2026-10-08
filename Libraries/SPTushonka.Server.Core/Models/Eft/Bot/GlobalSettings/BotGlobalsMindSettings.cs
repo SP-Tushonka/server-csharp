@@ -473,18 +473,6 @@ public record BotGlobalsMindSettings
     [JsonPropertyName("SNIPER_FIRE_IMMUNE")]
     public bool? SniperFireImmune { get; set; }
 
-    /// <summary>
-    /// If the flag is set, then enemies are added only for reasons from the VALID_REASONS_TO_ADD_ENEMY list.
-    /// </summary>
-    [JsonPropertyName("USE_ADD_TO_ENEMY_VALIDATION")]
-    public bool? UseAddToEnemyValidation { get; set; }
-
-    /// <summary>
-    /// List of valid reasons for adding enemies, provided that the USE_ADD_TO_ENEMY_VALIDATION flag is set
-    /// </summary>
-    [JsonPropertyName("VALID_REASONS_TO_ADD_ENEMY")]
-    public List<EBotEnemyCause>? ValidReasonsToAddEnemy { get; set; }
-
     [JsonPropertyName("CHECK_MARK_OF_UNKNOWS")]
     public bool? CheckMarkOfUnknows { get; set; }
 
@@ -532,51 +520,6 @@ public record BotGlobalsMindSettings
         AlwaysEnemies = 8,
         AlwaysFriends = 16,
         ChancedEnemies = 32,
-    }
-
-    public enum EBotEnemyCause
-    {
-        pairLogic,
-        initial,
-        zryachiyLogic,
-        addPlayerToBoss,
-        addPlayer,
-        addCauseGroup,
-        initCauseEnemy,
-        checkAddTODO,
-        addBotAtGroup,
-        addBotNoGroup,
-        AddNewMember,
-        byKill,
-        AddEnemyToAllGroupsInBotZone,
-        AddEnemyToAllGroups,
-        warn,
-        callBot,
-        followGetHit,
-        gifterKill,
-        bossKillArena,
-        KillaSyncTagilla,
-        tagillaFindENemy,
-        fuckGestus,
-        pmcBossKill,
-        rndWanrRequest,
-        christmas,
-        synWithKilla,
-        death,
-        doFollow2,
-        doFollow,
-        callForHelp2,
-        callForHelp1,
-        ravangeZryachiy,
-        lighthouseKeeperServices,
-        lighthouseKeeperServicesTarget,
-        partisanBadKarma,
-        attackBTR,
-        serviceBTR,
-        tagillaAlarm,
-        drunk,
-        Unknown,
-        MarkOfUnknowsDist,
     }
 
     [JsonPropertyName("ADD_TO_ENEMY_BY_HIT")]

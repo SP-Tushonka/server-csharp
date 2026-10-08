@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 
 namespace SPTarkov.Server.Core.Models.Eft.Profile;
 
@@ -60,8 +61,20 @@ public record OtherProfileInfo
     [JsonPropertyName("experience")]
     public int? Experience { get; set; }
 
+    [JsonPropertyName("PrestigeLevel")]
+    public int? PrestigeLevel { get; set; }
+
+    /// <summary>
+    ///     Mode the prestige level counts in, picks the prestige icon shown on the profile
+    /// </summary>
+    [JsonPropertyName("PrestigeGameMode")]
+    public string? PrestigeGameMode { get; set; }
+
     [JsonPropertyName("memberCategory")]
     public int? MemberCategory { get; set; }
+
+    [JsonPropertyName("SelectedMemberCategory")]
+    public MemberCategory? SelectedMemberCategory { get; set; }
 
     [JsonPropertyName("bannedState")]
     public bool? BannedState { get; set; }

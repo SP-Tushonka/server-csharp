@@ -260,6 +260,12 @@ public record BotGlobalAimingSettings
     [JsonPropertyName("MISS_DIST")]
     public float? MissDist { get; set; }
 
+    /// <summary>
+    /// Added to the spread when the target is behind smoke
+    /// </summary>
+    [JsonPropertyName("ADDITIONAL_AIM_SMOKE_COEF")]
+    public float? AdditionalAimSmokeCoef { get; set; }
+
     [JsonPropertyName("UnderbarrelLauncherAiming")]
     public BotUnderbarrelLauncherAimingSettings? UnderbarrelLauncherAiming { get; set; }
 
