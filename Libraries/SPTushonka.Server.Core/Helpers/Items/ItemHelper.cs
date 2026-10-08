@@ -61,24 +61,6 @@ public class ItemHelper(
         nameof(EquipmentSlots.Scabbard),
     ];
 
-    protected static readonly HashSet<MongoId> _dogTagTpls =
-    [
-        ItemTpl.BARTER_DOGTAG_BEAR,
-        ItemTpl.BARTER_DOGTAG_BEAR_EOD,
-        ItemTpl.BARTER_DOGTAG_BEAR_TUE,
-        ItemTpl.BARTER_DOGTAG_USEC,
-        ItemTpl.BARTER_DOGTAG_USEC_EOD,
-        ItemTpl.BARTER_DOGTAG_USEC_TUE,
-        ItemTpl.BARTER_DOGTAG_BEAR_PRESTIGE_1,
-        ItemTpl.BARTER_DOGTAG_BEAR_PRESTIGE_2,
-        ItemTpl.BARTER_DOGTAG_BEAR_PRESTIGE_3,
-        ItemTpl.BARTER_DOGTAG_BEAR_PRESTIGE_4,
-        ItemTpl.BARTER_DOGTAG_USEC_PRESTIGE_1,
-        ItemTpl.BARTER_DOGTAG_USEC_PRESTIGE_2,
-        ItemTpl.BARTER_DOGTAG_USEC_PRESTIGE_3,
-        ItemTpl.BARTER_DOGTAG_USEC_PRESTIGE_4,
-    ];
-
     protected static readonly HashSet<string> _softInsertIds =
     [
         "groin",
@@ -725,13 +707,13 @@ public class ItemHelper(
     }
 
     /// <summary>
-    ///     Checks if the passed template id is a dog tag.
+    ///     Checks if the passed template id is a player dogtag, one that carries a nickname, side and level
     /// </summary>
-    /// <param name="tpl">Template id to check.</param>
-    /// <returns>True if it is a dogtag.</returns>
+    /// <param name="tpl">Template id to check</param>
+    /// <returns>True if it is a dogtag</returns>
     public bool IsDogtag(MongoId tpl)
     {
-        return _dogTagTpls.Contains(tpl);
+        return GetItem(tpl).Value?.IsDogtag() ?? false;
     }
 
     /// <summary>

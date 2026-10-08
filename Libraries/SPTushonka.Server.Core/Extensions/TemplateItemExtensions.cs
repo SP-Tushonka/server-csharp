@@ -35,6 +35,26 @@ public static class TemplateItemExtensions
     }
 
     /// <summary>
+    ///     Check if item is a player dogtag, one that carries a nickname, side and level
+    /// </summary>
+    /// <param name="templateItem">Item to check</param>
+    /// <returns>True if it is a dogtag</returns>
+    public static bool IsDogtag(this TemplateItem templateItem)
+    {
+        return templateItem.Properties?.DogTagQualities ?? false;
+    }
+
+    /// <summary>
+    ///     Check if item belongs to the story, the client keeps those in a special slot or stops them leaving the inventory
+    /// </summary>
+    /// <param name="templateItem">Item to check</param>
+    /// <returns>True if it is a story item</returns>
+    public static bool IsStoryItem(this TemplateItem templateItem)
+    {
+        return templateItem.Properties is not null && (templateItem.Properties.IsUnRemovable || templateItem.Properties.IsSpecialSlotOnly);
+    }
+
+    /// <summary>
     ///     Get a weapons default magazine template id
     /// </summary>
     /// <param name="weaponTemplate">Weapon to get default magazine for</param>

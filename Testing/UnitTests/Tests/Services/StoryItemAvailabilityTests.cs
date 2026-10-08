@@ -1,4 +1,7 @@
 using NUnit.Framework;
+using SPTarkov.Server.Core.Extensions;
+using SPTarkov.Server.Core.Generators.Loot;
+using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Tables;
@@ -32,5 +35,34 @@ public class StoryItemAvailabilityTests
         var sold = fence.Assort!.Items.Select(item => item.Template).ToHashSet();
 
         Assert.That(StoryItems.Where(sold.Contains), Is.Empty);
+    }
+
+    [Test]
+    public void FenceBaseAssort_DogtagsAndFlaggedStoryItems_AreNotSold()
+    {
+        var fence = DI.GetInstance().GetService<TradersTable>().GetTrader(Traders.FENCE)!;
+        var sold = fence.Assort!.Items.Select(item => item.Template).Distinct();
+
+        Assert.That(sold.Where(IsDogtagOrStoryItem), Is.Empty);
+    }
+
+    [TestCase("pmcbear")]
+    [TestCase("pmcusec")]
+    public void PmcLootPools_DogtagsAndFlaggedStoryItems_AreExcluded(string role)
+    {
+        var generator = DI.GetInstance().GetService<PMCLootGenerator>();
+        var pooled = generator
+            .GeneratePMCBackpackLootPool(role)
+            .Keys.Concat(generator.GeneratePMCVestLootPool(role).Keys)
+            .Concat(generator.GeneratePMCPocketLootPool(role).Keys);
+
+        Assert.That(pooled.Where(IsDogtagOrStoryItem), Is.Empty);
+    }
+
+    private static bool IsDogtagOrStoryItem(MongoId tpl)
+    {
+        var item = DI.GetInstance().GetService<ItemHelper>().GetItem(tpl).Value;
+
+        return item is not null && (item.IsDogtag() || item.IsStoryItem());
     }
 }
