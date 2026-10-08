@@ -19,32 +19,37 @@ namespace Generator.Weighting
     {
         private static Dictionary<BotType, Weightings> _weights = null;
         private static Dictionary<string, Dictionary<string, GenerationData>> _generationWeights = null;
+        private static readonly Lock _loadLock = new();
 
         public WeightingService()
         {
-            // Cache the loaded  data
-            if (_weights != null && _generationWeights != null)
-                return;
-
-            var assetsPath = $"{Directory.GetCurrentDirectory()}\\Assets";
-            var weightsFilePath = $"{assetsPath}\\weights.json";
-            if (!File.Exists(weightsFilePath))
+            // Bot types are generated in parallel
+            lock (_loadLock)
             {
-                throw new Exception($"Missing weights.json in /assets ({weightsFilePath})");
-            }
+                // Cache the loaded  data
+                if (_weights != null && _generationWeights != null)
+                    return;
 
-            var weightJson = File.ReadAllText(weightsFilePath);
-            _weights = JsonSerializer.Deserialize<Dictionary<BotType, Weightings>>(weightJson);
+                var assetsPath = $"{Directory.GetCurrentDirectory()}\\Assets";
+                var weightsFilePath = $"{assetsPath}\\weights.json";
+                if (!File.Exists(weightsFilePath))
+                {
+                    throw new Exception($"Missing weights.json in /assets ({weightsFilePath})");
+                }
 
-            // bot / itemtype / itemcount
-            _generationWeights = ToolJson.Util.DeserializeFromFile<Dictionary<string, Dictionary<string, GenerationData>>>(
-                $"{assetsPath}\\generationWeights.json"
-            );
+                var weightJson = File.ReadAllText(weightsFilePath);
+                _weights = JsonSerializer.Deserialize<Dictionary<BotType, Weightings>>(weightJson);
 
-            // The server reads an empty whitelist array as null
-            foreach (var generationData in _generationWeights.Values.SelectMany(x => x.Values))
-            {
-                generationData.Whitelist ??= new Dictionary<MongoId, double>();
+                // bot / itemtype / itemcount
+                _generationWeights = ToolJson.Util.DeserializeFromFile<Dictionary<string, Dictionary<string, GenerationData>>>(
+                    $"{assetsPath}\\generationWeights.json"
+                );
+
+                // The server reads an empty whitelist array as null
+                foreach (var generationData in _generationWeights.Values.SelectMany(x => x.Values))
+                {
+                    generationData.Whitelist ??= new Dictionary<MongoId, double>();
+                }
             }
         }
 

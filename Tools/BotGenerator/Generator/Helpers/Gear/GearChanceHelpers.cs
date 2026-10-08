@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Common.Models;
 using Common.Models.Input;
 using Generator.Weighting;
@@ -8,44 +9,27 @@ namespace Generator.Helpers.Gear
 {
     public static class GearChanceHelpers
     {
-        private static Dictionary<string, Dictionary<string, int>> weaponModCount = new Dictionary<string, Dictionary<string, int>>();
-        private static Dictionary<string, Dictionary<string, int>> weaponSlotCount = new Dictionary<string, Dictionary<string, int>>();
-        private static Dictionary<string, Dictionary<string, int>> equipmentModCount = new Dictionary<string, Dictionary<string, int>>();
-        private static Dictionary<string, Dictionary<string, int>> equipmentSlotCount = new Dictionary<string, Dictionary<string, int>>();
+        // Shared by every bot type consumer. Each inner map belongs to one role.
+        private static readonly ConcurrentDictionary<string, Dictionary<string, int>> weaponModCount = new();
+        private static readonly ConcurrentDictionary<string, Dictionary<string, int>> weaponSlotCount = new();
+        private static readonly ConcurrentDictionary<string, Dictionary<string, int>> equipmentModCount = new();
+        private static readonly ConcurrentDictionary<string, Dictionary<string, int>> equipmentSlotCount = new();
 
         public static void AddModChances(GeneratedBot bot, Datum baseBot)
         {
             // TODO: Further split these counts by equipment slot? (ex. "FirstPrimaryWeapon", "Holster", etc.)
             var validSlots = new List<string> { "FirstPrimaryWeapon", "SecondPrimaryWeapon", "Holster" };
 
-            if (!weaponModCount.TryGetValue(baseBot.Info.Settings.Role.ToLower(), out var modCounts))
-            {
-                modCounts = new Dictionary<string, int>();
-                weaponModCount.Add(baseBot.Info.Settings.Role.ToLower(), modCounts);
-            }
-
-            if (!weaponSlotCount.TryGetValue(baseBot.Info.Settings.Role.ToLower(), out var slotCounts))
-            {
-                slotCounts = new Dictionary<string, int>();
-                weaponSlotCount.Add(baseBot.Info.Settings.Role.ToLower(), slotCounts);
-            }
+            var modCounts = weaponModCount.GetOrAdd(baseBot.Info.Settings.Role.ToLower(), _ => new Dictionary<string, int>());
+            var slotCounts = weaponSlotCount.GetOrAdd(baseBot.Info.Settings.Role.ToLower(), _ => new Dictionary<string, int>());
 
             CountSlotsAndMods(baseBot, validSlots, modCounts, slotCounts);
         }
 
         public static void CalculateModChances(GeneratedBot bot)
         {
-            if (!weaponModCount.TryGetValue(bot.Role.ToString(), out var modCounts))
-            {
-                modCounts = new Dictionary<string, int>();
-                weaponModCount.Add(bot.Role.ToString(), modCounts);
-            }
-
-            if (!weaponSlotCount.TryGetValue(bot.Role.ToString(), out var slotCounts))
-            {
-                slotCounts = new Dictionary<string, int>();
-                weaponSlotCount.Add(bot.Role.ToString(), slotCounts);
-            }
+            var modCounts = weaponModCount.GetOrAdd(bot.Role.ToString(), _ => new Dictionary<string, int>());
+            var slotCounts = weaponSlotCount.GetOrAdd(bot.Role.ToString(), _ => new Dictionary<string, int>());
 
             bot.Data.BotChances.WeaponModsChances = slotCounts.ToDictionary(
                 kvp => kvp.Key,
@@ -55,17 +39,8 @@ namespace Generator.Helpers.Gear
 
         public static void AddEquipmentModChances(GeneratedBot bot, Datum baseBot)
         {
-            if (!equipmentModCount.TryGetValue(baseBot.Info.Settings.Role.ToLower(), out var modCounts))
-            {
-                modCounts = new Dictionary<string, int>();
-                equipmentModCount.Add(baseBot.Info.Settings.Role.ToLower(), modCounts);
-            }
-
-            if (!equipmentSlotCount.TryGetValue(baseBot.Info.Settings.Role.ToLower(), out var slotCounts))
-            {
-                slotCounts = new Dictionary<string, int>();
-                equipmentSlotCount.Add(baseBot.Info.Settings.Role.ToLower(), slotCounts);
-            }
+            var modCounts = equipmentModCount.GetOrAdd(baseBot.Info.Settings.Role.ToLower(), _ => new Dictionary<string, int>());
+            var slotCounts = equipmentSlotCount.GetOrAdd(baseBot.Info.Settings.Role.ToLower(), _ => new Dictionary<string, int>());
 
             // TODO: Further split these counts by equipment slot? (ex. "FirstPrimaryWeapon", "Holster", etc.)
             var validSlots = new List<string> { "Headwear", "ArmorVest", "TacticalVest" };
@@ -146,17 +121,8 @@ namespace Generator.Helpers.Gear
 
         public static void CalculateEquipmentModChances(GeneratedBot bot)
         {
-            if (!equipmentModCount.TryGetValue(bot.Role.ToString(), out var modCounts))
-            {
-                modCounts = new Dictionary<string, int>();
-                equipmentModCount.Add(bot.Role.ToString(), modCounts);
-            }
-
-            if (!equipmentSlotCount.TryGetValue(bot.Role.ToString(), out var slotCounts))
-            {
-                slotCounts = new Dictionary<string, int>();
-                equipmentSlotCount.Add(bot.Role.ToString(), slotCounts);
-            }
+            var modCounts = equipmentModCount.GetOrAdd(bot.Role.ToString(), _ => new Dictionary<string, int>());
+            var slotCounts = equipmentSlotCount.GetOrAdd(bot.Role.ToString(), _ => new Dictionary<string, int>());
 
             bot.Data.BotChances.EquipmentModsChances = slotCounts.ToDictionary(
                 kvp => kvp.Key,

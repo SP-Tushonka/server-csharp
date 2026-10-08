@@ -1,6 +1,6 @@
-using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text.Json;
+using System.Threading.Channels;
 using Common.Models;
 using Common.Models.Input;
 using Generator;
@@ -10,6 +10,9 @@ namespace Common.Bots;
 
 public static class BotParser
 {
+    private const int ReadAhead = 16;
+    private const int QueueCapacity = 64;
+
     public static async Task<List<GeneratedBot>> Parse(string dumpPath, HashSet<string> botTypes)
     {
         var stopwatch = Stopwatch.StartNew();
@@ -24,33 +27,44 @@ public static class BotParser
 
         DiskHelpers.CreateDirIfDoesntExist(dumpPath);
         var botFiles = Directory.GetFiles(dumpPath, "*.json", SearchOption.TopDirectoryOnly);
+        Array.Sort(botFiles, StringComparer.Ordinal);
         LoggingHelpers.LogToConsole($"{botFiles.Length} bot dump files found");
 
-        var parsedBotIds = new ConcurrentDictionary<string, bool>();
+        var parsedBotIds = new HashSet<string>();
         var totalDupeCount = 0;
 
-        // Lock thread amount to the amount of semaphore locks we have
-        var semaphore = new SemaphoreSlim(8);
-        var tasks = botFiles.Select(
-            async (filePath, index) =>
+        // Loot weights are reduced after every bot and the first copy of a duplicate wins, so the output depends on merge order.
+        // Files are read in parallel and dispatched in file order. Each bot type then applies its bots in that order on its own consumer.
+        var queues = baseBots.ToDictionary(bot => bot.Role, _ => Channel.CreateBounded<List<Datum>>(QueueCapacity));
+        var consumers = baseBots.Select(bot => Task.Run(() => ConsumeBotsAsync(bot, queues[bot.Role]))).ToList();
+
+        var pending = new Queue<(string FilePath, Task<List<Datum>> Read)>();
+        var nextFile = 0;
+        while (nextFile < botFiles.Length || pending.Count > 0)
+        {
+            while (nextFile < botFiles.Length && pending.Count < ReadAhead)
             {
-                await semaphore.WaitAsync();
-                try
-                {
-                    if ((index + 1) % 500 == 0)
-                        Console.WriteLine($"Processing file {index + 1}");
-
-                    return await ProcessBotFileAsync(baseBots, filePath, parsedBotIds);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
+                var filePath = botFiles[nextFile++];
+                pending.Enqueue((filePath, Task.Run(() => ReadBotFileAsync(filePath))));
             }
-        );
 
-        var dupeCounts = await Task.WhenAll(tasks);
-        totalDupeCount = dupeCounts.Sum();
+            var (path, read) = pending.Dequeue();
+            var botDataList = await read;
+            if (botDataList is not null)
+            {
+                totalDupeCount += await DispatchBotFileAsync(queues, path, botDataList, parsedBotIds);
+            }
+
+            if ((nextFile - pending.Count) % 500 == 0)
+                Console.WriteLine($"Processing file {nextFile - pending.Count}");
+        }
+
+        foreach (var queue in queues.Values)
+        {
+            queue.Writer.TryComplete();
+        }
+
+        await Task.WhenAll(consumers);
 
         // Handle things we can only do once all data has been processed
         foreach (var bot in baseBots)
@@ -81,11 +95,7 @@ public static class BotParser
         return baseBots.ToList();
     }
 
-    private static async Task<int> ProcessBotFileAsync(
-        HashSet<GeneratedBot> baseBots,
-        string filePath,
-        ConcurrentDictionary<string, bool> parsedBotIds
-    )
+    private static async Task<List<Datum>> ReadBotFileAsync(string filePath)
     {
         Root deSerialisedObject;
 
@@ -117,25 +127,33 @@ public static class BotParser
         catch (Exception e)
         {
             Console.WriteLine($"Failed to parse file from path: {filePath}, skipping. {e.Message}");
-            return 0;
+            return null;
         }
 
         if (deSerialisedObject?.data is null)
         {
             Console.WriteLine($"Failed to process file: {filePath} as its data object is null");
-            return 0;
+            return null;
         }
 
-        var dupeCount = 0;
-        var botDataList = deSerialisedObject.data.ToList();
+        return deSerialisedObject.data.ToList();
+    }
 
+    private static async Task<int> DispatchBotFileAsync(
+        Dictionary<BotType, Channel<List<Datum>>> queues,
+        string filePath,
+        List<Datum> botDataList,
+        HashSet<string> parsedBotIds
+    )
+    {
+        var dupeCount = 0;
         var botDataByType = new Dictionary<BotType, List<Datum>>();
 
         foreach (var botData in botDataList)
         {
             try
             {
-                if (!parsedBotIds.TryAdd(botData._id, true))
+                if (!parsedBotIds.Add(botData._id))
                 {
                     dupeCount++;
                     continue;
@@ -163,17 +181,23 @@ public static class BotParser
 
         foreach (var kvp in botDataByType)
         {
-            var botType = kvp.Key;
-            var botDataItems = kvp.Value;
-
-            var baseBot = baseBots.FirstOrDefault(bot => bot.Role == botType);
-            if (baseBot == null)
+            if (!queues.TryGetValue(kvp.Key, out var queue))
             {
-                Console.WriteLine($"Skipping bot type: {botType} - not found in base bots");
+                Console.WriteLine($"Skipping bot type: {kvp.Key} - not found in base bots");
                 continue;
             }
 
-            lock (baseBot)
+            await queue.Writer.WriteAsync(kvp.Value);
+        }
+
+        return dupeCount;
+    }
+
+    private static async Task ConsumeBotsAsync(GeneratedBot baseBot, Channel<List<Datum>> queue)
+    {
+        try
+        {
+            await foreach (var botDataItems in queue.Reader.ReadAllAsync())
             {
                 baseBot.BotCount += botDataItems.Count;
 
@@ -186,7 +210,11 @@ public static class BotParser
                 }
             }
         }
-
-        return dupeCount;
+        catch (Exception e)
+        {
+            // Fail the writer too, otherwise the reader blocks forever on a full queue
+            queue.Writer.TryComplete(e);
+            throw;
+        }
     }
 }

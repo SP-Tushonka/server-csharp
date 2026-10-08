@@ -9,21 +9,15 @@ namespace Generator.Helpers
 {
     public static class ItemTemplateHelper
     {
-        private static Dictionary<MongoId, TemplateItem> _itemCache;
+        private static readonly Lazy<Dictionary<MongoId, TemplateItem>> _itemCache = new(() =>
+            ToolJson.Util.DeserializeFromFile<Dictionary<MongoId, TemplateItem>>(
+                System.IO.Path.Combine(ServerAssets.Database, "templates", "items.json")
+            )
+        );
 
         public static Dictionary<MongoId, TemplateItem> Items
         {
-            get
-            {
-                if (_itemCache == null)
-                {
-                    _itemCache = ToolJson.Util.DeserializeFromFile<Dictionary<MongoId, TemplateItem>>(
-                        System.IO.Path.Combine(ServerAssets.Database, "templates", "items.json")
-                    );
-                }
-
-                return _itemCache;
-            }
+            get { return _itemCache.Value; }
         }
 
         public static TemplateItem GetTemplateById(MongoId templateId)
