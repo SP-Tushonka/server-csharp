@@ -20,6 +20,8 @@
 @using CommonSkill = SPTarkov.Server.Core.Models.Eft.Common.Tables.CommonSkill
 @using CustomisationTypeId = SPTarkov.Server.Core.Models.Eft.Common.Tables.CustomisationTypeId
 @using PmcData = SPTarkov.Server.Core.Models.Eft.Common.PmcData
+@using PrestigeGameModes = SPTarkov.Server.Core.Models.Eft.Common.Tables.PrestigeGameModes
+@using SPTarkov.Server.Core.Extensions
 @using Production = SPTarkov.Server.Core.Models.Eft.Common.Tables.Production
 @using ProfileQuestStatus = SPTarkov.Server.Core.Models.Eft.Common.Tables.QuestStatus
 @using Quest = SPTarkov.Server.Core.Models.Eft.Common.Tables.Quest
@@ -269,7 +271,7 @@
 
         var profileId = new MongoId(request.ProfileId);
         var profile = SaveServer.GetProfile(profileId);
-        var currentLevel = profile?.CharacterData?.PmcData?.Info?.PrestigeLevel ?? 0;
+        var currentLevel = profile?.CharacterData?.PmcData?.Info?.GetPrestigeLevel(PrestigeGameModes.Pve) ?? 0;
         var maxLevel = TemplateTable.Prestige?.Elements?.Count ?? 0;
 
         if (profile is null || request.TargetLevel <= currentLevel || request.TargetLevel > maxLevel)
@@ -342,15 +344,8 @@
             return;
         }
 
-        var achievements = profile.CharacterData?.PmcData?.Achievements;
-
-        foreach (var element in elements.Take(Math.Min(targetLevel, elements.Count)))
+        foreach (var achievementId in PrestigeHelper.PrestigeLevelAchievements.Take(Math.Min(targetLevel, elements.Count)))
         {
-            if (!PrestigeHelper.PrestigeAchievements.TryGetValue(element.Id, out var achievementId))
-            {
-                continue;
-            }
-
             if (profile.CharacterData!.PmcData!.Achievements!.ContainsKey(achievementId))
             {
                 continue;
@@ -988,7 +983,7 @@
             })
             .ToList();
 
-        return new ProfilePrestigeInfo(pmc?.Info?.PrestigeLevel ?? 0, elements.Count, tiers);
+        return new ProfilePrestigeInfo(pmc?.Info?.GetPrestigeLevel(PrestigeGameModes.Pve) ?? 0, elements.Count, tiers);
     }
 
     private List<ProfileHideoutAreaEditModel> BuildHideoutAreaEditModels(PmcData? pmc)

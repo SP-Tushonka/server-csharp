@@ -123,17 +123,22 @@ public partial class ProfileFixerService(
             profile.Info.PrestigeGameMode ??= PrestigeGameModes.Regular;
             if (isPmc)
             {
-                profile.Info.SelectedPrestigeGameMode ??= PrestigeGameModes.Regular;
-
-                // Both modes carry the one level SPT tracks, whichever the client reads
-                var level = profile.Info.PrestigeLevel ?? 0;
-                profile.Info.PrestigeLevels = new Dictionary<string, int> { [PrestigeGameModes.Regular] = level, [PrestigeGameModes.Pve] = level };
+                profile.Info.PrestigeLevels ??= new Dictionary<string, int>
+                {
+                    [PrestigeGameModes.Regular] = 0,
+                    [PrestigeGameModes.Pve] = profile.Info.PrestigeLevel ?? 0,
+                };
+                profile.Info.UpdateShownPrestige();
             }
         }
 
         if (profile.Ending is not null)
         {
-            profile.Ending.Available ??= new Dictionary<string, List<string>> { [PrestigeGameModes.Regular] = [], [PrestigeGameModes.Pve] = [] };
+            profile.Ending.Available ??= new Dictionary<string, List<string>>
+            {
+                [PrestigeGameModes.Regular] = [],
+                [PrestigeGameModes.Pve] = [],
+            };
         }
 
         if (isPmc)

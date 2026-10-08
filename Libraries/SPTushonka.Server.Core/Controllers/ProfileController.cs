@@ -547,6 +547,12 @@ public class ProfileController(
             profileToUpdate.Info.SquadInviteRestriction = request.SquadInviteRestriction;
         }
 
+        if (request.PrestigeGameMode != null)
+        {
+            profileToUpdate.Info.SelectedPrestigeGameMode = request.PrestigeGameMode;
+            profileToUpdate.Info.UpdateShownPrestige();
+        }
+
         return true;
     }
 }

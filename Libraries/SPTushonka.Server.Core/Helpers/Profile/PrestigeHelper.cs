@@ -23,16 +23,18 @@ public class PrestigeHelper(
 )
 {
     /// <summary>
-    /// The key is prestige id, the value is Achievement id
+    ///     Achievement granted for each prestige level, the first entry is level 1. Keyed by level because prestige ids
+    ///     change between client releases while the achievements stay.
     /// </summary>
-    public static Dictionary<MongoId, MongoId> PrestigeAchievements { get; } =
-        new Dictionary<MongoId, MongoId>
-        {
-            { new MongoId("672df12f97f0469cea52f55e"), new MongoId("676091c0f457869a94017a23") },
-            { new MongoId("672df4281ab8d9c8849a0c88"), new MongoId("676094451fec2f7426093be6") },
-            { new MongoId("683da91d6f472cfa738c52f2"), new MongoId("6842c25bd02bc07d70054019") },
-            { new MongoId("6842f121000d98ce33b9a60f"), new MongoId("6842c27a38482d35ac0bd847") },
-        };
+    public static IReadOnlyList<MongoId> PrestigeLevelAchievements { get; } =
+    [
+        new("676091c0f457869a94017a23"),
+        new("676094451fec2f7426093be6"),
+        new("6842c25bd02bc07d70054019"),
+        new("6842c27a38482d35ac0bd847"),
+        new("68d3fe84757f8967ec09099b"),
+        new("68d3ff840531ed76e808866c"),
+    ];
 
     public void ProcessPendingPrestige(SptProfile oldProfile, SptProfile newProfile, PendingPrestige prestige)
     {
@@ -86,8 +88,9 @@ public class PrestigeHelper(
             }
         }
 
-        if (PrestigeAchievements.TryGetValue(prestigeLevel.Id, out var currentAchievement))
+        if (indexOfPrestigeObtained < PrestigeLevelAchievements.Count)
         {
+            var currentAchievement = PrestigeLevelAchievements[indexOfPrestigeObtained];
             var achievements = newProfile.CharacterData?.PmcData?.Achievements;
 
             if (achievements is not null && !achievements.ContainsKey(currentAchievement))
@@ -97,7 +100,9 @@ public class PrestigeHelper(
         }
         else
         {
-            logger.Error($"Unable to add prestige achievement to profile, no prestige achievement for {prestigeLevel.Id} was found.");
+            logger.Error(
+                $"Unable to add prestige achievement to profile, no achievement is known for prestige level {indexOfPrestigeObtained + 1}"
+            );
         }
 
         // Get all prestige rewards from prestige 1 up to desired prestige
@@ -106,6 +111,12 @@ public class PrestigeHelper(
             .SelectMany(prestigeInner => prestigeInner.Rewards);
 
         AddPrestigeRewardsToProfile(sessionId!.Value, newProfile, prestigeRewards);
+
+        // Tarcoins outlive the wipe, so only the level just reached pays them out
+        var tarcoins = prestigeLevel
+            .Rewards.Where(reward => reward.Type == RewardType.Tarcoin)
+            .Sum(reward => Convert.ToInt32(reward.Value ?? 0));
+        newProfile.CharacterData!.PmcData!.TarCoinBalance = (newProfile.CharacterData.PmcData.TarCoinBalance ?? 0) + tarcoins;
 
         // Copy profile stats
         CopyStats(newProfile, oldProfile);
@@ -166,7 +177,13 @@ public class PrestigeHelper(
         }
 
         // Set prestige level on new profile
-        newProfile.CharacterData!.PmcData!.Info!.PrestigeLevel = prestige.PrestigeLevel;
+        var info = newProfile.CharacterData!.PmcData!.Info!;
+        if (info.GetPrestigeLevel(info.SelectedPrestigeGameMode ?? PrestigeGameModes.Regular) == 0)
+        {
+            info.SelectedPrestigeGameMode = PrestigeGameModes.Pve;
+        }
+
+        info.SetPrestigeLevel(PrestigeGameModes.Pve, prestige.PrestigeLevel ?? 1);
     }
 
     /// <summary>
@@ -209,10 +226,10 @@ public class PrestigeHelper(
             switch (reward.Type)
             {
                 case RewardType.CustomizationDirect:
-                    {
-                        profileHelper.AddHideoutCustomisationUnlock(newProfile, reward, CustomisationSource.PRESTIGE);
-                        break;
-                    }
+                {
+                    profileHelper.AddHideoutCustomisationUnlock(newProfile, reward, CustomisationSource.PRESTIGE);
+                    break;
+                }
                 case RewardType.Skill:
                     if (Enum.TryParse(reward.Target, out SkillTypes result))
                     {
@@ -232,15 +249,19 @@ public class PrestigeHelper(
 
                     break;
                 case RewardType.Item:
-                    {
-                        itemsToSend.AddRange(reward.Items ?? []);
-                        break;
-                    }
+                {
+                    itemsToSend.AddRange(reward.Items ?? []);
+                    break;
+                }
                 case RewardType.ExtraDailyQuest:
-                    {
-                        newProfile.AddExtraRepeatableQuest(new MongoId(reward.Target), (double)reward.Value!);
-                        break;
-                    }
+                {
+                    newProfile.AddExtraRepeatableQuest(new MongoId(reward.Target), (double)reward.Value!);
+                    break;
+                }
+                // We pay Tarcoins out in ProcessPendingPrestige, not needed here
+                case RewardType.Tarcoin:
+                case RewardType.Stub:
+                    break;
                 default:
                     logger.Error($"Unhandled prestige reward type: {reward.Type} Id: {reward.Id}");
                     break;

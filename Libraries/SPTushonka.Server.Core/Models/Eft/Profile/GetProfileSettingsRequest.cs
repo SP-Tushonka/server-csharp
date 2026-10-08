@@ -13,4 +13,10 @@ public record GetProfileSettingsRequest : IRequestData
 
     [JsonPropertyName("squadInviteRestriction")]
     public bool? SquadInviteRestriction { get; set; }
+
+    /// <summary>
+    ///     Chosen value for profile.Info.SelectedPrestigeGameMode, the mode whose prestige is shown
+    /// </summary>
+    [JsonPropertyName("prestigeGameMode")]
+    public string? PrestigeGameMode { get; set; }
 }

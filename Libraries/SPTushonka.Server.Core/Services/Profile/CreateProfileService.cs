@@ -90,7 +90,9 @@ public class CreateProfileService(
         if (account.CharacterData.PmcData.Prestige is not null)
         {
             pmcData.Prestige = account.CharacterData.PmcData.Prestige;
-            pmcData.Info.PrestigeLevel = account.CharacterData.PmcData.Info.PrestigeLevel;
+            pmcData.Info.PrestigeLevels = account.CharacterData.PmcData.Info.PrestigeLevels;
+            pmcData.Info.SelectedPrestigeGameMode = account.CharacterData.PmcData.Info.SelectedPrestigeGameMode;
+            pmcData.Info.UpdateShownPrestige();
         }
 
         UpdateInventoryEquipmentId(pmcData);

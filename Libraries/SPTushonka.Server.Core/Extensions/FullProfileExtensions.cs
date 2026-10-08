@@ -126,7 +126,7 @@ public static class FullProfileExtensions
                 break;
         }
 
-        var prestigeLevel = fullProfile?.CharacterData?.PmcData?.Info?.PrestigeLevel;
+        var prestigeLevel = fullProfile?.CharacterData?.PmcData?.Info?.GetPrestigeLevel(PrestigeGameModes.Pve);
 
         if (prestigeLevel is not null)
         {
@@ -204,7 +204,7 @@ public static class FullProfileExtensions
     {
         fullProfile.SptData.ExtraRepeatableQuests ??= new Dictionary<MongoId, double>();
 
-        if (!fullProfile.SptData.ExtraRepeatableQuests.TryAdd(repeatableId, 0))
+        if (!fullProfile.SptData.ExtraRepeatableQuests.TryAdd(repeatableId, rewardValue))
         {
             fullProfile.SptData.ExtraRepeatableQuests[repeatableId] += rewardValue;
         }

@@ -336,4 +336,45 @@ public static class ProfileExtensions
     {
         return pmcData.TradersInfo?.Where(trader => trader.Value.Unlocked == false).Select(t => t.Key).ToHashSet() ?? [];
     }
+
+    /// <summary>
+    ///     Get the prestige level reached in a game mode, a seasonal mode counts as regular as it does in the client
+    /// </summary>
+    /// <param name="info">Pmc profile info</param>
+    /// <param name="gameMode">Mode to read, one of <see cref="PrestigeGameModes"/></param>
+    /// <returns>Prestige level, 0 when none was reached</returns>
+    public static int GetPrestigeLevel(this Info info, string gameMode)
+    {
+        return info.PrestigeLevels?.GetValueOrDefault(ToPrestigeLevelKey(gameMode)) ?? 0;
+    }
+
+    /// <summary>
+    ///     Record the prestige level reached in a game mode and refresh the level shown to other players
+    /// </summary>
+    /// <param name="info">Pmc profile info</param>
+    /// <param name="gameMode">Mode the level was reached in, one of <see cref="PrestigeGameModes"/></param>
+    /// <param name="level">Prestige level reached</param>
+    public static void SetPrestigeLevel(this Info info, string gameMode, int level)
+    {
+        info.PrestigeLevels ??= new Dictionary<string, int> { [PrestigeGameModes.Regular] = 0, [PrestigeGameModes.Pve] = 0 };
+        info.PrestigeLevels[ToPrestigeLevelKey(gameMode)] = level;
+        info.UpdateShownPrestige();
+    }
+
+    /// <summary>
+    ///     Copy the level of the selected prestige mode into PrestigeLevel and PrestigeGameMode, the pair chat, groups
+    ///     and profile views show to other players
+    /// </summary>
+    /// <param name="info">Pmc profile info</param>
+    public static void UpdateShownPrestige(this Info info)
+    {
+        info.SelectedPrestigeGameMode ??= PrestigeGameModes.Regular;
+        info.PrestigeGameMode = info.SelectedPrestigeGameMode;
+        info.PrestigeLevel = info.GetPrestigeLevel(info.SelectedPrestigeGameMode);
+    }
+
+    private static string ToPrestigeLevelKey(string gameMode)
+    {
+        return gameMode == PrestigeGameModes.Pve ? PrestigeGameModes.Pve : PrestigeGameModes.Regular;
+    }
 }

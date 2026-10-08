@@ -60,16 +60,18 @@ public class PrestigeController(TemplateTable templateTable, ProfileHelper profi
         var profile = profileHelper.GetFullProfile(sessionId);
         if (profile is not null)
         {
+            var prestigeLevels = templateTable.Prestige.Elements ?? [];
+
+            // The client offers the first level the profile has not claimed, so count the same way
+            var claimed = profile.CharacterData?.PmcData?.Prestige ?? [];
             var pendingPrestige = new PendingPrestige
             {
-                PrestigeLevel = (profile.CharacterData?.PmcData?.Info?.PrestigeLevel ?? 0) + 1,
+                PrestigeLevel = prestigeLevels.TakeWhile(level => claimed.ContainsKey(level.Id)).Count() + 1,
                 Items = request,
             };
 
             profile.SptData.PendingPrestige = pendingPrestige;
             profile.ProfileInfo.IsWiped = true;
-
-            var prestigeLevels = templateTable.Prestige.Elements ?? [];
 
             var prestigeRewards = prestigeLevels
                 .Slice(0, pendingPrestige.PrestigeLevel.Value)
