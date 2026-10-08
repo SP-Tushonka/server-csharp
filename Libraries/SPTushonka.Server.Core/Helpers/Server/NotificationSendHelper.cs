@@ -16,6 +16,7 @@ namespace SPTarkov.Server.Core.Helpers.Server;
 public class NotificationSendHelper(
     ISptLogger<NotificationSendHelper> logger,
     SptWebSocketConnectionHandler sptWebSocketConnectionHandler,
+    LobbySocketChannel lobbySocketChannel,
     SaveServer saveServer,
     NotificationService notificationService,
     TimeUtil timeUtil,
@@ -34,6 +35,11 @@ public class NotificationSendHelper(
             logger.Debug(
                 $"Send message for {sessionId} started, message: {jsonUtil.Serialize(notificationMessage, notificationMessage.GetType())}"
             );
+        }
+
+        if (await lobbySocketChannel.SendNotificationAsync(sessionId, notificationMessage))
+        {
+            return;
         }
 
         if (sptWebSocketConnectionHandler.IsWebSocketConnected(sessionId))

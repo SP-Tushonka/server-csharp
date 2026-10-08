@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
@@ -17,23 +16,20 @@ using SPTarkov.Server.Core.Utils;
 namespace SPTarkov.Server.Core.Servers.Ws;
 
 /// <summary>
-///     Backend routes the 1.1 client sends over the Lobby websocket instead of http. Each request is
-///     answered with "CONFIRM {id}" and then "RESPONSE {id} {method} {json}".
+///     Backend routes the client sends over the Lobby websocket instead of http. Each request is answered with a
+///     Confirm frame and then a Response frame carrying the same tracking id.
 /// </summary>
 [Injectable(InjectionType.Singleton)]
 public sealed class SessionRequestWebSocketHandler(
     ISptLogger<SessionRequestWebSocketHandler> logger,
     HttpRouter httpRouter,
+    LobbySocketChannel lobbySocketChannel,
     JsonUtil jsonUtil
 ) : IWebSocketConnectionHandler
 {
     public const string HookUrl = "/ws/session/";
 
-    private static readonly char[] Separators = [' ', '\n', '\r'];
-
     private static readonly JsonSerializerOptions RequestOptions = new() { PropertyNameCaseInsensitive = true };
-
-    private readonly ConcurrentDictionary<WebSocket, SemaphoreSlim> _sendGates = new();
 
     public string GetHookUrl()
     {
@@ -52,54 +48,102 @@ public sealed class SessionRequestWebSocketHandler(
             logger.Debug($"[WS] Request channel opened for session {GetSessionId(context)} with context {sessionIdContext}");
         }
 
+        lobbySocketChannel.Register(new MongoId(GetSessionId(context)), ws);
+
         return Task.CompletedTask;
     }
 
+    /// <summary>
+    ///     Answer one framed request, confirming receipt before the route runs so the client stops its retries
+    /// </summary>
+    /// <param name="rawData">Whole frame as received</param>
+    /// <param name="messageType">Kind of websocket message the frame arrived as</param>
+    /// <param name="ws">Socket the frame arrived on</param>
+    /// <param name="context">Connection the socket belongs to</param>
     public async Task OnMessageAsync(byte[] rawData, WebSocketMessageType messageType, WebSocket ws, HttpContext context)
     {
-        if (messageType != WebSocketMessageType.Text)
+        if (messageType != WebSocketMessageType.Binary)
+        {
+            logger.Warning($"[WS] Request channel ignored a {messageType} message of {rawData.Length} bytes: {Preview(rawData)}");
+            return;
+        }
+
+        if (!LobbySocketChannel.TryDecodeFrame(rawData, out var frame))
+        {
+            logger.Warning($"[WS] Request channel could not decode a {rawData.Length} byte frame: {Preview(rawData)}");
+            return;
+        }
+
+        // The client confirms every Response and Notification it receives, nothing waits on those
+        if (frame.MessageType == WsWireMessageType.Confirm)
         {
             return;
         }
 
-        var text = Encoding.UTF8.GetString(rawData);
-        var parts = text.Split(Separators, 3, StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length < 3 || parts[0] != "REQUEST")
+        if (frame.MessageType != WsWireMessageType.Request)
         {
-            logger.Warning($"[WS] Request channel received an unknown message: {Truncate(text)}");
+            logger.Warning($"[WS] Request channel ignored a {frame.MessageType} frame for {frame.TrackingId}");
             return;
         }
 
+        var request = ReadRequest(frame.Payload);
+        if (request is null)
+        {
+            return;
+        }
+
+        await lobbySocketChannel.SendFrameAsync(
+            ws,
+            WsWireMessageType.Confirm,
+            frame.TrackingId,
+            string.Empty,
+            string.Empty,
+            context.RequestAborted
+        );
+
+        var sessionId = new MongoId(GetSessionId(context));
+        var response = await BuildResponseAsync(request, sessionId, context.RequestAborted);
+        var json = jsonUtil.Serialize(response) ?? string.Empty;
+        await lobbySocketChannel.SendFrameAsync(
+            ws,
+            WsWireMessageType.Response,
+            frame.TrackingId,
+            frame.PayloadType,
+            json,
+            context.RequestAborted
+        );
+    }
+
+    /// <summary>
+    ///     Read the request body a Request frame carries
+    /// </summary>
+    /// <param name="json">Request body</param>
+    /// <returns>The request, or null when it cannot be used</returns>
+    private WsRequestMessage? ReadRequest(string json)
+    {
         WsRequestMessage? request;
         try
         {
-            request = JsonSerializer.Deserialize<WsRequestMessage>(parts[2], RequestOptions);
+            request = JsonSerializer.Deserialize<WsRequestMessage>(json, RequestOptions);
         }
         catch (Exception ex)
         {
             logger.Error($"[WS] Request channel could not read a request: {ex.Message}");
-            return;
+            return null;
         }
 
         if (request?.Method is null || request.Id is null)
         {
-            logger.Warning($"[WS] Request channel received a request without method or id: {Truncate(text)}");
-            return;
+            logger.Warning($"[WS] Request channel received a request without method or id: {Truncate(json)}");
+            return null;
         }
 
-        await SendAsync(ws, $"CONFIRM {request.Id}", context.RequestAborted);
-
-        var sessionId = new MongoId(GetSessionId(context));
-        var response = await BuildResponseAsync(request, sessionId, context.RequestAborted);
-        await SendAsync(ws, $"RESPONSE {request.Id} {request.Method} {jsonUtil.Serialize(response)}", context.RequestAborted);
+        return request;
     }
 
     public Task OnCloseAsync(WebSocket ws, HttpContext context, string sessionIdContext)
     {
-        if (_sendGates.TryRemove(ws, out var gate))
-        {
-            gate.Dispose();
-        }
+        lobbySocketChannel.Unregister(new MongoId(GetSessionId(context)), ws);
 
         return Task.CompletedTask;
     }
@@ -154,23 +198,6 @@ public sealed class SessionRequestWebSocketHandler(
         return response;
     }
 
-    private async Task SendAsync(WebSocket ws, string text, CancellationToken cancellationToken)
-    {
-        var gate = _sendGates.GetOrAdd(ws, _ => new SemaphoreSlim(1, 1));
-        await gate.WaitAsync(cancellationToken);
-        try
-        {
-            if (ws.State == WebSocketState.Open)
-            {
-                await ws.SendAsync(Encoding.UTF8.GetBytes(text), WebSocketMessageType.Text, true, cancellationToken);
-            }
-        }
-        finally
-        {
-            gate.Release();
-        }
-    }
-
     private static string GetSessionId(HttpContext context)
     {
         var path = context.Request.Path.Value ?? string.Empty;
@@ -180,5 +207,18 @@ public sealed class SessionRequestWebSocketHandler(
     private static string Truncate(string text)
     {
         return text.Length <= 200 ? text : text[..200];
+    }
+
+    /// <summary>
+    ///     Render the start of a message as hex and as text, so a frame the channel cannot read can still be identified
+    /// </summary>
+    /// <param name="rawData">Message bytes</param>
+    /// <returns>Hex of the first bytes followed by their printable characters</returns>
+    private static string Preview(byte[] rawData)
+    {
+        var head = rawData.AsSpan(0, Math.Min(rawData.Length, 512));
+        var text = string.Concat(Encoding.ASCII.GetString(head).Select(c => char.IsControl(c) ? '.' : c));
+
+        return $"{Convert.ToHexString(head)} [{text}]";
     }
 }
