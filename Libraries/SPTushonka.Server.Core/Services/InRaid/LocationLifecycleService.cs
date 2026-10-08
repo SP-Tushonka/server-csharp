@@ -673,9 +673,12 @@ public class LocationLifecycleService(
 
             // Adjust limb hp and effects while transiting
             UpdateLimbValuesAfterTransit(scavProfile.Health);
+        }
 
-            // We want scav inventory to persist into next raid when pscav is moving between maps
-            // Also adjust FiR status when exit was runthrough
+        // A scav keeps what it carried unless it died, which covers extracting, a runthrough and a transit
+        // SetInventory clears the FiR status itself on an exit that does not earn it
+        if (!isDead)
+        {
             inRaidHelper.SetInventory(sessionId, scavProfile, postRaidProfile, isSurvived, isTransfer);
         }
 
