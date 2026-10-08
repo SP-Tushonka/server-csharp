@@ -17,5 +17,4 @@ public class ItemEventStaticRouter(JsonUtil jsonUtil, ItemEventCallbacks itemEve
                     await itemEventCallbacks.HandleEvents(url, info, sessionID, cancellationToken)
             ),
         ]
-    )
-{ }
+    ) { }

@@ -284,8 +284,7 @@ public class QuestController(
             pmcData
                 .Quests?.Where(quest => quest.Status is not (QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart))
                 .Select(quest => quest.QId)
-                .ToHashSet()
-            ?? [];
+                .ToHashSet() ?? [];
 
         var quests = questHelper
             .GetQuestsFromDb()

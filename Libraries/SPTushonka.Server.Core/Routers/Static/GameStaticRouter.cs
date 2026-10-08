@@ -110,5 +110,4 @@ public class GameStaticRouter(JsonUtil jsonUtil, GameCallbacks gameCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.ReceiveClientMods(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

@@ -20,5 +20,4 @@ public class InraidStaticRouter(InraidCallbacks inRaidCallbacks, JsonUtil jsonUt
                 async (url, info, sessionID, output, cancellationToken) => await inRaidCallbacks.GetBossTypes(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

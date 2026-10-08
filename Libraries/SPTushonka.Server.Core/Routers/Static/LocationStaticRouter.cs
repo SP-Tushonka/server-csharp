@@ -24,5 +24,4 @@ public class LocationStaticRouter(JsonUtil jsonUtil, LocationCallbacks locationC
                     await locationCallbacks.GetAirdropLoot(url, info as GetAirdropLootRequest, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

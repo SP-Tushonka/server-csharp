@@ -132,10 +132,7 @@ public class AssortHelper(ISptLogger<AssortHelper> logger, ServerLocalisationSer
         }
 
         // Remove items restricted by loyalty levels above those reached by the player
-        var lockedAssortIds = assort
-            .LoyalLevelItems.Where(item => item.Value > traderInfo.LoyaltyLevel)
-            .Select(item => item.Key)
-            .ToList();
+        var lockedAssortIds = assort.LoyalLevelItems.Where(item => item.Value > traderInfo.LoyaltyLevel).Select(item => item.Key).ToList();
 
         foreach (var assortId in lockedAssortIds)
         {

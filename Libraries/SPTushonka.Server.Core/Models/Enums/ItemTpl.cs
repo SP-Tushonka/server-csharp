@@ -527,7 +527,9 @@ public static class ItemTpl
     public static readonly MongoId ARMOR_LBT6094A_SLICK_PLATE_CARRIER_OLIVE_DRAB = new MongoId("6038b4ca92ec1c3103795a0d");
     public static readonly MongoId ARMOR_MFUNTAR_BODY = new MongoId("5ab8e4ed86f7742d8e50c7fa");
     public static readonly MongoId ARMOR_NFM_THOR_CONCEALABLE_REINFORCED_VEST_BODY = new MongoId("609e8540d5c319764c2bc2e9");
-    public static readonly MongoId ARMOR_NFM_THOR_CONCEALABLE_REINFORCED_VEST_BODY_ARMOR_HEAD_EYES = new MongoId("68a89146212dbbeead0d5636");
+    public static readonly MongoId ARMOR_NFM_THOR_CONCEALABLE_REINFORCED_VEST_BODY_ARMOR_HEAD_EYES = new MongoId(
+        "68a89146212dbbeead0d5636"
+    );
     public static readonly MongoId ARMOR_NFM_THOR_INTEGRATED_CARRIER_BODY = new MongoId("60a283193cb70855c43a381d");
     public static readonly MongoId ARMOR_NPP_KLASS_KORAKULON_BODY_ARMOR_BLACK = new MongoId("64be79c487d1510151095552");
     public static readonly MongoId ARMOR_NPP_KLASS_KORAKULON_BODY_ARMOR_EMR = new MongoId("64be79e2bf8412471d0d9bcc");
@@ -540,7 +542,9 @@ public static class ItemTpl
     public static readonly MongoId ARMOREDEQUIPMENT_ALTYN_HELMET_COVER_LETO = new MongoId("6a82dc5e6bc759779e064205");
     public static readonly MongoId ARMOREDEQUIPMENT_ALTYN_HELMET_COVER_OLIVE_DRAB = new MongoId("6a82dcf00e3db08b8b0af104");
     public static readonly MongoId ARMOREDEQUIPMENT_ALTYN_HELMET_FACE_SHIELD = new MongoId("5aa7e373e5b5b000137b76f0");
-    public static readonly MongoId ARMOREDEQUIPMENT_ALTYN_HELMET_FACE_SHIELD_IMPACT_TESTED_DAMAGED = new MongoId("6a82dbbf0ccd0eb28d02f240");
+    public static readonly MongoId ARMOREDEQUIPMENT_ALTYN_HELMET_FACE_SHIELD_IMPACT_TESTED_DAMAGED = new MongoId(
+        "6a82dbbf0ccd0eb28d02f240"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_CRYE_PRECISION_AIRFRAME_CHOPS = new MongoId("5c178a942e22164bef5ceca3");
     public static readonly MongoId ARMOREDEQUIPMENT_CRYE_PRECISION_AIRFRAME_CHOPS_BLACK = new MongoId("69caa20ff3190e7dfe0c197f");
     public static readonly MongoId ARMOREDEQUIPMENT_CRYE_PRECISION_AIRFRAME_CHOPS_MORBUS_INCORSIO = new MongoId("69cbd37c33d1df198600bfec");
@@ -573,27 +577,55 @@ public static class ItemTpl
     public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_MANDIBLE_RAPTOR = new MongoId("6a845e2dd68fc921f902397e");
     public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE = new MongoId("6a8433f15917e01c560716fc");
     public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE_OLIVE = new MongoId("6a845ded7d4cbd3ee50a191f");
-    public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE_OLIVE_DRAB = new MongoId("6a845e00eaa1d4d30d038f71");
+    public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE_OLIVE_DRAB = new MongoId(
+        "6a845e00eaa1d4d30d038f71"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE_PLAGUE = new MongoId("6a845e117d4cbd3ee50a1923");
     public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE_PROTOTYPE = new MongoId("6a845ddeeaa1d4d30d038f6d");
     public static readonly MongoId ARMOREDEQUIPMENT_DEVTAC_RONIN_REINFORCED_CROWN_PLATE_RAPTOR = new MongoId("6a845dce7d4cbd3ee50a191b");
     public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_BASTION_HELMET_ARMOR_PLATE = new MongoId("5ea18c84ecf1982c7712d9a2");
-    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NEOSTEEL_HELMET_BALLISTIC_MANDIBLE = new MongoId("6570a88c8f221f3b210353b7");
-    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NEOSTEEL_HELMET_BALLISTIC_MANDIBLE_ACES = new MongoId("68a9c0ed6d47c49b700faaf9");
-    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NEOSTEEL_HELMET_BALLISTIC_MANDIBLE_BLACK = new MongoId("68a9bf7d9f4c45817b0d83b6");
+    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NEOSTEEL_HELMET_BALLISTIC_MANDIBLE = new MongoId(
+        "6570a88c8f221f3b210353b7"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NEOSTEEL_HELMET_BALLISTIC_MANDIBLE_ACES = new MongoId(
+        "68a9c0ed6d47c49b700faaf9"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NEOSTEEL_HELMET_BALLISTIC_MANDIBLE_BLACK = new MongoId(
+        "68a9bf7d9f4c45817b0d83b6"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_AVENTAIL = new MongoId("6a8338c851cfbe231b091a1b");
-    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_FLIP_BALLISTIC_MANDIBLE_CUSTOS_MORTIS = new MongoId("6a8338b4350dd848e70feefd");
-    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_FLIP_BALLISTIC_MANDIBLE_OLIVE_DRAB = new MongoId("6a8338846a6ba231700536db");
-    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_FLIP_BALLISTIC_MANDIBLE_TOXIN = new MongoId("6a8338bc992762b7bf08ffb3");
+    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_FLIP_BALLISTIC_MANDIBLE_CUSTOS_MORTIS = new MongoId(
+        "6a8338b4350dd848e70feefd"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_FLIP_BALLISTIC_MANDIBLE_OLIVE_DRAB = new MongoId(
+        "6a8338846a6ba231700536db"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_DIAMOND_AGE_NOVASTEEL_FLIP_BALLISTIC_MANDIBLE_TOXIN = new MongoId(
+        "6a8338bc992762b7bf08ffb3"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_FIXED_ARM_VISOR = new MongoId("5f60bf4558eff926626a60f2");
     public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE = new MongoId("5f60b85bbdb8e27dee3dc985");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE_MULTICAM = new MongoId("68a9b601863d2a71fa0494ae");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE_MULTICAM_ALPINE = new MongoId("693be0ee50fafa102607aebd");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE_MUTUALIST = new MongoId("68a9b669fa39b6976e07de96");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD = new MongoId("5f60c076f2bcbb675b00dac2");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD_MULTICAM = new MongoId("68a9b6c8d3a061d8b6058346");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD_MULTICAM_ALPINE = new MongoId("693be056fd3a5c751e00de04");
-    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD_MUTUALIST = new MongoId("68a9b73bd3a061d8b6058348");
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE_MULTICAM = new MongoId(
+        "68a9b601863d2a71fa0494ae"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE_MULTICAM_ALPINE = new MongoId(
+        "693be0ee50fafa102607aebd"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_APPLIQUE_MUTUALIST = new MongoId(
+        "68a9b669fa39b6976e07de96"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD = new MongoId(
+        "5f60c076f2bcbb675b00dac2"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD_MULTICAM = new MongoId(
+        "68a9b6c8d3a061d8b6058346"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD_MULTICAM_ALPINE = new MongoId(
+        "693be056fd3a5c751e00de04"
+    );
+    public static readonly MongoId ARMOREDEQUIPMENT_GALVION_CAIMAN_HYBRID_BALLISTIC_MANDIBLE_GUARD_MUTUALIST = new MongoId(
+        "68a9b73bd3a061d8b6058348"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_KIVERM_FACE_SHIELD = new MongoId("5b46238386f7741a693bcf9c");
     public static readonly MongoId ARMOREDEQUIPMENT_KOLPAK1S_FACE_SHIELD = new MongoId("5ac4c50d5acfc40019262e87");
     public static readonly MongoId ARMOREDEQUIPMENT_LSHZ2DTM_AVENTAIL = new MongoId("5d6d3be5a4b9361bc73bc763");
@@ -608,18 +640,28 @@ public static class ItemTpl
     public static readonly MongoId ARMOREDEQUIPMENT_OPSCORE_FAST_SIDE_ARMOR = new MongoId("5a16badafcdbcb001865f72d");
     public static readonly MongoId ARMOREDEQUIPMENT_OPSCORE_FAST_VISOR = new MongoId("5a16b672fcdbcb001912fa83");
     public static readonly MongoId ARMOREDEQUIPMENT_RYST_FACE_SHIELD = new MongoId("5f60c85b58eff926626a60f7");
-    public static readonly MongoId ARMOREDEQUIPMENT_TACKEK_HEAVY_TROOPER_MASK_FOR_OPSCORETYPE_HELMETS = new MongoId("5ea058e01dbce517f324b3e2");
+    public static readonly MongoId ARMOREDEQUIPMENT_TACKEK_HEAVY_TROOPER_MASK_FOR_OPSCORETYPE_HELMETS = new MongoId(
+        "5ea058e01dbce517f324b3e2"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_FACE_SHIELD_BLACK = new MongoId("5e00cdd986f7747473332240");
-    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_FACE_SHIELD_COYOTE_BROWN = new MongoId("5e01f37686f774773c6f6c15");
+    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_FACE_SHIELD_COYOTE_BROWN = new MongoId(
+        "5e01f37686f774773c6f6c15"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_MANDIBLE_BLACK = new MongoId("6a834d1f992762b7bf08ffd2");
-    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_MANDIBLE_COYOTE_BROWN = new MongoId("6a834d286cfa76129a0923b8");
+    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_MANDIBLE_COYOTE_BROWN = new MongoId(
+        "6a834d286cfa76129a0923b8"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_BALLISTIC_MANDIBLE_MULTICAM = new MongoId("6a834d307bea762f500e1b59");
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_EAR_COVERS_BLACK = new MongoId("5e00cfa786f77469dc6e5685");
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_EAR_COVERS_COYOTE_BROWN = new MongoId("5e01f31d86f77465cf261343");
-    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_ARCTIC_CHOCOLATE_CHIP = new MongoId("6a8355f881430c75c10db040");
+    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_ARCTIC_CHOCOLATE_CHIP = new MongoId(
+        "6a8355f881430c75c10db040"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_MULTICAM = new MongoId("6a8355f08ce81861440b6ec1");
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_MULTICAM_BLACK = new MongoId("69e24f4f9e6ca1b32508bfbc");
-    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_PENCOTT_WILDWOOD = new MongoId("6a8355e36a6ba231700536f6");
+    public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_PENCOTT_WILDWOOD = new MongoId(
+        "6a8355e36a6ba231700536f6"
+    );
     public static readonly MongoId ARMOREDEQUIPMENT_TEAM_WENDY_EXFIL_HELMET_COVER_WOLF_GRAY = new MongoId("6a835600c0378ed820059151");
     public static readonly MongoId ARMOREDEQUIPMENT_VELOCITY_SYSTEMS_SLAAP_PLATE_TAN = new MongoId("5c0e66e2d174af02a96252f4");
     public static readonly MongoId ARMOREDEQUIPMENT_VULKAN5_HELMET_FACE_SHIELD = new MongoId("5ca2113f86f7740b2547e1d2");
@@ -675,7 +717,9 @@ public static class ItemTpl
     public static readonly MongoId ASSAULTCARBINE_TOKAREV_SVT40_762X54R_RIFLE = new MongoId("643ea5b23db6f9f57107d9fd");
     public static readonly MongoId ASSAULTCARBINE_TOZ_SIMONOV_SKS_762X39_CARBINE = new MongoId("574d967124597745970e7c94");
     public static readonly MongoId ASSAULTRIFLE_ADAR_215_556X45_CARBINE = new MongoId("5c07c60e0db834002330051f");
-    public static readonly MongoId ASSAULTRIFLE_AKLYS_DEFENSE_VELOCIRAPTOR_300_BLACKOUT_ASSAULT_RIFLE = new MongoId("674d6121c09f69dfb201a888");
+    public static readonly MongoId ASSAULTRIFLE_AKLYS_DEFENSE_VELOCIRAPTOR_300_BLACKOUT_ASSAULT_RIFLE = new MongoId(
+        "674d6121c09f69dfb201a888"
+    );
     public static readonly MongoId ASSAULTRIFLE_ASH12_127X55_ASSAULT_RIFLE = new MongoId("5cadfbf7ae92152ac412eeef");
     public static readonly MongoId ASSAULTRIFLE_CMMG_MK47_MUTANT_762X39_ASSAULT_RIFLE = new MongoId("606587252535c57a13424cfd");
     public static readonly MongoId ASSAULTRIFLE_COLT_M16A1_556X45_ASSAULT_RIFLE = new MongoId("68a639748e1fe612970728e9");
@@ -734,7 +778,9 @@ public static class ItemTpl
     public static readonly MongoId ASSAULTSCOPE_HK_G36_HENSOLDT_HKV_3X_CARRY_HANDLE = new MongoId("622b4d7df9cfc87d675d2ded");
     public static readonly MongoId ASSAULTSCOPE_HK_G36_HENSOLDT_HKV_ZF_15X_CARRY_HANDLE = new MongoId("622b4f54dc8dcc0ba8742f85");
     public static readonly MongoId ASSAULTSCOPE_KIBA_ARMS_SHORT_PRISM_25X_SCOPE = new MongoId("5c1cdd512e22161b267d91ae");
-    public static readonly MongoId ASSAULTSCOPE_LEUPOLD_MARK_4_HAMR_4X24_DELTAPOINT_HYBRID_ASSAULT_SCOPE = new MongoId("544a3a774bdc2d3a388b4567");
+    public static readonly MongoId ASSAULTSCOPE_LEUPOLD_MARK_4_HAMR_4X24_DELTAPOINT_HYBRID_ASSAULT_SCOPE = new MongoId(
+        "544a3a774bdc2d3a388b4567"
+    );
     public static readonly MongoId ASSAULTSCOPE_MONSTRUM_TACTICAL_COMPACT_PRISM_SCOPE_2X32 = new MongoId("5d2dc3e548f035404a1a4798");
     public static readonly MongoId ASSAULTSCOPE_MONSTRUM_TACTICAL_MARKSMAN_3X30_PRISM_SCOPE = new MongoId("6a18508bae175e037a0be420");
     public static readonly MongoId ASSAULTSCOPE_NORINCO_QMK171A_3X_SCOPE = new MongoId("69f9f0e4df2c2358a904186b");
@@ -768,8 +814,12 @@ public static class ItemTpl
     public static readonly MongoId AUXILIARYMOD_KAC_URX_331_STOPPER_PANEL_FDE = new MongoId("5d124c1ad7ad1a12227c53a7");
     public static readonly MongoId AUXILIARYMOD_KMZ_1P59_SCOPE_EYECUP = new MongoId("5d0b5cd3d7ad1a3fe32ad263");
     public static readonly MongoId AUXILIARYMOD_KPSR2_SIGHT_SHADE = new MongoId("62ff9faffe938a24c90c10df");
-    public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_HAMMER_SPUR_EXTENSION = new MongoId("67c5414226265106dd06979c");
-    public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_HAMMER_SPUR_EXTENSION_BLACK = new MongoId("67ff1eaf8e8db1dcb80ccad8");
+    public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_HAMMER_SPUR_EXTENSION = new MongoId(
+        "67c5414226265106dd06979c"
+    );
+    public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_HAMMER_SPUR_EXTENSION_BLACK = new MongoId(
+        "67ff1eaf8e8db1dcb80ccad8"
+    );
     public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_TRIGGER = new MongoId("67c5411f26265106dd06979a");
     public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_TRIGGER_BLACK = new MongoId("67ff1e209d1f778973073376");
     public static readonly MongoId AUXILIARYMOD_M1895MXLR_RANGER_POINT_PRECISION_TRIGGER_GOLD = new MongoId("67ff1e2b3e43c3abb701c7c6");
@@ -800,7 +850,9 @@ public static class ItemTpl
     public static readonly MongoId AUXILIARYMOD_SV98_SOUND_SUPPRESSOR_HEAT_SHIELD = new MongoId("5c4eecde2e221602b3140418");
     public static readonly MongoId AUXILIARYMOD_TRIJICON_REAPIR_SCOPE_EYECUP = new MongoId("5a1eacb3fcdbcb09800872be");
     public static readonly MongoId AUXILIARYMOD_TROPHY = new MongoId("5ae089fb5acfc408fb13989b");
-    public static readonly MongoId BACKPACK_3V_GEAR_PARATUS_3DAY_OPERATORS_TACTICAL_BACKPACK_FOLIAGE_GREY = new MongoId("5c0e805e86f774683f3dd637");
+    public static readonly MongoId BACKPACK_3V_GEAR_PARATUS_3DAY_OPERATORS_TACTICAL_BACKPACK_FOLIAGE_GREY = new MongoId(
+        "5c0e805e86f774683f3dd637"
+    );
     public static readonly MongoId BACKPACK_511_TACTICAL_RUSH_100_BACKPACK_BLACK = new MongoId("67458730df3c1da90b0b052b");
     public static readonly MongoId BACKPACK_6SH118_RAID_BACKPACK_EMR = new MongoId("5df8a4d786f77412672a1e3b");
     public static readonly MongoId BACKPACK_ANA_TACTICAL_BETA_2_BATTLE_BACKPACK_OLIVE_DRAB = new MongoId("5b44c6ae86f7742d1627baea");
@@ -808,7 +860,9 @@ public static class ItemTpl
     public static readonly MongoId BACKPACK_CAMELBAK_TRIZIP_ASSAULT_BACKPACK_MULTICAM = new MongoId("66b5f22b78bbc0200425f904");
     public static readonly MongoId BACKPACK_DIRECT_ACTION_DRAGON_EGG_MARK_II_BACKPACK_BLACK = new MongoId("656f198fb27298d6fd005466");
     public static readonly MongoId BACKPACK_DUFFLE_BAG = new MongoId("56e33634d2720bd8058b456b");
-    public static readonly MongoId BACKPACK_EBERLESTOCK_F4_TERMINATOR_LOAD_BEARING_BACKPACK_TIGER_STRIPE = new MongoId("5f5e46b96bdad616ad46d613");
+    public static readonly MongoId BACKPACK_EBERLESTOCK_F4_TERMINATOR_LOAD_BEARING_BACKPACK_TIGER_STRIPE = new MongoId(
+        "5f5e46b96bdad616ad46d613"
+    );
     public static readonly MongoId BACKPACK_EBERLESTOCK_F5_SWITCHBLADE_BACKPACK_DRY_EARTH = new MongoId("5f5e467b0bc58666c37e7821");
     public static readonly MongoId BACKPACK_EBERLESTOCK_G2_GUNSLINGER_II_BACKPACK_DRY_EARTH = new MongoId("6034d2d697633951dc245ea6");
     public static readonly MongoId BACKPACK_FLYYE_MBSS_BACKPACK_UCP = new MongoId("544a5cde4bdc2d39388b456b");
@@ -863,8 +917,12 @@ public static class ItemTpl
     public static readonly MongoId BARREL_AR15_556X45_18_INCH = new MongoId("5d440b93a4b9364276578d4b");
     public static readonly MongoId BARREL_AR15_556X45_20_INCH = new MongoId("5d440b9fa4b93601354d480c");
     public static readonly MongoId BARREL_AR15_556X45_A2_TYPE_20_INCH = new MongoId("68a63ac58e1fe612970728f2");
-    public static readonly MongoId BARREL_AR15_556X45_BALLISTIC_ADVANTAGE_HANSON_CARBINE_PRO_137_INCH = new MongoId("63d3ce0446bd475bcb50f55f");
-    public static readonly MongoId BARREL_AR15_556X45_BALLISTIC_ADVANTAGE_HANSON_CARBINE_PRO_16_INCH = new MongoId("63d3d44a2a49307baf09386d");
+    public static readonly MongoId BARREL_AR15_556X45_BALLISTIC_ADVANTAGE_HANSON_CARBINE_PRO_137_INCH = new MongoId(
+        "63d3ce0446bd475bcb50f55f"
+    );
+    public static readonly MongoId BARREL_AR15_556X45_BALLISTIC_ADVANTAGE_HANSON_CARBINE_PRO_16_INCH = new MongoId(
+        "63d3d44a2a49307baf09386d"
+    );
     public static readonly MongoId BARREL_AR15_556X45_CENTURION_ARMS_MK12_16_INCH = new MongoId("68caabc3f42a4476cf0be2a6");
     public static readonly MongoId BARREL_AR15_556X45_CENTURION_ARMS_MK12_18_INCH = new MongoId("68caaa93269e10396503acf6");
     public static readonly MongoId BARREL_AR15_556X45_MOLOT_ARMS_16_INCH = new MongoId("5c0e2f94d174af029f650d56");
@@ -1479,8 +1537,12 @@ public static class ItemTpl
     public static readonly MongoId BUILTININSERTS_BAGARII_LEVEL3_SOFT_ARMOR_FRONT = new MongoId("657322988c1cc6dcd9098b2d");
     public static readonly MongoId BUILTININSERTS_BAGARII_LEVEL3_SOFT_ARMOR_LEFT_SIDE = new MongoId("657322acd9d89ff7ac0d961b");
     public static readonly MongoId BUILTININSERTS_BAGARII_LEVEL3_SOFT_ARMOR_RIGHT_SIDE = new MongoId("657322b7d9d89ff7ac0d961f");
-    public static readonly MongoId BUILTININSERTS_BALLISTICARMORCO_BASTION_LEVEL4_HELMET_ARMOR_NAPE = new MongoId("66b61ce0c5d72b027748867e");
-    public static readonly MongoId BUILTININSERTS_BALLISTICARMORCO_BASTION_LEVEL4_HELMET_ARMOR_TOP = new MongoId("66b61cfae98be930d701c029");
+    public static readonly MongoId BUILTININSERTS_BALLISTICARMORCO_BASTION_LEVEL4_HELMET_ARMOR_NAPE = new MongoId(
+        "66b61ce0c5d72b027748867e"
+    );
+    public static readonly MongoId BUILTININSERTS_BALLISTICARMORCO_BASTION_LEVEL4_HELMET_ARMOR_TOP = new MongoId(
+        "66b61cfae98be930d701c029"
+    );
     public static readonly MongoId BUILTININSERTS_BANSHEE_LEVEL2_SOFT_ARMOR_BACK = new MongoId("6573102b292ecadbfa09b38d");
     public static readonly MongoId BUILTININSERTS_BANSHEE_LEVEL2_SOFT_ARMOR_FRONT = new MongoId("6573101e292ecadbfa09b389");
     public static readonly MongoId BUILTININSERTS_BANSHEE_LEVEL2_SOFT_ARMOR_LEFT_SIDE = new MongoId("65731038292ecadbfa09b391");
@@ -1522,7 +1584,9 @@ public static class ItemTpl
     public static readonly MongoId BUILTININSERTS_CRYE_CPC_LEVEL3_SOFT_ARMOR_FRONT = new MongoId("6575f24ff6a13a7b7100b09e");
     public static readonly MongoId BUILTININSERTS_CRYE_CPC_LEVEL3_SOFT_ARMOR_LEFT_SIDE = new MongoId("6575f2649cfdfe416f0399b8");
     public static readonly MongoId BUILTININSERTS_CRYE_CPC_LEVEL3_SOFT_ARMOR_RIGHT_SIDE = new MongoId("6575f26d9c7cad336508e480");
-    public static readonly MongoId BUILTININSERTS_CRYE_PRECISION_AIRFRAME_LEVEL4_HELMET_ARMOR_NAPE = new MongoId("657f98fbada5fadd1f07a585");
+    public static readonly MongoId BUILTININSERTS_CRYE_PRECISION_AIRFRAME_LEVEL4_HELMET_ARMOR_NAPE = new MongoId(
+        "657f98fbada5fadd1f07a585"
+    );
     public static readonly MongoId BUILTININSERTS_CRYE_PRECISION_AIRFRAME_LEVEL4_HELMET_ARMOR_TOP = new MongoId("657f9897f4c82973640b235e");
     public static readonly MongoId BUILTININSERTS_DEFENDER2_LEVEL3_SOFT_ARMOR_BACK = new MongoId("65732df4d0acf75aea06c87b");
     public static readonly MongoId BUILTININSERTS_DEFENDER2_LEVEL3_SOFT_ARMOR_COLLAR = new MongoId("65732e215d3a3129fb05f3e1");
@@ -1796,10 +1860,14 @@ public static class ItemTpl
     public static readonly MongoId CHARGE_AR15_HK_EXTENDED_LATCH_CHARGING_HANDLE = new MongoId("5bb20dbcd4351e44f824c04e");
     public static readonly MongoId CHARGE_AR15_HK_EXTENDED_LATCH_CHARGING_HANDLE_RAL_8000 = new MongoId("6a1d4dae46b486ac34084778");
     public static readonly MongoId CHARGE_AR15_MAGPUL_BAD_LEVER_BOLT_RELEASE = new MongoId("675307301f7c19a9780f2668");
-    public static readonly MongoId CHARGE_AR15_MASP_INDUSTRIES_AMBIDEXTROUS_BATTLE_CHARGING_HANDLE = new MongoId("6033749e88382f4fab3fd2c5");
+    public static readonly MongoId CHARGE_AR15_MASP_INDUSTRIES_AMBIDEXTROUS_BATTLE_CHARGING_HANDLE = new MongoId(
+        "6033749e88382f4fab3fd2c5"
+    );
     public static readonly MongoId CHARGE_AR15_PRECISION_REFLEX_M84_GAS_BUSTER_CHARGING_HANDLE = new MongoId("68caabebc71156cf470bc186");
     public static readonly MongoId CHARGE_AR15_RADIAN_WEAPONS_RAPTOR_CHARGING_HANDLE_FDE = new MongoId("5b2240bf5acfc40dc528af69");
-    public static readonly MongoId CHARGE_AR15_RADIAN_WEAPONS_RAPTOR_CHARGING_HANDLE_TUNGSTEN_GREY = new MongoId("5d44334ba4b9362b346d1948");
+    public static readonly MongoId CHARGE_AR15_RADIAN_WEAPONS_RAPTOR_CHARGING_HANDLE_TUNGSTEN_GREY = new MongoId(
+        "5d44334ba4b9362b346d1948"
+    );
     public static readonly MongoId CHARGE_AR15_RADIAN_WEAPONS_RAPTORSD_CHARGING_HANDLE = new MongoId("6895bf08e2d16810ba0bf43e");
     public static readonly MongoId CHARGE_AR15_RAINIER_ARMS_AVALANCHE_MOD2_CHARGING_HANDLE = new MongoId("5f633ff5c444ce7e3c30a006");
     public static readonly MongoId CHARGE_BENELLI_M3_SUPER_90_CHARGING_HANDLE = new MongoId("625ec45bb14d7326ac20f572");
@@ -1872,7 +1940,9 @@ public static class ItemTpl
     public static readonly MongoId COMPACTCOLLIMATOR_DI_OPTICAL_FC1_REFLEX_SIGHT = new MongoId("6985bebd812f88c79b0eed3b");
     public static readonly MongoId COMPACTCOLLIMATOR_LEUPOLD_DELTAPOINT_REFLEX_SIGHT = new MongoId("58d268fc86f774111273f8c2");
     public static readonly MongoId COMPACTCOLLIMATOR_SIG_SAUER_ROMEO4_REFLEX_SIGHT = new MongoId("5b3116595acfc40019476364");
-    public static readonly MongoId COMPACTCOLLIMATOR_STRIKE_INDUSTRIES_HEXION_TECH_SEEKER_REFLEX_SIGHT = new MongoId("6a675e25dfb2de5e320d454e");
+    public static readonly MongoId COMPACTCOLLIMATOR_STRIKE_INDUSTRIES_HEXION_TECH_SEEKER_REFLEX_SIGHT = new MongoId(
+        "6a675e25dfb2de5e320d454e"
+    );
     public static readonly MongoId COMPACTCOLLIMATOR_SWAMPFOX_JUSTICE_REFLEX_SIGHT = new MongoId("68a5ac69b55a6b93c20a2bc7");
     public static readonly MongoId COMPACTCOLLIMATOR_TRIJICON_MRO_REFLEX_SIGHT = new MongoId("6a16dec146b811b32d0583ef");
     public static readonly MongoId COMPACTCOLLIMATOR_TRIJICON_RMR_REFLEX_SIGHT = new MongoId("5a32aa8bc4a2826c6e06d737");
@@ -1954,7 +2024,9 @@ public static class ItemTpl
     public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_DEMON = new MongoId("67a5c61c7f52620c5b05b4d8");
     public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_DEMONIC_FACE = new MongoId("68a9a15d73d52d47830759c9");
     public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_EL_DA_DE_MUERTOS = new MongoId("67a5c657782ce4655104db16");
-    public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_LOUI_PEETON_LOUIPEETON = new MongoId("68d54d0525ac8590a8075ac3");
+    public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_LOUI_PEETON_LOUIPEETON = new MongoId(
+        "68d54d0525ac8590a8075ac3"
+    );
     public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_PING = new MongoId("688b3bfa1ed594eccd0c45ee");
     public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_SCARS = new MongoId("67a5c5df782ce4655104db14");
     public static readonly MongoId FACECOVER_ATOMIC_DEFENSE_CQCM_BALLISTIC_MASK_SKULL = new MongoId("67a5c6068fcd9fb73f0752cf");
@@ -2104,11 +2176,17 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_AK74_545X39_MUZZLE_BRAKE = new MongoId("5649aa744bdc2ded0b8b457e");
     public static readonly MongoId FLASHHIDER_AK74_PWS_CQB_74_545X39_MUZZLE_BRAKE = new MongoId("5943eeeb86f77412d6384f6b");
     public static readonly MongoId FLASHHIDER_AK74_SRVV_MBR_JET_545X39_MUZZLE_BRAKE = new MongoId("5cc9a96cd7f00c011c04e04a");
-    public static readonly MongoId FLASHHIDER_AK74_THREAD_TYPE_JMAC_CUSTOMS_LAF24_MULTICALIBER_MUZZLE_BRAKE = new MongoId("6a16dc8b12144b7727017dad");
-    public static readonly MongoId FLASHHIDER_AK74_THREAD_TYPE_JMAC_CUSTOMS_RRD4C_MULTICALIBER_MUZZLE_BRAKE = new MongoId("5f633f791b231926f2329f13");
+    public static readonly MongoId FLASHHIDER_AK74_THREAD_TYPE_JMAC_CUSTOMS_LAF24_MULTICALIBER_MUZZLE_BRAKE = new MongoId(
+        "6a16dc8b12144b7727017dad"
+    );
+    public static readonly MongoId FLASHHIDER_AK74_THREAD_TYPE_JMAC_CUSTOMS_RRD4C_MULTICALIBER_MUZZLE_BRAKE = new MongoId(
+        "5f633f791b231926f2329f13"
+    );
     public static readonly MongoId FLASHHIDER_AK74M_545X39_MUZZLE_BRAKE = new MongoId("5ac7655e5acfc40016339a19");
     public static readonly MongoId FLASHHIDER_AKM_762X39_MUZZLE_BRAKE = new MongoId("59d64fc686f774171b243fe2");
-    public static readonly MongoId FLASHHIDER_AKM_THREAD_TYPE_JMAC_CUSTOMS_RRD4C_762X39_MUZZLE_BRAKE = new MongoId("5f633f68f5750b524b45f112");
+    public static readonly MongoId FLASHHIDER_AKM_THREAD_TYPE_JMAC_CUSTOMS_RRD4C_762X39_MUZZLE_BRAKE = new MongoId(
+        "5f633f68f5750b524b45f112"
+    );
     public static readonly MongoId FLASHHIDER_AKML_SYSTEM_762X39_FLASH_HIDER = new MongoId("5a0d716f1526d8000d26b1e2");
     public static readonly MongoId FLASHHIDER_AKS74U_545X39_MUZZLE_BRAKE = new MongoId("57dc324a24597759501edc20");
     public static readonly MongoId FLASHHIDER_AR10_2A_ARMANENT_X3_762X51_COMPENSATOR = new MongoId("5b7d693d5acfc43bca706a3d");
@@ -2129,7 +2207,9 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_AR10_NORDIC_COMPONENTS_CORVETTE_762X51_COMPENSATOR = new MongoId("5d02677ad7ad1a04a15c0f95");
     public static readonly MongoId FLASHHIDER_AR10_ODIN_WORKS_ATLAS7_762X51_MUZZLE_BRAKE = new MongoId("5bbdb8bdd4351e4502011460");
     public static readonly MongoId FLASHHIDER_AR10_POTOMAC_ARMORY_M110_762X51_FLASH_HIDER = new MongoId("6932af0bbe542622170428bd");
-    public static readonly MongoId FLASHHIDER_AR10_PRECISION_ARMANENT_M11_SEVEREDUTY_762X51_MUZZLE_BRAKE = new MongoId("5cdd7693d7f00c0010373aa5");
+    public static readonly MongoId FLASHHIDER_AR10_PRECISION_ARMANENT_M11_SEVEREDUTY_762X51_MUZZLE_BRAKE = new MongoId(
+        "5cdd7693d7f00c0010373aa5"
+    );
     public static readonly MongoId FLASHHIDER_AR10_SUREFIRE_PROCOMP_762X51_MUZZLE_BRAKE = new MongoId("607ffb988900dc2d9a55b6e4");
     public static readonly MongoId FLASHHIDER_AR10_SUREFIRE_WARDEN_762X51_BLAST_REGULATOR = new MongoId("615d8eb350224f204c1da1cf");
     public static readonly MongoId FLASHHIDER_AR10_TAA_ZK38_762X51_MUZZLE_BRAKE = new MongoId("612e0e3c290d254f5e6b291d");
@@ -2148,7 +2228,9 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_AR15_DESERT_TECH_556X45_FLASH_HIDER = new MongoId("5c48a2a42e221602b66d1e07");
     public static readonly MongoId FLASHHIDER_AR15_DOUBLESTAR_CARLSON_TAC_COMP_556X45_COMPENSATOR = new MongoId("6621455e3aceea9e2b0b01e7");
     public static readonly MongoId FLASHHIDER_AR15_FERFRANS_CQB_556X45_MUZZLE_BRAKE = new MongoId("5f6372e2865db925d54f3869");
-    public static readonly MongoId FLASHHIDER_AR15_GRIFFIN_ARMAMENT_GATELOK_HAMMER_556X45_FLASH_HIDER = new MongoId("6386120cd6baa055ad1e201c");
+    public static readonly MongoId FLASHHIDER_AR15_GRIFFIN_ARMAMENT_GATELOK_HAMMER_556X45_FLASH_HIDER = new MongoId(
+        "6386120cd6baa055ad1e201c"
+    );
     public static readonly MongoId FLASHHIDER_AR15_HK_BLITZ_556X45_FLASH_HIDER = new MongoId("615d8e2f1cb55961fa0fd9a4");
     public static readonly MongoId FLASHHIDER_AR15_KAC_QDC_556X45_3PRONG_FLASH_ELIMINATOR = new MongoId("626667e87379c44d557b7550");
     public static readonly MongoId FLASHHIDER_AR15_KAC_QDC_556X45_FLASH_SUPPRESSOR_KIT = new MongoId("56ea8180d2720bf2698b456a");
@@ -2166,7 +2248,9 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_AR15_TAA_ZK23_556X45_MUZZLE_BRAKE = new MongoId("612e0e55a112697a4b3a66e7");
     public static readonly MongoId FLASHHIDER_AR15_THUNDER_BEAST_ARMS_223CB_556X45_MUZZLE_BRAKE = new MongoId("5d440625a4b9361eec4ae6c5");
     public static readonly MongoId FLASHHIDER_AR15_TROY_CLAYMORE_556X45_MUZZLE_BRAKE = new MongoId("5cc9b815d7f00c000e2579d6");
-    public static readonly MongoId FLASHHIDER_AR15_VENDETTA_PRECISION_VP09_INTERCEPTOR_556X45_MUZZLE_BRAKE = new MongoId("5a7c147ce899ef00150bd8b8");
+    public static readonly MongoId FLASHHIDER_AR15_VENDETTA_PRECISION_VP09_INTERCEPTOR_556X45_MUZZLE_BRAKE = new MongoId(
+        "5a7c147ce899ef00150bd8b8"
+    );
     public static readonly MongoId FLASHHIDER_AR15_WDR_NERO_556_556X45_MUZZLE_BRAKE = new MongoId("64943b74e9998d641b0412ed");
     public static readonly MongoId FLASHHIDER_AR15_YANKEE_HILL_PHANTOM_556X45_FLASH_HIDER = new MongoId("626a74340be03179a165e30c");
     public static readonly MongoId FLASHHIDER_AS_VAL_9X39_NB_MOD4_JAILBRAKE_MUZZLE_DEVICE = new MongoId("6878c1c723c3173d7f06d926");
@@ -2180,11 +2264,15 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_FN_P90_57X28_FLASH_HIDER = new MongoId("5cc82796e24e8d000f5859a8");
     public static readonly MongoId FLASHHIDER_FN_SCARL_556X45_FLASH_HIDER = new MongoId("618407a850224f204c1da549");
     public static readonly MongoId FLASHHIDER_GLOCK_9X19_CARVER_CUSTOM_4_PORT_COMPENSATOR = new MongoId("5a7ad0c451dfba0013379712");
-    public static readonly MongoId FLASHHIDER_GLOCK_9X19_CARVER_CUSTOM_DECELERATOR_3_PORT_COMPENSATOR = new MongoId("5a7037338dc32e000d46d257");
+    public static readonly MongoId FLASHHIDER_GLOCK_9X19_CARVER_CUSTOM_DECELERATOR_3_PORT_COMPENSATOR = new MongoId(
+        "5a7037338dc32e000d46d257"
+    );
     public static readonly MongoId FLASHHIDER_GLOCK_9X19_DOUBLE_DIAMOND_FLASH_HIDER = new MongoId("5a70366c8dc32e001207fb06");
     public static readonly MongoId FLASHHIDER_GLOCK_9X19_LONE_WOLF_ALPHAWOLF_BULLNOSE_COMPENSATOR = new MongoId("5a705e128dc32e000d46d258");
     public static readonly MongoId FLASHHIDER_GLOCK_9X19_LONE_WOLF_LWDCOMP9_COMPENSATOR = new MongoId("5a7ad1fb51dfba0013379715");
-    public static readonly MongoId FLASHHIDER_GLOCK_9X19_STRIKE_INDUSTRIES_G4_SLIDECOMP_COMPENSATOR = new MongoId("5a7b32a2e899ef00135e345a");
+    public static readonly MongoId FLASHHIDER_GLOCK_9X19_STRIKE_INDUSTRIES_G4_SLIDECOMP_COMPENSATOR = new MongoId(
+        "5a7b32a2e899ef00135e345a"
+    );
     public static readonly MongoId FLASHHIDER_HK_G36_556X45_4PRONG_FLASH_HIDER = new MongoId("622f128cec80d870d349b4e8");
     public static readonly MongoId FLASHHIDER_HK_G36_556X45_FLASH_HIDER = new MongoId("622f07cfae33bc505b2c4dd5");
     public static readonly MongoId FLASHHIDER_HK_G36C_556X45_4PRONG_FLASH_HIDER = new MongoId("622f0ee47762f55aaa68ac87");
@@ -2202,13 +2290,19 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_M14_YANKEE_HILL_PHANTOM_762X51_FLASH_HIDER = new MongoId("5addbbb25acfc40015621bd9");
     public static readonly MongoId FLASHHIDER_M1911_ANARCHY_OUTDOORS_45_ACP_MUZZLE_BRAKE = new MongoId("5ef61964ec7f42238c31e0c1");
     public static readonly MongoId FLASHHIDER_M1A_NATIONAL_MATCH_762X51_FLASH_SUPPRESSOR = new MongoId("5addbb6e5acfc408fb1393fd");
-    public static readonly MongoId FLASHHIDER_M1A_SMITH_ENTERPRISE_SOCOM_16_762X51_THREADED_MUZZLE_BRAKE_GAS_BLOCK = new MongoId("5ab3afb2d8ce87001660304d");
+    public static readonly MongoId FLASHHIDER_M1A_SMITH_ENTERPRISE_SOCOM_16_762X51_THREADED_MUZZLE_BRAKE_GAS_BLOCK = new MongoId(
+        "5ab3afb2d8ce87001660304d"
+    );
     public static readonly MongoId FLASHHIDER_M1A_SOCOM_16_762X51_MUZZLE_BRAKE = new MongoId("5aafa1c2e5b5b00015042a56");
     public static readonly MongoId FLASHHIDER_M60E3_762X51_FLASH_HIDER = new MongoId("6601281fc752a02bbe05e696");
     public static readonly MongoId FLASHHIDER_M60E6_762X51_FLASH_HIDER = new MongoId("66012a1d3dff5074ed002e2a");
     public static readonly MongoId FLASHHIDER_MCXSPEAR_CLUTCHLOK_QD_68X51_SHOULDERED_FLASH_HIDER = new MongoId("6529113b5ae2ae97b80fdf39");
-    public static readonly MongoId FLASHHIDER_MOSIN_RIFLE_TACFIRE_TANKER_STYLE_762X54R_MUZZLE_BRAKE = new MongoId("5bbdb83fd4351e44f824c44b");
-    public static readonly MongoId FLASHHIDER_MOSIN_RIFLE_TEXAS_PRECISION_PRODUCTS_762X54R_MUZZLE_BRAKE = new MongoId("5bc5a351d4351e003477a414");
+    public static readonly MongoId FLASHHIDER_MOSIN_RIFLE_TACFIRE_TANKER_STYLE_762X54R_MUZZLE_BRAKE = new MongoId(
+        "5bbdb83fd4351e44f824c44b"
+    );
+    public static readonly MongoId FLASHHIDER_MOSIN_RIFLE_TEXAS_PRECISION_PRODUCTS_762X54R_MUZZLE_BRAKE = new MongoId(
+        "5bc5a351d4351e003477a414"
+    );
     public static readonly MongoId FLASHHIDER_MOSIN_RIFLE_WITT_MACHINE_762X54R_MUZZLE_BRAKE = new MongoId("5bc5a35cd4351e450201232f");
     public static readonly MongoId FLASHHIDER_MPX_A2_9X19_FLASH_HIDER = new MongoId("58949dea86f77409483e16a8");
     public static readonly MongoId FLASHHIDER_ORSIS_T5000M_762X51_MUZZLE_BRAKE = new MongoId("5df35e7f2a78646d96665dd4");
@@ -2234,7 +2328,9 @@ public static class ItemTpl
     public static readonly MongoId FLASHHIDER_STEYR_AUG_A3_556X45_CLOSED_FLASH_HIDER = new MongoId("630f28f0cadb1fe05e06f004");
     public static readonly MongoId FLASHHIDER_STEYR_AUG_A3_556X45_MUZZLE_BRAKE = new MongoId("630f291b9f66a28b37094bb8");
     public static readonly MongoId FLASHHIDER_STM9_9X19_MUZZLE_BRAKE = new MongoId("60337f5dce399e10262255d1");
-    public static readonly MongoId FLASHHIDER_STRIKE_INDUSTRIES_OPPRESSOR_LITE_V2_556X45_MUZZLE_DEVICE = new MongoId("6a6895ac4672de9ba1014bcc");
+    public static readonly MongoId FLASHHIDER_STRIKE_INDUSTRIES_OPPRESSOR_LITE_V2_556X45_MUZZLE_DEVICE = new MongoId(
+        "6a6895ac4672de9ba1014bcc"
+    );
     public static readonly MongoId FLASHHIDER_SV98_762X54R_MUZZLE_DEVICE = new MongoId("560e620e4bdc2d724b8b456b");
     public static readonly MongoId FLASHHIDER_SV98_762X54R_THREAD_ADAPTER = new MongoId("5c4eec9b2e2216398b5aaba2");
     public static readonly MongoId FLASHHIDER_SV98_SRVV_MK20_762X54R_MUZZLE_BRAKE = new MongoId("5c4ee3d62e2216152006f302");
@@ -2358,7 +2454,9 @@ public static class ItemTpl
     public static readonly MongoId FOREGRIP_BCM_GUNFIGHTER_MOD_3_MLOK_FOREGRIP_FDE = new MongoId("665edce564fb556f940ab32a");
     public static readonly MongoId FOREGRIP_BCM_GUNFIGHTER_MOD_3_VERTICAL = new MongoId("5c7fc87d2e221644f31c0298");
     public static readonly MongoId FOREGRIP_DANIEL_DEFENSE_ENHANCED_MLOK_VERTICAL_FOREGRIP_BLACK = new MongoId("651a8bf3a8520e48047bf708");
-    public static readonly MongoId FOREGRIP_DANIEL_DEFENSE_ENHANCED_MLOK_VERTICAL_FOREGRIP_COYOTE_BROWN = new MongoId("651a8e529829226ceb67c319");
+    public static readonly MongoId FOREGRIP_DANIEL_DEFENSE_ENHANCED_MLOK_VERTICAL_FOREGRIP_COYOTE_BROWN = new MongoId(
+        "651a8e529829226ceb67c319"
+    );
     public static readonly MongoId FOREGRIP_DANIEL_DEFENSE_VERTICAL_FOREGRIP_BLACK = new MongoId("6a16f3711c209e26040a5410");
     public static readonly MongoId FOREGRIP_DANIEL_DEFENSE_VERTICAL_FOREGRIP_MIL_SPEC = new MongoId("6a16f3811c209e26040a5413");
     public static readonly MongoId FOREGRIP_FORTIS_SHIFT_TACTICAL = new MongoId("59f8a37386f7747af3328f06");
@@ -2415,8 +2513,12 @@ public static class ItemTpl
     public static readonly MongoId GASBLOCK_AK_KIBA_ARMS_VDM_CS_GAS_TUBE = new MongoId("5a01ad4786f77450561fda02");
     public static readonly MongoId GASBLOCK_AK_TROY_FULL_LENGTH_RAIL_HANDGUARD_WITH_GAS_TUBE = new MongoId("5b237e425acfc4771e1be0b6");
     public static readonly MongoId GASBLOCK_AK_ULTIMAK_M1B_HANDGUARD_WITH_GAS_TUBE = new MongoId("59ccfdba86f7747f2109a587");
-    public static readonly MongoId GASBLOCK_AK_VEZHLIVYY_STRELOK_VS24_VS33C_HANDGUARD_WITH_GAS_TUBE = new MongoId("5cf656f2d7f00c06585fb6eb");
-    public static readonly MongoId GASBLOCK_AK_VEZHLIVYY_STRELOK_VS24_VS33C_HANDGUARD_WITH_GAS_TUBE_WHITE = new MongoId("5d4aab30a4b9365435358c55");
+    public static readonly MongoId GASBLOCK_AK_VEZHLIVYY_STRELOK_VS24_VS33C_HANDGUARD_WITH_GAS_TUBE = new MongoId(
+        "5cf656f2d7f00c06585fb6eb"
+    );
+    public static readonly MongoId GASBLOCK_AK_VEZHLIVYY_STRELOK_VS24_VS33C_HANDGUARD_WITH_GAS_TUBE_WHITE = new MongoId(
+        "5d4aab30a4b9365435358c55"
+    );
     public static readonly MongoId GASBLOCK_AK12_GAS_TUBE = new MongoId("649ec107961514b22506b10c");
     public static readonly MongoId GASBLOCK_AK50_MLOK_HANDGUARD_WITH_GAS_TUBE = new MongoId("67d417c023ec241bb70d4896");
     public static readonly MongoId GASBLOCK_AK545_MK_21_GAS_TUBE = new MongoId("628b8d83717774443b15e248");
@@ -2431,7 +2533,9 @@ public static class ItemTpl
     public static readonly MongoId GASBLOCK_AR15_BALLISTIC_ADVANTAGE_LOPRO_GAS_BLOCK = new MongoId("63d3ce281fe77d0f2801859e");
     public static readonly MongoId GASBLOCK_AR15_DANIEL_DEFENSE_MK12_LOW_PROFILE_GAS_BLOCK = new MongoId("56eabcd4d2720b66698b4574");
     public static readonly MongoId GASBLOCK_AR15_JP_ENTERPRISES_GAS_SYSTEM5B = new MongoId("5d00ec68d7ad1a04a067e5be");
-    public static readonly MongoId GASBLOCK_AR15_PRECISION_REFLEX_MK12_GEN1_FLIPUP_FRONT_SIGHT_GAS_BLOCK = new MongoId("68caac02269e10396503acfa");
+    public static readonly MongoId GASBLOCK_AR15_PRECISION_REFLEX_MK12_GEN1_FLIPUP_FRONT_SIGHT_GAS_BLOCK = new MongoId(
+        "68caac02269e10396503acfa"
+    );
     public static readonly MongoId GASBLOCK_AR15_SLR_RIFLEWORKS_SENTRY_7_GAS_BLOCK = new MongoId("68c16f6883e2d814b0093f7a");
     public static readonly MongoId GASBLOCK_AR15_WINDHAM_WEAPONRY_RAIL_GAS_BLOCK = new MongoId("56ea8d2fd2720b7c698b4570");
     public static readonly MongoId GASBLOCK_HK_416A5_LOW_PROFILE_GAS_BLOCK = new MongoId("5bb20dcad4351e3bac1212da");
@@ -2449,7 +2553,9 @@ public static class ItemTpl
     public static readonly MongoId GASBLOCK_PP1901_VITYAZ_SAG_MK1_MLOK_HANDGUARD_WITH_GAS_TUBE = new MongoId("676177df1f08ed5e8800b7ae");
     public static readonly MongoId GASBLOCK_PP1901_VITYAZ_VECTOR_VRLPS_LEFTSIDE_CHARGING_HANDLE = new MongoId("65ae4f57e343f0acc00824da");
     public static readonly MongoId GASBLOCK_QBZ191_GAS_BLOCK = new MongoId("69f9ec0cddaf0c377d0eb748");
-    public static readonly MongoId GASBLOCK_RD704_SLR_ION_LITE_RAILED_GAS_TUBE_HANDGUARD_WITH_GAS_TUBE = new MongoId("628a83c29179c324ed269508");
+    public static readonly MongoId GASBLOCK_RD704_SLR_ION_LITE_RAILED_GAS_TUBE_HANDGUARD_WITH_GAS_TUBE = new MongoId(
+        "628a83c29179c324ed269508"
+    );
     public static readonly MongoId GASBLOCK_SKS_GAS_TUBE = new MongoId("634f02d7517ccc8a960fc744");
     public static readonly MongoId GASBLOCK_SVDS_GAS_TUBE = new MongoId("5c471c842e221615214259b5");
     public static readonly MongoId GASBLOCK_TKPD_GAS_TUBE = new MongoId("68aee9e31ef0d507780a61cd");
@@ -2481,12 +2587,20 @@ public static class ItemTpl
     public static readonly MongoId HANDGUARD_AK_ALFA_ARMS_ASPID = new MongoId("647dd2b8a12ebf96c3031655");
     public static readonly MongoId HANDGUARD_AK_CAA_RS47 = new MongoId("5648ae314bdc2d3d1c8b457f");
     public static readonly MongoId HANDGUARD_AK_CNC_GUNS_OV_GP = new MongoId("6389f1dfc879ce63f72fc43e");
-    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD1_HANDGUARD_ANODIZED_GREY = new MongoId("6a6720479d7f57e84800faed");
+    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD1_HANDGUARD_ANODIZED_GREY = new MongoId(
+        "6a6720479d7f57e84800faed"
+    );
     public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD1_HANDGUARD_ANODIZED_RED = new MongoId("6a671d320578b5a41000c298");
-    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD1_HANDGUARD_ANODIZED_YELLOW = new MongoId("6a6720592ff856278106eb3e");
-    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD2_HANDGUARD_ANODIZED_GREY = new MongoId("6a6724bddfb2de5e320d451d");
+    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD1_HANDGUARD_ANODIZED_YELLOW = new MongoId(
+        "6a6720592ff856278106eb3e"
+    );
+    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD2_HANDGUARD_ANODIZED_GREY = new MongoId(
+        "6a6724bddfb2de5e320d451d"
+    );
     public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD2_HANDGUARD_ANODIZED_RED = new MongoId("6a6721edecf09d43410cba5a");
-    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD2_HANDGUARD_ANODIZED_YELLOW = new MongoId("6a67250406a5419b2508f23e");
+    public static readonly MongoId HANDGUARD_AK_HEXAGON_CHEESE_GRATER_MOD2_HANDGUARD_ANODIZED_YELLOW = new MongoId(
+        "6a67250406a5419b2508f23e"
+    );
     public static readonly MongoId HANDGUARD_AK_HEXAGON_TUBULAR = new MongoId("5b800e9286f7747a8b04f3ff");
     public static readonly MongoId HANDGUARD_AK_HEXAGON_TUBULAR_HANDGUARD_ANODIZED_RED = new MongoId("5b80242286f77429445e0b47");
     public static readonly MongoId HANDGUARD_AK_KREBS_CUSTOM_UFM_KEYMOD = new MongoId("59fb375986f7741b681b81a6");
@@ -2507,7 +2621,9 @@ public static class ItemTpl
     public static readonly MongoId HANDGUARD_AK_VLTOR_CMRD_KEYMOD = new MongoId("5c17664f2e2216398b5a7e3c");
     public static readonly MongoId HANDGUARD_AK_ZENIT_B10 = new MongoId("5c617a5f2e2216000f1e81b3");
     public static readonly MongoId HANDGUARD_AK_ZENIT_B10M_HANDGUARD_WITH_B19_UPPER_MOUNT = new MongoId("5648b4534bdc2d3d1c8b4580");
-    public static readonly MongoId HANDGUARD_AK_ZENIT_B30_HANDGUARD_WITH_B31S_UPPER_HANDGUARD_RAIL = new MongoId("5efaf417aeb21837e749c7f2");
+    public static readonly MongoId HANDGUARD_AK_ZENIT_B30_HANDGUARD_WITH_B31S_UPPER_HANDGUARD_RAIL = new MongoId(
+        "5efaf417aeb21837e749c7f2"
+    );
     public static readonly MongoId HANDGUARD_AK12 = new MongoId("649ec127c93611967b034957");
     public static readonly MongoId HANDGUARD_AK12_LAC_AKVILON15 = new MongoId("682315b0f8d8f8681e0744b0");
     public static readonly MongoId HANDGUARD_AK12_TACTICAL_IDEAS_N4 = new MongoId("682315bdf8d8f8681e0744b5");
@@ -2552,21 +2668,35 @@ public static class ItemTpl
     public static readonly MongoId HANDGUARD_AR15_COLT_M4_CARBINE_LENGTH_LOWER = new MongoId("637f57a68d137b27f70c4968");
     public static readonly MongoId HANDGUARD_AR15_CUSTOM_GUNS_105_INCH_MLOK = new MongoId("68c1707983e2d814b0093f7e");
     public static readonly MongoId HANDGUARD_AR15_CUSTOM_GUNS_14_INCH_MLOK = new MongoId("68c170e383e2d814b0093f87");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_1225_HANDGUARD_COYOTE_BROWN = new MongoId("5c9a25172e2216000f20314e");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_1225_LOWER_HANDGUARD_COYOTE_BROWN = new MongoId("638f2003bbd47aeb9e0ff637");
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_1225_HANDGUARD_COYOTE_BROWN = new MongoId(
+        "5c9a25172e2216000f20314e"
+    );
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_1225_LOWER_HANDGUARD_COYOTE_BROWN = new MongoId(
+        "638f2003bbd47aeb9e0ff637"
+    );
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_95_HANDGUARD_BLACK = new MongoId("588b56d02459771481110ae2");
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_95_HANDGUARD_COYOTE_BROWN = new MongoId("55f84c3c4bdc2d5f408b4576");
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_95_LOWER_HANDGUARD_BLACK = new MongoId("6396aaa9a52ace83df0840ab");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_95_LOWER_HANDGUARD_COYOTE_BROWN = new MongoId("638f1ff84822287cad04be9d");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_FSP_95_HANDGUARD_COYOTE_BROWN = new MongoId("5c9a26332e2216001219ea70");
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_95_LOWER_HANDGUARD_COYOTE_BROWN = new MongoId(
+        "638f1ff84822287cad04be9d"
+    );
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_II_FSP_95_HANDGUARD_COYOTE_BROWN = new MongoId(
+        "5c9a26332e2216001219ea70"
+    );
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_125_HANDGUARD_BLACK = new MongoId("6a156a75cbb8d0c82606c525");
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_125_HANDGUARD_MIL_SPEC = new MongoId("6a156a9407619a15b1023be7");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_125_LOWER_HANDGUARD_BLACK = new MongoId("6a156ac407619a15b1023bf0");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_125_LOWER_HANDGUARD_MIL_SPEC = new MongoId("6a1571b8060f61ca2c03e06f");
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_125_LOWER_HANDGUARD_BLACK = new MongoId(
+        "6a156ac407619a15b1023bf0"
+    );
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_125_LOWER_HANDGUARD_MIL_SPEC = new MongoId(
+        "6a1571b8060f61ca2c03e06f"
+    );
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_95_HANDGUARD_BLACK = new MongoId("6a147ad5eff5b3bf690c2c0d");
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_95_HANDGUARD_MIL_SPEC = new MongoId("6a1567ce0cce01965f0bee01");
     public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_95_LOWER_HANDGUARD_BLACK = new MongoId("6a147ae25071bc42610640b5");
-    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_95_LOWER_HANDGUARD_MIL_SPEC = new MongoId("6a1567e0af9c1c57b700776f");
+    public static readonly MongoId HANDGUARD_AR15_DANIEL_DEFENSE_RIS_III_95_LOWER_HANDGUARD_MIL_SPEC = new MongoId(
+        "6a1567e0af9c1c57b700776f"
+    );
     public static readonly MongoId HANDGUARD_AR15_GEISSELE_SMR_MK16_135_INCH_MLOK_HANDGUARD_DDC = new MongoId("5ea16ada09aa976f2e7a51be");
     public static readonly MongoId HANDGUARD_AR15_GEISSELE_SMR_MK16_95_INCH_MLOK_HANDGUARD_DDC = new MongoId("5ea16acdfadf1d18c87b0784");
     public static readonly MongoId HANDGUARD_AR15_KAC_FREE_FLOAT_RIFLE_RAS_12_INCH = new MongoId("68caac360bfe742288085e16");
@@ -2581,9 +2711,13 @@ public static class ItemTpl
     public static readonly MongoId HANDGUARD_AR15_LONE_STAR_ION_LITE = new MongoId("5d4405f0a4b9361e6a4e6bd9");
     public static readonly MongoId HANDGUARD_AR15_MAGPUL_MOE_SL_CARBINE_LENGTH_MLOK = new MongoId("5c78f2792e221600106f4683");
     public static readonly MongoId HANDGUARD_AR15_MAGPUL_MOE_SL_MEDIUM_LENGTH_MLOK = new MongoId("5c78f26f2e221601da3581d1");
-    public static readonly MongoId HANDGUARD_AR15_PRECISION_REFLEX_GEN_III_DELTA_CARBON_HANDGUARD_FDE = new MongoId("63888bbd28e5cc32cc09d2b6");
+    public static readonly MongoId HANDGUARD_AR15_PRECISION_REFLEX_GEN_III_DELTA_CARBON_HANDGUARD_FDE = new MongoId(
+        "63888bbd28e5cc32cc09d2b6"
+    );
     public static readonly MongoId HANDGUARD_AR15_PRECISION_REFLEX_GEN_III_ROUND_CARBON_12_INCH = new MongoId("68caac28f42a4476cf0be2ac");
-    public static readonly MongoId HANDGUARD_AR15_PRECISION_REFLEX_GEN_III_ROUND_CARBON_12_INCH_HANDGUARD_FDE = new MongoId("68cc2ae66e59cb54f4054f47");
+    public static readonly MongoId HANDGUARD_AR15_PRECISION_REFLEX_GEN_III_ROUND_CARBON_12_INCH_HANDGUARD_FDE = new MongoId(
+        "68cc2ae66e59cb54f4054f47"
+    );
     public static readonly MongoId HANDGUARD_AR15_RADIAN_WEAPONS_MODEL_1_14_INCH = new MongoId("6895bd19d55f0ebf6a0c0306");
     public static readonly MongoId HANDGUARD_AR15_SAI_10_INCH_QD_RAIL = new MongoId("5c78f2612e221600114c9f0d");
     public static readonly MongoId HANDGUARD_AR15_SAI_145_INCH_QD_RAIL = new MongoId("5c78f2492e221600114c9f04");
@@ -2599,9 +2733,15 @@ public static class ItemTpl
     public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_GRIDLOK_BASE_RED = new MongoId("68a7000d7708ac5120060527");
     public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_GRIDLOK_BASE_YELLOW = new MongoId("68a6fff085a17dc1cb008066");
     public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK = new MongoId("5d00e0cbd7ad1a6c6566a42d");
-    public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK_HANDGUARD_FDE = new MongoId("5d00f63bd7ad1a59283b1c1e");
-    public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK_LOWER = new MongoId("637f589af5ef8c33840d36d3");
-    public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK_LOWER_HANDGUARD_FDE = new MongoId("63969c9019971040b005049b");
+    public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK_HANDGUARD_FDE = new MongoId(
+        "5d00f63bd7ad1a59283b1c1e"
+    );
+    public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK_LOWER = new MongoId(
+        "637f589af5ef8c33840d36d3"
+    );
+    public static readonly MongoId HANDGUARD_AR15_STRIKE_INDUSTRIES_VIPER_CARBINE_LENGTH_MLOK_LOWER_HANDGUARD_FDE = new MongoId(
+        "63969c9019971040b005049b"
+    );
     public static readonly MongoId HANDGUARD_AR15_UNIQUEARS_HEX_12_INCH = new MongoId("6a6759a5ca1e7d40a007a56f");
     public static readonly MongoId HANDGUARD_AR15_UNIQUEARS_WING_SKULL_12_INCH = new MongoId("6087e0336d0bd7580617bb7a");
     public static readonly MongoId HANDGUARD_AR15_WAR_SPORT_LVOAC_HANDGUARD_BLACK = new MongoId("595cfa8b86f77427437e845b");
@@ -2638,18 +2778,26 @@ public static class ItemTpl
     public static readonly MongoId HANDGUARD_HK_MP5K_POLYMER = new MongoId("5d2f259b48f0355a844acd74");
     public static readonly MongoId HANDGUARD_HK_MP5SD_POLYMER = new MongoId("5926f34786f77469195bfe92");
     public static readonly MongoId HANDGUARD_HK_UMP_EXTENDED_MLOK = new MongoId("6a146c81f77fa1814701c172");
-    public static readonly MongoId HANDGUARD_HK417_EXTENDED_FREE_FLOAT_HANDGUARD_WITH_FLIPUP_FRONT_SIGHT = new MongoId("61703001d92c473c77021497");
+    public static readonly MongoId HANDGUARD_HK417_EXTENDED_FREE_FLOAT_HANDGUARD_WITH_FLIPUP_FRONT_SIGHT = new MongoId(
+        "61703001d92c473c77021497"
+    );
     public static readonly MongoId HANDGUARD_HK417_PATROL_HANDGUARD_WITH_FLIPUP_FRONT_SIGHT = new MongoId("61712eae6c780c1e710c9a1d");
     public static readonly MongoId HANDGUARD_HK417G28_GEISSELE_M110A1_145_INCH = new MongoId("6a158e90bf497aade10030e4");
     public static readonly MongoId HANDGUARD_KS23M_FORESTOCK = new MongoId("5e848d51e4dbc5266a4ec63b");
     public static readonly MongoId HANDGUARD_M1895MXLR_MAGPUL_ELG_MLOK = new MongoId("67c542aeb032bbdb530201c6");
     public static readonly MongoId HANDGUARD_M1895MXLR_MAGPUL_ELG_MLOK_HANDGUARD_FDE = new MongoId("67ff26a2abb53266190dfc6c");
     public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_COSTA_MLOK = new MongoId("67c542baac40c36449066500");
-    public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_COSTA_MLOK_HANDGUARD_FDE = new MongoId("67ff2792ea587611b0080956");
-    public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_COSTA_MLOK_HANDGUARD_GREEN = new MongoId("67ff279dea587611b008095d");
+    public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_COSTA_MLOK_HANDGUARD_FDE = new MongoId(
+        "67ff2792ea587611b0080956"
+    );
+    public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_COSTA_MLOK_HANDGUARD_GREEN = new MongoId(
+        "67ff279dea587611b008095d"
+    );
     public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_MLOK = new MongoId("67c5429fac40c364490664f8");
     public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_MLOK_HANDGUARD_FDE = new MongoId("67ff24b9079850d544096ea6");
-    public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_MLOK_HANDGUARD_GREEN = new MongoId("67ff24c0abb53266190dfc66");
+    public static readonly MongoId HANDGUARD_M1895MXLR_RANGER_POINT_PRECISION_MLOK_HANDGUARD_GREEN = new MongoId(
+        "67ff24c0abb53266190dfc66"
+    );
     public static readonly MongoId HANDGUARD_M590_MAGPUL_MOE_FOREND = new MongoId("5eea21647547d6330471b3c9");
     public static readonly MongoId HANDGUARD_M590A1_SPEEDFEED_SHORT = new MongoId("5e87076ce2db31558c75a11d");
     public static readonly MongoId HANDGUARD_M60E4_MOD_1 = new MongoId("66012d64c752a02bbe05e69b");
@@ -2773,11 +2921,21 @@ public static class ItemTpl
     public static readonly MongoId HEADPHONES_PELTOR_COMTAC_VI_HEADSET_RANGER_GREEN = new MongoId("69c163b17c7040819b086502");
     public static readonly MongoId HEADPHONES_PELTOR_TACTICAL_SPORT_HEADSET = new MongoId("5c165d832e2216398b5a7e36");
     public static readonly MongoId HEADPHONES_PELTOR_TEP300_TACTICAL_EARPLUG_COYOTE_BROWN = new MongoId("68bf405779c8186398099017");
-    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_BLACK = new MongoId("69c14efe66c213ea750e1960");
-    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_DESERT_TIGER_STRIPE = new MongoId("6a5615d8a166c11ce900e1a6");
-    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_FDE = new MongoId("66b5f68de98be930d701c00e");
-    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_MULTICAM = new MongoId("69c139c022093da1c50a8808");
-    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_MULTICAM_BLACK = new MongoId("69c14fa8b33aad3beb036878");
+    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_BLACK = new MongoId(
+        "69c14efe66c213ea750e1960"
+    );
+    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_DESERT_TIGER_STRIPE = new MongoId(
+        "6a5615d8a166c11ce900e1a6"
+    );
+    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_FDE = new MongoId(
+        "66b5f68de98be930d701c00e"
+    );
+    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_MULTICAM = new MongoId(
+        "69c139c022093da1c50a8808"
+    );
+    public static readonly MongoId HEADPHONES_SAFARILAND_LIBERATOR_HP_20_HEARING_PROTECTION_HEADSET_MULTICAM_BLACK = new MongoId(
+        "69c14fa8b33aad3beb036878"
+    );
     public static readonly MongoId HEADPHONES_TW_EXFIL_PELTOR_COMTAC_V_HEADSET_OD_GREEN = new MongoId("66b5f69ea7f72d197e70bcdb");
     public static readonly MongoId HEADPHONES_TW_EXFIL_PELTOR_COMTAC_VI_HEADSET_BLACK = new MongoId("69c264c00f660b3f0d058fcf");
     public static readonly MongoId HEADPHONES_TW_EXFIL_PELTOR_COMTAC_VI_HEADSET_COYOTE_BROWN = new MongoId("66b5f6a28ca68c6461709ed8");
@@ -3499,7 +3657,9 @@ public static class ItemTpl
     public static readonly MongoId MACHINEGUN_DEGTYAREV_RPDN_762X39_MACHINE_GUN = new MongoId("65268d8ecb944ff1e90ea385");
     public static readonly MongoId MACHINEGUN_KALASHNIKOV_PKM_762X54R_MACHINE_GUN = new MongoId("64637076203536ad5600c990");
     public static readonly MongoId MACHINEGUN_KALASHNIKOV_PKP_762X54R_INFANTRY_MACHINE_GUN = new MongoId("64ca3d3954fc657e230529cc");
-    public static readonly MongoId MACHINEGUN_KALASHNIKOV_PKTM_762X54R_MODERNIZED_TANK_MACHINE_GUN = new MongoId("657857faeff4c850222dff1b");
+    public static readonly MongoId MACHINEGUN_KALASHNIKOV_PKTM_762X54R_MODERNIZED_TANK_MACHINE_GUN = new MongoId(
+        "657857faeff4c850222dff1b"
+    );
     public static readonly MongoId MACHINEGUN_NSV_UTYOS_127X108_HEAVY_MACHINE_GUN = new MongoId("5cdeb229d7f00c000e7ce174");
     public static readonly MongoId MACHINEGUN_RPK16_545X39_LIGHT_MACHINE_GUN = new MongoId("5beed0f50db834001c062b12");
     public static readonly MongoId MACHINEGUN_US_ORDNANCE_M60E4_762X51_LIGHT_MACHINE_GUN = new MongoId("65fb023261d5829b2d090755");
@@ -3749,8 +3909,12 @@ public static class ItemTpl
     public static readonly MongoId MARKOFUNKNOWN_MARK_OF_THE_UNHEARD = new MongoId("65ddcc9cfa85b9f17d0dfb07");
     public static readonly MongoId MARKSMANRIFLE_HK_G28_762X51_MARKSMAN_RIFLE = new MongoId("6176aca650224f204c1da3fb");
     public static readonly MongoId MARKSMANRIFLE_KELTEC_RFB_762X51_RIFLE = new MongoId("5f2a9575926fd9352339381f");
-    public static readonly MongoId MARKSMANRIFLE_KNIGHTS_ARMAMENT_COMPANY_SR25_762X51_MARKSMAN_RIFLE = new MongoId("5df8ce05b11454561e39243b");
-    public static readonly MongoId MARKSMANRIFLE_KNIGHTS_ARMAMENT_COMPANY_SR25_762X51_MARKSMAN_RIFLE_TAUPE = new MongoId("6932abeb5403890d0c09c926");
+    public static readonly MongoId MARKSMANRIFLE_KNIGHTS_ARMAMENT_COMPANY_SR25_762X51_MARKSMAN_RIFLE = new MongoId(
+        "5df8ce05b11454561e39243b"
+    );
+    public static readonly MongoId MARKSMANRIFLE_KNIGHTS_ARMAMENT_COMPANY_SR25_762X51_MARKSMAN_RIFLE_TAUPE = new MongoId(
+        "6932abeb5403890d0c09c926"
+    );
     public static readonly MongoId MARKSMANRIFLE_REMINGTON_R11_RSASS_762X51_MARKSMAN_RIFLE = new MongoId("5a367e5dc4a282000e49738f");
     public static readonly MongoId MARKSMANRIFLE_SPRINGFIELD_ARMORY_M1A_762X51_RIFLE = new MongoId("5aafa857e5b5b00018480968");
     public static readonly MongoId MARKSMANRIFLE_SVDS_762X54R_SNIPER_RIFLE = new MongoId("5c46fbd72e2216398b5a8c9c");
@@ -3948,7 +4112,9 @@ public static class ItemTpl
     public static readonly MongoId MOUNT_NCSTAR_MPR45_BACKUP = new MongoId("5649a2464bdc2d91118b45a8");
     public static readonly MongoId MOUNT_NIGHTFORCE_MAGMOUNT_30MM_RING_SCOPE = new MongoId("5b3b99265acfc4704b4a1afb");
     public static readonly MongoId MOUNT_NIGHTFORCE_MAGMOUNT_34MM_RING_SCOPE = new MongoId("5aa66a9be5b5b0214e506e89");
-    public static readonly MongoId MOUNT_NIGHTFORCE_MAGMOUNT_34MM_RING_SCOPE_MOUNT_WITH_RUGGEDIZED_ACCESSORY_PLATFORM = new MongoId("5aa66c72e5b5b00016327c93");
+    public static readonly MongoId MOUNT_NIGHTFORCE_MAGMOUNT_34MM_RING_SCOPE_MOUNT_WITH_RUGGEDIZED_ACCESSORY_PLATFORM = new MongoId(
+        "5aa66c72e5b5b00016327c93"
+    );
     public static readonly MongoId MOUNT_NORINCO_LONG_RAIL = new MongoId("69fa0173c5a215197a0e0c85");
     public static readonly MongoId MOUNT_NORINCO_QMK171A_SIGHT = new MongoId("69f9ec80aae020b0db02f670");
     public static readonly MongoId MOUNT_NORINCO_SHORT_RAIL = new MongoId("69fa0168e72acd254602c64a");
@@ -4091,12 +4257,16 @@ public static class ItemTpl
     public static readonly MongoId MUZZLECOMBO_HK_USP_TACTICAL_THREAD_PROTECTOR = new MongoId("6194f1f918a3974e5e7421e4");
     public static readonly MongoId MUZZLECOMBO_KRISS_VECTOR_45_ACP_THREAD_PROTECTOR = new MongoId("5fb6548dd1409e5ca04b54f9");
     public static readonly MongoId MUZZLECOMBO_KRISS_VECTOR_9X19_THREAD_PROTECTOR = new MongoId("5fbbc34106bde7524f03cbe9");
-    public static readonly MongoId MUZZLECOMBO_LANTAC_BMD_BLAST_MITIGATION_DEVICE_A3_DIRECT_THREAD_ADAPTER = new MongoId("5cf78496d7f00c065703d6ca");
+    public static readonly MongoId MUZZLECOMBO_LANTAC_BMD_BLAST_MITIGATION_DEVICE_A3_DIRECT_THREAD_ADAPTER = new MongoId(
+        "5cf78496d7f00c065703d6ca"
+    );
     public static readonly MongoId MUZZLECOMBO_M700_STAINLESS_STEEL_THREAD_PROTECTOR = new MongoId("5d270ca28abbc31ee25ee821");
     public static readonly MongoId MUZZLECOMBO_M700_THREAD_PROTECTOR = new MongoId("5d270b3c8abbc3105335cfb8");
     public static readonly MongoId MUZZLECOMBO_M9A3_THREAD_PROTECTOR = new MongoId("5cadc390ae921500126a77f1");
     public static readonly MongoId MUZZLECOMBO_ME_CYLINDER_12GA_MUZZLE_ADAPTER = new MongoId("5c0111ab0db834001966914d");
-    public static readonly MongoId MUZZLECOMBO_MOSIN_RIFLE_KIBA_ARMS_762X54R_CUSTOM_THREAD_ADAPTER = new MongoId("5cf79389d7f00c10941a0c4d");
+    public static readonly MongoId MUZZLECOMBO_MOSIN_RIFLE_KIBA_ARMS_762X54R_CUSTOM_THREAD_ADAPTER = new MongoId(
+        "5cf79389d7f00c10941a0c4d"
+    );
     public static readonly MongoId MUZZLECOMBO_MOSIN_RIFLE_TIGER_ROCK_762X51_THREAD_ADAPTER = new MongoId("5cf79599d7f00c10875d9212");
     public static readonly MongoId MUZZLECOMBO_MOSIN_RIFLE_WEAPON_TUNING_762X39_THREAD_ADAPTER = new MongoId("5cf67a1bd7f00c06585fb6f3");
     public static readonly MongoId MUZZLECOMBO_MP9_9X19_SOUND_SUPPRESSOR_MOUNT = new MongoId("5de8f237bbaf010b10528a70");
@@ -4265,7 +4435,9 @@ public static class ItemTpl
     public static readonly MongoId PISTOLGRIP_9A91_PISTOL_GRIP = new MongoId("6450f21a3d52156624001fcf");
     public static readonly MongoId PISTOLGRIP_AK_AEROKNOX_SCORPIUS_PISTOL_GRIP = new MongoId("5f6341043ada5942720e2dc5");
     public static readonly MongoId PISTOLGRIP_AK_CUSTOM_ARMS_AGS74_PRO_SNIPER_KIT_PISTOL_GRIP = new MongoId("6087e663132d4d12c81fd96b");
-    public static readonly MongoId PISTOLGRIP_AK_CUSTOM_ARMS_AGS74_PRO_SNIPER_KIT_PISTOL_GRIP_REDLINE = new MongoId("6981f8ca1d2e2070560b7275");
+    public static readonly MongoId PISTOLGRIP_AK_CUSTOM_ARMS_AGS74_PRO_SNIPER_KIT_PISTOL_GRIP_REDLINE = new MongoId(
+        "6981f8ca1d2e2070560b7275"
+    );
     public static readonly MongoId PISTOLGRIP_AK_CUSTOM_GUNS_CG101_ARTYPE_PISTOL_GRIP_ADAPTER = new MongoId("648ae3e356c6310a830fc291");
     public static readonly MongoId PISTOLGRIP_AK_FAB_DEFENSE_AGR47_PISTOL_GRIP_FDE = new MongoId("623c3be0484b5003161840dc");
     public static readonly MongoId PISTOLGRIP_AK_GLADMAN_SKELETON_PISTOL_GRIP = new MongoId("6984b7bf0baed1fc0a0594f6");
@@ -4301,7 +4473,9 @@ public static class ItemTpl
     public static readonly MongoId PISTOLGRIP_AR15_DLG_TACTICAL_DLG138_PISTOL_GRIP_BLACK = new MongoId("68c16fcffc90c174e50de1ae");
     public static readonly MongoId PISTOLGRIP_AR15_DLG_TACTICAL_DLG138_PISTOL_GRIP_FDE = new MongoId("68c16fe183e2d814b0093f7c");
     public static readonly MongoId PISTOLGRIP_AR15_F1_FIREARMS_SKELETONIZED_STYLE_1_PISTOL_GRIP = new MongoId("6113c3586c780c1e710c90bc");
-    public static readonly MongoId PISTOLGRIP_AR15_F1_FIREARMS_SKELETONIZED_STYLE_2_PC_PISTOL_GRIP = new MongoId("6113cc78d3a39d50044c065a");
+    public static readonly MongoId PISTOLGRIP_AR15_F1_FIREARMS_SKELETONIZED_STYLE_2_PC_PISTOL_GRIP = new MongoId(
+        "6113cc78d3a39d50044c065a"
+    );
     public static readonly MongoId PISTOLGRIP_AR15_F1_FIREARMS_SKELETONIZED_STYLE_2_PISTOL_GRIP = new MongoId("6113cce3d92c473c770200c7");
     public static readonly MongoId PISTOLGRIP_AR15_HERA_ARMS_HG15_PISTOL_GRIP = new MongoId("5cc9bcaed7f00c011c04e179");
     public static readonly MongoId PISTOLGRIP_AR15_HK_BATTLE_GRIP_BEAVERTAIL_PISTOL_GRIP = new MongoId("5bb20e0ed4351e3bac1212dc");
@@ -4574,7 +4748,9 @@ public static class ItemTpl
     public static readonly MongoId QUEST_SANITARS_LAB_JOURNAL = new MongoId("6a446dac154fc86b970e1361");
     public static readonly MongoId QUEST_SECRET_COMPONENT = new MongoId("64f5b4f71a5f313cb144c06c");
     public static readonly MongoId QUEST_SECURE_CONTAINER_ALPHA1_WITH_TERRAGROUP_EVIDENCE = new MongoId("68f77d874ea3f761790e8c05");
-    public static readonly MongoId QUEST_SECURE_CONTAINER_ALPHA1_WITH_TERRAGROUP_EVIDENCE_ORIGINAL = new MongoId("67c033719dacd7c19f0f9f46");
+    public static readonly MongoId QUEST_SECURE_CONTAINER_ALPHA1_WITH_TERRAGROUP_EVIDENCE_ORIGINAL = new MongoId(
+        "67c033719dacd7c19f0f9f46"
+    );
     public static readonly MongoId QUEST_SECURE_FLASH_DRIVE = new MongoId("59f9ddae86f77407ab46e047");
     public static readonly MongoId QUEST_SECURE_FLASH_DRIVE_V3 = new MongoId("6331bb0d1aa9f42b804997a6");
     public static readonly MongoId QUEST_SECURE_FOLDER_0013 = new MongoId("5939e5a786f77461f11c0098");
@@ -4701,356 +4877,1052 @@ public static class ItemTpl
     public static readonly MongoId RANDOMLOOTCONTAINER_EVENT_CONTAINER_CONTRABAND_FAKE = new MongoId("674098588466ebb03408b210");
     public static readonly MongoId RANDOMLOOTCONTAINER_EVENT_CONTAINER_CONTRABAND_MAIN = new MongoId("674078c4a9c9adf0450d59f9");
     public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_BRIEFCASE = new MongoId("6a3563dacdaebb512e0a009c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_10 = new MongoId("6a048dad47a5a215610422d9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_11 = new MongoId("6a048e8247a5a215610422e0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_12 = new MongoId("6a048ea747a5a215610422e8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_13 = new MongoId("6a048eb547a5a215610422ef");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_14 = new MongoId("6a048ec4a16e58e80e08f15c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_15 = new MongoId("6a048ee281f341c29403a498");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_16 = new MongoId("6a048eeea16e58e80e08f164");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_17 = new MongoId("6a048efea16e58e80e08f16b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_20 = new MongoId("6a048f13a16e58e80e08f172");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_21 = new MongoId("6a048f21a16e58e80e08f179");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_22 = new MongoId("6a048f4aa16e58e80e08f181");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_23 = new MongoId("6a048f582e0a9f056807cbf4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_24 = new MongoId("6a048f679c9c0cdeb201c0ac");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_25 = new MongoId("6a048f73a16e58e80e08f18c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_26 = new MongoId("6a048f7fa16e58e80e08f193");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_27 = new MongoId("6a048f8ca16e58e80e08f19b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_30 = new MongoId("6a048fa8063edec9790b1609");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_31 = new MongoId("6a048fb681f341c29403a4af");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_32 = new MongoId("6a048fc7063edec9790b1613");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_33 = new MongoId("6a048fd95d7b7baeae0ab045");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_34 = new MongoId("6a048ff3063edec9790b161f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_35 = new MongoId("6a049007063edec9790b1627");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_36 = new MongoId("6a0490149c9c0cdeb201c0c1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_37 = new MongoId("6a049024e014561af205b128");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_40 = new MongoId("6a0490385d7b7baeae0ab056");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_41 = new MongoId("6a049044e014561af205b130");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_42 = new MongoId("6a04905a56ad0c8cea019e47");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_43 = new MongoId("6a04906556ad0c8cea019e4e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_44 = new MongoId("6a04907156ad0c8cea019e55");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_45 = new MongoId("6a0490a1e014561af205b13e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_46 = new MongoId("6a0490bf063edec9790b163c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_47 = new MongoId("6a0490cf063edec9790b1643");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_10 = new MongoId("6a0490fa5d7b7baeae0ab064");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_11 = new MongoId("6a04918c5d7b7baeae0ab06f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_12 = new MongoId("6a04919956ad0c8cea019e6d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_13 = new MongoId("6a0491a85d7b7baeae0ab078");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_14 = new MongoId("6a0493bde32850c6380b02ca");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_15 = new MongoId("6a0493cf5d7b7baeae0ab081");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_16 = new MongoId("6a0493da56ad0c8cea019e76");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_20 = new MongoId("6a0493ee5d7b7baeae0ab08a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_21 = new MongoId("6a04943356ad0c8cea019e7e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_22 = new MongoId("6a049442d545d8a01402feb6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_23 = new MongoId("6a049450e32850c6380b02dd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_24 = new MongoId("6a04945ee32850c6380b02e4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_25 = new MongoId("6a04946be32850c6380b02eb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_26 = new MongoId("6a049478e32850c6380b02f2");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_30 = new MongoId("6a049494e014561af205b160");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_31 = new MongoId("6a04949f56ad0c8cea019e8d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_32 = new MongoId("6a073d5fe3d3ac861e09c429");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_33 = new MongoId("6a0494bb56ad0c8cea019e95");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_34 = new MongoId("6a0494c6e32850c6380b02fe");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_35 = new MongoId("6a0494d4d545d8a01402fecc");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_36 = new MongoId("6a04950dd545d8a01402fed3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_10 = new MongoId("6a04952956ad0c8cea019e9f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_11 = new MongoId("6a04975de014561af205b170");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_12 = new MongoId("6a049768e014561af205b177");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_13 = new MongoId("6a049774d545d8a01402fedf");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_14 = new MongoId("6a04977ee32850c6380b0312");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_15 = new MongoId("6a04978956ad0c8cea019eab");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_16 = new MongoId("6a049799e014561af205b183");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_17 = new MongoId("6a0497a2e014561af205b18a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_20 = new MongoId("6a0497ae56ad0c8cea019eb4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_21 = new MongoId("6a0497b7e32850c6380b031f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_22 = new MongoId("6a0497c9e014561af205b193");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_23 = new MongoId("6a049985e32850c6380b0326");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_24 = new MongoId("6a049993d545d8a01402fef0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_25 = new MongoId("6a0499fc56ad0c8cea019ec2");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_26 = new MongoId("6a049a082232cf0a5108aed6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_27 = new MongoId("6a049a1a2232cf0a5108aedd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_10 = new MongoId("69427f2bb0b5e173c80a0076");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_11 = new MongoId("6943cef53261c88329012fe8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_12 = new MongoId("6943d0012e70fb8c6e064ad7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_13 = new MongoId("6943d5be43defa6af507bd06");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_14 = new MongoId("6943d973a51ebdcd040b0a96");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_15 = new MongoId("6943da657b2a26f48e0b37d8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_16 = new MongoId("694912900e2b5fb7ae0f0150");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_17 = new MongoId("6949134b357ca293160d9aaa");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_18 = new MongoId("694913ee39ebda65d606f419");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_19 = new MongoId("694914af5a6f1f19d30ced4f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_20 = new MongoId("6943db7d7cbe9471ae0a5267");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_21 = new MongoId("6943e7e10eacce095a0c9016");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_22 = new MongoId("6943e91ddb1100f6a708a026");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_23 = new MongoId("6943ea6206c939a2840ea4d6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_24 = new MongoId("6943eb7817f89357e7071827");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_25 = new MongoId("6943ec494c6d6da17a00f566");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_26 = new MongoId("6949162dea257120e700298e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_27 = new MongoId("694916d539ebda65d606f41d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_28 = new MongoId("694918c50e2b5fb7ae0f0156");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_29 = new MongoId("6949198b658beba6a2043298");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_30 = new MongoId("6943edb20eacce095a0c901a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_31 = new MongoId("6943ef75a51ebdcd040b0a9a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_32 = new MongoId("6943f02f7b2a26f48e0b37dc");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_33 = new MongoId("6943f13043defa6af507bd0b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_34 = new MongoId("6943f63106c939a2840ea4da");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_35 = new MongoId("6943f6ec5a219230d80735e6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_36 = new MongoId("69491a6a39ebda65d606f421");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_37 = new MongoId("69491b02c493e7b8f00872cd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_38 = new MongoId("69491bbb0e2b5fb7ae0f015a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_39 = new MongoId("69491cb0658beba6a204329c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_40 = new MongoId("69440838a51ebdcd040b0a9e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_41 = new MongoId("69440923db1100f6a708a02a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_42 = new MongoId("69440a023261c88329012fec");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_43 = new MongoId("69440af7e54ada9a370e8617");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_44 = new MongoId("69440bc317f89357e707182b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_45 = new MongoId("69440c850eacce095a0c901e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_46 = new MongoId("69491d4f32743fff500e02c7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_47 = new MongoId("69491e7bd0140e3478044cb9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_48 = new MongoId("69491f35af2d94ce9a09ed8a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_49 = new MongoId("694920c822c6e3caf707d53b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_10 = new MongoId("69440e753261c88329012ff1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_11 = new MongoId("694417d95a219230d80735eb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_12 = new MongoId("69441a0e43defa6af507bd0f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_13 = new MongoId("69441bae06c939a2840ea4df");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_14 = new MongoId("69441e2b7b2a26f48e0b37e3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_15 = new MongoId("694421002e70fb8c6e064add");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_16 = new MongoId("69492189658beba6a20432a0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_17 = new MongoId("694921c022c6e3caf707d53f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_18 = new MongoId("694922fdea257120e7002992");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_19 = new MongoId("694924a89dbafacd740f5778");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_20 = new MongoId("694425432e70fb8c6e064ae1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_21 = new MongoId("6944274f7cbe9471ae0a526c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_22 = new MongoId("6944290906c939a2840ea4e3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_23 = new MongoId("69442af40eacce095a0c9023");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_24 = new MongoId("6944300f4c6d6da17a00f56c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_25 = new MongoId("694431665a219230d80735ef");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_26 = new MongoId("694926c8d0140e3478044cbd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_27 = new MongoId("694927dbd0140e3478044cc1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_28 = new MongoId("69492c53658beba6a20432a4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_29 = new MongoId("69492c85357ca293160d9aae");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_30 = new MongoId("694517f132364f1bc80236a5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_31 = new MongoId("69451a34cd3d03ac35021436");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_32 = new MongoId("69451beb4c74d77bf6058bb6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_33 = new MongoId("69451cd47a375c3d72052c96");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_34 = new MongoId("69451e1c21aed93fae013086");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_35 = new MongoId("69451f7df438d872940e6986");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_36 = new MongoId("69492cec1c999d8de902e24a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_37 = new MongoId("69492d22d0140e3478044cc5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_38 = new MongoId("69492e32658beba6a20432a8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_39 = new MongoId("69492f1a1c999d8de902e24e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_10 = new MongoId("694520774c74d77bf6058bba");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_11 = new MongoId("694523104c74d77bf6058bbe");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_12 = new MongoId("694523c5ac96c2dd520c8a76");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_13 = new MongoId("69452557463ea556db017486");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_14 = new MongoId("6945270d88b313f94f08eeb6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_15 = new MongoId("694528230f0d4f27a005bb16");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_16 = new MongoId("69493395658beba6a20432ac");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_17 = new MongoId("69493458658beba6a20432b0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_20 = new MongoId("69452bc388b313f94f08eeba");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_21 = new MongoId("69452c814c74d77bf6058bc2");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_22 = new MongoId("69452ebd463ea556db01748a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_23 = new MongoId("69452f6eac96c2dd520c8a7a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_24 = new MongoId("69452fcc21aed93fae01308a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_25 = new MongoId("694530767a375c3d72052c9a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_26 = new MongoId("6949349e32743fff500e02cb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_27 = new MongoId("6949368e1c999d8de902e252");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_10 = new MongoId("68efc3759b09b1a30d09ac77");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_11 = new MongoId("68f09b5454b792e187098e47");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_110 = new MongoId("68f0bc5defaedc4aac096ccb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_111 = new MongoId("68f0f6ecefe4c68b1e0bedfb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_112 = new MongoId("68f0f906efe4c68b1e0bedff");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_12 = new MongoId("68f09c518cabc96e110e5b47");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_13 = new MongoId("68f09d54efaedc4aac096cc7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_14 = new MongoId("68f0a11c97f1fa169102c757");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_15 = new MongoId("68f0a4229693f7073d0139b7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_16 = new MongoId("68f0a849efe4c68b1e0bedb7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_17 = new MongoId("68f0ad6583befe161f0697f7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_18 = new MongoId("68f0af1befe4c68b1e0bedbb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_19 = new MongoId("68f0b29954b792e187098e4b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_20 = new MongoId("68f0bf22efe4c68b1e0bedbf");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_21 = new MongoId("68f0c17defe4c68b1e0bedc3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_210 = new MongoId("68f0d60abd564ea6f00c993b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_211 = new MongoId("68f0fd0d1c3ee32f9d0213f8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_212 = new MongoId("68f0fe20bc20052e1308812d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_22 = new MongoId("68f0c53ca0c249f08603df67");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_23 = new MongoId("68f0c92d83befe161f0697fb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_24 = new MongoId("68f0ca481c3ee32f9d020dd9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_25 = new MongoId("68f0cb99047e8aabc90ba367");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_26 = new MongoId("68f0ccd9bc20052e13087ab7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_27 = new MongoId("68f0d23fbc20052e13087abb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_28 = new MongoId("68f0d39bbd564ea6f00c9937");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_29 = new MongoId("68f0d496efe4c68b1e0bedc7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_10 = new MongoId("68f1020354b792e187098ee9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_11 = new MongoId("68f108529693f7073d0139ec");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_110 = new MongoId("68f124c197f1fa169102d446");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_12 = new MongoId("68f10afaa4ef095e7a0570b7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_13 = new MongoId("68f1122aefaedc4aac096df0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_14 = new MongoId("68f1141cc279ff1cf902e2a7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_15 = new MongoId("68f11a7197f1fa169102d442");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_16 = new MongoId("68f11b691c3ee32f9d0213fc");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_17 = new MongoId("68f11cf2efaedc4aac096df4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_18 = new MongoId("68f11e7ec279ff1cf902e2ab");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_19 = new MongoId("68f12200a4ef095e7a0570bb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_20 = new MongoId("68f2070695acf523d90da0d7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_21 = new MongoId("68f20c593a4fe30a0903ef67");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_210 = new MongoId("68f22062867349fb1e0fa7b7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_22 = new MongoId("68f20e9a4b7c654a15097d07");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_23 = new MongoId("68f20fe895acf523d90da0db");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_24 = new MongoId("68f21126372b712799064e07");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_25 = new MongoId("68f219cef50ce5aadf0124b7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_26 = new MongoId("68f219e6cf79cee2d20ad7f7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_27 = new MongoId("68f21b0df50ce5aadf0124bb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_28 = new MongoId("68f21d3bcf79cee2d20ad7fb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_29 = new MongoId("68f21e769110c29db5025aa9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_10 = new MongoId("68f22172f50ce5aadf0124bf");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_11 = new MongoId("68f5f8858d2e1e102a09fc69");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_110 = new MongoId("68f61102d5aa24c82c058eab");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_111 = new MongoId("68f611815a50dc814d0b1d0b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_112 = new MongoId("68f611f3dc6100210f074d88");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_12 = new MongoId("68f5fb5c5f03bed5bb0db047");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_13 = new MongoId("68f5fd9c5a50dc814d0b1d07");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_14 = new MongoId("68f6003d5e028e58db0c3ee6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_15 = new MongoId("68f6010e5f1f85e524035716");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_16 = new MongoId("68f604a9d5aa24c82c058ea7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_17 = new MongoId("68f609e53990971e3b095896");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_18 = new MongoId("68f60cf382a236ceb80e6536");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_19 = new MongoId("68f60ec95f03bed5bb0db04b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_10 = new MongoId("6a60bd87e6623686fa0b8a71");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_11 = new MongoId("6a60d3743da2eca5f8058887");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_12 = new MongoId("6a60d37dfe0787ec0e0bb05d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_13 = new MongoId("6a60d388fe0787ec0e0bb062");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_14 = new MongoId("6a60d3901687b74e1603f327");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_15 = new MongoId("6a60d397d957ecb75c07bd41");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_16 = new MongoId("6a60d3a1cb57bbff5701e00c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_17 = new MongoId("6a60d3a9e6623686fa0b9ade");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_20 = new MongoId("6a60d3b45cb322c88f02d197");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_21 = new MongoId("6a60d3bb5cb322c88f02d19c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_22 = new MongoId("6a60d3c65cb322c88f02d1a1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_23 = new MongoId("6a60d3cfcb57bbff5701e014");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_24 = new MongoId("6a60d3d6cb57bbff5701e019");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_25 = new MongoId("6a60d3dea29d51964e11beb4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_26 = new MongoId("6a60d3e7fe0787ec0e0bb06b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_27 = new MongoId("6a60d3ee1687b74e1603f330");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_30 = new MongoId("6a60d3ff8e0f938c0f0fe59f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_31 = new MongoId("6a60d407e6623686fa0b9aea");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_32 = new MongoId("6a60d4105cb322c88f02d1ab");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_33 = new MongoId("6a60d41a1687b74e1603f60f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_34 = new MongoId("6a60d422e54522d30208cf01");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_35 = new MongoId("6a60d42ccb57bbff5701e025");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_36 = new MongoId("6a60d433cb57bbff5701e02a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_37 = new MongoId("6a60d43ce54522d30208cf07");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_40 = new MongoId("6a60d447f151a6af8208f4e5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_41 = new MongoId("6a60d44ff151a6af8208f4ea");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_42 = new MongoId("6a60d458f151a6af8208f4ef");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_43 = new MongoId("6a60d464037ced847c0b69e0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_44 = new MongoId("6a60d471fe0787ec0e0bb079");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_45 = new MongoId("6a60d47ad957ecb75c07bd55");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_46 = new MongoId("6a60d481e6623686fa0b9af6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_47 = new MongoId("6a60d48ae54522d30208cf10");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_10 = new MongoId("6a60d4d71687b74e1603f61d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_11 = new MongoId("6a60d56d6ec8a1bbf50ffff1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_12 = new MongoId("6a60d575a29d51964e11cdfa");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_13 = new MongoId("6a60d57be7033e3df2111acd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_14 = new MongoId("6a60d584f151a6af8208fbf6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_15 = new MongoId("6a60d58b037ced847c0b69ef");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_16 = new MongoId("6a60d5acfe0787ec0e0bb098");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_20 = new MongoId("6a60d5b6037ced847c0b69f5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_21 = new MongoId("6a60d5bea29d51964e11ce03");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_22 = new MongoId("6a60d5c53da2eca5f80588c3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_23 = new MongoId("6a60d5cc6ec8a1bbf50ffffc");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_24 = new MongoId("6a60d5d7fe0787ec0e0bb09f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_25 = new MongoId("6a60d5dfe6623686fa0b9b11");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_26 = new MongoId("6a60d5e6e6623686fa0b9b16");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_30 = new MongoId("6a60d5f55cb322c88f02d1ca");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_31 = new MongoId("6a60d6086ec8a1bbf5100005");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_32 = new MongoId("6a60d610f151a6af8208fbff");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_33 = new MongoId("6a60d617fe0787ec0e0bb0a6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_34 = new MongoId("6a60d620e24c6a0a6301aa27");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_35 = new MongoId("6a60d6295cb322c88f02d1d0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_36 = new MongoId("6a60d6311687b74e1603fd2a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_10 = new MongoId("6a60d657cb57bbff5701e062");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_11 = new MongoId("6a60d6d8e54522d30208cf30");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_12 = new MongoId("6a60d6e1fe0787ec0e0bb0b3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_13 = new MongoId("6a60d70c3da2eca5f80588d7");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_14 = new MongoId("6a60d713cb57bbff5701e06c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_15 = new MongoId("6a60d71b1687b74e1603fd35");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_16 = new MongoId("6a60d7296ec8a1bbf5100017");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_17 = new MongoId("6a60d730e6623686fa0b9e41");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_20 = new MongoId("6a60d73b037ced847c0b6a0a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_21 = new MongoId("6a60d742fe0787ec0e0bb0bb");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_22 = new MongoId("6a60d749cb57bbff5701e075");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_23 = new MongoId("6a60d751fe0787ec0e0bb0c1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_24 = new MongoId("6a60d7591687b74e1603fd3e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_25 = new MongoId("6a60d760a29d51964e11ce18");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_26 = new MongoId("6a60d7693da2eca5f80588e4");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_27 = new MongoId("6a60d771e6623686fa0b9e5f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_LATAM_DROPS_2025_COMMON = new MongoId("67b70e43f753cf9f7a0a07a6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_LATAM_DROPS_2025_EPIC = new MongoId("67b72c64f753cf9f7a0a07aa");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_LATAM_DROPS_2025_RARE = new MongoId("67b72271e5673725070b0456");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_COMMON = new MongoId("6694f4101ae1778e310f4f8e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_COMMON_PLUS_1 = new MongoId("66a3896972c8e72507028806");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_COMMON_PLUS_2 = new MongoId("66a3896de45f71bf1009e45a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_EPIC = new MongoId("6694f423909d2322a8073151");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_EPIC_PLUS_1 = new MongoId("66a389c0705adefa710cdeaa");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_EPIC_PLUS_2 = new MongoId("66a389c60982fc7e4c091c51");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_RARE = new MongoId("6694f418c74d8a180f0f78c0");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_RARE_PLUS_1 = new MongoId("66a3898c1df2a447cc0d3c35");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_RARE_PLUS_2 = new MongoId("66a3898f0982fc7e4c091c4d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY0 = new MongoId("676a93c51888885b4e008b18");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY1 = new MongoId("676a95041888885b4e008b36");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY2 = new MongoId("676a98d7b4ba2f4afa04c704");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY3 = new MongoId("676a9a5c744595610f0ed501");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY4 = new MongoId("676a9b15b4ba2f4afa04c7ad");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY5 = new MongoId("676a9b1afe1fc45172014d32");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY6 = new MongoId("676a9bc6744595610f0ed52e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY0 = new MongoId("676aa104fe1fc45172014da3");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY1 = new MongoId("676aa29243000db5340061b5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY2 = new MongoId("676aa30ffe1fc45172014dce");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY3 = new MongoId("676aa37ff90b6f429601afb5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY4 = new MongoId("676aa3cf7a232aa5c70bda8d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY5 = new MongoId("676aa3fc20a7cc6f4309e078");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY6 = new MongoId("676aa450fe1fc45172014df2");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY0 = new MongoId("676a9da81888885b4e008c51");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY1 = new MongoId("676a9e46744595610f0ed53f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY2 = new MongoId("676a9f03744595610f0ed55f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY3 = new MongoId("676a9fc7a65670a58c084c9e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY4 = new MongoId("676aa016744595610f0ed563");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY5 = new MongoId("676aa025fe1fc45172014d9f");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY6 = new MongoId("676aa0f11888885b4e008c8b");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_1 = new MongoId("6a39244f3f411d06e104675a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_10 = new MongoId("6a392eaf8ef83e72b9093970");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_11 = new MongoId("6a392fe6c338768a040044b1");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_14 = new MongoId("6a3940136b6da6d9e409f397");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_17 = new MongoId("6a393eb48454de17830a2e06");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_18 = new MongoId("6a393f7705ea1606a30c4eb8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_2 = new MongoId("6a392584823c43df2b0a7a2a");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_3 = new MongoId("6a392a4005ea1606a30c4eac");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_5 = new MongoId("6a392ba9c338768a040044a9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_6 = new MongoId("6a392c429bd2051ce5035e4d");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_7 = new MongoId("6a392cd0a762b13f4504d861");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_8 = new MongoId("6a392dd1a762b13f4504d867");
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_10 = new MongoId(
+        "6a048dad47a5a215610422d9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_11 = new MongoId(
+        "6a048e8247a5a215610422e0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_12 = new MongoId(
+        "6a048ea747a5a215610422e8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_13 = new MongoId(
+        "6a048eb547a5a215610422ef"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_14 = new MongoId(
+        "6a048ec4a16e58e80e08f15c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_15 = new MongoId(
+        "6a048ee281f341c29403a498"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_16 = new MongoId(
+        "6a048eeea16e58e80e08f164"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_17 = new MongoId(
+        "6a048efea16e58e80e08f16b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_20 = new MongoId(
+        "6a048f13a16e58e80e08f172"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_21 = new MongoId(
+        "6a048f21a16e58e80e08f179"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_22 = new MongoId(
+        "6a048f4aa16e58e80e08f181"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_23 = new MongoId(
+        "6a048f582e0a9f056807cbf4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_24 = new MongoId(
+        "6a048f679c9c0cdeb201c0ac"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_25 = new MongoId(
+        "6a048f73a16e58e80e08f18c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_26 = new MongoId(
+        "6a048f7fa16e58e80e08f193"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_27 = new MongoId(
+        "6a048f8ca16e58e80e08f19b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_30 = new MongoId(
+        "6a048fa8063edec9790b1609"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_31 = new MongoId(
+        "6a048fb681f341c29403a4af"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_32 = new MongoId(
+        "6a048fc7063edec9790b1613"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_33 = new MongoId(
+        "6a048fd95d7b7baeae0ab045"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_34 = new MongoId(
+        "6a048ff3063edec9790b161f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_35 = new MongoId(
+        "6a049007063edec9790b1627"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_36 = new MongoId(
+        "6a0490149c9c0cdeb201c0c1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_37 = new MongoId(
+        "6a049024e014561af205b128"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_40 = new MongoId(
+        "6a0490385d7b7baeae0ab056"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_41 = new MongoId(
+        "6a049044e014561af205b130"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_42 = new MongoId(
+        "6a04905a56ad0c8cea019e47"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_43 = new MongoId(
+        "6a04906556ad0c8cea019e4e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_44 = new MongoId(
+        "6a04907156ad0c8cea019e55"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_45 = new MongoId(
+        "6a0490a1e014561af205b13e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_46 = new MongoId(
+        "6a0490bf063edec9790b163c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_COMMON_47 = new MongoId(
+        "6a0490cf063edec9790b1643"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_10 = new MongoId(
+        "6a0490fa5d7b7baeae0ab064"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_11 = new MongoId(
+        "6a04918c5d7b7baeae0ab06f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_12 = new MongoId(
+        "6a04919956ad0c8cea019e6d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_13 = new MongoId(
+        "6a0491a85d7b7baeae0ab078"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_14 = new MongoId(
+        "6a0493bde32850c6380b02ca"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_15 = new MongoId(
+        "6a0493cf5d7b7baeae0ab081"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_16 = new MongoId(
+        "6a0493da56ad0c8cea019e76"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_20 = new MongoId(
+        "6a0493ee5d7b7baeae0ab08a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_21 = new MongoId(
+        "6a04943356ad0c8cea019e7e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_22 = new MongoId(
+        "6a049442d545d8a01402feb6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_23 = new MongoId(
+        "6a049450e32850c6380b02dd"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_24 = new MongoId(
+        "6a04945ee32850c6380b02e4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_25 = new MongoId(
+        "6a04946be32850c6380b02eb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_26 = new MongoId(
+        "6a049478e32850c6380b02f2"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_30 = new MongoId(
+        "6a049494e014561af205b160"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_31 = new MongoId(
+        "6a04949f56ad0c8cea019e8d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_32 = new MongoId(
+        "6a073d5fe3d3ac861e09c429"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_33 = new MongoId(
+        "6a0494bb56ad0c8cea019e95"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_34 = new MongoId(
+        "6a0494c6e32850c6380b02fe"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_35 = new MongoId(
+        "6a0494d4d545d8a01402fecc"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_RAR_DROP_36 = new MongoId(
+        "6a04950dd545d8a01402fed3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_10 = new MongoId(
+        "6a04952956ad0c8cea019e9f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_11 = new MongoId(
+        "6a04975de014561af205b170"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_12 = new MongoId(
+        "6a049768e014561af205b177"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_13 = new MongoId(
+        "6a049774d545d8a01402fedf"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_14 = new MongoId(
+        "6a04977ee32850c6380b0312"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_15 = new MongoId(
+        "6a04978956ad0c8cea019eab"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_16 = new MongoId(
+        "6a049799e014561af205b183"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_17 = new MongoId(
+        "6a0497a2e014561af205b18a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_20 = new MongoId(
+        "6a0497ae56ad0c8cea019eb4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_21 = new MongoId(
+        "6a0497b7e32850c6380b031f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_22 = new MongoId(
+        "6a0497c9e014561af205b193"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_23 = new MongoId(
+        "6a049985e32850c6380b0326"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_24 = new MongoId(
+        "6a049993d545d8a01402fef0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_25 = new MongoId(
+        "6a0499fc56ad0c8cea019ec2"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_26 = new MongoId(
+        "6a049a082232cf0a5108aed6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_ICE_2026_SUPERRAR_DROP_27 = new MongoId(
+        "6a049a1a2232cf0a5108aedd"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_10 = new MongoId(
+        "69427f2bb0b5e173c80a0076"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_11 = new MongoId(
+        "6943cef53261c88329012fe8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_12 = new MongoId(
+        "6943d0012e70fb8c6e064ad7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_13 = new MongoId(
+        "6943d5be43defa6af507bd06"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_14 = new MongoId(
+        "6943d973a51ebdcd040b0a96"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_15 = new MongoId(
+        "6943da657b2a26f48e0b37d8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_16 = new MongoId(
+        "694912900e2b5fb7ae0f0150"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_17 = new MongoId(
+        "6949134b357ca293160d9aaa"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_18 = new MongoId(
+        "694913ee39ebda65d606f419"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_19 = new MongoId(
+        "694914af5a6f1f19d30ced4f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_20 = new MongoId(
+        "6943db7d7cbe9471ae0a5267"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_21 = new MongoId(
+        "6943e7e10eacce095a0c9016"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_22 = new MongoId(
+        "6943e91ddb1100f6a708a026"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_23 = new MongoId(
+        "6943ea6206c939a2840ea4d6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_24 = new MongoId(
+        "6943eb7817f89357e7071827"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_25 = new MongoId(
+        "6943ec494c6d6da17a00f566"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_26 = new MongoId(
+        "6949162dea257120e700298e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_27 = new MongoId(
+        "694916d539ebda65d606f41d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_28 = new MongoId(
+        "694918c50e2b5fb7ae0f0156"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_29 = new MongoId(
+        "6949198b658beba6a2043298"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_30 = new MongoId(
+        "6943edb20eacce095a0c901a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_31 = new MongoId(
+        "6943ef75a51ebdcd040b0a9a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_32 = new MongoId(
+        "6943f02f7b2a26f48e0b37dc"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_33 = new MongoId(
+        "6943f13043defa6af507bd0b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_34 = new MongoId(
+        "6943f63106c939a2840ea4da"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_35 = new MongoId(
+        "6943f6ec5a219230d80735e6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_36 = new MongoId(
+        "69491a6a39ebda65d606f421"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_37 = new MongoId(
+        "69491b02c493e7b8f00872cd"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_38 = new MongoId(
+        "69491bbb0e2b5fb7ae0f015a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_39 = new MongoId(
+        "69491cb0658beba6a204329c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_40 = new MongoId(
+        "69440838a51ebdcd040b0a9e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_41 = new MongoId(
+        "69440923db1100f6a708a02a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_42 = new MongoId(
+        "69440a023261c88329012fec"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_43 = new MongoId(
+        "69440af7e54ada9a370e8617"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_44 = new MongoId(
+        "69440bc317f89357e707182b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_45 = new MongoId(
+        "69440c850eacce095a0c901e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_46 = new MongoId(
+        "69491d4f32743fff500e02c7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_47 = new MongoId(
+        "69491e7bd0140e3478044cb9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_48 = new MongoId(
+        "69491f35af2d94ce9a09ed8a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_COMMON_49 = new MongoId(
+        "694920c822c6e3caf707d53b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_10 = new MongoId(
+        "69440e753261c88329012ff1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_11 = new MongoId(
+        "694417d95a219230d80735eb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_12 = new MongoId(
+        "69441a0e43defa6af507bd0f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_13 = new MongoId(
+        "69441bae06c939a2840ea4df"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_14 = new MongoId(
+        "69441e2b7b2a26f48e0b37e3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_15 = new MongoId(
+        "694421002e70fb8c6e064add"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_16 = new MongoId(
+        "69492189658beba6a20432a0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_17 = new MongoId(
+        "694921c022c6e3caf707d53f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_18 = new MongoId(
+        "694922fdea257120e7002992"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_19 = new MongoId(
+        "694924a89dbafacd740f5778"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_20 = new MongoId(
+        "694425432e70fb8c6e064ae1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_21 = new MongoId(
+        "6944274f7cbe9471ae0a526c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_22 = new MongoId(
+        "6944290906c939a2840ea4e3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_23 = new MongoId(
+        "69442af40eacce095a0c9023"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_24 = new MongoId(
+        "6944300f4c6d6da17a00f56c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_25 = new MongoId(
+        "694431665a219230d80735ef"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_26 = new MongoId(
+        "694926c8d0140e3478044cbd"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_27 = new MongoId(
+        "694927dbd0140e3478044cc1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_28 = new MongoId(
+        "69492c53658beba6a20432a4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_29 = new MongoId(
+        "69492c85357ca293160d9aae"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_30 = new MongoId(
+        "694517f132364f1bc80236a5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_31 = new MongoId(
+        "69451a34cd3d03ac35021436"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_32 = new MongoId(
+        "69451beb4c74d77bf6058bb6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_33 = new MongoId(
+        "69451cd47a375c3d72052c96"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_34 = new MongoId(
+        "69451e1c21aed93fae013086"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_35 = new MongoId(
+        "69451f7df438d872940e6986"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_36 = new MongoId(
+        "69492cec1c999d8de902e24a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_37 = new MongoId(
+        "69492d22d0140e3478044cc5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_38 = new MongoId(
+        "69492e32658beba6a20432a8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_RAR_DROP_39 = new MongoId(
+        "69492f1a1c999d8de902e24e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_10 = new MongoId(
+        "694520774c74d77bf6058bba"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_11 = new MongoId(
+        "694523104c74d77bf6058bbe"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_12 = new MongoId(
+        "694523c5ac96c2dd520c8a76"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_13 = new MongoId(
+        "69452557463ea556db017486"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_14 = new MongoId(
+        "6945270d88b313f94f08eeb6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_15 = new MongoId(
+        "694528230f0d4f27a005bb16"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_16 = new MongoId(
+        "69493395658beba6a20432ac"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_17 = new MongoId(
+        "69493458658beba6a20432b0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_20 = new MongoId(
+        "69452bc388b313f94f08eeba"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_21 = new MongoId(
+        "69452c814c74d77bf6058bc2"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_22 = new MongoId(
+        "69452ebd463ea556db01748a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_23 = new MongoId(
+        "69452f6eac96c2dd520c8a7a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_24 = new MongoId(
+        "69452fcc21aed93fae01308a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_25 = new MongoId(
+        "694530767a375c3d72052c9a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_26 = new MongoId(
+        "6949349e32743fff500e02cb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_NY_2026_SUPERRAR_DROP_27 = new MongoId(
+        "6949368e1c999d8de902e252"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_10 = new MongoId(
+        "68efc3759b09b1a30d09ac77"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_11 = new MongoId(
+        "68f09b5454b792e187098e47"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_110 = new MongoId(
+        "68f0bc5defaedc4aac096ccb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_111 = new MongoId(
+        "68f0f6ecefe4c68b1e0bedfb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_112 = new MongoId(
+        "68f0f906efe4c68b1e0bedff"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_12 = new MongoId(
+        "68f09c518cabc96e110e5b47"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_13 = new MongoId(
+        "68f09d54efaedc4aac096cc7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_14 = new MongoId(
+        "68f0a11c97f1fa169102c757"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_15 = new MongoId(
+        "68f0a4229693f7073d0139b7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_16 = new MongoId(
+        "68f0a849efe4c68b1e0bedb7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_17 = new MongoId(
+        "68f0ad6583befe161f0697f7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_18 = new MongoId(
+        "68f0af1befe4c68b1e0bedbb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_19 = new MongoId(
+        "68f0b29954b792e187098e4b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_20 = new MongoId(
+        "68f0bf22efe4c68b1e0bedbf"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_21 = new MongoId(
+        "68f0c17defe4c68b1e0bedc3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_210 = new MongoId(
+        "68f0d60abd564ea6f00c993b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_211 = new MongoId(
+        "68f0fd0d1c3ee32f9d0213f8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_212 = new MongoId(
+        "68f0fe20bc20052e1308812d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_22 = new MongoId(
+        "68f0c53ca0c249f08603df67"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_23 = new MongoId(
+        "68f0c92d83befe161f0697fb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_24 = new MongoId(
+        "68f0ca481c3ee32f9d020dd9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_25 = new MongoId(
+        "68f0cb99047e8aabc90ba367"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_26 = new MongoId(
+        "68f0ccd9bc20052e13087ab7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_27 = new MongoId(
+        "68f0d23fbc20052e13087abb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_28 = new MongoId(
+        "68f0d39bbd564ea6f00c9937"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_COMMON_DROP_29 = new MongoId(
+        "68f0d496efe4c68b1e0bedc7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_10 = new MongoId(
+        "68f1020354b792e187098ee9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_11 = new MongoId(
+        "68f108529693f7073d0139ec"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_110 = new MongoId(
+        "68f124c197f1fa169102d446"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_12 = new MongoId(
+        "68f10afaa4ef095e7a0570b7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_13 = new MongoId(
+        "68f1122aefaedc4aac096df0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_14 = new MongoId(
+        "68f1141cc279ff1cf902e2a7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_15 = new MongoId(
+        "68f11a7197f1fa169102d442"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_16 = new MongoId(
+        "68f11b691c3ee32f9d0213fc"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_17 = new MongoId(
+        "68f11cf2efaedc4aac096df4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_18 = new MongoId(
+        "68f11e7ec279ff1cf902e2ab"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_19 = new MongoId(
+        "68f12200a4ef095e7a0570bb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_20 = new MongoId(
+        "68f2070695acf523d90da0d7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_21 = new MongoId(
+        "68f20c593a4fe30a0903ef67"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_210 = new MongoId(
+        "68f22062867349fb1e0fa7b7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_22 = new MongoId(
+        "68f20e9a4b7c654a15097d07"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_23 = new MongoId(
+        "68f20fe895acf523d90da0db"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_24 = new MongoId(
+        "68f21126372b712799064e07"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_25 = new MongoId(
+        "68f219cef50ce5aadf0124b7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_26 = new MongoId(
+        "68f219e6cf79cee2d20ad7f7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_27 = new MongoId(
+        "68f21b0df50ce5aadf0124bb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_28 = new MongoId(
+        "68f21d3bcf79cee2d20ad7fb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_RARE_DROP_29 = new MongoId(
+        "68f21e769110c29db5025aa9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_10 = new MongoId(
+        "68f22172f50ce5aadf0124bf"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_11 = new MongoId(
+        "68f5f8858d2e1e102a09fc69"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_110 = new MongoId(
+        "68f61102d5aa24c82c058eab"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_111 = new MongoId(
+        "68f611815a50dc814d0b1d0b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_112 = new MongoId(
+        "68f611f3dc6100210f074d88"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_12 = new MongoId(
+        "68f5fb5c5f03bed5bb0db047"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_13 = new MongoId(
+        "68f5fd9c5a50dc814d0b1d07"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_14 = new MongoId(
+        "68f6003d5e028e58db0c3ee6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_15 = new MongoId(
+        "68f6010e5f1f85e524035716"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_16 = new MongoId(
+        "68f604a9d5aa24c82c058ea7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_17 = new MongoId(
+        "68f609e53990971e3b095896"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_18 = new MongoId(
+        "68f60cf382a236ceb80e6536"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_RELEASE_2025_SUPERRARE_DROP_19 = new MongoId(
+        "68f60ec95f03bed5bb0db04b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_10 = new MongoId(
+        "6a60bd87e6623686fa0b8a71"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_11 = new MongoId(
+        "6a60d3743da2eca5f8058887"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_12 = new MongoId(
+        "6a60d37dfe0787ec0e0bb05d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_13 = new MongoId(
+        "6a60d388fe0787ec0e0bb062"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_14 = new MongoId(
+        "6a60d3901687b74e1603f327"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_15 = new MongoId(
+        "6a60d397d957ecb75c07bd41"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_16 = new MongoId(
+        "6a60d3a1cb57bbff5701e00c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_17 = new MongoId(
+        "6a60d3a9e6623686fa0b9ade"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_20 = new MongoId(
+        "6a60d3b45cb322c88f02d197"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_21 = new MongoId(
+        "6a60d3bb5cb322c88f02d19c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_22 = new MongoId(
+        "6a60d3c65cb322c88f02d1a1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_23 = new MongoId(
+        "6a60d3cfcb57bbff5701e014"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_24 = new MongoId(
+        "6a60d3d6cb57bbff5701e019"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_25 = new MongoId(
+        "6a60d3dea29d51964e11beb4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_26 = new MongoId(
+        "6a60d3e7fe0787ec0e0bb06b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_27 = new MongoId(
+        "6a60d3ee1687b74e1603f330"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_30 = new MongoId(
+        "6a60d3ff8e0f938c0f0fe59f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_31 = new MongoId(
+        "6a60d407e6623686fa0b9aea"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_32 = new MongoId(
+        "6a60d4105cb322c88f02d1ab"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_33 = new MongoId(
+        "6a60d41a1687b74e1603f60f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_34 = new MongoId(
+        "6a60d422e54522d30208cf01"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_35 = new MongoId(
+        "6a60d42ccb57bbff5701e025"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_36 = new MongoId(
+        "6a60d433cb57bbff5701e02a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_37 = new MongoId(
+        "6a60d43ce54522d30208cf07"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_40 = new MongoId(
+        "6a60d447f151a6af8208f4e5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_41 = new MongoId(
+        "6a60d44ff151a6af8208f4ea"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_42 = new MongoId(
+        "6a60d458f151a6af8208f4ef"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_43 = new MongoId(
+        "6a60d464037ced847c0b69e0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_44 = new MongoId(
+        "6a60d471fe0787ec0e0bb079"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_45 = new MongoId(
+        "6a60d47ad957ecb75c07bd55"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_46 = new MongoId(
+        "6a60d481e6623686fa0b9af6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_COMMON_47 = new MongoId(
+        "6a60d48ae54522d30208cf10"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_10 = new MongoId(
+        "6a60d4d71687b74e1603f61d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_11 = new MongoId(
+        "6a60d56d6ec8a1bbf50ffff1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_12 = new MongoId(
+        "6a60d575a29d51964e11cdfa"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_13 = new MongoId(
+        "6a60d57be7033e3df2111acd"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_14 = new MongoId(
+        "6a60d584f151a6af8208fbf6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_15 = new MongoId(
+        "6a60d58b037ced847c0b69ef"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_16 = new MongoId(
+        "6a60d5acfe0787ec0e0bb098"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_20 = new MongoId(
+        "6a60d5b6037ced847c0b69f5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_21 = new MongoId(
+        "6a60d5bea29d51964e11ce03"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_22 = new MongoId(
+        "6a60d5c53da2eca5f80588c3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_23 = new MongoId(
+        "6a60d5cc6ec8a1bbf50ffffc"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_24 = new MongoId(
+        "6a60d5d7fe0787ec0e0bb09f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_25 = new MongoId(
+        "6a60d5dfe6623686fa0b9b11"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_26 = new MongoId(
+        "6a60d5e6e6623686fa0b9b16"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_30 = new MongoId(
+        "6a60d5f55cb322c88f02d1ca"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_31 = new MongoId(
+        "6a60d6086ec8a1bbf5100005"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_32 = new MongoId(
+        "6a60d610f151a6af8208fbff"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_33 = new MongoId(
+        "6a60d617fe0787ec0e0bb0a6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_34 = new MongoId(
+        "6a60d620e24c6a0a6301aa27"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_35 = new MongoId(
+        "6a60d6295cb322c88f02d1d0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_RAR_DROP_36 = new MongoId(
+        "6a60d6311687b74e1603fd2a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_10 = new MongoId(
+        "6a60d657cb57bbff5701e062"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_11 = new MongoId(
+        "6a60d6d8e54522d30208cf30"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_12 = new MongoId(
+        "6a60d6e1fe0787ec0e0bb0b3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_13 = new MongoId(
+        "6a60d70c3da2eca5f80588d7"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_14 = new MongoId(
+        "6a60d713cb57bbff5701e06c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_15 = new MongoId(
+        "6a60d71b1687b74e1603fd35"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_16 = new MongoId(
+        "6a60d7296ec8a1bbf5100017"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_17 = new MongoId(
+        "6a60d730e6623686fa0b9e41"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_20 = new MongoId(
+        "6a60d73b037ced847c0b6a0a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_21 = new MongoId(
+        "6a60d742fe0787ec0e0bb0bb"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_22 = new MongoId(
+        "6a60d749cb57bbff5701e075"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_23 = new MongoId(
+        "6a60d751fe0787ec0e0bb0c1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_24 = new MongoId(
+        "6a60d7591687b74e1603fd3e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_25 = new MongoId(
+        "6a60d760a29d51964e11ce18"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_26 = new MongoId(
+        "6a60d7693da2eca5f80588e4"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_DROPS_SE_2026_SUPERRAR_DROP_27 = new MongoId(
+        "6a60d771e6623686fa0b9e5f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_LATAM_DROPS_2025_COMMON = new MongoId(
+        "67b70e43f753cf9f7a0a07a6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_LATAM_DROPS_2025_EPIC = new MongoId(
+        "67b72c64f753cf9f7a0a07aa"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_LATAM_DROPS_2025_RARE = new MongoId(
+        "67b72271e5673725070b0456"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_COMMON = new MongoId(
+        "6694f4101ae1778e310f4f8e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_COMMON_PLUS_1 = new MongoId(
+        "66a3896972c8e72507028806"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_COMMON_PLUS_2 = new MongoId(
+        "66a3896de45f71bf1009e45a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_EPIC = new MongoId(
+        "6694f423909d2322a8073151"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_EPIC_PLUS_1 = new MongoId(
+        "66a389c0705adefa710cdeaa"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_EPIC_PLUS_2 = new MongoId(
+        "66a389c60982fc7e4c091c51"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_RARE = new MongoId(
+        "6694f418c74d8a180f0f78c0"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_RARE_PLUS_1 = new MongoId(
+        "66a3898c1df2a447cc0d3c35"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_SUMMER_DROPS_2024_RARE_PLUS_2 = new MongoId(
+        "66a3898f0982fc7e4c091c4d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY0 = new MongoId(
+        "676a93c51888885b4e008b18"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY1 = new MongoId(
+        "676a95041888885b4e008b36"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY2 = new MongoId(
+        "676a98d7b4ba2f4afa04c704"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY3 = new MongoId(
+        "676a9a5c744595610f0ed501"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY4 = new MongoId(
+        "676a9b15b4ba2f4afa04c7ad"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY5 = new MongoId(
+        "676a9b1afe1fc45172014d32"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_COMMON_DAY6 = new MongoId(
+        "676a9bc6744595610f0ed52e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY0 = new MongoId(
+        "676aa104fe1fc45172014da3"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY1 = new MongoId(
+        "676aa29243000db5340061b5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY2 = new MongoId(
+        "676aa30ffe1fc45172014dce"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY3 = new MongoId(
+        "676aa37ff90b6f429601afb5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY4 = new MongoId(
+        "676aa3cf7a232aa5c70bda8d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY5 = new MongoId(
+        "676aa3fc20a7cc6f4309e078"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_EPIC_DAY6 = new MongoId(
+        "676aa450fe1fc45172014df2"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY0 = new MongoId(
+        "676a9da81888885b4e008c51"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY1 = new MongoId(
+        "676a9e46744595610f0ed53f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY2 = new MongoId(
+        "676a9f03744595610f0ed55f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY3 = new MongoId(
+        "676a9fc7a65670a58c084c9e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY4 = new MongoId(
+        "676aa016744595610f0ed563"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY5 = new MongoId(
+        "676aa025fe1fc45172014d9f"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_EVENT_TWITCH_WINTER_DROPS_2025_RARE_DAY6 = new MongoId(
+        "676aa0f11888885b4e008c8b"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_1 = new MongoId(
+        "6a39244f3f411d06e104675a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_10 = new MongoId(
+        "6a392eaf8ef83e72b9093970"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_11 = new MongoId(
+        "6a392fe6c338768a040044b1"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_14 = new MongoId(
+        "6a3940136b6da6d9e409f397"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_17 = new MongoId(
+        "6a393eb48454de17830a2e06"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_18 = new MongoId(
+        "6a393f7705ea1606a30c4eb8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_2 = new MongoId(
+        "6a392584823c43df2b0a7a2a"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_3 = new MongoId(
+        "6a392a4005ea1606a30c4eac"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_5 = new MongoId(
+        "6a392ba9c338768a040044a9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_6 = new MongoId(
+        "6a392c429bd2051ce5035e4d"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_7 = new MongoId(
+        "6a392cd0a762b13f4504d861"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_PLASTICS_SUITCASE_RAID_PRESET_FOR_BEGGINERS_8 = new MongoId(
+        "6a392dd1a762b13f4504d867"
+    );
     public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_TARKOV_BATTLEPASS = new MongoId("6a3567f687d90a0deb066c1b");
     public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_TARKOV_BATTLEPASSTEST = new MongoId("6a4fa628b4831242f306e8cd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_1 = new MongoId("6a144084b2b53cd4130fd5ee");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_10 = new MongoId("6a15aee19da028489f0f46a8");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_11 = new MongoId("6a15af4c0362c85e4a058e06");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_12 = new MongoId("6a15af7604515c87fd0656d5");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_13 = new MongoId("6a15afa4f5fb928cb60b41e6");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_14 = new MongoId("6a15aff417b1c2a2ef025d6e");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_15 = new MongoId("6a15b04b816d808b87018fca");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_16 = new MongoId("6a15b07017b1c2a2ef025d73");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_17 = new MongoId("6a15b09123501e13eb018e71");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_18 = new MongoId("6a15b0be081d9789d702287c");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_2 = new MongoId("6a15aa0d816d808b87018fba");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_3 = new MongoId("6a15aa58f5fb928cb60b41d9");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_4 = new MongoId("6a15ad908daf6b1a850fa222");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_5 = new MongoId("6a15add404515c87fd0656cd");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_6 = new MongoId("6a15ae0f0362c85e4a058dff");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_7 = new MongoId("6a15ae38656ef6e01c0171ca");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_8 = new MongoId("6a15ae56c32e3ce659049ab2");
-    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_9 = new MongoId("6a15aeacf5fb928cb60b41e1");
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_1 = new MongoId(
+        "6a144084b2b53cd4130fd5ee"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_10 = new MongoId(
+        "6a15aee19da028489f0f46a8"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_11 = new MongoId(
+        "6a15af4c0362c85e4a058e06"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_12 = new MongoId(
+        "6a15af7604515c87fd0656d5"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_13 = new MongoId(
+        "6a15afa4f5fb928cb60b41e6"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_14 = new MongoId(
+        "6a15aff417b1c2a2ef025d6e"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_15 = new MongoId(
+        "6a15b04b816d808b87018fca"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_16 = new MongoId(
+        "6a15b07017b1c2a2ef025d73"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_17 = new MongoId(
+        "6a15b09123501e13eb018e71"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_18 = new MongoId(
+        "6a15b0be081d9789d702287c"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_2 = new MongoId(
+        "6a15aa0d816d808b87018fba"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_3 = new MongoId(
+        "6a15aa58f5fb928cb60b41d9"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_4 = new MongoId(
+        "6a15ad908daf6b1a850fa222"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_5 = new MongoId(
+        "6a15add404515c87fd0656cd"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_6 = new MongoId(
+        "6a15ae0f0362c85e4a058dff"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_7 = new MongoId(
+        "6a15ae38656ef6e01c0171ca"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_8 = new MongoId(
+        "6a15ae56c32e3ce659049ab2"
+    );
+    public static readonly MongoId RANDOMLOOTCONTAINER_ITEM_CONTAINER_WOODENBOX_RAID_PRESET_FOR_BEGGINERS_9 = new MongoId(
+        "6a15aeacf5fb928cb60b41e1"
+    );
     public static readonly MongoId RANDOMLOOTCONTAINER_NEW_YEAR_GIFT_BIG = new MongoId("63a897c6b1ff6e29734fcc95");
     public static readonly MongoId RANDOMLOOTCONTAINER_NEW_YEAR_GIFT_MEDIUM = new MongoId("63a898a328e385334e0640a5");
     public static readonly MongoId RANDOMLOOTCONTAINER_NEW_YEAR_GIFT_SMALL = new MongoId("63a8970d7108f713591149f5");
@@ -5293,7 +6165,9 @@ public static class ItemTpl
     public static readonly MongoId SILENCER_SR1MP_9X21_SOUND_SUPPRESSOR = new MongoId("5a27b6bec4a282000e496f78");
     public static readonly MongoId SILENCER_SR2M_9X21_SV1381_SOUND_SUPPRESSOR = new MongoId("62e2a7138e1ac9380579c122");
     public static readonly MongoId SILENCER_SR3M_9X39_SOUND_SUPPRESSOR = new MongoId("65144ff50e00edc79406836f");
-    public static readonly MongoId SILENCER_STEYR_AUG_ASE_UTRA_S_SERIES_SL7I_556X45_SOUND_SUPPRESSOR = new MongoId("634eba08f69c710e0108d386");
+    public static readonly MongoId SILENCER_STEYR_AUG_ASE_UTRA_S_SERIES_SL7I_556X45_SOUND_SUPPRESSOR = new MongoId(
+        "634eba08f69c710e0108d386"
+    );
     public static readonly MongoId SILENCER_STEYR_AUG_RELFEX_T4AUG_RANGER_556X45_SOUND_SUPPRESSOR = new MongoId("630f2982cdb9e392db0cbcc7");
     public static readonly MongoId SILENCER_SUREFIRE_SOCOM556MINI_MONSTER_556X45_SOUND_SUPPRESSOR = new MongoId("55d6190f4bdc2d87028b4567");
     public static readonly MongoId SILENCER_SUREFIRE_SOCOM556MONSTER_556X45_SOUND_SUPPRESSOR = new MongoId("55d614004bdc2d86028b4568");
@@ -5327,10 +6201,14 @@ public static class ItemTpl
     public static readonly MongoId SMG_SR2M_VERESK_9X21_SUBMACHINE_GUN = new MongoId("62e14904c2699c0ec93adc47");
     public static readonly MongoId SMG_TDI_KRISS_VECTOR_GEN2_45_ACP_SUBMACHINE_GUN = new MongoId("5fb64bc92b1b027b1f50bcf2");
     public static readonly MongoId SMG_TDI_KRISS_VECTOR_GEN2_9X19_SUBMACHINE_GUN = new MongoId("5fc3f2d5900b1d5091531e57");
-    public static readonly MongoId SNIPERRIFLE_ACCURACY_INTERNATIONAL_AXMC_338_LM_BOLTACTION_SNIPER_RIFLE = new MongoId("627e14b21713922ded6f2c15");
+    public static readonly MongoId SNIPERRIFLE_ACCURACY_INTERNATIONAL_AXMC_338_LM_BOLTACTION_SNIPER_RIFLE = new MongoId(
+        "627e14b21713922ded6f2c15"
+    );
     public static readonly MongoId SNIPERRIFLE_LOBAEV_ARMS_DVL10_762X51_BOLTACTION_SNIPER_RIFLE = new MongoId("588892092459774ac91d4b11");
     public static readonly MongoId SNIPERRIFLE_MARLIN_MXLR_308_ME_LEVERACTION_RIFLE = new MongoId("67c6de3ce39861860909e8e5");
-    public static readonly MongoId SNIPERRIFLE_MOLOT_ARMS_VPO215_GORNOSTAY_366_TKM_BOLTACTION_RIFLE = new MongoId("5de652c31b7e3716273428be");
+    public static readonly MongoId SNIPERRIFLE_MOLOT_ARMS_VPO215_GORNOSTAY_366_TKM_BOLTACTION_RIFLE = new MongoId(
+        "5de652c31b7e3716273428be"
+    );
     public static readonly MongoId SNIPERRIFLE_MOSIN_762X54R_BOLTACTION_RIFLE_INFANTRY = new MongoId("5bfd297f0db834001a669119");
     public static readonly MongoId SNIPERRIFLE_MOSIN_762X54R_BOLTACTION_RIFLE_SNIPER = new MongoId("5ae08f0a5acfc408fb1398a1");
     public static readonly MongoId SNIPERRIFLE_ORSIS_T5000M_762X51_BOLTACTION_SNIPER_RIFLE = new MongoId("5df24cf80dee1b22f862e9bc");
@@ -5495,7 +6373,9 @@ public static class ItemTpl
     public static readonly MongoId STOCK_AR15_SB_TACTICAL_SBA3_BRACE = new MongoId("628a85ee6b1d481ff772e9d5");
     public static readonly MongoId STOCK_AR15_SOYUZTM_BUFFER_TUBE = new MongoId("602e3f1254072b51b239f713");
     public static readonly MongoId STOCK_AR15_STRIKE_INDUSTRIES_ADVANCED_RECEIVER_EXTENSION = new MongoId("5c793fb92e221644f31bfb64");
-    public static readonly MongoId STOCK_AR15_STRIKE_INDUSTRIES_ADVANCED_RECEIVER_EXTENSION_ANODIZED_RED = new MongoId("5c793fc42e221600114ca25d");
+    public static readonly MongoId STOCK_AR15_STRIKE_INDUSTRIES_ADVANCED_RECEIVER_EXTENSION_ANODIZED_RED = new MongoId(
+        "5c793fc42e221600114ca25d"
+    );
     public static readonly MongoId STOCK_AR15_STRIKE_INDUSTRIES_VIPER_MOD_1 = new MongoId("5c793fde2e221601da358614");
     public static readonly MongoId STOCK_AR15_STRIKE_INDUSTRIES_VIPER_PDW = new MongoId("627254cc9c563e6e442c398f");
     public static readonly MongoId STOCK_AR15_TROY_M7A1_PDW_STOCK_BLACK = new MongoId("591aef7986f774139d495f03");
@@ -5692,10 +6572,14 @@ public static class ItemTpl
     public static readonly MongoId TACTICALCOMBO_L3HARRIS_NGAL_TACTICAL_DEVICE = new MongoId("6a186ccfbe0d66d438005e4e");
     public static readonly MongoId TACTICALCOMBO_NCSTAR_TACTICAL_BLUE_LASER = new MongoId("5cc9c20cd7f00c001336c65d");
     public static readonly MongoId TACTICALCOMBO_OLIGHT_BALDR_PRO_TACTICAL_FLASHLIGHT_WITH_LASER = new MongoId("6272370ee4013c5d7e31f418");
-    public static readonly MongoId TACTICALCOMBO_OLIGHT_BALDR_PRO_TACTICAL_FLASHLIGHT_WITH_LASER_TAN = new MongoId("6272379924e29f06af4d5ecb");
+    public static readonly MongoId TACTICALCOMBO_OLIGHT_BALDR_PRO_TACTICAL_FLASHLIGHT_WITH_LASER_TAN = new MongoId(
+        "6272379924e29f06af4d5ecb"
+    );
     public static readonly MongoId TACTICALCOMBO_STEINER_DBALPL_TACTICAL_DEVICE = new MongoId("5d2369418abbc306c62e0c80");
     public static readonly MongoId TACTICALCOMBO_STEINER_LASTAC_2_TACTICAL_FLASHLIGHT = new MongoId("5b07dd285acfc4001754240d");
-    public static readonly MongoId TACTICALCOMBO_SUREFIRE_X400_ULTRA_TACTICAL_FLASHLIGHT_WITH_LASER = new MongoId("56def37dd2720bec348b456a");
+    public static readonly MongoId TACTICALCOMBO_SUREFIRE_X400_ULTRA_TACTICAL_FLASHLIGHT_WITH_LASER = new MongoId(
+        "56def37dd2720bec348b456a"
+    );
     public static readonly MongoId TACTICALCOMBO_SUREFIRE_XC1_TACTICAL_FLASHLIGHT = new MongoId("5a7b483fe899ef0016170d15");
     public static readonly MongoId TACTICALCOMBO_TT_DLP_TACTICAL_PRECISION_LASER_SIGHT = new MongoId("5c079ed60db834001a66b372");
     public static readonly MongoId TACTICALCOMBO_WILCOX_RAPTAR_ES_TACTICAL_RANGEFINDER = new MongoId("61605d88ffa6e502ac5e7eeb");
@@ -5760,7 +6644,9 @@ public static class ItemTpl
     public static readonly MongoId VEST_CRYE_PRECISION_JPC_PLATE_CARRIER_MULTICAM = new MongoId("693fd0e9deee848f70054999");
     public static readonly MongoId VEST_CSA_CHEST_RIG_BLACK = new MongoId("6034d0230ca681766b6a0fb5");
     public static readonly MongoId VEST_DIRECT_ACTION_THUNDERBOLT_COMPACT_CHEST_RIG_MARAUDER = new MongoId("6a565aede592c037e10a3c16");
-    public static readonly MongoId VEST_DIRECT_ACTION_THUNDERBOLT_COMPACT_CHEST_RIG_PENCOTT_WILDWOOD = new MongoId("6a565b5f9ec10bc6e30cdf46");
+    public static readonly MongoId VEST_DIRECT_ACTION_THUNDERBOLT_COMPACT_CHEST_RIG_PENCOTT_WILDWOOD = new MongoId(
+        "6a565b5f9ec10bc6e30cdf46"
+    );
     public static readonly MongoId VEST_DIRECT_ACTION_THUNDERBOLT_COMPACT_CHEST_RIG_RANGER_GREEN = new MongoId("69b11f46f3783ec37c03a116");
     public static readonly MongoId VEST_DIRECT_ACTION_THUNDERBOLT_COMPACT_CHEST_RIG_SHADOW_GREY = new MongoId("5f5f41f56760b4138443b352");
     public static readonly MongoId VEST_DIY_IDEA_CHEST_RIG = new MongoId("5fd4c4fa16cac650092f6771");
@@ -5769,7 +6655,9 @@ public static class ItemTpl
     public static readonly MongoId VEST_EAGLE_INDUSTRIES_MMAC_PLATE_CARRIER_RANGER_GREEN = new MongoId("61bc85697113f767765c7fe7");
     public static readonly MongoId VEST_ECLIPSE_RBAVAF_PLATE_CARRIER_RANGER_GREEN = new MongoId("628dc750b910320f4c27a732");
     public static readonly MongoId VEST_FERRO_CONCEPTS_FCPC_V5_PLATE_CARRIER_BLACK_DIVISION = new MongoId("689479cb47e5acd1e10be986");
-    public static readonly MongoId VEST_FIRST_SPEAR_SIEGER_OPTIMIZED_MASS_PLATE_CARRIER_BLACK_DIVISION = new MongoId("68947a4be4bf255d1b0ca746");
+    public static readonly MongoId VEST_FIRST_SPEAR_SIEGER_OPTIMIZED_MASS_PLATE_CARRIER_BLACK_DIVISION = new MongoId(
+        "68947a4be4bf255d1b0ca746"
+    );
     public static readonly MongoId VEST_FIRST_SPEAR_STRANDHOGG_PLATE_CARRIER_ABUPAT = new MongoId("68a85ab8ef22d08bf401fa68");
     public static readonly MongoId VEST_FIRST_SPEAR_STRANDHOGG_PLATE_CARRIER_MULTICAM_BLACK = new MongoId("69d36347705756116e0a901c");
     public static readonly MongoId VEST_FIRST_SPEAR_STRANDHOGG_PLATE_CARRIER_RANGER_GREEN = new MongoId("61bcc89aef0f505f0c6cd0fc");
@@ -5824,7 +6712,9 @@ public static class ItemTpl
     public static readonly MongoId VEST_WARTECH_TV110_PLATE_CARRIER_COYOTE = new MongoId("5c0e746986f7741453628fe5");
     public static readonly MongoId VEST_WARTECH_TV115_PLATE_CARRIER_BLACK = new MongoId("69b10ebfde4dda4a140bddb8");
     public static readonly MongoId VEST_WARTECH_TV115_PLATE_CARRIER_OLIVE_DRAB = new MongoId("64a536392d2c4e6e970f4121");
-    public static readonly MongoId VEST_ZULU_NYLON_GEAR_M4_REDUCED_SIGNATURE_CHEST_RIG_RANGER_GREEN = new MongoId("64be7095047e826eae02b0c1");
+    public static readonly MongoId VEST_ZULU_NYLON_GEAR_M4_REDUCED_SIGNATURE_CHEST_RIG_RANGER_GREEN = new MongoId(
+        "64be7095047e826eae02b0c1"
+    );
     public static readonly MongoId VISORS_6B34_ANTIFRAGMENTATION_GLASSES = new MongoId("5b432be65acfc433000ed01f");
     public static readonly MongoId VISORS_ANTIFRAGMENTATION_GLASSES = new MongoId("59e770b986f7742cbd762754");
     public static readonly MongoId VISORS_DUNDUKK_SPORT_SUNGLASSES = new MongoId("5aa2b986e5b5b00014028f4c");

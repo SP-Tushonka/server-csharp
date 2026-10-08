@@ -121,5 +121,4 @@ public class DialogStaticRouter(JsonUtil jsonUtil, DialogueCallbacks dialogueCal
                 async (url, info, sessionID, output, cancellationToken) => await dialogueCallbacks.UnIgnoreFriend(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

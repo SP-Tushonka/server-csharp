@@ -25,5 +25,4 @@ public sealed class WishlistItemEventRouter(WishlistCallbacks wishlistCallbacks)
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await wishlistCallbacks.ChangeWishlistItemCategory(pmcData, body, sessionID)
         ),
-    ])
-{ }
+    ]) { }

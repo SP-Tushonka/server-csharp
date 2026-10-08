@@ -69,7 +69,11 @@ public sealed class GoonLocationSpawnService(ISptLogger<GoonLocationSpawnService
         var allLocations = locationTable.GetDictionary();
         foreach (var locationId in botConfig.GoonSpawnSystem.LocationPool)
         {
-            if (!locationBlacklist.Contains(locationId) && allLocations.TryGetValue(locationId, out var location) && location?.Base?.BossLocationSpawn is not null)
+            if (
+                !locationBlacklist.Contains(locationId)
+                && allLocations.TryGetValue(locationId, out var location)
+                && location?.Base?.BossLocationSpawn is not null
+            )
             {
                 foreach (var goonSpawn in location.Base.BossLocationSpawn.Where(x => x.BossName == "bossKnight"))
                 {

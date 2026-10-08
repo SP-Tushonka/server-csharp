@@ -13,13 +13,11 @@ public class AchievementStaticRouter(JsonUtil jsonUtil, AchievementCallbacks ach
         [
             new StreamedRouteAction<EmptyRequestData>(
                 "/client/achievement/list",
-                async (url, info, sessionID, cancellationToken) =>
-                    await achievementCallbacks.GetAchievements(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) => await achievementCallbacks.GetAchievements(url, info, sessionID)
             ),
             new RouteAction<EmptyRequestData>(
                 "/client/achievement/statistic",
                 async (url, info, sessionID, output, cancellationToken) => await achievementCallbacks.Statistic(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

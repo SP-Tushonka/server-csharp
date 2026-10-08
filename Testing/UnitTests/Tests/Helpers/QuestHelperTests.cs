@@ -74,7 +74,7 @@ public class QuestHelperTests
                     StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Success, 0 } },
                 },
             ],
-            
+
             TradersInfo = new[] { Traders.PRAPOR, Traders.MECHANIC, Traders.THERAPIST, Traders.SKIER, Traders.RAGMAN }.ToDictionary(
                 trader => trader,
                 _ => new TraderInfo

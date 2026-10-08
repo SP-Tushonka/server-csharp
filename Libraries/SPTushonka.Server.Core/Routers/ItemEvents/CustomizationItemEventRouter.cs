@@ -20,5 +20,4 @@ public sealed class CustomizationItemEventRouter(CustomizationCallbacks customiz
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await customizationCallbacks.SetCustomisation(pmcData, body, sessionID)
         ),
-    ])
-{ }
+    ]) { }

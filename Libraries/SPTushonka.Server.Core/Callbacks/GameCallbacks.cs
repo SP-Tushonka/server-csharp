@@ -171,7 +171,11 @@ public class GameCallbacks(
         return httpResponseUtil.NoBody(
             new ShopData<ShopPurchaseResult>
             {
-                Data = new ShopPurchaseResult { Success = receipt.Outcome == ShopPurchaseOutcome.Success, TransactionId = receipt.TransactionId },
+                Data = new ShopPurchaseResult
+                {
+                    Success = receipt.Outcome == ShopPurchaseOutcome.Success,
+                    TransactionId = receipt.TransactionId,
+                },
             }
         );
     }

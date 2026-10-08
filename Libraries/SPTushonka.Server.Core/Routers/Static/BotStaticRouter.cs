@@ -16,5 +16,4 @@ public class BotStaticRouter(JsonUtil jsonUtil, BotCallbacks botCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await botCallbacks.GenerateBots(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

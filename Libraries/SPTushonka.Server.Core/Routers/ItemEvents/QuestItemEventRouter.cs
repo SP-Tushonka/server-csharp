@@ -43,5 +43,4 @@ public sealed class QuestItemEventRouter(QuestCallbacks questCallbacks)
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await questCallbacks.ChangeRepeatableQuest(pmcData, body, sessionID)
         ),
-    ])
-{ }
+    ]) { }

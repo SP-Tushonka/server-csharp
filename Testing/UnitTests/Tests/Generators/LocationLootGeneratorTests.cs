@@ -49,13 +49,32 @@ public class LocationLootGeneratorTests
     public void Statics_EveryRandomisedContainer_HasAGroup()
     {
         var missing = new List<string>();
-        foreach (var locationId in new[] { "bigmap", "factory4_day", "factory4_night", "interchange", "laboratory", "labyrinth", "lighthouse", "rezervbase", "sandbox", "sandbox_high", "shoreline", "tarkovstreets", "woods" })
+        foreach (
+            var locationId in new[]
+            {
+                "bigmap",
+                "factory4_day",
+                "factory4_night",
+                "interchange",
+                "laboratory",
+                "labyrinth",
+                "lighthouse",
+                "rezervbase",
+                "sandbox",
+                "sandbox_high",
+                "shoreline",
+                "tarkovstreets",
+                "woods",
+            }
+        )
         {
             var location = _locations.GetLocation(locationId)!;
             var groups = location.Statics!.Containers!;
             missing.AddRange(
                 location
-                    .StaticContainers!.Value!.StaticContainers!.Where(container => container.Probability < 1 && !container.Template!.IsAlwaysSpawn)
+                    .StaticContainers!.Value!.StaticContainers!.Where(container =>
+                        container.Probability < 1 && !container.Template!.IsAlwaysSpawn
+                    )
                     .Where(container => !groups.ContainsKey(container.Template!.Id!))
                     .Select(container => $"{locationId}/{container.Template!.Id}")
             );

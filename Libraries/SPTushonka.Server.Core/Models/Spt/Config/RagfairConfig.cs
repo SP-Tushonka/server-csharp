@@ -29,7 +29,6 @@ public record RagfairConfig : BaseConfig
     [JsonPropertyName("dynamic")]
     public required Dynamic Dynamic { get; set; }
 
-
     /// <summary>
     ///     Trader ids + should their assorts be listed on flea
     /// </summary>

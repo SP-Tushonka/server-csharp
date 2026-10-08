@@ -22,5 +22,4 @@ public class ModLoaderRouter(JsonUtil jsonUtil, ModLoaderCallbacks modLoaderCall
                     await modLoaderCallbacks.GetCustomizationTraders(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

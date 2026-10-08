@@ -227,7 +227,10 @@ public class RagfairServerHelper(
 
         MinMax<int>? minMaxRange;
         Span<char> parentTypeChars = stackalloc char[24];
-        if (itemParentType.TryFormat(parentTypeChars, out var charsWritten) && offerItemCounts.TryGetAlternateLookup<ReadOnlySpan<char>>(out var lookup))
+        if (
+            itemParentType.TryFormat(parentTypeChars, out var charsWritten)
+            && offerItemCounts.TryGetAlternateLookup<ReadOnlySpan<char>>(out var lookup)
+        )
         {
             lookup.TryGetValue(parentTypeChars[..charsWritten], out minMaxRange);
         }

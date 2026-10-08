@@ -20,5 +20,4 @@ public class WeatherStaticRouter(JsonUtil jsonUtil, WeatherCallbacks weatherCall
                 async (url, info, sessionID, output, cancellationToken) => await weatherCallbacks.GetLocalWeather(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

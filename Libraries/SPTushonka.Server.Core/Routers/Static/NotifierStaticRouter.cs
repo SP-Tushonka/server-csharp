@@ -22,5 +22,4 @@ public class NotifierStaticRouter(JsonUtil jsonUtil, NotifierCallbacks notifierC
                 async (url, info, sessionID, output, canellationToken) => await notifierCallbacks.SelectProfile(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

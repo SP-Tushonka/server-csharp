@@ -112,7 +112,10 @@ public class TradeController(
                 return httpResponseUtil.AppendErrorToOutput(output, errorMessage, BackendErrorCodes.OfferOutOfStock);
             }
 
-            if (!fleaOffer.IsTraderOffer() && ragfairLevelService.IsLocked(fleaOffer.Items, pmcData.Info.Level.GetValueOrDefault(0), out var requiredLevel))
+            if (
+                !fleaOffer.IsTraderOffer()
+                && ragfairLevelService.IsLocked(fleaOffer.Items, pmcData.Info.Level.GetValueOrDefault(0), out var requiredLevel)
+            )
             {
                 var errorMessage = serverLocalisationService.GetText("ragfair-offer_locked_by_level", requiredLevel);
                 return httpResponseUtil.AppendErrorToOutput(output, errorMessage, BackendErrorCodes.RagfairUnavailable);

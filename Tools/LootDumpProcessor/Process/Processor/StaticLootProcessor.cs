@@ -57,7 +57,7 @@ public static class StaticLootProcessor
     {
         var data = (
             from li in rawMapDump.LocationLoot.Loot
-            where li.IsContainer &&(!LootDumpProcessorContext.GetStaticWeaponIds().Contains(li.Items.First().Template))
+            where li.IsContainer && (!LootDumpProcessorContext.GetStaticWeaponIds().Contains(li.Items.First().Template))
             select li
         ).ToList();
 

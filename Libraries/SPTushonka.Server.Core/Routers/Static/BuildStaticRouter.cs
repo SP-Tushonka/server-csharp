@@ -35,5 +35,4 @@ public class BuildStaticRouter(JsonUtil jsonUtil, BuildsCallbacks buildsCallback
                 async (url, info, sessionID, output, cancellationToken) => await buildsCallbacks.DeleteBuild(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

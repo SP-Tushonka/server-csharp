@@ -119,10 +119,16 @@ public class TarcoinStoreService(
         return page with
         {
             Blocks = blocks
-                .Select(block => block with
-                {
-                    Position = new ShopGridPosition { X = block.Position.X, Y = block.Position.Y - Enumerable.Range(0, block.Position.Y).Count(row => !usedRows.Contains(row)) },
-                })
+                .Select(block =>
+                    block with
+                    {
+                        Position = new ShopGridPosition
+                        {
+                            X = block.Position.X,
+                            Y = block.Position.Y - Enumerable.Range(0, block.Position.Y).Count(row => !usedRows.Contains(row)),
+                        },
+                    }
+                )
                 .ToList(),
         };
     }
@@ -192,7 +198,9 @@ public class TarcoinStoreService(
         return missing.Count == 0
             && deliverables.Count > 0
             && deliverables.All(entry =>
-                entry.Template is not null || entry.GameReward?.ItemTemplate is not null || DeliverableTypes.Contains(entry.Type ?? string.Empty)
+                entry.Template is not null
+                || entry.GameReward?.ItemTemplate is not null
+                || DeliverableTypes.Contains(entry.Type ?? string.Empty)
             );
     }
 
@@ -236,7 +244,12 @@ public class TarcoinStoreService(
             : string.Empty;
     }
 
-    public async Task<ShopPurchaseReceipt> TryPurchaseAsync(MongoId sessionId, string offerId, int count, CancellationToken cancellationToken = default)
+    public async Task<ShopPurchaseReceipt> TryPurchaseAsync(
+        MongoId sessionId,
+        string offerId,
+        int count,
+        CancellationToken cancellationToken = default
+    )
     {
         var offer = GetOffer(offerId);
         var price = shopTable.Content.Prices.FirstOrDefault(entry => entry.Id.ToString() == offerId);
@@ -522,11 +535,7 @@ public class TarcoinStoreService(
     /// <param name="visitedOfferIds">The offer and every offer inside it</param>
     /// <param name="missingOfferIds">Bundle parts the shop data does not have</param>
     /// <returns>Entries to deliver</returns>
-    public List<ShopOfferItem> CollectDeliverables(
-        ShopOffer offer,
-        out HashSet<string> visitedOfferIds,
-        out List<string> missingOfferIds
-    )
+    public List<ShopOfferItem> CollectDeliverables(ShopOffer offer, out HashSet<string> visitedOfferIds, out List<string> missingOfferIds)
     {
         var deliverables = new List<ShopOfferItem>();
         var seen = new HashSet<string>();

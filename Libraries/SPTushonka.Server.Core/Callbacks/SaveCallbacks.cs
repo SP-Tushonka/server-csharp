@@ -15,9 +15,7 @@ public class SaveCallbacks(
     CustomItemService customItemService,
     DatabaseIntegrityService databaseIntegrityService,
     CoreConfig coreConfig
-)
-    : IOnLoad,
-        IOnUpdate
+) : IOnLoad, IOnUpdate
 {
     public async Task OnLoadAsync(CancellationToken cancellationToken)
     {

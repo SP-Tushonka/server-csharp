@@ -20,5 +20,4 @@ public class EndingStaticRouter(JsonUtil jsonUtil, EndingCallbacks endingCallbac
                 async (url, info, sessionID, output, cancellationToken) => await endingCallbacks.GetLocalization(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

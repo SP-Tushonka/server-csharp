@@ -233,7 +233,16 @@ public class PostDbLoadService(
     /// </summary>
     protected void AddTraderBuyProhibitedItemsToRewardBlacklist()
     {
-        MongoId[] mainTraders = [Traders.PRAPOR, Traders.THERAPIST, Traders.SKIER, Traders.PEACEKEEPER, Traders.MECHANIC, Traders.RAGMAN, Traders.JAEGER];
+        MongoId[] mainTraders =
+        [
+            Traders.PRAPOR,
+            Traders.THERAPIST,
+            Traders.SKIER,
+            Traders.PEACEKEEPER,
+            Traders.MECHANIC,
+            Traders.RAGMAN,
+            Traders.JAEGER,
+        ];
 
         HashSet<MongoId>? prohibitedByAll = null;
         foreach (var traderId in mainTraders)
@@ -263,9 +272,7 @@ public class PostDbLoadService(
     protected void AddDogtagsAndStoryItemsToRewardBlacklist()
     {
         itemConfig.RewardItemBlacklist.UnionWith(
-            templateTable
-                .Items.Values.Where(item => item.IsDogtag() || item.IsStoryItem())
-                .Select(item => item.Id)
+            templateTable.Items.Values.Where(item => item.IsDogtag() || item.IsStoryItem()).Select(item => item.Id)
         );
     }
 

@@ -70,10 +70,7 @@ public class SptLoggerExtensionsTests
     {
         public LoggerType LoggerType
         {
-            get
-            {
-                return LoggerType.Console;
-            }
+            get { return LoggerType.Console; }
         }
 
         public void Log(SptLogMessage message, BaseSptLoggerReference reference)

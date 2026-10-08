@@ -56,11 +56,7 @@ public class PaymentServiceTests
         var profile = new PmcData
         {
             Id = _sessionId,
-            Inventory = new BotBaseInventory
-            {
-                Stash = _stashId,
-                Items = items,
-            },
+            Inventory = new BotBaseInventory { Stash = _stashId, Items = items },
             InsuredItems = [],
         };
 
@@ -106,9 +102,7 @@ public class PaymentServiceTests
 
     private static double TotalRoubles(PmcData profile)
     {
-        return profile
-            .Inventory!.Items!.Where(item => item.Template == Money.ROUBLES)
-            .Sum(item => item.Upd?.StackObjectsCount ?? 0);
+        return profile.Inventory!.Items!.Where(item => item.Template == Money.ROUBLES).Sum(item => item.Upd?.StackObjectsCount ?? 0);
     }
 
     [Test]

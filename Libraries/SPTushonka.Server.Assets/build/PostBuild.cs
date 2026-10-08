@@ -41,7 +41,7 @@ async Task GenerateHashesAsync()
             {
                 return;
             }
-            
+
             var hasher = new XxHash3();
 
             await using (var stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read, 8192, useAsync: true))

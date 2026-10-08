@@ -25,8 +25,7 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
             ),
             new StreamedRouteAction<EmptyRequestData>(
                 "/client/handbook/templates",
-                async (url, info, sessionID, cancellationToken) =>
-                    await dataCallbacks.GetTemplateHandbook(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) => await dataCallbacks.GetTemplateHandbook(url, info, sessionID)
             ),
             new StreamedRouteAction<EmptyRequestData>(
                 "/client/customization",
@@ -89,5 +88,4 @@ public class DataStaticRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await dataCallbacks.GetLeagueRanks(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

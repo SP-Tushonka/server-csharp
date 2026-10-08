@@ -73,7 +73,9 @@ public sealed class DatabaseImporter(
 
         if (missing.Count > MaxReportedMissingFiles)
         {
-            logger.Error(serverLocalisationService.GetText("validation_error_missing_file_overflow", missing.Count - MaxReportedMissingFiles));
+            logger.Error(
+                serverLocalisationService.GetText("validation_error_missing_file_overflow", missing.Count - MaxReportedMissingFiles)
+            );
         }
 
         throw new ValidationErrorException(serverLocalisationService.GetText("validation_error_missing_files", missing.Count));

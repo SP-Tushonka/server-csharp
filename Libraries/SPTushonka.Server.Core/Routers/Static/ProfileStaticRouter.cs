@@ -23,7 +23,8 @@ public class ProfileStaticRouter(ProfileCallbacks profileCallbacks, JsonUtil jso
             ),
             new StreamedRouteAction<EmptyRequestData>(
                 "/v2/client/game/profiles/",
-                async (url, info, sessionID, cancellationToken) => await profileCallbacks.GetCharacterSelectionProfiles(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) =>
+                    await profileCallbacks.GetCharacterSelectionProfiles(url, info, sessionID)
             ),
             new RouteAction<EmptyRequestData>(
                 "/client/game/profile/savage/regenerate",
@@ -82,5 +83,4 @@ public class ProfileStaticRouter(ProfileCallbacks profileCallbacks, JsonUtil jso
                 async (url, info, sessionID, output, cancellationToken) => await profileCallbacks.GetTutorGameProfile(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

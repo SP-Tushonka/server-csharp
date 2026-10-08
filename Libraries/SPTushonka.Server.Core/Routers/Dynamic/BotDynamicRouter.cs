@@ -24,5 +24,4 @@ public class BotDynamicRouter(JsonUtil jsonUtil, BotCallbacks botCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await botCallbacks.GetBotBehaviours()
             ),
         ]
-    )
-{ }
+    ) { }

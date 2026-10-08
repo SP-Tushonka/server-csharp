@@ -519,28 +519,33 @@ public class LootGenerator(
         List<List<Item>> rewards = [];
 
         // Get only valid ammo boxes from db
-        var ammoBoxesDetails = containerSettings.AmmoBoxWhitelist.Select(tpl =>
-        {
-            var itemDetails = itemHelper.GetItem(tpl);
-            if (!itemDetails.Key)
+        var ammoBoxesDetails = containerSettings
+            .AmmoBoxWhitelist.Select(tpl =>
             {
-                if (logger.IsLogEnabled(LogLevel.Debug))
+                var itemDetails = itemHelper.GetItem(tpl);
+                if (!itemDetails.Key)
                 {
-                    logger.Debug($"Invalid item: {tpl} found when processing ammo box whitelist, skipping");
+                    if (logger.IsLogEnabled(LogLevel.Debug))
+                    {
+                        logger.Debug($"Invalid item: {tpl} found when processing ammo box whitelist, skipping");
+                    }
+                    return null;
                 }
-                return null;
-            }
 
-            return itemDetails.Value;
-        }).Where(x => x is not null).ToList();
+                return itemDetails.Value;
+            })
+            .Where(x => x is not null)
+            .ToList();
 
         // Get all items not quest related + not globally blacklisted
-        var preFilteredItemPool = templateTable.Items.Values.Where(item =>
-            string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase) // Must be an item, not a base node
-            && !itemFilterService.IsItemBlacklisted(item.Id) // Not blacklisted globally
-            && item.Properties is not null
-            && !item.Properties.QuestItem
-        ).ToList(); // Store in memory to prevent multiple enumerations of the same query
+        var preFilteredItemPool = templateTable
+            .Items.Values.Where(item =>
+                string.Equals(item.Type, "item", StringComparison.OrdinalIgnoreCase) // Must be an item, not a base node
+                && !itemFilterService.IsItemBlacklisted(item.Id) // Not blacklisted globally
+                && item.Properties is not null
+                && !item.Properties.QuestItem
+            )
+            .ToList(); // Store in memory to prevent multiple enumerations of the same query
 
         foreach (var (rewardKey, settings) in containerSettings.RewardTypeLimits)
         {
@@ -609,10 +614,15 @@ public class LootGenerator(
             }
 
             // Get items with parent of chosen reward type + do boss item filtering
-            var rewardItemPool = preFilteredItemPool.Where(item =>
-                item.Parent == rewardKey // TODO: perhaps `itemHelper.IsOfBaseclass()` should be used as right now only direct descendends are allowed
-                && ((containerSettings.AllowBossItems && itemFilterService.IsBossItem(item.Id)) || (!containerSettings.AllowBossItems && !itemFilterService.IsBossItem(item.Id))) // Allow item if bossitems enabled + item is boss item OR boss items disabled + item isnt boss item
-            ).ToList(); // Make copy to leave original pristine + prevent multiple enumerations of the same query below with size check + GetArrayValue()
+            var rewardItemPool = preFilteredItemPool
+                .Where(item =>
+                    item.Parent == rewardKey // TODO: perhaps `itemHelper.IsOfBaseclass()` should be used as right now only direct descendends are allowed
+                    && (
+                        (containerSettings.AllowBossItems && itemFilterService.IsBossItem(item.Id))
+                        || (!containerSettings.AllowBossItems && !itemFilterService.IsBossItem(item.Id))
+                    ) // Allow item if bossitems enabled + item is boss item OR boss items disabled + item isnt boss item
+                )
+                .ToList(); // Make copy to leave original pristine + prevent multiple enumerations of the same query below with size check + GetArrayValue()
 
             if (rewardItemPool.Count == 0)
             {
@@ -681,14 +691,16 @@ public class LootGenerator(
             }
 
             // Get items that fulfil reward type criteria from items that fit on gun
-            var relatedItems = linkedItemsToWeapon?.Where(item =>
-                item?.Parent == rewardKey && !itemFilterService.IsItemBlacklisted(item.Id)
-            ).ToList(); // Prevent multiple enumerations of the same query below with size check + GetArrayValue()
+            var relatedItems = linkedItemsToWeapon
+                ?.Where(item => item?.Parent == rewardKey && !itemFilterService.IsItemBlacklisted(item.Id))
+                .ToList(); // Prevent multiple enumerations of the same query below with size check + GetArrayValue()
             if (relatedItems is null || relatedItems.Count == 0)
             {
                 if (logger.IsLogEnabled(LogLevel.Debug))
                 {
-                    logger.Debug($"No items found to fulfil reward parent type: {rewardKey} for weapon: {chosenWeaponPreset.Name}, skipping type");
+                    logger.Debug(
+                        $"No items found to fulfil reward parent type: {rewardKey} for weapon: {chosenWeaponPreset.Name}, skipping type"
+                    );
                 }
 
                 continue;

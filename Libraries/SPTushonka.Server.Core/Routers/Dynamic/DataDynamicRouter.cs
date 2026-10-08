@@ -21,13 +21,11 @@ public class DataDynamicRouter(JsonUtil jsonUtil, DataCallbacks dataCallbacks)
             ),
             new StreamedRouteAction<EmptyRequestData>(
                 "/client/locale/",
-                async (url, info, sessionID, cancellationToken) =>
-                    await dataCallbacks.GetLocalesGlobal(url, info, sessionID)
+                async (url, info, sessionID, cancellationToken) => await dataCallbacks.GetLocalesGlobal(url, info, sessionID)
             ),
             new StreamedRouteAction<EmptyRequestData>(
                 "/client/items/prices/",
                 async (url, info, sessionID, cancellationToken) => await dataCallbacks.GetItemPrices(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

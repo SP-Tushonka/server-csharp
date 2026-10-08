@@ -29,5 +29,4 @@ public class ShopDynamicRouter(JsonUtil jsonUtil, GameCallbacks gameCallbacks)
                 async (url, info, sessionID, output, cancellationToken) => await gameCallbacks.PurchaseShopOffer(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

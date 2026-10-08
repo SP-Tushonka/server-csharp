@@ -202,9 +202,7 @@ public class BotEquipmentModGenerator(
             )
             {
                 int? frontPlateArmorClass = null;
-                if (
-                    isBackPlateSlot && settings.BotEquipmentConfig.LimitPlateClassToFrontPlateClass.GetValueOrDefault(false)
-                )
+                if (isBackPlateSlot && settings.BotEquipmentConfig.LimitPlateClassToFrontPlateClass.GetValueOrDefault(false))
                 {
                     var frontPlate = equipment.FirstOrDefault(item =>
                         item.SlotId.Equals("front_plate", StringComparison.OrdinalIgnoreCase)
@@ -280,7 +278,7 @@ public class BotEquipmentModGenerator(
                         logger.Debug($"Required slot: {modSlotName} requires mod but exhaustable pool was empty, modTpl is null");
                     }
                 }
-                
+
                 found = modTpl is not null;
             }
 
@@ -394,7 +392,6 @@ public class BotEquipmentModGenerator(
         // Get lowest and highest plate classes available for this armor
         var minMaxArmorPlateClass = GetMinMaxArmorPlateClass(platesFromDb);
 
-        
         var findCompatiblePlateAttempts = 0;
         const int maxAttempts = 3;
         var plateLevel = int.Parse(chosenArmorPlateLevelString);
@@ -1906,8 +1903,7 @@ public class BotEquipmentModGenerator(
                                     || itemHelper.IsOfBaseclass(tpl, BaseClasses.MOUNT)
                                 )
                             )
-                    )
-                    ?? false
+                    ) ?? false
                 )
                 // Add mod to allowed list
                 {

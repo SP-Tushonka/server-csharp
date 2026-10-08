@@ -88,5 +88,4 @@ public sealed class HideoutItemEventRouter(HideoutCallbacks hideoutCallbacks)
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await hideoutCallbacks.HideoutCustomizationSetMannequinPose(pmcData, body, sessionID)
         ),
-    ])
-{ }
+    ]) { }

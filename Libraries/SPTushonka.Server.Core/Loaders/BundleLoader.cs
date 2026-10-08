@@ -90,7 +90,9 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
 
                                 if (entry is null)
                                 {
-                                    logger.Error($"Bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name} is not a valid Unity asset bundle, skipping");
+                                    logger.Error(
+                                        $"Bundle {bundleManifest.Key} for mod {mod.ModMetadata.Name} is not a valid Unity asset bundle, skipping"
+                                    );
                                     Interlocked.Increment(ref invalid);
                                 }
                                 else
@@ -111,7 +113,8 @@ public sealed class BundleLoader(ISptLogger<BundleLoader> logger, JsonUtil jsonU
                             }
 
                             progressTask.Increment(1);
-                            progressTask.Description = $"Loading bundles for {mod.ModMetadata.Name} (ok: {ok}, missing: {missing}, invalid: {invalid})";
+                            progressTask.Description =
+                                $"Loading bundles for {mod.ModMetadata.Name} (ok: {ok}, missing: {missing}, invalid: {invalid})";
                         }
                     );
                 }

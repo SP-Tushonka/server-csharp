@@ -111,8 +111,7 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
         var debuffEndDelayPercent =
             profileToAdjust
                 .Bonuses?.Where(bonus => bonus.Type == BonusType.DebuffEndDelay)
-                .Aggregate(0d, (sum, bonus) => sum + bonus.Value!.Value)
-            ?? 0d;
+                .Aggregate(0d, (sum, bonus) => sum + bonus.Value!.Value) ?? 0d;
 
         var debuffEndDelayMultiplier = Math.Max(0d, 1d + (debuffEndDelayPercent / 100d));
 
@@ -245,10 +244,7 @@ public class HealthHelper(ISptLogger<HealthHelper> logger, TimeUtil timeUtil, He
     /// </summary>
     /// <param name="pmcProfile">Profile to adjust values for</param>
     /// <param name="decreaseBodyPartEffectTimes">OPTIONAL - Used instead of DecreaseBodyPartEffectTimes</param>
-    public void UpdateProfileHealthValues(
-        PmcData pmcProfile,
-        Action<PmcData, double, double>? decreaseBodyPartEffectTimes = null
-    )
+    public void UpdateProfileHealthValues(PmcData pmcProfile, Action<PmcData, double, double>? decreaseBodyPartEffectTimes = null)
     {
         var healthLastUpdated = pmcProfile.Health?.UpdateTime;
         var currentTimeStamp = timeUtil.GetTimeStamp();

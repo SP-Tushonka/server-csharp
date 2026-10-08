@@ -410,8 +410,7 @@ public class DialogueController(
                     var checkTime = message.DateTime + (message.MaxStorageTime ?? 0);
                     return timeNow < checkTime;
                 })
-                .ToList()
-            ?? [];
+                .ToList() ?? [];
     }
 
     /// <summary>

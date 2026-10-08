@@ -16,5 +16,4 @@ public class BundleDynamicRouter(JsonUtil jsonUtil, BundleCallbacks bundleCallba
                 async (url, info, sessionID, output, cancellationToken) => await bundleCallbacks.GetBundle(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

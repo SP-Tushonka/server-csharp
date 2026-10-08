@@ -23,5 +23,4 @@ public sealed class HealthItemEventRouter(HealthCallbacks healthCallbacks)
             async (url, pmcData, body, sessionID, output, cancellationToken) =>
                 await healthCallbacks.HealthTreatment(pmcData, body, sessionID)
         ),
-    ])
-{ }
+    ]) { }

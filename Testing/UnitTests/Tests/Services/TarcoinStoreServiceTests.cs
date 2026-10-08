@@ -73,9 +73,9 @@ public class TarcoinStoreServiceTests
     [Test]
     public void IsDeliverable_PveUpgrade_IsNot()
     {
-        var pveUpgrade = DI.GetInstance().GetService<ShopTable>().Content.Offers.Single(offer =>
-            offer.Items.Any(entry => entry.Type == "PVE_MODE")
-        );
+        var pveUpgrade = DI.GetInstance()
+            .GetService<ShopTable>()
+            .Content.Offers.Single(offer => offer.Items.Any(entry => entry.Type == "PVE_MODE"));
 
         Assert.That(_service.IsDeliverable(pveUpgrade), Is.False);
     }
@@ -118,10 +118,7 @@ public class TarcoinStoreServiceTests
     [Test]
     public void GetStock_SuitAlreadyUnlocked_CountsAsOwned()
     {
-        var profile = new SptProfile
-        {
-            CustomisationUnlocks = [new CustomisationStorage { Id = new MongoId("685d09b4029bc4c1190e819d") }],
-        };
+        var profile = new SptProfile { CustomisationUnlocks = [new CustomisationStorage { Id = new MongoId("685d09b4029bc4c1190e819d") }] };
 
         Assert.That(_service.GetStock(profile, _service.GetOffer(UsecDayOffUpper)!), Is.EqualTo((1, 0)));
     }
@@ -183,7 +180,10 @@ public class TarcoinStoreServiceTests
         };
         var newProfile = new SptProfile
         {
-            CharacterData = new Characters { PmcData = new PmcData { TarCoinBalance = 100, Bonuses = [] } },
+            CharacterData = new Characters
+            {
+                PmcData = new PmcData { TarCoinBalance = 100, Bonuses = [] },
+            },
             CustomisationUnlocks = [],
         };
 
@@ -203,7 +203,13 @@ public class TarcoinStoreServiceTests
     [Test]
     public void CarryOverPurchases_FirstProfile_KeepsTheEditionBalance()
     {
-        var newProfile = new SptProfile { CharacterData = new Characters { PmcData = new PmcData { TarCoinBalance = 100, Bonuses = [] } } };
+        var newProfile = new SptProfile
+        {
+            CharacterData = new Characters
+            {
+                PmcData = new PmcData { TarCoinBalance = 100, Bonuses = [] },
+            },
+        };
 
         _service.CarryOverPurchases(new SptProfile { CharacterData = new Characters { PmcData = new PmcData() } }, newProfile);
 

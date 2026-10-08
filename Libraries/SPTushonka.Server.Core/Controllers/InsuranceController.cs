@@ -634,7 +634,10 @@ public class InsuranceController(
     protected bool IsMapLabsAndInsuranceDisabled(Insurance insurance)
     {
         var location = insurance.SystemData?.Location;
-        if (!string.Equals(location, "laboratory", StringComparison.OrdinalIgnoreCase) && !string.Equals(location, "laboratory_dark", StringComparison.OrdinalIgnoreCase))
+        if (
+            !string.Equals(location, "laboratory", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(location, "laboratory_dark", StringComparison.OrdinalIgnoreCase)
+        )
         {
             return false;
         }

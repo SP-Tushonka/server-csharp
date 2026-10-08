@@ -1154,26 +1154,30 @@ public class LocationLifecycleService(
         PmcData pmcProfile
     )
     {
-        var finishedInRaid = postRaidQuests.Where(postRaidQuest =>
-        {
-            if (!templateTable.Quests.TryGetValue(postRaidQuest.QId, out var quest))
+        var finishedInRaid = postRaidQuests
+            .Where(postRaidQuest =>
             {
-                return false;
-            }
+                if (!templateTable.Quests.TryGetValue(postRaidQuest.QId, out var quest))
+                {
+                    return false;
+                }
 
-            // The client hands a visible instant quest in itself after the raid, a hidden one has nothing to hand in at
-            var hiddenInstant = quest.InstantComplete && quest.NotDisplayedQuest == true;
-            if (hiddenInstant && postRaidQuest.Status == QuestStatusEnum.AvailableForFinish)
-            {
-                return true;
-            }
+                // The client hands a visible instant quest in itself after the raid, a hidden one has nothing to hand in at
+                var hiddenInstant = quest.InstantComplete && quest.NotDisplayedQuest == true;
+                if (hiddenInstant && postRaidQuest.Status == QuestStatusEnum.AvailableForFinish)
+                {
+                    return true;
+                }
 
-            var completedThisRaid =
-                postRaidQuest.Status == QuestStatusEnum.Success
-                && !preRaidQuests.Any(preRaidQuest => preRaidQuest.QId == postRaidQuest.QId && preRaidQuest.Status == QuestStatusEnum.Success);
+                var completedThisRaid =
+                    postRaidQuest.Status == QuestStatusEnum.Success
+                    && !preRaidQuests.Any(preRaidQuest =>
+                        preRaidQuest.QId == postRaidQuest.QId && preRaidQuest.Status == QuestStatusEnum.Success
+                    );
 
-            return completedThisRaid && (hiddenInstant || quest.TraderId == Traders.LIGHTHOUSEKEEPER);
-        }).ToList();
+                return completedThisRaid && (hiddenInstant || quest.TraderId == Traders.LIGHTHOUSEKEEPER);
+            })
+            .ToList();
 
         foreach (var questToComplete in finishedInRaid)
         {

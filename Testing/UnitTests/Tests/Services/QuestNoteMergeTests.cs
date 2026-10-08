@@ -15,12 +15,23 @@ public class QuestNoteMergeTests
     [Test]
     public void MergeQuestNotes_NotesUnlockedInRaid_AreKept()
     {
-        var server = new PmcData { QuestNotes = new() { { NoteReadInMenu, true } }, ReadQuestData = [] };
-        var raid = new PmcData { QuestNotes = new() { { NoteFromRaid, false } }, ReadQuestData = [QuestText] };
+        var server = new PmcData
+        {
+            QuestNotes = new() { { NoteReadInMenu, true } },
+            ReadQuestData = [],
+        };
+        var raid = new PmcData
+        {
+            QuestNotes = new() { { NoteFromRaid, false } },
+            ReadQuestData = [QuestText],
+        };
 
         LocationLifecycleService.MergeQuestNotes(server, raid);
 
-        Assert.That(server.QuestNotes, Is.EquivalentTo(new Dictionary<MongoId, bool> { { NoteReadInMenu, true }, { NoteFromRaid, false } }));
+        Assert.That(
+            server.QuestNotes,
+            Is.EquivalentTo(new Dictionary<MongoId, bool> { { NoteReadInMenu, true }, { NoteFromRaid, false } })
+        );
         Assert.That(server.ReadQuestData, Is.EquivalentTo(new[] { QuestText }));
     }
 

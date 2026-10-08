@@ -171,7 +171,8 @@ public class LauncherV2Controller(
 
     protected bool IsEditionBlacklisted(string? edition)
     {
-        return edition is not null && coreConfig.Features.CreateNewProfileTypesBlacklist.Contains(edition, StringComparer.OrdinalIgnoreCase);
+        return edition is not null
+            && coreConfig.Features.CreateNewProfileTypesBlacklist.Contains(edition, StringComparer.OrdinalIgnoreCase);
     }
 
     protected MongoId GetSessionId(LoginRequestData info)

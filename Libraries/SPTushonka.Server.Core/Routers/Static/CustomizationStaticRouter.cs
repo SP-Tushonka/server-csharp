@@ -26,5 +26,4 @@ public class CustomizationStaticRouter(JsonUtil jsonUtil, CustomizationCallbacks
                 async (url, info, sessionID, output, cancellationToken) => await customizationCallbacks.GetStorage(url, info, sessionID)
             ),
         ]
-    )
-{ }
+    ) { }

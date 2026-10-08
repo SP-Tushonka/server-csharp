@@ -63,8 +63,7 @@ public record SeasonalEventConfig : BaseConfig
     public required Dictionary<
         SeasonalEventType,
         Dictionary<string, Dictionary<string, Dictionary<MongoId, int>>>
-    > BotAppearanceChanges
-    { get; set; }
+    > BotAppearanceChanges { get; set; }
 }
 
 public record SeasonalEvent
