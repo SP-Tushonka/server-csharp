@@ -54,13 +54,13 @@ public class BattlePassAssortHelper(
                         continue;
                     }
 
-                    Append(assort, traderId, cell.Id, reward);
+                    Append(assort, traderId, reward);
                 }
             }
         }
     }
 
-    private void Append(TraderAssort assort, MongoId traderId, MongoId cellId, Reward reward)
+    private void Append(TraderAssort assort, MongoId traderId, Reward reward)
     {
         var items = cloner.Clone(reward.Items) ?? [];
         var root = items.FirstOrDefault(item => item.Id == reward.Target);
@@ -75,7 +75,7 @@ public class BattlePassAssortHelper(
         root.Upd.UnlimitedCount = true;
         root.Upd.StackObjectsCount = 999999;
 
-        var known = seasonTable.BattlePassAssort?.GetValueOrDefault(cellId);
+        var known = seasonTable.BattlePassAssort?.GetValueOrDefault(reward.Id);
         assort.Items.AddRange(items);
         assort.LoyalLevelItems[root.Id] = known?.LoyaltyLevel ?? reward.LoyaltyLevel ?? 1;
         assort.BarterScheme[root.Id] = known?.BarterScheme ?? DerivedPrice(traderId, items);

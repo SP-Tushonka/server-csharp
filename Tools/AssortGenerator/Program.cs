@@ -212,7 +212,7 @@ public static class Program
         Dictionary<MongoId, BattlePassAssortOffer> passOffers
     )
     {
-        foreach (var (cell, reward) in passRewards.Where(entry => entry.Reward.TraderId?.ToString() == traderId))
+        foreach (var (_, reward) in passRewards.Where(entry => entry.Reward.TraderId?.ToString() == traderId))
         {
             var match = FindOffer(assort, reward);
             if (match is null)
@@ -220,7 +220,7 @@ public static class Program
                 continue;
             }
 
-            passOffers[cell.Id] = new BattlePassAssortOffer
+            passOffers[reward.Id] = new BattlePassAssortOffer
             {
                 RewardId = reward.Id,
                 BarterScheme = assort.BarterScheme[match.Id],

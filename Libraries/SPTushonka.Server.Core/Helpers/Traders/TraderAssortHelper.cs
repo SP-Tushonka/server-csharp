@@ -51,6 +51,9 @@ public class TraderAssortHelper(
             return fenceService.GetFenceAssorts(pmcProfile);
         }
 
+        // Season pass offers go in first so their loyalty level is enforced like every other offer
+        battlePassAssortHelper.AppendClaimedOffers(pmcProfile, traderId, traderClone.Assort);
+
         // Strip assorts player should not see yet
         if (!showLockedAssorts)
         {
@@ -103,8 +106,6 @@ public class TraderAssortHelper(
             MergedQuestAssorts,
             showLockedAssorts
         );
-
-        battlePassAssortHelper.AppendClaimedOffers(pmcProfile, traderId, traderClone.Assort);
 
         // Filter out root assorts that are blacklisted for this profile
         if (fullProfile.SptData.BlacklistedItemTemplates?.Count > 0)
