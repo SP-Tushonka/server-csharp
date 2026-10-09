@@ -32,6 +32,7 @@ public class BotWeaponGenerator(
     BotWeaponGeneratorHelper botWeaponGeneratorHelper,
     BotWeaponModLimitService botWeaponModLimitService,
     BotEquipmentModGenerator botEquipmentModGenerator,
+    BotItemBuildHelper botItemBuildHelper,
     ServerLocalisationService serverLocalisationService,
     RepairService repairService,
     ICloner cloner,
@@ -158,7 +159,17 @@ public class BotWeaponGenerator(
         }
 
         // Add mods to weapon base
-        if (modPool.ContainsKey(weaponTpl))
+        if (botTemplateInventory.WeaponBuilds?.TryGetValue(weaponTpl, out var builds) == true && builds.Count > 0)
+        {
+            botItemBuildHelper.AddBuildParts(
+                botItemBuildHelper.PickBuild(builds),
+                weaponWithModsArray[0].Id,
+                weaponWithModsArray,
+                modPool,
+                botGenerationDetails.RoleLowercase
+            );
+        }
+        else if (modPool.ContainsKey(weaponTpl))
         {
             // Role to treat bot as e.g. pmc/scav/boss
             var botEquipmentRole = botGeneratorHelper.GetBotEquipmentRole(botGenerationDetails.RoleLowercase);

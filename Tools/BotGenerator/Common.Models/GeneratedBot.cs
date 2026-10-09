@@ -90,5 +90,17 @@ namespace Common.Models
         // The server record exposes these as IEnumerable, so the generator appends through these shared lists
         public List<string> LastNames { get; } = new();
         public List<BodyPart> BodyParts { get; } = new();
+
+        // Every distinct build seen, keyed by item template then by the build's structure
+        public Dictionary<MongoId, Dictionary<string, ItemBuildSample>> WeaponBuildSamples { get; } = [];
+        public Dictionary<MongoId, Dictionary<string, ItemBuildSample>> EquipmentBuildSamples { get; } = [];
+    }
+
+    public class ItemBuildSample
+    {
+        public int Count { get; set; }
+
+        // Items of the first bot seen with this build, root item first
+        public List<Item> Items { get; init; } = [];
     }
 }

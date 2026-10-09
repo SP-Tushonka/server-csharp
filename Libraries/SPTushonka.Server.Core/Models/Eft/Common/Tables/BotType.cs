@@ -237,6 +237,32 @@ public record BotTypeInventory
 
     [JsonPropertyName("mods")]
     public GlobalMods Mods { get; set; }
+
+    /// <summary>
+    ///     Complete weapon builds keyed by weapon template, for roles that only ever carry a few fixed builds.
+    ///     A weapon listed here is assembled from one of its builds instead of slot by slot from the mod pool
+    /// </summary>
+    [JsonPropertyName("weaponBuilds")]
+    public Dictionary<MongoId, List<BotItemBuild>>? WeaponBuilds { get; set; }
+
+    /// <summary>
+    ///     Complete gear builds keyed by item template, the attachments and plates a helmet, armor or rig is seen with.
+    ///     A gear item listed here gets one of its builds instead of attachments rolled from the mod pool
+    /// </summary>
+    [JsonPropertyName("equipmentBuilds")]
+    public Dictionary<MongoId, List<BotItemBuild>>? EquipmentBuilds { get; set; }
+}
+
+/// <summary>
+///     One complete item build, the root item followed by its attachments without ammo
+/// </summary>
+public record BotItemBuild
+{
+    [JsonPropertyName("weight")]
+    public double Weight { get; set; }
+
+    [JsonPropertyName("items")]
+    public List<Item> Items { get; set; }
 }
 
 public record ItemPools

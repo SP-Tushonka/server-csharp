@@ -12,6 +12,7 @@ namespace Generator
             GearHelpers.AddEquippedGear(botToUpdate, rawBotData);
             GearHelpers.AddAmmo(botToUpdate, rawBotData);
             GearHelpers.AddEquippedMods(botToUpdate, rawBotData);
+            ItemBuildHelpers.AddBuilds(botToUpdate, rawBotData);
             //GearHelpers.AddCartridges(botToUpdate, rawBotData);
         }
     }

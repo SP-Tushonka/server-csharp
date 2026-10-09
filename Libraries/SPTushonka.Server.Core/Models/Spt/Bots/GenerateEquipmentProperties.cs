@@ -26,6 +26,12 @@ public record GenerateEquipmentProperties
     public GlobalMods? ModPool { get; set; }
 
     /// <summary>
+    ///     Recorded gear builds for this bot type, keyed by item template
+    /// </summary>
+    [JsonPropertyName("equipmentBuilds")]
+    public Dictionary<MongoId, List<BotItemBuild>>? EquipmentBuilds { get; set; }
+
+    /// <summary>
     ///     Dictionary of mod items and their chance to spawn for this bot type
     /// </summary>
     [JsonPropertyName("spawnChances")]

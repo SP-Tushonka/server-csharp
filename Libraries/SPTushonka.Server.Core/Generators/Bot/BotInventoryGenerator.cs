@@ -39,6 +39,7 @@ public class BotInventoryGenerator(
     BotEquipmentFilterService botEquipmentFilterService,
     BotEquipmentModPoolService botEquipmentModPoolService,
     BotEquipmentModGenerator botEquipmentModGenerator,
+    BotItemBuildHelper botItemBuildHelper,
     BotInventoryContainerService botInventoryContainerService,
     BotConfig botConfig,
     PmcConfig pmcConfig
@@ -247,6 +248,7 @@ public class BotInventoryGenerator(
                     RootEquipmentSlot = equipmentSlot,
                     RootEquipmentPool = itemsWithWeightPool,
                     ModPool = templateInventory.Mods,
+                    EquipmentBuilds = templateInventory.EquipmentBuilds,
                     SpawnChances = wornItemChances,
                     BotData = new BotData
                     {
@@ -275,6 +277,7 @@ public class BotInventoryGenerator(
                     botGenerationDetails.IsPmc
                 ),
                 ModPool = templateInventory.Mods,
+                EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
                 BotData = new BotData
                 {
@@ -297,6 +300,7 @@ public class BotInventoryGenerator(
                 RootEquipmentSlot = EquipmentSlots.FaceCover,
                 RootEquipmentPool = templateInventory.Equipment[EquipmentSlots.FaceCover],
                 ModPool = templateInventory.Mods,
+                EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
                 BotData = new BotData
                 {
@@ -318,6 +322,7 @@ public class BotInventoryGenerator(
                 RootEquipmentSlot = EquipmentSlots.Headwear,
                 RootEquipmentPool = templateInventory.Equipment[EquipmentSlots.Headwear],
                 ModPool = templateInventory.Mods,
+                EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
                 BotData = new BotData
                 {
@@ -339,6 +344,7 @@ public class BotInventoryGenerator(
                 RootEquipmentSlot = EquipmentSlots.Earpiece,
                 RootEquipmentPool = templateInventory.Equipment[EquipmentSlots.Earpiece],
                 ModPool = templateInventory.Mods,
+                EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
                 BotData = new BotData
                 {
@@ -360,6 +366,7 @@ public class BotInventoryGenerator(
                 RootEquipmentSlot = EquipmentSlots.ArmorVest,
                 RootEquipmentPool = templateInventory.Equipment[EquipmentSlots.ArmorVest],
                 ModPool = templateInventory.Mods,
+                EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
                 BotData = new BotData
                 {
@@ -401,6 +408,7 @@ public class BotInventoryGenerator(
                 RootEquipmentSlot = EquipmentSlots.TacticalVest,
                 RootEquipmentPool = templateInventory.Equipment[EquipmentSlots.TacticalVest],
                 ModPool = templateInventory.Mods,
+                EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
                 BotData = new BotData
                 {
@@ -598,8 +606,14 @@ public class BotInventoryGenerator(
 
             var itemIsOnGenerateModBlacklist =
                 settings.GenerateModsBlacklist != null && settings.GenerateModsBlacklist.Contains(pickedItemDb.Id);
+            var build = itemIsOnGenerateModBlacklist ? null : PickCompatibleEquipmentBuild(settings, pickedItemDb.Id);
+            if (build is not null)
+            {
+                settings.Inventory.Items.Add(item);
+                botItemBuildHelper.AddBuildParts(build, id, settings.Inventory.Items, settings.ModPool, settings.BotData.Role);
+            }
             // Does item have slots for sub-mods to be inserted into
-            if (pickedItemDb.Properties?.Slots is not null && pickedItemDb.Properties.Slots.Any() && !itemIsOnGenerateModBlacklist)
+            else if (pickedItemDb.Properties?.Slots is not null && pickedItemDb.Properties.Slots.Any() && !itemIsOnGenerateModBlacklist)
             {
                 var childItemsToAdd = botEquipmentModGenerator.GenerateModsForEquipment(
                     [item],
@@ -626,6 +640,24 @@ public class BotInventoryGenerator(
         }
 
         return false;
+    }
+
+    /// <summary>
+    ///     Pick a recorded build for a gear item whose parts fit around what the bot already wears
+    /// </summary>
+    /// <param name="settings">Equipment generation settings</param>
+    /// <param name="itemTpl">Gear item being generated</param>
+    /// <returns>Chosen build, null when the item has none or none fit</returns>
+    protected BotItemBuild? PickCompatibleEquipmentBuild(GenerateEquipmentProperties settings, MongoId itemTpl)
+    {
+        if (settings.EquipmentBuilds?.TryGetValue(itemTpl, out var builds) != true)
+        {
+            return null;
+        }
+
+        var compatible = builds.Where(build => botItemBuildHelper.IsBuildCompatible(build, settings.Inventory.Items)).ToList();
+
+        return compatible.Count > 0 ? botItemBuildHelper.PickBuild(compatible) : null;
     }
 
     /// <summary>

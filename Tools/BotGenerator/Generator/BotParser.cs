@@ -73,6 +73,7 @@ public static class BotParser
                 continue;
 
             await BaseBotGenerator.AddDifficulties(bot);
+            ItemBuildHelpers.SelectBuilds(bot);
             GearChanceHelpers.CalculateModChances(bot);
             GearChanceHelpers.CalculateEquipmentModChances(bot);
             GearChanceHelpers.CalculateEquipmentChances(bot);
