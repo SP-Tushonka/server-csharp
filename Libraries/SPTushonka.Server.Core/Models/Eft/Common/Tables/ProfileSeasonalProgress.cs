@@ -46,6 +46,12 @@ public record ProfileEnding
     /// </summary>
     [JsonPropertyName("available")]
     public Dictionary<string, List<string>>? Available { get; set; }
+
+    /// <summary>
+    ///     Ending shown for the character, the client sets it with current whenever an ending is obtained
+    /// </summary>
+    [JsonPropertyName("display")]
+    public string? Display { get; set; }
 }
 
 /// <summary>

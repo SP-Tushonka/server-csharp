@@ -53,6 +53,7 @@ public record ItemEventActions
     public const string CHANGE_WISHLIST_ITEM_CATEGORY = "ChangeWishlistItemCategory";
     public const string REMOVE_FROM_WISHLIST = "RemoveFromWishList";
     public const string ADD_TO_WISHLIST = "AddToWishList";
+    public const string SET_CURRENT_ENDING = "SetCurrentEnding";
     public const string INSURE = "Insure";
     public const string RESTORE_HEALTH = "RestoreHealth";
     public const string HEAL = "Heal";

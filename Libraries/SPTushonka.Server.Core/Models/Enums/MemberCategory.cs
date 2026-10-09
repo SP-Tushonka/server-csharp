@@ -14,4 +14,5 @@ public enum MemberCategory
     Sherpa = 256,
     Emissary = 512,
     Unheard = 1024,
+    DiscordModerator = 4096,
 }

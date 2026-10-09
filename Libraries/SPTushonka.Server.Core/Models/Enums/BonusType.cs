@@ -34,4 +34,11 @@ public enum BonusType
     SkillGroupLevelingBoost,
     StashRows,
     Customization,
+    TeamGameEditionExpBonus,
+    PveMode,
+    PerkExperienceRate,
+    CraftTime,
+    Wipe,
+    GameReward,
+    TradingRule,
 }

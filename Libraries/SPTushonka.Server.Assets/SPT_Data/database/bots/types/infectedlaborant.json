@@ -1,163 +1,52 @@
 {
   "appearance": {
     "body": {
-      "671654b5f68df05790043128": 6650,
-      "671654d56ccf4799d007d4b9": 6591
+      "671654b5f68df05790043128": 47,
+      "671654d56ccf4799d007d4b9": 43
     },
     "feet": {
-      "670d1907b7a8f34fce07fdab": 4413,
-      "670d18e2e002387b88029112": 4413,
-      "670d18f87ca0004a2a022606": 4415
+      "670d1907b7a8f34fce07fdab": 1,
+      "670d18e2e002387b88029112": 1,
+      "670d18f87ca0004a2a022606": 1
     },
     "hands": {
       "5cc2e68f14c02e28b47de290": 1
     },
     "head": {
-      "670d17f9d2d5ce4514027e83": 4408,
-      "670d17df032591157e0c3538": 4448,
-      "670d176bb7a8f34fce07fd9d": 4385
+      "670d176bb7a8f34fce07fd9d": 16,
+      "670d17f9d2d5ce4514027e83": 12,
+      "670d17df032591157e0c3538": 17
     },
     "voice": {
-      "670a57f082b46e0e55096b09": 5230,
-      "67199b72b79a024c140a17b7": 5391,
-      "6720aa2d1c5e609cb70d5528": 2621
+      "6720aa2d1c5e609cb70d5528": 30,
+      "67199b72b79a024c140a17b7": 52,
+      "670a57f082b46e0e55096b09": 53
     }
   },
-  "experience": {
-    "level": {
-      "min": 0,
-      "max": 1
-    },
-    "reward": {
-      "normal": {
-        "min": 20,
-        "max": 20
-      }
-    },
-    "standingForKill": {
-      "normal": 0
-    },
-    "aggressorBonus": {
-      "normal": 0
-    },
-    "useSimpleAnimator": true
-  },
-  "health": {
-    "Hydration": {
-      "min": 100,
-      "max": 100
-    },
-    "Energy": {
-      "min": 100,
-      "max": 100
-    },
-    "Temperature": {
-      "min": 36,
-      "max": 40
-    },
-    "BodyParts": [
-      {
-        "Head": {
-          "min": 10,
-          "max": 10
-        },
-        "Chest": {
-          "min": 180,
-          "max": 180
-        },
-        "Stomach": {
-          "min": 170,
-          "max": 170
-        },
-        "LeftArm": {
-          "min": 70,
-          "max": 70
-        },
-        "RightArm": {
-          "min": 70,
-          "max": 70
-        },
-        "LeftLeg": {
-          "min": 70,
-          "max": 70
-        },
-        "RightLeg": {
-          "min": 70,
-          "max": 70
-        }
-      }
-    ]
-  },
-  "skills": {
-    "Common": {}
-  },
-  "inventory": {
+  "chances": {
     "equipment": {
-      "Headwear": {},
-      "Earpiece": {},
-      "FaceCover": {},
-      "ArmorVest": {},
-      "Eyewear": {},
-      "ArmBand": {},
-      "TacticalVest": {},
-      "Backpack": {},
-      "FirstPrimaryWeapon": {},
-      "SecondPrimaryWeapon": {},
-      "Holster": {
-        "579204f224597773d619e051": 1
-      },
-      "Scabbard": {
-        "5c012ffc0db834001d23f03f": 9012,
-        "670ad7f1ad195290cd00da7a": 108200,
-        "601948682627df266209af05": 3059,
-        "5c07df7f0db834001b73588a": 9155,
-        "5bead2e00db834001c062938": 2989
-      },
-      "Pockets": {
-        "557ffd194bdc2d28148b457f": 1
-      },
-      "SecuredContainer": {
-        "5c0a794586f77461c458f892": 1
-      }
+      "Headwear": 0,
+      "Earpiece": 0,
+      "FaceCover": 0,
+      "ArmorVest": 0,
+      "Eyewear": 0,
+      "ArmBand": 0,
+      "TacticalVest": 0,
+      "Backpack": 0,
+      "FirstPrimaryWeapon": 0,
+      "SecondPrimaryWeapon": 0,
+      "Holster": 100,
+      "Scabbard": 100,
+      "Pockets": 100,
+      "SecuredContainer": 100
     },
-    "Ammo": {
-      "Caliber9x18PM": {
-        "573719762459775a626ccbc1": 1
-      }
+    "weaponMods": {
+      "mod_magazine": 100,
+      "mod_muzzle": 0,
+      "mod_sight_rear": 74
     },
-    "mods": {
-      "579204f224597773d619e051": {
-        "mod_reciever": [
-          "6374a822e629013b9c0645c8"
-        ],
-        "mod_pistolgrip": [
-          "6374a7e7417239a7bf00f042"
-        ],
-        "mod_magazine": [
-          "5448c12b4bdc2d02308b456f"
-        ],
-        "patron_in_weapon": [
-          "573719762459775a626ccbc1"
-        ]
-      },
-      "6374a822e629013b9c0645c8": {
-        "mod_sight_rear": [
-          "63c6adcfb4ba094317063742"
-        ]
-      }
-    },
-    "items": {
-      "TacticalVest": {},
-      "Pockets": {},
-      "Backpack": {},
-      "SecuredContainer": {},
-      "SpecialLoot": {}
-    }
+    "equipmentMods": {}
   },
-  "firstName": [
-    "???"
-  ],
-  "lastName": [],
   "difficulty": {
     "easy": {
       "Aiming": {
@@ -311,7 +200,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 1
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -392,6 +282,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": false,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 15.7,
         "GrenadePrecision": 0.3,
         "GRENADE_PRECISION_PORTALS": 0.05,
@@ -444,7 +335,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -452,7 +344,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -477,7 +369,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -562,10 +456,11 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
         "CHECK_MARK_OF_UNKNOWS": false,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000,
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
         "CHANCE_TO_IGNORE_TRIPWIRE": 0,
         "CHACE_TO_DEACTIVATE": 50,
-        "REACT_ADD_DRUNK_ENEMY": true
+        "REACT_ADD_DRUNK_ENEMY": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -854,7 +749,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 1
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -935,6 +831,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": false,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 16.7,
         "GrenadePrecision": 0.2,
         "GRENADE_PRECISION_PORTALS": 0.02,
@@ -987,7 +884,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -995,7 +893,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1019,7 +917,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1104,10 +1004,13 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
         "CHECK_MARK_OF_UNKNOWS": false,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000,
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
         "CHANCE_TO_IGNORE_TRIPWIRE": 0,
         "CHACE_TO_DEACTIVATE": 50,
-        "REACT_ADD_DRUNK_ENEMY": true
+        "REACT_ADD_DRUNK_ENEMY": true,
+        "CAN_RECIVE_PLAYER_REQUESTS": false,
+        "DEFAULT_ENEMY_SAVAGE": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1397,7 +1300,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1478,6 +1382,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": false,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 16.7,
         "GrenadePrecision": 0.1,
         "GRENADE_PRECISION_PORTALS": 0.01,
@@ -1530,7 +1435,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -1538,7 +1444,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1563,7 +1469,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1648,10 +1556,11 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
         "CHECK_MARK_OF_UNKNOWS": false,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000,
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
         "CHANCE_TO_IGNORE_TRIPWIRE": 0,
         "CHACE_TO_DEACTIVATE": 50,
-        "REACT_ADD_DRUNK_ENEMY": true
+        "REACT_ADD_DRUNK_ENEMY": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1935,7 +1844,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 1
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -2016,6 +1926,7 @@
         "AMBUSH_IF_SMOKE_IN_ZONE_100": 40,
         "AMBUSH_IF_SMOKE_RETURN_TO_ATTACK_SEC": 30,
         "NO_RUN_FROM_AI_GRENADES": false,
+        "NO_RUN_FROM_GAS_GRENADES": false,
         "MAX_THROW_POWER": 15.7,
         "GrenadePrecision": 0.3,
         "GRENADE_PRECISION_PORTALS": 0.05,
@@ -2068,7 +1979,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -2076,7 +1988,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -2101,7 +2013,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2186,10 +2100,11 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
         "CHECK_MARK_OF_UNKNOWS": false,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000,
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
         "CHANCE_TO_IGNORE_TRIPWIRE": 0,
         "CHACE_TO_DEACTIVATE": 50,
-        "REACT_ADD_DRUNK_ENEMY": true
+        "REACT_ADD_DRUNK_ENEMY": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2321,104 +2236,251 @@
       }
     }
   },
-  "chances": {
-    "equipment": {
-      "Headwear": 0,
-      "Earpiece": 0,
-      "FaceCover": 0,
-      "ArmorVest": 0,
-      "Eyewear": 0,
-      "ArmBand": 0,
-      "TacticalVest": 0,
-      "Backpack": 0,
-      "FirstPrimaryWeapon": 0,
-      "SecondPrimaryWeapon": 0,
-      "Holster": 100,
-      "Scabbard": 100,
-      "Pockets": 100,
-      "SecuredContainer": 100
+  "experience": {
+    "aggressorBonus": {
+      "normal": 0,
+      "easy": 0
     },
-    "weaponMods": {
-      "mod_magazine": 100,
-      "mod_muzzle": 0,
-      "mod_sight_rear": 74
+    "level": {
+      "max": 1,
+      "min": 0
     },
-    "equipmentMods": {}
+    "reward": {
+      "normal": {
+        "max": 20,
+        "min": 20
+      },
+      "easy": {
+        "max": 20,
+        "min": 20
+      }
+    },
+    "standingForKill": {
+      "normal": 0,
+      "easy": 0
+    },
+    "useSimpleAnimator": true
   },
+  "firstName": [
+    "???"
+  ],
   "generation": {
     "items": {
-      "specialItems": {
+      "grenades": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "healing": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "drugs": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
-      },
-      "stims": {
-        "weights": {
-          "0": 1
-        },
-        "whitelist": []
+        "whitelist": {}
       },
       "food": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "drink": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "currency": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
+      },
+      "stims": {
+        "weights": {
+          "0": 1
+        },
+        "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "vestLoot": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
       "magazines": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       },
-      "grenades": {
+      "specialItems": {
         "weights": {
           "0": 1
         },
-        "whitelist": []
+        "whitelist": {}
       }
     }
+  },
+  "health": {
+    "BodyParts": [
+      {
+        "Chest": {
+          "max": 180,
+          "min": 180
+        },
+        "Head": {
+          "max": 60,
+          "min": 60
+        },
+        "LeftArm": {
+          "max": 70,
+          "min": 70
+        },
+        "LeftLeg": {
+          "max": 70,
+          "min": 70
+        },
+        "RightArm": {
+          "max": 70,
+          "min": 70
+        },
+        "RightLeg": {
+          "max": 70,
+          "min": 70
+        },
+        "Stomach": {
+          "max": 170,
+          "min": 170
+        }
+      },
+      {
+        "Chest": {
+          "max": 300,
+          "min": 300
+        },
+        "Head": {
+          "max": 90,
+          "min": 90
+        },
+        "LeftArm": {
+          "max": 125,
+          "min": 125
+        },
+        "LeftLeg": {
+          "max": 125,
+          "min": 125
+        },
+        "RightArm": {
+          "max": 125,
+          "min": 125
+        },
+        "RightLeg": {
+          "max": 125,
+          "min": 125
+        },
+        "Stomach": {
+          "max": 260,
+          "min": 260
+        }
+      }
+    ],
+    "Energy": {
+      "max": 100,
+      "min": 100
+    },
+    "Hydration": {
+      "max": 100,
+      "min": 100
+    },
+    "Temperature": {
+      "max": 40,
+      "min": 36
+    }
+  },
+  "inventory": {
+    "equipment": {
+      "Headwear": {},
+      "Earpiece": {},
+      "FaceCover": {},
+      "ArmorVest": {},
+      "Eyewear": {},
+      "ArmBand": {},
+      "TacticalVest": {},
+      "Backpack": {},
+      "FirstPrimaryWeapon": {},
+      "SecondPrimaryWeapon": {},
+      "Holster": {
+        "579204f224597773d619e051": 1
+      },
+      "Scabbard": {
+        "670ad7f1ad195290cd00da7a": 220,
+        "601948682627df266209af05": 8,
+        "5c012ffc0db834001d23f03f": 19,
+        "5c07df7f0db834001b73588a": 17,
+        "5bead2e00db834001c062938": 6
+      },
+      "Pockets": {
+        "557ffd194bdc2d28148b457f": 1
+      },
+      "SecuredContainer": {
+        "5c0a794586f77461c458f892": 1
+      }
+    },
+    "Ammo": {
+      "Caliber9x18PM": {
+        "573719762459775a626ccbc1": 1
+      }
+    },
+    "items": {
+      "Backpack": {},
+      "Pockets": {},
+      "SecuredContainer": {},
+      "SpecialLoot": {},
+      "TacticalVest": {}
+    },
+    "mods": {
+      "579204f224597773d619e051": {
+        "mod_reciever": [
+          "6374a822e629013b9c0645c8"
+        ],
+        "mod_pistolgrip": [
+          "6374a7e7417239a7bf00f042"
+        ],
+        "mod_magazine": [
+          "5448c12b4bdc2d02308b456f"
+        ],
+        "patron_in_weapon": [
+          "573719762459775a626ccbc1"
+        ]
+      },
+      "6374a822e629013b9c0645c8": {
+        "mod_sight_rear": [
+          "63c6adcfb4ba094317063742"
+        ]
+      }
+    }
+  },
+  "lastName": [],
+  "skills": {
+    "Common": {}
   }
 }

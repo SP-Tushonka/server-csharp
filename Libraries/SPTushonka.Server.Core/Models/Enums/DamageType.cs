@@ -29,4 +29,7 @@ public enum DamageType
     HotGases = 16777216,
     ThermobaricExplosion = 33554432,
     Environment = 67108864,
+    SniperBlackDivision = 134217728,
+    MachineGunner = 268435456,
+    TearGas = 536870912,
 }

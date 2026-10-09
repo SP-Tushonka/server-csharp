@@ -139,6 +139,8 @@ public partial class ProfileFixerService(
                 [PrestigeGameModes.Regular] = [],
                 [PrestigeGameModes.Pve] = [],
             };
+
+            profile.Ending.Display ??= profile.Ending.Current;
         }
 
         if (isPmc)
