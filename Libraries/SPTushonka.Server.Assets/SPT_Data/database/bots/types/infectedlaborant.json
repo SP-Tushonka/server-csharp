@@ -2477,6 +2477,70 @@
           "63c6adcfb4ba094317063742"
         ]
       }
+    },
+    "weaponBuilds": {
+      "579204f224597773d619e051": [
+        {
+          "weight": 202,
+          "items": [
+            {
+              "_id": "6ac663ba2d9fc82d861390c3",
+              "_tpl": "579204f224597773d619e051"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d861390c7",
+              "_tpl": "5448c12b4bdc2d02308b456f",
+              "parentId": "6ac663ba2d9fc82d861390c3",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d861390c6",
+              "_tpl": "6374a7e7417239a7bf00f042",
+              "parentId": "6ac663ba2d9fc82d861390c3",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d861390c4",
+              "_tpl": "6374a822e629013b9c0645c8",
+              "parentId": "6ac663ba2d9fc82d861390c3",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d861390c5",
+              "_tpl": "63c6adcfb4ba094317063742",
+              "parentId": "6ac663ba2d9fc82d861390c4",
+              "slotId": "mod_sight_rear"
+            }
+          ]
+        },
+        {
+          "weight": 68,
+          "items": [
+            {
+              "_id": "6ac663ba2d9fc82d8613915c",
+              "_tpl": "579204f224597773d619e051"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d8613915f",
+              "_tpl": "5448c12b4bdc2d02308b456f",
+              "parentId": "6ac663ba2d9fc82d8613915c",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d8613915e",
+              "_tpl": "6374a7e7417239a7bf00f042",
+              "parentId": "6ac663ba2d9fc82d8613915c",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac663ba2d9fc82d8613915d",
+              "_tpl": "6374a822e629013b9c0645c8",
+              "parentId": "6ac663ba2d9fc82d8613915c",
+              "slotId": "mod_reciever"
+            }
+          ]
+        }
+      ]
     }
   },
   "lastName": [],

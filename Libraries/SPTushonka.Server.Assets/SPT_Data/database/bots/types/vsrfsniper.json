@@ -2915,6 +2915,846 @@
           "6571babf4cb80d995d0a1494"
         ]
       }
+    },
+    "weaponBuilds": {
+      "5448bd6b4bdc2dfc2f8b4569": [
+        {
+          "weight": 272,
+          "items": [
+            {
+              "_id": "6ac505c28bc4e52f7e1439e9",
+              "_tpl": "5448bd6b4bdc2dfc2f8b4569"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ee",
+              "_tpl": "5448c12b4bdc2d02308b456f",
+              "parentId": "6ac505c28bc4e52f7e1439e9",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ed",
+              "_tpl": "6374a7e7417239a7bf00f042",
+              "parentId": "6ac505c28bc4e52f7e1439e9",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439eb",
+              "_tpl": "6374a822e629013b9c0645c8",
+              "parentId": "6ac505c28bc4e52f7e1439e9",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ec",
+              "_tpl": "63c6adcfb4ba094317063742",
+              "parentId": "6ac505c28bc4e52f7e1439eb",
+              "slotId": "mod_sight_rear"
+            }
+          ]
+        }
+      ],
+      "55801eed4bdc2d89578b4588": [
+        {
+          "weight": 202,
+          "items": [
+            {
+              "_id": "6ac505c28bc4e52f7e143992",
+              "_tpl": "55801eed4bdc2d89578b4588"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143999",
+              "_tpl": "559ba5b34bdc2d1f1a8b4582",
+              "parentId": "6ac505c28bc4e52f7e143992",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143996",
+              "_tpl": "560e620e4bdc2d724b8b456b",
+              "parentId": "6ac505c28bc4e52f7e143992",
+              "slotId": "mod_muzzle"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143994",
+              "_tpl": "56083e1b4bdc2dc8488b4572",
+              "parentId": "6ac505c28bc4e52f7e143992",
+              "slotId": "mod_sight_rear"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143997",
+              "_tpl": "61faa91878830f069b6b7967",
+              "parentId": "6ac505c28bc4e52f7e143992",
+              "slotId": "mod_stock"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143998",
+              "_tpl": "56ea8222d2720b69698b4567",
+              "parentId": "6ac505c28bc4e52f7e143997",
+              "slotId": "mod_bipod"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143995",
+              "_tpl": "56083eab4bdc2d26448b456a",
+              "parentId": "6ac505c28bc4e52f7e143992",
+              "slotId": "mod_tactical"
+            }
+          ]
+        }
+      ],
+      "5c46fbd72e2216398b5a8c9c": [
+        {
+          "weight": 215,
+          "items": [
+            {
+              "_id": "6ac63c7e64832e0e5018cd0b",
+              "_tpl": "5c46fbd72e2216398b5a8c9c"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd0f",
+              "_tpl": "5c471cb32e221602b177afaa",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_barrel"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd12",
+              "_tpl": "5c471c842e221615214259b5",
+              "parentId": "6ac63c7e64832e0e5018cd0f",
+              "slotId": "mod_gas_block"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd10",
+              "_tpl": "5c471bfc2e221602b21d4e17",
+              "parentId": "6ac63c7e64832e0e5018cd0f",
+              "slotId": "mod_muzzle"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd11",
+              "_tpl": "5c471ba12e221602b3137d76",
+              "parentId": "6ac63c7e64832e0e5018cd10",
+              "slotId": "mod_sight_front"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd18",
+              "_tpl": "5c471c442e221602b542a6f8",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd13",
+              "_tpl": "5c471c2d2e22164bef5d077f",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_mount_001"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd14",
+              "_tpl": "5c471c6c2e221602b66cd9ae",
+              "parentId": "6ac63c7e64832e0e5018cd13",
+              "slotId": "mod_handguard"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd15",
+              "_tpl": "5c471b7e2e2216152006e46c",
+              "parentId": "6ac63c7e64832e0e5018cd13",
+              "slotId": "mod_sight_rear"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd17",
+              "_tpl": "5c82342f2e221644f31c060e",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_mount_002"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd0c",
+              "_tpl": "5c471be12e221602b66cd9ac",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_pistol_grip"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd16",
+              "_tpl": "5c471bd12e221602b4129c3a",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cd0e",
+              "_tpl": "5c471b5d2e221602b21d4e14",
+              "parentId": "6ac63c7e64832e0e5018cd0b",
+              "slotId": "mod_stock"
+            }
+          ]
+        },
+        {
+          "weight": 87,
+          "items": [
+            {
+              "_id": "6ac63c7e64832e0e5018ccb7",
+              "_tpl": "5c46fbd72e2216398b5a8c9c"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccbb",
+              "_tpl": "5c471cb32e221602b177afaa",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_barrel"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccbe",
+              "_tpl": "5c471c842e221615214259b5",
+              "parentId": "6ac63c7e64832e0e5018ccbb",
+              "slotId": "mod_gas_block"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccbf",
+              "_tpl": "5e569a132642e66b0b68015c",
+              "parentId": "6ac63c7e64832e0e5018ccbb",
+              "slotId": "mod_mount"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc0",
+              "_tpl": "6644920d49817dc7d505ca71",
+              "parentId": "6ac63c7e64832e0e5018ccbf",
+              "slotId": "mod_tactical_000"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccbc",
+              "_tpl": "5c471bfc2e221602b21d4e17",
+              "parentId": "6ac63c7e64832e0e5018ccbb",
+              "slotId": "mod_muzzle"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccbd",
+              "_tpl": "5c471ba12e221602b3137d76",
+              "parentId": "6ac63c7e64832e0e5018ccbc",
+              "slotId": "mod_sight_front"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc8",
+              "_tpl": "5c88f24b2e22160bc12c69a6",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc1",
+              "_tpl": "5c471c2d2e22164bef5d077f",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_mount_001"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc2",
+              "_tpl": "5c471c6c2e221602b66cd9ae",
+              "parentId": "6ac63c7e64832e0e5018ccc1",
+              "slotId": "mod_handguard"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc3",
+              "_tpl": "5c471b7e2e2216152006e46c",
+              "parentId": "6ac63c7e64832e0e5018ccc1",
+              "slotId": "mod_sight_rear"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc5",
+              "_tpl": "5dff8db859400025ea5150d4",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_mount_002"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc6",
+              "_tpl": "57c69dd424597774c03b7bbc",
+              "parentId": "6ac63c7e64832e0e5018ccc5",
+              "slotId": "mod_scope"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc7",
+              "_tpl": "57c5ac0824597754771e88a9",
+              "parentId": "6ac63c7e64832e0e5018ccc6",
+              "slotId": "mod_scope"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccb8",
+              "_tpl": "5c471be12e221602b66cd9ac",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_pistol_grip"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccc4",
+              "_tpl": "5c471bd12e221602b4129c3a",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccba",
+              "_tpl": "5c471b5d2e221602b21d4e14",
+              "parentId": "6ac63c7e64832e0e5018ccb7",
+              "slotId": "mod_stock"
+            }
+          ]
+        }
+      ],
+      "602a9740da11d6478d5a06dc": [
+        {
+          "weight": 270,
+          "items": [
+            {
+              "_id": "6ac505c28bc4e52f7e14399b",
+              "_tpl": "602a9740da11d6478d5a06dc"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e14399c",
+              "_tpl": "602a95edda11d6478d5a06da",
+              "parentId": "6ac505c28bc4e52f7e14399b",
+              "slotId": "mod_barrel"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439a1",
+              "_tpl": "602286df23506e50807090c6",
+              "parentId": "6ac505c28bc4e52f7e14399b",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e14399d",
+              "_tpl": "60228924961b8d75ee233c32",
+              "parentId": "6ac505c28bc4e52f7e14399b",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e14399f",
+              "_tpl": "60228a76d62c9b14ed777a66",
+              "parentId": "6ac505c28bc4e52f7e14399d",
+              "slotId": "mod_sight_front"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e14399e",
+              "_tpl": "60229948cacb6b0506369e27",
+              "parentId": "6ac505c28bc4e52f7e14399d",
+              "slotId": "mod_sight_rear"
+            }
+          ]
+        }
+      ],
+      "68aee763130c00663d08aea8": [
+        {
+          "weight": 38,
+          "items": [
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e774f",
+              "_tpl": "68aee763130c00663d08aea8"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7756",
+              "_tpl": "68be93d19bae3db9c5005b19",
+              "parentId": "6ac63cb9b8de4b1b1c0e774f",
+              "slotId": "mod_barrel"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7758",
+              "_tpl": "68aee9e31ef0d507780a61cd",
+              "parentId": "6ac63cb9b8de4b1b1c0e7756",
+              "slotId": "mod_gas_block"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7757",
+              "_tpl": "68aeeb3e9df2c1144f0aaa4b",
+              "parentId": "6ac63cb9b8de4b1b1c0e7756",
+              "slotId": "mod_muzzle"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7762",
+              "_tpl": "68aef9bf4efeccb5220d25c6",
+              "parentId": "6ac63cb9b8de4b1b1c0e774f",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7759",
+              "_tpl": "68aee9731ef0d507780a61c9",
+              "parentId": "6ac63cb9b8de4b1b1c0e774f",
+              "slotId": "mod_mount_001"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e775a",
+              "_tpl": "68d5676f43adc7372a0c8ae0",
+              "parentId": "6ac63cb9b8de4b1b1c0e7759",
+              "slotId": "mod_handguard"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e775c",
+              "_tpl": "676175bb48fa5c377e06fc36",
+              "parentId": "6ac63cb9b8de4b1b1c0e775a",
+              "slotId": "mod_bipod"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e775d",
+              "_tpl": "5888961624597754281f93f3",
+              "parentId": "6ac63cb9b8de4b1b1c0e775c",
+              "slotId": "mod_bipod"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e775b",
+              "_tpl": "5dfa3d950dee1b22f862eae0",
+              "parentId": "6ac63cb9b8de4b1b1c0e775a",
+              "slotId": "mod_sight_front"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7750",
+              "_tpl": "6516b129609aaf354b34b3a8",
+              "parentId": "6ac63cb9b8de4b1b1c0e774f",
+              "slotId": "mod_pistol_grip"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7751",
+              "_tpl": "68d5674bb2573b07dc0d225f",
+              "parentId": "6ac63cb9b8de4b1b1c0e7750",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e775e",
+              "_tpl": "68aee8f8130c00663d08aeb3",
+              "parentId": "6ac63cb9b8de4b1b1c0e774f",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e775f",
+              "_tpl": "5aa66a9be5b5b0214e506e89",
+              "parentId": "6ac63cb9b8de4b1b1c0e775e",
+              "slotId": "mod_scope"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7760",
+              "_tpl": "56ea70acd2720b844b8b4594",
+              "parentId": "6ac63cb9b8de4b1b1c0e775f",
+              "slotId": "mod_scope"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7761",
+              "_tpl": "5dfa3d7ac41b2312ea33362a",
+              "parentId": "6ac63cb9b8de4b1b1c0e775e",
+              "slotId": "mod_sight_rear"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7753",
+              "_tpl": "6197b229af1f5202c57a9bea",
+              "parentId": "6ac63cb9b8de4b1b1c0e774f",
+              "slotId": "mod_stock"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7754",
+              "_tpl": "5649be884bdc2d79388b4577",
+              "parentId": "6ac63cb9b8de4b1b1c0e7753",
+              "slotId": "mod_stock"
+            },
+            {
+              "_id": "6ac63cb9b8de4b1b1c0e7755",
+              "_tpl": "68bb2a3831ee03fbc00931e6",
+              "parentId": "6ac63cb9b8de4b1b1c0e7754",
+              "slotId": "mod_stock_000"
+            }
+          ]
+        }
+      ]
+    },
+    "equipmentBuilds": {
+      "5a7c4850e899ef00150be885": [
+        {
+          "weight": 138,
+          "items": [
+            {
+              "_id": "6ac63c7e64832e0e5018ccdd",
+              "_tpl": "5a7c4850e899ef00150be885"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccdf",
+              "_tpl": "657bab6ec6f689d3a205b85f",
+              "parentId": "6ac63c7e64832e0e5018ccdd",
+              "slotId": "Helmet_back"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cce0",
+              "_tpl": "657babc6f58ba5a6250107a2",
+              "parentId": "6ac63c7e64832e0e5018ccdd",
+              "slotId": "Helmet_ears"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018ccde",
+              "_tpl": "657baaf0b7e9ca9a02045c02",
+              "parentId": "6ac63c7e64832e0e5018ccdd",
+              "slotId": "Helmet_top"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cce1",
+              "_tpl": "5a16b8a9fcdbcb00165aa6ca",
+              "parentId": "6ac63c7e64832e0e5018ccdd",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cce2",
+              "_tpl": "5c0695860db834001b735461",
+              "parentId": "6ac63c7e64832e0e5018cce1",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac63c7e64832e0e5018cce3",
+              "_tpl": "5c0696830db834001d23f5da",
+              "parentId": "6ac63c7e64832e0e5018cce2",
+              "slotId": "mod_nvg"
+            }
+          ]
+        }
+      ],
+      "5aa7cfc0e5b5b00015693143": [
+        {
+          "weight": 122,
+          "items": [
+            {
+              "_id": "6ac505c28bc4e52f7e1439fe",
+              "_tpl": "5aa7cfc0e5b5b00015693143"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143a00",
+              "_tpl": "657bab6ec6f689d3a205b85f",
+              "parentId": "6ac505c28bc4e52f7e1439fe",
+              "slotId": "Helmet_back"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143a01",
+              "_tpl": "657babc6f58ba5a6250107a2",
+              "parentId": "6ac505c28bc4e52f7e1439fe",
+              "slotId": "Helmet_ears"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ff",
+              "_tpl": "657baaf0b7e9ca9a02045c02",
+              "parentId": "6ac505c28bc4e52f7e1439fe",
+              "slotId": "Helmet_top"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143a02",
+              "_tpl": "5a16b8a9fcdbcb00165aa6ca",
+              "parentId": "6ac505c28bc4e52f7e1439fe",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143a03",
+              "_tpl": "5c0695860db834001b735461",
+              "parentId": "6ac505c28bc4e52f7e143a02",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e143a04",
+              "_tpl": "5c0696830db834001d23f5da",
+              "parentId": "6ac505c28bc4e52f7e143a03",
+              "slotId": "mod_nvg"
+            }
+          ]
+        }
+      ],
+      "5b432d215acfc4771e1c6624": [
+        {
+          "weight": 113,
+          "items": [
+            {
+              "_id": "6ac63c61b785c182861daf3a",
+              "_tpl": "5b432d215acfc4771e1c6624"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf3c",
+              "_tpl": "657bb99db30eca976305117f",
+              "parentId": "6ac63c61b785c182861daf3a",
+              "slotId": "Helmet_back"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf3b",
+              "_tpl": "657bb92fa1c61ee0c303631f",
+              "parentId": "6ac63c61b785c182861daf3a",
+              "slotId": "Helmet_top"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf3d",
+              "_tpl": "5a16b8a9fcdbcb00165aa6ca",
+              "parentId": "6ac63c61b785c182861daf3a",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf3e",
+              "_tpl": "5c0695860db834001b735461",
+              "parentId": "6ac63c61b785c182861daf3d",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf3f",
+              "_tpl": "5c0696830db834001d23f5da",
+              "parentId": "6ac63c61b785c182861daf3e",
+              "slotId": "mod_nvg"
+            }
+          ]
+        }
+      ],
+      "65719f0775149d62ce0a670b": [
+        {
+          "weight": 151,
+          "items": [
+            {
+              "_id": "6ac505c28bc4e52f7e1439b2",
+              "_tpl": "65719f0775149d62ce0a670b"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439b4",
+              "_tpl": "657fa168e9433140ad0baf8e",
+              "parentId": "6ac505c28bc4e52f7e1439b2",
+              "slotId": "Helmet_back"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439b5",
+              "_tpl": "657fa186d4caf976440afe42",
+              "parentId": "6ac505c28bc4e52f7e1439b2",
+              "slotId": "Helmet_ears"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439b3",
+              "_tpl": "657fa0fcd4caf976440afe3e",
+              "parentId": "6ac505c28bc4e52f7e1439b2",
+              "slotId": "Helmet_top"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439b6",
+              "_tpl": "5a16b8a9fcdbcb00165aa6ca",
+              "parentId": "6ac505c28bc4e52f7e1439b2",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439b7",
+              "_tpl": "5c0695860db834001b735461",
+              "parentId": "6ac505c28bc4e52f7e1439b6",
+              "slotId": "mod_nvg"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439b8",
+              "_tpl": "5c0696830db834001d23f5da",
+              "parentId": "6ac505c28bc4e52f7e1439b7",
+              "slotId": "mod_nvg"
+            }
+          ]
+        }
+      ],
+      "68948a95d8f2b85fb705e2a6": [
+        {
+          "weight": 56,
+          "items": [
+            {
+              "_id": "6ac63d2fc5d63adda9174f5f",
+              "_tpl": "68948a95d8f2b85fb705e2a6"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f61",
+              "_tpl": "64afc71497cf3a403c01ff38",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "Back_plate"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f66",
+              "_tpl": "68a47ae8f9d424639c088230",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "Collar"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f60",
+              "_tpl": "64afc71497cf3a403c01ff38",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "Front_plate"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f63",
+              "_tpl": "68a47a92c3f53a3898071382",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "Soft_armor_back"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f62",
+              "_tpl": "68a47a76a920fa363a050bee",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "Soft_armor_front"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f64",
+              "_tpl": "68a47aae69e409f9e4094b65",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "Soft_armor_left"
+            },
+            {
+              "_id": "6ac63d2fc5d63adda9174f65",
+              "_tpl": "68a47acfa920fa363a050c1a",
+              "parentId": "6ac63d2fc5d63adda9174f5f",
+              "slotId": "soft_armor_right"
+            }
+          ]
+        }
+      ],
+      "68948ad72c87773b9f06d73f": [
+        {
+          "weight": 136,
+          "items": [
+            {
+              "_id": "6ac63c61b785c182861daf7a",
+              "_tpl": "68948ad72c87773b9f06d73f"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf7c",
+              "_tpl": "65573fa5655447403702a816",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "Back_plate"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf81",
+              "_tpl": "68a47ae8f9d424639c088230",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "Collar"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf7b",
+              "_tpl": "65573fa5655447403702a816",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "Front_plate"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf7e",
+              "_tpl": "68a47a92c3f53a3898071382",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "Soft_armor_back"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf7d",
+              "_tpl": "68a47a76a920fa363a050bee",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "Soft_armor_front"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf7f",
+              "_tpl": "68a47aae69e409f9e4094b65",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "Soft_armor_left"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf80",
+              "_tpl": "68a47acfa920fa363a050c1a",
+              "parentId": "6ac63c61b785c182861daf7a",
+              "slotId": "soft_armor_right"
+            }
+          ]
+        }
+      ],
+      "68948aebd8f2b85fb705e2b0": [
+        {
+          "weight": 153,
+          "items": [
+            {
+              "_id": "6ac63c61b785c182861daf2f",
+              "_tpl": "68948aebd8f2b85fb705e2b0"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf31",
+              "_tpl": "65573fa5655447403702a816",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "Back_plate"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf36",
+              "_tpl": "68a47ae8f9d424639c088230",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "Collar"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf30",
+              "_tpl": "65573fa5655447403702a816",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "Front_plate"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf33",
+              "_tpl": "68a47a92c3f53a3898071382",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "Soft_armor_back"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf32",
+              "_tpl": "68a47a76a920fa363a050bee",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "Soft_armor_front"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf34",
+              "_tpl": "68a47aae69e409f9e4094b65",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "Soft_armor_left"
+            },
+            {
+              "_id": "6ac63c61b785c182861daf35",
+              "_tpl": "68a47acfa920fa363a050c1a",
+              "parentId": "6ac63c61b785c182861daf2f",
+              "slotId": "soft_armor_right"
+            }
+          ]
+        }
+      ],
+      "68948b118c57a8a52301d7ae": [
+        {
+          "weight": 166,
+          "items": [
+            {
+              "_id": "6ac505c28bc4e52f7e1439a5",
+              "_tpl": "68948b118c57a8a52301d7ae"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439a7",
+              "_tpl": "64afc71497cf3a403c01ff38",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Back_plate"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ae",
+              "_tpl": "68a47ae8f9d424639c088230",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Collar"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439a6",
+              "_tpl": "64afc71497cf3a403c01ff38",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Front_plate"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439a8",
+              "_tpl": "64afd81707e2cf40e903a316",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Left_side_plate"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439a9",
+              "_tpl": "64afd81707e2cf40e903a316",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Right_side_plate"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ab",
+              "_tpl": "68a47a92c3f53a3898071382",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Soft_armor_back"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439aa",
+              "_tpl": "68a47a76a920fa363a050bee",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Soft_armor_front"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ac",
+              "_tpl": "68a47aae69e409f9e4094b65",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "Soft_armor_left"
+            },
+            {
+              "_id": "6ac505c28bc4e52f7e1439ad",
+              "_tpl": "68a47acfa920fa363a050c1a",
+              "parentId": "6ac505c28bc4e52f7e1439a5",
+              "slotId": "soft_armor_right"
+            }
+          ]
+        }
+      ]
     }
   },
   "lastName": [],

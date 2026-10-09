@@ -2871,6 +2871,43 @@
           "63c6adcfb4ba094317063742"
         ]
       }
+    },
+    "weaponBuilds": {
+      "5448bd6b4bdc2dfc2f8b4569": [
+        {
+          "weight": 1626,
+          "items": [
+            {
+              "_id": "6ac505c18bc4e52f7e14383b",
+              "_tpl": "5448bd6b4bdc2dfc2f8b4569"
+            },
+            {
+              "_id": "6ac505c18bc4e52f7e14383c",
+              "_tpl": "5448c12b4bdc2d02308b456f",
+              "parentId": "6ac505c18bc4e52f7e14383b",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac505c18bc4e52f7e14383f",
+              "_tpl": "6374a7e7417239a7bf00f042",
+              "parentId": "6ac505c18bc4e52f7e14383b",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac505c18bc4e52f7e14383d",
+              "_tpl": "6374a822e629013b9c0645c8",
+              "parentId": "6ac505c18bc4e52f7e14383b",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac505c18bc4e52f7e14383e",
+              "_tpl": "63c6adcfb4ba094317063742",
+              "parentId": "6ac505c18bc4e52f7e14383d",
+              "slotId": "mod_sight_rear"
+            }
+          ]
+        }
+      ]
     }
   },
   "lastName": [

@@ -2585,6 +2585,93 @@
           "573719762459775a626ccbc1"
         ]
       }
+    },
+    "weaponBuilds": {
+      "576a581d2459771e7b1bc4f1": [
+        {
+          "weight": 20,
+          "items": [
+            {
+              "_id": "6ac663baf13d3904060f91dd",
+              "_tpl": "576a581d2459771e7b1bc4f1"
+            },
+            {
+              "_id": "6ac663baf13d3904060f91df",
+              "_tpl": "671d8617a3e45c1f5908278c",
+              "parentId": "6ac663baf13d3904060f91dd",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac663baf13d3904060f91de",
+              "_tpl": "576a63cd2459771e796e0e11",
+              "parentId": "6ac663baf13d3904060f91dd",
+              "slotId": "mod_pistol_grip"
+            }
+          ]
+        }
+      ],
+      "579204f224597773d619e051": [
+        {
+          "weight": 205,
+          "items": [
+            {
+              "_id": "6ac663c177ad9a83dd1d56a8",
+              "_tpl": "579204f224597773d619e051"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56ac",
+              "_tpl": "670e8eab8c1bb0e5a7075acf",
+              "parentId": "6ac663c177ad9a83dd1d56a8",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56ab",
+              "_tpl": "6374a7e7417239a7bf00f042",
+              "parentId": "6ac663c177ad9a83dd1d56a8",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56a9",
+              "_tpl": "6374a822e629013b9c0645c8",
+              "parentId": "6ac663c177ad9a83dd1d56a8",
+              "slotId": "mod_reciever"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56aa",
+              "_tpl": "63c6adcfb4ba094317063742",
+              "parentId": "6ac663c177ad9a83dd1d56a9",
+              "slotId": "mod_sight_rear"
+            }
+          ]
+        },
+        {
+          "weight": 65,
+          "items": [
+            {
+              "_id": "6ac663c177ad9a83dd1d56dc",
+              "_tpl": "579204f224597773d619e051"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56df",
+              "_tpl": "670e8eab8c1bb0e5a7075acf",
+              "parentId": "6ac663c177ad9a83dd1d56dc",
+              "slotId": "mod_magazine"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56de",
+              "_tpl": "6374a7e7417239a7bf00f042",
+              "parentId": "6ac663c177ad9a83dd1d56dc",
+              "slotId": "mod_pistolgrip"
+            },
+            {
+              "_id": "6ac663c177ad9a83dd1d56dd",
+              "_tpl": "6374a822e629013b9c0645c8",
+              "parentId": "6ac663c177ad9a83dd1d56dc",
+              "slotId": "mod_reciever"
+            }
+          ]
+        }
+      ]
     }
   },
   "lastName": [],
