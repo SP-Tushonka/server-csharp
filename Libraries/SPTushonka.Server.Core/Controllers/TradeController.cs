@@ -5,7 +5,9 @@ using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Commerce;
 using SPTarkov.Server.Core.Helpers.Items;
+using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Helpers.Ragfair;
+using SPTarkov.Server.Core.Helpers.Traders;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -41,7 +43,12 @@ public class TradeController(
     ServerLocalisationService serverLocalisationService,
     MailSendService mailSendService,
     RagfairConfig ragfairConfig,
-    TraderConfig traderConfig
+    TraderConfig traderConfig,
+    ProfileHelper profileHelper,
+    TraderHelper traderHelper,
+    FenceService fenceService,
+    RagfairPriceService ragfairPriceService,
+    GlobalTable globalTable
 )
 {
     /// <summary>
@@ -248,10 +255,199 @@ public class TradeController(
     public ItemEventRouterResponse SellScavItemsToFence(PmcData pmcData, SellScavItemsToFenceRequestData request, MongoId sessionId)
     {
         var output = eventOutputHolder.GetOutput(sessionId);
+        var scavInventory = profileHelper.GetScavProfile(sessionId)?.Inventory;
+        if (scavInventory?.Items is null)
+        {
+            return output;
+        }
 
-        MailMoneyToPlayer(sessionId, (int)request.TotalValue, Traders.FENCE);
+        var fence = traderTable.GetTrader(Traders.FENCE).Base;
+        var prices = ragfairPriceService.GetAllStaticPrices();
+        var sellModifier = Math.Round(1 - traderHelper.GetLoyaltyLevel(Traders.FENCE, pmcData).BuyPriceCoefficient / 100, 3);
+        var fenceModifier = Math.Round(fenceService.GetFenceInfo(pmcData)?.PriceModifier ?? 1, 3);
+
+        var total = 0;
+        foreach (var item in GetScavItemsToSell(scavInventory).ToList())
+        {
+            var itemWithChildren = scavInventory.Items.GetItemWithChildren(item.Id);
+            total += GetScavSellPrice(itemWithChildren, fence, prices, sellModifier, fenceModifier);
+            scavInventory.Items.RemoveAll(itemWithChildren.Contains);
+        }
+
+        if (total > 0)
+        {
+            MailMoneyToPlayer(sessionId, total, Traders.FENCE);
+        }
 
         return output;
+    }
+
+    /// <summary>
+    ///     Get the scav's items the client sells to Fence. Everything in an equipment slot plus the pocket contents,
+    ///     except the pockets' special slots
+    /// </summary>
+    /// <param name="inventory">Scav inventory</param>
+    /// <returns>Root items to sell</returns>
+    protected IEnumerable<Item> GetScavItemsToSell(BotBaseInventory inventory)
+    {
+        foreach (var item in inventory.Items.Where(item => item.ParentId == inventory.Equipment))
+        {
+            if (!itemHelper.GetItem(item.Template).Value?.Properties?.NotShownInSlot ?? true)
+            {
+                yield return item;
+                continue;
+            }
+
+            foreach (var pocketItem in inventory.Items.Where(child => child.ParentId == item.Id))
+            {
+                if (pocketItem.SlotId?.StartsWith("SpecialSlot", StringComparison.Ordinal) != true)
+                {
+                    yield return pocketItem;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Get the roubles Fence pays for an item and its children when a scav sells everything
+    /// </summary>
+    /// <param name="itemWithChildren">Item to sell and its children</param>
+    /// <param name="fence">Fence's trader base</param>
+    /// <param name="prices">Handbook prices</param>
+    /// <param name="sellModifier">Fence loyalty level sell modifier</param>
+    /// <param name="fenceModifier">Fence standing price modifier</param>
+    /// <returns>Rouble price</returns>
+    protected int GetScavSellPrice(
+        List<Item> itemWithChildren,
+        TraderBase fence,
+        Dictionary<MongoId, double> prices,
+        double sellModifier,
+        double fenceModifier
+    )
+    {
+        var price = 0d;
+        var roubles = 0;
+        foreach (var item in itemWithChildren)
+        {
+            if (item.Template == Money.ROUBLES)
+            {
+                roubles += (int)(item.Upd?.StackObjectsCount ?? 1);
+                continue;
+            }
+
+            var itemPrice = GetScavSellBasePrice(item, prices);
+            if (!FenceBuysItem(item.Template, fence))
+            {
+                itemPrice *= (fence.ProhibitedItemsSellModifier ?? 0) / 100f;
+            }
+
+            price += itemPrice;
+        }
+
+        price = Math.Floor(Math.Floor(price * sellModifier) / fenceModifier);
+
+        return (int)Math.Floor(price + roubles);
+    }
+
+    /// <summary>
+    ///     Check whether Fence buys an item template outright
+    /// </summary>
+    /// <param name="template">Item template</param>
+    /// <param name="fence">Fence's trader base</param>
+    /// <returns>True when the template is bought and not prohibited</returns>
+    protected bool FenceBuysItem(MongoId template, TraderBase fence)
+    {
+        return !MatchesBuyData(template, fence.ItemsBuyProhibited) && MatchesBuyData(template, fence.ItemsBuy);
+    }
+
+    /// <summary>
+    ///     Check whether an item template is listed in a trader's buy data by id or category
+    /// </summary>
+    /// <param name="template">Item template</param>
+    /// <param name="buyData">Trader buy or prohibited buy data</param>
+    /// <returns>True when listed</returns>
+    protected bool MatchesBuyData(MongoId template, ItemBuyData? buyData)
+    {
+        return buyData is not null && (buyData.IdList.Contains(template) || itemHelper.IsOfBaseclasses(template, buyData.Category));
+    }
+
+    /// <summary>
+    ///     Get an item's handbook price adjusted for its condition, the way the client values items sold to a trader
+    /// </summary>
+    /// <param name="item">Item to price</param>
+    /// <param name="prices">Handbook prices</param>
+    /// <returns>Rouble price for the whole stack</returns>
+    protected double GetScavSellBasePrice(Item item, Dictionary<MongoId, double> prices)
+    {
+        if (!prices.TryGetValue(item.Template, out var price) || price < float.Epsilon)
+        {
+            return 0;
+        }
+
+        var properties = itemHelper.GetItem(item.Template).Value?.Properties;
+        var upd = item.Upd;
+        if (properties is null || upd is null)
+        {
+            return price;
+        }
+
+        if (upd.Repairable is not null && properties.Durability > 0)
+        {
+            var maxDurability = Math.Ceiling(upd.Repairable.MaxDurability ?? 0);
+            var repairCost = properties.RepairCost * (maxDurability - Math.Ceiling(upd.Repairable.Durability ?? 0));
+            price = price * (maxDurability / properties.Durability.Value + (maxDurability == 0 ? 0.01 : 0)) - repairCost;
+        }
+
+        if (upd.Buff?.Value is not null)
+        {
+            var enhancements = globalTable.Configuration.RepairSettings.ItemEnhancementSettings;
+            var modifier = upd.Buff.BuffType switch
+            {
+                RepairBuffType.DamageReduction => enhancements.DamageReduction.PriceModifierValue,
+                RepairBuffType.MalfunctionProtections => enhancements.MalfunctionProtections.PriceModifierValue,
+                RepairBuffType.WeaponSpread => enhancements.WeaponSpread.PriceModifierValue,
+                _ => 0d,
+            };
+            price *= 1 + Math.Abs(upd.Buff.Value.Value - 1) * modifier;
+        }
+
+        if (upd.Dogtag is not null)
+        {
+            price *= upd.Dogtag.Level ?? 0;
+        }
+
+        if (upd.Key is not null && properties.MaximumNumberOfUsage > 0)
+        {
+            var maxUsages = properties.MaximumNumberOfUsage.Value;
+            price = price / maxUsages * (maxUsages - (upd.Key.NumberOfUsages ?? 0));
+        }
+
+        if (upd.Resource?.Value is not null && properties.MaxResource > 0)
+        {
+            price = price * 0.1 + price * 0.9 / properties.MaxResource.Value * upd.Resource.Value.Value;
+        }
+
+        if (upd.SideEffect?.Value is not null && properties.MaxResource > 0)
+        {
+            price = price * 0.1 + price * 0.9 / properties.MaxResource.Value * upd.SideEffect.Value.Value;
+        }
+
+        if (upd.MedKit?.HpResource is not null && properties.MaxHpResource > 0)
+        {
+            price = price / properties.MaxHpResource.Value * upd.MedKit.HpResource.Value;
+        }
+
+        if (upd.FoodDrink?.HpPercent is not null && properties.MaxResource > 0)
+        {
+            price = price / properties.MaxResource.Value * upd.FoodDrink.HpPercent.Value;
+        }
+
+        if (upd.RepairKit?.Resource is not null && properties.MaxRepairResource > 0)
+        {
+            price = price / properties.MaxRepairResource.Value * Math.Max(upd.RepairKit.Resource.Value, 1);
+        }
+
+        return price * (upd.StackObjectsCount ?? 1);
     }
 
     /// <summary>
@@ -287,39 +483,5 @@ public class TradeController(
             currencyReward.SelectMany(x => x).ToList(),
             timeUtil.GetHoursAsSeconds(72)
         );
-    }
-
-    /// <summary>
-    ///     Looks up an items children and gets total handbook price for them
-    /// </summary>
-    /// <param name="parentItemId">parent item that has children we want to sum price of</param>
-    /// <param name="items">All items (parent + children)</param>
-    /// <param name="handbookPrices">Prices of items from handbook</param>
-    /// <param name="traderDetails">Trader being sold to, to perform buy category check against</param>
-    /// <returns>Rouble price</returns>
-    protected int GetPriceOfItemAndChildren(
-        MongoId parentItemId,
-        IEnumerable<Item> items,
-        Dictionary<MongoId, int?> handbookPrices,
-        TraderBase traderDetails
-    )
-    {
-        var itemWithChildren = items.GetItemWithChildren(parentItemId);
-
-        var totalPrice = 0;
-        foreach (var itemToSell in itemWithChildren)
-        {
-            var itemDetails = itemHelper.GetItem(itemToSell.Template);
-            if (!(itemDetails.Key && itemHelper.IsOfBaseclasses(itemDetails.Value.Id, traderDetails.ItemsBuy.Category)))
-            // Skip if tpl isn't item OR item doesn't fulfil match traders buy categories
-            {
-                continue;
-            }
-
-            // Get price of item multiplied by how many are in stack
-            totalPrice += (int)((handbookPrices[itemToSell.Template] ?? 0) * (itemToSell.Upd?.StackObjectsCount ?? 1));
-        }
-
-        return totalPrice;
     }
 }

@@ -133,6 +133,7 @@ public class PlayerScavGenerator(
 
         // Player scavs don't have a secure
         scavData = profileHelper.RemoveSecureContainer(scavData);
+        RemovePmcOnlyContainers(scavData.Inventory);
 
         // Set cooldown timer
         SetScavCooldownTimer(scavData, pmcDataClone);
@@ -141,6 +142,19 @@ public class PlayerScavGenerator(
         saveServer.GetProfile(sessionID).CharacterData.ScavData = scavData;
 
         return scavData;
+    }
+
+    /// <summary>
+    ///     Remove the stash, quest stash and hideout customization stash a player scav has no use for.
+    /// </summary>
+    /// <param name="inventory">Player scav inventory</param>
+    protected void RemovePmcOnlyContainers(BotBaseInventory inventory)
+    {
+        var containers = new HashSet<MongoId?> { inventory.Stash, inventory.QuestStashItems, inventory.HideoutCustomizationStashId };
+        inventory.Items?.RemoveAll(item => containers.Contains(item.Id));
+        inventory.Stash = null;
+        inventory.QuestStashItems = null;
+        inventory.HideoutCustomizationStashId = null;
     }
 
     /// <summary>
