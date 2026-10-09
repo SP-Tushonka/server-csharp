@@ -87,6 +87,12 @@ public class DurabilityLimitsHelper(
             return "pmc";
         }
 
+        // A role's own entry wins over the shared boss and follower values
+        if (botConfig.Durability.BotDurabilities.ContainsKey(botRole))
+        {
+            return botRole;
+        }
+
         if (botHelper.IsBotBoss(botRole))
         {
             return "boss";
@@ -100,12 +106,6 @@ public class DurabilityLimitsHelper(
         if (botHelper.IsBotZombie(botRole))
         {
             return "zombie";
-        }
-
-        var roleExistsInConfig = botConfig.Durability.BotDurabilities.ContainsKey(botRole);
-        if (roleExistsInConfig)
-        {
-            return botRole;
         }
 
         logger.Debug($"{botRole} doesn't exist in bot config durability values, using default fallback");

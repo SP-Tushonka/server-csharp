@@ -186,6 +186,20 @@
           "minLimitPercent": 15
         }
       },
+      "blackdivision": {
+        "armor": {
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 100,
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        }
+      },
       "boss": {
         "armor": {
           "highestMaxPercent": 100,
@@ -200,6 +214,48 @@
           "maxDelta": 10,
           "minDelta": 0,
           "minLimitPercent": 15
+        }
+      },
+      "bossbullyblackdiv": {
+        "armor": {
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 100,
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        }
+      },
+      "bosswedge": {
+        "armor": {
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 100,
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        }
+      },
+      "bosswedgelab": {
+        "armor": {
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 100,
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
         }
       },
       "crazyassaultevent": {
@@ -260,6 +316,20 @@
           "minLimitPercent": 15
         }
       },
+      "followerbullyblackdiv": {
+        "armor": {
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 100,
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        }
+      },
       "gifter": {
         "armor": {
           "maxDelta": 10,
@@ -314,6 +384,20 @@
           "maxDelta": 40,
           "minDelta": 20,
           "minLimitPercent": 15
+        }
+      },
+      "pmcbotblackdiv": {
+        "armor": {
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
+        },
+        "weapon": {
+          "highestMax": 100,
+          "lowestMax": 100,
+          "maxDelta": 0,
+          "minDelta": 0,
+          "minLimitPercent": 100
         }
       },
       "ravangezryachiyevent": {
