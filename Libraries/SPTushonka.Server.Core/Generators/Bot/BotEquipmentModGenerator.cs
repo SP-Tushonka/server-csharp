@@ -85,6 +85,28 @@ public class BotEquipmentModGenerator(
     const string modScope000Key = "mod_scope_000";
 
     /// <summary>
+    ///     Build a mod pool for an item the bot type has none for, so armor added by config or mods still gets its
+    ///     inserts. Uses the item's default preset, or its required slots when it has none
+    /// </summary>
+    /// <param name="parentTemplate">Item to build the pool for</param>
+    /// <returns>Slot names with the templates each slot may hold</returns>
+    protected Dictionary<string, HashSet<MongoId>> GetDefaultModPool(TemplateItem parentTemplate)
+    {
+        var defaultPreset = presetHelper.GetDefaultPreset(parentTemplate.Id);
+        if (defaultPreset is not null)
+        {
+            return defaultPreset
+                .Items.Where(item => item.ParentId == defaultPreset.Parent && item.SlotId is not null)
+                .GroupBy(item => item.SlotId!)
+                .ToDictionary(group => group.Key, group => group.Select(item => item.Template).ToHashSet());
+        }
+
+        return (parentTemplate.Properties?.Slots ?? [])
+            .Where(slot => slot.Required && slot.Name is not null)
+            .ToDictionary(slot => slot.Name!, slot => slot.Properties?.Filters?.FirstOrDefault()?.Filter?.ToHashSet() ?? []);
+    }
+
+    /// <summary>
     ///     Check mods are compatible and add to array
     /// </summary>
     /// <param name="equipment">Equipment item to add mods to</param>
@@ -108,7 +130,14 @@ public class BotEquipmentModGenerator(
         // Get mod pool for the desired item
         if (!settings.ModPool.TryGetValue(parentTemplate.Id, out var compatibleModsPool))
         {
-            logger.Warning($"bot: {settings.BotData.Role} lacks a mod slot pool for item: {parentTemplate.Id} {parentTemplate.Name}");
+            if (logger.IsLogEnabled(LogLevel.Debug))
+            {
+                logger.Debug(
+                    $"bot: {settings.BotData.Role} lacks a mod slot pool for item: {parentTemplate.Id} {parentTemplate.Name}, using its default mods"
+                );
+            }
+
+            compatibleModsPool = GetDefaultModPool(parentTemplate);
         }
 
         // Order the modpool by front plates, then backplates, then everything else
