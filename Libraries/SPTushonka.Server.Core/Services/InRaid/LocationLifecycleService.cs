@@ -433,6 +433,16 @@ public class LocationLifecycleService(
         {
             fullProfile.SptData?.TutorialCompleted = true;
 
+            // The raid runs on a throwaway profile, so what was picked up in it is not kept
+            foreach (var templateId in profileHelper.MarkCompletableItemsFound(pmcProfile, inRaidConfig.TutorialCompletableItems).Keys)
+            {
+                pmcProfile.Encyclopedia ??= [];
+                pmcProfile.Encyclopedia.TryAdd(templateId, false);
+            }
+
+            pmcProfile.Info.Experience = (pmcProfile.Info.Experience ?? 0) + inRaidConfig.TutorialExperience;
+            pmcProfile.Info.Level = profileHelper.GetLevelFromExperience(pmcProfile.Info.Experience.Value);
+
             logger.Debug($"Tutorial finished for {sessionId}");
 
             return;
@@ -897,12 +907,13 @@ public class LocationLifecycleService(
             KeepListedQuests(serverPmcProfile.Quests, postRaidProfile.Quests ?? [], options?.SaveQuestList)
         );
 
+        // Before any quest rewards below, which may set variables of their own
+        serverPmcProfile.Variables = postRaidProfile.Variables;
+
         // MUST occur AFTER processPostRaidQuests()
         CompleteQuestsFinishedInRaid(sessionId, postRaidProfile.Quests, preRaidProfileQuestDataClone, serverPmcProfile);
 
         serverPmcProfile.WishList = postRaidProfile.WishList;
-
-        serverPmcProfile.Variables = postRaidProfile.Variables;
 
         serverPmcProfile.Info.Experience = postRaidProfile.Info.Experience;
 
@@ -910,6 +921,9 @@ public class LocationLifecycleService(
 
         // Must occur AFTER experience is set and stats copied over
         serverPmcProfile.Stats.Eft.TotalSessionExperience = 0;
+
+        // After experience and standing are copied, so the rewards land on top of them
+        ApplyStartRewardsOfQuestsStartedInRaid(postRaidProfile.Quests, preRaidProfileQuestDataClone, serverPmcProfile);
 
         var fenceId = Traders.FENCE;
 
@@ -1191,6 +1205,36 @@ public class LocationLifecycleService(
                 },
                 sessionId
             );
+        }
+    }
+
+    /// <summary>
+    ///     Give the Started rewards of quests the raid started, a chapter or task begun by reading a note or tape.
+    ///     No trader accept ran for them, so their start variables and unlocks were never applied
+    /// </summary>
+    /// <param name="postRaidQuests">Quest statuses the client sent back</param>
+    /// <param name="preRaidQuests">Quest statuses before the raid</param>
+    /// <param name="pmcProfile">Server profile</param>
+    protected void ApplyStartRewardsOfQuestsStartedInRaid(
+        List<QuestStatus>? postRaidQuests,
+        List<QuestStatus> preRaidQuests,
+        PmcData pmcProfile
+    )
+    {
+        var startedBefore = preRaidQuests
+            .Where(quest => quest.Status is not (QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart))
+            .Select(quest => quest.QId)
+            .ToHashSet();
+
+        foreach (var quest in postRaidQuests ?? [])
+        {
+            if (
+                quest.Status is QuestStatusEnum.Started or QuestStatusEnum.AvailableForFinish or QuestStatusEnum.Success
+                && !startedBefore.Contains(quest.QId)
+            )
+            {
+                questHelper.ApplyAutoStartRewards(pmcProfile, quest.QId);
+            }
         }
     }
 

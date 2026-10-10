@@ -1535,6 +1535,7 @@ public class QuestHelper(
             existing.StartTime = startedAt;
             existing.StatusTimers ??= [];
             existing.StatusTimers[QuestStatusEnum.Started] = startedAt;
+            ApplyAutoStartRewards(profile, questId);
 
             return QuestStatusEnum.Started;
         }
@@ -1548,8 +1549,41 @@ public class QuestHelper(
                 StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Started, startedAt } },
             }
         );
+        ApplyAutoStartRewards(profile, questId);
 
         return QuestStatusEnum.Started;
+    }
+
+    /// <summary>
+    ///     Give the Started rewards of a quest that began without the player accepting it at a trader, the way
+    ///     accepting does. Chapter start variables feed the story variable groups that gate later quests
+    /// </summary>
+    /// <param name="profile">Player profile</param>
+    /// <param name="questId">Quest that just started</param>
+    public void ApplyAutoStartRewards(PmcData profile, MongoId questId)
+    {
+        if (profile.SessionId is null || !templateTable.Quests.TryGetValue(questId, out var quest))
+        {
+            return;
+        }
+
+        var sessionId = profile.SessionId.Value;
+        var rewardItems = questRewardHelper
+            .ApplyQuestReward(profile, questId, QuestStatusEnum.Started, sessionId, eventOutputHolder.GetOutput(sessionId))
+            .ToList();
+
+        var messageId = GetMessageIdForQuestStart(quest);
+        if (rewardItems.Count > 0 && QuestMessageIsWorthSending(quest, messageId, rewardItems))
+        {
+            mailSendService.SendLocalisedNpcMessageToPlayer(
+                sessionId,
+                quest.TraderId,
+                MessageType.QuestStart,
+                messageId,
+                rewardItems,
+                timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(profile))
+            );
+        }
     }
 
     /// <summary>A chapter is a quest the story rail is built from, named by the main quest notes.</summary>

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using SPTarkov.Server.Core.Models.Common;
 
 namespace SPTarkov.Server.Core.Models.Spt.Config;
 
@@ -54,6 +55,18 @@ public record InRaidConfig : BaseConfig
     /// </summary>
     [JsonPropertyName("alwaysKeepFoundInRaidOnRaidEnd")]
     public bool AlwaysKeepFoundInRaidOnRaidEnd { get; set; }
+
+    /// <summary>
+    ///     Notes and tapes marked as found once the tutorial raid ends, whatever the player picked up in it
+    /// </summary>
+    [JsonPropertyName("tutorialCompletableItems")]
+    public HashSet<MongoId> TutorialCompletableItems { get; set; } = [];
+
+    /// <summary>
+    ///     Experience given once the tutorial raid ends, in place of what the player earned in it
+    /// </summary>
+    [JsonPropertyName("tutorialExperience")]
+    public int TutorialExperience { get; set; }
 }
 
 public record RaidMenuSettings

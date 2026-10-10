@@ -2,6 +2,7 @@ using NUnit.Framework;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
@@ -55,6 +56,35 @@ public class ProfileHelperTests
         var unlock = profile.CustomisationUnlocks.Single();
         Assert.That(unlock.Id, Is.EqualTo(new MongoId("6a3d24f45c4035ee7604811d")));
         Assert.That(unlock.Type, Is.EqualTo(CustomisationType.SUITE));
+    }
+
+    [Test]
+    public void MarkHeldCompletableItemsFound_MarksNewNotesAndTapesOnly()
+    {
+        var studiedTape = new MongoId("68889451ad1e91bfa40db8fd");
+        var heldTape = new MongoId("68889aca77aeb067290816f1");
+        var heldNote = new MongoId("6891bb83d7502d512502d160");
+        var pmc = new PmcData
+        {
+            CompletableItems = new Dictionary<MongoId, bool> { [studiedTape] = true },
+            Inventory = new BotBaseInventory
+            {
+                Items =
+                [
+                    new Item { Id = new MongoId(), Template = studiedTape },
+                    new Item { Id = new MongoId(), Template = heldTape },
+                    new Item { Id = new MongoId(), Template = heldNote },
+                    new Item { Id = new MongoId(), Template = ItemTpl.MONEY_ROUBLES },
+                ],
+            },
+        };
+
+        var newlyFound = _sut.MarkHeldCompletableItemsFound(pmc);
+
+        Assert.That(newlyFound, Is.EquivalentTo(new Dictionary<MongoId, bool> { [heldTape] = false, [heldNote] = false }));
+        Assert.That(pmc.CompletableItems[studiedTape], Is.True);
+        Assert.That(pmc.CompletableItems, Has.Count.EqualTo(3));
+        Assert.That(_sut.MarkHeldCompletableItemsFound(pmc), Is.Empty);
     }
 
     private static IEnumerable<double[]> GetAdjustSkillExpForLowLevelsTestData()

@@ -39,7 +39,8 @@ public partial class ProfileFixerService(
     CoreConfig coreConfig,
     SeasonTable seasonTable,
     TimeUtil timeUtil,
-    MailSendService mailSendService
+    MailSendService mailSendService,
+    ProfileHelper profileHelper
 )
 {
     private const string PveGameMode = "pve";
@@ -163,6 +164,8 @@ public partial class ProfileFixerService(
         AddMissingBattlePassDocumentLimits(pmcProfile);
         AddMissingModeFields(pmcProfile, true);
         RecordCompletableItemsFromFinishedQuests(pmcProfile);
+        profileHelper.MarkHeldCompletableItemsFound(pmcProfile);
+        AddMissingStartVariables(pmcProfile);
         questVariableHelper.SyncAll(pmcProfile);
         CheckForAndFixCircularParentReferences(pmcProfile);
 
@@ -445,6 +448,32 @@ public partial class ProfileFixerService(
             {
                 logger.Info($"Successfully removed orphaned quest: {profileQuests[i].QId} that doesn't exist in quest data");
                 profileQuests.RemoveAt(i);
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Set the variables of Started rewards a started quest never applied. Story chapters that started on their own
+    ///     used to skip them, which left the story variable groups short
+    /// </summary>
+    /// <param name="pmcProfile">Profile to fix</param>
+    protected void AddMissingStartVariables(PmcData pmcProfile)
+    {
+        foreach (var profileQuest in pmcProfile.Quests ?? [])
+        {
+            if (profileQuest.Status is QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart)
+            {
+                continue;
+            }
+
+            var rewards = templateTable.Quests.GetValueOrDefault(profileQuest.QId)?.Rewards?.GetValueOrDefault("Started") ?? [];
+            foreach (var reward in rewards.Where(reward => reward.Type == RewardType.GlobalVariable && reward.Target is not null))
+            {
+                pmcProfile.Variables ??= [];
+                if (pmcProfile.Variables.TryAdd(reward.Target!, Convert.ToInt32(reward.Value)))
+                {
+                    logger.Debug($"Set missing start variable {reward.Target} of quest {profileQuest.QId}");
+                }
             }
         }
     }

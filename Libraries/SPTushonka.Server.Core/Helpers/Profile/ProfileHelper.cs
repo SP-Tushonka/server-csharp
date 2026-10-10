@@ -1083,6 +1083,54 @@ public class ProfileHelper(
     }
 
     /// <summary>
+    ///     Mark notes and tapes as found, which lists them in the handbook. One already found or studied keeps its state
+    /// </summary>
+    /// <param name="pmcData">Profile to update</param>
+    /// <param name="templateIds">Templates to mark, anything that is not a note or tape is skipped</param>
+    /// <returns>Templates that were not found before, with their new state</returns>
+    public Dictionary<MongoId, bool> MarkCompletableItemsFound(PmcData pmcData, IEnumerable<MongoId> templateIds)
+    {
+        Dictionary<MongoId, bool> newlyFound = [];
+        foreach (var templateId in templateIds)
+        {
+            if (!IsCompletableItem(templateId))
+            {
+                continue;
+            }
+
+            pmcData.CompletableItems ??= [];
+            if (pmcData.CompletableItems.TryAdd(templateId, false))
+            {
+                newlyFound[templateId] = false;
+            }
+        }
+
+        return newlyFound;
+    }
+
+    /// <summary>
+    ///     Mark the notes and tapes held in the player's inventory as found. The client only records items it gets
+    ///     outside a raid in memory
+    /// </summary>
+    /// <param name="pmcData">Profile to update</param>
+    /// <returns>Templates that were not found before, with their new state</returns>
+    public Dictionary<MongoId, bool> MarkHeldCompletableItemsFound(PmcData pmcData)
+    {
+        return MarkCompletableItemsFound(pmcData, pmcData.Inventory?.Items?.Select(item => item.Template) ?? []);
+    }
+
+    /// <summary>
+    ///     Check whether an item is a note or tape the player can collect
+    /// </summary>
+    /// <param name="templateId">Item template to check</param>
+    /// <returns>True for notes and tapes</returns>
+    protected bool IsCompletableItem(MongoId templateId)
+    {
+        return templateTable.Items.TryGetValue(templateId, out var template)
+            && (template.Parent == BaseClasses.NOTES || template.Parent == BaseClasses.TAPES);
+    }
+
+    /// <summary>
     /// Taken from the client with interpolation instead, returns a format of HH:MM
     /// </summary>
     /// <param name="seconds"></param>

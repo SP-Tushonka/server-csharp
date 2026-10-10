@@ -122,6 +122,12 @@ public class EventOutputHolder(ProfileHelper profileHelper, TimeUtil timeUtil, I
         ResetMoneyTransferLimit(pmcData.MoneyTransferLimitData);
         profileChanges.MoneyTransferLimitData = pmcData.MoneyTransferLimitData;
 
+        foreach (var (templateId, completed) in profileHelper.MarkHeldCompletableItemsFound(pmcData))
+        {
+            profileChanges.CompletableItems ??= [];
+            profileChanges.CompletableItems[templateId] = completed;
+        }
+
         // Fixes container craft from water collector not resetting after collection + removed completed normal crafts
         if (!hideoutProductionNull && pmcData.Hideout.Production.Any())
         {
