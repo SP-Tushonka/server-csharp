@@ -1128,8 +1128,14 @@ public class LocationLifecycleService(
                 })
                 .ToList();
 
+            // Notes and tapes picked up in raid share the quest item container but no quest needs them found
+            if (matchingQuests.Count == 0)
+            {
+                continue;
+            }
+
             // Fail if multiple were found
-            if (matchingQuests.Count != 1)
+            if (matchingQuests.Count > 1)
             {
                 logger.Error($"Unable to fix quest item: {lostItem}, {matchingQuests.Count} matching quests found, expected 1");
 
