@@ -2,6 +2,7 @@ using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers.Commerce;
 using SPTarkov.Server.Core.Helpers.Profile;
+using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -23,6 +24,7 @@ public class EndingController(
     LocaleTable localeTable,
     LocaleService localeService,
     ProfileHelper profileHelper,
+    QuestHelper questHelper,
     RewardHelper rewardHelper,
     MailSendService mailSendService,
     SaveServer saveServer,
@@ -57,7 +59,42 @@ public class EndingController(
             mailSendService.SendSystemMessageToPlayer(sessionId, "Ending reward", rewardItems);
         }
 
+        CompleteEndingQuests(sessionId, pmcData, ending);
+
         await saveServer.SaveProfileAsync(sessionId);
+    }
+
+    /// <summary>
+    ///     Hand in the finishable quests an ending is reached through. The client never hands them in itself
+    ///     and their Success rewards carry the ending's money, weapons and cases
+    /// </summary>
+    /// <param name="sessionId">Session/player id</param>
+    /// <param name="pmcData">Player's pmc profile</param>
+    /// <param name="ending">Ending that was obtained</param>
+    private void CompleteEndingQuests(MongoId sessionId, PmcData pmcData, EndingElement ending)
+    {
+        var questIds = (ending.Conditions ?? [])
+            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
+            .Select(condition => new MongoId(condition.Target!.Item!));
+        foreach (var questId in questIds)
+        {
+            var questStatus = pmcData.Quests?.FirstOrDefault(quest => quest.QId == questId);
+            if (questStatus?.Status != QuestStatusEnum.AvailableForFinish)
+            {
+                continue;
+            }
+
+            questHelper.CompleteQuest(
+                pmcData,
+                new CompleteQuestRequestData
+                {
+                    Action = "CompleteQuest",
+                    QuestId = questId,
+                    RemoveExcessItems = false,
+                },
+                sessionId
+            );
+        }
     }
 
     /// <summary>
