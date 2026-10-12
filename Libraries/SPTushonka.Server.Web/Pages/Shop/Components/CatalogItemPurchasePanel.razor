@@ -100,7 +100,7 @@
                                                     @{
                                                         var partOwned = PurchasedOffers?.Contains(part.Id.ToString()) ?? false;
                                                     }
-                                                    <a class="product-horizontal-carousel__media@(partOwned ? " product-horizontal-carousel__media--purchased" : "")" href="@($"/shop/{Token}/catalog-item/{part.Id}")">
+                                                    <a class="product-horizontal-carousel__media@(partOwned ? " product-horizontal-carousel__media--purchased" : "")" href="@($"/shop/{Token}/catalog-item/{part.Id}?code={Language}")">
                                                         <div class="product-horizontal-carousel__counter">@(index + 1)</div>
                                                         <img class="product-horizontal-carousel__image" src="@part.Images.FirstOrDefault()?.Url" alt=""/>
 

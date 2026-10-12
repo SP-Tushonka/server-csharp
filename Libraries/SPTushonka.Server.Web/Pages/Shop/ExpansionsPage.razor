@@ -53,7 +53,7 @@
                             <HeaderContent>
                                 <ShopCategoryBar Parent="@BreadcrumbParent()"
                                                  Title="@BreadcrumbTitle()"
-                                                 BackUrl="@(_openBlock is null ? null : $"/shop/{Token}")"/>
+                                                 BackUrl="@(_openBlock is null ? null : $"/shop/{Token}?code={_language}")"/>
                             </HeaderContent>
                             <ChildContent>
                             @if (_openBlock is not null)

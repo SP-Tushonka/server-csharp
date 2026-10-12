@@ -4,7 +4,7 @@
 @inject TarcoinStoreService TarcoinStoreService
 
 <article class="product-card@(Purchased ? " product-card--purchased" : "")">
-    <a class="cursor-pointer" href="@($"/shop/{Token}/catalog-item/{Block.OfferId}")">
+    <a class="cursor-pointer" href="@($"/shop/{Token}/catalog-item/{Block.OfferId}?code={Language}")">
         @if (Block.Images.Count > 0)
         {
             <div class="product-card-carousel">
