@@ -139,7 +139,7 @@ public class Watermark(
         var result = new List<string>();
 
         // Calculate size, add 10% for spacing to the right
-        var longestLength = text.Aggregate((a, b) => a.Length > b.Length ? a : b).Length * 1.1;
+        var longestLength = text.Max(t => t.GetCellWidth()) * 1.1;
 
         // Create line of - to add top/bottom of watermark
         var line = "";
@@ -154,7 +154,7 @@ public class Watermark(
         // Add content of watermark to screen
         foreach (var watermarkText in text)
         {
-            var spacingSize = longestLength - watermarkText.Length;
+            var spacingSize = longestLength - watermarkText.GetCellWidth();
             var textWithRightPadding = watermarkText;
 
             for (var i = 0; i < spacingSize; ++i)
