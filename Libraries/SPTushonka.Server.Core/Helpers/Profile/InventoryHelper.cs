@@ -42,7 +42,7 @@ public class InventoryHelper(
     public void AddItemsToStash(MongoId sessionId, AddItemsDirectRequest request, PmcData pmcData, ItemEventRouterResponse output)
     {
         // Check all items fit into inventory before adding
-        if (!CanPlaceItemsInInventory(sessionId, request.ItemsWithModsToAdd))
+        if (!CanPlaceItemsInInventory(sessionId, (request.ItemsWithModsToAdd ?? []).Where(item => !BelongsInQuestStash(item[0].Template))))
         {
             // No space, exit
             httpResponseUtil.AppendErrorToOutput(
@@ -85,26 +85,41 @@ public class InventoryHelper(
     {
         var itemWithModsToAddClone = cloner.Clone(request.ItemWithModsToAdd);
 
-        // Get stash layouts ready for use
-        var stashFS2D = GetStashSlotMap(pmcData);
-        if (stashFS2D is null)
+        if (BelongsInQuestStash(itemWithModsToAddClone[0].Template) && pmcData.Inventory.QuestStashItems is not null)
         {
-            logger.Error($"Unable to get stash map for players: {sessionId} stash");
+            if (!PlaceItemInQuestStash(pmcData, itemWithModsToAddClone))
+            {
+                httpResponseUtil.AppendErrorToOutput(
+                    output,
+                    serverLocalisationService.GetText("inventory-no_stash_space"),
+                    BackendErrorCodes.NotEnoughSpace
+                );
+            }
+        }
+        else
+        {
+            // Get stash layouts ready for use
+            var stashFS2D = GetStashSlotMap(pmcData);
+            if (stashFS2D is null)
+            {
+                logger.Error($"Unable to get stash map for players: {sessionId} stash");
 
-            return;
+                return;
+            }
+
+            var sortingTableFS2D = GetSortingTableSlotMap(pmcData);
+
+            // Find empty slot in stash for item being added - adds 'location' + parentId + slotId properties to root item
+            PlaceItemInInventory(
+                stashFS2D,
+                sortingTableFS2D,
+                itemWithModsToAddClone,
+                pmcData.Inventory,
+                request.UseSortingTable.GetValueOrDefault(false),
+                output
+            );
         }
 
-        var sortingTableFS2D = GetSortingTableSlotMap(pmcData);
-
-        // Find empty slot in stash for item being added - adds 'location' + parentId + slotId properties to root item
-        PlaceItemInInventory(
-            stashFS2D,
-            sortingTableFS2D,
-            itemWithModsToAddClone,
-            pmcData.Inventory,
-            request.UseSortingTable.GetValueOrDefault(false),
-            output
-        );
         if (output.Warnings?.Count > 0)
         // Failed to place, error out
         {
@@ -143,6 +158,35 @@ public class InventoryHelper(
                 $"Added: {itemWithModsToAddClone[0].Upd?.StackObjectsCount ?? 1} item: {itemWithModsToAddClone[0].Template} with: {itemWithModsToAddClone.Count - 1} mods to inventory"
             );
         }
+    }
+
+    /// <summary>
+    ///     Check whether an item is kept in the quest stash rather than the main stash, as quest items and story notes
+    ///     and tapes are
+    /// </summary>
+    /// <param name="templateId">Item template to check</param>
+    /// <returns>True when the item goes to the quest stash</returns>
+    public bool BelongsInQuestStash(MongoId templateId)
+    {
+        var (found, template) = itemHelper.GetItem(templateId);
+
+        return found
+            && (template!.Properties?.QuestItem == true || itemHelper.IsOfBaseclasses(templateId, [BaseClasses.NOTES, BaseClasses.TAPES]));
+    }
+
+    /// <summary>
+    ///     Place an item and its children into a free spot in the player's quest stash
+    /// </summary>
+    /// <param name="pmcData">Player profile</param>
+    /// <param name="itemWithChildren">Item to place, its root gets the location</param>
+    /// <returns>True when the item fit</returns>
+    public bool PlaceItemInQuestStash(PmcData pmcData, List<Item> itemWithChildren)
+    {
+        var questStashId = pmcData.Inventory!.QuestStashItems!.Value;
+        var grid = itemHelper.GetItem(ItemTpl.STASH_QUESTOFFLINE).Value!.Properties!.Grids!.First().Properties!;
+        var questStashFS2D = GetContainerMap(grid.CellsH!.Value, grid.CellsV!.Value, pmcData.Inventory.Items!, questStashId);
+
+        return PlaceItemInContainer(questStashFS2D, itemWithChildren, questStashId.ToString()).Success ?? false;
     }
 
     /// <summary>

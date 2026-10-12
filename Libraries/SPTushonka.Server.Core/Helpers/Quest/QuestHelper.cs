@@ -1053,6 +1053,13 @@ public class QuestHelper(
             return completeQuestResponse;
         }
 
+        // The server completes chapters itself, a client that also finishes one must not be paid twice. Other quests
+        // arrive here already Success after a raid and still need their rewards
+        if (IsStoryChapter(request.QuestId) && pmcData.GetQuestStatus(request.QuestId) == QuestStatusEnum.Success)
+        {
+            return completeQuestResponse;
+        }
+
         // Clone of players quest status prior to any changes
         var preCompleteProfileQuestsClone = cloner.Clone(pmcData.Quests);
 
@@ -1325,7 +1332,108 @@ public class QuestHelper(
             questsToShowPlayer.Add(chapter);
         }
 
+        // A completed chapter can unlock further quests, so the list is built again
+        if (CompleteFinishedChapters(profile, questsToShowPlayer))
+        {
+            return GetClientQuests(sessionId);
+        }
+
         return UpdateQuestsForGameEdition(cloner.Clone(questsToShowPlayer)!, profile.Info!.GameVersion!);
+    }
+
+    /// <summary>
+    ///     Complete every running chapter that has no open task left. The client never completes a chapter itself, it
+    ///     lists tasks players never get and alternatives that end failed
+    /// </summary>
+    /// <param name="profile">Player profile</param>
+    /// <param name="shownQuests">Quests the player is shown, with their resolved status</param>
+    /// <returns>True when a chapter was completed</returns>
+    protected bool CompleteFinishedChapters(PmcData profile, List<Models.Eft.Common.Tables.Quest> shownQuests)
+    {
+        var finished = profile
+            .Quests!.Where(profileQuest => profileQuest.Status == QuestStatusEnum.Started && IsStoryChapter(profileQuest.QId))
+            .Select(profileQuest => profileQuest.QId)
+            .Where(chapterId => !HasOpenTask(profile, chapterId, shownQuests))
+            .ToList();
+
+        foreach (var chapterId in finished)
+        {
+            CompleteChapter(profile, chapterId);
+        }
+
+        return finished.Count > 0;
+    }
+
+    /// <summary>
+    ///     Check whether a chapter still has a task offered, running or ready to hand in, or has not closed a task yet
+    /// </summary>
+    /// <param name="profile">Player profile</param>
+    /// <param name="chapterId">Chapter to check</param>
+    /// <param name="shownQuests">Quests the player is shown, with their resolved status</param>
+    /// <returns>True while the chapter is not done</returns>
+    protected bool HasOpenTask(PmcData profile, MongoId chapterId, List<Models.Eft.Common.Tables.Quest> shownQuests)
+    {
+        // The final step closes the chapter even when a branch the player did not take is still running
+        var tasks = ChapterTasks(chapterId);
+        var last = tasks.FindLastIndex(IsAvailableTask);
+        if (last >= 0)
+        {
+            for (var i = StepStart(tasks, last); i <= last; i++)
+            {
+                if (profile.GetQuestStatus(tasks[i]) == QuestStatusEnum.Success)
+                {
+                    return false;
+                }
+            }
+        }
+
+        var anyClosed = false;
+        foreach (var taskId in tasks.Where(IsAvailableTask))
+        {
+            var status = shownQuests.FirstOrDefault(quest => quest.Id == taskId)?.SptStatus ?? profile.GetQuestStatus(taskId);
+            if (status is QuestStatusEnum.AvailableForStart or QuestStatusEnum.Started or QuestStatusEnum.AvailableForFinish)
+            {
+                return true;
+            }
+
+            anyClosed |= status is QuestStatusEnum.Success or QuestStatusEnum.Fail;
+        }
+
+        return !anyClosed;
+    }
+
+    /// <summary>
+    ///     Complete a chapter and hand out its Success rewards the way a turn in does
+    /// </summary>
+    /// <param name="profile">Player profile</param>
+    /// <param name="chapterId">Chapter to complete</param>
+    protected void CompleteChapter(PmcData profile, MongoId chapterId)
+    {
+        UpdateQuestState(profile, QuestStatusEnum.Success, chapterId);
+        if (profile.SessionId is null)
+        {
+            return;
+        }
+
+        var sessionId = profile.SessionId.Value;
+        var output = eventOutputHolder.GetOutput(sessionId);
+        output.ProfileChanges.TryGetValue(sessionId, out var profileChanges);
+        questVariableHelper.RecordCompletion(profile, chapterId, profileChanges);
+        var rewards = questRewardHelper.ApplyQuestReward(profile, chapterId, QuestStatusEnum.Success, sessionId, output).ToList();
+        SendSuccessDialogMessageOnQuestComplete(sessionId, profile, chapterId, rewards);
+    }
+
+    /// <summary>
+    ///     Get the tasks a chapter lists as its finish conditions, in order
+    /// </summary>
+    /// <param name="chapterId">Chapter to read</param>
+    /// <returns>Task ids</returns>
+    protected List<MongoId> ChapterTasks(MongoId chapterId)
+    {
+        return (templateTable.Quests.GetValueOrDefault(chapterId)?.Conditions?.AvailableForFinish ?? [])
+            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
+            .Select(condition => new MongoId(condition.Target!.Item!))
+            .ToList();
     }
 
     protected static bool CompletableItemRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
@@ -1368,18 +1476,20 @@ public class QuestHelper(
     {
         return (quest.Conditions?.AvailableForStart ?? [])
             .Where(condition => condition.ConditionType == "GlobalVariableValue" && condition.Target?.Item is not null)
-            .All(condition =>
-            {
-                var current = GetVariableValue(profile, condition.Target!.Item!);
-                var required = condition.Value ?? 0;
+            .All(condition => VariableConditionMet(profile, condition));
+    }
 
-                return condition.CompareMethod switch
-                {
-                    "==" => current == required,
-                    ">" => current > required,
-                    _ => current >= required,
-                };
-            });
+    protected bool VariableConditionMet(PmcData profile, QuestCondition condition)
+    {
+        var current = GetVariableValue(profile, condition.Target!.Item!);
+        var required = condition.Value ?? 0;
+
+        return condition.CompareMethod switch
+        {
+            "==" => current == required,
+            ">" => current > required,
+            _ => current >= required,
+        };
     }
 
     /// <summary>Whether the profile has reached the group value, trader standing or loyalty live silently asks of this quest, if any.</summary>
@@ -1456,6 +1566,12 @@ public class QuestHelper(
         if (chapterId is null)
         {
             return QuestStatusEnum.AvailableForStart;
+        }
+
+        // A task that would fail the moment it started belongs to a branch the player did not take
+        if (FailConditionsMet(profile, quest))
+        {
+            return null;
         }
 
         var chapterStarted =
@@ -1621,20 +1737,108 @@ public class QuestHelper(
             );
     }
 
-    /// <summary>The chapter starter for the first task, otherwise the task listed before this one in the chapter.</summary>
+    /// <summary>
+    ///     The chapter starter for the first task, otherwise the step listed before this one in the chapter. A step is a
+    ///     task plus the alternatives listed after it, such as selling or keeping Blue Fire's fragment, and is done
+    ///     when any of them succeeds
+    /// </summary>
     protected bool PredecessorCompleted(PmcData profile, MongoId chapterId, MongoId taskId)
     {
-        var tasks = (templateTable.Quests.GetValueOrDefault(chapterId)?.Conditions?.AvailableForFinish ?? [])
-            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
-            .Select(condition => new MongoId(condition.Target!.Item!))
-            .ToList();
+        var tasks = ChapterTasks(chapterId);
         var index = tasks.IndexOf(taskId);
-        if (index == 0)
+        if (index < 0)
+        {
+            return false;
+        }
+
+        // A task the database lacks or withholds can never finish, so the step before it counts instead
+        var previous = StepStart(tasks, index) - 1;
+        while (previous >= 0 && !IsAvailableTask(tasks[previous]))
+        {
+            previous--;
+        }
+
+        if (previous < 0)
         {
             return StarterCompleted(profile, chapterId);
         }
 
-        return index > 0 && profile.GetQuestStatus(tasks[index - 1]) == QuestStatusEnum.Success;
+        for (var i = StepStart(tasks, previous); i <= previous; i++)
+        {
+            if (profile.GetQuestStatus(tasks[i]) == QuestStatusEnum.Success)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///     First task of the step holding the task at this index. A task that fails once the task before it succeeds is
+    ///     an alternative to it, and so are neighbouring tasks that quests outside the chapter start, Boreas' first two
+    /// </summary>
+    protected int StepStart(List<MongoId> tasks, int index)
+    {
+        while (
+            index > 0
+            && (
+                FailsOnSuccessOf(tasks[index], tasks[index - 1])
+                || (StartedFromOutside(tasks[index], tasks) && StartedFromOutside(tasks[index - 1], tasks))
+            )
+        )
+        {
+            index--;
+        }
+
+        return index;
+    }
+
+    /// <summary>Whether a task is started by finishing quests that are none of the chapter's own tasks.</summary>
+    protected bool StartedFromOutside(MongoId taskId, List<MongoId> chapterTasks)
+    {
+        var prerequisites = (templateTable.Quests.GetValueOrDefault(taskId)?.Conditions?.AvailableForStart ?? [])
+            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
+            .Select(condition => new MongoId(condition.Target!.Item!))
+            .ToList();
+
+        return prerequisites.Count > 0 && prerequisites.All(prerequisite => !chapterTasks.Contains(prerequisite));
+    }
+
+    /// <summary>
+    ///     Check whether a quest's Fail conditions on other quests or on variables already hold
+    /// </summary>
+    /// <param name="profile">Player profile</param>
+    /// <param name="quest">Quest to check</param>
+    /// <returns>True when the quest would fail at once</returns>
+    protected bool FailConditionsMet(PmcData profile, Models.Eft.Common.Tables.Quest quest)
+    {
+        return (quest.Conditions?.Fail ?? []).Any(condition =>
+            condition.Target?.Item is not null
+            && condition.ConditionType switch
+            {
+                "Quest" => condition.Status?.Contains(profile.GetQuestStatus(new MongoId(condition.Target.Item))) ?? false,
+                "GlobalVariableValue" => VariableConditionMet(profile, condition),
+                _ => false,
+            }
+        );
+    }
+
+    /// <summary>Whether a task fails the moment another task succeeds.</summary>
+    protected bool FailsOnSuccessOf(MongoId taskId, MongoId otherTaskId)
+    {
+        return (templateTable.Quests.GetValueOrDefault(taskId)?.Conditions?.Fail ?? []).Any(condition =>
+            condition.ConditionType == "Quest"
+            && condition.Target?.Item is not null
+            && new MongoId(condition.Target.Item) == otherTaskId
+            && (condition.Status?.Contains(QuestStatusEnum.Success) ?? false)
+        );
+    }
+
+    /// <summary>Whether the database has the task and does not withhold it.</summary>
+    protected bool IsAvailableTask(MongoId taskId)
+    {
+        return templateTable.Quests.ContainsKey(taskId) && !questConfig.WithheldQuests.Contains(taskId);
     }
 
     private Dictionary<MongoId, HashSet<MongoId>> BuildChapterStarters()

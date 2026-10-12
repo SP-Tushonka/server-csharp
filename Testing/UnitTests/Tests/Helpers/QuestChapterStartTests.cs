@@ -4,6 +4,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
+using SPTarkov.Server.Core.Models.Eft.Quests;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Servers;
 
@@ -17,6 +18,11 @@ public class QuestChapterStartTests
     private static readonly MongoId LabyrinthChapter = new("68e3a35002661eb2d30ce387");
     private static readonly MongoId LabyrinthFirstTask = new("68e3a3bc02661eb2d30ce389");
     private static readonly MongoId PlayerTrader = new("67f7af56c117b6140af2a607");
+    private static readonly MongoId BlueFireChapter = new("68e784b7fa3f1fa3770094ba");
+    private static readonly MongoId BlueFireTalk = new("6a04b0b7d4b07b5ef1064e38");
+    private static readonly MongoId BlueFireSell = new("67b892b832f50fb7ec084426");
+    private static readonly MongoId BlueFireKeep = new("67b892ba0e9aad30720bfc56");
+    private static readonly MongoId BlueFireAfterDeal = new("67b892bb1c013f0fcb058246");
 
     private QuestHelper _questHelper = default!;
     private SaveServer _saveServer = default!;
@@ -90,6 +96,119 @@ public class QuestChapterStartTests
 
         shown = _questHelper.GetClientQuests(AddProfile(fallingSkiesStarter, firstTask));
         Assert.That(shown.Single(q => q.Id == praporTask).SptStatus, Is.EqualTo(QuestStatusEnum.Started), "first task done");
+    }
+
+    [Test]
+    public void GetClientQuests_BlueFireTalkDone_StartsSellAndKeepTogether()
+    {
+        // The task between talking to Mechanic and the deal is missing from the database
+        var sessionId = AddProfile(BlueFireTalk);
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        Assert.That(quests.Single(q => q.QId == BlueFireSell).Status, Is.EqualTo(QuestStatusEnum.Started), "sell");
+        Assert.That(quests.Single(q => q.QId == BlueFireKeep).Status, Is.EqualTo(QuestStatusEnum.Started), "keep");
+        Assert.That(quests.Any(q => q.QId == BlueFireAfterDeal), Is.False, "next task");
+    }
+
+    [TestCase(QuestStatusEnum.Success, QuestStatusEnum.Fail)]
+    [TestCase(QuestStatusEnum.Fail, QuestStatusEnum.Success)]
+    public void GetClientQuests_BlueFireEitherBranchTaken_StartsTheNextTask(QuestStatusEnum sell, QuestStatusEnum keep)
+    {
+        var sessionId = AddProfile(BlueFireTalk);
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+        AddQuest(sessionId, BlueFireSell, sell);
+        AddQuest(sessionId, BlueFireKeep, keep);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        Assert.That(quests.Single(q => q.QId == BlueFireAfterDeal).Status, Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [Test]
+    public void GetClientQuests_BlueFireLastTaskDoneAfterSelling_CompletesTheChapter()
+    {
+        // Keep failed and the two tasks the database lacks were never given, the client cannot complete this itself
+        var sessionId = AddProfile(BlueFireTalk, BlueFireSell, BlueFireAfterDeal, new MongoId("67b892bd55eaf7b06d011436"));
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+        AddQuest(sessionId, BlueFireKeep, QuestStatusEnum.Fail);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        Assert.That(quests.Single(q => q.QId == BlueFireChapter).Status, Is.EqualTo(QuestStatusEnum.Success));
+    }
+
+    [Test]
+    public void CompleteQuest_BlueFireLastTask_ReportsTheChapterInTheSameResponse()
+    {
+        var postOffice = new MongoId("67b892bd55eaf7b06d011436");
+        var sessionId = AddProfile(BlueFireTalk, BlueFireSell, BlueFireAfterDeal);
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+        AddQuest(sessionId, BlueFireKeep, QuestStatusEnum.Fail);
+        AddQuest(sessionId, postOffice, QuestStatusEnum.AvailableForFinish);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Bonuses = [];
+        pmc.RepeatableQuests = [];
+
+        var response = _questHelper.CompleteQuest(pmc, new CompleteQuestRequestData { QuestId = postOffice }, sessionId);
+
+        var statuses = response.ProfileChanges[sessionId].QuestsStatus!;
+        Assert.That(statuses.Any(q => q.QId == BlueFireChapter && q.Status == QuestStatusEnum.Success), Is.True);
+    }
+
+    [Test]
+    public void GetClientQuests_BlueFireTaskStillRunning_KeepsTheChapterRunning()
+    {
+        var sessionId = AddProfile(BlueFireTalk, BlueFireSell);
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+        AddQuest(sessionId, BlueFireKeep, QuestStatusEnum.Fail);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        Assert.That(quests.Single(q => q.QId == BlueFireAfterDeal).Status, Is.EqualTo(QuestStatusEnum.Started), "next task");
+        Assert.That(quests.Single(q => q.QId == BlueFireChapter).Status, Is.EqualTo(QuestStatusEnum.Started), "chapter");
+    }
+
+    [Test]
+    public void GetClientQuests_TaskWhoseFailConditionHolds_IsNotStarted()
+    {
+        // Boreas' filters hand in fails once the Reserve elimination task runs, so it belongs to the other branch
+        var sessionId = AddProfile(
+            new MongoId("69a05d3ae6778aebac085ca5"),
+            new MongoId("69a9bc08babf5c053607fef7"),
+            new MongoId("69aaecdf174ff467ef0acc38"),
+            new MongoId("69aafbfa47e01d12cc087d0f"),
+            new MongoId("69b2bb74ac1e735d5c0f9a57"),
+            new MongoId("69b04c7ff4183ed66406e50c")
+        );
+        AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Started);
+        AddQuest(sessionId, new MongoId("69b052349776545e5a02076a"), QuestStatusEnum.Started);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        Assert.That(quests.Any(q => q.QId == new MongoId("69b1ba3074141c146c03f9af")), Is.False);
+    }
+
+    [TestCase("69a05d3ae6778aebac085ca5")]
+    [TestCase("69aae3aa97c076d9b503bceb")]
+    public void GetClientQuests_EitherBoreasEntryDone_StartsTheCellTowerTask(string entryTask)
+    {
+        // Boreas opens through one of two tasks other quests start, then the cell tower once the missing task between is skipped
+        var boreasChapter = new MongoId("69d38381cea4b428690ea1d9");
+        var cellTower = new MongoId("69a9bc08babf5c053607fef7");
+        var sessionId = AddProfile(new MongoId(entryTask));
+        AddQuest(sessionId, boreasChapter, QuestStatusEnum.Started);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var quests = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.Quests!;
+        Assert.That(quests.Single(q => q.QId == cellTower).Status, Is.EqualTo(QuestStatusEnum.Started));
     }
 
     [Test]
@@ -294,5 +413,20 @@ public class QuestChapterStartTests
         );
 
         return sessionId;
+    }
+
+    private void AddQuest(MongoId sessionId, MongoId questId, QuestStatusEnum status)
+    {
+        _saveServer
+            .GetProfile(sessionId)
+            .CharacterData!.PmcData!.Quests!.Add(
+                new QuestStatus
+                {
+                    QId = questId,
+                    StartTime = 0,
+                    Status = status,
+                    StatusTimers = new Dictionary<QuestStatusEnum, double> { { status, 0 } },
+                }
+            );
     }
 }

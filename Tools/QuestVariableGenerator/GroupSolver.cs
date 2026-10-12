@@ -40,7 +40,8 @@ public class GroupSolver(ServerData data, DumpData dumps)
             var classMembers = patternClass.ToList();
             var expected = candidates.Expected.Where(quest => Fits(quest, patternClass.Key)).ToList();
             var fitting = expected.Concat(candidates.SameTrader.Where(quest => Fits(quest, patternClass.Key))).ToList();
-            if (fitting.Count < classMembers.Count)
+
+            if (fitting.Count < classMembers.Count && patternClass.Key.Contains('1'))
             {
                 fitting.AddRange(candidates.Others.Where(quest => Fits(quest, patternClass.Key)));
             }

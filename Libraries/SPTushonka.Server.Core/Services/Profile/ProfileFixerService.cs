@@ -40,7 +40,8 @@ public partial class ProfileFixerService(
     SeasonTable seasonTable,
     TimeUtil timeUtil,
     MailSendService mailSendService,
-    ProfileHelper profileHelper
+    ProfileHelper profileHelper,
+    InventoryHelper inventoryHelper
 )
 {
     private const string PveGameMode = "pve";
@@ -159,6 +160,7 @@ public partial class ProfileFixerService(
         RemoveDanglingConditionCounters(pmcProfile);
         RemoveDanglingTaskConditionCounters(pmcProfile);
         RemoveOrphanedQuests(pmcProfile);
+        RemoveDuplicateQuests(pmcProfile);
         VerifyQuestProductionUnlocks(pmcProfile);
         FixOrphanedInsurance(pmcProfile);
         AddMissingBattlePassDocumentLimits(pmcProfile);
@@ -168,6 +170,7 @@ public partial class ProfileFixerService(
         AddMissingStartVariables(pmcProfile);
         questVariableHelper.SyncAll(pmcProfile);
         CheckForAndFixCircularParentReferences(pmcProfile);
+        MoveQuestItemsToQuestStash(pmcProfile);
 
         if (pmcProfile.Hideout is not null)
         {
@@ -450,6 +453,72 @@ public partial class ProfileFixerService(
                 profileQuests.RemoveAt(i);
             }
         }
+    }
+
+    /// <summary>
+    ///     Remove repeated entries for the same quest, accepting a repeatable quest used to add its entry twice
+    /// </summary>
+    /// <param name="pmcProfile">Profile to fix</param>
+    protected void RemoveDuplicateQuests(PmcData pmcProfile)
+    {
+        if (pmcProfile.Quests is null)
+        {
+            return;
+        }
+
+        var seen = new HashSet<MongoId?>();
+        var removed = pmcProfile.Quests.RemoveAll(quest => !seen.Add(quest.QId));
+        if (removed > 0)
+        {
+            logger.Info($"Removed {removed} duplicate quest entries from profile {pmcProfile.Id}");
+        }
+    }
+
+    /// <summary>
+    ///     Move quest items, notes and tapes out of the main stash into the quest stash, hideout crafts used to put them
+    ///     in the main stash
+    /// </summary>
+    /// <param name="pmcProfile">Profile to fix</param>
+    protected void MoveQuestItemsToQuestStash(PmcData pmcProfile)
+    {
+        var inventory = pmcProfile.Inventory;
+        if (inventory?.Items is null || inventory.Stash is null || inventory.QuestStashItems is null)
+        {
+            return;
+        }
+
+        var byId = inventory.Items.ToDictionary(item => item.Id.ToString());
+        var stashId = inventory.Stash.Value.ToString();
+        var misplaced = inventory
+            .Items.Where(item => inventoryHelper.BelongsInQuestStash(item.Template) && IsInsideStash(item, byId, stashId))
+            .ToList();
+
+        foreach (var item in misplaced)
+        {
+            if (inventoryHelper.PlaceItemInQuestStash(pmcProfile, inventory.Items.GetItemWithChildren(item.Id)))
+            {
+                logger.Info($"Moved {item.Template} into the quest stash of profile {pmcProfile.Id}");
+            }
+        }
+    }
+
+    private static bool IsInsideStash(Item item, Dictionary<string, Item> byId, string stashId)
+    {
+        var current = item;
+        while (current.ParentId is not null)
+        {
+            if (current.ParentId == stashId)
+            {
+                return true;
+            }
+
+            if (!byId.TryGetValue(current.ParentId, out current))
+            {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

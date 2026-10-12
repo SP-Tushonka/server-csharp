@@ -164,7 +164,7 @@ public class InventoryController(
         // derives from them has to travel back in this response, or the trader screen keeps the state it
         // had until the client is restarted
         var questsBeforeTalking = cloner.Clone(questHelper.GetClientQuests(sessionId)) ?? [];
-        var statusesBeforeTalking = (pmcData.Quests ?? []).ToDictionary(quest => quest.QId, quest => quest.Status);
+        var statusesBeforeTalking = (pmcData.Quests ?? []).DistinctBy(quest => quest.QId).ToDictionary(quest => quest.QId, quest => quest.Status);
         var changedVariables = new Dictionary<MongoId, int>();
 
         foreach (var node in request.DialogueProgress ?? [])

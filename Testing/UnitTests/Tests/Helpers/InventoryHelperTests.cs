@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Items;
 using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
 
@@ -165,5 +166,35 @@ public class InventoryHelperTests
 
         Assert.AreEqual(2, result.Item1);
         Assert.AreEqual(2, result.Item2);
+    }
+
+    [TestCase("689b512b075404ce7e09ec12", true)]
+    [TestCase("688896b3ea36baf84d085544", true)]
+    [TestCase("68e7d1be6656898e78015bd9", true)]
+    [TestCase("590c657e86f77412b013051d", false)]
+    public void BelongsInQuestStash_StoryCraftsAndQuestItems(string templateId, bool expected)
+    {
+        Assert.That(_helper.BelongsInQuestStash(new MongoId(templateId)), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void PlaceItemInQuestStash_PrintoutGoesNextToTheItemAlreadyThere()
+    {
+        var questStashId = new MongoId();
+        var existing = new Item
+        {
+            Id = new MongoId(),
+            Template = "688896b3ea36baf84d085544",
+            ParentId = questStashId,
+            SlotId = "hideout",
+            Location = new ItemLocation { X = 0, Y = 0 },
+        };
+        var pmc = new PmcData { Inventory = new BotBaseInventory { QuestStashItems = questStashId, Items = [existing] } };
+        var printout = new Item { Id = new MongoId(), Template = "689b512b075404ce7e09ec12" };
+
+        Assert.That(_helper.PlaceItemInQuestStash(pmc, [printout]), Is.True);
+        Assert.That(printout.ParentId, Is.EqualTo(questStashId.ToString()));
+        Assert.That(printout.SlotId, Is.EqualTo("hideout"));
+        Assert.That(printout.Location is ItemLocation location && location.X == 1 && location.Y == 0, Is.True);
     }
 }
