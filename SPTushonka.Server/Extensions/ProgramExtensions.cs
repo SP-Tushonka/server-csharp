@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using Microsoft.AspNetCore.HttpOverrides;
 using SPTarkov.DI;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Models.Spt.Config;
@@ -43,6 +44,21 @@ public static class ProgramExtensions
 
                 await onLoad.OnLoadAsync(cancellationToken).ConfigureAwait(false);
             }
+        }
+    }
+
+    extension(WebApplication app)
+    {
+        /// <summary>
+        /// Takes the client IP and scheme from a reverse proxy's X-Forwarded-For and X-Forwarded-Proto headers.
+        /// </summary>
+        public void UseSptForwardedHeaders()
+        {
+            var options = new ForwardedHeadersOptions { ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto };
+            options.KnownIPNetworks.Clear();
+            options.KnownProxies.Clear();
+
+            app.UseForwardedHeaders(options);
         }
     }
 
