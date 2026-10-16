@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Loader;
 using System.Security.Authentication;
 using System.Text;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Logger;
@@ -245,16 +244,6 @@ public static class Program
         // Configure Kestrel WS options and Handle fallback requests
         ConfigureWebApp(app);
 
-        // Handle edge cases where reverse proxies might pass X-Forwarded-For, use this as the actual IP address
-        var forwardedHeadersOptions = new ForwardedHeadersOptions
-        {
-            ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
-            ForwardLimit = null,
-        };
-        forwardedHeadersOptions.KnownIPNetworks.Clear();
-        forwardedHeadersOptions.KnownProxies.Clear();
-        app.UseForwardedHeaders(forwardedHeadersOptions);
-
         await app.Services.RunPreSptLoadCallbacks(_earlyLogger!, cancellationToken);
 
         var httpConfig = app.Services.GetRequiredService<HttpConfig>();
@@ -268,6 +257,7 @@ public static class Program
 
     private static void ConfigureWebApp(WebApplication app)
     {
+        app.UseSptForwardedHeaders();
         app.UseWebSockets();
 
         app.UseMiddleware<SptLoggerMiddleware>();
