@@ -122,6 +122,6 @@ public record ComposedKey
     public string? Key
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 }

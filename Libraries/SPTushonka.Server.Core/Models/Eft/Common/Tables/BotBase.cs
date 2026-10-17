@@ -176,7 +176,7 @@ public record Info
     public string? Side
     {
         get;
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     public int? Level { get; set; }
