@@ -85,6 +85,8 @@ public class SeasonalEventService(
 
     private bool _halloweenEventActive;
 
+    private bool _scourgeEventActive;
+
     protected readonly FrozenSet<MongoId> HalloweenEventItems =
     [
         ItemTpl.HEADWEAR_JACKOLANTERN_TACTICAL_PUMPKIN_HELMET,
@@ -197,6 +199,15 @@ public class SeasonalEventService(
     }
 
     /// <summary>
+    ///     Is the Scourge event on Labs active, with its boss, quests and quest item spawns
+    /// </summary>
+    /// <returns>True if active</returns>
+    public bool ScourgeEventEnabled()
+    {
+        return _scourgeEventActive;
+    }
+
+    /// <summary>
     ///     Is detection of seasonal events enabled (halloween / christmas)
     /// </summary>
     /// <returns>true if seasonal events should be checked for</returns>
@@ -300,7 +311,7 @@ public class SeasonalEventService(
                 continue;
             }
 
-            if (currentDate.DateIsBetweenTwoDates(events.StartMonth, events.StartDay, events.EndMonth, events.EndDay))
+            if (events.AlwaysActive || currentDate.DateIsBetweenTwoDates(events.StartMonth, events.StartDay, events.EndMonth, events.EndDay))
             {
                 _currentlyActiveEvents.Add(events);
             }
@@ -390,6 +401,15 @@ public class SeasonalEventService(
     protected void UpdateGlobalEvents(GlobalConfig globalConfig, SeasonalEvent eventType)
     {
         logger.Success(serverLocalisationService.GetText("season-event_is_active", eventType.Type));
+
+        if (eventType.Type == SeasonalEventType.Scourge)
+        {
+            _scourgeEventActive = true;
+            AddEventBossesToMaps("scourge");
+
+            return;
+        }
+
         _christmasEventActive = false;
         _halloweenEventActive = false;
 

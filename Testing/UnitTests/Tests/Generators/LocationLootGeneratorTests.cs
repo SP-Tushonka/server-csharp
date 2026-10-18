@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using SPTarkov.Server.Core.Generators.Loot;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace UnitTests.Tests.Generators;
@@ -43,6 +45,24 @@ public class LocationLootGeneratorTests
         }
 
         Assert.That(positions.Count, Is.GreaterThan(1), "the hard drive should move between raids");
+    }
+
+    [Test]
+    public void GenerateDynamicLoot_ScourgeEventActive_SpawnsOneSuitcaseOnLabs()
+    {
+        DI.GetInstance().GetService<SeasonalEventService>().ForceSeasonalEvent(SeasonalEventType.Scourge);
+        var labs = _locations.GetLocation("laboratory")!;
+        var positions = new HashSet<string>();
+
+        for (var raid = 0; raid < 20; raid++)
+        {
+            var loot = _generator.GenerateDynamicLoot(_cloner.Clone(labs.LooseLoot!.Value)!, _cloner.Clone(labs.StaticAmmo)!, "laboratory");
+            var suitcases = loot.Where(point => point.Id!.StartsWith("item_container_event_scourge_suitcase")).ToList();
+            Assert.That(suitcases, Has.Count.EqualTo(1));
+            positions.Add($"{suitcases[0].Position.X},{suitcases[0].Position.Z}");
+        }
+
+        Assert.That(positions, Has.Count.EqualTo(2), "the suitcase alternates between its two spots");
     }
 
     [Test]

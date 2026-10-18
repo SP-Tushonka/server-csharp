@@ -492,7 +492,9 @@
           "followerSanitar",
           "followerTagilla",
           "assaultGroup",
-          "pmcBotBlackDiv"
+          "pmcBotBlackDiv",
+          "bossScourgeEventLab",
+          "followerScourgeEventLab"
         ],
         "ChancedEnemies": [
           {
@@ -556,7 +558,9 @@
           "followerSanitar",
           "followerTagilla",
           "assaultGroup",
-          "pmcBotBlackDiv"
+          "pmcBotBlackDiv",
+          "bossScourgeEventLab",
+          "followerScourgeEventLab"
         ],
         "ChancedEnemies": [
           {
@@ -644,7 +648,9 @@
         "Neutral": [
           "sectantPriest",
           "sectantWarrior",
-          "sentry"
+          "sentry",
+          "bossScourgeEventLab",
+          "followerScourgeEventLab"
         ],
         "SavagePlayerBehaviour": "AlwaysEnemies"
       },
@@ -709,6 +715,105 @@
         ],
         "Neutral": [
           "pmcBotBlackDiv"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "bossScourgeEventLab",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC",
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "pmcBotBlackDiv",
+          "pmcBot"
+        ],
+        "AlwaysFriends": [
+          "followerScourgeEventLab"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "followerScourgeEventLab",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC",
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "pmcBotBlackDiv",
+          "pmcBot"
+        ],
+        "AlwaysFriends": [
+          "bossScourgeEventLab",
+          "followerScourgeEventLab"
+        ],
+        "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "pmcBot",
+        "AlwaysEnemies": [
+          "pmcBEAR",
+          "pmcUSEC"
+        ],
+        "AlwaysFriends": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully"
+        ],
+        "Neutral": [
+          "pmcBotBlackDiv",
+          "bossScourgeEventLab",
+          "followerScourgeEventLab"
         ],
         "SavagePlayerBehaviour": "Neutral"
       }

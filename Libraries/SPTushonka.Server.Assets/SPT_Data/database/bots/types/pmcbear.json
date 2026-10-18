@@ -365,7 +365,8 @@
         "RESET_TIMER_DIST": 17,
         "HEAR_DELAY_WHEN_PEACE": 0,
         "HEAR_DELAY_WHEN_HAVE_SMT": 0,
-        "LOOK_ONLY_DANGER_DELTA": 9
+        "LOOK_ONLY_DANGER_DELTA": 9,
+        "GUNSHOT_HEARING_COEF": 0.7
       },
       "Lay": {
         "CHECK_SHOOT_WHEN_LAYING": false,
@@ -507,7 +508,9 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "ACTIVE_FOLLOW_PLAYER_EVENTS": false,
         "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
-        "AGGRESSOR_LOYALTY_BONUS": 0
+        "AGGRESSOR_LOYALTY_BONUS": 0,
+        "HEARD_HOLD_SEC": 7.0,
+        "HEARD_IGNORE_SEC": 2.5
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -558,8 +561,8 @@
         "SPRINT_BETWEEN_CACHED_POINTS": 100,
         "CAN_WATCH_SECOND_WEAPON": true,
         "CAN_CHECK_MAGAZINE": false,
-        "STAY_AFTER_LOOT_TIME_MIN": 10,
-        "STAY_AFTER_LOOT_TIME_MAX": 20
+        "STAY_AFTER_LOOT_TIME_MIN": 2.5,
+        "STAY_AFTER_LOOT_TIME_MAX": 5
       },
       "Scattering": {
         "MinScatter": 0.03,
@@ -893,7 +896,8 @@
         "RESET_TIMER_DIST": 17,
         "HEAR_DELAY_WHEN_PEACE": 0,
         "HEAR_DELAY_WHEN_HAVE_SMT": 0,
-        "LOOK_ONLY_DANGER_DELTA": 9
+        "LOOK_ONLY_DANGER_DELTA": 9,
+        "GUNSHOT_HEARING_COEF": 0.7
       },
       "Lay": {
         "CHECK_SHOOT_WHEN_LAYING": false,
@@ -1036,7 +1040,9 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "ACTIVE_FOLLOW_PLAYER_EVENTS": false,
         "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
-        "AGGRESSOR_LOYALTY_BONUS": 0
+        "AGGRESSOR_LOYALTY_BONUS": 0,
+        "HEARD_HOLD_SEC": 7.0,
+        "HEARD_IGNORE_SEC": 2.5
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1087,8 +1093,8 @@
         "SPRINT_BETWEEN_CACHED_POINTS": 100,
         "CAN_WATCH_SECOND_WEAPON": true,
         "CAN_CHECK_MAGAZINE": false,
-        "STAY_AFTER_LOOT_TIME_MIN": 10,
-        "STAY_AFTER_LOOT_TIME_MAX": 20
+        "STAY_AFTER_LOOT_TIME_MIN": 2.5,
+        "STAY_AFTER_LOOT_TIME_MAX": 5
       },
       "Scattering": {
         "MinScatter": 0.03,
@@ -1422,7 +1428,8 @@
         "RESET_TIMER_DIST": 17,
         "HEAR_DELAY_WHEN_PEACE": 0,
         "HEAR_DELAY_WHEN_HAVE_SMT": 0,
-        "LOOK_ONLY_DANGER_DELTA": 9
+        "LOOK_ONLY_DANGER_DELTA": 9,
+        "GUNSHOT_HEARING_COEF": 0.7
       },
       "Lay": {
         "CHECK_SHOOT_WHEN_LAYING": false,
@@ -1564,7 +1571,9 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "ACTIVE_FOLLOW_PLAYER_EVENTS": false,
         "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
-        "AGGRESSOR_LOYALTY_BONUS": 0
+        "AGGRESSOR_LOYALTY_BONUS": 0,
+        "HEARD_HOLD_SEC": 7.0,
+        "HEARD_IGNORE_SEC": 2.5
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1615,8 +1624,8 @@
         "SPRINT_BETWEEN_CACHED_POINTS": 100,
         "CAN_WATCH_SECOND_WEAPON": true,
         "CAN_CHECK_MAGAZINE": false,
-        "STAY_AFTER_LOOT_TIME_MIN": 10,
-        "STAY_AFTER_LOOT_TIME_MAX": 20
+        "STAY_AFTER_LOOT_TIME_MIN": 2.5,
+        "STAY_AFTER_LOOT_TIME_MAX": 5
       },
       "Scattering": {
         "MinScatter": 0.03,
@@ -1949,7 +1958,8 @@
         "RESET_TIMER_DIST": 17,
         "HEAR_DELAY_WHEN_PEACE": 0,
         "HEAR_DELAY_WHEN_HAVE_SMT": 0,
-        "LOOK_ONLY_DANGER_DELTA": 9
+        "LOOK_ONLY_DANGER_DELTA": 9,
+        "GUNSHOT_HEARING_COEF": 0.7
       },
       "Lay": {
         "CHECK_SHOOT_WHEN_LAYING": false,
@@ -2091,7 +2101,9 @@
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "ACTIVE_FOLLOW_PLAYER_EVENTS": false,
         "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500,
-        "AGGRESSOR_LOYALTY_BONUS": 0
+        "AGGRESSOR_LOYALTY_BONUS": 0,
+        "HEARD_HOLD_SEC": 7.0,
+        "HEARD_IGNORE_SEC": 2.5
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2142,8 +2154,8 @@
         "SPRINT_BETWEEN_CACHED_POINTS": 100,
         "CAN_WATCH_SECOND_WEAPON": true,
         "CAN_CHECK_MAGAZINE": false,
-        "STAY_AFTER_LOOT_TIME_MIN": 10,
-        "STAY_AFTER_LOOT_TIME_MAX": 20
+        "STAY_AFTER_LOOT_TIME_MIN": 2.5,
+        "STAY_AFTER_LOOT_TIME_MAX": 5
       },
       "Scattering": {
         "MinScatter": 0.03,

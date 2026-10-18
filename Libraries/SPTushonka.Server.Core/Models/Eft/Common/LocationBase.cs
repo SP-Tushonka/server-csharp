@@ -1297,4 +1297,6 @@ public enum WildSpawnType
     bossWedgeLab,
     followerWedgeLab,
     pmcBotBlackDivSeason,
+    bossScourgeEventLab,
+    followerScourgeEventLab,
 }

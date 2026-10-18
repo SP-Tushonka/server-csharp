@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -7,6 +8,7 @@ using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Eft.Quests;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Servers;
+using SPTarkov.Server.Core.Services.Server;
 
 namespace UnitTests.Tests.Helpers;
 
@@ -23,6 +25,8 @@ public class QuestChapterStartTests
     private static readonly MongoId BlueFireSell = new("67b892b832f50fb7ec084426");
     private static readonly MongoId BlueFireKeep = new("67b892ba0e9aad30720bfc56");
     private static readonly MongoId BlueFireAfterDeal = new("67b892bb1c013f0fcb058246");
+    private static readonly MongoId SideHustle = new("6ac4c42976842fabb501d5b8");
+    private static readonly MongoId Doxed = new("6ac4c726a3ea5ab42a074d3a");
 
     private QuestHelper _questHelper = default!;
     private SaveServer _saveServer = default!;
@@ -195,6 +199,116 @@ public class QuestChapterStartTests
         Assert.That(quests.Any(q => q.QId == new MongoId("69b1ba3074141c146c03f9af")), Is.False);
     }
 
+    [Test]
+    public void GetClientQuests_BoreasTransportDialogue_StartsTheReserveTaskWhileTheTransportTaskRuns()
+    {
+        // Asking Prapor for transport sets 69b297fd, which starts the Reserve task before the tasks listed ahead of it
+        var reserveTask = new MongoId("69b052349776545e5a02076a");
+        var sessionId = AddProfile(
+            new MongoId("69a05d3ae6778aebac085ca5"),
+            new MongoId("69a9bc08babf5c053607fef7"),
+            new MongoId("69aaecdf174ff467ef0acc38")
+        );
+        AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Started);
+        AddQuest(sessionId, new MongoId("69aafbfa47e01d12cc087d0f"), QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+
+        _questHelper.GetClientQuests(sessionId);
+        Assert.That(pmc.Quests!.Any(q => q.QId == reserveTask), Is.False, "before the dialogue");
+
+        pmc.Variables![new MongoId("69b297fd9fd8730942edc1f7")] = 1;
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.Quests!.Single(q => q.QId == reserveTask).Status, Is.EqualTo(QuestStatusEnum.Started), "after the dialogue");
+    }
+
+    [TestCase(1, "69b052349776545e5a02076a")]
+    [TestCase(2, "69b1ba3074141c146c03f9af")]
+    [TestCase(3, "69b2b0cc0a7db6b331031267")]
+    public void GetClientQuests_BoreasTransportChoice_StartsOnlyItsBranch(int choice, string branchTask)
+    {
+        // Prapor's transport line stores 1 for the Reserve task, 2 for the filters and 3 for the AMG-10 fluid
+        string[] branches = ["69b052349776545e5a02076a", "69b1ba3074141c146c03f9af", "69b2b0cc0a7db6b331031267"];
+        var sessionId = AddProfile(
+            new MongoId("69a05d3ae6778aebac085ca5"),
+            new MongoId("69a9bc08babf5c053607fef7"),
+            new MongoId("69aaecdf174ff467ef0acc38"),
+            new MongoId("69aafbfa47e01d12cc087d0f")
+        );
+        AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Variables![new MongoId("69b297fd9fd8730942edc1f7")] = choice;
+
+        _questHelper.GetClientQuests(sessionId);
+
+        foreach (var task in branches)
+        {
+            Assert.That(pmc.Quests!.Any(q => q.QId == new MongoId(task)), Is.EqualTo(task == branchTask), task);
+        }
+    }
+
+    [TestCase(QuestStatusEnum.Started, "69b2c6beb8ae58006c084f73", "69b41843dc22acbf90051e3f")]
+    [TestCase(QuestStatusEnum.Fail, "69b41843dc22acbf90051e3f", "69b2c6beb8ae58006c084f73")]
+    public void GetClientQuests_BoreasAlternativeTransportDone_StartsTheBtrBranch(QuestStatusEnum helper, string started, string skipped)
+    {
+        // The hidden helper fails once The Price of Independence is done, which moves the BTR driver's job
+        var sessionId = AddProfile(
+            new MongoId("69a05d3ae6778aebac085ca5"),
+            new MongoId("69a9bc08babf5c053607fef7"),
+            new MongoId("69aaecdf174ff467ef0acc38"),
+            new MongoId("69aafbfa47e01d12cc087d0f"),
+            new MongoId("69b04c7ff4183ed66406e50c")
+        );
+        AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Started);
+        AddQuest(sessionId, new MongoId("69fb04933bca906c71052ddc"), helper);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.TradersInfo![new MongoId("656f0f98d80a697f855d34b1")] = new TraderInfo
+        {
+            LoyaltyLevel = 1,
+            Standing = 0,
+            Unlocked = true,
+        };
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.Quests!.Single(q => q.QId == new MongoId(started)).Status, Is.EqualTo(QuestStatusEnum.Started), "started");
+        Assert.That(pmc.Quests!.Any(q => q.QId == new MongoId(skipped)), Is.False, "skipped");
+    }
+
+    [TestCase(3600, false)]
+    [TestCase(-3600, true)]
+    public void GetClientQuests_QuestOnUnlockTimer_ListedOnceTheTimerRunsOut(int secondsLeft, bool listed)
+    {
+        var bitcoinsTask = new MongoId("67bc9eda1d99d6ebe5014b65");
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Quests!.Add(
+            new QuestStatus
+            {
+                QId = bitcoinsTask,
+                StartTime = 0,
+                Status = QuestStatusEnum.AvailableAfter,
+                StatusTimers = [],
+                AvailableAfter = DateTimeOffset.UtcNow.ToUnixTimeSeconds() + secondsLeft,
+            }
+        );
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == bitcoinsTask), Is.EqualTo(listed));
+    }
+
+    [Test]
+    public void GetClientQuests_FinishedChapter_StartsNoGatedTask()
+    {
+        var sessionId = AddProfile(new MongoId("69aafbfa47e01d12cc087d0f"));
+        AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Success);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Variables![new MongoId("69b297fd9fd8730942edc1f7")] = 1;
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.Quests!.Any(q => q.QId == new MongoId("69b052349776545e5a02076a")), Is.False);
+    }
+
     [TestCase("69a05d3ae6778aebac085ca5")]
     [TestCase("69aae3aa97c076d9b503bceb")]
     public void GetClientQuests_EitherBoreasEntryDone_StartsTheCellTowerTask(string entryTask)
@@ -260,6 +374,27 @@ public class QuestChapterStartTests
         var shown = _questHelper.GetClientQuests(sessionId);
 
         Assert.That(shown.Any(q => q.Id == greenCorridor), Is.False);
+    }
+
+    [TestCase(0, false)]
+    [TestCase(1, true)]
+    [TestCase(2, false)]
+    public void GetClientQuests_NewBeginning_OfferedOnlyAtItsPrestigeLevel(int prestigeLevel, bool offered)
+    {
+        // The first New Beginning asks for level 20 and prestige level 1
+        var newBeginning = new MongoId("6aad73ddedf6e9696e0f60d4");
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Info!.Level = 20;
+        pmc.Info.SetPrestigeLevel(PrestigeGameModes.Pve, prestigeLevel);
+        pmc.TradersInfo![Traders.RAGMAN] = new TraderInfo
+        {
+            LoyaltyLevel = 1,
+            Standing = 0,
+            Unlocked = true,
+        };
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == newBeginning), Is.EqualTo(offered));
     }
 
     [Test]
@@ -340,6 +475,68 @@ public class QuestChapterStartTests
 
         Assert.That(_questHelper.GetClientQuests(AddProfile()).Any(q => q.Id == breathingRoom), Is.False, "without");
         Assert.That(_questHelper.GetClientQuests(AddProfile(friendFromNorvinsk5)).Any(q => q.Id == breathingRoom), Is.True, "with");
+    }
+
+    [TestCase("6ac4c42976842fabb501d5b8", "6ac4c726a3ea5ab42a074d3a")]
+    [TestCase("6752f6d83038f7df520c83e8", "673f348dd3346c21670217e7")]
+    public void StartQuestsStartedWith_PartnerAccepted_StartsTheQuest(string accepted, string expected)
+    {
+        DI.GetInstance().GetService<SeasonalEventService>().ForceSeasonalEvent(SeasonalEventType.Scourge);
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        AddQuest(sessionId, new MongoId(accepted), QuestStatusEnum.Started);
+
+        var started = _questHelper.StartQuestsStartedWith(pmc, new MongoId(accepted));
+
+        Assert.That(started.Single().Id, Is.EqualTo(new MongoId(expected)));
+        Assert.That(started.Single().Status, Is.EqualTo(QuestStatusEnum.Started));
+        Assert.That(pmc.GetQuestStatus(new MongoId(expected)), Is.EqualTo(QuestStatusEnum.Started));
+        Assert.That(_questHelper.GetNewlyAccessibleQuestsWhenStartingQuest(new MongoId(accepted), sessionId).Any(q => q.Id == new MongoId(expected)), Is.False);
+    }
+
+    [TestCase(60, false)]
+    [TestCase(21600, true)]
+    public void GetClientQuests_RouteDeviation_OfferedSixHoursAfterTheHigherTheyFly(int secondsAgo, bool offered)
+    {
+        var theHigherTheyFly = new MongoId("6745fae369a58fceba10343d");
+        var routeDeviation = new MongoId("674600a366e6a521aa05eb66");
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Info!.Level = 40;
+        pmc.TradersInfo![Traders.SKIER] = new TraderInfo
+        {
+            LoyaltyLevel = 4,
+            Standing = 1,
+            Unlocked = true,
+        };
+        pmc.Quests!.Add(
+            new QuestStatus
+            {
+                QId = theHigherTheyFly,
+                StartTime = 0,
+                Status = QuestStatusEnum.Success,
+                StatusTimers = new Dictionary<QuestStatusEnum, double>
+                {
+                    { QuestStatusEnum.Success, DateTimeOffset.UtcNow.ToUnixTimeSeconds() - secondsAgo },
+                },
+            }
+        );
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == routeDeviation), Is.EqualTo(offered));
+    }
+
+    [Test]
+    public void GetClientQuests_Doxed_HiddenUntilSideHustleIsAccepted()
+    {
+        DI.GetInstance().GetService<SeasonalEventService>().ForceSeasonalEvent(SeasonalEventType.Scourge);
+        var sessionId = AddProfile();
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == Doxed), Is.False, "before");
+
+        AddQuest(sessionId, SideHustle, QuestStatusEnum.Started);
+        var doxed = _questHelper.GetClientQuests(sessionId).SingleOrDefault(q => q.Id == Doxed);
+
+        Assert.That(doxed?.SptStatus, Is.EqualTo(QuestStatusEnum.Started), "after");
     }
 
     private MongoId AddProfile(params MongoId[] completed)

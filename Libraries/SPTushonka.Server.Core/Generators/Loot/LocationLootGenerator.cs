@@ -678,6 +678,14 @@ public class LocationLootGenerator(
             );
         }
 
+        // Scourge quest items spawn only while that event runs
+        if (!seasonalEventService.ScourgeEventEnabled())
+        {
+            dynamicLootDist.SpawnpointsForced = dynamicLootDist.SpawnpointsForced.Where(point =>
+                !point.Template.Id.Contains("scourge", StringComparison.OrdinalIgnoreCase)
+            );
+        }
+
         // Build the list of forced loot from both `SpawnpointsForced` and any point marked `IsAlwaysSpawn`
         dynamicForcedSpawnPoints.AddRange(dynamicLootDist.SpawnpointsForced);
         dynamicForcedSpawnPoints.AddRange(dynamicLootDist.Spawnpoints.Where(point => point.Template.IsAlwaysSpawn));

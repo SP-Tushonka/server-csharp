@@ -51,7 +51,8 @@ public class GameController(
     HttpConfig httpConfig,
     HealthConfig healthConfig,
     PmcConfig pmcConfig,
-    BattlePassDocumentLimitService battlePassDocumentLimitService
+    BattlePassDocumentLimitService battlePassDocumentLimitService,
+    InitialSupportService initialSupportService
 ) : IOnUpdate
 {
     /// <summary>
@@ -154,6 +155,7 @@ public class GameController(
         }
 
         await seasonalEventService.GivePlayerSeasonalGiftsAsync(sessionId);
+        initialSupportService.SendDueCrate(sessionId);
 
         // Set activity timestamp at the end of the method, so that code that checks for an older timestamp (Updating hideout) can still run
         profileActivityService.SetActivityTimestamp(sessionId);

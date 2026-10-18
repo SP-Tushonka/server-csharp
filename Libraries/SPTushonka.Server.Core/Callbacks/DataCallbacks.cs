@@ -210,8 +210,10 @@ public class DataCallbacks(
     /// </summary>
     public ValueTask<string> GetMainQuestsList(string url, EmptyRequestData _, MongoId sessionID)
     {
+        // The journal lists chapters in this order, chapters only the notes name follow at the end
         var chapters = templateTable
-            .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
+            .MainQuests.Chapters.Select(chapter => chapter.ChapterId)
+            .Concat(templateTable.MainQuestNotes.Select(note => new MongoId(note.ChapterId)))
             .Distinct()
             .Select(chapterId => new MainQuestChapterId { ChapterId = chapterId });
 

@@ -329,7 +329,12 @@ public class QuestHelper(
                     return false;
                 }
 
-                if (questConfig.WithheldQuests.Contains(quest.Id) || !HiddenGateMet(quest.Id, profile))
+                // Quests started together with the accepted quest are handed back by StartQuestsStartedWith
+                if (
+                    questConfig.WithheldQuests.Contains(quest.Id)
+                    || questConfig.StartedWithQuests.ContainsKey(quest.Id)
+                    || !HiddenGateMet(quest.Id, profile)
+                )
                 {
                     return false;
                 }
@@ -382,6 +387,11 @@ public class QuestHelper(
 
         // Not halloween + quest is for halloween
         if (!isHalloweenEventActive && seasonalEventService.IsQuestRelatedToEvent(questId, SeasonalEventType.Halloween))
+        {
+            return false;
+        }
+
+        if (!seasonalEventService.ScourgeEventEnabled() && seasonalEventService.IsQuestRelatedToEvent(questId, SeasonalEventType.Scourge))
         {
             return false;
         }
@@ -1150,6 +1160,12 @@ public class QuestHelper(
             );
             if (questInProfile is not null)
             {
+                // A quest waiting on its unlock timer stays off the list until the timer runs out
+                if (questInProfile.Status == QuestStatusEnum.AvailableAfter && questInProfile.AvailableAfter > timeUtil.GetTimeStamp())
+                {
+                    continue;
+                }
+
                 quest.SptStatus = questInProfile.Status;
                 StartChapterOfActiveTask(profile, quest.Id, quest.SptStatus.Value);
                 questsToShowPlayer.Add(quest);
@@ -1184,6 +1200,24 @@ public class QuestHelper(
                 continue;
             }
 
+            // Catches a partner quest accepted before this quest was configured to start with it
+            if (questConfig.StartedWithQuests.TryGetValue(quest.Id, out var startedWith))
+            {
+                if (
+                    profile.GetQuestStatus(startedWith)
+                    is QuestStatusEnum.Locked
+                        or QuestStatusEnum.AvailableForStart
+                        or QuestStatusEnum.AvailableAfter
+                )
+                {
+                    continue;
+                }
+
+                quest.SptStatus = StartStorylineQuest(profile, quest.Id);
+                questsToShowPlayer.Add(quest);
+                continue;
+            }
+
             // Don't add quests that have a level higher than the user's
             if (!PlayerLevelFulfillsQuestRequirement(quest, profile.Info.Level!.Value))
             {
@@ -1208,6 +1242,11 @@ public class QuestHelper(
                 continue;
             }
 
+            if (!PrestigeLevelRequirementsMet(quest, profile))
+            {
+                continue;
+            }
+
             // The raid starts these itself when the item is read, this catches a raid that was quit before then
             if (AutoStartConditionsMet(quest, profile))
             {
@@ -1223,7 +1262,8 @@ public class QuestHelper(
             // Quest has no conditions, standing or loyalty conditions, add to visible quest list
             if (questRequirements.Count == 0 && loyaltyRequirements.Count == 0 && standingRequirements.Count == 0)
             {
-                var storyStatus = ResolveStorylineStatus(profile, quest, false);
+                // A task behind a hidden gate starts once a dialogue opens the gate, ahead of the task listed before it
+                var storyStatus = ResolveStorylineStatus(profile, quest, questConfig.HiddenVariableGates.ContainsKey(quest.Id));
                 if (storyStatus is null)
                 {
                     continue;
@@ -1479,6 +1519,31 @@ public class QuestHelper(
             .All(condition => VariableConditionMet(profile, condition));
     }
 
+    /// <summary>
+    ///     Check the prestige level a quest asks for, such as the New Beginning quest each prestige level requires
+    /// </summary>
+    /// <param name="quest">Quest to check</param>
+    /// <param name="profile">Player profile</param>
+    /// <returns>True when every PrestigeLevel start condition holds</returns>
+    protected bool PrestigeLevelRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
+    {
+        // Every prestige on this server is PvE
+        var prestigeLevel = profile.Info?.GetPrestigeLevel(PrestigeGameModes.Pve) ?? 0;
+
+        return (quest.Conditions?.AvailableForStart ?? [])
+            .Where(condition => condition.ConditionType == "PrestigeLevel")
+            .All(condition =>
+                condition.CompareMethod switch
+                {
+                    ">=" => prestigeLevel >= condition.Value,
+                    ">" => prestigeLevel > condition.Value,
+                    "<=" => prestigeLevel <= condition.Value,
+                    "<" => prestigeLevel < condition.Value,
+                    _ => prestigeLevel == condition.Value,
+                }
+            );
+    }
+
     protected bool VariableConditionMet(PmcData profile, QuestCondition condition)
     {
         var current = GetVariableValue(profile, condition.Target!.Item!);
@@ -1519,7 +1584,9 @@ public class QuestHelper(
 
         if (gate.Target is not null)
         {
-            return GetVariableValue(profile, gate.Target.Value) >= (gate.Value ?? 0);
+            var value = GetVariableValue(profile, gate.Target.Value);
+
+            return gate.Exact == true ? value == (gate.Value ?? 0) : value >= (gate.Value ?? 0);
         }
 
         if (gate.Level is not null && (profile.Info?.Level ?? 0) < gate.Level.Value)
@@ -1527,7 +1594,27 @@ public class QuestHelper(
             return false;
         }
 
-        return (gate.Quests ?? []).All(prerequisite => profile.GetQuestStatus(prerequisite) == QuestStatusEnum.Success);
+        var prerequisites = gate.Quests ?? [];
+        if (
+            !prerequisites.All(prerequisite => profile.GetQuestStatus(prerequisite) == QuestStatusEnum.Success)
+            || (gate.AnyQuests is not null && !gate.AnyQuests.Any(quest => profile.GetQuestStatus(quest) == QuestStatusEnum.Success))
+            || !(gate.Failed ?? []).All(quest => profile.GetQuestStatus(quest) == QuestStatusEnum.Fail)
+            || !(gate.NotFailed ?? []).All(quest => profile.GetQuestStatus(quest) != QuestStatusEnum.Fail)
+        )
+        {
+            return false;
+        }
+
+        if (gate.Delay is null || prerequisites.Count == 0)
+        {
+            return true;
+        }
+
+        var finishedAt = prerequisites.Max(prerequisite =>
+            profile.Quests!.First(quest => quest.QId == prerequisite).StatusTimers?.GetValueOrDefault(QuestStatusEnum.Success) ?? 0
+        );
+
+        return finishedAt + gate.Delay.Value <= timeUtil.GetTimeStamp();
     }
 
     // A condition may name a variable group, whose value is the sum of its member variables. Trader
@@ -1576,6 +1663,12 @@ public class QuestHelper(
 
         var chapterStarted =
             profile.Quests?.Any(profileQuest => profileQuest.QId == chapterId && profileQuest.Status == QuestStatusEnum.Started) ?? false;
+
+        // A finished chapter starts nothing new, even when a leftover branch still qualifies
+        if (profile.GetQuestStatus(chapterId.Value) is QuestStatusEnum.Success or QuestStatusEnum.Fail)
+        {
+            return null;
+        }
 
         // A finished starter task opens its chapter and the chapter's first task in the same moment, every
         // later task not gated on another quest starts when the task listed before it in the chapter is done.
@@ -1700,6 +1793,51 @@ public class QuestHelper(
                 timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(profile))
             );
         }
+    }
+
+    /// <summary>
+    ///     Start the quests configured to begin when the player accepts a quest
+    /// </summary>
+    /// <param name="profile">Player profile</param>
+    /// <param name="acceptedQuestId">Quest the player accepted</param>
+    /// <returns>Templates of the quests that started</returns>
+    public List<Models.Eft.Common.Tables.Quest> StartQuestsStartedWith(PmcData profile, MongoId acceptedQuestId)
+    {
+        List<Models.Eft.Common.Tables.Quest> started = [];
+        foreach (var (questId, startedWith) in questConfig.StartedWithQuests)
+        {
+            if (startedWith != acceptedQuestId || !ShowEventQuestToPlayer(questId) || !templateTable.Quests.TryGetValue(questId, out var quest))
+            {
+                continue;
+            }
+
+            if (profile.GetQuestStatus(questId) is not (QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart))
+            {
+                continue;
+            }
+
+            var template = cloner.Clone(quest)!;
+            template.SptStatus = StartStorylineQuest(profile, questId);
+            template.Status = QuestStatusEnum.Started;
+            started.Add(template);
+
+            // Starting the quest only mails start rewards, the trader still sends the start text without them
+            var messageId = GetMessageIdForQuestStart(quest);
+            var hasStartRewards = quest.Rewards?.GetValueOrDefault("Started")?.Count > 0;
+            if (profile.SessionId is not null && !hasStartRewards && QuestMessageIsWorthSending(quest, messageId, []))
+            {
+                mailSendService.SendLocalisedNpcMessageToPlayer(
+                    profile.SessionId.Value,
+                    quest.TraderId,
+                    MessageType.QuestStart,
+                    messageId,
+                    [],
+                    timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(profile))
+                );
+            }
+        }
+
+        return started;
     }
 
     /// <summary>A chapter is a quest the story rail is built from, named by the main quest notes.</summary>

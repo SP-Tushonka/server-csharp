@@ -49,6 +49,27 @@ public record RewardDetails
 
     [JsonPropertyName("rewardTypePool")]
     public HashSet<MongoId>? RewardTypePool { get; set; }
+
+    /// <summary>
+    ///     Items every opening gives on top of the random rewards, with the stack size range of each
+    /// </summary>
+    [JsonPropertyName("guaranteedItems")]
+    public Dictionary<MongoId, MinMax<int>>? GuaranteedItems { get; set; }
+
+    /// <summary>
+    ///     Pools that each give a fixed number of rewards, for containers that hold one of every kind of item
+    /// </summary>
+    [JsonPropertyName("rewardGroups")]
+    public List<RewardGroup>? RewardGroups { get; set; }
+}
+
+public record RewardGroup
+{
+    [JsonPropertyName("count")]
+    public int Count { get; set; }
+
+    [JsonPropertyName("rewardTplPool")]
+    public required Dictionary<MongoId, double> RewardTplPool { get; set; }
 }
 
 public record SealedAirdropContainerSettings

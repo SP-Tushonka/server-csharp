@@ -90,6 +90,8 @@ internal static class Program
             "vsrffight",
             "followertagilla",
             "pmcbotblackdivseason",
+            "bossscourgeeventlab",
+            "followerscourgeeventlab",
         };
 
         // Read raw bot dumps and turn into c# objects

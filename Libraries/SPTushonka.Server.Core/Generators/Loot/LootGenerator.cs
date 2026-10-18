@@ -731,30 +731,62 @@ public class LootGenerator(
     {
         List<List<Item>> itemsToReturn = [];
 
+        foreach (var (tpl, stackSize) in rewardContainerDetails.GuaranteedItems ?? [])
+        {
+            itemsToReturn.Add(CreateRewardItem(tpl, randomUtil.GetInt(stackSize.Min, stackSize.Max)));
+        }
+
+        foreach (var group in rewardContainerDetails.RewardGroups ?? [])
+        {
+            for (var index = 0; index < group.Count; index++)
+            {
+                itemsToReturn.Add(CreateRewardItem(weightedRandomHelper.GetWeightedValue(group.RewardTplPool)));
+            }
+        }
+
         // Get random items and add to newItemRequest
         for (var index = 0; index < rewardContainerDetails.RewardCount; index++)
         {
-            // Pick random reward from pool, add to request object
-            var chosenRewardItemTpl = PickRewardItem(rewardContainerDetails);
-
-            if (presetHelper.HasPreset(chosenRewardItemTpl))
-            {
-                var preset = presetHelper.GetDefaultPreset(chosenRewardItemTpl);
-
-                // Ensure preset has unique ids and is cloned so we don't alter the preset data stored in memory
-                var presetAndMods = preset.Items.ReplaceIDs().ToList();
-
-                presetAndMods.RemapRootItemId();
-                itemsToReturn.Add(presetAndMods);
-
-                continue;
-            }
-
-            List<Item> rewardItem = [new() { Id = new MongoId(), Template = chosenRewardItemTpl }];
-            itemsToReturn.Add(rewardItem);
+            itemsToReturn.Add(CreateRewardItem(PickRewardItem(rewardContainerDetails)));
         }
 
         return itemsToReturn;
+    }
+
+    /// <summary>
+    ///     Create a container reward, using the default preset when one exists and filling ammo boxes
+    /// </summary>
+    /// <param name="tpl">Template of the reward</param>
+    /// <param name="stackSize">Stack size of an item without a preset</param>
+    /// <returns>Reward item with its children</returns>
+    protected List<Item> CreateRewardItem(MongoId tpl, int? stackSize = null)
+    {
+        if (presetHelper.HasPreset(tpl))
+        {
+            // Ensure preset has unique ids and is cloned so we don't alter the preset data stored in memory
+            var presetAndMods = presetHelper.GetDefaultPreset(tpl).Items.ReplaceIDs().ToList();
+            presetAndMods.RemapRootItemId();
+
+            return presetAndMods;
+        }
+
+        List<Item> reward =
+        [
+            new()
+            {
+                Id = new MongoId(),
+                Template = tpl,
+                Upd = stackSize is null ? null : new Upd { StackObjectsCount = stackSize },
+            },
+        ];
+
+        var details = itemHelper.GetItem(tpl).Value;
+        if (details is not null && itemHelper.IsOfBaseclass(tpl, BaseClasses.AMMO_BOX))
+        {
+            itemHelper.AddCartridgesToAmmoBox(reward, details);
+        }
+
+        return reward;
     }
 
     /// <summary>

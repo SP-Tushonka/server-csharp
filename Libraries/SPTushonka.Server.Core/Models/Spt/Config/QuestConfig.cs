@@ -54,6 +54,12 @@ public record QuestConfig : BaseConfig
     public required Dictionary<MongoId, HiddenVariableGate> HiddenVariableGates { get; set; }
 
     /// <summary>
+    ///     Quests that start the moment the player accepts another quest, keyed by the quest that starts
+    /// </summary>
+    [JsonPropertyName("startedWithQuests")]
+    public Dictionary<MongoId, MongoId> StartedWithQuests { get; set; } = [];
+
+    /// <summary>
     ///     Holds repeatable quest template ids for pmc's and scav's
     /// </summary>
     [JsonPropertyName("repeatableQuestTemplateIds")]
@@ -656,6 +662,10 @@ public record HiddenVariableGate
     [JsonPropertyName("value")]
     public int? Value { get; set; }
 
+    /// <summary>The variable must equal the value, for a dialogue choice stored as a code</summary>
+    [JsonPropertyName("exact")]
+    public bool? Exact { get; set; }
+
     /// <summary>The trader whose standing is compared instead of a group</summary>
     [JsonPropertyName("trader")]
     public MongoId? Trader { get; set; }
@@ -671,6 +681,22 @@ public record HiddenVariableGate
     /// <summary>Quests that must be completed, the prerequisites live stripped from the wire but still enforces</summary>
     [JsonPropertyName("quests")]
     public List<MongoId>? Quests { get; set; }
+
+    /// <summary>Quests of which at least one must be completed, for a quest reached by an old and a new route</summary>
+    [JsonPropertyName("anyQuests")]
+    public List<MongoId>? AnyQuests { get; set; }
+
+    /// <summary>Seconds after the last of the quests completed before the quest is offered</summary>
+    [JsonPropertyName("delay")]
+    public long? Delay { get; set; }
+
+    /// <summary>Quests that must have failed</summary>
+    [JsonPropertyName("failed")]
+    public List<MongoId>? Failed { get; set; }
+
+    /// <summary>Quests that must not have failed</summary>
+    [JsonPropertyName("notFailed")]
+    public List<MongoId>? NotFailed { get; set; }
 
     /// <summary>The lowest player level that offers the quest</summary>
     [JsonPropertyName("level")]

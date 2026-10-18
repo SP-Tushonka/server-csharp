@@ -14,6 +14,54 @@ public record GiftsConfig : BaseConfig
 
     [JsonPropertyName("gifts")]
     public required Dictionary<string, Gift> Gifts { get; set; }
+
+    /// <summary>
+    ///     Gear crates a trader mails a newly created or prestiged character
+    /// </summary>
+    [JsonPropertyName("initialSupport")]
+    public InitialSupportSettings? InitialSupport { get; set; }
+}
+
+public record InitialSupportSettings
+{
+    [JsonPropertyName("enabled")]
+    public bool Enabled { get; set; }
+
+    [JsonPropertyName("trader")]
+    public MongoId Trader { get; set; }
+
+    /// <summary>
+    ///     Days after the character was created during which crates are sent
+    /// </summary>
+    [JsonPropertyName("days")]
+    public int Days { get; set; }
+
+    /// <summary>
+    ///     Hours between two crates
+    /// </summary>
+    [JsonPropertyName("intervalHours")]
+    public int IntervalHours { get; set; }
+
+    /// <summary>
+    ///     Locale id of the message sent with the first crate
+    /// </summary>
+    [JsonPropertyName("firstMessageId")]
+    public required string FirstMessageId { get; set; }
+
+    /// <summary>
+    ///     Locale id of the message sent with every later crate
+    /// </summary>
+    [JsonPropertyName("messageId")]
+    public required string MessageId { get; set; }
+
+    [JsonPropertyName("collectionTimeHours")]
+    public int CollectionTimeHours { get; set; }
+
+    /// <summary>
+    ///     Crates to pick from, each needs contents in the inventory config
+    /// </summary>
+    [JsonPropertyName("containers")]
+    public required List<MongoId> Containers { get; set; }
 }
 
 public record Gift

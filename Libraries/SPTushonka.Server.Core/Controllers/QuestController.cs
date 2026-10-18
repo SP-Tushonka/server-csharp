@@ -183,6 +183,8 @@ public class QuestController(
             acceptQuestResponse.ProfileChanges[sessionID].Quests.AddRange(newlyAccessibleQuests);
         }
 
+        acceptQuestResponse.ProfileChanges[sessionID].Quests.AddRange(questHelper.StartQuestsStartedWith(pmcData, acceptedQuest.QuestId));
+
         return acceptQuestResponse;
     }
 

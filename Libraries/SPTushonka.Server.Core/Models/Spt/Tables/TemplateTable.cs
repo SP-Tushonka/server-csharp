@@ -21,6 +21,9 @@ public record TemplateTable
     [JsonPropertyName("mainQuestNotes")]
     public required List<MainQuestNotes> MainQuestNotes { get; init; }
 
+    [JsonPropertyName("mainQuests")]
+    public required MainQuestsList MainQuests { get; init; }
+
     [JsonPropertyName("prestige")]
     public required Prestige Prestige { get; init; }
 

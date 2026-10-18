@@ -9611,6 +9611,34 @@
           "TriggerName": ""
         }
       ]
+    },
+    "scourge": {
+      "laboratory": [
+        {
+          "BossChance": 100,
+          "BossDifficult": "normal",
+          "BossEscortAmount": "4,4,4",
+          "BossEscortDifficult": "normal",
+          "BossEscortType": "followerScourgeEventLab",
+          "BossName": "bossScourgeEventLab",
+          "BossPlayer": false,
+          "BossZone": "BotZoneArmory,BotZoneGreenOffice",
+          "Delay": 0,
+          "IgnoreMaxBots": false,
+          "RandomTimeSpawn": false,
+          "ShowOnTarkovMap": true,
+          "ShowOnTarkovMapPvE": true,
+          "SpawnMode": [
+            "pvp-season",
+            "pve",
+            "regular"
+          ],
+          "Supports": null,
+          "Time": -1,
+          "TriggerId": "",
+          "TriggerName": ""
+        }
+      ]
     }
   },
   "eventBotMapping": {
@@ -9994,6 +10022,17 @@
       "startDay": "1",
       "startMonth": "4",
       "type": "APRILFOOLS"
+    },
+    {
+      "enabled": true,
+      "alwaysActive": false,
+      "endDay": "20",
+      "endMonth": "10",
+      "name": "scourge",
+      "settings": {},
+      "startDay": "16",
+      "startMonth": "10",
+      "type": "SCOURGE"
     }
   ],
   "gifterSettings": [

@@ -81,5 +81,7 @@
         vsrffight = 77,
         followertagilla = 78,
         pmcbotblackdivseason = 79,
+        bossscourgeeventlab = 80,
+        followerscourgeeventlab = 81,
     }
 }

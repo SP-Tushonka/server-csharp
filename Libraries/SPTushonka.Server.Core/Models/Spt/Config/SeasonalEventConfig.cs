@@ -71,6 +71,12 @@ public record SeasonalEvent
     [JsonPropertyName("enabled")]
     public bool Enabled { get; set; }
 
+    /// <summary>
+    ///     Run the event whatever the date, for players who want it outside its dates
+    /// </summary>
+    [JsonPropertyName("alwaysActive")]
+    public bool AlwaysActive { get; set; }
+
     [JsonPropertyName("name")]
     public string Name { get; set; } = string.Empty;
 

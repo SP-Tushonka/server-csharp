@@ -36,6 +36,9 @@ public class ServerData
     /// <summary>Groups referenced by quest conditions that contain at least one member without a known dialogue or reward handler.</summary>
     public List<MongoId> GroupsToSolve { get; }
 
+    /// <summary>Each side locked quest mapped to its twin for the other side, the same trader and start conditions.</summary>
+    public Dictionary<MongoId, MongoId> SideTwins { get; }
+
     private readonly Dictionary<string, string> _names;
 
     public ServerData(JsonUtil json, string database)
@@ -88,6 +91,8 @@ public class ServerData
             .Distinct()
             .Where(group => Groups[group].Any(member => !HandledMembers.Contains(member)))
             .ToList();
+
+        SideTwins = FindSideTwins(Path.Combine(database, "..", "configs", "quest.json"));
     }
 
     public string Name(MongoId quest)
@@ -111,6 +116,40 @@ public class ServerData
         }
 
         return new MongoId(target);
+    }
+
+    private Dictionary<MongoId, MongoId> FindSideTwins(string questConfigPath)
+    {
+        using var config = DumpReader.ParseFile(questConfigPath);
+        var bear = config.RootElement.GetProperty("bearOnlyQuests").EnumerateArray().Select(id => new MongoId(id.GetString())).ToList();
+        var usec = config.RootElement.GetProperty("usecOnlyQuests").EnumerateArray().Select(id => new MongoId(id.GetString())).ToList();
+
+        var twins = new Dictionary<MongoId, MongoId>();
+        foreach (var bearQuest in bear.Where(Quests.ContainsKey))
+        {
+            var twin = usec.Where(Quests.ContainsKey).FirstOrDefault(usecQuest => StartSignature(usecQuest) == StartSignature(bearQuest));
+            if (twin != default)
+            {
+                twins[bearQuest] = twin;
+                twins[twin] = bearQuest;
+            }
+        }
+
+        return twins;
+    }
+
+    private string StartSignature(MongoId quest)
+    {
+        var conditions = (Quests[quest].Conditions.AvailableForStart ?? [])
+            .Select(condition =>
+            {
+                var target = condition.Target?.IsList == true ? string.Join(",", condition.Target.List!) : condition.Target?.Item;
+                var statuses = string.Join(",", condition.Status ?? []);
+                return $"{condition.ConditionType}|{target}|{condition.Value}|{condition.CompareMethod}|{statuses}";
+            })
+            .Order();
+
+        return $"{Quests[quest].TraderId}:{string.Join(";", conditions)}";
     }
 
     private HashSet<MongoId> FindHandledMembers(string dialoguePath)

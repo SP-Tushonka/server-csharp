@@ -5,6 +5,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Match;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Services.Commerce;
 using SPTarkov.Server.Core.Services.InRaid;
 using SPTarkov.Server.Core.Services.Profile;
 using static SPTarkov.Server.Core.Services.InRaid.MatchLocationService;
@@ -18,7 +19,8 @@ public class MatchController(
     PmcConfig pmcConfig,
     LocationLifecycleService locationLifecycleService,
     ProfileActivityService profileActivityService,
-    WeatherHelper weatherHelper
+    WeatherHelper weatherHelper,
+    InitialSupportService initialSupportService
 )
 {
     /// <summary>
@@ -145,5 +147,6 @@ public class MatchController(
     public async Task EndLocalRaidAsync(MongoId sessionId, EndLocalRaidRequestData request, CancellationToken cancellationToken = default)
     {
         await locationLifecycleService.EndLocalRaidAsync(sessionId, request, cancellationToken);
+        initialSupportService.SendDueCrate(sessionId);
     }
 }

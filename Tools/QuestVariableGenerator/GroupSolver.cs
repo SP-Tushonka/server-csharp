@@ -85,6 +85,22 @@ public class GroupSolver(ServerData data, DumpData dumps)
                     !result.Quests.ContainsKey(quest) && !_assigned.Contains(quest) && !memberPatterns.Contains(_questPatterns[quest])
                 )
         );
+
+        // A side's twin with no flag of its own sets the flag of the pinned twin, a Bear account that finished
+        // Corporate Perks but never The Secret to Productivity carries that quest's flag
+        foreach (var (quest, member) in result.Quests.ToList())
+        {
+            if (
+                data.SideTwins.TryGetValue(quest, out var twin)
+                && !result.Quests.ContainsKey(twin)
+                && !result.Fillers.Any(filler => filler.Quests.Contains(twin))
+            )
+            {
+                result.Quests[twin] = member;
+                result.NotMembers.Remove(twin);
+            }
+        }
+
         foreach (var quest in result.NotMembers)
         {
             Console.WriteLine($"  {data.Name(quest)} is gated on group {group} but sets none of its members");

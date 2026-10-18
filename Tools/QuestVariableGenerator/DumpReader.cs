@@ -70,6 +70,8 @@ public class DumpReader(ServerData data)
                 .RootElement.GetProperty("data")
                 .EnumerateArray()
                 .Where(action => action.GetProperty("Action").GetString() == QuestCompleteAction)
+                // Repeatable quest ids are 25 characters and never set a member
+                .Where(action => !action.TryGetProperty("type", out var type) || type.GetString() != "repeatable")
                 .Select(action => new MongoId(action.GetProperty("qid").GetString()))
                 .ToList();
 

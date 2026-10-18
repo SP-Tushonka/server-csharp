@@ -8,4 +8,5 @@ public enum SeasonalEventType
     NewYears,
     Promo,
     AprilFools,
+    Scourge,
 }
