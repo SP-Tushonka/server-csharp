@@ -37,6 +37,31 @@ public record BotType
 
     [JsonPropertyName("skills")]
     public BotDbSkills BotSkills { get; set; }
+
+    /// <summary>
+    ///     Loadouts used in place of the role's own when it is generated at a given difficulty, keyed by difficulty.
+    ///     Some bosses share their role with their guards and differ only by difficulty
+    /// </summary>
+    [JsonPropertyName("difficultyVariants")]
+    public Dictionary<string, BotTypeVariant>? DifficultyVariants { get; set; }
+}
+
+public record BotTypeVariant
+{
+    [JsonPropertyName("appearance")]
+    public Appearance BotAppearance { get; set; }
+
+    [JsonPropertyName("chances")]
+    public Chances BotChances { get; set; }
+
+    [JsonPropertyName("firstName")]
+    public List<string> FirstNames { get; set; }
+
+    [JsonPropertyName("generation")]
+    public Generation BotGeneration { get; set; }
+
+    [JsonPropertyName("inventory")]
+    public BotTypeInventory BotInventory { get; set; }
 }
 
 public record Appearance
@@ -195,6 +220,33 @@ public record GenerationWeightingItems
 
     [JsonPropertyName("looseLoot")]
     public GenerationData LooseLoot { get; set; }
+
+    /// <summary>
+    ///     Items other than ammo in the secure container, when absent the container is filled from its pool
+    /// </summary>
+    [JsonPropertyName("secureLoot")]
+    public GenerationData? SecureLoot { get; set; }
+
+    /// <summary>
+    ///     Full ammo stacks the secure container holds for each weapon, keyed by weapon slot.
+    ///     A slot without an entry uses the bot config stack count
+    /// </summary>
+    [JsonPropertyName("secureAmmoStacks")]
+    public Dictionary<string, GenerationData>? SecureAmmoStacks { get; set; }
+
+    /// <summary>
+    ///     Whether a magazine fed weapon has a round chambered, weights for 0 and 1 keyed by weapon slot.
+    ///     A slot without an entry is always chambered
+    /// </summary>
+    [JsonPropertyName("chamberedRounds")]
+    public Dictionary<string, GenerationData>? ChamberedRounds { get; set; }
+
+    /// <summary>
+    ///     Share of each kind of item held per container, keyed by loot category or by weapon slot for its spare magazines.
+    ///     A kind without an entry uses the default order
+    /// </summary>
+    [JsonPropertyName("placement")]
+    public Dictionary<string, Dictionary<string, double>>? Placement { get; set; }
 }
 
 public record BotTypeHealth

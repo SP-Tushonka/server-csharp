@@ -2521,95 +2521,67 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1,
-          "3": 1,
-          "4": 0,
-          "5": 0
+          "0": 1734
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1
+          "0": 1590,
+          "1": 144
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 0
+          "0": 1713,
+          "1": 21
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 1648,
+          "1": 86
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 1709,
+          "1": 25
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 20,
-          "1": 5,
-          "2": 1
+          "0": 1734
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 2,
-          "1": 1,
-          "2": 0
+          "0": 1696,
+          "1": 38
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 1,
-          "5": 1,
-          "6": 1,
-          "7": 0
+          "0": 1734
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 1,
-          "1": 6,
-          "2": 3,
-          "3": 1,
-          "4": 1
+          "0": 1307,
+          "1": 427
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 0,
-          "5": 0,
-          "6": 0
+          "0": 1734
         },
         "whitelist": {}
       },
@@ -2629,6 +2601,48 @@
           "1": 0
         },
         "whitelist": {}
+      },
+      "secureLoot": {
+        "weights": {
+          "0": 1734
+        },
+        "whitelist": {}
+      },
+      "secureAmmoStacks": {
+        "Holster": {
+          "weights": {
+            "0": 1734
+          },
+          "whitelist": {}
+        }
+      },
+      "chamberedRounds": {
+        "Holster": {
+          "weights": {
+            "0": 1734
+          },
+          "whitelist": {}
+        }
+      },
+      "placement": {
+        "drinks": {
+          "Pockets": 25
+        },
+        "drugs": {
+          "Pockets": 21
+        },
+        "food": {
+          "Pockets": 86
+        },
+        "healing": {
+          "Pockets": 144
+        },
+        "Holster": {
+          "Pockets": 3468
+        },
+        "stims": {
+          "Pockets": 38
+        }
       }
     }
   },

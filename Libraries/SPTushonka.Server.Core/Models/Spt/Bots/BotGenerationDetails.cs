@@ -101,4 +101,19 @@ public record BotGenerationDetails
     /// Version of the game bot will use - Only apples to PMCs
     /// </summary>
     public string GameVersion { get; set; }
+
+    /// <summary>
+    /// Difficulty whose loadout replaced the role's own, when the role has one for it
+    /// </summary>
+    [JsonIgnore]
+    public string? TemplateVariant { get; set; }
+
+    /// <summary>
+    /// Key the bot's loot pools are cached under, a variant has pools of its own
+    /// </summary>
+    [JsonIgnore]
+    public string LootCacheKey
+    {
+        get { return TemplateVariant is null ? RoleLowercase : $"{RoleLowercase}/{TemplateVariant}"; }
+    }
 }

@@ -32,7 +32,7 @@
   "chances": {
     "equipment": {
       "Headwear": 99,
-      "Earpiece": 19,
+      "Earpiece": 20,
       "FaceCover": 4,
       "ArmorVest": 98,
       "Eyewear": 61,
@@ -2356,105 +2356,70 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1,
-          "3": 1,
-          "4": 0,
-          "5": 0
+          "0": 268,
+          "1": 1257,
+          "2": 729
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1
+          "1": 2254
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 0
+          "0": 2254
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 2254
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 2254
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 20,
-          "1": 5,
-          "2": 1
+          "0": 2254
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 2,
-          "1": 1,
-          "2": 0
+          "0": 2254
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 1,
-          "5": 1,
-          "6": 1,
-          "7": 0
+          "0": 2254
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 1,
-          "1": 6,
-          "2": 3,
-          "3": 1,
-          "4": 1
+          "0": 2254
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 0,
-          "5": 0,
-          "6": 0
+          "0": 2254
         },
         "whitelist": {}
       },
       "magazines": {
         "weights": {
-          "0": 0,
-          "1": 0,
-          "2": 1,
-          "3": 3,
-          "4": 1
+          "0": 615,
+          "2": 1639
         },
         "whitelist": {}
       },
@@ -2464,6 +2429,56 @@
           "1": 0
         },
         "whitelist": {}
+      },
+      "secureLoot": {
+        "weights": {
+          "0": 2254
+        },
+        "whitelist": {}
+      },
+      "secureAmmoStacks": {
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "10": 2254
+          },
+          "whitelist": {}
+        },
+        "Holster": {
+          "weights": {
+            "10": 2254
+          },
+          "whitelist": {}
+        }
+      },
+      "chamberedRounds": {
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "0": 1723,
+            "1": 531
+          },
+          "whitelist": {}
+        },
+        "Holster": {
+          "weights": {
+            "0": 2254
+          },
+          "whitelist": {}
+        }
+      },
+      "placement": {
+        "FirstPrimaryWeapon": {
+          "TacticalVest": 3278
+        },
+        "grenades": {
+          "Pockets": 1813,
+          "TacticalVest": 902
+        },
+        "healing": {
+          "Pockets": 2254
+        },
+        "Holster": {
+          "Pockets": 4508
+        }
       }
     }
   },
@@ -2542,13 +2557,13 @@
       },
       "ArmBand": {},
       "TacticalVest": {
-        "5ca20abf86f77418567a43f2": 315,
-        "5929a2a086f7744f4b234d43": 318,
-        "60a6220e953894617404b00a": 263,
-        "59e7643b86f7742cbf2c109a": 308,
-        "5b44c8ea86f7742d1627baf1": 315,
-        "5d5d85c586f774279a21cbdb": 328,
-        "5ab8dab586f77441cd04f2a2": 296
+        "5ca20abf86f77418567a43f2": 459,
+        "5929a2a086f7744f4b234d43": 455,
+        "60a6220e953894617404b00a": 381,
+        "59e7643b86f7742cbf2c109a": 444,
+        "5b44c8ea86f7742d1627baf1": 450,
+        "5d5d85c586f774279a21cbdb": 485,
+        "5ab8dab586f77441cd04f2a2": 425
       },
       "Backpack": {
         "5ab8ee7786f7742d8f33f0b9": 595,

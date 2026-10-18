@@ -435,12 +435,16 @@ public class BotWeaponGenerator(
     /// <param name="magWeights">Magazine weights for count to add to inventory</param>
     /// <param name="inventory">Inventory to add magazines to</param>
     /// <param name="botRole">The bot type we're generating extra mags for</param>
+    /// <param name="secureAmmoStacks">Ammo stacks to put in the secure container, the bot config count when null</param>
+    /// <param name="magazineContainers">Containers spare magazines go into in order, the vest then pockets when null</param>
     public void AddExtraMagazinesToInventory(
         MongoId botId,
         GenerateWeaponResult generatedWeaponResult,
         GenerationData magWeights,
         BotBaseInventory inventory,
-        string botRole
+        string botRole,
+        int? secureAmmoStacks = null,
+        HashSet<EquipmentSlots>? magazineContainers = null
     )
     {
         var weaponAndMods = generatedWeaponResult.Weapon;
@@ -470,14 +474,22 @@ public class BotWeaponGenerator(
             AddUbglGrenadesToBotInventory(botId, weaponAndMods, generatedWeaponResult, inventory);
         }
 
-        var inventoryMagGenModel = new InventoryMagGen(magWeights, magTemplate, weaponTemplate, ammoTemplate.Value, inventory, botId);
+        var inventoryMagGenModel = new InventoryMagGen(
+            magWeights,
+            magTemplate,
+            weaponTemplate,
+            ammoTemplate.Value,
+            inventory,
+            botId,
+            magazineContainers
+        );
 
         InventoryMagGenComponents.FirstOrDefault(v => v.CanHandleInventoryMagGen(inventoryMagGenModel)).Process(inventoryMagGenModel);
 
         // Add x stacks of bullets to SecuredContainer (bots use a magic mag packing skill to reload instantly)
         AddAmmoToSecureContainer(
             botId,
-            botConfig.SecureContainerAmmoStackCount,
+            secureAmmoStacks ?? botConfig.SecureContainerAmmoStackCount,
             generatedWeaponResult.ChosenAmmoTemplate,
             ammoTemplate.Value.Properties.StackMaxSize,
             inventory

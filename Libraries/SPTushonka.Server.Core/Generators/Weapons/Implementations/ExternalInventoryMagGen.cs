@@ -58,7 +58,7 @@ public class ExternalInventoryMagGen(
 
             var fitsIntoInventory = botGeneratorHelper.AddItemWithChildrenToEquipmentSlot(
                 inventoryMagGen.GetBotId(),
-                [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
+                inventoryMagGen.GetMagazineContainers(),
                 magazineWithAmmo[0].Id,
                 magazineTpl,
                 magazineWithAmmo,

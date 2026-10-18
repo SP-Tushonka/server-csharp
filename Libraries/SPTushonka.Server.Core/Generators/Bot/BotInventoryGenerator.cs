@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Generators.Loot;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Bot;
@@ -192,10 +193,17 @@ public class BotInventoryGenerator(
         // Apply nighttime changes if its nighttime + there's changes to make
         if (
             randomistionDetails?.NighttimeChanges is not null
+            && randomistionDetails.EquipmentMods is not null
             && raidConfig is not null
             && weatherHelper.IsNightTime(raidConfig.TimeVariant, raidConfig.Location)
         )
         {
+            // The details come from the config shared by every bot, so the night changes go on a copy
+            randomistionDetails = randomistionDetails with
+            {
+                EquipmentMods = new Dictionary<string, double>(randomistionDetails.EquipmentMods),
+            };
+
             foreach (var (equipment, weight) in randomistionDetails.NighttimeChanges.EquipmentModsModifiers)
             {
                 if (randomistionDetails.EquipmentMods.TryGetValue(equipment, out var value))
@@ -765,6 +773,28 @@ public class BotInventoryGenerator(
     }
 
     /// <summary>
+    ///     Take the round out of a magazine fed weapon's chamber when the role rolls an empty chamber
+    /// </summary>
+    /// <param name="weaponWithMods">Weapon and its children, changed in place</param>
+    /// <param name="chamberWeights">Weights for 0 and 1 chambered rounds, null keeps the chamber loaded</param>
+    protected void RemoveChamberedRound(List<Item> weaponWithMods, GenerationData? chamberWeights)
+    {
+        if (chamberWeights?.Weights is null || weaponWithMods.Count == 0)
+        {
+            return;
+        }
+
+        var weaponId = weaponWithMods[0].Id;
+        var hasMagazine = weaponWithMods.Any(item => item.ParentId == weaponId && item.SlotId == "mod_magazine");
+        if (!hasMagazine || weightedRandomHelper.GetWeightedValue(chamberWeights.Weights) > 0)
+        {
+            return;
+        }
+
+        weaponWithMods.RemoveAll(item => item.ParentId == weaponId && item.SlotId?.StartsWith("patron_in_weapon") == true);
+    }
+
+    /// <summary>
     ///     Add weapon + spare mags/ammo to bots inventory
     /// </summary>
     /// <param name="botId">Bots unique identifier</param>
@@ -795,14 +825,24 @@ public class BotInventoryGenerator(
             equipmentChances.WeaponModsChances
         );
 
+        RemoveChamberedRound(generatedWeapon.Weapon, itemGenerationWeights.Items.ChamberedRounds?.GetValueOrDefault(weaponSlot.Slot.ToString()));
         botInventory.Items.AddRange(generatedWeapon.Weapon);
+
+        var secureAmmoWeights = itemGenerationWeights.Items.SecureAmmoStacks?.GetValueOrDefault(weaponSlot.Slot.ToString());
+        int? secureAmmoStacks = secureAmmoWeights?.Weights is null ? null : (int)weightedRandomHelper.GetWeightedValue(secureAmmoWeights.Weights);
 
         botWeaponGenerator.AddExtraMagazinesToInventory(
             botId,
             generatedWeapon,
             itemGenerationWeights.Items.Magazines,
             botInventory,
-            botGenerationDetails.RoleLowercase
+            botGenerationDetails.RoleLowercase,
+            secureAmmoStacks,
+            itemGenerationWeights.Items.OrderByPlacement(
+                weaponSlot.Slot.ToString(),
+                [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
+                weightedRandomHelper
+            )
         );
     }
 }

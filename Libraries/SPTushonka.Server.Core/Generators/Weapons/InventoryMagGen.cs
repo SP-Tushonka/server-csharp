@@ -1,6 +1,7 @@
 ﻿using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 
 namespace SPTarkov.Server.Core.Generators.Weapons;
 
@@ -13,6 +14,7 @@ public class InventoryMagGen()
     private readonly BotBaseInventory? _pmcInventory;
     private readonly MongoId _botId;
     private readonly TemplateItem? _weaponTemplate;
+    private readonly HashSet<EquipmentSlots>? _magazineContainers;
 
     public InventoryMagGen(
         GenerationData magCounts,
@@ -20,7 +22,8 @@ public class InventoryMagGen()
         TemplateItem weaponTemplate,
         TemplateItem ammoTemplate,
         BotBaseInventory pmcInventory,
-        MongoId botId
+        MongoId botId,
+        HashSet<EquipmentSlots>? magazineContainers = null
     )
         : this()
     {
@@ -30,6 +33,16 @@ public class InventoryMagGen()
         _ammoTemplate = ammoTemplate;
         _pmcInventory = pmcInventory;
         _botId = botId;
+        _magazineContainers = magazineContainers;
+    }
+
+    /// <summary>
+    ///     Containers spare magazines go into in order, the vest then pockets when not set
+    /// </summary>
+    /// <returns>Containers to try in order</returns>
+    public HashSet<EquipmentSlots> GetMagazineContainers()
+    {
+        return _magazineContainers ?? [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets];
     }
 
     public GenerationData GetMagCount()

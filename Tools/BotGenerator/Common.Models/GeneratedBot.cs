@@ -27,9 +27,10 @@ namespace Common.Models
             EquipmentSlots.SecuredContainer,
         ];
 
-        public GeneratedBot(BotType role)
+        public GeneratedBot(BotType role, string? variantDifficulty = null)
         {
             Role = role;
+            VariantDifficulty = variantDifficulty;
             Data = new Tables.BotType
             {
                 BotAppearance = new Appearance
@@ -84,7 +85,23 @@ namespace Common.Models
         }
 
         public BotType Role { get; }
+
+        // Difficulty this bot holds the loadout of, written into the role's difficultyVariants instead of a file of its own
+        public string? VariantDifficulty { get; }
+
+        public string Key
+        {
+            get { return VariantDifficulty is null ? Role.ToString() : $"{Role}/{VariantDifficulty}"; }
+        }
+
         public int BotCount { get; set; }
+
+        // Bots with a primary weapon, and those of them that also carry a pistol
+        public int PrimaryWeaponCount { get; set; }
+        public int HolsterWithPrimaryCount { get; set; }
+
+        // Bots with an empty equipment slot, keyed by slot then by the items worn in the slots rolled before it
+        public Dictionary<string, Dictionary<string, int>> EmptySlotsAfter { get; } = [];
         public Tables.BotType Data { get; }
 
         // The server record exposes these as IEnumerable, so the generator appends through these shared lists
@@ -94,6 +111,15 @@ namespace Common.Models
         // Every distinct build seen, keyed by item template then by the build's structure
         public Dictionary<MongoId, Dictionary<string, ItemBuildSample>> WeaponBuildSamples { get; } = [];
         public Dictionary<MongoId, Dictionary<string, ItemBuildSample>> EquipmentBuildSamples { get; } = [];
+
+        // Live bots per item count, keyed by loot category then by count
+        public Dictionary<string, Dictionary<int, int>> GenerationCounts { get; } = [];
+
+        // Rigs worn by bots that also wear body armor
+        public Dictionary<MongoId, double> RigsWornWithArmor { get; } = [];
+
+        // Live items per container, keyed by loot category or weapon slot then by container
+        public Dictionary<string, Dictionary<string, int>> PlacementCounts { get; } = [];
     }
 
     public class ItemBuildSample

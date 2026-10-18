@@ -124,18 +124,18 @@ public class BotGeneratorHelper(
         var equipmentSettings = GetBotEquipmentSettingFromConfig(botRole);
         if (itemTemplate?.Parent == BaseClasses.FLASHLIGHT)
         {
+            // Bots spawn with lights off unless a role says otherwise, the client turns them on in raid
             var lightLaserActiveChance =
-                raidSettings?.IsNightRaid ?? false // Higher chance of laser/light at night
-                    ? equipmentSettings?.LightIsActiveNightChancePercent ?? 50
-                    : equipmentSettings?.LightIsActiveDayChancePercent ?? 25;
+                raidSettings?.IsNightRaid ?? false
+                    ? equipmentSettings?.LightIsActiveNightChancePercent ?? 0
+                    : equipmentSettings?.LightIsActiveDayChancePercent ?? 0;
 
             itemUpd.Light = new UpdLight { IsActive = randomUtil.GetChance100(lightLaserActiveChance), SelectedMode = 0 };
             hasProperties = true;
         }
         else if (itemTemplate?.Parent == BaseClasses.TACTICAL_COMBO)
         {
-            // Get chance from botconfig for bot type, use 50% if no value found
-            var lightLaserActiveChance = equipmentSettings?.LaserIsActiveChancePercent ?? 50;
+            var lightLaserActiveChance = equipmentSettings?.LaserIsActiveChancePercent ?? 0;
 
             itemUpd.Light = new UpdLight { IsActive = randomUtil.GetChance100(lightLaserActiveChance), SelectedMode = 0 };
             hasProperties = true;

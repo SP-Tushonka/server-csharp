@@ -24,7 +24,7 @@
   "chances": {
     "equipment": {
       "Headwear": 100,
-      "Earpiece": 13,
+      "Earpiece": 14,
       "FaceCover": 0,
       "ArmorVest": 0,
       "Eyewear": 13,
@@ -32,7 +32,7 @@
       "TacticalVest": 0,
       "Backpack": 0,
       "FirstPrimaryWeapon": 100,
-      "SecondPrimaryWeapon": 51,
+      "SecondPrimaryWeapon": 50,
       "Holster": 100,
       "Scabbard": 100,
       "Pockets": 100,
@@ -41,24 +41,24 @@
     "weaponMods": {
       "mod_reciever": 89,
       "mod_magazine": 100,
-      "mod_charge": 21,
+      "mod_charge": 20,
       "mod_stock_001": 30,
-      "mod_mount_000": 23,
-      "mod_mount_001": 22,
-      "mod_scope": 50,
+      "mod_mount_000": 24,
+      "mod_mount_001": 21,
+      "mod_scope": 51,
       "mod_foregrip": 85,
       "mod_tactical_000": 45,
       "mod_muzzle": 80,
-      "mod_sight_rear": 69,
-      "mod_stock": 79,
-      "mod_tactical_001": 35,
-      "mod_tactical": 37,
+      "mod_sight_rear": 70,
+      "mod_stock": 78,
+      "mod_tactical_001": 36,
+      "mod_tactical": 38,
       "mod_launcher": 0,
-      "mod_mount": 18,
-      "mod_tactical_002": 23,
-      "mod_stock_000": 52,
+      "mod_mount": 19,
+      "mod_tactical_002": 29,
+      "mod_stock_000": 55,
       "mod_tactical_003": 0,
-      "mod_sight_front": 58,
+      "mod_sight_front": 61,
       "mod_tactical_004": 0,
       "mod_bipod": 0,
       "mod_mount_002": 12,
@@ -2319,105 +2319,79 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1,
-          "3": 1,
-          "4": 0,
-          "5": 0
+          "0": 2,
+          "1": 138,
+          "2": 140
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1
+          "1": 248,
+          "2": 32
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 0
+          "0": 228,
+          "1": 50,
+          "2": 2
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 280
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 264,
+          "1": 16
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 20,
-          "1": 5,
-          "2": 1
+          "0": 248,
+          "1": 32
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 2,
-          "1": 1,
-          "2": 0
+          "0": 263,
+          "1": 17
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 1,
-          "5": 1,
-          "6": 1,
-          "7": 0
+          "0": 280
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 1,
-          "1": 6,
-          "2": 3,
-          "3": 1,
-          "4": 1
+          "0": 256,
+          "1": 22,
+          "2": 2
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 0,
-          "5": 0,
-          "6": 0
+          "0": 280
         },
         "whitelist": {}
       },
       "magazines": {
         "weights": {
-          "0": 0,
-          "1": 0,
-          "2": 1,
-          "3": 3,
-          "4": 1
+          "0": 53,
+          "1": 23,
+          "2": 204
         },
         "whitelist": {}
       },
@@ -2427,6 +2401,85 @@
           "1": 0
         },
         "whitelist": {}
+      },
+      "secureLoot": {
+        "weights": {
+          "0": 280
+        },
+        "whitelist": {}
+      },
+      "secureAmmoStacks": {
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "25": 280
+          },
+          "whitelist": {}
+        },
+        "SecondPrimaryWeapon": {
+          "weights": {
+            "5": 110,
+            "6": 4,
+            "100": 27
+          },
+          "whitelist": {}
+        },
+        "Holster": {
+          "weights": {
+            "1": 276,
+            "6": 4
+          },
+          "whitelist": {}
+        }
+      },
+      "chamberedRounds": {
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "0": 93,
+            "1": 187
+          },
+          "whitelist": {}
+        },
+        "SecondPrimaryWeapon": {
+          "weights": {
+            "0": 114
+          },
+          "whitelist": {}
+        },
+        "Holster": {
+          "weights": {
+            "0": 280
+          },
+          "whitelist": {}
+        }
+      },
+      "placement": {
+        "currency": {
+          "Pockets": 32
+        },
+        "drinks": {
+          "Pockets": 16
+        },
+        "drugs": {
+          "Pockets": 54
+        },
+        "FirstPrimaryWeapon": {
+          "Pockets": 431
+        },
+        "grenades": {
+          "Pockets": 418
+        },
+        "healing": {
+          "Pockets": 312
+        },
+        "Holster": {
+          "Pockets": 509
+        },
+        "SecondPrimaryWeapon": {
+          "Pockets": 216
+        },
+        "stims": {
+          "Pockets": 17
+        }
       }
     }
   },

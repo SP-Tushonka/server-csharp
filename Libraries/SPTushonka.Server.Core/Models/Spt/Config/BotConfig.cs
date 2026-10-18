@@ -43,6 +43,13 @@ public record BotConfig : BaseConfig
     public required Dictionary<string, Dictionary<MongoId, double>> ItemSpawnLimits { get; set; }
 
     /// <summary>
+    ///     Items a bot carries one of with the given percent chance, keyed by role or by role/difficulty for a difficulty variant.
+    ///     They count towards their loot category and random loot never adds another
+    /// </summary>
+    [JsonPropertyName("guaranteedLoot")]
+    public Dictionary<string, Dictionary<MongoId, double>> GuaranteedLoot { get; set; } = [];
+
+    /// <summary>
     ///     Blacklist/whitelist items on a bot
     /// </summary>
     [JsonPropertyName("equipment")]

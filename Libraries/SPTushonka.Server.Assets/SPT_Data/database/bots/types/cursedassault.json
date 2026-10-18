@@ -70,7 +70,7 @@
       "Backpack": 37,
       "FirstPrimaryWeapon": 69,
       "SecondPrimaryWeapon": 0,
-      "Holster": 30,
+      "Holster": 0,
       "Scabbard": 100,
       "Pockets": 100,
       "SecuredContainer": 100
@@ -989,105 +989,85 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1,
-          "3": 1,
-          "4": 0,
-          "5": 0
+          "0": 330
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 1,
-          "1": 2,
+          "0": 288,
+          "1": 41,
           "2": 1
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 0
+          "0": 321,
+          "1": 9
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 176,
+          "1": 124,
+          "2": 25,
+          "3": 4,
+          "4": 1
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 245,
+          "1": 72,
+          "2": 12,
+          "3": 1
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 20,
-          "1": 5,
-          "2": 1
+          "0": 330
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 2,
-          "1": 1,
-          "2": 0
+          "0": 321,
+          "1": 9
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 1,
-          "5": 1,
-          "6": 1,
-          "7": 0
+          "0": 304,
+          "1": 17,
+          "2": 8,
+          "4": 1
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 1,
-          "1": 6,
-          "2": 3,
-          "3": 1,
-          "4": 1
+          "0": 297,
+          "1": 33
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 0,
-          "5": 0,
-          "6": 0
+          "0": 330
         },
         "whitelist": {}
       },
       "magazines": {
         "weights": {
-          "0": 0,
-          "1": 0,
-          "2": 1,
-          "3": 3,
-          "4": 1
+          "0": 99,
+          "1": 48,
+          "2": 45,
+          "3": 37
         },
         "whitelist": {}
       },
@@ -1097,6 +1077,71 @@
           "1": 0
         },
         "whitelist": {}
+      },
+      "secureLoot": {
+        "weights": {
+          "0": 330
+        },
+        "whitelist": {}
+      },
+      "secureAmmoStacks": {
+        "Holster": {
+          "weights": {
+            "10": 101
+          },
+          "whitelist": {}
+        },
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "10": 229
+          },
+          "whitelist": {}
+        }
+      },
+      "chamberedRounds": {
+        "Holster": {
+          "weights": {
+            "1": 101
+          },
+          "whitelist": {}
+        },
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "0": 37,
+            "1": 192
+          },
+          "whitelist": {}
+        }
+      },
+      "placement": {
+        "drinks": {
+          "TacticalVest": 46,
+          "Backpack": 28,
+          "Pockets": 25
+        },
+        "drugs": {
+          "Pockets": 6,
+          "Backpack": 3
+        },
+        "FirstPrimaryWeapon": {
+          "TacticalVest": 249
+        },
+        "food": {
+          "Pockets": 106,
+          "TacticalVest": 64,
+          "Backpack": 20
+        },
+        "healing": {
+          "Pockets": 31,
+          "Backpack": 12
+        },
+        "Holster": {
+          "TacticalVest": 208
+        },
+        "stims": {
+          "Pockets": 6,
+          "Backpack": 3
+        }
       }
     }
   },

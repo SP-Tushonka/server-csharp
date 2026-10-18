@@ -146,8 +146,33 @@ public class BotGenerator(
         {
             logger.Error($"Unable to retrieve: {botGenerationDetails.Role} bot template, cannot generate bot of this type");
         }
+        else
+        {
+            ApplyDifficultyVariant(botJsonTemplateClone, botGenerationDetails);
+        }
 
         return GenerateBot(sessionId, botBaseClone, botJsonTemplateClone, botGenerationDetails);
+    }
+
+    /// <summary>
+    ///     Swap in the loadout the role uses at the requested difficulty, when it has one
+    /// </summary>
+    /// <param name="botJsonTemplateClone">Clone of the role's template, changed in place</param>
+    /// <param name="botGenerationDetails">Details of the bot being generated</param>
+    protected void ApplyDifficultyVariant(BotType botJsonTemplateClone, BotGenerationDetails botGenerationDetails)
+    {
+        var difficulty = botGenerationDetails.BotDifficulty;
+        if (difficulty is null || botJsonTemplateClone.DifficultyVariants?.TryGetValue(difficulty, out var variant) != true)
+        {
+            return;
+        }
+
+        botJsonTemplateClone.BotAppearance = variant.BotAppearance;
+        botJsonTemplateClone.BotChances = variant.BotChances;
+        botJsonTemplateClone.FirstNames = variant.FirstNames;
+        botJsonTemplateClone.BotGeneration = variant.BotGeneration;
+        botJsonTemplateClone.BotInventory = variant.BotInventory;
+        botGenerationDetails.TemplateVariant = difficulty;
     }
 
     /// <summary>

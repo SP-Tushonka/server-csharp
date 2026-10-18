@@ -125,15 +125,24 @@ public class BotLootGenerator(
 
         var containersBotHasAvailable = GetAvailableContainersBotCanStoreItemsIn(botInventory);
 
+        var guaranteedLoot = botConfig.GuaranteedLoot.GetValueOrDefault(botGenerationDetails.LootCacheKey);
+        HashSet<MongoId> guaranteedHandled = [];
+        int TakeGuaranteedLoot(Dictionary<MongoId, double> pool, HashSet<EquipmentSlots> slots)
+        {
+            return AddGuaranteedLoot(botId, pool, slots, botInventory, botGenerationDetails, guaranteedLoot, guaranteedHandled);
+        }
+
         // Special items
+        var specialPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.Special,
+            botJsonTemplate
+        );
+        specialLootItemCount -= TakeGuaranteedLoot(specialPool, containersBotHasAvailable);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.Special,
-                botJsonTemplate
-            ),
+            specialPool,
             containersBotHasAvailable,
             specialLootItemCount,
             botInventory,
@@ -142,15 +151,18 @@ public class BotLootGenerator(
         );
 
         // Healing items / Meds
+        var healingPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.HealingItems,
+            botJsonTemplate
+        );
+        var healingSlots = itemCounts.OrderByPlacement("healing", containersBotHasAvailable, weightedRandomHelper);
+        healingItemCount -= TakeGuaranteedLoot(healingPool, healingSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.HealingItems,
-                botJsonTemplate
-            ),
-            containersBotHasAvailable,
+            healingPool,
+            healingSlots,
             healingItemCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -160,15 +172,18 @@ public class BotLootGenerator(
         );
 
         // Drugs
+        var drugPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.DrugItems,
+            botJsonTemplate
+        );
+        var drugSlots = itemCounts.OrderByPlacement("drugs", containersBotHasAvailable, weightedRandomHelper);
+        drugItemCount -= TakeGuaranteedLoot(drugPool, drugSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.DrugItems,
-                botJsonTemplate
-            ),
-            containersBotHasAvailable,
+            drugPool,
+            drugSlots,
             drugItemCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -178,15 +193,18 @@ public class BotLootGenerator(
         );
 
         // Food
+        var foodPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.FoodItems,
+            botJsonTemplate
+        );
+        var foodSlots = itemCounts.OrderByPlacement("food", containersBotHasAvailable, weightedRandomHelper);
+        foodItemCount -= TakeGuaranteedLoot(foodPool, foodSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.FoodItems,
-                botJsonTemplate
-            ),
-            containersBotHasAvailable,
+            foodPool,
+            foodSlots,
             foodItemCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -196,15 +214,18 @@ public class BotLootGenerator(
         );
 
         // Drink
+        var drinkPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.DrinkItems,
+            botJsonTemplate
+        );
+        var drinkSlots = itemCounts.OrderByPlacement("drinks", containersBotHasAvailable, weightedRandomHelper);
+        drinkItemCount -= TakeGuaranteedLoot(drinkPool, drinkSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.DrinkItems,
-                botJsonTemplate
-            ),
-            containersBotHasAvailable,
+            drinkPool,
+            drinkSlots,
             drinkItemCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -214,15 +235,18 @@ public class BotLootGenerator(
         );
 
         // Currency
+        var currencyPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.CurrencyItems,
+            botJsonTemplate
+        );
+        var currencySlots = itemCounts.OrderByPlacement("currency", containersBotHasAvailable, weightedRandomHelper);
+        currencyItemCount -= TakeGuaranteedLoot(currencyPool, currencySlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.CurrencyItems,
-                botJsonTemplate
-            ),
-            containersBotHasAvailable,
+            currencyPool,
+            currencySlots,
             currencyItemCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -232,15 +256,18 @@ public class BotLootGenerator(
         );
 
         // Stims
+        var stimPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.StimItems,
+            botJsonTemplate
+        );
+        var stimSlots = itemCounts.OrderByPlacement("stims", containersBotHasAvailable, weightedRandomHelper);
+        stimItemCount -= TakeGuaranteedLoot(stimPool, stimSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.StimItems,
-                botJsonTemplate
-            ),
-            containersBotHasAvailable,
+            stimPool,
+            stimSlots,
             stimItemCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -250,15 +277,23 @@ public class BotLootGenerator(
         );
 
         // Grenades
+        // Can't use containersBotHasEquipped as we don't want grenades added to backpack
+        var grenadeSlots = itemCounts.OrderByPlacement(
+            "grenades",
+            [EquipmentSlots.Pockets, EquipmentSlots.TacticalVest],
+            weightedRandomHelper
+        );
+        var grenadePool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.GrenadeItems,
+            botJsonTemplate
+        );
+        grenadeCount -= TakeGuaranteedLoot(grenadePool, grenadeSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.GrenadeItems,
-                botJsonTemplate
-            ),
-            [EquipmentSlots.Pockets, EquipmentSlots.TacticalVest], // Can't use containersBotHasEquipped as we don't want grenades added to backpack
+            grenadePool,
+            grenadeSlots,
             grenadeCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -290,16 +325,19 @@ public class BotLootGenerator(
                 ? pmcConfig.LootSettings.Backpack.GetRoubleValue(botGenerationDetails.BotLevel, botGenerationDetails.Location)
                 : 0;
 
+            HashSet<EquipmentSlots> backpackSlots = [EquipmentSlots.Backpack];
+            var backpackPool = botLootCacheService.GetLootFromCache(
+                botGenerationDetails.LootCacheKey,
+                botGenerationDetails.IsPmc,
+                LootCacheType.Backpack,
+                botJsonTemplate,
+                itemPriceLimits?.Backpack
+            );
+            backpackLootCount -= TakeGuaranteedLoot(backpackPool, backpackSlots);
             AddLootFromPool(
                 botId,
-                botLootCacheService.GetLootFromCache(
-                    botGenerationDetails.RoleLowercase,
-                    botGenerationDetails.IsPmc,
-                    LootCacheType.Backpack,
-                    botJsonTemplate,
-                    itemPriceLimits?.Backpack
-                ),
-                [EquipmentSlots.Backpack],
+                backpackPool,
+                backpackSlots,
                 backpackLootCount,
                 botInventory,
                 botGenerationDetails.RoleLowercase,
@@ -317,16 +355,19 @@ public class BotLootGenerator(
         if (containersBotHasAvailable.Contains(EquipmentSlots.TacticalVest))
         // Vest
         {
+            HashSet<EquipmentSlots> vestSlots = [EquipmentSlots.TacticalVest];
+            var vestPool = botLootCacheService.GetLootFromCache(
+                botGenerationDetails.LootCacheKey,
+                botGenerationDetails.IsPmc,
+                LootCacheType.Vest,
+                botJsonTemplate,
+                itemPriceLimits?.Vest
+            );
+            vestLootCount -= TakeGuaranteedLoot(vestPool, vestSlots);
             AddLootFromPool(
                 botId,
-                botLootCacheService.GetLootFromCache(
-                    botGenerationDetails.RoleLowercase,
-                    botGenerationDetails.IsPmc,
-                    LootCacheType.Vest,
-                    botJsonTemplate,
-                    itemPriceLimits?.Vest
-                ),
-                [EquipmentSlots.TacticalVest],
+                vestPool,
+                vestSlots,
                 vestLootCount,
                 botInventory,
                 botGenerationDetails.RoleLowercase,
@@ -341,16 +382,19 @@ public class BotLootGenerator(
             : 0;
 
         // Pockets
+        HashSet<EquipmentSlots> pocketSlots = [EquipmentSlots.Pockets];
+        var pocketPool = botLootCacheService.GetLootFromCache(
+            botGenerationDetails.LootCacheKey,
+            botGenerationDetails.IsPmc,
+            LootCacheType.Pocket,
+            botJsonTemplate,
+            itemPriceLimits?.Pocket
+        );
+        pocketLootCount -= TakeGuaranteedLoot(pocketPool, pocketSlots);
         AddLootFromPool(
             botId,
-            botLootCacheService.GetLootFromCache(
-                botGenerationDetails.RoleLowercase,
-                botGenerationDetails.IsPmc,
-                LootCacheType.Pocket,
-                botJsonTemplate,
-                itemPriceLimits?.Pocket
-            ),
-            [EquipmentSlots.Pockets],
+            pocketPool,
+            pocketSlots,
             pocketLootCount,
             botInventory,
             botGenerationDetails.RoleLowercase,
@@ -367,13 +411,13 @@ public class BotLootGenerator(
             AddLootFromPool(
                 botId,
                 botLootCacheService.GetLootFromCache(
-                    botGenerationDetails.RoleLowercase,
+                    botGenerationDetails.LootCacheKey,
                     botGenerationDetails.IsPmc,
                     LootCacheType.Secure,
                     botJsonTemplate
                 ),
                 [EquipmentSlots.SecuredContainer],
-                50,
+                itemCounts.SecureLoot?.Weights is null ? 50 : weightedRandomHelper.GetWeightedValue(itemCounts.SecureLoot.Weights),
                 botInventory,
                 botGenerationDetails.RoleLowercase,
                 null,
@@ -381,6 +425,58 @@ public class BotLootGenerator(
                 botGenerationDetails.IsPmc
             );
         }
+    }
+
+    /// <summary>
+    ///     Add the configured guaranteed items found in a loot pool, and take every guaranteed item out of the pool so
+    ///     the random picks after it cannot add another
+    /// </summary>
+    /// <param name="botId">Bots unique identifier</param>
+    /// <param name="pool">Loot pool of one category, changed in place</param>
+    /// <param name="equipmentSlots">Containers the category's loot goes into</param>
+    /// <param name="botInventory">Inventory to add the items to</param>
+    /// <param name="botGenerationDetails">Details of the bot being generated</param>
+    /// <param name="guaranteedLoot">Item and percent chance of carrying it, null when the role has none</param>
+    /// <param name="handled">Guaranteed items already rolled by an earlier category</param>
+    /// <returns>Number of items added</returns>
+    protected int AddGuaranteedLoot(
+        MongoId botId,
+        Dictionary<MongoId, double> pool,
+        HashSet<EquipmentSlots> equipmentSlots,
+        BotBaseInventory botInventory,
+        BotGenerationDetails botGenerationDetails,
+        Dictionary<MongoId, double>? guaranteedLoot,
+        HashSet<MongoId> handled
+    )
+    {
+        if (guaranteedLoot is null)
+        {
+            return 0;
+        }
+
+        var added = 0;
+        foreach (var (tpl, chancePercent) in guaranteedLoot)
+        {
+            if (!pool.Remove(tpl) || !handled.Add(tpl) || !randomUtil.GetChance100(chancePercent))
+            {
+                continue;
+            }
+
+            AddLootFromPool(
+                botId,
+                new Dictionary<MongoId, double> { { tpl, 1 } },
+                equipmentSlots,
+                1,
+                botInventory,
+                botGenerationDetails.RoleLowercase,
+                null,
+                0,
+                botGenerationDetails.IsPmc
+            );
+            added++;
+        }
+
+        return added;
     }
 
     protected MinMaxLootItemValue? GetSingleItemLootPriceLimits(int botLevel, bool isPmc)

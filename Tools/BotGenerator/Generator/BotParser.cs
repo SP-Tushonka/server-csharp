@@ -4,6 +4,7 @@ using System.Threading.Channels;
 using Common.Models;
 using Common.Models.Input;
 using Generator;
+using Generator.Helpers;
 using Generator.Helpers.Gear;
 
 namespace Common.Bots;
@@ -18,12 +19,15 @@ public static class BotParser
         var stopwatch = Stopwatch.StartNew();
 
         // Build the list of base bot data
-        var baseBots = new HashSet<GeneratedBot>();
+        var baseBots = new List<GeneratedBot>();
         foreach (var botType in botTypes)
         {
             var typeToAdd = (BotType)Enum.Parse(typeof(BotType), botType);
             baseBots.Add(new GeneratedBot(typeToAdd));
         }
+
+        var variants = RoleVariants.CreateVariants(baseBots.Select(bot => bot.Role));
+        var allBots = baseBots.Concat(variants).ToList();
 
         DiskHelpers.CreateDirIfDoesntExist(dumpPath);
         var botFiles = Directory.GetFiles(dumpPath, "*.json", SearchOption.TopDirectoryOnly);
@@ -35,8 +39,8 @@ public static class BotParser
 
         // Loot weights are reduced after every bot and the first copy of a duplicate wins, so the output depends on merge order.
         // Files are read in parallel and dispatched in file order. Each bot type then applies its bots in that order on its own consumer.
-        var queues = baseBots.ToDictionary(bot => bot.Role, _ => Channel.CreateBounded<List<Datum>>(QueueCapacity));
-        var consumers = baseBots.Select(bot => Task.Run(() => ConsumeBotsAsync(bot, queues[bot.Role]))).ToList();
+        var queues = allBots.ToDictionary(bot => bot.Key, _ => Channel.CreateBounded<List<Datum>>(QueueCapacity));
+        var consumers = allBots.Select(bot => Task.Run(() => ConsumeBotsAsync(bot, queues[bot.Key]))).ToList();
 
         var pending = new Queue<(string FilePath, Task<List<Datum>> Read)>();
         var nextFile = 0;
@@ -67,18 +71,25 @@ public static class BotParser
         await Task.WhenAll(consumers);
 
         // Handle things we can only do once all data has been processed
-        foreach (var bot in baseBots)
+        foreach (var bot in allBots)
         {
             if (bot.BotCount == 0)
                 continue;
 
-            await BaseBotGenerator.AddDifficulties(bot);
+            // Difficulty settings belong to the role, a variant only carries a loadout
+            if (bot.VariantDifficulty is null)
+            {
+                await BaseBotGenerator.AddDifficulties(bot);
+            }
+
             ItemBuildHelpers.SelectBuilds(bot);
             GearChanceHelpers.CalculateModChances(bot);
             GearChanceHelpers.CalculateEquipmentModChances(bot);
             GearChanceHelpers.CalculateEquipmentChances(bot);
             GearChanceHelpers.ApplyModChanceOverrides(bot);
             GearChanceHelpers.ApplyEquipmentChanceOverrides(bot);
+            GenerationCountHelpers.ApplyLearnedWeights(bot);
+            GearHelpers.ReweightRigs(bot);
             GearHelpers.ReduceAmmoWeightValues(bot);
             GearHelpers.ReduceEquipmentWeightValues(bot.Data.BotInventory.Equipment);
             GearHelpers.ReduceWeightValues(bot.Data.BotAppearance.Voice);
@@ -86,6 +97,11 @@ public static class BotParser
             GearHelpers.ReduceWeightValues(bot.Data.BotAppearance.Body);
             GearHelpers.ReduceWeightValues(bot.Data.BotAppearance.Head);
             GearHelpers.ReduceWeightValues(bot.Data.BotAppearance.Hands);
+        }
+
+        foreach (var variant in variants.Where(variant => variant.BotCount > 0))
+        {
+            RoleVariants.MergeInto(baseBots.First(bot => bot.Role == variant.Role), variant);
         }
 
         stopwatch.Stop();
@@ -141,14 +157,14 @@ public static class BotParser
     }
 
     private static async Task<int> DispatchBotFileAsync(
-        Dictionary<BotType, Channel<List<Datum>>> queues,
+        Dictionary<string, Channel<List<Datum>>> queues,
         string filePath,
         List<Datum> botDataList,
         HashSet<string> parsedBotIds
     )
     {
         var dupeCount = 0;
-        var botDataByType = new Dictionary<BotType, List<Datum>>();
+        var botDataByType = new Dictionary<string, List<Datum>>();
 
         foreach (var botData in botDataList)
         {
@@ -167,10 +183,11 @@ public static class BotParser
                     continue;
                 }
 
-                if (!botDataByType.TryGetValue(botType, out var list))
+                var key = RoleVariants.Key(botType, botData.Info.Settings.BotDifficulty);
+                if (!botDataByType.TryGetValue(key, out var list))
                 {
                     list = new List<Datum>();
-                    botDataByType[botType] = list;
+                    botDataByType[key] = list;
                 }
                 list.Add(botData);
             }
@@ -208,6 +225,7 @@ public static class BotParser
                     BotGearGenerator.AddGear(baseBot, botData);
                     BotLootGenerator.AddLoot(baseBot, botData);
                     BotChancesGenerator.AddChances(baseBot, botData);
+                    GenerationCountHelpers.AddCounts(baseBot, botData);
                 }
             }
         }

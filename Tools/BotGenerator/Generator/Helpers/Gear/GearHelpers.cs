@@ -131,6 +131,50 @@ namespace Generator.Helpers.Gear
                     IncrementDictionaryValue(pool, inventoryItem._tpl);
                 }
             }
+
+            var rig = bot.Inventory.items.FirstOrDefault(item => item.parentId == bot.Inventory.equipment && item.slotId == "TacticalVest");
+            if (rig is not null && bot.Inventory.items.Any(item => item.parentId == bot.Inventory.equipment && item.slotId == "ArmorVest"))
+            {
+                IncrementDictionaryValue(botToUpdate.RigsWornWithArmor, rig._tpl);
+            }
+        }
+
+        /// <summary>
+        ///     Reweight rigs so plain rigs keep the share unarmored bots give them. Armor wearers can only roll plain rigs,
+        ///     so counting them alongside the rest overweights plain rigs for bots without armor.
+        /// </summary>
+        /// <param name="bot">Bot type being generated</param>
+        public static void ReweightRigs(GeneratedBot bot)
+        {
+            var pool = bot.Data.BotInventory.Equipment[EquipmentSlots.TacticalVest];
+            var withArmor = bot.RigsWornWithArmor.Values.Sum();
+            var plainWithoutArmor = pool
+                .Where(rig => !IsArmoredRig(rig.Key))
+                .Sum(rig => rig.Value - bot.RigsWornWithArmor.GetValueOrDefault(rig.Key));
+            if (withArmor == 0 || plainWithoutArmor == 0)
+            {
+                return;
+            }
+
+            // Scaled up so ReduceWeightValues keeps the fractions
+            var plainScale = 100 * plainWithoutArmor / (plainWithoutArmor + withArmor);
+            foreach (var rig in pool.Keys.ToList())
+            {
+                pool[rig] = IsArmoredRig(rig)
+                    ? 100 * (pool[rig] - bot.RigsWornWithArmor.GetValueOrDefault(rig))
+                    : Math.Round(pool[rig] * plainScale);
+            }
+
+            foreach (var rig in pool.Where(rig => rig.Value <= 0).Select(rig => rig.Key).ToList())
+            {
+                pool.Remove(rig);
+            }
+        }
+
+        // The server treats rigs with slots as armored
+        private static bool IsArmoredRig(MongoId tpl)
+        {
+            return ItemTemplateHelper.Items.GetValueOrDefault(tpl)?.Properties?.Slots?.Any() == true;
         }
 
         public static void IncrementDictionaryValue(Dictionary<MongoId, double> dictToIncrement, MongoId key)

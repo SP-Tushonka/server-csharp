@@ -2355,105 +2355,69 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1,
-          "3": 1,
-          "4": 0,
-          "5": 0
+          "0": 424
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 1
+          "1": 424
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 1,
-          "1": 2,
-          "2": 0
+          "1": 424
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 424
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 10,
-          "1": 5,
-          "2": 2
+          "0": 424
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 20,
-          "1": 5,
-          "2": 1
+          "0": 364,
+          "1": 60
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 2,
-          "1": 1,
-          "2": 0
+          "1": 269,
+          "2": 155
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 1,
-          "5": 1,
-          "6": 1,
-          "7": 0
+          "0": 424
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 1,
-          "1": 6,
-          "2": 3,
-          "3": 1,
-          "4": 1
+          "0": 424
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 1,
-          "1": 1,
-          "2": 2,
-          "3": 1,
-          "4": 0,
-          "5": 0,
-          "6": 0
+          "0": 424
         },
         "whitelist": {}
       },
       "magazines": {
         "weights": {
-          "0": 0,
-          "1": 0,
-          "2": 1,
-          "3": 3,
-          "4": 1
+          "2": 424
         },
         "whitelist": {}
       },
@@ -2463,6 +2427,49 @@
           "1": 0
         },
         "whitelist": {}
+      },
+      "secureLoot": {
+        "weights": {
+          "5": 202,
+          "6": 222
+        },
+        "whitelist": {}
+      },
+      "secureAmmoStacks": {
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "10": 424
+          },
+          "whitelist": {}
+        }
+      },
+      "chamberedRounds": {
+        "FirstPrimaryWeapon": {
+          "weights": {
+            "0": 329,
+            "1": 95
+          },
+          "whitelist": {}
+        }
+      },
+      "placement": {
+        "currency": {
+          "Pockets": 60
+        },
+        "drugs": {
+          "Pockets": 424
+        },
+        "FirstPrimaryWeapon": {
+          "TacticalVest": 602,
+          "Pockets": 246
+        },
+        "healing": {
+          "Pockets": 424
+        },
+        "stims": {
+          "Pockets": 424,
+          "TacticalVest": 155
+        }
       }
     }
   },
@@ -2557,12 +2564,12 @@
       },
       "ArmBand": {},
       "TacticalVest": {
-        "6a565b5f9ec10bc6e30cdf46": 138,
-        "6a7c8531bcddc78fbd0f04c1": 115,
-        "6a5629dfbd83cb160606681c": 59,
-        "6a7c85022369e59dd307130c": 29,
-        "6a7c855ba20fcf832f01ff78": 56,
-        "6a7c845c1fa6226c17096359": 27
+        "6a565b5f9ec10bc6e30cdf46": 4793,
+        "6a7c8531bcddc78fbd0f04c1": 11500,
+        "6a5629dfbd83cb160606681c": 5900,
+        "6a7c85022369e59dd307130c": 1007,
+        "6a7c855ba20fcf832f01ff78": 5600,
+        "6a7c845c1fa6226c17096359": 2700
       },
       "Backpack": {},
       "FirstPrimaryWeapon": {
