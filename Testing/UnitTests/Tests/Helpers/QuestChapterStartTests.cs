@@ -247,11 +247,39 @@ public class QuestChapterStartTests
         }
     }
 
-    [TestCase(QuestStatusEnum.Started, "69b2c6beb8ae58006c084f73", "69b41843dc22acbf90051e3f")]
-    [TestCase(QuestStatusEnum.Fail, "69b41843dc22acbf90051e3f", "69b2c6beb8ae58006c084f73")]
-    public void GetClientQuests_BoreasAlternativeTransportDone_StartsTheBtrBranch(QuestStatusEnum helper, string started, string skipped)
+    [TestCase(1, "69b052349776545e5a02076a")]
+    [TestCase(2, "69b1ba3074141c146c03f9af")]
+    public void GetClientQuests_BoreasReserveOrFiltersDone_StartsTheFluidTask(int choice, string branchTask)
     {
-        // The hidden helper fails once The Price of Independence is done, which moves the BTR driver's job
+        var fluidTask = new MongoId("69f051ae0a5238af8b00e11c");
+        var sessionId = AddProfile(
+            new MongoId("69a05d3ae6778aebac085ca5"),
+            new MongoId("69a9bc08babf5c053607fef7"),
+            new MongoId("69aaecdf174ff467ef0acc38"),
+            new MongoId("69aafbfa47e01d12cc087d0f"),
+            new MongoId(branchTask)
+        );
+        AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Started);
+        AddQuest(sessionId, new MongoId("69b04c7ff4183ed66406e50c"), QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Variables![new MongoId("69b297fd9fd8730942edc1f7")] = choice;
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.Quests!.Single(q => q.QId == fluidTask).Status, Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [TestCase(QuestStatusEnum.Started, QuestStatusEnum.Started, "69b2c6beb8ae58006c084f73")]
+    [TestCase(QuestStatusEnum.Fail, QuestStatusEnum.Started, "69b41843dc22acbf90051e3f")]
+    [TestCase(QuestStatusEnum.Started, QuestStatusEnum.Fail, "69b3e0d4eeea23ab5601d62d")]
+    public void GetClientQuests_BoreasAlternativeTransportDone_StartsTheBranchOfTheSideTaken(
+        QuestStatusEnum btrHelper,
+        QuestStatusEnum skierHelper,
+        string started
+    )
+    {
+        // Each hidden helper fails once its side's quest is done, The Price of Independence or Choose Your Friends Wisely
+        string[] branches = ["69b41843dc22acbf90051e3f", "69b2c6beb8ae58006c084f73", "69b3e0d4eeea23ab5601d62d"];
         var sessionId = AddProfile(
             new MongoId("69a05d3ae6778aebac085ca5"),
             new MongoId("69a9bc08babf5c053607fef7"),
@@ -260,7 +288,8 @@ public class QuestChapterStartTests
             new MongoId("69b04c7ff4183ed66406e50c")
         );
         AddQuest(sessionId, new MongoId("69d38381cea4b428690ea1d9"), QuestStatusEnum.Started);
-        AddQuest(sessionId, new MongoId("69fb04933bca906c71052ddc"), helper);
+        AddQuest(sessionId, new MongoId("69fb04933bca906c71052ddc"), btrHelper);
+        AddQuest(sessionId, new MongoId("69eb680847f27502e600de57"), skierHelper);
         var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
         pmc.TradersInfo![new MongoId("656f0f98d80a697f855d34b1")] = new TraderInfo
         {
@@ -272,7 +301,10 @@ public class QuestChapterStartTests
         _questHelper.GetClientQuests(sessionId);
 
         Assert.That(pmc.Quests!.Single(q => q.QId == new MongoId(started)).Status, Is.EqualTo(QuestStatusEnum.Started), "started");
-        Assert.That(pmc.Quests!.Any(q => q.QId == new MongoId(skipped)), Is.False, "skipped");
+        foreach (var task in branches.Where(task => task != started))
+        {
+            Assert.That(pmc.Quests!.Any(q => q.QId == new MongoId(task)), Is.False, task);
+        }
     }
 
     [TestCase(3600, false)]
@@ -455,15 +487,32 @@ public class QuestChapterStartTests
     [Test]
     public void GetClientQuests_HiddenGate_OpensAtTheTraderLoyalty()
     {
-        var mechanicQuest = new MongoId("68dbf539675bd8efd403ec10");
+        var greenCorridor = new MongoId("639136d68ba6894d155e77cf");
         var sessionId = AddProfile();
-        var mechanic = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.TradersInfo![Traders.MECHANIC];
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Info!.Side = "Bear";
 
-        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == mechanicQuest), Is.False, "loyalty 1");
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == greenCorridor), Is.False, "loyalty 1");
 
-        mechanic.LoyaltyLevel = 4;
+        pmc.TradersInfo![Traders.PRAPOR].LoyaltyLevel = 2;
 
-        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == mechanicQuest), Is.True, "loyalty 4");
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == greenCorridor), Is.True, "loyalty 2");
+    }
+
+    [Test]
+    public void GetClientQuests_ArmoredCaseCraftQuest_OpensOnlyAfterMechanicsDialogue()
+    {
+        // Mechanic's dialogue reply sets 68dc0062 and accepts the quest, which unlocks the Armored case craft
+        var craftQuest = new MongoId("68dbf539675bd8efd403ec10");
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.TradersInfo![Traders.MECHANIC].LoyaltyLevel = 4;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == craftQuest), Is.False, "before the dialogue");
+
+        pmc.Variables![new MongoId("68dc00620fae9d3ed5ae617e")] = 1;
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == craftQuest), Is.True, "after the dialogue");
     }
 
     [Test]

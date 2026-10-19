@@ -99,7 +99,8 @@
     "625d6fff4149f1149b5b12c9",
     "625d7001c4874104f230c0c5",
     "625d70031ed3bb5bcc5bd9e5",
-    "625d7005a4eb80027c4f2e09"
+    "625d7005a4eb80027c4f2e09",
+    "6a91840a740be0cff50e0310"
   ],
   "hiddenVariableGates": {
     "6902443b0d98240ccf07e8b4": { "target": "69094225d8145bc52f99ca4f", "value": 4 },
@@ -117,12 +118,16 @@
     "67af4c1d8c9482eca103e477": { "quests": ["67af4c1cc0e59d55e2010b97"] },
     "6864fcef9809a149400dd2ee": { "quests": ["686404d348e7bb4146002cac"] },
     "639136d68ba6894d155e77cf": { "trader": "54cb50c76803fa8b248b4571", "loyalty": 2 },
-    "68dbf539675bd8efd403ec10": { "trader": "5a7c2eca46aef81a7ca2145d", "loyalty": 4 },
+    "68dbf539675bd8efd403ec10": { "target": "68dc00620fae9d3ed5ae617e", "value": 1 },
     "69b052349776545e5a02076a": { "target": "69b297fd9fd8730942edc1f7", "value": 1, "exact": true },
     "69b1ba3074141c146c03f9af": { "target": "69b297fd9fd8730942edc1f7", "value": 2, "exact": true },
     "69b2b0cc0a7db6b331031267": { "target": "69b297fd9fd8730942edc1f7", "value": 3, "exact": true },
     "69b41843dc22acbf90051e3f": { "quests": ["69b04c7ff4183ed66406e50c"], "failed": ["69fb04933bca906c71052ddc"] },
-    "69b2c6beb8ae58006c084f73": { "quests": ["69b04c7ff4183ed66406e50c"], "notFailed": ["69fb04933bca906c71052ddc"] },
+    "69b2c6beb8ae58006c084f73": {
+      "quests": ["69b04c7ff4183ed66406e50c"],
+      "notFailed": ["69fb04933bca906c71052ddc", "69eb680847f27502e600de57"]
+    },
+    "69b3e0d4eeea23ab5601d62d": { "quests": ["69b04c7ff4183ed66406e50c"], "failed": ["69eb680847f27502e600de57"] },
     "673f629c5b555b53460cf827": { "quests": ["6745fcded0fbbc74ca0f721d"], "delay": 15 },
     "6745fae369a58fceba10343d": { "quests": ["6745fcded0fbbc74ca0f721d"], "delay": 43200 },
     "674600a366e6a521aa05eb66": { "quests": ["6745fae369a58fceba10343d"], "delay": 21600 },
@@ -132,6 +137,7 @@
     "6744ab1def61d56e020b5c56": { "quests": ["6744a728352b4da8e003eda9"] },
     "67a0970744893b9f3f0d9b68": { "quests": ["67a096577e86e067eb045733"] },
     "63966faeea19ac7ed845db2c": { "anyQuests": ["6a88255e8636c03a2d09ba37", "625d7005a4eb80027c4f2e09"] },
+    "63966fbeea19ac7ed845db2e": { "quests": ["63966faeea19ac7ed845db2c"], "delay": 36000 },
     "68fc085738c4a9e0060bddfc": { "quests": ["625d700cc48e6c62a440fab5"] },
     "68fc085cef27fb1d220085d7": { "quests": ["625d700cc48e6c62a440fab5"] },
     "68f2e2738926b2d0ec025b8e": { "quests": ["625d700cc48e6c62a440fab5"] },

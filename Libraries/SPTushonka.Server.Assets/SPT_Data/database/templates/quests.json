@@ -101421,7 +101421,7 @@
         "66aa5bb281dff8466b076894": "Individua il passaggio che conduce a Streets of Tarkov da Ground Zero (in un'incursione)",
         "66aa5be8035c6a410dc570b2": "Utilizza il transito da Ground Zero a Streets of Tarkov (in un'incursione)",
         "66aa5c88c085db7d8158db4a": "Esplora la strada su Primorsky Ave a Streets of Tarkov (in un'incursione)",
-        "66aa5c8ba8c36eaef492ef92": "Sopravvivi ed esci da Streets of Tarkov (o spostati in un’altra località)",
+        "66aa5c8ba8c36eaef492ef92": "Sopravvivi ed estrai da Streets of Tarkov (o spostati in un’altra località)",
         "66b0e57eddc25d8d17e3e3c0": "Esplora l'area intorno al cinema Rodina a Streets of Tarkov (in un'incursione)",
         "66aa58245ab22944110db6e9 acceptPlayerMessage": "",
         "66aa58245ab22944110db6e9 declinePlayerMessage": "",
@@ -357593,12 +357593,12 @@
           "type": "TraderStanding",
           "target": "638f541a29ffd1183d187f57",
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "isHidden": false,
           "isImportant": false
         },
@@ -357620,12 +357620,12 @@
           "isEncoded": false,
           "unknown": true,
           "findInRaid": true,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "illustrationConfig": {
             "image": "",
             "bigImage": "",
@@ -357648,12 +357648,12 @@
           "loyaltyLevel": 4,
           "traderId": "5a7c2eca46aef81a7ca2145d",
           "unknown": true,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "isHidden": false,
           "isImportant": false
         }
@@ -357785,13 +357785,13 @@
         "63966fbeea19ac7ed845db2e failMessageText": "",
         "63966fbeea19ac7ed845db2e successMessageText": "Sembra che le voci siano state confermate dopo tutto. Qualcuno ha davvero osato iniziare a indebolirmi. Questi serpenti si incontreranno alla vecchia base della Federal Reserve, per scambiarsi informazioni. Torna più tardi, mentre cerco di capire cosa fare.",
         "63966fbeea19ac7ed845db2e whileAvailableMessageText": "",
-        "639909041c712b1e1d4dafca": "Trova il nascondiglio dell'informatore a Streets of Tarkov",
+        "639909041c712b1e1d4dafca": "Individua il nascondiglio dell'informatore a Streets of Tarkov",
         "63990952e101160ce056d655": "Ottieni la chiave del secondo nascondiglio",
-        "6399099ce301557ae24cedcf": "Trova il secondo nascondiglio",
+        "6399099ce301557ae24cedcf": "Individua il secondo nascondiglio",
         "63990a1ddcdd126fef1771c1": "Ottieni il diario dell'informatore",
         "63990ae2dcdd126fef1771c2": "Porta le informazioni a Lightkeeper",
-        "63a7ce31cc389e31a64596d8": "Trova il nascondiglio dell'informatore a Streets of Tarkov",
-        "63a7cee004d3dc28a52a20f8": "Localizza il nascondiglio di riserva dell'informatore a Streets of Tarkov",
+        "63a7ce31cc389e31a64596d8": "Individua il nascondiglio dell'informatore a Streets of Tarkov",
+        "63a7cee004d3dc28a52a20f8": "Individua il nascondiglio di riserva dell'informatore a Streets of Tarkov",
         "63abf37987413d64ae0ac215": "Ottieni la chiave del secondo rifugio",
         "63966fbeea19ac7ed845db2e acceptPlayerMessage": "",
         "63966fbeea19ac7ed845db2e declinePlayerMessage": "",
@@ -357816,22 +357816,22 @@
         "63966fbeea19ac7ed845db2e completePlayerMessage": "俺が到着したときには、情報屋はもう死んでいた。彼は重要な事を全てダイアリーに記していたみたいだ。これだ。"
       },
       "kr": {
-        "63966fbeea19ac7ed845db2e name": "Missing Informant",
-        "63966fbeea19ac7ed845db2e description": "The informant set up a meeting near the car dealership, at a hidden spot? So why the hell are you still here? If he gets busted while you're still here, look for a hidden hideout, a spare key for it must be somewhere in there too. Find everything he's dug up. Don't let me down.",
+        "63966fbeea19ac7ed845db2e name": "실종된 정보원",
+        "63966fbeea19ac7ed845db2e description": "[실종된 정보원 (Missing Informant)]\n정보원이 자동차 대리점 근처의 비밀 장소에서 만나자고 약속을 잡았는가? 그런데 왜 자네는 아직도 여기서 이러고 있는 건가? 자네가 이러는 동안 그 녀석이 덜미라도 잡히게 됐다면, 그 녀석의 비밀 아지트를 찾아내고 거기 있을 예비 열쇠도 확보하게. 그 녀석이 파헤쳐 둔 정보는 하나도 빠짐없이 싹 다 찾아오게. 날 실망시키지 말게.",
         "63966fbeea19ac7ed845db2e failMessageText": "",
-        "63966fbeea19ac7ed845db2e successMessageText": "It looks like the rumors have been confirmed after all. Someone really dared to start undermining me. These snakes are going to meet at the old federal reserve base, to transfer information. Come back later, while I figure out what to do about it.",
+        "63966fbeea19ac7ed845db2e successMessageText": "[실종된 정보원 (Missing Informant), 성공]\n결국 소문이 사실로 확인되었군. 감히 날 모함하려는 놈이 진짜로 있을 줄이야. 이 뱀새끼들이 정보를 거래하기 위해서 구 연방 비축 기지에서 만날 예정일세. 내가 어떻게 처리할지 고심하는 동안 나중에 다시 찾아오게나.",
         "63966fbeea19ac7ed845db2e whileAvailableMessageText": "",
-        "639909041c712b1e1d4dafca": "Locate the informant's hideout on Streets of Tarkov",
-        "63990952e101160ce056d655": "Obtain the key to the second hideout",
-        "6399099ce301557ae24cedcf": "Locate the second hideout",
-        "63990a1ddcdd126fef1771c1": "Obtain the informant's journal",
-        "63990ae2dcdd126fef1771c2": "Bring the information to Lightkeeper",
-        "63a7ce31cc389e31a64596d8": "Locate the informant's hideout on Streets of Tarkov",
-        "63a7cee004d3dc28a52a20f8": "Locate the informant's backup hideout on Streets of Tarkov",
-        "63abf37987413d64ae0ac215": "Obtain the key to the second hideout",
+        "639909041c712b1e1d4dafca": "타르코프 시내(Streets of Tarkov)에서 정보원의 은신처 발견하기",
+        "63990952e101160ce056d655": "두 번째 은신처 열쇠 획득하기",
+        "6399099ce301557ae24cedcf": "두 번째 은신처 발견하기",
+        "63990a1ddcdd126fef1771c1": "정보원의 일기장 획득하기",
+        "63990ae2dcdd126fef1771c2": "등대지기에게 일기장 건네주기",
+        "63a7ce31cc389e31a64596d8": "타르코프 시내(Streets of Tarkov)에서 정보원의 은신처 발견하기",
+        "63a7cee004d3dc28a52a20f8": "타르코프 시내(Streets of Tarkov)에서 정보원의 예비 은신처 발견하기",
+        "63abf37987413d64ae0ac215": "두 번째 은신처 열쇠 획득하기",
         "63966fbeea19ac7ed845db2e acceptPlayerMessage": "",
         "63966fbeea19ac7ed845db2e declinePlayerMessage": "",
-        "63966fbeea19ac7ed845db2e completePlayerMessage": "The informant was already dead when I arrived. It seems he kept all the important details in his diary. Here you go."
+        "63966fbeea19ac7ed845db2e completePlayerMessage": "내가 도착했을 때 정보원은 이미 죽어 있었다. 이 일기장에 모든 내용이 담겨있는 것 같은데, 한번 확인해봐라."
       },
       "pl": {
         "63966fbeea19ac7ed845db2e name": "Zaginiony informator",
@@ -407813,12 +407813,12 @@
         "6744af0969a58fceba101fed successMessageText": "Merda! Ce l'hai fatta! Sei l'unico che mi ha difeso. La cosa più importante è che abbiamo già preparato il palco.\n\nNon sarà facile, ma Prapor ha promesso di aiutarci e anche la lettera dovrebbe funzionare. Non dimenticherò tutto l'aiuto che mi hai dato. Passa spesso a trovarmi, amico.",
         "6744af0969a58fceba101fed whileAvailableMessageText": "Non ha funzionato amico. Skier ha intercettato quella dannata lettera. Ma ci eravamo quasi, così vicino vero? Nessuno ne sapeva niente!\n\nSuppongo di non potermi ancora staccare da Skier.",
         "6745c8ccb4adeab3910332cc": "Individua e ottieni la lettera incriminata a Customs",
-        "6745c8de22c7ee46e3319c34": "Nascondi la lettera al terzo piano del quartier generale militare su Reserve",
+        "6745c8de22c7ee46e3319c34": "Nascondi la lettera al terzo piano del quartier generale militare a Reserve",
         "6745c8ee54d6972417ad7bad": "Utilizza il transito da Customs a Reserve",
         "6745c90842db81af412eae97": "Utilizza il transito da Reserve a Woods",
         "6745c9482ac6bee79dca869a": "Eliminare qualsiasi obiettivo a Woods",
         "6745c9623d362cd373b1de93": "Utilizza il transito da Woods a Lighthouse",
-        "6745c986a3e10e0bf6472d8e": "Spara un razzo di segnalazione giallo al magazzino della stazione ferroviaria su Lightohouse",
+        "6745c986a3e10e0bf6472d8e": "Spara un razzo di segnalazione giallo al magazzino della stazione ferroviaria a Lightohouse",
         "6745c992bf76b3aeaf6370e0": "Spara un razzo di segnalazione giallo sul molo di Lighthouse",
         "6745c9a86086867a2c723e9d": "Sopravvivi ed estrai da Lighthouse",
         "6745c9b89c84a273d4a2dc28": "Elimina gli Scav mentre stai completando altri obiettivi",
@@ -437771,12 +437771,12 @@
           "id": "675842a05d621a41119b6566",
           "type": "Experience",
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "illustrationConfig": {
             "image": "",
             "bigImage": "",
@@ -437802,12 +437802,12 @@
           "isEncoded": false,
           "unknown": false,
           "findInRaid": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "isHidden": false,
           "isImportant": false,
           "isDeliverByMail": true
@@ -437830,12 +437830,12 @@
           "isEncoded": false,
           "unknown": false,
           "findInRaid": true,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "isHidden": false,
           "isImportant": false,
           "isDeliverByMail": true
@@ -437845,12 +437845,12 @@
           "type": "Achievement",
           "target": "675709bef4e2a2ce0f058f56",
           "unknown": false,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "isHidden": false,
           "isImportant": false
         },
@@ -437860,12 +437860,12 @@
           "type": "TraderStanding",
           "target": "656f0f98d80a697f855d34b1",
           "unknown": true,
-          "gameMode": [],
-          "availableInGameEditions": [
+          "gameMode": [
             "regular",
             "pve",
             "pvp-season"
           ],
+          "availableInGameEditions": [],
           "illustrationConfig": {
             "image": "",
             "bigImage": "",
@@ -490122,6 +490122,374 @@
     "notDisplayedQuest": false,
     "notes": {
       "Started": null,
+      "Success": null,
+      "Fail": null
+    },
+    "rewardsInfo": [],
+    "tierAccessory": 0
+  },
+  "69b3e0d4eeea23ab5601d62d": {
+    "_id": "69b3e0d4eeea23ab5601d62d",
+    "canShowNotificationsInGame": true,
+    "conditions": {
+      "AvailableForFinish": [
+        {
+          "id": "69b3faad6b0fa6f350b802dc",
+          "index": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "visibilityConditions": [],
+          "parentId": "69b3e98e47daa772698ad922",
+          "target": [
+            "5e023d34e8a400319a28ed44"
+          ],
+          "value": 200,
+          "onlyFoundInRaid": false,
+          "dogtagLevel": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "countInRaid": false,
+          "isEncoded": false,
+          "conditionType": "FindItem",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "69b3e98e47daa772698ad922"
+          },
+          "includeEquipment": true
+        },
+        {
+          "id": "69b3e98e47daa772698ad922",
+          "index": 1,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "visibilityConditions": [],
+          "parentId": "",
+          "target": [
+            "5e023d34e8a400319a28ed44"
+          ],
+          "value": 200,
+          "onlyFoundInRaid": false,
+          "dogtagLevel": 0,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "isEncoded": false,
+          "conditionType": "HandoverItem",
+          "props": {
+            "index": 1,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": ""
+          },
+          "includeEquipment": true
+        }
+      ],
+      "AvailableForStart": [],
+      "Fail": [],
+      "AutoStart": []
+    },
+    "description": "69b3e0d4eeea23ab5601d62d description",
+    "failMessageText": "69b3e0d4eeea23ab5601d62d failMessageText",
+    "name": "69b3e0d4eeea23ab5601d62d name",
+    "note": "69b3e0d4eeea23ab5601d62d note",
+    "traderId": "656f0f98d80a697f855d34b1",
+    "location": "any",
+    "image": "/files/quest/icon/default.jpg",
+    "type": "Completion",
+    "isStoryQuest": true,
+    "isKey": false,
+    "restartable": false,
+    "instantComplete": true,
+    "secretQuest": false,
+    "startedMessageText": "69b3e0d4eeea23ab5601d62d startedMessageText",
+    "successMessageText": "69b3e0d4eeea23ab5601d62d successMessageText",
+    "acceptPlayerMessage": "69b3e0d4eeea23ab5601d62d acceptPlayerMessage",
+    "acceptanceAndFinishingSource": "eft",
+    "declinePlayerMessage": "69b3e0d4eeea23ab5601d62d declinePlayerMessage",
+    "completePlayerMessage": "69b3e0d4eeea23ab5601d62d completePlayerMessage",
+    "rewards": {
+      "Started": [],
+      "Success": [],
+      "Fail": []
+    },
+    "status": 0,
+    "changeQuestMessageText": "69b3e0d4eeea23ab5601d62d changeQuestMessageText",
+    "side": "Pmc",
+    "progressSource": "eft",
+    "rankingModes": [],
+    "gameModes": [],
+    "arenaLocations": [],
+    "dialogueId": "69b3fe4dc6032411c6d6d4ce",
+    "icon": "",
+    "inBufferZoneOnly": false,
+    "localization": {
+      "ch": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "上交 7.62x54R 7BT1 弹药给 BTR 司机",
+        "69b3faad6b0fa6f350b802dc": "获取 7.62x54R 7BT1 弹药",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "先前 BTR 司机和 Skier 翻脸的时候，我站在了 Skier 那边，看样子这家伙一直记仇记到现在。据他所说，从那时候开始，他的日子是一天比一天难过。\n\n如果我能帮他重回正轨，也许就能让他帮我安排上船的法子。\n\n他说自己的装甲车连机枪备弹都不够打了。所以我得先替他弄点合适型号的弹药来。"
+      },
+      "cz": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Předat munici 7.62x54mm R BT gzh řidičovi BTR",
+        "69b3faad6b0fa6f350b802dc": "Získat munici 7.62x54mm R BT gzh",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "Řidič BTR je pořád nasraný, že jsem se během jeho konfliktu se Skierem postavil na Skierovu stranu. Soudě podle toho, co říkal, se pro něj od té doby věci dost zhoršily.\n\nMožná, když mu pomůžu postavit se zase na nohy, budu mít šanci zajistit si pořádný transport k ledoborci.\n\nŘíkal, že má teď dokonce nouzi o munici. Takže mu nejdřív musím přinést vhodnou munici."
+      },
+      "en": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "fr": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "ge": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "hu": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "it": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Consegna le munizioni 7.62x54mm R BT gzh all'autista del BTR",
+        "69b3faad6b0fa6f350b802dc": "Ottieni munizioni 7.62x54mm R BT gzh",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "L'autista del BTR è ancora arrabbiato perché mi sono schierato con Skier durante il suo conflitto con lui. A giudicare da quello che ha detto, da allora le cose per lui sono peggiorate notevolmente.\n\nForse, se lo aiuto a rimettersi in sesto, avrò la possibilità di assicurarmi un mezzo di trasporto adeguato per raggiungere la nave rompighiaccio.\n\nHa detto che al momento ha persino difficoltà a procurarsi le munizioni. Quindi, per prima cosa, devo portargli delle munizioni adatte."
+      },
+      "jp": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "kr": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "BTR 조종수에게 [7.62x54mm R BT gzh] 탄약 건네주기",
+        "69b3faad6b0fa6f350b802dc": "[7.62x54mm R BT gzh] 탄약 획득하기",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "BTR 조종수는 내가 스키어의 편에 선 것에 대해 아직도 화가 나 있다. 그가 나한테 투덜대는 것을 보아하니, 그 후로 그에게 안 좋은 일들이 많이 일어났던 것으로 보인다.\n\n만약 내가 다시 일어설 수 있게 도와준다면 쇄빙선으로 갈 수 있는 운송 수단을 구할 기회가 생길지도 모르겠다.\n\n지금 당장은 쓸 총알조차 부족해서 고생이라고 하니, 우선은 그의 장단에 맞춰줄 총알부터 가져다 줘야겠다."
+      },
+      "pl": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "po": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Entregue munição 7.62x54mm R BT gzh para o BTR Driver",
+        "69b3faad6b0fa6f350b802dc": "Obtenha munição 7.62x54mm R BT gzh",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "O motorista do BTR ainda está irritado porque fiquei do lado de Skier durante o conflito entre eles. A julgar pelo que ele disse, as coisas pioraram muito para ele desde então. \n\nTalvez se eu o ajudar a se recuperar, terei a chance de garantir transporte adequado para o quebra-gelo. \n\nEle disse que está até tendo dificuldades com munição agora. Por isso, primeiro preciso trazer munição adequada para ele."
+      },
+      "sk": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "es": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Entrega Cartuchos de 7,62x54 mm R - BT gzh al Conductor del BTR",
+        "69b3faad6b0fa6f350b802dc": "Obtén Cartuchos de 7,62x54 mm R - BT gzh",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "El Conductor del BTR sigue cabreado porque me puse del lado de Skier durante el conflicto entre ambos. Por lo que ha dicho, las cosas le han ido mucho peor desde entonces.\n\nTal vez, si lo ayudo a recuperarse, tenga la oportunidad de asegurar un transporte adecuado hasta el rompehielos.\n\nDijo que ahora hasta tiene problemas para conseguir municiones. Así que, primero, tengo que llevarle municiones que le sirvan."
+      },
+      "es-mx": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Entrega Cartuchos de 7.62x54 mm R - BT gzh al Conductor del BTR",
+        "69b3faad6b0fa6f350b802dc": "Obtén Cartuchos de 7.62x54 mm R - BT gzh",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "El Conductor del BTR sigue resentido porque me puse del lado de Skier durante su conflicto con él. Por lo que dijo, las cosas le han ido mucho peor desde entonces.\n\nTal vez, si lo ayudo a recuperarse, tenga la oportunidad de asegurar un transporte adecuado hasta el rompehielos.\n\nDijo que ahora hasta tiene problemas para conseguir municiones. Así que, primero, tengo que llevarle municiones que le sirvan."
+      },
+      "tu": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "ru": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Передать водителю БТР патроны 7.62х54мм R  БТ гж",
+        "69b3faad6b0fa6f350b802dc": "Найти патроны 7.62x54мм R БТ гж",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "Мехвод БТРа всё ещё бесится от того, что в конфликте между ним и Лыжником я занял сторону торговца. Судя по словам водилы, с тех пор его его положение сильно ухудшилось. \n\nВозможно, если я помогу ему поправить дела, то у меня появится шанс получить нормальный транспорт на ледокол.\n\nМехвод сказал, что у него сейчас проблемы даже с боезапасом. Так что первым делом нужно притащить ему подходящих патронов."
+      },
+      "ro": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "vi": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "in": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      },
+      "th": {
+        "69b3e0d4eeea23ab5601d62d name": "",
+        "69b3e0d4eeea23ab5601d62d description": "",
+        "69b3e0d4eeea23ab5601d62d failMessageText": "",
+        "69b3e0d4eeea23ab5601d62d successMessageText": "",
+        "69b3e0d4eeea23ab5601d62d whileAvailableMessageText": "",
+        "69b3e98e47daa772698ad922": "Hand over 7.62x54mm R BT gzh ammo to the BTR driver",
+        "69b3faad6b0fa6f350b802dc": "Obtain 7.62x54mm R BT gzh ammo",
+        "69b3e0d4eeea23ab5601d62d acceptPlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d declinePlayerMessage": "",
+        "69b3e0d4eeea23ab5601d62d completePlayerMessage": "",
+        "69e6bd702517f242e00afc9f questNoteText": "The BTR driver is still pissed that I sided with Skier during his conflict with him. Judging by what he said, things have gotten much worse for him since then.\n\nMaybe if I help him get back on his feet, I’ll have a chance to secure proper transport to the icebreaker.\n\nHe said he’s even struggling with ammunition right now. So first, I need to bring him suitable ammo."
+      }
+    },
+    "notDisplayedQuest": false,
+    "notes": {
+      "Started": "69e6bd702517f242e00afc9f",
       "Success": null,
       "Fail": null
     },
