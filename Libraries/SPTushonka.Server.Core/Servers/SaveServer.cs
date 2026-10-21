@@ -39,6 +39,9 @@ public sealed class SaveServer(
     /// </summary>
     public async Task LoadAsync(CancellationToken cancellationToken = default)
     {
+        new LocalModeProfileJournal().Recover();
+        new LocalModeAccountDeletion().Recover();
+
         // get files to load
         if (!fileUtil.DirectoryExists(profileFilepath))
         {
@@ -108,6 +111,73 @@ public sealed class SaveServer(
         }
 
         return sptProfile;
+    }
+
+    private string SerializeForLocalTransaction(MongoId id) =>
+        jsonUtil.Serialize(profiles[id], !coreConfig.Features.CompressProfile)
+            ?? throw new InvalidOperationException("Could not serialize local transaction profile");
+
+    private void RestoreLocalTransactionProfile(MongoId id, string json) =>
+        profiles[id] = jsonUtil.Deserialize<SptProfile>(json)
+            ?? throw new InvalidOperationException("Could not restore local transaction profile");
+
+    public async Task<LocalProfileTransaction> BeginLocalProfileTransactionAsync(IEnumerable<MongoId> ids, CancellationToken cancellationToken = default)
+    {
+        var ordered = ids.Distinct().OrderBy(id => id.ToString(), StringComparer.Ordinal).ToArray();
+        var held = new List<SemaphoreSlim>();
+        try
+        {
+            foreach (var id in ordered)
+            {
+                var gate = saveLocks.GetOrAdd(id, _ => new SemaphoreSlim(1, 1));
+                await gate.WaitAsync(cancellationToken);
+                held.Add(gate);
+            }
+            return new LocalProfileTransaction(this, ordered, held);
+        }
+        catch { foreach (var gate in held) gate.Release(); throw; }
+    }
+
+    public sealed class LocalProfileTransaction : IAsyncDisposable
+    {
+        private readonly SaveServer owner;
+        private readonly MongoId[] ids;
+        private readonly List<SemaphoreSlim> held;
+        private readonly LocalModeProfileJournal journal = new();
+        private readonly LocalModeProfileJournal.Handle handle;
+        private bool finished;
+        internal LocalProfileTransaction(SaveServer owner, MongoId[] ids, List<SemaphoreSlim> held)
+        {
+            this.owner = owner; this.ids = ids; this.held = held;
+            handle = journal.Begin(Snapshot());
+        }
+        private Dictionary<string, string> Snapshot() => ids.ToDictionary(id => id.ToString(), owner.SerializeForLocalTransaction);
+        public Task CommitAsync()
+        {
+            if (finished) throw new InvalidOperationException("Local transaction already finished");
+            journal.Commit(handle, Snapshot());
+            finished = true;
+            Release();
+            return Task.CompletedTask;
+        }
+        public ValueTask DisposeAsync()
+        {
+            if (!finished)
+            {
+                // A published commit is rolled forward; an uncommitted mutation
+                // restores its exact before-images, both on disk and in memory.
+                foreach (var (id, json) in journal.Rollback(handle))
+                    owner.RestoreLocalTransactionProfile(new MongoId(id), json);
+                finished = true;
+                Release();
+            }
+            return ValueTask.CompletedTask;
+        }
+        private void Release()
+        {
+            foreach (var id in ids) owner.saveMd5.TryRemove(id, out _);
+            foreach (var gate in held) gate.Release();
+        }
     }
 
     public bool ProfileExists(MongoId id)
@@ -297,17 +367,51 @@ public sealed class SaveServer(
     /// <returns> True if successful </returns>
     public bool RemoveProfile(MongoId sessionID)
     {
-        var file = Path.Combine(profileFilepath, $"{sessionID}.json");
-        if (profiles.ContainsKey(sessionID))
+        // First provisioning has no index yet. Serialize that case too, before
+        // checking for children or choosing the ordinary account-only path.
+        LocalModeAccountDeletion.MutationGate.Wait();
+        var held = new List<SemaphoreSlim>();
+        LocalModeAccountDeletion.Plan? plan = null;
+        try
         {
-            profiles.TryRemove(sessionID, out _);
-            if (!fileUtil.DeleteFile(file))
+            var deletion = new LocalModeAccountDeletion();
+            deletion.Recover();
+            var file = Path.Combine(profileFilepath, $"{sessionID}.json");
+            if (!profiles.TryGetValue(sessionID, out var target)) return !fileUtil.FileExists(file);
+            if (target.ProfileInfo is not { LocalModeOwnerId: null, LocalMode: null }) return false;
+            var ids = deletion.IndexedIds(sessionID.ToString()).Select(id => new MongoId(id))
+                .Concat(profiles.Where(x => x.Value.ProfileInfo?.LocalModeOwnerId == sessionID).Select(x => x.Key))
+                .Distinct().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            foreach (var id in ids)
             {
-                logger.Error($"Unable to delete file, not found: {file}");
+                var gate = saveLocks.GetOrAdd(id, _ => new SemaphoreSlim(1, 1));
+                gate.Wait(); held.Add(gate);
             }
+            // Pending saves completed before final bytes/ownership are captured.
+            var loaded = profiles.ToDictionary(x => x.Key.ToString(), x => x.Value);
+            if (!File.Exists("user/local-modes/index.json") && !File.Exists(file))
+            {
+                if (ids.Length != 1) throw new InvalidOperationException("Unindexed local mode child requires recovery before account deletion");
+                profiles.TryRemove(sessionID, out _); saveMd5.TryRemove(sessionID, out _);
+                return true; // Preserve ordinary deletion of an already absent file.
+            }
+            plan = deletion.Prepare(sessionID.ToString(), loaded);
+            deletion.Commit(plan);
+            return true;
         }
-
-        return !fileUtil.FileExists(file);
+        finally
+        {
+            // A durable explicit-delete intent must not be undone by a later
+            // background save while a filesystem failure awaits recovery.
+            if (plan?.Committed == true)
+                foreach (var id in plan.Ids)
+                {
+                    var mongo = new MongoId(id);
+                    profiles.TryRemove(mongo, out _); saveMd5.TryRemove(mongo, out _);
+                }
+            foreach (var gate in held) gate.Release();
+            LocalModeAccountDeletion.MutationGate.Release();
+        }
     }
 
     /// <summary>

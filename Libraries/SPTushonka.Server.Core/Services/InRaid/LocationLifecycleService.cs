@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -68,7 +68,8 @@ public class LocationLifecycleService(
     HideoutConfig hideoutConfig,
     PmcConfig pmcConfig,
     LostOnDeathConfig lostOnDeathConfig,
-    SeasonalEventConfig seasonalEventConfig
+    SeasonalEventConfig seasonalEventConfig,
+    LocalGameModeService? localGameModes = null
 )
 {
     protected const string Pmc = "pmc";
@@ -93,6 +94,22 @@ public class LocationLifecycleService(
         MongoId sessionId,
         StartLocalRaidRequestData request,
         CancellationToken cancellationToken = default
+    )
+    {
+        var acquired = localGameModes?.BeginRaid(sessionId) ?? false;
+        try
+        {
+            var response = await StartLocalRaidCoreAsync(sessionId, request, cancellationToken);
+            localGameModes?.RaidStarted(sessionId, response.ServerId!);
+            return response;
+        }
+        catch { localGameModes?.RaidStartFailed(sessionId, acquired); throw; }
+    }
+
+    private async Task<StartLocalRaidResponseData> StartLocalRaidCoreAsync(
+        MongoId sessionId,
+        StartLocalRaidRequestData request,
+        CancellationToken cancellationToken
     )
     {
         // Backup the profile on raid start
@@ -403,6 +420,24 @@ public class LocationLifecycleService(
     ///     Handle client/match/local/end
     /// </summary>
     public async Task EndLocalRaidAsync(MongoId sessionId, EndLocalRaidRequestData request, CancellationToken cancellationToken = default)
+    {
+        localGameModes?.VerifyRaidEnd(sessionId, request.ServerId);
+        if (localGameModes?.Enabled == true)
+        {
+            var characters = profileHelper.GetFullProfile(sessionId).CharacterData!;
+            var returnedId = request.Results.Profile?.Id;
+            if (returnedId != characters.PmcData?.Id && returnedId != characters.ScavData?.Id)
+                throw new InvalidOperationException("Raid results belong to a different local character");
+        }
+        await EndLocalRaidCoreAsync(sessionId, request, cancellationToken);
+        if (localGameModes?.Enabled == true)
+        {
+            await saveServer.SaveProfileAsync(sessionId, cancellationToken);
+            localGameModes.RaidSaved(sessionId, request.Results.IsMapToMapTransfer());
+        }
+    }
+
+    private async Task EndLocalRaidCoreAsync(MongoId sessionId, EndLocalRaidRequestData request, CancellationToken cancellationToken)
     {
         // Clear bot loot cache
         botLootCacheService.ClearCache();

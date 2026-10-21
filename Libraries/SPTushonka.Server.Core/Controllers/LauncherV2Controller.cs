@@ -179,7 +179,7 @@ public class LauncherV2Controller(
     {
         foreach (var (sessionId, profile) in saveServer.GetProfiles())
         {
-            if (info.Username == profile.ProfileInfo!.Username)
+            if (profile.ProfileInfo is { LocalModeOwnerId: null, LocalMode: null } account && info.Username == account.Username)
             {
                 return sessionId;
             }
@@ -200,18 +200,13 @@ public class LauncherV2Controller(
             return false;
         }
 
-        var sessionIsValid = Login(info);
-
-        if (!sessionIsValid)
-        {
-            return sessionIsValid;
-        }
-
-        var profileInfo = saveServer.GetProfiles().FirstOrDefault(x => x.Value.ProfileInfo?.Username == info.Username).Value.ProfileInfo;
+        var sessionId = GetSessionId(info);
+        if (sessionId.IsEmpty) return false;
+        var profileInfo = saveServer.GetProfile(sessionId).ProfileInfo;
 
         profileInfo!.Edition = info.Edition;
         profileInfo.IsWiped = true;
 
-        return sessionIsValid;
+        return true;
     }
 }

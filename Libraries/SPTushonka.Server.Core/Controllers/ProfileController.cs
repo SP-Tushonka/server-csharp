@@ -1,4 +1,4 @@
-﻿using SPTarkov.Common.Models.Logging;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Generators.Bot;
@@ -32,7 +32,9 @@ public class ProfileController(
     QuestHelper questHelper,
     ItemHelper itemHelper,
     TemplateTable templateTable,
-    ICloner cloner
+    ICloner cloner,
+    LocalGameModeService? localGameModes = null,
+    SeasonTable? seasonTable = null
 )
 {
     private const string RegularGameMode = "regular";
@@ -48,7 +50,7 @@ public class ProfileController(
     /// <returns></returns>
     public List<MiniProfile> GetMiniProfiles()
     {
-        return saveServer.GetProfiles().Select(kvp => GetMiniProfile(kvp.Key)).ToList();
+        return saveServer.GetProfiles().Where(kvp => kvp.Value.ProfileInfo is { LocalModeOwnerId: null, LocalMode: null }).Select(kvp => GetMiniProfile(kvp.Key)).ToList();
     }
 
     /// <summary>
@@ -192,6 +194,26 @@ public class ProfileController(
     /// <param name="sessionId">Player id</param>
     /// <returns>Character selection slot per game mode</returns>
     public Dictionary<string, CharacterSelectionProfileData> GetCharacterSelectionProfiles(MongoId sessionId)
+    {
+        if (localGameModes?.Enabled != true) return GetSingleCharacterSelectionProfile(sessionId);
+        var account = localGameModes.AccountId(sessionId);
+        return new[] { RegularGameMode, PveGameMode, SeasonalGameMode }.ToDictionary(mode => mode, mode =>
+        {
+            var id = localGameModes.ProfileForMode(account, mode);
+            var character = id is null ? new CharacterSelectionProfileData { Status = EmptyStatus }
+                : GetSingleCharacterSelectionProfile(id.Value)[PveGameMode];
+            if (mode == SeasonalGameMode && seasonTable?.Active.Season is { } season)
+            {
+                character.SeasonalInfo = new CharacterSelectionSeasonalInfo
+                {
+                    SeasonEndAt = season.EndTs is { } end ? DateTimeOffset.FromUnixTimeSeconds(end).ToString("O") : null,
+                };
+            }
+            return character;
+        });
+    }
+
+    private Dictionary<string, CharacterSelectionProfileData> GetSingleCharacterSelectionProfile(MongoId sessionId)
     {
         var profiles = profileHelper.GetCompleteProfile(sessionId);
 
@@ -442,7 +464,9 @@ public class ProfileController(
     public GetOtherProfileResponse GetOtherProfile(MongoId sessionId, GetOtherProfileRequest request)
     {
         // Find the profile by the account ID, fall back to the current player if we can't find the account
-        var profileToView = profileHelper.GetFullProfileByAccountId(request.AccountId);
+        var ownProfile = profileHelper.GetFullProfile(sessionId);
+        var profileToView = localGameModes?.Enabled == true && ownProfile.ProfileInfo?.Aid?.ToString() == request.AccountId
+            ? ownProfile : profileHelper.GetFullProfileByAccountId(request.AccountId);
         if (profileToView?.CharacterData?.PmcData is null || profileToView.CharacterData.ScavData is null)
         {
             logger.Warning($"Unable to get profile: {request.AccountId} to show, falling back to own profile");

@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -101,6 +101,14 @@ public record Info
 
     [JsonPropertyName("edition")]
     public string? Edition { get; set; }
+
+    [JsonPropertyName("localModeOwnerId")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public MongoId? LocalModeOwnerId { get; set; }
+
+    [JsonPropertyName("localMode")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? LocalMode { get; set; }
 
     [JsonPropertyName("invalidOrUnloadableProfile")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

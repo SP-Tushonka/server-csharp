@@ -198,6 +198,13 @@ public record GameFixes
 
 public record ServerFeatures
 {
+    /// <summary>
+    ///     Omit whole achievements requiring these condition types for client compatibility.
+    ///     Empty by default; configure only types unsupported by the intended client build.
+    /// </summary>
+    [JsonPropertyName("unsupportedAchievementConditionTypes")]
+    public HashSet<string> UnsupportedAchievementConditionTypes { get; set; } = new(StringComparer.Ordinal);
+
     [JsonPropertyName("compressProfile")]
     public bool CompressProfile { get; set; }
 

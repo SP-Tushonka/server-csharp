@@ -258,6 +258,8 @@ public static class Program
     private static void ConfigureWebApp(WebApplication app)
     {
         app.UseSptForwardedHeaders();
+        app.Use(LocalShopHttp.Guard);
+
         app.UseWebSockets();
 
         app.UseMiddleware<SptLoggerMiddleware>();
@@ -287,6 +289,8 @@ public static class Program
                     httpsOptions.ServerCertificate = certHelper.LoadOrGenerateCertificate();
                     httpsOptions.ClientCertificateMode = ClientCertificateMode.NoCertificate;
                 });
+
+                LocalShopHttp.Configure(options);
             }
         );
     }

@@ -1,5 +1,4 @@
 using System.Net.WebSockets;
-using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -13,6 +12,8 @@ using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Utils;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Servers.Ws;
 
 /// <summary>
@@ -24,7 +25,8 @@ public sealed class SessionRequestWebSocketHandler(
     ISptLogger<SessionRequestWebSocketHandler> logger,
     HttpRouter httpRouter,
     LobbySocketChannel lobbySocketChannel,
-    JsonUtil jsonUtil
+    JsonUtil jsonUtil,
+    LocalGameModeService? localGameModes = null
 ) : IWebSocketConnectionHandler
 {
     public const string HookUrl = "/ws/session/";
@@ -48,6 +50,8 @@ public sealed class SessionRequestWebSocketHandler(
             logger.Debug($"[WS] Request channel opened for session {GetSessionId(context)} with context {sessionIdContext}");
         }
 
+        if (localGameModes?.Enabled == true)
+            context.Items[LocalGameModeService.SocketBindingKey] = localGameModes.Capture(new MongoId(GetSessionId(context)));
         lobbySocketChannel.Register(new MongoId(GetSessionId(context)), ws);
 
         return Task.CompletedTask;
@@ -62,17 +66,19 @@ public sealed class SessionRequestWebSocketHandler(
     /// <param name="context">Connection the socket belongs to</param>
     public async Task OnMessageAsync(byte[] rawData, WebSocketMessageType messageType, WebSocket ws, HttpContext context)
     {
-        if (messageType != WebSocketMessageType.Binary)
+        WsWireFrame frame = default;
+        var decoded = messageType switch
         {
-            logger.Warning($"[WS] Request channel ignored a {messageType} message of {rawData.Length} bytes: {Preview(rawData)}");
+            WebSocketMessageType.Text => LobbyTextFrame.TryDecode(rawData, out frame),
+            WebSocketMessageType.Binary => LobbySocketChannel.TryDecodeFrame(rawData, out frame),
+            _ => false,
+        };
+        if (!decoded)
+        {
+            logger.Warning($"[WS] Request channel could not decode a {messageType} frame of {rawData.Length} bytes");
             return;
         }
-
-        if (!LobbySocketChannel.TryDecodeFrame(rawData, out var frame))
-        {
-            logger.Warning($"[WS] Request channel could not decode a {rawData.Length} byte frame: {Preview(rawData)}");
-            return;
-        }
+        lobbySocketChannel.SetWireFormat(ws, messageType);
 
         // The client confirms every Response and Notification it receives, nothing waits on those
         if (frame.MessageType == WsWireMessageType.Confirm)
@@ -102,6 +108,17 @@ public sealed class SessionRequestWebSocketHandler(
         );
 
         var sessionId = new MongoId(GetSessionId(context));
+        if (localGameModes?.Enabled == true)
+        {
+            if (context.Items[LocalGameModeService.SocketBindingKey] is not Runtime.LocalModes.LocalModeBinding binding
+                || !localGameModes.IsCurrent(binding))
+            {
+                await ws.CloseAsync(WebSocketCloseStatus.PolicyViolation, "Local character changed; reconnect", context.RequestAborted);
+                return;
+            }
+            sessionId = LocalGameModeService.IsAccountRoute(request.Method!)
+                ? new MongoId(binding.AccountId) : new MongoId(binding.ProfileId);
+        }
         var response = await BuildResponseAsync(request, sessionId, context.RequestAborted);
         var json = jsonUtil.Serialize(response) ?? string.Empty;
         await lobbySocketChannel.SendFrameAsync(
@@ -134,7 +151,7 @@ public sealed class SessionRequestWebSocketHandler(
 
         if (request?.Method is null || request.Id is null)
         {
-            logger.Warning($"[WS] Request channel received a request without method or id: {Truncate(json)}");
+            logger.Warning("[WS] Request channel received a request without method or id");
             return null;
         }
 
@@ -198,27 +215,11 @@ public sealed class SessionRequestWebSocketHandler(
         return response;
     }
 
-    private static string GetSessionId(HttpContext context)
+    private string GetSessionId(HttpContext context)
     {
         var path = context.Request.Path.Value ?? string.Empty;
-        return path[(path.IndexOf(HookUrl, StringComparison.Ordinal) + HookUrl.Length)..].Trim('/');
+        var id = path[(path.IndexOf(HookUrl, StringComparison.Ordinal) + HookUrl.Length)..].Trim('/');
+        return localGameModes?.Enabled == true ? localGameModes.AccountId(new MongoId(id)).ToString() : id;
     }
 
-    private static string Truncate(string text)
-    {
-        return text.Length <= 200 ? text : text[..200];
-    }
-
-    /// <summary>
-    ///     Render the start of a message as hex and as text, so a frame the channel cannot read can still be identified
-    /// </summary>
-    /// <param name="rawData">Message bytes</param>
-    /// <returns>Hex of the first bytes followed by their printable characters</returns>
-    private static string Preview(byte[] rawData)
-    {
-        var head = rawData.AsSpan(0, Math.Min(rawData.Length, 512));
-        var text = string.Concat(Encoding.ASCII.GetString(head).Select(c => char.IsControl(c) ? '.' : c));
-
-        return $"{Convert.ToHexString(head)} [{text}]";
-    }
 }

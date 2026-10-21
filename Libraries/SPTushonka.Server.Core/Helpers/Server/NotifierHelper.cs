@@ -91,6 +91,7 @@ public class NotifierHelper(HttpServerHelper httpServerHelper)
     /// <returns>URI as string</returns>
     public string GetWebSocketServer(MongoId sessionId)
     {
-        return $"{httpServerHelper.GetWebsocketUrl()}/notifierServer/getwebsocket/{sessionId.ToString()}";
+        var server = LocalShopHttpOptions.Enabled ? LocalShopHttpOptions.NotifierBaseUrl : httpServerHelper.GetWebsocketUrl();
+        return $"{server}/notifierServer/getwebsocket/{sessionId.ToString()}";
     }
 }

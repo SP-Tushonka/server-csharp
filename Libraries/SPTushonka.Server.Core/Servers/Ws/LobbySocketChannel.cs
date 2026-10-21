@@ -7,14 +7,16 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Ws;
 using SPTarkov.Server.Core.Utils;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Servers.Ws;
 
 /// <summary>
-///     Open lobby sockets and the binary frames sent on them. Kept apart from <see cref="SessionRequestWebSocketHandler"/>
+///     Open lobby sockets and the text or binary frames sent on them. Kept apart from <see cref="SessionRequestWebSocketHandler"/>
 ///     so notification senders do not depend on the http router.
 /// </summary>
 [Injectable(InjectionType.Singleton)]
-public sealed class LobbySocketChannel(JsonUtil jsonUtil)
+public sealed class LobbySocketChannel(JsonUtil jsonUtil, LocalGameModeService? localGameModes = null)
 {
     // A frame is a fixed header naming the size of each part, then the three parts back to back.
     //   0  message type        byte
@@ -29,6 +31,8 @@ public sealed class LobbySocketChannel(JsonUtil jsonUtil)
     private const int FrameHeaderSize = 17;
 
     private readonly ConcurrentDictionary<WebSocket, SemaphoreSlim> _sendGates = [];
+    private readonly ConcurrentDictionary<WebSocket, WebSocketMessageType> _wireFormats = [];
+    private readonly ConcurrentDictionary<WebSocket, Runtime.LocalModes.LocalModeBinding> _modeBindings = [];
 
     /// <summary>
     ///     Open lobby socket of each session, the one notifications are pushed on
@@ -42,7 +46,9 @@ public sealed class LobbySocketChannel(JsonUtil jsonUtil)
     /// <param name="ws">Newly opened socket</param>
     public void Register(MongoId sessionId, WebSocket ws)
     {
+        if (localGameModes?.Enabled == true) _modeBindings[ws] = localGameModes.Capture(sessionId);
         _sessionSockets[sessionId] = ws;
+        _wireFormats.TryAdd(ws, WebSocketMessageType.Text);
     }
 
     /// <summary>
@@ -54,6 +60,8 @@ public sealed class LobbySocketChannel(JsonUtil jsonUtil)
     {
         // A reconnect may already have replaced this socket, only drop the entry when it is still ours
         _sessionSockets.TryRemove(new KeyValuePair<MongoId, WebSocket>(sessionId, ws));
+        _wireFormats.TryRemove(ws, out _);
+        _modeBindings.TryRemove(ws, out _);
 
         if (_sendGates.TryRemove(ws, out var gate))
         {
@@ -73,6 +81,12 @@ public sealed class LobbySocketChannel(JsonUtil jsonUtil)
         {
             return false;
         }
+        if (localGameModes?.Enabled == true
+            && (!_modeBindings.TryGetValue(ws, out var binding) || !localGameModes.IsCurrent(binding))) return false;
+
+        var textFormat = _wireFormats.GetOrAdd(ws, WebSocketMessageType.Text) == WebSocketMessageType.Text;
+        var route = textFormat ? LobbyNotificationRoute.For(notification.EventType) : notification.EventType?.ToString();
+        if (route is null) return false; // Leave unsupported notifications on the existing notifier channel.
 
         // The client reads the payload as an array of notifications and the type from the frame header
         var json = jsonUtil.Serialize(notification, notification.GetType()) ?? string.Empty;
@@ -80,7 +94,7 @@ public sealed class LobbySocketChannel(JsonUtil jsonUtil)
             ws,
             WsWireMessageType.Notification,
             notification.EventIdentifier.ToString(),
-            notification.EventType?.ToString() ?? string.Empty,
+            route,
             $"[{json}]",
             CancellationToken.None
         );
@@ -106,20 +120,30 @@ public sealed class LobbySocketChannel(JsonUtil jsonUtil)
         CancellationToken cancellationToken
     )
     {
-        var frame = EncodeFrame(messageType, trackingId, payloadType, payload);
+        var format = _wireFormats.GetOrAdd(ws, WebSocketMessageType.Text);
+        var frame = format == WebSocketMessageType.Text
+            ? LobbyTextFrame.Encode(messageType, trackingId, payloadType, payload)
+            : EncodeFrame(messageType, trackingId, payloadType, payload);
         var gate = _sendGates.GetOrAdd(ws, _ => new SemaphoreSlim(1, 1));
         await gate.WaitAsync(cancellationToken);
         try
         {
             if (ws.State == WebSocketState.Open)
             {
-                await ws.SendAsync(frame, WebSocketMessageType.Binary, true, cancellationToken);
+                await ws.SendAsync(frame, format, true, cancellationToken);
             }
         }
         finally
         {
             gate.Release();
         }
+    }
+
+    public void SetWireFormat(WebSocket ws, WebSocketMessageType format)
+    {
+        if (format is not (WebSocketMessageType.Text or WebSocketMessageType.Binary))
+            throw new ArgumentOutOfRangeException(nameof(format));
+        _wireFormats[ws] = format;
     }
 
     /// <summary>

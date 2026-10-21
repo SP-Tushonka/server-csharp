@@ -15,6 +15,8 @@ using SPTarkov.Server.Core.Models.Spt.Servers;
 using SPTarkov.Server.Core.Routers;
 using SPTarkov.Server.Core.Utils;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Servers.Http;
 
 [Injectable]
@@ -259,7 +261,9 @@ public class SptHttpListener(
     {
         resp.StatusCode = 200;
         resp.ContentType = "application/json";
-        resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
+        var cookieIdentity = resp.HttpContext.Items.TryGetValue(LocalGameModeService.AccountContextKey, out var accountIdentity)
+            ? accountIdentity?.ToString() : sessionID.ToString();
+        resp.Headers.Append("Set-Cookie", $"PHPSESSID={cookieIdentity}");
 
         if (uncompressed)
         {
@@ -343,7 +347,9 @@ public class SptHttpListener(
     {
         resp.StatusCode = 200;
         resp.ContentType = "application/json";
-        resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
+        var cookieIdentity = resp.HttpContext.Items.TryGetValue(LocalGameModeService.AccountContextKey, out var accountIdentity)
+            ? accountIdentity?.ToString() : sessionID.ToString();
+        resp.Headers.Append("Set-Cookie", $"PHPSESSID={cookieIdentity}");
 
         if (!string.IsNullOrEmpty(output))
         {
@@ -361,7 +367,9 @@ public class SptHttpListener(
     {
         resp.StatusCode = 200;
         resp.ContentType = "application/json";
-        resp.Headers.Append("Set-Cookie", $"PHPSESSID={sessionID.ToString()}");
+        var cookieIdentity = resp.HttpContext.Items.TryGetValue(LocalGameModeService.AccountContextKey, out var accountIdentity)
+            ? accountIdentity?.ToString() : sessionID.ToString();
+        resp.Headers.Append("Set-Cookie", $"PHPSESSID={cookieIdentity}");
 
         if (SendsPlainJson(req.Path))
         {

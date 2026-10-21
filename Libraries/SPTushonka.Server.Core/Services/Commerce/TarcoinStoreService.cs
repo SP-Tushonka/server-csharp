@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers.Items;
@@ -15,6 +15,8 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Services.Commerce;
 
 [Injectable(InjectionType.Singleton)]
@@ -26,22 +28,37 @@ public class TarcoinStoreService(
     ProfileHelper profileHelper,
     NotificationSendHelper notificationSendHelper,
     ItemHelper itemHelper,
-    CoreConfig coreConfig
+    CoreConfig coreConfig,
+    LocalGameModeService? localGameModes = null
 )
 {
     public int GetBalance(MongoId sessionId)
     {
-        return saveServer.GetProfile(sessionId)?.CharacterData?.PmcData?.TarCoinBalance ?? 0;
+        return saveServer.GetProfile(Account(sessionId))?.CharacterData?.PmcData?.TarCoinBalance ?? 0;
     }
 
     public async Task CreditAsync(MongoId sessionId, int amount)
+    {
+        if (localGameModes?.Enabled != true) { await CreditCoreAsync(sessionId, amount); return; }
+        var gate = localGameModes.PurchaseGate(sessionId);
+        await gate.WaitAsync();
+        try
+        {
+            await using var transaction = await saveServer.BeginLocalProfileTransactionAsync(new[] { Account(sessionId) });
+            await CreditCoreAsync(sessionId, amount, transaction.CommitAsync);
+        }
+        finally { gate.Release(); }
+    }
+
+    private async Task CreditCoreAsync(MongoId sessionId, int amount, Func<Task>? commit = null)
     {
         if (amount <= 0)
         {
             return;
         }
 
-        SetBalance(sessionId, GetBalance(sessionId) + amount);
+        SetBalance(sessionId, checked(GetBalance(sessionId) + amount));
+        if (commit is not null) await commit();
         await NotifyAsync(
             sessionId,
             new WsExpansionsBalanceIncreased { EventType = NotificationEventType.UpdateAccountTarcoinBalanceIncreased, Amount = amount }
@@ -51,6 +68,25 @@ public class TarcoinStoreService(
 
     // False when the balance is short, which leaves it untouched.
     public bool TrySpend(MongoId sessionId, int cost)
+    {
+        var gate = localGameModes?.Enabled == true ? localGameModes.PurchaseGate(sessionId) : null;
+        gate?.Wait();
+        try
+        {
+            if (localGameModes?.Enabled != true) return TrySpendCore(sessionId, cost);
+            var transaction = saveServer.BeginLocalProfileTransactionAsync(new[] { Account(sessionId) }).GetAwaiter().GetResult();
+            try
+            {
+                var spent = TrySpendCore(sessionId, cost);
+                if (spent) transaction.CommitAsync().GetAwaiter().GetResult();
+                return spent;
+            }
+            finally { transaction.DisposeAsync().GetAwaiter().GetResult(); }
+        }
+        finally { gate?.Release(); }
+    }
+
+    private bool TrySpendCore(MongoId sessionId, int cost)
     {
         var balance = GetBalance(sessionId);
         if (cost <= 0 || balance < cost)
@@ -245,11 +281,23 @@ public class TarcoinStoreService(
     }
 
     public async Task<ShopPurchaseReceipt> TryPurchaseAsync(
-        MongoId sessionId,
-        string offerId,
-        int count,
-        CancellationToken cancellationToken = default
-    )
+        MongoId sessionId, string offerId, int count = 1, CancellationToken cancellationToken = default)
+    {
+        if (localGameModes?.Enabled != true)
+            return await TryPurchaseCoreAsync(sessionId, offerId, count, cancellationToken);
+        var gate = localGameModes.PurchaseGate(sessionId);
+        await gate.WaitAsync(cancellationToken);
+        try
+        {
+            await using var transaction = await saveServer.BeginLocalProfileTransactionAsync(
+                new[] { Account(sessionId), sessionId }, cancellationToken);
+            return await TryPurchaseCoreAsync(sessionId, offerId, count, cancellationToken, transaction.CommitAsync);
+        }
+        finally { gate.Release(); }
+    }
+
+    private async Task<ShopPurchaseReceipt> TryPurchaseCoreAsync(
+        MongoId sessionId, string offerId, int count, CancellationToken cancellationToken, Func<Task>? commit = null)
     {
         var offer = GetOffer(offerId);
         var price = shopTable.Content.Prices.FirstOrDefault(entry => entry.Id.ToString() == offerId);
@@ -285,7 +333,7 @@ public class TarcoinStoreService(
             return new ShopPurchaseReceipt(ShopPurchaseOutcome.NotDeliverable);
         }
 
-        if (!TrySpend(sessionId, price.AmountWithDiscount * quantity))
+        if (!TrySpendCore(sessionId, checked(price.AmountWithDiscount * quantity)))
         {
             return new ShopPurchaseReceipt(ShopPurchaseOutcome.InsufficientBalance);
         }
@@ -423,7 +471,8 @@ public class TarcoinStoreService(
             notifications.Add(() => NotifyAsync(sessionId, documents));
         }
 
-        await saveServer.SaveProfileAsync(sessionId, cancellationToken);
+        if (commit is not null) await commit();
+        else await saveServer.SaveProfileAsync(sessionId, cancellationToken);
 
         var transactionId = new MongoId().ToString();
         _unsignedPurchases[transactionId] = new UnsignedPurchase(sessionId, notifications);
@@ -678,7 +727,7 @@ public class TarcoinStoreService(
             return false;
         }
 
-        var (purchased, available) = GetStock(saveServer.GetProfile(sessionId), offer);
+        var (purchased, available) = GetStock(saveServer.GetProfile(Account(sessionId)), offer);
 
         return available == 0 && purchased > 0;
     }
@@ -741,7 +790,7 @@ public class TarcoinStoreService(
 
     private void RecordPurchase(MongoId sessionId, IEnumerable<string> offerIds)
     {
-        var profile = saveServer.GetProfile(sessionId);
+        var profile = saveServer.GetProfile(Account(sessionId));
         if (profile is null)
         {
             return;
@@ -751,9 +800,11 @@ public class TarcoinStoreService(
         profile.PurchasedShopOffers.UnionWith(offerIds);
     }
 
+    private MongoId Account(MongoId id) => localGameModes?.Enabled == true ? localGameModes.AccountId(id) : id;
+
     private void SetBalance(MongoId sessionId, int amount)
     {
-        var pmc = saveServer.GetProfile(sessionId)?.CharacterData?.PmcData;
+        var pmc = saveServer.GetProfile(Account(sessionId))?.CharacterData?.PmcData;
         if (pmc is null)
         {
             return;

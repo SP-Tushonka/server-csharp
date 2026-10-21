@@ -45,7 +45,8 @@ public class CreateProfileService(
     PlayerScavGenerator playerScavGenerator,
     ICloner cloner,
     MailSendService mailSendService,
-    TarcoinStoreService tarcoinStoreService
+    TarcoinStoreService tarcoinStoreService,
+    LocalGameModeService? localGameModes = null
 )
 {
     public async ValueTask<string> CreateProfile(MongoId sessionId, ProfileCreateRequestData request)
@@ -152,6 +153,8 @@ public class CreateProfileService(
         profileDetails.AddSuitsToProfile(profileTemplateClone.Suits);
 
         tarcoinStoreService.CarryOverPurchases(account, profileDetails);
+        if (localGameModes?.Enabled == true && profileDetails.ProfileInfo?.LocalModeOwnerId is not null)
+            pmcData.TarCoinBalance = 0; // Only the original account owns a wallet.
 
         profileFixerService.CheckForAndFixPmcProfileIssues(profileDetails.CharacterData.PmcData);
 

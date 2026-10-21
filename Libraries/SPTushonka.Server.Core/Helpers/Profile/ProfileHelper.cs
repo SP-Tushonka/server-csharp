@@ -17,6 +17,8 @@ using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Cloners;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Helpers.Profile;
 
 [Injectable]
@@ -29,7 +31,8 @@ public class ProfileHelper(
     Watermark watermark,
     TimeUtil timeUtil,
     ServerLocalisationService serverLocalisationService,
-    InventoryConfig inventoryConfig
+    InventoryConfig inventoryConfig,
+    LocalGameModeService? localGameModes = null
 )
 {
     protected static readonly HashSet<string> GameEditionsWithFreeRefresh = ["edge_of_darkness", "unheard_edition"];
@@ -96,6 +99,9 @@ public class ProfileHelper(
         }
 
         var fullProfileClone = cloner.Clone(GetFullProfile(sessionId))!;
+
+        if (localGameModes?.Enabled == true && fullProfileClone.CharacterData?.PmcData is not null)
+            fullProfileClone.CharacterData.PmcData.TarCoinBalance = localGameModes.AccountBalance(sessionId);
 
         // Sanitize any data the client can not receive
         SanitizeProfileForClient(fullProfileClone);

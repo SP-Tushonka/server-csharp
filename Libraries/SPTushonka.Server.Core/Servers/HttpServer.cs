@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Spt.Config;
@@ -13,7 +13,8 @@ public sealed class HttpServer(
     HttpConfig httpConfig,
     WebSocketServer webSocketServer,
     ProfileActivityService profileActivityService,
-    IEnumerable<IHttpListener> httpListeners
+    IEnumerable<IHttpListener> httpListeners,
+    LocalGameModeService? localGameModes = null
 )
 {
     public async Task HandleRequestAsync(HttpContext context, RequestDelegate next, CancellationToken cancellationToken = default)
@@ -41,6 +42,12 @@ public sealed class HttpServer(
             profileActivityService.SetActivityTimestamp(sessionId);
         }
 
+        if (localGameModes?.Enabled == true && !sessionId.IsEmpty)
+        {
+            var account = localGameModes.AccountId(sessionId);
+            context.Items[LocalGameModeService.AccountContextKey] = account.ToString();
+            sessionId = localGameModes.ResolveRequest(account, context.Request.Path.Value ?? "");
+        }
         await listener.HandleAsync(sessionId, context, cancellationToken);
     }
 

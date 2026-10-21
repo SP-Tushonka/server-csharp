@@ -18,7 +18,13 @@ public class AchievementController(TemplateTable templateTable, ProfileHelper pr
     /// <returns></returns>
     public GetAchievementsResponse GetAchievements(MongoId sessionID)
     {
-        return new GetAchievementsResponse { Elements = templateTable.Achievements };
+        return new GetAchievementsResponse
+        {
+            Elements = AchievementCompatibilityHelper.FilterUnsupported(
+                templateTable.Achievements,
+                coreConfig.Features.UnsupportedAchievementConditionTypes
+            ),
+        };
     }
 
     /// <summary>

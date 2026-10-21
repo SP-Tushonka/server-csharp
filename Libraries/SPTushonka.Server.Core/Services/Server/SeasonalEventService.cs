@@ -1080,6 +1080,28 @@ public class SeasonalEventService(
     }
 
     /// <summary>
+    ///     Resolve legacy seasonal PMC labels against this build's bot roles.
+    ///     Preserve an explicitly installed role before using an exact alias.
+    /// </summary>
+    protected BotType? GetEventBot(string configuredRole)
+    {
+        var role = configuredRole.ToLowerInvariant();
+        if (botTable.Types.TryGetValue(role, out var bot) && bot is not null)
+        {
+            return bot;
+        }
+
+        var alias = role switch
+        {
+            "bear" => Roles.PmcBear,
+            "usec" => Roles.PmcUsec,
+            _ => null,
+        };
+
+        return alias is not null && botTable.Types.TryGetValue(alias, out bot) ? bot : null;
+    }
+
+    /// <summary>
     ///     Read in data from seasonalEvents.json and add found equipment items to bots
     /// </summary>
     /// <param name="eventType">Name of the event to read equipment in from config</param>
@@ -1096,7 +1118,7 @@ public class SeasonalEventService(
         // Iterate over bots with changes to apply
         foreach (var botKvP in botGearChanges)
         {
-            var botToUpdate = botTable.Types[botKvP.Key.ToLowerInvariant()];
+            var botToUpdate = GetEventBot(botKvP.Key);
             if (botToUpdate is null)
             {
                 logger.Warning(serverLocalisationService.GetText("gameevent-bot_not_found", botKvP));
@@ -1141,7 +1163,7 @@ public class SeasonalEventService(
         // Iterate over bots with changes to apply
         foreach (var botKvpP in botLootChanges)
         {
-            var botToUpdate = botTable.Types[botKvpP.Key.ToLowerInvariant()];
+            var botToUpdate = GetEventBot(botKvpP.Key);
             if (botToUpdate is null)
             {
                 logger.Warning(serverLocalisationService.GetText("gameevent-bot_not_found", botKvpP));
@@ -1152,12 +1174,17 @@ public class SeasonalEventService(
             var lootAmendmentsBySlot = botLootChanges[botKvpP.Key];
             foreach (var slotKvP in lootAmendmentsBySlot)
             {
-                // Grab loot to add and loop over it
-                var itemTplsToAdd = slotKvP.Value;
-                foreach (var itemKvP in itemTplsToAdd)
+                // The property map contains references to the existing item pools.
+                // Mutate the selected pool, not the temporary property map.
+                var pools = botToUpdate.BotInventory.Items.GetAllPropertiesAsDictionary();
+                if (!pools.TryGetValue(slotKvP.Key, out var value) || value is not Dictionary<MongoId, double> pool)
                 {
-                    var dict = botToUpdate.BotInventory.Items.GetAllPropertiesAsDictionary();
-                    dict[itemKvP.Key] = itemTplsToAdd[itemKvP.Key];
+                    throw new InvalidOperationException($"Unsupported seasonal loot pool '{slotKvP.Key}'");
+                }
+
+                foreach (var itemKvP in slotKvP.Value)
+                {
+                    pool[itemKvP.Key] = itemKvP.Value;
                 }
             }
         }

@@ -10,6 +10,8 @@ using SPTarkov.Server.Core.Servers.Ws;
 using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Helpers.Server;
 
 [Injectable]
@@ -20,7 +22,8 @@ public class NotificationSendHelper(
     SaveServer saveServer,
     NotificationService notificationService,
     TimeUtil timeUtil,
-    JsonUtil jsonUtil
+    JsonUtil jsonUtil,
+    LocalGameModeService? localGameModes = null
 )
 {
     /// <summary>
@@ -37,19 +40,31 @@ public class NotificationSendHelper(
             );
         }
 
-        if (await lobbySocketChannel.SendNotificationAsync(sessionId, notificationMessage))
+        var channelId = localGameModes?.Enabled == true ? localGameModes.AccountId(sessionId) : sessionId;
+        // A background notification for another character stays queued on that
+        // character; do not inject inventory/quest events into the active one.
+        var accountWalletEvent = notificationMessage.EventType is NotificationEventType.UpdateAccountTarcoinBalance
+            or NotificationEventType.UpdateAccountTarcoinBalanceIncreased;
+        var selectedCharacter = localGameModes?.Enabled != true || accountWalletEvent
+            || localGameModes.Capture(channelId).ProfileId == sessionId.ToString();
+        if (!selectedCharacter)
+        {
+            notificationService.Add(sessionId, notificationMessage);
+            return;
+        }
+        if (await lobbySocketChannel.SendNotificationAsync(channelId, notificationMessage))
         {
             return;
         }
 
-        if (sptWebSocketConnectionHandler.IsWebSocketConnected(sessionId))
+        if (sptWebSocketConnectionHandler.IsWebSocketConnected(channelId))
         {
             if (logger.IsLogEnabled(LogLevel.Debug))
             {
                 logger.Debug($"Send message for {sessionId} websocket available, message being sent");
             }
 
-            await sptWebSocketConnectionHandler.SendMessageAsync(sessionId, notificationMessage);
+            await sptWebSocketConnectionHandler.SendMessageAsync(channelId, notificationMessage);
             return;
         }
 

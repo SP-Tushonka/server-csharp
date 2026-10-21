@@ -52,7 +52,8 @@ public class GameController(
     HealthConfig healthConfig,
     PmcConfig pmcConfig,
     BattlePassDocumentLimitService battlePassDocumentLimitService,
-    InitialSupportService initialSupportService
+    InitialSupportService initialSupportService,
+    LocalGameModeService? localGameModes = null
 ) : IOnUpdate
 {
     /// <summary>
@@ -195,7 +196,7 @@ public class GameController(
             UseProtobuf = false,
             UtcTime = timeUtil.GetTimeStamp(),
             TotalInGame = gameTime,
-            SessionMode = "pve",
+            SessionMode = localGameModes?.CurrentMode(sessionId) ?? "pve",
             PurchasedGames = new PurchasedGames { IsEftPurchased = true, IsArenaPurchased = false },
             IsGameSynced = true,
             LinkedPlatforms = [],
@@ -218,7 +219,11 @@ public class GameController(
     /// <returns></returns>
     public GameModeResponse GetGameMode(MongoId sessionId, GameModeRequestData requestData)
     {
-        return new GameModeResponse { GameMode = "pve", BackendUrl = httpServerHelper.GetBackendUrl() };
+        return new GameModeResponse
+        {
+            GameMode = localGameModes?.Enabled == true ? localGameModes.CurrentMode(sessionId) : "pve",
+            BackendUrl = httpServerHelper.GetBackendUrl(),
+        };
     }
 
     /// <summary>

@@ -12,6 +12,8 @@ using SPTarkov.Server.Core.Servers.Ws.Message;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
 
+using SPTarkov.Server.Core.Services.Profile;
+
 namespace SPTarkov.Server.Core.Servers.Ws;
 
 [Injectable(InjectionType.Singleton)]
@@ -20,12 +22,14 @@ public sealed class SptWebSocketConnectionHandler(
     ServerLocalisationService serverLocalisationService,
     JsonUtil jsonUtil,
     ProfileHelper profileHelper,
-    IEnumerable<ISptWebSocketMessageHandler> messageHandlers
+    IEnumerable<ISptWebSocketMessageHandler> messageHandlers,
+    LocalGameModeService? localGameModes = null
 ) : IWebSocketConnectionHandler
 {
     private readonly Dictionary<MongoId, Dictionary<string, WebSocket>> _sockets = [];
     private readonly Lock _socketsLock = new();
     private readonly ConcurrentDictionary<WebSocket, SemaphoreSlim> _sendGates = [];
+    private readonly ConcurrentDictionary<WebSocket, Runtime.LocalModes.LocalModeBinding> _modeBindings = [];
 
     public string GetHookUrl()
     {
@@ -40,6 +44,12 @@ public sealed class SptWebSocketConnectionHandler(
     public Task OnConnectionAsync(WebSocket ws, HttpContext context, string sessionIdContext)
     {
         var sessionID = new MongoId(GetSessionId(context));
+        if (localGameModes?.Enabled == true)
+        {
+            var binding = localGameModes.Capture(sessionID);
+            context.Items[LocalGameModeService.SocketBindingKey] = binding;
+            _modeBindings[ws] = binding;
+        }
         var playerProfile = profileHelper.GetFullProfile(sessionID);
         var playerInfoText = $"{playerProfile.ProfileInfo.Username} ({sessionID})";
 
@@ -91,6 +101,16 @@ public sealed class SptWebSocketConnectionHandler(
     public async Task OnMessageAsync(byte[] receivedMessage, WebSocketMessageType messageType, WebSocket ws, HttpContext context)
     {
         var sessionID = GetSessionId(context);
+        if (localGameModes?.Enabled == true)
+        {
+            if (context.Items[LocalGameModeService.SocketBindingKey] is not Runtime.LocalModes.LocalModeBinding binding
+                || !localGameModes.IsCurrent(binding))
+            {
+                await ws.CloseAsync(WebSocketCloseStatus.PolicyViolation, "Local character changed; reconnect", context.RequestAborted);
+                return;
+            }
+            sessionID = binding.ProfileId;
+        }
 
         if (logger.IsLogEnabled(LogLevel.Debug))
         {
@@ -155,6 +175,8 @@ public sealed class SptWebSocketConnectionHandler(
             }
         }
 
+        _modeBindings.TryRemove(ws, out _);
+
         // Release the per-socket send gate now that the connection is gone.
         if (_sendGates.TryRemove(ws, out var gate))
         {
@@ -174,7 +196,7 @@ public sealed class SptWebSocketConnectionHandler(
         WebSocket[] targets;
         lock (_socketsLock)
         {
-            targets = _sockets.Values.SelectMany(sockets => sockets.Values).Where(s => s.State == WebSocketState.Open).ToArray();
+            targets = _sockets.Values.SelectMany(sockets => sockets.Values).Where(s => CanSend(s)).ToArray();
         }
 
         return SendRawToSocketsAsync(targets, payload);
@@ -185,7 +207,7 @@ public sealed class SptWebSocketConnectionHandler(
         WebSocket[] targets;
         lock (_socketsLock)
         {
-            targets = _sockets.GetValueOrDefault(sessionID)?.Values.Where(s => s.State == WebSocketState.Open).ToArray() ?? [];
+            targets = _sockets.GetValueOrDefault(sessionID)?.Values.Where(s => CanSend(s)).ToArray() ?? [];
         }
 
         if (targets.Length == 0)
@@ -240,7 +262,7 @@ public sealed class SptWebSocketConnectionHandler(
     {
         lock (_socketsLock)
         {
-            return _sockets.TryGetValue(sessionID, out var sockets) && sockets.Any(s => s.Value.State == WebSocketState.Open);
+            return _sockets.TryGetValue(sessionID, out var sockets) && sockets.Any(s => CanSend(s.Value));
         }
     }
 
@@ -248,15 +270,20 @@ public sealed class SptWebSocketConnectionHandler(
     {
         lock (_socketsLock)
         {
-            return _sockets.GetValueOrDefault(sessionID)?.Values.Where(s => s.State == WebSocketState.Open) ?? [];
+            return _sockets.GetValueOrDefault(sessionID)?.Values.Where(s => CanSend(s)) ?? [];
         }
     }
 
-    private static string GetSessionId(HttpContext context)
+    private bool CanSend(WebSocket socket) => socket.State == WebSocketState.Open
+        && (localGameModes?.Enabled != true
+            || (_modeBindings.TryGetValue(socket, out var binding) && localGameModes.IsCurrent(binding)));
+
+    private string GetSessionId(HttpContext context)
     {
         var path = context.Request.Path.Value ?? string.Empty;
         var lastSlash = path.LastIndexOf('/');
-        return lastSlash >= 0 ? path[(lastSlash + 1)..] : path;
+        var id = lastSlash >= 0 ? path[(lastSlash + 1)..] : path;
+        return localGameModes?.Enabled == true ? localGameModes.AccountId(new MongoId(id)).ToString() : id;
     }
 
     private void PruneClosedSockets(Dictionary<string, WebSocket> sessionSockets)

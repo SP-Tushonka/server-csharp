@@ -33,7 +33,8 @@ public class GameCallbacks(
     SeasonTable seasonTable,
     TarcoinStoreService tarcoinStoreService,
     HttpServerHelper httpServerHelper,
-    ISptLogger<GameCallbacks> logger
+    ISptLogger<GameCallbacks> logger,
+    LocalGameModeService? localGameModes = null
 ) : IOnLoad
 {
     public Task OnLoadAsync(CancellationToken cancellationToken)
@@ -57,6 +58,7 @@ public class GameCallbacks(
     /// <returns></returns>
     public async ValueTask<string> GameStart(string url, EmptyRequestData _, MongoId sessionID)
     {
+        localGameModes?.GameSessionBoundary(sessionID);
         if (saveServer.IsProfileInvalidOrUnloadable(sessionID))
         {
             return httpResponseUtil.GetBody(
@@ -80,6 +82,7 @@ public class GameCallbacks(
     public async ValueTask<string> GameLogout(string url, EmptyRequestData _, MongoId sessionID)
     {
         await saveServer.SaveProfileAsync(sessionID);
+        localGameModes?.GameSessionBoundary(sessionID);
 
         // Backup profiles on exit
         await backupService.InitializeAsync();
@@ -239,9 +242,10 @@ public class GameCallbacks(
     ///     Handle client/game/mode
     /// </summary>
     /// <returns></returns>
-    public ValueTask<string> GetGameMode(string url, GameModeRequestData info, MongoId sessionID)
+    public async ValueTask<string> GetGameMode(string url, GameModeRequestData info, MongoId sessionID)
     {
-        return new ValueTask<string>(httpResponseUtil.GetBody(gameController.GetGameMode(sessionID, info)));
+        if (localGameModes?.Enabled == true) await localGameModes.SelectAsync(sessionID, info.SessionMode);
+        return httpResponseUtil.GetBody(gameController.GetGameMode(sessionID, info));
     }
 
     /// <summary>
