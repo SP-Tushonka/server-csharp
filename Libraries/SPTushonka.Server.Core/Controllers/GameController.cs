@@ -169,9 +169,7 @@ public class GameController(
     public GameConfigResponse GetGameConfig(MongoId sessionId)
     {
         var profile = profileHelper.GetPmcProfile(sessionId);
-        var gameTime =
-            profile?.Stats?.Eft?.OverallCounters?.Items?.FirstOrDefault(c => c.Key!.Contains("LifeTime") && c.Key.Contains("Pmc"))?.Value
-            ?? 0D;
+        var gameTime = profileHelper.GetFullProfile(sessionId).ProfileInfo?.TotalInGame ?? 0;
 
         var config = new GameConfigResponse
         {
@@ -259,6 +257,7 @@ public class GameController(
     public GameKeepAliveResponse GetKeepAlive(MongoId sessionId)
     {
         profileActivityService.SetActivityTimestamp(sessionId);
+        profileActivityService.AddKeepAlive(sessionId);
         return new GameKeepAliveResponse { Message = "OK", UtcTime = timeUtil.GetTimeStamp() };
     }
 
