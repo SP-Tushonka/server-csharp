@@ -190,6 +190,10 @@ public class CreateProfileService(
 
             prestigeHelper.ProcessPendingPrestige(account, profileDetails, pendingPrestige);
         }
+        else
+        {
+            prestigeHelper.GrantHeldPrestigeRewards(profileDetails);
+        }
 
         if (profileTemplateClone.Trader.SetQuestsAvailableForStart ?? false)
         {
