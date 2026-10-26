@@ -30,12 +30,12 @@ internal class ReleaseCheckService(ISptLogger<ReleaseCheckService> logger) : IOn
             var httpClient = new HttpClient();
 
             // These headers are _required_ by GitHub API
-            httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("SP-Tarkov");
+            httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd("SP-Tushonka");
             httpClient.DefaultRequestHeaders.Add("X-GitHub-Api-Version", "2022-11-28");
 
             // TODO: We could probably throw this into a config somewhere, for now hard code it
             var release = await httpClient.GetFromJsonAsync<ReleaseInformation>(
-                "https://api.github.com/repos/sp-tarkov/build/releases/latest"
+                "https://api.github.com/repos/SP-Tushonka/build/releases/latest"
             );
             if (release != null)
             {
