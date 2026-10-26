@@ -8,6 +8,11 @@ public class ProfileActivityData
 {
     public long ClientStartedTimestamp { get; set; }
     public long LastActive { get; set; }
+
+    /// <summary>
+    ///     When the client last sent a keepalive, or started the game
+    /// </summary>
+    public long LastKeepAlive { get; set; }
     public ProfileActivityRaidData? RaidData { get; set; } = null;
     public IReadOnlyList<ProfileActiveClientMods> ActiveClientMods { get; set; } = [];
 }
