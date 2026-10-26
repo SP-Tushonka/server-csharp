@@ -95,7 +95,7 @@ public class RagfairPriceService(
                 }
             }
 
-            pricePool.AddOrUpdate(itemTpl, newBasePrice);
+            pricePool[itemTpl] = newBasePrice;
         }
     }
 
