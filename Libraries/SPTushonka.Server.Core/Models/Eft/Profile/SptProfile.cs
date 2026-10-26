@@ -92,6 +92,12 @@ public record Info
     [JsonPropertyName("edition")]
     public string? Edition { get; set; }
 
+    /// <summary>
+    ///     Seconds the game client has been connected on this account, sent as totalInGame on login
+    /// </summary>
+    [JsonPropertyName("totalInGame")]
+    public long? TotalInGame { get; set; }
+
     [JsonPropertyName("invalidOrUnloadableProfile")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? InvalidOrUnloadableProfile { get; internal set; }

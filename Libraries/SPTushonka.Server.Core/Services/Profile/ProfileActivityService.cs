@@ -1,14 +1,19 @@
 ﻿using System.Collections.Concurrent;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Spt.Services;
+using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Utils;
 
 namespace SPTarkov.Server.Core.Services.Profile;
 
 [Injectable(InjectionType.Singleton)]
-public class ProfileActivityService(TimeUtil timeUtil)
+public class ProfileActivityService(TimeUtil timeUtil, SaveServer saveServer)
 {
+    // Keepalive arrives every 140 seconds. A longer silence means the client was closed.
+    private const long MaxConnectedGapSeconds = 300;
+
     private readonly ConcurrentDictionary<MongoId, ProfileActivityData> _activeProfiles = [];
 
     public void AddActiveProfile(MongoId sessionId, long clientStartedTimestamp)
@@ -16,12 +21,18 @@ public class ProfileActivityService(TimeUtil timeUtil)
         _activeProfiles.AddOrUpdate(
             sessionId,
             // On add value
-            key => new ProfileActivityData { ClientStartedTimestamp = clientStartedTimestamp, LastActive = timeUtil.GetTimeStamp() },
+            key => new ProfileActivityData
+            {
+                ClientStartedTimestamp = clientStartedTimestamp,
+                LastActive = timeUtil.GetTimeStamp(),
+                LastKeepAlive = timeUtil.GetTimeStamp(),
+            },
             // On Update value, client was started before but crashed or user restarted
             (key, existingValue) =>
             {
                 existingValue.ClientStartedTimestamp = clientStartedTimestamp;
                 existingValue.LastActive = timeUtil.GetTimeStamp();
+                existingValue.LastKeepAlive = timeUtil.GetTimeStamp();
                 existingValue.RaidData = null;
                 return existingValue;
             }
@@ -119,6 +130,48 @@ public class ProfileActivityService(TimeUtil timeUtil)
         {
             currentActiveProfile.LastActive = timeUtil.GetTimeStamp();
         }
+    }
+
+    /// <summary>
+    ///     Add the time since the previous keepalive to the account's connected time
+    /// </summary>
+    /// <param name="sessionId"> Profile that sent the keepalive </param>
+    public void AddKeepAlive(MongoId sessionId)
+    {
+        // Server was restarted while the client stayed open
+        if (!ContainsActiveProfile(sessionId))
+        {
+            AddActiveProfile(sessionId, timeUtil.GetTimeStamp());
+        }
+
+        if (!_activeProfiles.TryGetValue(sessionId, out var currentActiveProfile))
+        {
+            return;
+        }
+
+        lock (currentActiveProfile)
+        {
+            var now = timeUtil.GetTimeStamp();
+            var gap = now - currentActiveProfile.LastKeepAlive;
+            if (gap <= MaxConnectedGapSeconds && saveServer.ProfileExists(sessionId))
+            {
+                AddConnectedTime(saveServer.GetProfile(sessionId), gap);
+            }
+
+            currentActiveProfile.LastKeepAlive = now;
+        }
+    }
+
+    private static void AddConnectedTime(SptProfile profile, long seconds)
+    {
+        if (profile.ProfileInfo is null)
+        {
+            return;
+        }
+
+        // Older profiles start from the value the server sent before this was tracked
+        var total = profile.ProfileInfo.TotalInGame ?? profile.CharacterData?.PmcData?.Stats?.Eft?.TotalInGameTime ?? 0;
+        profile.ProfileInfo.TotalInGame = total + seconds;
     }
 
     public IReadOnlyList<ProfileActiveClientMods> GetProfileActiveClientMods(MongoId sessionId)
