@@ -74,27 +74,6 @@ public class ClientLogCallbacks(
 
     internal void HandleClientLog()
     {
-        var bot = configServer.GetConfig<BotConfig>();
-        bot.MaxBotCap = new Dictionary<string, int> { { "default", 7 } };
-
-        bot.Durability.BotDurabilities.GetValueOrDefault("assault", null).Armor.MaxDelta = 78;
-        bot.Durability.BotDurabilities.GetValueOrDefault("assault", null).Weapon.LowestMax = 30;
-
-        var pmc = configServer.GetConfig<PmcConfig>();
-        pmc.LootSettings.Backpack.TotalRubByLevel =
-        [
-            new MinMaxLootValue
-            {
-                Min = 1,
-                Max = 1000,
-                Value = 20000,
-            },
-        ];
-
-        pmc.GameVersionWeight["unheard_edition"] = 44;
-
-        var insurance = configServer.GetConfig<InsuranceConfig>();
-        insurance.ReturnChancePercent[new MongoId("54cb50c76803fa8b248b4571")] = 10;
-        insurance.ReturnChancePercent[new MongoId("54cb57776803fa99248b456e")] = 10;
+        // Intentionally empty: mods may patch this method, so the signature stays.
     }
 }
