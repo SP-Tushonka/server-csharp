@@ -20,6 +20,18 @@ public class PrestigeHelper(
     RewardHelper rewardHelper
 )
 {
+    /// <summary>
+    /// The key is prestige id, the value is Achievement id
+    /// </summary>
+    public static Dictionary<MongoId, MongoId> PrestigeAchievements { get; } =
+        new Dictionary<MongoId, MongoId>
+        {
+            { new MongoId("672df12f97f0469cea52f55e"), new MongoId("676091c0f457869a94017a23") },
+            { new MongoId("672df4281ab8d9c8849a0c88"), new MongoId("676094451fec2f7426093be6") },
+            { new MongoId("683da91d6f472cfa738c52f2"), new MongoId("6842c25bd02bc07d70054019") },
+            { new MongoId("6842f121000d98ce33b9a60f"), new MongoId("6842c27a38482d35ac0bd847") },
+        };
+
     public void ProcessPendingPrestige(SptProfile oldProfile, SptProfile newProfile, PendingPrestige prestige)
     {
         var prePrestigePmc = oldProfile.CharacterData?.PmcData;
@@ -72,31 +84,40 @@ public class PrestigeHelper(
             }
         }
 
-        // Add "Prestigious" achievement
-        var prestigiousAchievement = new MongoId("676091c0f457869a94017a23");
-        if (newProfile.CharacterData?.PmcData?.Achievements?.ContainsKey(prestigiousAchievement) is false)
+        var prestigeLevel = prestigeLevels[indexOfPrestigeObtained];
+        var obtainedLevels = prestigeLevels.Slice(0, indexOfPrestigeObtained + 1);
+        var achievements = newProfile.CharacterData?.PmcData?.Achievements;
+        foreach (var obtainedLevel in obtainedLevels)
         {
-            rewardHelper.AddAchievementToProfile(newProfile, prestigiousAchievement);
+            if (!PrestigeAchievements.TryGetValue(obtainedLevel.Id, out var achievement))
+            {
+                logger.Error($"Unable to add prestige achievement to profile, no prestige achievement for {obtainedLevel.Id} was found.");
+            }
+            else if (achievements is not null && !achievements.ContainsKey(achievement))
+            {
+                rewardHelper.AddAchievementToProfile(newProfile, achievement);
+            }
         }
 
-        // Assumes Prestige data is in descending order
-        var currentPrestigeData = databaseService.GetTemplates().Prestige?.Elements[indexOfPrestigeObtained];
-
         // Get all prestige rewards from prestige 1 up to desired prestige
-        var prestigeRewards = prestigeLevels
-            .Slice(0, indexOfPrestigeObtained + 1) // Index back to PrestigeLevel
-            .SelectMany(prestigeInner => prestigeInner.Rewards);
+        var prestigeRewards = obtainedLevels.SelectMany(prestigeInner => prestigeInner.Rewards);
 
         AddPrestigeRewardsToProfile(sessionId!.Value, newProfile, prestigeRewards);
 
         // Copy profile stats
         CopyStats(newProfile, oldProfile);
 
-        // Flag profile as having achieved this prestige level
-        if (newProfile.CharacterData?.PmcData?.Prestige?.TryAdd(currentPrestigeData!.Id, timeUtil.GetTimeStamp()) is false)
+        // Flag profile as having achieved this prestige level and any it skipped
+        var prestigeFlags = newProfile.CharacterData?.PmcData?.Prestige;
+        foreach (var obtainedLevel in obtainedLevels)
+        {
+            prestigeFlags?.TryAdd(obtainedLevel.Id, timeUtil.GetTimeStamp());
+        }
+
+        if (prestigeFlags?.ContainsKey(prestigeLevel.Id) is false)
         {
             logger.Error(
-                $"Failed to add prestige element with id: {currentPrestigeData.Id} to new profile during processing of pending prestige."
+                $"Failed to add prestige element with id: {prestigeLevel.Id} to new profile during processing of pending prestige."
             );
         }
 
@@ -177,6 +198,35 @@ public class PrestigeHelper(
         //newScavStats.Eft.CarriedQuestItems = [];
         //newScavStats.Eft.FoundInRaidItems = [];
         //newScavStats.Eft.LastSessionDate = 0;
+    }
+
+    /// <summary>
+    ///     Grant prestige rewards to a profile outside of a prestige wipe, items arrive by mail.
+    ///     Goes through AddPrestigeRewardsToProfile so patches on it still apply
+    /// </summary>
+    /// <param name="sessionId">Profile id</param>
+    /// <param name="profile">Profile to reward</param>
+    /// <param name="rewards">Rewards of the prestige tiers being granted</param>
+    [Obsolete("Remove this on 5.0 by making AddPrestigeRewardsToProfile public")]
+    public void GrantPrestigeRewards(MongoId sessionId, SptProfile profile, IEnumerable<Reward> rewards)
+    {
+        AddPrestigeRewardsToProfile(sessionId, profile, rewards);
+    }
+
+    /// <summary>
+    ///     Grant the rewards of every prestige level a freshly wiped profile already holds
+    /// </summary>
+    /// <param name="profile">Newly created profile carrying over its prestige level</param>
+    public void GrantHeldPrestigeRewards(SptProfile profile)
+    {
+        var prestigeLevel = profile.CharacterData?.PmcData?.Info?.PrestigeLevel ?? 0;
+        if (prestigeLevel <= 0)
+        {
+            return;
+        }
+
+        var rewards = (databaseService.GetTemplates().Prestige?.Elements ?? []).Take(prestigeLevel).SelectMany(prestige => prestige.Rewards ?? []);
+        AddPrestigeRewardsToProfile(profile.ProfileInfo!.ProfileId!.Value, profile, rewards);
     }
 
     private void AddPrestigeRewardsToProfile(MongoId sessionId, SptProfile newProfile, IEnumerable<Reward> rewards)
