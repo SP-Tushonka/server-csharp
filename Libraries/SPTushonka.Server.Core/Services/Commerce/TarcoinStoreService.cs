@@ -49,6 +49,30 @@ public class TarcoinStoreService(
         await NotifyBalanceAsync(sessionId);
     }
 
+    /// <summary>
+    ///     Take every TarCoin item out of a profile's inventory and add its stack to the account's TarCoin balance
+    /// </summary>
+    /// <param name="sessionId">Player id</param>
+    /// <param name="carrier">Pmc or scav profile holding the items</param>
+    /// <returns>TarCoins deposited</returns>
+    public async Task<int> DepositCarriedTarcoinsAsync(MongoId sessionId, PmcData carrier)
+    {
+        var items = carrier.Inventory?.Items;
+        var coinIds = items?.Where(item => item.Template == ItemTpl.MONEY_TARCOIN).Select(item => item.Id).ToHashSet() ?? [];
+        if (items is null || coinIds.Count == 0)
+        {
+            return 0;
+        }
+
+        var amount = items.Where(item => coinIds.Contains(item.Id)).Sum(item => Convert.ToInt32(item.Upd?.StackObjectsCount ?? 1));
+        items.RemoveAll(item => coinIds.Contains(item.Id));
+        carrier.InsuredItems?.RemoveAll(insured => insured.ItemId is not null && coinIds.Contains(insured.ItemId.Value));
+
+        await CreditAsync(sessionId, amount);
+
+        return amount;
+    }
+
     // False when the balance is short, which leaves it untouched.
     public bool TrySpend(MongoId sessionId, int cost)
     {

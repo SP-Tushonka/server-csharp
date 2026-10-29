@@ -1,4 +1,5 @@
-﻿using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+﻿using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 
 namespace SPTarkov.Server.Core.Extensions;
 
@@ -40,6 +41,30 @@ public static class QuestConditionExtensions
     )
     {
         return FilterConditions(questConditions, "TraderStanding", furtherFilter);
+    }
+
+    /// <summary>
+    ///     Get the quests named by the Quest conditions in a list, in order
+    /// </summary>
+    /// <param name="questConditions">Conditions to read</param>
+    /// <returns>Quest ids</returns>
+    public static List<MongoId> GetQuestTargets(this IEnumerable<QuestCondition> questConditions)
+    {
+        return questConditions
+            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
+            .Select(condition => new MongoId(condition.Target!.Item!))
+            .ToList();
+    }
+
+    /// <summary>
+    ///     Check whether a condition is a Quest condition on the given quest
+    /// </summary>
+    /// <param name="condition">Condition to check</param>
+    /// <param name="questId">Quest it may name</param>
+    /// <returns>True when the condition names the quest</returns>
+    public static bool IsQuestConditionOn(this QuestCondition condition, MongoId questId)
+    {
+        return condition.ConditionType == "Quest" && condition.Target?.Item is not null && new MongoId(condition.Target.Item) == questId;
     }
 
     private static List<QuestCondition> FilterConditions(

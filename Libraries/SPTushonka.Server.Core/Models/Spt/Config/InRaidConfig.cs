@@ -57,6 +57,12 @@ public record InRaidConfig : BaseConfig
     public bool AlwaysKeepFoundInRaidOnRaidEnd { get; set; }
 
     /// <summary>
+    ///     Move the TarCoin items a player brings out of a raid into their TarCoin balance
+    /// </summary>
+    [JsonPropertyName("depositTarcoinsOnRaidEnd")]
+    public bool DepositTarcoinsOnRaidEnd { get; set; } = true;
+
+    /// <summary>
     ///     Notes and tapes marked as found once the tutorial raid ends, whatever the player picked up in it
     /// </summary>
     [JsonPropertyName("tutorialCompletableItems")]

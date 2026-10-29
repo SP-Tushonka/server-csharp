@@ -37,7 +37,7 @@ public class RagfairOfferHelper(
     RagfairHelper ragfairHelper,
     PaymentHelper paymentHelper,
     TraderHelper traderHelper,
-    QuestHelper questHelper,
+    QuestMessageHelper questMessageHelper,
     RagfairServerHelper ragfairServerHelper,
     ItemHelper itemHelper,
     RagfairOfferService ragfairOfferService,
@@ -708,7 +708,7 @@ public class RagfairOfferHelper(
             HandbookId = itemTpl,
         };
 
-        var storageTimeSeconds = timeUtil.GetHoursAsSeconds((int)questHelper.GetMailItemRedeemTimeHoursForProfile(sellerProfile));
+        var storageTimeSeconds = timeUtil.GetHoursAsSeconds((int)questMessageHelper.GetMailItemRedeemTimeHoursForProfile(sellerProfile));
         mailSendService.SendDirectNpcMessageToPlayer(
             offerOwnerSessionId,
             Models.Enums.Traders.RAGMAN,

@@ -29,66 +29,20 @@ public class QuestHelper(
     TemplateTable templateTable,
     TimeUtil timeUtil,
     EventOutputHolder eventOutputHolder,
-    LocaleService localeService,
     ProfileHelper profileHelper,
     QuestRewardHelper questRewardHelper,
     QuestVariableHelper questVariableHelper,
+    QuestMessageHelper questMessageHelper,
+    QuestAvailabilityHelper questAvailabilityHelper,
+    StoryProgressHelper storyProgressHelper,
     RewardHelper rewardHelper,
     ServerLocalisationService serverLocalisationService,
-    SeasonalEventService seasonalEventService,
-    MailSendService mailSendService,
     QuestConfig questConfig,
+    MainStoryChapterHelper mainStoryChapterHelper,
     ICloner cloner
 )
 {
     protected readonly FrozenSet<QuestStatusEnum> StartedOrAvailToFinish = [QuestStatusEnum.Started, QuestStatusEnum.AvailableForFinish];
-    private static readonly MongoId _guideChapterId = new("68cbd33676fe74b1e80bfd91");
-
-    private Dictionary<MongoId, MongoId>? _taskChapters;
-    private Dictionary<MongoId, HashSet<MongoId>>? _chapterStarters;
-    private HashSet<MongoId>? _dialogueAcceptedQuests;
-
-    /// <summary>
-    /// List of <see cref="Quest"/> conditions that require trader sales be tracked and incremented, keyed by <see cref="Quest.Id"/>
-    /// We need to keep track of quests with `SellItemToTrader` finish conditions to avoid expensive lookups during trading.
-    /// </summary>
-    protected virtual Dictionary<MongoId, List<QuestCondition>> SellToTraderQuestConditionCache
-    {
-        get { return field ??= GetSellToTraderQuests(GetQuestsFromDb()); }
-    }
-
-    /// <summary>
-    ///     returns true if the level condition is satisfied
-    /// </summary>
-    /// <param name="playerLevel">Players level</param>
-    /// <param name="condition">Quest condition</param>
-    /// <returns>true if player level is greater than or equal to quest</returns>
-    public bool DoesPlayerLevelFulfilCondition(int playerLevel, QuestCondition condition)
-    {
-        if (condition.ConditionType != "Level")
-        {
-            return true;
-        }
-
-        var conditionValue = condition.Value;
-        switch (condition.CompareMethod)
-        {
-            case ">=":
-                return playerLevel >= conditionValue;
-            case ">":
-                return playerLevel > conditionValue;
-            case "<":
-                return playerLevel < conditionValue;
-            case "<=":
-                return playerLevel <= conditionValue;
-            case "=":
-                return conditionValue.Approx(playerLevel);
-            default:
-                logger.Error(serverLocalisationService.GetText("quest-unable_to_find_compare_condition", condition.CompareMethod));
-
-                return false;
-        }
-    }
 
     /// <summary>
     ///     Get new quests in `after` that are not in `before`
@@ -112,93 +66,6 @@ public class QuestHelper(
 
         // Return quests found in after but not before
         return after.Where(quest => !beforeQuests.Contains(quest.Id));
-    }
-
-    /// <summary>
-    ///     Get quest name by quest id
-    /// </summary>
-    /// <param name="questId">id to get</param>
-    /// <returns></returns>
-    public string GetQuestNameFromLocale(string questId)
-    {
-        var questNameKey = $"{questId} name";
-        return localeService.GetLocaleDb().GetValueOrDefault(questNameKey, "UNKNOWN");
-    }
-
-    /// <summary>
-    ///     Check if trader has sufficient loyalty to fulfill quest requirement
-    /// </summary>
-    /// <param name="questProperties">Quest props</param>
-    /// <param name="profile">Player profile</param>
-    /// <returns>true if loyalty is high enough to fulfill quest requirement</returns>
-    public bool TraderLoyaltyLevelRequirementCheck(QuestCondition questProperties, PmcData profile)
-    {
-        if (
-            !profile.TradersInfo!.TryGetValue(
-                questProperties.Target!.IsItem ? questProperties.Target.Item! : questProperties.Target.List!.FirstOrDefault()!,
-                out var trader
-            )
-        )
-        {
-            logger.Error(serverLocalisationService.GetText("quest-unable_to_find_trader_in_profile", questProperties.Target));
-
-            return false;
-        }
-
-        return CompareAvailableForValues(trader.LoyaltyLevel!.Value, questProperties.Value!.Value, questProperties.CompareMethod!);
-    }
-
-    /// <summary>
-    ///     Check if trader has sufficient standing to fulfill quest requirement
-    /// </summary>
-    /// <param name="questProperties">Quest props</param>
-    /// <param name="profile">Player profile</param>
-    /// <returns>true if standing is high enough to fulfill quest requirement</returns>
-    public bool TraderStandingRequirementCheck(QuestCondition questProperties, PmcData profile)
-    {
-        var requiredLoyaltyLevel = Convert.ToInt32(questProperties.Value);
-        if (
-            !profile.TradersInfo!.TryGetValue(
-                questProperties.Target!.IsItem ? questProperties.Target.Item! : questProperties.Target.List!.FirstOrDefault()!,
-                out var trader
-            )
-        )
-        {
-            logger.Error(serverLocalisationService.GetText("quest-unable_to_find_trader_in_profile", questProperties.Target));
-        }
-
-        return CompareAvailableForValues(trader?.Standing ?? 1, requiredLoyaltyLevel, questProperties.CompareMethod!);
-    }
-
-    /// <summary>
-    /// Helper to map symbols to actions
-    /// </summary>
-    /// <param name="current">First value</param>
-    /// <param name="required">Second value</param>
-    /// <param name="compareMethod">Symbol to compare two values with e.g. ">="</param>
-    /// <returns>Outcome of comparison</returns>
-    protected bool CompareAvailableForValues(double current, double required, string compareMethod)
-    {
-        switch (compareMethod)
-        {
-            case ">=":
-                return current >= required;
-            case ">":
-                return current > required;
-            case "<=":
-                return current <= required;
-            case "<":
-                return current < required;
-            case "!=":
-                return !current.Approx(required);
-            case "==":
-                return current.Approx(required);
-
-            default:
-                logger.Error(serverLocalisationService.GetText("quest-compare_operator_unhandled", compareMethod));
-
-                return false;
-        }
     }
 
     /// <summary>
@@ -313,18 +180,18 @@ public class QuestHelper(
                 }
 
                 // Skip locked event quests
-                if (!ShowEventQuestToPlayer(quest.Id))
+                if (!questAvailabilityHelper.ShowEventQuestToPlayer(quest.Id))
                 {
                     return false;
                 }
 
                 // Skip quest if it's flagged as for other side
-                if (QuestIsForOtherSide(profile?.Info?.Side, quest.Id))
+                if (questAvailabilityHelper.QuestIsForOtherSide(profile?.Info?.Side, quest.Id))
                 {
                     return false;
                 }
 
-                if (QuestIsProfileBlacklisted(profile?.Info?.GameVersion, quest.Id))
+                if (questAvailabilityHelper.QuestIsProfileBlacklisted(profile?.Info?.GameVersion, quest.Id))
                 {
                     return false;
                 }
@@ -333,13 +200,13 @@ public class QuestHelper(
                 if (
                     questConfig.WithheldQuests.Contains(quest.Id)
                     || questConfig.StartedWithQuests.ContainsKey(quest.Id)
-                    || !HiddenGateMet(quest.Id, profile)
+                    || !mainStoryChapterHelper.HiddenGateMet(quest.Id, profile)
                 )
                 {
                     return false;
                 }
 
-                if (!QuestIsProfileWhitelisted(profile?.Info?.GameVersion, quest.Id))
+                if (!questAvailabilityHelper.QuestIsProfileWhitelisted(profile?.Info?.GameVersion, quest.Id))
                 {
                     return false;
                 }
@@ -347,7 +214,7 @@ public class QuestHelper(
                 var standingRequirements = quest.Conditions.AvailableForStart?.GetStandingConditions();
                 foreach (var condition in standingRequirements ?? [])
                 {
-                    if (!TraderStandingRequirementCheck(condition, profile!))
+                    if (!questAvailabilityHelper.TraderStandingRequirementCheck(condition, profile!))
                     {
                         return false;
                     }
@@ -356,7 +223,7 @@ public class QuestHelper(
                 var loyaltyRequirements = quest.Conditions.AvailableForStart!.GetLoyaltyConditions();
                 foreach (var condition in loyaltyRequirements)
                 {
-                    if (!TraderLoyaltyLevelRequirementCheck(condition, profile!))
+                    if (!questAvailabilityHelper.TraderLoyaltyLevelRequirementCheck(condition, profile!))
                     {
                         return false;
                     }
@@ -367,103 +234,6 @@ public class QuestHelper(
             });
 
         return GetQuestsWithOnlyLevelRequirementStartCondition(eligibleQuests).ToList();
-    }
-
-    /// <summary>
-    /// Should a seasonal/event quest be shown to the player
-    /// </summary>
-    /// <param name="questId">Quest to check</param>
-    /// <returns>true = show to player</returns>
-    public bool ShowEventQuestToPlayer(MongoId questId)
-    {
-        var isChristmasEventActive = seasonalEventService.ChristmasEventEnabled();
-        var isHalloweenEventActive = seasonalEventService.HalloweenEventEnabled();
-
-        // Not christmas + quest is for christmas
-        if (!isChristmasEventActive && seasonalEventService.IsQuestRelatedToEvent(questId, SeasonalEventType.Christmas))
-        {
-            return false;
-        }
-
-        // Not halloween + quest is for halloween
-        if (!isHalloweenEventActive && seasonalEventService.IsQuestRelatedToEvent(questId, SeasonalEventType.Halloween))
-        {
-            return false;
-        }
-
-        if (!seasonalEventService.ScourgeEventEnabled() && seasonalEventService.IsQuestRelatedToEvent(questId, SeasonalEventType.Scourge))
-        {
-            return false;
-        }
-
-        // Should non-season event quests be shown to player
-        if (!questConfig.ShowNonSeasonalEventQuests && seasonalEventService.IsQuestRelatedToEvent(questId, SeasonalEventType.None))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    /// <summary>
-    /// Is the quest for the opposite side the player is on
-    /// </summary>
-    /// <param name="playerSide">Player side (usec/bear)</param>
-    /// <param name="questId">QuestId to check</param>
-    /// <returns>true = quest isn't for player</returns>
-    public bool QuestIsForOtherSide(string? playerSide, MongoId questId)
-    {
-        var isUsec = string.Equals(playerSide, "usec", StringComparison.OrdinalIgnoreCase);
-        if (isUsec && questConfig.BearOnlyQuests.Contains(questId))
-        // Player is usec and quest is bear only, skip
-        {
-            return true;
-        }
-
-        if (!isUsec && questConfig.UsecOnlyQuests.Contains(questId))
-        // Player is bear and quest is usec only, skip
-        {
-            return true;
-        }
-
-        // player is bear + quest is usec OR player is usec + quest is bear
-        return false;
-    }
-
-    /// <summary>
-    /// Is the provided quest prevented from being viewed by the provided game version
-    /// (Inclusive filter)
-    /// </summary>
-    /// <param name="gameVersion">Game version to check against</param>
-    /// <param name="questId">Quest id to check</param>
-    /// <returns>True = Quest should not be visible to game version</returns>
-    public bool QuestIsProfileBlacklisted(string? gameVersion, MongoId questId)
-    {
-        if (!questConfig.ProfileBlacklist.TryGetValue(gameVersion ?? string.Empty, out var blacklistedQuests))
-        {
-            // Game version has no blacklist
-            return false;
-        }
-
-        return blacklistedQuests.Contains(questId);
-    }
-
-    /// <summary>
-    /// Is the provided quest able to be seen by the provided game version
-    /// (Exclusive filter)
-    /// </summary>
-    /// <param name="gameVersion">Game version to check against</param>
-    /// <param name="questId">Quest id to check</param>
-    /// <returns>True = Quest should be visible to game version</returns>
-    public bool QuestIsProfileWhitelisted(string? gameVersion, MongoId questId)
-    {
-        if (!questConfig.ProfileWhitelist.TryGetValue(questId, out var allowedGameVersions))
-        {
-            // Quest isn't whitelist restricted, visible to all game versions
-            return true;
-        }
-
-        return allowedGameVersions.Contains(gameVersion ?? string.Empty);
     }
 
     /// <summary>
@@ -568,134 +338,6 @@ public class QuestHelper(
     }
 
     /// <summary>
-    /// Get all quests with finish condition `SellItemToTrader`.
-    /// The first time this method is called it will cache the conditions by quest id in <see cref="SellToTraderQuestConditionCache"/>` and return that thereafter.
-    /// </summary>
-    /// <param name="quests">Quests to process</param>
-    /// <returns>List of quests with `SellItemToTrader` finish condition(s)</returns>
-    protected Dictionary<MongoId, List<QuestCondition>> GetSellToTraderQuests(IEnumerable<Models.Eft.Common.Tables.Quest> quests)
-    {
-        // Create cache
-        var result = new Dictionary<MongoId, List<QuestCondition>>();
-        foreach (var quest in quests)
-        {
-            foreach (var cond in quest.Conditions.AvailableForFinish!)
-            {
-                if (cond.ConditionType != "SellItemToTrader")
-                {
-                    continue;
-                }
-
-                if (!result.TryGetValue(quest.Id, out var questConditions))
-                {
-                    questConditions ??= [];
-                    questConditions.Add(cond);
-
-                    result.Add(quest.Id, questConditions);
-                    continue;
-                }
-
-                questConditions.Add(cond);
-            }
-        }
-
-        if (logger.IsLogEnabled(LogLevel.Debug))
-        {
-            logger.Debug($"GetSellToTraderQuests found: {result.Count} quests");
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// Get all active condition counters for `SellItemToTrader` conditions
-    /// </summary>
-    /// <param name="pmcData">Profile to check</param>
-    /// <returns>List of active TaskConditionCounters</returns>
-    protected List<TaskConditionCounter>? GetActiveSellToTraderConditionCounters(PmcData pmcData)
-    {
-        return pmcData
-            .TaskConditionCounters?.Values.Where(condition =>
-                SellToTraderQuestConditionCache.ContainsKey(condition.SourceId!.Value) && condition.Type == "SellItemToTrader"
-            )
-            .ToList();
-    }
-
-    /// <summary>
-    /// Look over all active conditions and increment them as needed
-    /// </summary>
-    /// <param name="profileWithItemsToSell">profile selling the items</param>
-    /// <param name="profileToReceiveMoney">profile to receive the money</param>
-    /// <param name="sellRequest">request with items to sell</param>
-    public void IncrementSoldToTraderCounters(
-        PmcData profileWithItemsToSell,
-        PmcData profileToReceiveMoney,
-        ProcessSellTradeRequestData sellRequest
-    )
-    {
-        var activeConditionCounters = GetActiveSellToTraderConditionCounters(profileToReceiveMoney);
-
-        // No active conditions, exit
-        if (activeConditionCounters is null || activeConditionCounters.Count == 0)
-        {
-            return;
-        }
-
-        foreach (var counter in activeConditionCounters)
-        {
-            // Condition is in profile, but quest doesn't exist in database
-            if (!SellToTraderQuestConditionCache.TryGetValue(counter.SourceId!.Value, out var conditions))
-            {
-                logger.Error(serverLocalisationService.GetText("quest_unable_to_find_quest_in_db_no_type", counter.SourceId));
-                continue;
-            }
-
-            foreach (var condition in conditions)
-            {
-                IncrementSoldToTraderCounter(profileWithItemsToSell, counter, condition, sellRequest);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Increment an individual condition counter
-    /// </summary>
-    /// <param name="profileWithItemsToSell">Profile selling the items</param>
-    /// <param name="taskCounter">condition counter to increment</param>
-    /// <param name="questCondition">quest condtion to check for valid items on</param>
-    /// <param name="sellRequest">sell request of items sold</param>
-    protected void IncrementSoldToTraderCounter(
-        PmcData profileWithItemsToSell,
-        TaskConditionCounter taskCounter,
-        QuestCondition questCondition,
-        ProcessSellTradeRequestData sellRequest
-    )
-    {
-        var itemsTplsThatIncrement = questCondition.Target;
-        foreach (var itemSoldToTrader in sellRequest.Items!)
-        {
-            // Get sold items' details from profile
-            var itemDetails = profileWithItemsToSell.Inventory?.Items?.FirstOrDefault(inventoryItem =>
-                inventoryItem.Id == itemSoldToTrader.Id
-            );
-            if (itemDetails is null)
-            {
-                logger.Error(
-                    serverLocalisationService.GetText("trader-unable_to_find_inventory_item_for_selltotrader_counter", taskCounter.SourceId)
-                );
-
-                continue;
-            }
-
-            // Is sold item on the increment list
-            if (itemsTplsThatIncrement!.List!.Contains(itemDetails.Template))
-            {
-                taskCounter.Value += itemSoldToTrader.Count;
-            }
-        }
-    }
-
-    /// <summary>
     /// Fail a quest in a player profile
     /// </summary>
     /// <param name="pmcData">Player profile</param>
@@ -723,18 +365,7 @@ public class QuestHelper(
         // Quest found and no repeatable found
         if (quest is not null && matchingRepeatableQuest is null)
         {
-            var failRewards = questRewards.ToList();
-            if (QuestMessageIsWorthSending(quest, quest.FailMessageText, failRewards))
-            {
-                mailSendService.SendLocalisedNpcMessageToPlayer(
-                    sessionId,
-                    quest.TraderId,
-                    MessageType.QuestFail,
-                    quest.FailMessageText ?? "",
-                    failRewards,
-                    timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(pmcData))
-                );
-            }
+            questMessageHelper.SendQuestFailMessage(sessionId, pmcData, quest, questRewards.ToList());
         }
 
         updatedOutput.ProfileChanges[sessionId].Quests!.AddRange(FailedUnlocked(failRequest.QuestId, sessionId));
@@ -774,75 +405,6 @@ public class QuestHelper(
     }
 
     /// <summary>
-    ///     Get a quests startedMessageText key from db, if no startedMessageText key found, use description key instead
-    /// </summary>
-    /// <param name="quest">Quest the message belongs to</param>
-    /// <returns>message id</returns>
-    public string GetMessageIdForQuestStart(Models.Eft.Common.Tables.Quest quest)
-    {
-        // Blank or is a guid, use description instead
-        var startedMessageText = GetQuestMessageText(quest, quest.StartedMessageText);
-        if (
-            startedMessageText.Trim() == ""
-            || string.Equals(startedMessageText, "test", StringComparison.OrdinalIgnoreCase)
-            || startedMessageText.Length == 24
-        )
-        {
-            return quest.Description;
-        }
-
-        return quest.StartedMessageText!;
-    }
-
-    /// <summary>
-    ///     Resolve a quest message id to the text the client will show for it
-    /// </summary>
-    /// <param name="quest">Quest the message belongs to</param>
-    /// <param name="questMessageId">Quest message id to look up</param>
-    /// <returns>Localised text, blank when the id resolves to nothing</returns>
-    public string GetQuestMessageText(Models.Eft.Common.Tables.Quest quest, string? questMessageId)
-    {
-        if (string.IsNullOrEmpty(questMessageId))
-        {
-            return "";
-        }
-
-        var questLocale = GetQuestLocale(quest);
-        if (questLocale is not null && questLocale.TryGetValue(questMessageId, out var questText))
-        {
-            return questText ?? "";
-        }
-
-        return GetQuestLocaleIdFromDb(questMessageId) ?? "";
-    }
-
-    /// <summary>
-    ///     Get the locale Id from locale db for a quest message
-    /// </summary>
-    /// <param name="questMessageId">Quest message id to look up</param>
-    /// <returns>Locale Id from locale db</returns>
-    public string? GetQuestLocaleIdFromDb(string questMessageId)
-    {
-        var locale = localeService.GetLocaleDb();
-        return locale!.GetValueOrDefault(questMessageId, null);
-    }
-
-    private Dictionary<string, string>? GetQuestLocale(Models.Eft.Common.Tables.Quest quest)
-    {
-        if (quest.Localization is null)
-        {
-            return null;
-        }
-
-        if (quest.Localization.TryGetValue(localeService.GetDesiredGameLocale(), out var chosenLocale))
-        {
-            return chosenLocale;
-        }
-
-        return quest.Localization.GetValueOrDefault("en");
-    }
-
-    /// <summary>
     ///     Alter a quests state + Add a record to its status timers object
     /// </summary>
     /// <param name="pmcData">Profile to update</param>
@@ -850,13 +412,7 @@ public class QuestHelper(
     /// <param name="questId">Id of the quest to alter the status of</param>
     protected void UpdateQuestState(PmcData pmcData, QuestStatusEnum newQuestState, MongoId questId)
     {
-        // Find quest in profile, update status to desired status
-        var questToUpdate = pmcData.Quests?.FirstOrDefault(quest => quest.QId == questId);
-        if (questToUpdate is not null)
-        {
-            questToUpdate.Status = newQuestState;
-            questToUpdate.StatusTimers[newQuestState] = timeUtil.GetTimeStamp();
-        }
+        pmcData.SetQuestStatus(questId, newQuestState, timeUtil.GetTimeStamp());
     }
 
     /// <summary>
@@ -1027,21 +583,6 @@ public class QuestHelper(
     }
 
     /// <summary>
-    /// Get the hours a mails items can be collected for by profile type
-    /// </summary>
-    /// <param name="pmcData">Profile to get hours for</param>
-    /// <returns>Hours item will be available for</returns>
-    public double GetMailItemRedeemTimeHoursForProfile(PmcData pmcData)
-    {
-        if (!questConfig.MailRedeemTimeHours.TryGetValue(pmcData.Info!.GameVersion!, out var hours))
-        {
-            return questConfig.MailRedeemTimeHours["default"];
-        }
-
-        return hours;
-    }
-
-    /// <summary>
     /// Handle player completing a quest
     /// Flag quest as complete in their profile
     /// Look for and flag any quests that fail when completing quest
@@ -1065,7 +606,7 @@ public class QuestHelper(
 
         // The server completes chapters itself, a client that also finishes one must not be paid twice. Other quests
         // arrive here already Success after a raid and still need their rewards
-        if (IsStoryChapter(request.QuestId) && pmcData.GetQuestStatus(request.QuestId) == QuestStatusEnum.Success)
+        if (mainStoryChapterHelper.IsStoryChapter(request.QuestId) && pmcData.GetQuestStatus(request.QuestId) == QuestStatusEnum.Success)
         {
             return completeQuestResponse;
         }
@@ -1081,12 +622,13 @@ public class QuestHelper(
 
         const QuestStatusEnum newQuestState = QuestStatusEnum.Success;
         UpdateQuestState(pmcData, newQuestState, completedQuestId);
-        RecordCompletableItems(pmcData, completedQuestId);
+        storyProgressHelper.RecordCompletableItems(pmcData, completedQuestId);
         questVariableHelper.RecordCompletion(pmcData, completedQuestId, profileChanges);
         var questRewards = questRewardHelper.ApplyQuestReward(pmcData, request.QuestId, newQuestState, sessionId, completeQuestResponse);
 
         // Check for linked failed + unrestartable quests (only get quests not already failed
         var questsToFail = GetQuestsFromProfileFailedByCompletingQuest(completedQuestId, pmcData);
+        questsToFail.AddRange(mainStoryChapterHelper.RunningAlternativesOf(completedQuestId, pmcData).Where(alternative => !questsToFail.Contains(alternative)));
         if (questsToFail.Count > 0)
         {
             FailQuests(sessionId, pmcData, questsToFail, completeQuestResponse);
@@ -1167,35 +709,35 @@ public class QuestHelper(
                 }
 
                 quest.SptStatus = questInProfile.Status;
-                StartChapterOfActiveTask(profile, quest.Id, quest.SptStatus.Value);
+                storyProgressHelper.StartChapterOfActiveTask(profile, quest.Id, quest.SptStatus.Value);
                 questsToShowPlayer.Add(quest);
                 continue;
             }
 
             // Filter out bear quests for USEC and vice versa
-            if (QuestIsForOtherSide(profile.Info!.Side, quest.Id))
+            if (questAvailabilityHelper.QuestIsForOtherSide(profile.Info!.Side, quest.Id))
             {
                 continue;
             }
 
             // Quest is blacklisted for this game version
-            if (QuestIsProfileBlacklisted(profile.Info.GameVersion, quest.Id))
+            if (questAvailabilityHelper.QuestIsProfileBlacklisted(profile.Info.GameVersion, quest.Id))
             {
                 continue;
             }
 
-            if (questConfig.WithheldQuests.Contains(quest.Id) || !HiddenGateMet(quest.Id, profile))
+            if (questConfig.WithheldQuests.Contains(quest.Id) || !mainStoryChapterHelper.HiddenGateMet(quest.Id, profile))
             {
                 continue;
             }
 
             // Quest is whitelisted to game versions the profile isn't part of
-            if (!QuestIsProfileWhitelisted(profile.Info.GameVersion, quest.Id))
+            if (!questAvailabilityHelper.QuestIsProfileWhitelisted(profile.Info.GameVersion, quest.Id))
             {
                 continue;
             }
 
-            if (!ShowEventQuestToPlayer(quest.Id))
+            if (!questAvailabilityHelper.ShowEventQuestToPlayer(quest.Id))
             {
                 continue;
             }
@@ -1213,13 +755,13 @@ public class QuestHelper(
                     continue;
                 }
 
-                quest.SptStatus = StartStorylineQuest(profile, quest.Id);
+                quest.SptStatus = storyProgressHelper.StartStorylineQuest(profile, quest.Id);
                 questsToShowPlayer.Add(quest);
                 continue;
             }
 
             // Don't add quests that have a level higher than the user's
-            if (!PlayerLevelFulfillsQuestRequirement(quest, profile.Info.Level!.Value))
+            if (!questAvailabilityHelper.PlayerLevelFulfillsQuestRequirement(quest, profile.Info.Level!.Value))
             {
                 continue;
             }
@@ -1237,20 +779,20 @@ public class QuestHelper(
 
             // Gated on a note, tape or patch the player has not read yet, or on story progress the
             // client would otherwise evaluate itself and show as a locked quest
-            if (!CompletableItemRequirementsMet(quest, profile) || !GlobalVariableRequirementsMet(quest, profile))
+            if (!quest.CompletableItemRequirementsMet(profile) || !mainStoryChapterHelper.GlobalVariableRequirementsMet(quest, profile))
             {
                 continue;
             }
 
-            if (!PrestigeLevelRequirementsMet(quest, profile))
+            if (!quest.PrestigeLevelRequirementsMet(profile))
             {
                 continue;
             }
 
             // The raid starts these itself when the item is read, this catches a raid that was quit before then
-            if (AutoStartConditionsMet(quest, profile))
+            if (quest.AutoStartConditionsMet(profile))
             {
-                quest.SptStatus = StartStorylineQuest(profile, quest.Id);
+                quest.SptStatus = storyProgressHelper.StartStorylineQuest(profile, quest.Id);
                 questsToShowPlayer.Add(quest);
                 continue;
             }
@@ -1263,7 +805,7 @@ public class QuestHelper(
             if (questRequirements.Count == 0 && loyaltyRequirements.Count == 0 && standingRequirements.Count == 0)
             {
                 // A task behind a hidden gate starts once a dialogue opens the gate, ahead of the task listed before it
-                var storyStatus = ResolveStorylineStatus(profile, quest, questConfig.HiddenVariableGates.ContainsKey(quest.Id));
+                var storyStatus = storyProgressHelper.ResolveStorylineStatus(profile, quest, questConfig.HiddenVariableGates.ContainsKey(quest.Id));
                 if (storyStatus is null)
                 {
                     continue;
@@ -1324,7 +866,7 @@ public class QuestHelper(
             var passesLoyaltyRequirements = true;
             foreach (var condition in loyaltyRequirements)
             {
-                if (!TraderLoyaltyLevelRequirementCheck(condition, profile))
+                if (!questAvailabilityHelper.TraderLoyaltyLevelRequirementCheck(condition, profile))
                 {
                     passesLoyaltyRequirements = false;
                     break;
@@ -1334,7 +876,7 @@ public class QuestHelper(
             var passesStandingRequirements = true;
             foreach (var condition in standingRequirements)
             {
-                if (!TraderStandingRequirementCheck(condition, profile))
+                if (!questAvailabilityHelper.TraderStandingRequirementCheck(condition, profile))
                 {
                     passesStandingRequirements = false;
                     break;
@@ -1343,7 +885,7 @@ public class QuestHelper(
 
             if (haveCompletedPreviousQuest && passesLoyaltyRequirements && passesStandingRequirements)
             {
-                var storyStatus = ResolveStorylineStatus(profile, quest, questRequirements.Count > 0);
+                var storyStatus = storyProgressHelper.ResolveStorylineStatus(profile, quest, questRequirements.Count > 0);
                 if (storyStatus is null)
                 {
                     continue;
@@ -1357,7 +899,7 @@ public class QuestHelper(
         // A chapter started by one of its tasks above may have been skipped earlier in the loop
         foreach (var profileQuest in profile.Quests)
         {
-            if (!IsStoryChapter(profileQuest.QId) || questsToShowPlayer.Any(shown => shown.Id == profileQuest.QId))
+            if (!mainStoryChapterHelper.IsStoryChapter(profileQuest.QId) || questsToShowPlayer.Any(shown => shown.Id == profileQuest.QId))
             {
                 continue;
             }
@@ -1373,643 +915,12 @@ public class QuestHelper(
         }
 
         // A completed chapter can unlock further quests, so the list is built again
-        if (CompleteFinishedChapters(profile, questsToShowPlayer))
+        if (storyProgressHelper.CompleteFinishedChapters(profile, questsToShowPlayer))
         {
             return GetClientQuests(sessionId);
         }
 
         return UpdateQuestsForGameEdition(cloner.Clone(questsToShowPlayer)!, profile.Info!.GameVersion!);
-    }
-
-    /// <summary>
-    ///     Complete every running chapter that has no open task left. The client never completes a chapter itself, it
-    ///     lists tasks players never get and alternatives that end failed
-    /// </summary>
-    /// <param name="profile">Player profile</param>
-    /// <param name="shownQuests">Quests the player is shown, with their resolved status</param>
-    /// <returns>True when a chapter was completed</returns>
-    protected bool CompleteFinishedChapters(PmcData profile, List<Models.Eft.Common.Tables.Quest> shownQuests)
-    {
-        var finished = profile
-            .Quests!.Where(profileQuest => profileQuest.Status == QuestStatusEnum.Started && IsStoryChapter(profileQuest.QId))
-            .Select(profileQuest => profileQuest.QId)
-            .Where(chapterId => !HasOpenTask(profile, chapterId, shownQuests))
-            .ToList();
-
-        foreach (var chapterId in finished)
-        {
-            CompleteChapter(profile, chapterId);
-        }
-
-        return finished.Count > 0;
-    }
-
-    /// <summary>
-    ///     Check whether a chapter still has a task offered, running or ready to hand in, or has not closed a task yet
-    /// </summary>
-    /// <param name="profile">Player profile</param>
-    /// <param name="chapterId">Chapter to check</param>
-    /// <param name="shownQuests">Quests the player is shown, with their resolved status</param>
-    /// <returns>True while the chapter is not done</returns>
-    protected bool HasOpenTask(PmcData profile, MongoId chapterId, List<Models.Eft.Common.Tables.Quest> shownQuests)
-    {
-        // The final step closes the chapter even when a branch the player did not take is still running
-        var tasks = ChapterTasks(chapterId);
-        var last = tasks.FindLastIndex(IsAvailableTask);
-        if (last >= 0)
-        {
-            for (var i = StepStart(tasks, last); i <= last; i++)
-            {
-                if (profile.GetQuestStatus(tasks[i]) == QuestStatusEnum.Success)
-                {
-                    return false;
-                }
-            }
-        }
-
-        var anyClosed = false;
-        foreach (var taskId in tasks.Where(IsAvailableTask))
-        {
-            var status = shownQuests.FirstOrDefault(quest => quest.Id == taskId)?.SptStatus ?? profile.GetQuestStatus(taskId);
-            if (status is QuestStatusEnum.AvailableForStart or QuestStatusEnum.Started or QuestStatusEnum.AvailableForFinish)
-            {
-                return true;
-            }
-
-            anyClosed |= status is QuestStatusEnum.Success or QuestStatusEnum.Fail;
-        }
-
-        return !anyClosed;
-    }
-
-    /// <summary>
-    ///     Complete a chapter and hand out its Success rewards the way a turn in does
-    /// </summary>
-    /// <param name="profile">Player profile</param>
-    /// <param name="chapterId">Chapter to complete</param>
-    protected void CompleteChapter(PmcData profile, MongoId chapterId)
-    {
-        UpdateQuestState(profile, QuestStatusEnum.Success, chapterId);
-        if (profile.SessionId is null)
-        {
-            return;
-        }
-
-        var sessionId = profile.SessionId.Value;
-        var output = eventOutputHolder.GetOutput(sessionId);
-        output.ProfileChanges.TryGetValue(sessionId, out var profileChanges);
-        questVariableHelper.RecordCompletion(profile, chapterId, profileChanges);
-        var rewards = questRewardHelper.ApplyQuestReward(profile, chapterId, QuestStatusEnum.Success, sessionId, output).ToList();
-        SendSuccessDialogMessageOnQuestComplete(sessionId, profile, chapterId, rewards);
-    }
-
-    /// <summary>
-    ///     Get the tasks a chapter lists as its finish conditions, in order
-    /// </summary>
-    /// <param name="chapterId">Chapter to read</param>
-    /// <returns>Task ids</returns>
-    protected List<MongoId> ChapterTasks(MongoId chapterId)
-    {
-        return (templateTable.Quests.GetValueOrDefault(chapterId)?.Conditions?.AvailableForFinish ?? [])
-            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
-            .Select(condition => new MongoId(condition.Target!.Item!))
-            .ToList();
-    }
-
-    protected static bool CompletableItemRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
-    {
-        return (quest.Conditions?.AvailableForStart ?? [])
-            .Where(condition => condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null)
-            .All(condition => profile.CompletableItems?.GetValueOrDefault(condition.Target!.Item!) ?? false);
-    }
-
-    protected static bool AutoStartConditionsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
-    {
-        var conditions = (quest.Conditions?.AutoStart ?? [])
-            .Where(condition => condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null)
-            .ToList();
-
-        return conditions.Count > 0
-            && conditions.All(condition => profile.CompletableItems?.GetValueOrDefault(condition.Target!.Item!) ?? false);
-    }
-
-    /// <summary>A finished quest with a note, tape or patch among its objectives means that item was read.</summary>
-    public void RecordCompletableItems(PmcData profile, MongoId questId)
-    {
-        if (!templateTable.Quests.TryGetValue(questId, out var quest))
-        {
-            return;
-        }
-
-        foreach (
-            var condition in (quest.Conditions?.AvailableForFinish ?? []).Where(condition =>
-                condition.ConditionType == "CompletableItem" && condition.Target?.Item is not null
-            )
-        )
-        {
-            profile.CompletableItems ??= [];
-            profile.CompletableItems[condition.Target!.Item!] = true;
-        }
-    }
-
-    protected bool GlobalVariableRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
-    {
-        return (quest.Conditions?.AvailableForStart ?? [])
-            .Where(condition => condition.ConditionType == "GlobalVariableValue" && condition.Target?.Item is not null)
-            .All(condition => VariableConditionMet(profile, condition));
-    }
-
-    /// <summary>
-    ///     Check the prestige level a quest asks for, such as the New Beginning quest each prestige level requires
-    /// </summary>
-    /// <param name="quest">Quest to check</param>
-    /// <param name="profile">Player profile</param>
-    /// <returns>True when every PrestigeLevel start condition holds</returns>
-    protected bool PrestigeLevelRequirementsMet(Models.Eft.Common.Tables.Quest quest, PmcData profile)
-    {
-        // Every prestige on this server is PvE
-        var prestigeLevel = profile.Info?.GetPrestigeLevel(PrestigeGameModes.Pve) ?? 0;
-
-        return (quest.Conditions?.AvailableForStart ?? [])
-            .Where(condition => condition.ConditionType == "PrestigeLevel")
-            .All(condition =>
-                condition.CompareMethod switch
-                {
-                    ">=" => prestigeLevel >= condition.Value,
-                    ">" => prestigeLevel > condition.Value,
-                    "<=" => prestigeLevel <= condition.Value,
-                    "<" => prestigeLevel < condition.Value,
-                    _ => prestigeLevel == condition.Value,
-                }
-            );
-    }
-
-    protected bool VariableConditionMet(PmcData profile, QuestCondition condition)
-    {
-        var current = GetVariableValue(profile, condition.Target!.Item!);
-        var required = condition.Value ?? 0;
-
-        return condition.CompareMethod switch
-        {
-            "==" => current == required,
-            ">" => current > required,
-            _ => current >= required,
-        };
-    }
-
-    /// <summary>Whether the profile has reached the group value, trader standing or loyalty live silently asks of this quest, if any.</summary>
-    protected bool HiddenGateMet(MongoId questId, PmcData? profile)
-    {
-        if (!questConfig.HiddenVariableGates.TryGetValue(questId, out var gate))
-        {
-            return true;
-        }
-
-        if (profile is null)
-        {
-            return false;
-        }
-
-        if (gate.Trader is not null)
-        {
-            if (profile.TradersInfo is null || !profile.TradersInfo.TryGetValue(gate.Trader.Value, out var traderInfo))
-            {
-                return false;
-            }
-
-            return gate.Loyalty is not null
-                ? (traderInfo.LoyaltyLevel ?? 1) >= gate.Loyalty.Value
-                : (traderInfo.Standing ?? 0) >= (gate.Standing ?? 0);
-        }
-
-        if (gate.Target is not null)
-        {
-            var value = GetVariableValue(profile, gate.Target.Value);
-
-            return gate.Exact == true ? value == (gate.Value ?? 0) : value >= (gate.Value ?? 0);
-        }
-
-        if (gate.Level is not null && (profile.Info?.Level ?? 0) < gate.Level.Value)
-        {
-            return false;
-        }
-
-        var prerequisites = gate.Quests ?? [];
-        if (
-            !prerequisites.All(prerequisite => profile.GetQuestStatus(prerequisite) == QuestStatusEnum.Success)
-            || (gate.AnyQuests is not null && !gate.AnyQuests.Any(quest => profile.GetQuestStatus(quest) == QuestStatusEnum.Success))
-            || !(gate.Failed ?? []).All(quest => profile.GetQuestStatus(quest) == QuestStatusEnum.Fail)
-            || !(gate.NotFailed ?? []).All(quest => profile.GetQuestStatus(quest) != QuestStatusEnum.Fail)
-        )
-        {
-            return false;
-        }
-
-        if (gate.Delay is null || prerequisites.Count == 0)
-        {
-            return true;
-        }
-
-        var finishedAt = prerequisites.Max(prerequisite =>
-            profile.Quests!.First(quest => quest.QId == prerequisite).StatusTimers?.GetValueOrDefault(QuestStatusEnum.Success) ?? 0
-        );
-
-        return finishedAt + gate.Delay.Value <= timeUtil.GetTimeStamp();
-    }
-
-    // A condition may name a variable group, whose value is the sum of its member variables. Trader
-    // dialogue and quest rewards set the members, so a trader's side quests open up as the story advances.
-    protected int GetVariableValue(PmcData profile, MongoId variableId)
-    {
-        var variables = profile.Variables ?? [];
-        var group = templateTable.VariableGroups.FirstOrDefault(group => group.Id == variableId);
-
-        return group is null ? variables.GetValueOrDefault(variableId) : group.Variables.Sum(member => variables.GetValueOrDefault(member));
-    }
-
-    // Live starts the Tour chapter itself seconds after the character is created. Every other chapter
-    // starts together with the first of its tasks unlocked by a finished quest, and stays hidden until then.
-    // Hidden quests have no trader screen to accept them from, so they start the moment they unlock.
-    // Returns the status a quest should be shown with, or null when it must stay hidden.
-    protected QuestStatusEnum? ResolveStorylineStatus(PmcData profile, Models.Eft.Common.Tables.Quest quest, bool unlockedByQuest)
-    {
-        var status = ResolveChapterStatus(profile, quest, unlockedByQuest);
-        if (status == QuestStatusEnum.AvailableForStart && quest.NotDisplayedQuest == true)
-        {
-            return StartStorylineQuest(profile, quest.Id);
-        }
-
-        return status;
-    }
-
-    protected QuestStatusEnum? ResolveChapterStatus(PmcData profile, Models.Eft.Common.Tables.Quest quest, bool unlockedByQuest)
-    {
-        if (IsStoryChapter(quest.Id))
-        {
-            return quest.Id == _guideChapterId ? StartStorylineQuest(profile, quest.Id) : null;
-        }
-
-        var chapterId = ChapterOf(quest.Id);
-        if (chapterId is null)
-        {
-            return QuestStatusEnum.AvailableForStart;
-        }
-
-        // A task that would fail the moment it started belongs to a branch the player did not take
-        if (FailConditionsMet(profile, quest))
-        {
-            return null;
-        }
-
-        var chapterStarted =
-            profile.Quests?.Any(profileQuest => profileQuest.QId == chapterId && profileQuest.Status == QuestStatusEnum.Started) ?? false;
-
-        // A finished chapter starts nothing new, even when a leftover branch still qualifies
-        if (profile.GetQuestStatus(chapterId.Value) is QuestStatusEnum.Success or QuestStatusEnum.Fail)
-        {
-            return null;
-        }
-
-        // A finished starter task opens its chapter and the chapter's first task in the same moment, every
-        // later task not gated on another quest starts when the task listed before it in the chapter is done.
-        // Until then live does not list the task at all
-        if (!unlockedByQuest)
-        {
-            if (!chapterStarted && !StarterCompleted(profile, chapterId.Value))
-            {
-                return null;
-            }
-
-            StartStorylineQuest(profile, chapterId.Value);
-
-            return PredecessorCompleted(profile, chapterId.Value, quest.Id) ? StartStorylineQuest(profile, quest.Id) : null;
-        }
-
-        // A task the player accepts in a trader dialogue waits there, and so does its chapter
-        if (AcceptedInDialogue(quest.Id))
-        {
-            return QuestStatusEnum.AvailableForStart;
-        }
-
-        if (!chapterStarted)
-        {
-            StartStorylineQuest(profile, chapterId.Value);
-        }
-
-        return StartStorylineQuest(profile, quest.Id);
-    }
-
-    /// <summary>A task that is active by any route, a raid, the client or an accepted dialogue, has started its chapter.</summary>
-    protected void StartChapterOfActiveTask(PmcData profile, MongoId taskId, QuestStatusEnum status)
-    {
-        if (status is QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart)
-        {
-            return;
-        }
-
-        var chapterId = ChapterOf(taskId);
-        if (chapterId is not null && !profile.Quests!.Any(profileQuest => profileQuest.QId == chapterId))
-        {
-            StartStorylineQuest(profile, chapterId.Value);
-        }
-    }
-
-    /// <summary>Quests an AcceptQuest dialogue action hands out.</summary>
-    protected bool AcceptedInDialogue(MongoId questId)
-    {
-        _dialogueAcceptedQuests ??= templateTable
-            .Dialogue.Elements.SelectMany(element => element.Lines)
-            .SelectMany(line => line.Actions)
-            .Where(action => action.Type == "AcceptQuest" && action.QuestId is not null)
-            .Select(action => action.QuestId!.Value)
-            .ToHashSet();
-
-        return _dialogueAcceptedQuests.Contains(questId);
-    }
-
-    protected QuestStatusEnum StartStorylineQuest(PmcData profile, MongoId questId)
-    {
-        profile.Quests ??= [];
-
-        var startedAt = timeUtil.GetTimeStamp();
-        var existing = profile.Quests.FirstOrDefault(profileQuest => profileQuest.QId == questId);
-        if (existing is not null)
-        {
-            if (existing.Status != QuestStatusEnum.AvailableForStart)
-            {
-                return existing.Status;
-            }
-
-            existing.Status = QuestStatusEnum.Started;
-            existing.StartTime = startedAt;
-            existing.StatusTimers ??= [];
-            existing.StatusTimers[QuestStatusEnum.Started] = startedAt;
-            ApplyAutoStartRewards(profile, questId);
-
-            return QuestStatusEnum.Started;
-        }
-
-        profile.Quests.Add(
-            new QuestStatus
-            {
-                QId = questId,
-                StartTime = startedAt,
-                Status = QuestStatusEnum.Started,
-                StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Started, startedAt } },
-            }
-        );
-        ApplyAutoStartRewards(profile, questId);
-
-        return QuestStatusEnum.Started;
-    }
-
-    /// <summary>
-    ///     Give the Started rewards of a quest that began without the player accepting it at a trader, the way
-    ///     accepting does. Chapter start variables feed the story variable groups that gate later quests
-    /// </summary>
-    /// <param name="profile">Player profile</param>
-    /// <param name="questId">Quest that just started</param>
-    public void ApplyAutoStartRewards(PmcData profile, MongoId questId)
-    {
-        if (profile.SessionId is null || !templateTable.Quests.TryGetValue(questId, out var quest))
-        {
-            return;
-        }
-
-        var sessionId = profile.SessionId.Value;
-        var rewardItems = questRewardHelper
-            .ApplyQuestReward(profile, questId, QuestStatusEnum.Started, sessionId, eventOutputHolder.GetOutput(sessionId))
-            .ToList();
-
-        var messageId = GetMessageIdForQuestStart(quest);
-        if (rewardItems.Count > 0 && QuestMessageIsWorthSending(quest, messageId, rewardItems))
-        {
-            mailSendService.SendLocalisedNpcMessageToPlayer(
-                sessionId,
-                quest.TraderId,
-                MessageType.QuestStart,
-                messageId,
-                rewardItems,
-                timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(profile))
-            );
-        }
-    }
-
-    /// <summary>
-    ///     Start the quests configured to begin when the player accepts a quest
-    /// </summary>
-    /// <param name="profile">Player profile</param>
-    /// <param name="acceptedQuestId">Quest the player accepted</param>
-    /// <returns>Templates of the quests that started</returns>
-    public List<Models.Eft.Common.Tables.Quest> StartQuestsStartedWith(PmcData profile, MongoId acceptedQuestId)
-    {
-        List<Models.Eft.Common.Tables.Quest> started = [];
-        foreach (var (questId, startedWith) in questConfig.StartedWithQuests)
-        {
-            if (startedWith != acceptedQuestId || !ShowEventQuestToPlayer(questId) || !templateTable.Quests.TryGetValue(questId, out var quest))
-            {
-                continue;
-            }
-
-            if (profile.GetQuestStatus(questId) is not (QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart))
-            {
-                continue;
-            }
-
-            var template = cloner.Clone(quest)!;
-            template.SptStatus = StartStorylineQuest(profile, questId);
-            template.Status = QuestStatusEnum.Started;
-            started.Add(template);
-
-            // Starting the quest only mails start rewards, the trader still sends the start text without them
-            var messageId = GetMessageIdForQuestStart(quest);
-            var hasStartRewards = quest.Rewards?.GetValueOrDefault("Started")?.Count > 0;
-            if (profile.SessionId is not null && !hasStartRewards && QuestMessageIsWorthSending(quest, messageId, []))
-            {
-                mailSendService.SendLocalisedNpcMessageToPlayer(
-                    profile.SessionId.Value,
-                    quest.TraderId,
-                    MessageType.QuestStart,
-                    messageId,
-                    [],
-                    timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(profile))
-                );
-            }
-        }
-
-        return started;
-    }
-
-    /// <summary>A chapter is a quest the story rail is built from, named by the main quest notes.</summary>
-    protected bool IsStoryChapter(MongoId questId)
-    {
-        return templateTable.MainQuestNotes.Any(note => note.ChapterId == questId);
-    }
-
-    /// <summary>The chapter that lists this quest as one of its tasks, if any.</summary>
-    protected MongoId? ChapterOf(MongoId taskId)
-    {
-        _taskChapters ??= BuildTaskChapters();
-
-        // A conditional expression would turn the null into an empty MongoId through the string conversion
-        if (!_taskChapters.TryGetValue(taskId, out var chapterId))
-        {
-            return null;
-        }
-
-        return chapterId;
-    }
-
-    /// <summary>
-    ///     A hidden task that fails when its chapter is already running is that chapter's starter, the visit to
-    ///     the Labyrinth transit or Batya's camp. Live starts the chapter the second the starter completes.
-    /// </summary>
-    protected bool StarterCompleted(PmcData profile, MongoId chapterId)
-    {
-        _chapterStarters ??= BuildChapterStarters();
-
-        return _chapterStarters.TryGetValue(chapterId, out var starters)
-            && (
-                profile.Quests?.Any(profileQuest => starters.Contains(profileQuest.QId) && profileQuest.Status == QuestStatusEnum.Success)
-                ?? false
-            );
-    }
-
-    /// <summary>
-    ///     The chapter starter for the first task, otherwise the step listed before this one in the chapter. A step is a
-    ///     task plus the alternatives listed after it, such as selling or keeping Blue Fire's fragment, and is done
-    ///     when any of them succeeds
-    /// </summary>
-    protected bool PredecessorCompleted(PmcData profile, MongoId chapterId, MongoId taskId)
-    {
-        var tasks = ChapterTasks(chapterId);
-        var index = tasks.IndexOf(taskId);
-        if (index < 0)
-        {
-            return false;
-        }
-
-        // A task the database lacks or withholds can never finish, so the step before it counts instead
-        var previous = StepStart(tasks, index) - 1;
-        while (previous >= 0 && !IsAvailableTask(tasks[previous]))
-        {
-            previous--;
-        }
-
-        if (previous < 0)
-        {
-            return StarterCompleted(profile, chapterId);
-        }
-
-        for (var i = StepStart(tasks, previous); i <= previous; i++)
-        {
-            if (profile.GetQuestStatus(tasks[i]) == QuestStatusEnum.Success)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    ///     First task of the step holding the task at this index. A task that fails once the task before it succeeds is
-    ///     an alternative to it, and so are neighbouring tasks that quests outside the chapter start, Boreas' first two
-    /// </summary>
-    protected int StepStart(List<MongoId> tasks, int index)
-    {
-        while (
-            index > 0
-            && (
-                FailsOnSuccessOf(tasks[index], tasks[index - 1])
-                || (StartedFromOutside(tasks[index], tasks) && StartedFromOutside(tasks[index - 1], tasks))
-            )
-        )
-        {
-            index--;
-        }
-
-        return index;
-    }
-
-    /// <summary>Whether a task is started by finishing quests that are none of the chapter's own tasks.</summary>
-    protected bool StartedFromOutside(MongoId taskId, List<MongoId> chapterTasks)
-    {
-        var prerequisites = (templateTable.Quests.GetValueOrDefault(taskId)?.Conditions?.AvailableForStart ?? [])
-            .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
-            .Select(condition => new MongoId(condition.Target!.Item!))
-            .ToList();
-
-        return prerequisites.Count > 0 && prerequisites.All(prerequisite => !chapterTasks.Contains(prerequisite));
-    }
-
-    /// <summary>
-    ///     Check whether a quest's Fail conditions on other quests or on variables already hold
-    /// </summary>
-    /// <param name="profile">Player profile</param>
-    /// <param name="quest">Quest to check</param>
-    /// <returns>True when the quest would fail at once</returns>
-    protected bool FailConditionsMet(PmcData profile, Models.Eft.Common.Tables.Quest quest)
-    {
-        return (quest.Conditions?.Fail ?? []).Any(condition =>
-            condition.Target?.Item is not null
-            && condition.ConditionType switch
-            {
-                "Quest" => condition.Status?.Contains(profile.GetQuestStatus(new MongoId(condition.Target.Item))) ?? false,
-                "GlobalVariableValue" => VariableConditionMet(profile, condition),
-                _ => false,
-            }
-        );
-    }
-
-    /// <summary>Whether a task fails the moment another task succeeds.</summary>
-    protected bool FailsOnSuccessOf(MongoId taskId, MongoId otherTaskId)
-    {
-        return (templateTable.Quests.GetValueOrDefault(taskId)?.Conditions?.Fail ?? []).Any(condition =>
-            condition.ConditionType == "Quest"
-            && condition.Target?.Item is not null
-            && new MongoId(condition.Target.Item) == otherTaskId
-            && (condition.Status?.Contains(QuestStatusEnum.Success) ?? false)
-        );
-    }
-
-    /// <summary>Whether the database has the task and does not withhold it.</summary>
-    protected bool IsAvailableTask(MongoId taskId)
-    {
-        return templateTable.Quests.ContainsKey(taskId) && !questConfig.WithheldQuests.Contains(taskId);
-    }
-
-    private Dictionary<MongoId, HashSet<MongoId>> BuildChapterStarters()
-    {
-        var starters = new Dictionary<MongoId, HashSet<MongoId>>();
-        foreach (var (questId, quest) in templateTable.Quests)
-        {
-            foreach (var condition in (quest.Conditions?.Fail ?? []).Where(c => c.ConditionType == "Quest" && c.Target?.Item is not null))
-            {
-                var chapterId = new MongoId(condition.Target!.Item!);
-                if (IsStoryChapter(chapterId))
-                {
-                    starters.TryAdd(chapterId, []);
-                    starters[chapterId].Add(questId);
-                }
-            }
-        }
-
-        return starters;
-    }
-
-    private Dictionary<MongoId, MongoId> BuildTaskChapters()
-    {
-        return templateTable
-            .MainQuestNotes.Select(note => new MongoId(note.ChapterId))
-            .Distinct()
-            .SelectMany(chapterId =>
-                (templateTable.Quests.GetValueOrDefault(chapterId)?.Conditions?.AvailableForFinish ?? [])
-                    .Where(condition => condition.ConditionType == "Quest" && condition.Target?.Item is not null)
-                    .Select(condition => (Task: new MongoId(condition.Target!.Item!), Chapter: chapterId))
-            )
-            .DistinctBy(pair => pair.Task)
-            .ToDictionary(pair => pair.Task, pair => pair.Chapter);
     }
 
     /// <summary>
@@ -2166,42 +1077,10 @@ public class QuestHelper(
     )
     {
         var quest = GetQuestFromDb(completedQuestId, pmcData);
-        if (quest is null)
+        if (quest is not null)
         {
-            return;
+            questMessageHelper.SendQuestSuccessMessage(sessionId, pmcData, quest, questRewards);
         }
-
-        if (!QuestMessageIsWorthSending(quest, quest.SuccessMessageText, questRewards))
-        {
-            return;
-        }
-
-        mailSendService.SendLocalisedNpcMessageToPlayer(
-            sessionId,
-            quest.TraderId,
-            MessageType.QuestSuccess,
-            quest.SuccessMessageText ?? "",
-            questRewards,
-            timeUtil.GetHoursAsSeconds((int)GetMailItemRedeemTimeHoursForProfile(pmcData))
-        );
-    }
-
-    /// <summary>
-    ///     Decide whether a quest mail is worth sending. A quest whose locale entry is blank reaches the
-    ///     messenger as an empty message, which is only useful when items are attached
-    /// </summary>
-    /// <param name="quest">Quest the message belongs to</param>
-    /// <param name="questMessageId">Quest message id the mail would carry</param>
-    /// <param name="rewards">Items attached to the mail</param>
-    /// <returns>True when the mail has something to show</returns>
-    public bool QuestMessageIsWorthSending(Models.Eft.Common.Tables.Quest quest, string? questMessageId, ICollection<Item>? rewards)
-    {
-        if (rewards?.Count > 0)
-        {
-            return true;
-        }
-
-        return GetQuestMessageText(quest, questMessageId).Trim().Length != 0;
     }
 
     /// <summary>
@@ -2304,30 +1183,5 @@ public class QuestHelper(
         }
 
         return result;
-    }
-
-    /// <summary>
-    /// Does a provided quest have a level requirement equal to or below defined level
-    /// </summary>
-    /// <param name="quest">Quest to check</param>
-    /// <param name="playerLevel">level of player to test against quest</param>
-    /// <returns>true if quest can be seen/accepted by player of defined level</returns>
-    protected bool PlayerLevelFulfillsQuestRequirement(Models.Eft.Common.Tables.Quest quest, int playerLevel)
-    {
-        var levelConditions = quest.Conditions.AvailableForStart?.GetLevelConditions();
-        if (levelConditions is not null)
-        {
-            foreach (var levelCondition in levelConditions)
-            {
-                if (!DoesPlayerLevelFulfilCondition(playerLevel, levelCondition))
-                // Not valid, exit out
-                {
-                    return false;
-                }
-            }
-        }
-
-        // All conditions passed / has no level requirement, valid
-        return true;
     }
 }

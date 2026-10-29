@@ -27,7 +27,7 @@ public class TradeHelper(
     ISptLogger<TradeHelper> logger,
     TraderHelper traderHelper,
     ItemHelper itemHelper,
-    QuestHelper questHelper,
+    SellToTraderQuestHelper sellToTraderQuestHelper,
     PaymentService paymentService,
     FenceService fenceService,
     ServerLocalisationService serverLocalisationService,
@@ -268,7 +268,7 @@ public class TradeHelper(
     )
     {
         // Check for and increment SoldToTrader condition counters
-        questHelper.IncrementSoldToTraderCounters(profileWithItemsToSell, profileToReceiveMoney, sellRequest);
+        sellToTraderQuestHelper.IncrementSoldToTraderCounters(profileWithItemsToSell, profileToReceiveMoney, sellRequest);
 
         const string pattern = @"\s+";
 

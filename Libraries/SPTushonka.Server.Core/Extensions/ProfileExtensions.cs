@@ -257,6 +257,23 @@ public static class ProfileExtensions
     }
 
     /// <summary>
+    ///     Set the status of a quest already in the profile and record when it changed
+    /// </summary>
+    /// <param name="pmcData">Profile to update</param>
+    /// <param name="questId">Quest to update</param>
+    /// <param name="status">New status</param>
+    /// <param name="timestamp">Time of the change</param>
+    public static void SetQuestStatus(this PmcData pmcData, MongoId questId, QuestStatusEnum status, long timestamp)
+    {
+        var quest = pmcData.Quests?.FirstOrDefault(q => q.QId == questId);
+        if (quest is not null)
+        {
+            quest.Status = status;
+            quest.StatusTimers[status] = timestamp;
+        }
+    }
+
+    /// <summary>
     ///     Handle Remove event
     ///     Remove item from player inventory + insured items array
     ///     Also deletes child items

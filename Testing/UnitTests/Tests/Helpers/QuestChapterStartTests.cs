@@ -1,14 +1,17 @@
 using NUnit.Framework;
 using SPTarkov.Server.Core.Extensions;
 using SPTarkov.Server.Core.Helpers.Quest;
+using SPTarkov.Server.Core.Migration.Migrations._5._0;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Eft.Quests;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services.Server;
+using SPTarkov.Server.Core.Utils;
 
 namespace UnitTests.Tests.Helpers;
 
@@ -29,12 +32,18 @@ public class QuestChapterStartTests
     private static readonly MongoId Doxed = new("6ac4c726a3ea5ab42a074d3a");
 
     private QuestHelper _questHelper = default!;
+    private RepairStoryChapters _repairStoryChapters = default!;
     private SaveServer _saveServer = default!;
 
     [SetUp]
     public void Setup()
     {
         _questHelper = DI.GetInstance().GetService<QuestHelper>();
+        _repairStoryChapters = new RepairStoryChapters(
+            DI.GetInstance().GetService<MainStoryChapterHelper>(),
+            DI.GetInstance().GetService<JsonUtil>(),
+            DI.GetInstance().GetService<TimeUtil>()
+        );
         _saveServer = DI.GetInstance().GetService<SaveServer>();
     }
 
@@ -267,6 +276,23 @@ public class QuestChapterStartTests
         _questHelper.GetClientQuests(sessionId);
 
         Assert.That(pmc.Quests!.Single(q => q.QId == fluidTask).Status, Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [TestCase("68cbcdc4c964ab83cc0c928e", "68c00c0ee726287ae60edd72", "678f6bd1e8d46e40ff021605")]
+    [TestCase("68cbd33676fe74b1e80bfd91", "6909e9db9ce51fc8cd014c6e", "68c6aa0e2f0a1d31380ad618")]
+    [TestCase("68e3a35002661eb2d30ce387", "68e3a3d2ff05916c250a898b", "68ffdaf2853a782081039a16")]
+    [TestCase("6900927ab7d28358f80b9421", "67ced01a39a6a1807f093ec5", "67ced01df816f16d9a00d586")]
+    public void GetClientQuests_TaskWithSecondRoute_StartsWithoutTheTaskListedBeforeIt(string chapter, string prerequisite, string task)
+    {
+        // Falling Skies after the older plane quest, the Tour drainage task after the Labs keycard, Labyrinth's last task
+        // after #3 and The Unheard's hidden room after #13
+        var sessionId = AddProfile(new MongoId(prerequisite));
+        AddQuest(sessionId, new MongoId(chapter), QuestStatusEnum.Started);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        Assert.That(pmc.Quests!.Single(q => q.QId == new MongoId(task)).Status, Is.EqualTo(QuestStatusEnum.Started));
     }
 
     [TestCase(QuestStatusEnum.Started, QuestStatusEnum.Started, "69b2c6beb8ae58006c084f73")]
@@ -535,7 +561,7 @@ public class QuestChapterStartTests
         var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
         AddQuest(sessionId, new MongoId(accepted), QuestStatusEnum.Started);
 
-        var started = _questHelper.StartQuestsStartedWith(pmc, new MongoId(accepted));
+        var started = DI.GetInstance().GetService<StoryProgressHelper>().StartQuestsStartedWith(pmc, new MongoId(accepted));
 
         Assert.That(started.Single().Id, Is.EqualTo(new MongoId(expected)));
         Assert.That(started.Single().Status, Is.EqualTo(QuestStatusEnum.Started));
@@ -587,6 +613,285 @@ public class QuestChapterStartTests
 
         Assert.That(doxed?.SptStatus, Is.EqualTo(QuestStatusEnum.Started), "after");
     }
+
+    [Test]
+    public void GetClientQuests_NextTaskWaitsForDialogue_KeepsTheChapterRunning()
+    {
+        // Blue Fire's hacking device task also needs Mechanic's dialogue variable 6a04f439 at 2
+        var sessionId = AddProfile(new MongoId("67b892b338076c36e50abfb5"), new MongoId("67b892b4884d39aaea04ef26"));
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+
+        _questHelper.GetClientQuests(sessionId);
+        Assert.That(pmc.GetQuestStatus(BlueFireChapter), Is.EqualTo(QuestStatusEnum.Started), "before the dialogue");
+
+        pmc.Variables![new MongoId("6a04f439a20c93e80120d5c9")] = 2;
+        _questHelper.GetClientQuests(sessionId);
+        Assert.That(pmc.GetQuestStatus(new MongoId("67b892b6b4c09aae5309c275")), Is.EqualTo(QuestStatusEnum.Started), "after the dialogue");
+    }
+
+    [Test]
+    public void GetClientQuests_NextTaskOnUnlockTimer_KeepsTheChapterRunning()
+    {
+        // The Labyrinth's BEAR squad task unlocks 16 hours after the first task
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        foreach (var task in new[] { "68e3a3bc02661eb2d30ce389", "68e4cf5136a9240a3704e777" })
+        {
+            pmc.Quests!.Add(
+                new QuestStatus
+                {
+                    QId = new MongoId(task),
+                    StartTime = now,
+                    Status = QuestStatusEnum.Success,
+                    StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Success, now } },
+                }
+            );
+        }
+
+        AddQuest(sessionId, LabyrinthChapter, QuestStatusEnum.Started);
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.GetQuestStatus(LabyrinthChapter), Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [Test]
+    public void GetClientQuests_NextTaskWaitsForHiddenStep_KeepsTheChapterRunning()
+    {
+        // Boreas #7 starts once the hidden transport step finishes, which happens after both transport branches
+        var boreas = new MongoId("69d38381cea4b428690ea1d9");
+        var sessionId = AddProfile(
+            new MongoId("69a05d3ae6778aebac085ca5"),
+            new MongoId("69a9bc08babf5c053607fef7"),
+            new MongoId("69aaecdf174ff467ef0acc38"),
+            new MongoId("69aafbfa47e01d12cc087d0f"),
+            new MongoId("69b04c7ff4183ed66406e50c"),
+            new MongoId("69b052349776545e5a02076a"),
+            new MongoId("69f051ae0a5238af8b00e11c"),
+            new MongoId("69b2c6beb8ae58006c084f73")
+        );
+        AddQuest(sessionId, boreas, QuestStatusEnum.Started);
+        AddQuest(sessionId, new MongoId("69b04f2f4ec955a5f40828a3"), QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Variables![new MongoId("69b297fd9fd8730942edc1f7")] = 1;
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.GetQuestStatus(boreas), Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [Test]
+    public void CompleteQuest_BlueFireFragmentKept_FailsTheRunningHandOver()
+    {
+        var sessionId = AddProfile(new MongoId("67b892b338076c36e50abfb5"), new MongoId("67b892b4884d39aaea04ef26"), BlueFireTalk);
+        AddQuest(sessionId, BlueFireChapter, QuestStatusEnum.Started);
+        AddQuest(sessionId, BlueFireSell, QuestStatusEnum.Started);
+        AddQuest(sessionId, BlueFireKeep, QuestStatusEnum.AvailableForFinish);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Bonuses = [];
+        pmc.RepeatableQuests = [];
+        pmc.Achievements = [];
+
+        _questHelper.CompleteQuest(pmc, new CompleteQuestRequestData { QuestId = BlueFireKeep }, sessionId);
+
+        Assert.That(pmc.GetQuestStatus(BlueFireSell), Is.EqualTo(QuestStatusEnum.Fail));
+    }
+
+    [Test]
+    public void GetClientQuests_UnheardWaitForElektronik_OffersTheTechFilesTask()
+    {
+        // The wait ends when the tech files task starts, and Elektronik's line only shows while that task is on offer
+        var techFiles = new MongoId("67ced01a39a6a1807f093ec5");
+        var sessionId = AddProfile(
+            new MongoId("67ced00eceefc356a10fd405"),
+            new MongoId("67ced00fd47d32692302aca6"),
+            new MongoId("67ced012152372f12708b7b6"),
+            new MongoId("68ec64b49012da9779025825"),
+            new MongoId("67ced014c43709665f0fbe46"),
+            new MongoId("67ced0157844ea90d80fd6a5"),
+            new MongoId("67ced017029b9dbe190f3c77"),
+            new MongoId("67ced018d1e611aa410235e5")
+        );
+        AddQuest(sessionId, new MongoId("6900927ab7d28358f80b9421"), QuestStatusEnum.Started);
+        AddQuest(sessionId, new MongoId("68ee523e54da3fa9aa01af75"), QuestStatusEnum.Started);
+        _saveServer.GetProfile(sessionId).CharacterData!.PmcData!.TradersInfo![Traders.KERMAN] = new TraderInfo
+        {
+            LoyaltyLevel = 1,
+            Standing = 0,
+            Unlocked = true,
+        };
+
+        var shown = _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(shown.Single(q => q.Id == techFiles).SptStatus, Is.EqualTo(QuestStatusEnum.AvailableForStart));
+    }
+
+    [TestCase("68e784b7fa3f1fa3770094ba", new[] { "67b892b338076c36e50abfb5", "67b892b4884d39aaea04ef26" }, null)]
+    [TestCase(
+        "6903d779fdfc4078740a4bd0",
+        new[]
+        {
+            "68e79a92aded99fd1a06023c", "68588ec88b0cb7b6f80f9339", "68588eca1d2ea426e9085c29", "68588ecc10ea119db4095de7",
+            "68588ed156fb54c7e00e4318", "68588ed2b2a45312020df028", "68588ed4257202ddee073e07", "68588ed5c7a9b3b530005ec8",
+            "68588ed9f981006b1e0a7718", "690413d50750895a590a3bbd", "68588edb1dbd9790be0f5ee9", "6914d59b1bd36f988e0d95bc",
+            "68588edc157cc3165608f2b7",
+        },
+        null
+    )]
+    [TestCase(
+        "6900927ab7d28358f80b9421",
+        new[]
+        {
+            "67ced00eceefc356a10fd405", "67ced00fd47d32692302aca6", "67ced012152372f12708b7b6", "68ec64b49012da9779025825",
+            "67ced014c43709665f0fbe46", "67ced0157844ea90d80fd6a5", "67ced017029b9dbe190f3c77", "67ced018d1e611aa410235e5",
+        },
+        "68ee523e54da3fa9aa01af75"
+    )]
+    [TestCase(
+        "69d38381cea4b428690ea1d9",
+        new[]
+        {
+            "69a05d3ae6778aebac085ca5", "69a9bc08babf5c053607fef7", "69aaecdf174ff467ef0acc38", "69aafbfa47e01d12cc087d0f",
+            "69b04c7ff4183ed66406e50c", "69b052349776545e5a02076a", "69f051ae0a5238af8b00e11c", "69b2c6beb8ae58006c084f73",
+        },
+        "69b04f2f4ec955a5f40828a3"
+    )]
+    public void RepairStoryChapters_ChapterClosedWhileATaskWasComing_ReopensIt(string chapter, string[] done, string? running)
+    {
+        // Blue Fire waiting on Mechanic's dialogue, They Are Already Here on the specs dialogue, The Unheard on the wait
+        // for Elektronik and Boreas on the hidden transport step
+        var sessionId = AddProfile(done.Select(id => new MongoId(id)).ToArray());
+        AddQuest(sessionId, new MongoId(chapter), QuestStatusEnum.Success);
+        if (running is not null)
+        {
+            AddQuest(sessionId, new MongoId(running), QuestStatusEnum.Started);
+        }
+
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Variables![new MongoId("69b297fd9fd8730942edc1f7")] = 1;
+
+        _repairStoryChapters.Repair(pmc);
+
+        Assert.That(pmc.GetQuestStatus(new MongoId(chapter)), Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [Test]
+    public void RepairStoryChapters_ChapterClosedDuringAnUnlockTimer_ReopensIt()
+    {
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        foreach (var task in new[] { "68e3a3bc02661eb2d30ce389", "68e4cf5136a9240a3704e777" })
+        {
+            pmc.Quests!.Add(
+                new QuestStatus
+                {
+                    QId = new MongoId(task),
+                    StartTime = now,
+                    Status = QuestStatusEnum.Success,
+                    StatusTimers = new Dictionary<QuestStatusEnum, double> { { QuestStatusEnum.Success, now } },
+                }
+            );
+        }
+
+        AddQuest(sessionId, LabyrinthChapter, QuestStatusEnum.Success);
+
+        _repairStoryChapters.Repair(pmc);
+
+        Assert.That(pmc.GetQuestStatus(LabyrinthChapter), Is.EqualTo(QuestStatusEnum.Started));
+    }
+
+    [TestCase("67b892ba0e9aad30720bfc56", "67b892b832f50fb7ec084426")]
+    [TestCase("68cd7d6d9510d63fdb05a76a", "679cdee4ce3a208fee0ad657")]
+    public void RepairStoryChapters_AlternativeLeftRunning_FailsIt(string chosen, string alternative)
+    {
+        // Keeping Blue Fire's fragment or Falling Skies' armored case fails the hand over
+        var sessionId = AddProfile(new MongoId(chosen));
+        AddQuest(sessionId, new MongoId(alternative), QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+
+        _repairStoryChapters.Repair(pmc);
+
+        Assert.That(pmc.GetQuestStatus(new MongoId(alternative)), Is.EqualTo(QuestStatusEnum.Fail));
+    }
+
+    [Test]
+    public void RepairStoryChapters_FinishedChaptersLiveLeavesAsTheyAre_StayUntouched()
+    {
+        // Tour ends with the escape task still running, Falling Skies' dollar collection runs during the SUV task and
+        // They Are Already Here's specs task fails once the dialogue variable passes it
+        var tour = new MongoId("68cbd33676fe74b1e80bfd91");
+        var theyAreAlreadyHere = new MongoId("6903d779fdfc4078740a4bd0");
+        var suvTask = new MongoId("678f6bd1e8d46e40ff021605");
+        var escapeTask = new MongoId("69029e0aede95b6cf90c04f7");
+        var sessionId = AddProfile(
+            new MongoId("68c6a8551dfbf3fb78018562"),
+            new MongoId("678fa1463977eb69290a3a06"),
+            new MongoId("68588edc157cc3165608f2b7")
+        );
+        AddQuest(sessionId, tour, QuestStatusEnum.Success);
+        AddQuest(sessionId, escapeTask, QuestStatusEnum.Started);
+        AddQuest(sessionId, suvTask, QuestStatusEnum.Started);
+        AddQuest(sessionId, theyAreAlreadyHere, QuestStatusEnum.Success);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Variables![new MongoId("68ebbae7ddc4efdeedfdd875")] = 2;
+        var before = pmc.Quests!.ToDictionary(q => q.QId, q => q.Status);
+
+        _repairStoryChapters.Repair(pmc);
+
+        Assert.That(pmc.Quests!.Where(q => before[q.QId] != q.Status).Select(q => q.QId), Is.Empty);
+    }
+
+    [TestCase("690b65b50bb26b80c40db801")]
+    [TestCase("68e1a9e8ac971c444c06fad7")]
+    public void GetClientQuests_TicketCaseRoute_StartsTheUnlockAndMechanicTasks(string route)
+    {
+        // Lightkeeper's hidden step after handing the case over, or talking to Kerman after keeping it
+        var sessionId = AddProfile(new MongoId(route));
+        AddQuest(sessionId, TicketChapter, QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.GetQuestStatus(new MongoId("68e2d8d52a2449612b06ac9b")), Is.EqualTo(QuestStatusEnum.Started), "unlock the case");
+        Assert.That(pmc.GetQuestStatus(new MongoId("67bc801c7801bf5c41017b6d")), Is.EqualTo(QuestStatusEnum.Started), "ask Mechanic");
+    }
+
+    [TestCase(3.9, false)]
+    [TestCase(4.0, true)]
+    public void GetClientQuests_TicketFenceAssignment_NeedsTheTalkAndFenceStanding(double standing, bool started)
+    {
+        var fenceAssignment = new MongoId("67bdf2cecf0cc29475092199");
+        var sessionId = AddProfile(new MongoId("68ea9b0b8bfb4ae0aa04ddf9"));
+        AddQuest(sessionId, TicketChapter, QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.TradersInfo![Traders.FENCE] = new TraderInfo { LoyaltyLevel = 1, Standing = standing, Unlocked = true };
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.GetQuestStatus(fenceAssignment) == QuestStatusEnum.Started, Is.EqualTo(started));
+    }
+
+    [TestCase(false, true)]
+    [TestCase(true, false)]
+    public void GetClientQuests_TicketIntelligenceCenterTask_OnlyWhileTheCenterIsUnbuilt(bool built, bool started)
+    {
+        // Given once Falling Skies ends with the armored case handed over
+        var intelligenceTask = new MongoId("68e19fee596a40531902e73c");
+        var sessionId = AddProfile(new MongoId("68cbcdc4c964ab83cc0c928e"), new MongoId("679cdee4ce3a208fee0ad657"));
+        AddQuest(sessionId, TicketChapter, QuestStatusEnum.Started);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.TradersInfo![Traders.KERMAN] = new TraderInfo { LoyaltyLevel = 1, Standing = 0, Unlocked = true };
+        pmc.Hideout = new Hideout { Areas = [new BotHideoutArea { Type = HideoutAreas.IntelligenceCenter, Level = built ? 1 : 0 }] };
+
+        _questHelper.GetClientQuests(sessionId);
+
+        Assert.That(pmc.GetQuestStatus(intelligenceTask) == QuestStatusEnum.Started, Is.EqualTo(started));
+    }
+
+    private static readonly MongoId TicketChapter = new("68da33fe00868edcb6025ac4");
 
     private MongoId AddProfile(params MongoId[] completed)
     {

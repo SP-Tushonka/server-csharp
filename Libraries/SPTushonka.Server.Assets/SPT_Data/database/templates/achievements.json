@@ -42,14 +42,15 @@
                 "id": "6512ea76a606a458e3159afa",
                 "dynamicLocale": false,
                 "status": [
-                  "Survived"
+                  "Survived",
+                  "Runner"
                 ],
                 "conditionType": "ExitStatus"
               },
               {
                 "id": "651429bba98c934f8fe0daf3",
                 "dynamicLocale": false,
-                "exitName": "Interchange Cooperation",
+                "exitName": "ex_interchange_coop_basement",
                 "conditionType": "ExitName"
               },
               {
@@ -10604,5 +10605,49 @@
     "progressBarEnabled": true,
     "side": "All",
     "index": 5331
+  },
+  {
+    "id": "6ad61d4b93495b6d53062150",
+    "imageUrl": "/files/achievement/6ad61c6d85b42a1f05069429.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "index": 0,
+          "dynamicLocale": false,
+          "visibilityConditions": [],
+          "globalQuestCounterId": "",
+          "parentId": "",
+          "dialogId": null,
+          "entryPoint": null,
+          "fromTraderId": null,
+          "id": "6ad61cfec3a33b7d98fa17db",
+          "props": {
+            "index": 0,
+            "dynamicLocale": false,
+            "visibilityConditions": [],
+            "globalQuestCounterId": "",
+            "parentId": "",
+            "entryPoint": null,
+            "dialogId": null,
+            "fromTraderId": null
+          },
+          "questNoteId": null,
+          "conditionType": "Block"
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": false,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "All",
+    "index": 99999
   }
 ]

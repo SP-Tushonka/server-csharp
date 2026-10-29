@@ -5,6 +5,7 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services.Commerce;
 
 namespace UnitTests.Tests.Services;
@@ -215,5 +216,31 @@ public class TarcoinStoreServiceTests
 
         Assert.That(newProfile.CharacterData.PmcData.TarCoinBalance, Is.EqualTo(100));
         Assert.That(newProfile.CharacterData.PmcData.Bonuses, Is.Empty);
+    }
+
+    // The scav carries the coins, the balance lives on the pmc
+    [Test]
+    public async Task DepositCarriedTarcoinsAsync_CoinsInInventory_MovesThemToTheBalance()
+    {
+        var sessionId = new MongoId();
+        var roubles = new Item { Id = new MongoId(), Template = Money.ROUBLES, Upd = new Upd { StackObjectsCount = 5000 } };
+        var coins = new Item { Id = new MongoId(), Template = ItemTpl.MONEY_TARCOIN, Upd = new Upd { StackObjectsCount = 7 } };
+        var coin = new Item { Id = new MongoId(), Template = ItemTpl.MONEY_TARCOIN };
+        var scav = new PmcData { Inventory = new BotBaseInventory { Items = [roubles, coins, coin] } };
+        DI.GetInstance()
+            .GetService<SaveServer>()
+            .AddProfile(
+                new SptProfile
+                {
+                    ProfileInfo = new SPTarkov.Server.Core.Models.Eft.Profile.Info { ProfileId = sessionId },
+                    CharacterData = new Characters { PmcData = new PmcData { TarCoinBalance = 10 }, ScavData = scav },
+                }
+            );
+
+        var deposited = await _service.DepositCarriedTarcoinsAsync(sessionId, scav);
+
+        Assert.That(deposited, Is.EqualTo(8));
+        Assert.That(_service.GetBalance(sessionId), Is.EqualTo(18));
+        Assert.That(scav.Inventory.Items, Is.EqualTo(new[] { roubles }));
     }
 }

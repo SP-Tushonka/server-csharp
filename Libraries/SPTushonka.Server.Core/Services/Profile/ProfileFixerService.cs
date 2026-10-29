@@ -40,8 +40,7 @@ public partial class ProfileFixerService(
     SeasonTable seasonTable,
     TimeUtil timeUtil,
     MailSendService mailSendService,
-    ProfileHelper profileHelper,
-    InventoryHelper inventoryHelper
+    ProfileHelper profileHelper
 )
 {
     private const string PveGameMode = "pve";
@@ -160,17 +159,14 @@ public partial class ProfileFixerService(
         RemoveDanglingConditionCounters(pmcProfile);
         RemoveDanglingTaskConditionCounters(pmcProfile);
         RemoveOrphanedQuests(pmcProfile);
-        RemoveDuplicateQuests(pmcProfile);
         VerifyQuestProductionUnlocks(pmcProfile);
         FixOrphanedInsurance(pmcProfile);
         AddMissingBattlePassDocumentLimits(pmcProfile);
         AddMissingModeFields(pmcProfile, true);
         RecordCompletableItemsFromFinishedQuests(pmcProfile);
         profileHelper.MarkHeldCompletableItemsFound(pmcProfile);
-        AddMissingStartVariables(pmcProfile);
         questVariableHelper.SyncAll(pmcProfile);
         CheckForAndFixCircularParentReferences(pmcProfile);
-        MoveQuestItemsToQuestStash(pmcProfile);
 
         if (pmcProfile.Hideout is not null)
         {
@@ -451,98 +447,6 @@ public partial class ProfileFixerService(
             {
                 logger.Info($"Successfully removed orphaned quest: {profileQuests[i].QId} that doesn't exist in quest data");
                 profileQuests.RemoveAt(i);
-            }
-        }
-    }
-
-    /// <summary>
-    ///     Remove repeated entries for the same quest, accepting a repeatable quest used to add its entry twice
-    /// </summary>
-    /// <param name="pmcProfile">Profile to fix</param>
-    protected void RemoveDuplicateQuests(PmcData pmcProfile)
-    {
-        if (pmcProfile.Quests is null)
-        {
-            return;
-        }
-
-        var seen = new HashSet<MongoId?>();
-        var removed = pmcProfile.Quests.RemoveAll(quest => !seen.Add(quest.QId));
-        if (removed > 0)
-        {
-            logger.Info($"Removed {removed} duplicate quest entries from profile {pmcProfile.Id}");
-        }
-    }
-
-    /// <summary>
-    ///     Move quest items, notes and tapes out of the main stash into the quest stash, hideout crafts used to put them
-    ///     in the main stash
-    /// </summary>
-    /// <param name="pmcProfile">Profile to fix</param>
-    protected void MoveQuestItemsToQuestStash(PmcData pmcProfile)
-    {
-        var inventory = pmcProfile.Inventory;
-        if (inventory?.Items is null || inventory.Stash is null || inventory.QuestStashItems is null)
-        {
-            return;
-        }
-
-        var byId = inventory.Items.ToDictionary(item => item.Id.ToString());
-        var stashId = inventory.Stash.Value.ToString();
-        var misplaced = inventory
-            .Items.Where(item => inventoryHelper.BelongsInQuestStash(item.Template) && IsInsideStash(item, byId, stashId))
-            .ToList();
-
-        foreach (var item in misplaced)
-        {
-            if (inventoryHelper.PlaceItemInQuestStash(pmcProfile, inventory.Items.GetItemWithChildren(item.Id)))
-            {
-                logger.Info($"Moved {item.Template} into the quest stash of profile {pmcProfile.Id}");
-            }
-        }
-    }
-
-    private static bool IsInsideStash(Item item, Dictionary<string, Item> byId, string stashId)
-    {
-        var current = item;
-        while (current.ParentId is not null)
-        {
-            if (current.ParentId == stashId)
-            {
-                return true;
-            }
-
-            if (!byId.TryGetValue(current.ParentId, out current))
-            {
-                return false;
-            }
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    ///     Set the variables of Started rewards a started quest never applied. Story chapters that started on their own
-    ///     used to skip them, which left the story variable groups short
-    /// </summary>
-    /// <param name="pmcProfile">Profile to fix</param>
-    protected void AddMissingStartVariables(PmcData pmcProfile)
-    {
-        foreach (var profileQuest in pmcProfile.Quests ?? [])
-        {
-            if (profileQuest.Status is QuestStatusEnum.Locked or QuestStatusEnum.AvailableForStart)
-            {
-                continue;
-            }
-
-            var rewards = templateTable.Quests.GetValueOrDefault(profileQuest.QId)?.Rewards?.GetValueOrDefault("Started") ?? [];
-            foreach (var reward in rewards.Where(reward => reward.Type == RewardType.GlobalVariable && reward.Target is not null))
-            {
-                pmcProfile.Variables ??= [];
-                if (pmcProfile.Variables.TryAdd(reward.Target!, Convert.ToInt32(reward.Value)))
-                {
-                    logger.Debug($"Set missing start variable {reward.Target} of quest {profileQuest.QId}");
-                }
             }
         }
     }

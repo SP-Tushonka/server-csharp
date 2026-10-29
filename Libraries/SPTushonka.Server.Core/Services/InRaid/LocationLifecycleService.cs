@@ -56,6 +56,8 @@ public class LocationLifecycleService(
     HealthHelper healthHelper,
     PmcChatResponseService pmcChatResponseService,
     QuestHelper questHelper,
+    StoryProgressHelper storyProgressHelper,
+    TarcoinStoreService tarcoinStoreService,
     InsuranceService insuranceService,
     MatchBotDetailsCacheService matchBotDetailsCacheService,
     BtrDeliveryService btrDeliveryService,
@@ -484,6 +486,12 @@ public class LocationLifecycleService(
 
         HandlePostRaidPmc(sessionId, fullProfile, scavProfile, isDead, isSurvived, isTransfer, request, locationName);
 
+        // After death has cleared the inventory, so only what the player kept is deposited
+        if (inRaidConfig.DepositTarcoinsOnRaidEnd)
+        {
+            await tarcoinStoreService.DepositCarriedTarcoinsAsync(sessionId, pmcProfile);
+        }
+
         // Remove the items the next location lists before the client reloads the profile for the transit
         var transitDestination = isTransfer ? GetTransitDestination(request, locationName) : null;
         if (transitDestination is not null)
@@ -690,6 +698,11 @@ public class LocationLifecycleService(
         if (!isDead)
         {
             inRaidHelper.SetInventory(sessionId, scavProfile, postRaidProfile, isSurvived, isTransfer);
+
+            if (inRaidConfig.DepositTarcoinsOnRaidEnd)
+            {
+                await tarcoinStoreService.DepositCarriedTarcoinsAsync(sessionId, scavProfile);
+            }
         }
 
         scavProfile.Info.Level = postRaidProfile.Info.Level;
@@ -1239,7 +1252,7 @@ public class LocationLifecycleService(
                 && !startedBefore.Contains(quest.QId)
             )
             {
-                questHelper.ApplyAutoStartRewards(pmcProfile, quest.QId);
+                storyProgressHelper.ApplyAutoStartRewards(pmcProfile, quest.QId);
             }
         }
     }

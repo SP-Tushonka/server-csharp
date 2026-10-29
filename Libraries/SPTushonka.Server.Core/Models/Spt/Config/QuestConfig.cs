@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Utils.Collections;
 using SPTarkov.Server.Core.Utils.Json.Converters;
 
@@ -701,4 +702,8 @@ public record HiddenVariableGate
     /// <summary>The lowest player level that offers the quest</summary>
     [JsonPropertyName("level")]
     public int? Level { get; set; }
+
+    /// <summary>A hideout area that must not be built yet, for a task that asks the player to build it</summary>
+    [JsonPropertyName("notBuiltArea")]
+    public HideoutAreas? NotBuiltArea { get; set; }
 }

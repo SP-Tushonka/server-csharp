@@ -27,6 +27,9 @@ public class QuestController(
     EventOutputHolder eventOutputHolder,
     MailSendService mailSendService,
     QuestHelper questHelper,
+    QuestMessageHelper questMessageHelper,
+    QuestAvailabilityHelper questAvailabilityHelper,
+    StoryProgressHelper storyProgressHelper,
     ProfileHelper profileHelper,
     QuestRewardHelper questRewardHelper,
     ServerLocalisationService serverLocalisationService,
@@ -151,7 +154,7 @@ public class QuestController(
         }
 
         // Get messageId of text to send to player as text message in game
-        var messageId = questHelper.GetMessageIdForQuestStart(questFromDb);
+        var messageId = questMessageHelper.GetMessageIdForQuestStart(questFromDb);
 
         // Apply non-item rewards to profile + return item rewards
         var startedQuestRewardItems = questRewardHelper.ApplyQuestReward(
@@ -164,7 +167,7 @@ public class QuestController(
 
         // Send started text + any starting reward items found above to player
         var startedRewards = startedQuestRewardItems.ToList();
-        if (questHelper.QuestMessageIsWorthSending(questFromDb, messageId, startedRewards))
+        if (questMessageHelper.QuestMessageIsWorthSending(questFromDb, messageId, startedRewards))
         {
             mailSendService.SendLocalisedNpcMessageToPlayer(
                 sessionID,
@@ -172,7 +175,7 @@ public class QuestController(
                 MessageType.QuestStart,
                 messageId,
                 startedRewards,
-                timeUtil.GetHoursAsSeconds((int)questHelper.GetMailItemRedeemTimeHoursForProfile(pmcData))
+                timeUtil.GetHoursAsSeconds((int)questMessageHelper.GetMailItemRedeemTimeHoursForProfile(pmcData))
             );
         }
 
@@ -183,7 +186,7 @@ public class QuestController(
             acceptQuestResponse.ProfileChanges[sessionID].Quests.AddRange(newlyAccessibleQuests);
         }
 
-        acceptQuestResponse.ProfileChanges[sessionID].Quests.AddRange(questHelper.StartQuestsStartedWith(pmcData, acceptedQuest.QuestId));
+        acceptQuestResponse.ProfileChanges[sessionID].Quests.AddRange(storyProgressHelper.StartQuestsStartedWith(pmcData, acceptedQuest.QuestId));
 
         return acceptQuestResponse;
     }
@@ -292,7 +295,7 @@ public class QuestController(
             .GetQuestsFromDb()
             .Where(quest =>
                 !alreadyStarted.Contains(quest.Id)
-                && !questHelper.QuestIsForOtherSide(pmcData.Info?.Side, quest.Id)
+                && !questAvailabilityHelper.QuestIsForOtherSide(pmcData.Info?.Side, quest.Id)
                 && (quest.Conditions?.AutoStart ?? []).Any(condition =>
                     condition.ConditionType == "CompletableItem" && condition.Target?.Item == request.CompletableItemId
                 )

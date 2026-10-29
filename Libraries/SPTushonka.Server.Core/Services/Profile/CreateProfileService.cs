@@ -36,6 +36,7 @@ public class CreateProfileService(
     ItemHelper itemHelper,
     TraderHelper traderHelper,
     QuestHelper questHelper,
+    QuestMessageHelper questMessageHelper,
     QuestRewardHelper questRewardHelper,
     PrestigeHelper prestigeHelper,
     RewardHelper rewardHelper,
@@ -360,12 +361,12 @@ public class CreateProfileService(
 
             // Get messageId of text to send to player as text message in game
             // Copy of code from QuestController.acceptQuest()
-            var messageId = questHelper.GetMessageIdForQuestStart(questFromDb);
+            var messageId = questMessageHelper.GetMessageIdForQuestStart(questFromDb);
             var itemRewards = questRewardHelper
                 .ApplyQuestReward(profileDetails.CharacterData.PmcData, quest.QId, QuestStatusEnum.Started, sessionID, response)
                 .ToList();
 
-            if (!questHelper.QuestMessageIsWorthSending(questFromDb, messageId, itemRewards))
+            if (!questMessageHelper.QuestMessageIsWorthSending(questFromDb, messageId, itemRewards))
             {
                 continue;
             }
