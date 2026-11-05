@@ -57,7 +57,6 @@ public class PostDbLoadService(
 
         MergeCustomAchievements();
 
-        AdjustMinReserveRaiderSpawnChance();
 
         DisableForcedOnlineRaids();
 
@@ -434,32 +433,6 @@ public class PostDbLoadService(
             clonedCraft.EndProduct = craftToAdd.CraftOutputTpl;
 
             hideoutCraftDb.Recipes.Add(clonedCraft);
-        }
-    }
-
-    protected void AdjustMinReserveRaiderSpawnChance()
-    {
-        // Get reserve base.json
-        var reserveBase = locationTable.GetLocation(ELocationName.RezervBase.ToString()).Base;
-
-        // Raiders are bosses, get only those from boss spawn array
-        foreach (var raiderSpawn in reserveBase.BossLocationSpawn.Where(boss => boss.BossName == "pmcBot"))
-        {
-            var isTriggered = raiderSpawn.TriggerId.Length > 0; // Empty string if not triggered
-            var newSpawnChance = isTriggered
-                ? locationConfig.ReserveRaiderSpawnChanceOverrides.Triggered
-                : locationConfig.ReserveRaiderSpawnChanceOverrides.NonTriggered;
-
-            if (newSpawnChance == -1)
-            {
-                continue;
-            }
-
-            if (raiderSpawn.BossChance < newSpawnChance)
-            // Desired chance is bigger than existing, override it
-            {
-                raiderSpawn.BossChance = newSpawnChance;
-            }
         }
     }
 

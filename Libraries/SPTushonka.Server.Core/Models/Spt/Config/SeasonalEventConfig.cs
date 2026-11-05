@@ -23,6 +23,12 @@ public record SeasonalEventConfig : BaseConfig
     /// <summary>
     ///     event / bot type / equipSlot / itemid
     /// </summary>
+    /// <summary>
+    ///     What a role wears while an event runs in place of its usual pools, by event, role and difficulty
+    /// </summary>
+    [JsonPropertyName("eventLoadouts")]
+    public Dictionary<SeasonalEventType, Dictionary<string, Dictionary<string, EventBotLoadout>>>? EventLoadouts { get; set; }
+
     [JsonPropertyName("eventLoot")]
     public required Dictionary<SeasonalEventType, Dictionary<string, Dictionary<string, Dictionary<MongoId, int>>>> EventLoot { get; set; }
 
@@ -111,9 +117,6 @@ public record SeasonalEvent
 
 public record SeasonalEventSettings
 {
-    [JsonPropertyName("enableSummoning")]
-    public bool? EnableSummoning { get; set; }
-
     [JsonPropertyName("enableHalloweenHideout")]
     public bool? EnableHalloweenHideout { get; set; }
 
@@ -150,14 +153,62 @@ public record SeasonalEventSettings
     [JsonPropertyName("disableWaves")]
     public List<string>? DisableWaves { get; set; }
 
-    [JsonPropertyName("enableRundansEvent")]
-    public bool? EnableRundansEvent { get; set; }
-
-    [JsonPropertyName("enableKhorvodEvent")]
-    public bool? EnableKhorvodEvent { get; set; }
-
     [JsonPropertyName("christmasLootBoostAmount")]
     public double? ChristmasLootBoostAmount { get; set; }
+
+    /// <summary>
+    ///     Avatar path by trader id while the event runs
+    /// </summary>
+    [JsonPropertyName("traderAvatars")]
+    public Dictionary<MongoId, string>? TraderAvatars { get; set; }
+
+    /// <summary>
+    ///     What the event changes on individual maps, by location id
+    /// </summary>
+    [JsonPropertyName("locationOverrides")]
+    public Dictionary<string, EventLocationOverride>? LocationOverrides { get; set; }
+}
+
+public record EventBotLoadout
+{
+    /// <summary>
+    ///     Replaces these equipment pools
+    /// </summary>
+    [JsonPropertyName("equipment")]
+    public Dictionary<EquipmentSlots, Dictionary<MongoId, double>> Equipment { get; set; } = [];
+
+    /// <summary>
+    ///     Replaces the spawn chance of these equipment slots
+    /// </summary>
+    [JsonPropertyName("chances")]
+    public Dictionary<string, double> Chances { get; set; } = [];
+
+    /// <summary>
+    ///     Chance percent of a backpack holding these items, on top of its random loot
+    /// </summary>
+    [JsonPropertyName("guaranteedBackpackLoot")]
+    public Dictionary<MongoId, double> GuaranteedBackpackLoot { get; set; } = [];
+}
+
+public record EventLocationOverride
+{
+    /// <summary>
+    ///     Replaces the map's hostility list
+    /// </summary>
+    [JsonPropertyName("additionalHostilitySettings")]
+    public List<AdditionalHostilitySettings>? AdditionalHostilitySettings { get; set; }
+
+    /// <summary>
+    ///     Added to the map's item caps
+    /// </summary>
+    [JsonPropertyName("itemCaps")]
+    public List<MaxItemCountInLocation>? ItemCaps { get; set; }
+
+    /// <summary>
+    ///     Bosses that do not spawn on the map while the event runs
+    /// </summary>
+    [JsonPropertyName("zeroChanceBosses")]
+    public List<string>? ZeroChanceBosses { get; set; }
 }
 
 public record ZombieSettings
@@ -173,6 +224,12 @@ public record ZombieSettings
 
     [JsonPropertyName("disableWaves")]
     public List<string>? DisableWaves { get; set; }
+
+    /// <summary>
+    ///     Bosses whose spawn chance the infection does not lower
+    /// </summary>
+    [JsonPropertyName("unscaledBosses")]
+    public List<string>? UnscaledBosses { get; set; }
 }
 
 public record GifterSetting
