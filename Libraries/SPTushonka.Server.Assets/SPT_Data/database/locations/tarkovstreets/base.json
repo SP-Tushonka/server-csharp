@@ -137,29 +137,6 @@
       "BossChance": 100,
       "BossDifficult": "normal",
       "BossEscortAmount": "1,2,0",
-      "BossEscortDifficult": "easy",
-      "BossEscortType": "pmcBEAR",
-      "BossName": "pmcBEAR",
-      "BossPlayer": false,
-      "BossZone": "",
-      "Delay": 0,
-      "ForceSpawn": true,
-      "IgnoreMaxBots": true,
-      "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": false,
-      "ShowOnTarkovMapPvE": false,
-      "SpawnMode": [
-        "pve"
-      ],
-      "Supports": null,
-      "Time": -1,
-      "TriggerId": "",
-      "TriggerName": ""
-    },
-    {
-      "BossChance": 100,
-      "BossDifficult": "hard",
-      "BossEscortAmount": "1,0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
@@ -180,8 +157,31 @@
       "TriggerName": ""
     },
     {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "1,0",
+      "BossEscortDifficult": "hard",
+      "BossEscortType": "pmcBEAR",
+      "BossName": "pmcBEAR",
+      "BossPlayer": false,
+      "BossZone": "",
+      "Delay": 0,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "pve"
+      ],
+      "Supports": null,
+      "Time": -1,
+      "TriggerId": "",
+      "TriggerName": ""
+    },
+    {
       "BossChance": 80,
-      "BossDifficult": "easy",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -204,7 +204,7 @@
     },
     {
       "BossChance": 60,
-      "BossDifficult": "normal",
+      "BossDifficult": "easy",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -227,9 +227,9 @@
     },
     {
       "BossChance": 50,
-      "BossDifficult": "hard",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "1,0",
-      "BossEscortDifficult": "hard",
+      "BossEscortDifficult": "impossible",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -296,7 +296,7 @@
     },
     {
       "BossChance": 80,
-      "BossDifficult": "normal",
+      "BossDifficult": "easy",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -319,7 +319,7 @@
     },
     {
       "BossChance": 60,
-      "BossDifficult": "normal",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -15808,24 +15808,6 @@
       }
     },
     {
-      "id": "64c0acf85174e095610734a0",
-      "pic": {
-        "path": "banners/67e404c722d6081b78031de0.jpg",
-        "rcid": "",
-        "file": "67e404c722d6081b78031de0.jpg",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "6a609ac4f58fcc8978057b75",
-      "pic": {
-        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
-        "rcid": "",
-        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
-        "type": "banners"
-      }
-    },
-    {
       "id": "6a609acf5cc248b1670be7aa",
       "pic": {
         "path": "banners/6a60a0c7d6e55302580ed970.jpg",
@@ -15833,6 +15815,25 @@
         "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
+    },
+    {
+      "id": "6adf81dd808c62cd870ed353",
+      "pic": {
+        "path": "banners/6adf823565c5330efd035e5e.png",
+        "rcid": "",
+        "file": "6adf823565c5330efd035e5e.png",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "64c0acf85174e095610734a0",
+      "pic": {
+        "path": "banners/67e404c722d6081b78031de0.jpg",
+        "rcid": "",
+        "file": "67e404c722d6081b78031de0.jpg",
+        "type": "banners"
+      }
     }
-  ]
+  ],
+  "EnableTraining": true
 }

@@ -272,8 +272,8 @@ public record GlobalConfig
     [JsonPropertyName("AimPunchMagnitude")]
     public double AimPunchMagnitude { get; set; }
 
-    [JsonPropertyName("WeaponSkillProgressRate")]
-    public double WeaponSkillProgressRate { get; set; }
+    [JsonPropertyName("PDTSettings")]
+    public PdtSettings? PdtSettings { get; set; }
 
     [JsonPropertyName("SkillAtrophy")]
     public bool SkillAtrophy { get; set; }
@@ -3472,4 +3472,33 @@ public record FinalMissionWeatherConfig
     public required float Turbulence { get; set; }
     public required float Wind { get; set; }
     public required float WindDirection { get; set; }
+}
+
+/// <summary>
+///     Rules of the PDT experience bonus by game edition
+/// </summary>
+public record PdtSettings
+{
+    public int? CandidateRegistrationEligibilityPeriodDays { get; set; }
+
+    public int? CandidateTotalInGameMaxHours { get; set; }
+
+    public List<PdtEditionMultiplier>? ExpByGameEditionMultiplier { get; set; }
+
+    public List<string>? OperatorEligibleEditions { get; set; }
+
+    public int? OperatorTotalInGameMinHours { get; set; }
+
+    [JsonPropertyName("PDTExpBonus")]
+    public double? PdtExpBonus { get; set; }
+
+    [JsonPropertyName("PDTLevelCount")]
+    public int? PdtLevelCount { get; set; }
+}
+
+public record PdtEditionMultiplier
+{
+    public double? ExpMultiplier { get; set; }
+
+    public string? GameEdition { get; set; }
 }

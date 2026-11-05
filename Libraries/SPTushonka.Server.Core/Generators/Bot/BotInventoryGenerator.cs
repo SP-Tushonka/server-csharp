@@ -278,12 +278,7 @@ public class BotInventoryGenerator(
             {
                 BotId = botId,
                 RootEquipmentSlot = EquipmentSlots.Pockets,
-                // Unheard profiles have unique sized pockets
-                RootEquipmentPool = GetPocketPoolByGameEdition(
-                    botGenerationDetails.GameVersion,
-                    templateInventory,
-                    botGenerationDetails.IsPmc
-                ),
+                RootEquipmentPool = templateInventory.Equipment.GetValueOrDefault(EquipmentSlots.Pockets),
                 ModPool = templateInventory.Mods,
                 EquipmentBuilds = templateInventory.EquipmentBuilds,
                 SpawnChances = wornItemChances,
@@ -430,24 +425,6 @@ public class BotInventoryGenerator(
                 GeneratingPlayerLevel = pmcProfile?.Info?.Level ?? 1,
             }
         );
-    }
-
-    /// <summary>
-    ///     Get RootEquipmentPool id based on game version
-    /// </summary>
-    /// <param name="chosenGameVersion"></param>
-    /// <param name="templateInventory"></param>
-    /// <param name="isPmc">is bot a PMC</param>
-    /// <returns></returns>
-    protected Dictionary<MongoId, double>? GetPocketPoolByGameEdition(
-        string chosenGameVersion,
-        BotTypeInventory templateInventory,
-        bool isPmc
-    )
-    {
-        return chosenGameVersion == GameEditions.UNHEARD && isPmc
-            ? new Dictionary<MongoId, double> { [ItemTpl.POCKETS_1X4_TUE] = 1 }
-            : templateInventory.Equipment.GetValueOrDefault(EquipmentSlots.Pockets);
     }
 
     /// <summary>

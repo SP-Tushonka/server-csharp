@@ -1,4 +1,4 @@
-﻿{
+{
   "Lay": {
     "CHECK_SHOOT_WHEN_LAYING": false,
     "DELTA_LAY_CHECK": 2.0,
@@ -173,6 +173,7 @@
     "DELAY_BEFORE_FIX_MALFUNCTION": 0.5
   },
   "Move": {
+    "LOCAL_AVOIDANCE_LIMIT": 0.25,
     "BASE_ROTATE_SPEED": 270.0,
     "REACH_DIST": 0.5,
     "REACH_DIST_RUN": 0.8,
@@ -385,6 +386,7 @@
     "FIND_COVER_TO_GET_POSITION_WITH_SHOOT": 2.0,
     "PROTECT_TIME_REAL": true,
     "CHANCE_SHOOT_WHEN_WARN_PLAYER_100": 25.0,
+    "MAY_CALL_ANOTHER_BOTS_FOR_HELP": false,
     "CAN_PANIC_IS_PROTECT": false,
     "NO_RUN_AWAY_FOR_SAFE": false,
     "PART_PERCENT_TO_HEAL": 0.65,
@@ -418,7 +420,6 @@
     "REVENGE_BOT_TYPES": [],
     "FRIENDLY_BOT_TYPES": ["infectedCivil", "infectedPmc", "infectedLaborant", "infectedAssault", "infectedTagilla"],
     "REVENGE_FOR_SAVAGE_PLAYERS": false,
-    "MUTUAL_IGNORE_FRIENDLY_FIRE": true
   },
   "Boss": {
     "BOSS_DIST_TO_WARNING": 15.0,

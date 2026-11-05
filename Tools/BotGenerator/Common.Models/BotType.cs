@@ -83,5 +83,6 @@
         pmcbotblackdivseason = 79,
         bossscourgeeventlab = 80,
         followerscourgeeventlab = 81,
+        infectedscreamer = 82,
     }
 }

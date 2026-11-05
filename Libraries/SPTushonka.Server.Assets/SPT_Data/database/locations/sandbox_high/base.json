@@ -38,7 +38,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 2,
+      "BossChance": 15,
       "BossDifficult": "normal",
       "BossEscortAmount": "3,4",
       "BossEscortDifficult": "normal",
@@ -62,9 +62,9 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "hard",
+      "BossDifficult": "normal",
       "BossEscortAmount": "1",
-      "BossEscortDifficult": "hard",
+      "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -83,7 +83,7 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "normal",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -106,7 +106,7 @@
       "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "1",
-      "BossEscortDifficult": "hard",
+      "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -125,7 +125,7 @@
     },
     {
       "BossChance": 70,
-      "BossDifficult": "hard",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -188,7 +188,7 @@
     },
     {
       "BossChance": 50,
-      "BossDifficult": "hard",
+      "BossDifficult": "normal",
       "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -8422,11 +8422,20 @@
       }
     },
     {
-      "id": "63a9c1f5662a5b0a2c7fbde5",
+      "id": "6a609acf5cc248b1670be7aa",
       "pic": {
-        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
         "rcid": "",
-        "file": "67e4046dbec96f5d8e09732a.jpg",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6adf81dd808c62cd870ed353",
+      "pic": {
+        "path": "banners/6adf823565c5330efd035e5e.png",
+        "rcid": "",
+        "file": "6adf823565c5330efd035e5e.png",
         "type": "banners"
       }
     },
@@ -8436,24 +8445,6 @@
         "path": "banners/67e404c722d6081b78031de0.jpg",
         "rcid": "",
         "file": "67e404c722d6081b78031de0.jpg",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "6a609ac4f58fcc8978057b75",
-      "pic": {
-        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
-        "rcid": "",
-        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "6a609acf5cc248b1670be7aa",
-      "pic": {
-        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
-        "rcid": "",
-        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }
@@ -8504,5 +8495,6 @@
   "users_gather_seconds": 0,
   "users_spawn_seconds_n": 15,
   "users_spawn_seconds_n2": 25,
-  "users_summon_seconds": 0
+  "users_summon_seconds": 0,
+  "EnableTraining": true
 }

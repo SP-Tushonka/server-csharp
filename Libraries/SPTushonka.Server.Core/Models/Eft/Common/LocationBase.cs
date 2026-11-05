@@ -148,6 +148,9 @@ public record LocationBase
     [JsonPropertyName("DisabledForScav")]
     public required bool DisabledForScav { get; set; }
 
+    [JsonPropertyName("EnableTraining")]
+    public bool? EnableTraining { get; set; }
+
     [JsonPropertyName("EventTrapsData")]
     public EventTrapsData? EventTrapsData { get; set; }
 
@@ -1297,6 +1300,7 @@ public enum WildSpawnType
     bossWedgeLab,
     followerWedgeLab,
     pmcBotBlackDivSeason,
+    infectedScreamer,
     bossScourgeEventLab,
     followerScourgeEventLab,
 }

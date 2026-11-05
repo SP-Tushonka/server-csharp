@@ -24001,10 +24001,6 @@
         "SearchSoundVolume": {
           "FpVolume": 0.6,
           "TpVolume": 0.45
-        },
-        "TinnitusEffectConfig": {
-          "EffectBaseDurationMultiplier": 1.5,
-          "MaxEffectDuration": 10
         }
       },
       "WeaponSettings": {
@@ -24028,6 +24024,27 @@
           "MaxPoolSize": 15,
           "MinPoolSize": 2
         }
+      },
+      "GameEventsSettings": {
+        "eventDisabled": [
+          "Icebreaker",
+          "Interchange",
+          "Labyrinth",
+          "Lighthouse",
+          "RezervBase",
+          "Sandbox",
+          "Sandbox_high",
+          "Sandbox_start",
+          "Shoreline",
+          "TarkovStreets",
+          "Terminal",
+          "Woods",
+          "bigmap",
+          "develop",
+          "factory4_day",
+          "factory4_night",
+          "laboratory"
+        ]
       }
     },
     "ClientSendRateLimit": 120,

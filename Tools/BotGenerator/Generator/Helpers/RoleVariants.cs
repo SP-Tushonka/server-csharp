@@ -15,6 +15,14 @@ public static class RoleVariants
         [BotType.bosswedge] = ["easy"],
         [BotType.assault] = ["easy", "hard", "impossible"],
         [BotType.marksman] = ["easy", "hard", "impossible"],
+        [BotType.pmcbear] = ["easy", "hard", "impossible"],
+        [BotType.pmcusec] = ["easy", "hard", "impossible"],
+        [BotType.blackdivision] = ["easy", "hard", "impossible"],
+        [BotType.civilian] = ["easy"],
+        [BotType.infectedpmc] = ["easy", "hard"],
+        [BotType.infectedassault] = ["easy", "hard"],
+        [BotType.pmcbotblackdiv] = ["easy", "hard"],
+        [BotType.vsrf] = ["easy", "hard", "impossible"],
     };
 
     /// <summary>

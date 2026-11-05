@@ -173,7 +173,7 @@
       "BossChance": 100,
       "BossDifficult": "normal",
       "BossEscortAmount": "1,0",
-      "BossEscortDifficult": "easy",
+      "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
@@ -196,7 +196,7 @@
     },
     {
       "BossChance": 70,
-      "BossDifficult": "normal",
+      "BossDifficult": "easy",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -223,7 +223,7 @@
       "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "1",
-      "BossEscortDifficult": "hard",
+      "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
@@ -246,7 +246,7 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "easy",
+      "BossDifficult": "normal",
       "BossEscortAmount": "1,2,0",
       "BossEscortDifficult": "easy",
       "BossEscortType": "pmcBEAR",
@@ -321,7 +321,7 @@
     },
     {
       "BossChance": 50,
-      "BossDifficult": "normal",
+      "BossDifficult": "hard",
       "BossEscortAmount": "1",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -12929,20 +12929,20 @@
       }
     },
     {
-      "id": "5803a58524597710ca36fcb2",
+      "id": "6a609acf5cc248b1670be7aa",
       "pic": {
-        "path": "banners/67e404d9bec96f5d8e097331.jpg",
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
         "rcid": "",
-        "file": "67e404d9bec96f5d8e097331.jpg",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     },
     {
-      "id": "5c1b857086f77465f465faa4",
+      "id": "6adf81dd808c62cd870ed353",
       "pic": {
-        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
+        "path": "banners/6adf823565c5330efd035e5e.png",
         "rcid": "",
-        "file": "67e404c5bec96f5d8e09732f.jpg",
+        "file": "6adf823565c5330efd035e5e.png",
         "type": "banners"
       }
     },
@@ -12952,24 +12952,6 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "6a609ac4f58fcc8978057b75",
-      "pic": {
-        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
-        "rcid": "",
-        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "6a609acf5cc248b1670be7aa",
-      "pic": {
-        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
-        "rcid": "",
-        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }
@@ -13028,5 +13010,6 @@
   "users_gather_seconds": 0,
   "users_spawn_seconds_n": 15,
   "users_spawn_seconds_n2": 25,
-  "users_summon_seconds": 0
+  "users_summon_seconds": 0,
+  "EnableTraining": true
 }

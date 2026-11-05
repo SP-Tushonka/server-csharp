@@ -1498,21 +1498,12 @@ public class FenceService(
         }
 
         var fenceLevels = fenceSettings.Levels.Keys;
-        var minLevel = fenceLevels.Min();
-        var maxLevel = fenceLevels.Max();
         var pmcFenceLevel = Math.Floor(pmcFenceInfo.Standing.Value);
 
-        if (pmcFenceLevel < minLevel)
-        {
-            return fenceSettings.Levels[minLevel];
-        }
+        // Levels are not contiguous, a standing between two keys uses the lower one
+        var level = fenceLevels.Where(key => key <= pmcFenceLevel).DefaultIfEmpty(fenceLevels.Min()).Max();
 
-        if (pmcFenceLevel > maxLevel)
-        {
-            return fenceSettings.Levels[maxLevel];
-        }
-
-        return fenceSettings.Levels.GetValueOrDefault(pmcFenceLevel);
+        return fenceSettings.Levels[level];
     }
 
     /// <summary>

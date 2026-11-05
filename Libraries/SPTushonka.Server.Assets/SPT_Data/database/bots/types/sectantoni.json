@@ -1334,7 +1334,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1473,7 +1474,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 40,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1496,7 +1497,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1835,7 +1838,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1974,7 +1978,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 40,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1997,7 +2001,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2336,7 +2342,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -2475,7 +2482,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 40,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -2498,7 +2505,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2837,7 +2846,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -2976,7 +2986,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 40,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -2999,7 +3009,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,

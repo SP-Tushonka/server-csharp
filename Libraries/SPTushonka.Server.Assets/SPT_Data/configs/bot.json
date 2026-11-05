@@ -38,6 +38,12 @@
     },
     "laboratory_dark": {
       "assault": 1
+    },
+    "factory_event": {
+      "assault": 1
+    },
+    "laboratory_event": {
+      "assault": 1
     }
   },
   "bosses": [
@@ -1944,7 +1950,8 @@
       "weaponSlotIdsToMakeRequired": [
         "mod_reciever"
       ]
-    }
+    },
+    "infectedscreamer": {}
   },
   "guaranteedLoot": {
     "blackdivision": {
@@ -2383,6 +2390,20 @@
       "pmcUSEC": 2
     },
     "laboratory_dark": {
+      "assault": 0,
+      "bossKilla": 2,
+      "pmcBot": 0,
+      "pmcBEAR": 2,
+      "pmcUSEC": 2
+    },
+    "factory_event": {
+      "assault": 1,
+      "bossKilla": 1,
+      "pmcBot": 0,
+      "pmcBEAR": 2,
+      "pmcUSEC": 2
+    },
+    "laboratory_event": {
       "assault": 0,
       "bossKilla": 2,
       "pmcBot": 0,

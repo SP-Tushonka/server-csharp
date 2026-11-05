@@ -3501,7 +3501,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.15,
-        "WaitInCoverBetweenShotsSec": 0.35
+        "WaitInCoverBetweenShotsSec": 0.35,
+        "GainSightCoef": 4
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -3634,7 +3635,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -3642,7 +3644,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 95,
         "FAR_DISTANCE": 260,
         "FarDeltaTimeSec": 3,
@@ -3665,7 +3667,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -3738,7 +3742,12 @@
         "CAN_TAKE_ITEMS": true,
         "CAN_TAKE_ANY_ITEM": true,
         "GIFTER_ADDITIONAL_GIFTS": 1,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500.0,
+        "CAN_RECIVE_PLAYER_REQUESTS": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0,
+        "DEFAULT_ENEMY_USEC": false,
+        "DEFAULT_ENEMY_BEAR": false,
+        "DEFAULT_ENEMY_SAVAGE": false
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -4004,7 +4013,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.15,
-        "WaitInCoverBetweenShotsSec": 0.35
+        "WaitInCoverBetweenShotsSec": 0.35,
+        "GainSightCoef": 4
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -4137,7 +4147,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -4145,7 +4156,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 95,
         "FAR_DISTANCE": 260,
         "FarDeltaTimeSec": 3,
@@ -4168,7 +4179,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -4241,7 +4254,12 @@
         "CAN_TAKE_ITEMS": true,
         "CAN_TAKE_ANY_ITEM": true,
         "GIFTER_ADDITIONAL_GIFTS": 1,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500.0,
+        "CAN_RECIVE_PLAYER_REQUESTS": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0,
+        "DEFAULT_ENEMY_USEC": false,
+        "DEFAULT_ENEMY_BEAR": false,
+        "DEFAULT_ENEMY_SAVAGE": false
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -4507,7 +4525,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.15,
-        "WaitInCoverBetweenShotsSec": 0.35
+        "WaitInCoverBetweenShotsSec": 0.35,
+        "GainSightCoef": 4
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -4640,7 +4659,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -4648,7 +4668,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 95,
         "FAR_DISTANCE": 260,
         "FarDeltaTimeSec": 3,
@@ -4671,7 +4691,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -4744,7 +4766,12 @@
         "CAN_TAKE_ITEMS": true,
         "CAN_TAKE_ANY_ITEM": true,
         "GIFTER_ADDITIONAL_GIFTS": 1,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500.0,
+        "CAN_RECIVE_PLAYER_REQUESTS": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0,
+        "DEFAULT_ENEMY_USEC": false,
+        "DEFAULT_ENEMY_BEAR": false,
+        "DEFAULT_ENEMY_SAVAGE": false
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -5010,7 +5037,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.15,
-        "WaitInCoverBetweenShotsSec": 0.35
+        "WaitInCoverBetweenShotsSec": 0.35,
+        "GainSightCoef": 4
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -5143,7 +5171,8 @@
         "MAX_CAN_LAY_DIST_SQRT": 40000,
         "MAX_CAN_LAY_DIST": 200,
         "LAY_CHANCE_DANGER": 40,
-        "DAMAGE_TIME_TO_GETUP": 3
+        "DAMAGE_TIME_TO_GETUP": 3,
+        "CAN_LAY_AT_SHOOTFROMPLACE": false
       },
       "Look": {
         "OLD_TIME_POINT": 11,
@@ -5151,7 +5180,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 95,
         "FAR_DISTANCE": 260,
         "FarDeltaTimeSec": 3,
@@ -5174,7 +5203,9 @@
         "LOOK_LAST_POSENEMY_IF_NO_DANGER_SEC": 25,
         "MIN_LOOK_AROUD_TIME": 20,
         "NO_GREEN_DIST": 5,
-        "NO_GRASS_DIST": 5
+        "NO_GRASS_DIST": 5,
+        "CAN_LOOK_TO_WALL": true,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -5247,7 +5278,12 @@
         "CAN_TAKE_ITEMS": true,
         "CAN_TAKE_ANY_ITEM": true,
         "GIFTER_ADDITIONAL_GIFTS": 1,
-        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 10000
+        "SDIST_TO_DELIVER_INFO_WHEN_ENEMY": 2500.0,
+        "CAN_RECIVE_PLAYER_REQUESTS": true,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0,
+        "DEFAULT_ENEMY_USEC": false,
+        "DEFAULT_ENEMY_BEAR": false,
+        "DEFAULT_ENEMY_SAVAGE": false
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,

@@ -151,6 +151,12 @@ public record Quest
 /// </summary>
 public record QuestStatus
 {
+    [JsonPropertyName("id")]
+    public MongoId? Id { get; set; }
+
+    [JsonPropertyName("uid")]
+    public MongoId? Uid { get; set; }
+
     [JsonPropertyName("qid")]
     public required MongoId QId { get; set; }
 
@@ -488,6 +494,12 @@ public record QuestConditionCounterCondition
 
     [JsonPropertyName("enemyHealthEffects")]
     public List<EnemyHealthEffect>? EnemyHealthEffects { get; set; }
+
+    /// <summary>
+    ///     Buff ids the killed enemy must carry, such as Buffs_ZombieGasEnrage
+    /// </summary>
+    [JsonPropertyName("enemyHealthBuffs")]
+    public List<string>? EnemyHealthBuffs { get; set; }
 
     [JsonPropertyName("resetOnSessionEnd")]
     public bool? ResetOnSessionEnd { get; set; }

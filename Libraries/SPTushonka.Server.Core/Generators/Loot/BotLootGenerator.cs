@@ -305,10 +305,10 @@ public class BotLootGenerator(
         var itemPriceLimits = GetSingleItemLootPriceLimits(botGenerationDetails.BotLevel, botGenerationDetails.IsPmc);
 
         // Backpack - generate loot if they have one
-        if (containersBotHasAvailable.Contains(EquipmentSlots.Backpack) && backpackLootCount > 0)
+        if (containersBotHasAvailable.Contains(EquipmentSlots.Backpack))
         {
             // Add randomly generated weapon to PMC backpacks
-            if (botGenerationDetails.IsPmc && randomUtil.GetChance100(pmcConfig.LooseWeaponInBackpackChancePercent))
+            if (backpackLootCount > 0 && botGenerationDetails.IsPmc && randomUtil.GetChance100(pmcConfig.LooseWeaponInBackpackChancePercent))
             {
                 AddLooseWeaponsToInventorySlot(
                     botId,
@@ -333,18 +333,23 @@ public class BotLootGenerator(
                 botJsonTemplate,
                 itemPriceLimits?.Backpack
             );
+
+            // Guaranteed items do not depend on the bot rolling any random backpack loot
             backpackLootCount -= TakeGuaranteedLoot(backpackPool, backpackSlots);
-            AddLootFromPool(
-                botId,
-                backpackPool,
-                backpackSlots,
-                backpackLootCount,
-                botInventory,
-                botGenerationDetails.RoleLowercase,
-                botItemLimits,
-                backpackLootRoubleTotal,
-                botGenerationDetails.IsPmc
-            );
+            if (backpackLootCount > 0)
+            {
+                AddLootFromPool(
+                    botId,
+                    backpackPool,
+                    backpackSlots,
+                    backpackLootCount,
+                    botInventory,
+                    botGenerationDetails.RoleLowercase,
+                    botItemLimits,
+                    backpackLootRoubleTotal,
+                    botGenerationDetails.IsPmc
+                );
+            }
         }
 
         var vestLootRoubleTotal = botGenerationDetails.IsPmc

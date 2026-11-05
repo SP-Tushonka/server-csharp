@@ -892,7 +892,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 0.3
+        "WaitInCoverBetweenShotsSec": 0.3,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -943,7 +944,8 @@
         "STATIONARY_WEAPON_MAX_DIST_TO_USE": 25,
         "CHECK_CLOSEST_FRIEND_DIST": 15,
         "CAN_LAY_TO_COVER_DIST_LOOK_TO_ENEMY": 300,
-        "CAN_LAY_TO_COVER": true
+        "CAN_LAY_TO_COVER": true,
+        "LOOK_LAST_ENEMY_POS_HOLDING": 1.5
       },
       "Grenade": {
         "DELTA_NEXT_ATTEMPT_FROM_COVER": 5,
@@ -1037,7 +1039,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 45,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1064,7 +1066,9 @@
         "NO_GRASS_DIST": 5,
         "SELF_NIGHTVISION": true,
         "FULL_SECTOR_VIEW": true,
-        "ANGLE_FOR_GETUP": 178
+        "ANGLE_FOR_GETUP": 178,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1135,7 +1139,9 @@
         "CAN_TAKE_ITEMS": false,
         "WILL_PERSUE_AXEMAN": true,
         "HOW_WORK_OVER_DEAD_BODY": 2,
-        "CAN_TALK": false
+        "CAN_TALK": false,
+        "TIME_LEAVE_MAP": 7,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1418,7 +1424,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 0.3
+        "WaitInCoverBetweenShotsSec": 0.3,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1469,7 +1476,8 @@
         "STATIONARY_WEAPON_MAX_DIST_TO_USE": 25,
         "CHECK_CLOSEST_FRIEND_DIST": 15,
         "CAN_LAY_TO_COVER_DIST_LOOK_TO_ENEMY": 300,
-        "CAN_LAY_TO_COVER": true
+        "CAN_LAY_TO_COVER": true,
+        "LOOK_LAST_ENEMY_POS_HOLDING": 1.5
       },
       "Grenade": {
         "DELTA_NEXT_ATTEMPT_FROM_COVER": 5,
@@ -1563,7 +1571,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 45,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -1590,7 +1598,9 @@
         "NO_GRASS_DIST": 5,
         "SELF_NIGHTVISION": true,
         "FULL_SECTOR_VIEW": true,
-        "ANGLE_FOR_GETUP": 178
+        "ANGLE_FOR_GETUP": 178,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -1661,7 +1671,9 @@
         "CAN_TAKE_ITEMS": false,
         "WILL_PERSUE_AXEMAN": true,
         "HOW_WORK_OVER_DEAD_BODY": 2,
-        "CAN_TALK": false
+        "CAN_TALK": false,
+        "TIME_LEAVE_MAP": 7,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -1944,7 +1956,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 0.3
+        "WaitInCoverBetweenShotsSec": 0.3,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -1995,7 +2008,8 @@
         "STATIONARY_WEAPON_MAX_DIST_TO_USE": 25,
         "CHECK_CLOSEST_FRIEND_DIST": 15,
         "CAN_LAY_TO_COVER_DIST_LOOK_TO_ENEMY": 300,
-        "CAN_LAY_TO_COVER": true
+        "CAN_LAY_TO_COVER": true,
+        "LOOK_LAST_ENEMY_POS_HOLDING": 1.5
       },
       "Grenade": {
         "DELTA_NEXT_ATTEMPT_FROM_COVER": 5,
@@ -2089,7 +2103,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 45,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -2116,7 +2130,9 @@
         "NO_GRASS_DIST": 5,
         "SELF_NIGHTVISION": true,
         "FULL_SECTOR_VIEW": true,
-        "ANGLE_FOR_GETUP": 178
+        "ANGLE_FOR_GETUP": 178,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2187,7 +2203,9 @@
         "CAN_TAKE_ITEMS": false,
         "WILL_PERSUE_AXEMAN": true,
         "HOW_WORK_OVER_DEAD_BODY": 2,
-        "CAN_TALK": false
+        "CAN_TALK": false,
+        "TIME_LEAVE_MAP": 7,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -2470,7 +2488,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.2,
-        "WaitInCoverBetweenShotsSec": 0.3
+        "WaitInCoverBetweenShotsSec": 0.3,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -2521,7 +2540,8 @@
         "STATIONARY_WEAPON_MAX_DIST_TO_USE": 25,
         "CHECK_CLOSEST_FRIEND_DIST": 15,
         "CAN_LAY_TO_COVER_DIST_LOOK_TO_ENEMY": 300,
-        "CAN_LAY_TO_COVER": true
+        "CAN_LAY_TO_COVER": true,
+        "LOOK_LAST_ENEMY_POS_HOLDING": 1.5
       },
       "Grenade": {
         "DELTA_NEXT_ATTEMPT_FROM_COVER": 5,
@@ -2615,7 +2635,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.8,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 8.0,
         "LightOnVisionDistance": 45,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -2642,7 +2662,9 @@
         "NO_GRASS_DIST": 5,
         "SELF_NIGHTVISION": true,
         "FULL_SECTOR_VIEW": true,
-        "ANGLE_FOR_GETUP": 178
+        "ANGLE_FOR_GETUP": 178,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2713,7 +2735,9 @@
         "CAN_TAKE_ITEMS": false,
         "WILL_PERSUE_AXEMAN": true,
         "HOW_WORK_OVER_DEAD_BODY": 2,
-        "CAN_TALK": false
+        "CAN_TALK": false,
+        "TIME_LEAVE_MAP": 7,
+        "AGGRESSOR_LOYALTY_BONUS": 0.0
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,

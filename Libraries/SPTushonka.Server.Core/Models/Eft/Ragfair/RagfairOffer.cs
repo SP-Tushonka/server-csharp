@@ -92,6 +92,9 @@ public record RagfairOffer
 
 public record OfferRequirement
 {
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
     [JsonPropertyName("_tpl")]
     public required MongoId TemplateId { get; set; }
 
@@ -110,6 +113,9 @@ public record OfferRequirement
 
 public record RagfairOfferUser
 {
+    [JsonPropertyName("accountId")]
+    public long? AccountId { get; set; }
+
     [JsonPropertyName("id")]
     public MongoId Id { get; set; }
 

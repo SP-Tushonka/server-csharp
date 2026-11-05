@@ -6,6 +6,12 @@ namespace SPTarkov.Server.Core.Models.Eft.Common;
 
 public record PmcData : BotBase
 {
+    [JsonPropertyName("leagueRank")]
+    public int? LeagueRank { get; set; }
+
+    [JsonPropertyName("leagueMaxRank")]
+    public int? LeagueMaxRank { get; set; }
+
     [JsonPropertyName("Prestige")]
     [JsonConverter(typeof(ArrayToObjectFactoryConverter))]
     public Dictionary<string, long>? Prestige { get; set; }

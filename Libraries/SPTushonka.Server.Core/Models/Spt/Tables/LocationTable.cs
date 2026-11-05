@@ -34,6 +34,8 @@ public record LocationTable
         { "sandbox_high", "SandboxHigh" },
         { "icebreaker", "Icebreaker" },
         { "laboratory_dark", "LaboratoryDark" },
+        { "factory_event", "FactoryEvent" },
+        { "laboratory_event", "LaboratoryEvent" },
         // SPT
         { "Factory4Day", "Factory4Day" },
         { "Bigmap", "Bigmap" },
@@ -58,6 +60,8 @@ public record LocationTable
         { "SandboxHigh", "SandboxHigh" },
         { "Icebreaker", "Icebreaker" },
         { "LaboratoryDark", "LaboratoryDark" },
+        { "FactoryEvent", "FactoryEvent" },
+        { "LaboratoryEvent", "LaboratoryEvent" },
     };
 
     private Dictionary<string, Eft.Common.Location>? _locationDictionaryCache;
@@ -133,6 +137,12 @@ public record LocationTable
 
     [JsonPropertyName("laboratory_dark")]
     public Eft.Common.Location? LaboratoryDark { get; init; }
+
+    [JsonPropertyName("factory_event")]
+    public Eft.Common.Location? FactoryEvent { get; init; }
+
+    [JsonPropertyName("laboratory_event")]
+    public Eft.Common.Location? LaboratoryEvent { get; init; }
 
     /// <summary>
     ///     Holds a mapping of the linkages between locations on the UI

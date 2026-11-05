@@ -115,12 +115,6 @@ public record LocationConfig : BaseConfig
     public required EquipmentLootSettings EquipmentLootSettings { get; set; }
 
     /// <summary>
-    ///     Min percentage to set raider spawns at, -1 makes no changes
-    /// </summary>
-    [JsonPropertyName("reserveRaiderSpawnChanceOverrides")]
-    public required ReserveRaiderSpawnChanceOverrides ReserveRaiderSpawnChanceOverrides { get; set; }
-
-    /// <summary>
     ///     Containers to remove all children from when generating static/loose loot
     /// </summary>
     [JsonPropertyName("tplsToStripChildItemsFrom")]
@@ -146,15 +140,6 @@ public record TransitSettings
 
     [JsonPropertyName("limbHealPercent")]
     public int? LimbHealPercent { get; set; }
-}
-
-public record ReserveRaiderSpawnChanceOverrides
-{
-    [JsonPropertyName("nonTriggered")]
-    public int NonTriggered { get; set; }
-
-    [JsonPropertyName("triggered")]
-    public int Triggered { get; set; }
 }
 
 public record EquipmentLootSettings

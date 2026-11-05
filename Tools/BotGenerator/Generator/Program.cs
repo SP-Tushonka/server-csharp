@@ -75,6 +75,7 @@ internal static class Program
             "infectedcivil",
             "infectedlaborant",
             "infectedtagilla",
+            "infectedscreamer",
             "pmcusec",
             "pmcbear",
             "bosstagillaagro",

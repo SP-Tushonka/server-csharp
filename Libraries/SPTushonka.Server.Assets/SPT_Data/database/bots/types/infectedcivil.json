@@ -1,26 +1,26 @@
 {
   "appearance": {
     "body": {
-      "670d19ab42245e21c30eed24": 53,
-      "670d1999d57ec3c3e20e81da": 54,
-      "670d1989186ee334e70ee8cd": 58
+      "670d19ab42245e21c30eed24": 569,
+      "670d1999d57ec3c3e20e81da": 597,
+      "670d1989186ee334e70ee8cd": 640
     },
     "feet": {
-      "670d18f87ca0004a2a022606": 37,
-      "670d18e2e002387b88029112": 36,
-      "670d1907b7a8f34fce07fdab": 37
+      "670d18f87ca0004a2a022606": 215,
+      "670d18e2e002387b88029112": 196,
+      "670d1907b7a8f34fce07fdab": 191
     },
     "hands": {
       "5cc2e68f14c02e28b47de290": 1
     },
     "head": {
-      "670d125b7ca0004a2a021eae": 59,
-      "670d1749d57ec3c3e20e81a6": 51
+      "670d125b7ca0004a2a021eae": 151,
+      "670d1749d57ec3c3e20e81a6": 150
     },
     "voice": {
-      "670a57f082b46e0e55096b09": 139,
-      "67199b72b79a024c140a17b7": 120,
-      "6720aa2d1c5e609cb70d5528": 71
+      "670a57f082b46e0e55096b09": 752,
+      "67199b72b79a024c140a17b7": 687,
+      "6720aa2d1c5e609cb70d5528": 367
     }
   },
   "chances": {
@@ -43,7 +43,7 @@
     "weaponMods": {
       "mod_magazine": 100,
       "mod_muzzle": 0,
-      "mod_sight_rear": 75
+      "mod_sight_rear": 76
     },
     "equipmentMods": {}
   },
@@ -485,7 +485,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -1035,7 +1036,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -1585,7 +1587,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -2129,7 +2132,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -2239,7 +2243,8 @@
   "experience": {
     "aggressorBonus": {
       "hard": 0,
-      "normal": 0
+      "normal": 0,
+      "easy": 0
     },
     "level": {
       "max": 1,
@@ -2251,13 +2256,18 @@
         "min": -1
       },
       "normal": {
-        "min": 20,
-        "max": 20
+        "max": 20,
+        "min": 20
+      },
+      "easy": {
+        "max": 20,
+        "min": 20
       }
     },
     "standingForKill": {
       "hard": 0,
-      "normal": 0
+      "normal": 0,
+      "easy": 0
     },
     "useSimpleAnimator": true
   },
@@ -2268,61 +2278,61 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
@@ -2340,14 +2350,14 @@
       },
       "secureLoot": {
         "weights": {
-          "0": 330
+          "0": 1806
         },
         "whitelist": {}
       },
       "secureAmmoStacks": {
         "Holster": {
           "weights": {
-            "0": 330
+            "0": 1806
           },
           "whitelist": {}
         }
@@ -2355,7 +2365,7 @@
       "chamberedRounds": {
         "Holster": {
           "weights": {
-            "1": 330
+            "1": 1806
           },
           "whitelist": {}
         }
@@ -2393,6 +2403,66 @@
           "max": 70,
           "min": 70
         }
+      },
+      {
+        "Chest": {
+          "max": 300,
+          "min": 300
+        },
+        "Head": {
+          "max": 90,
+          "min": 90
+        },
+        "LeftArm": {
+          "max": 125,
+          "min": 125
+        },
+        "LeftLeg": {
+          "max": 125,
+          "min": 125
+        },
+        "RightArm": {
+          "max": 125,
+          "min": 125
+        },
+        "RightLeg": {
+          "max": 125,
+          "min": 125
+        },
+        "Stomach": {
+          "max": 260,
+          "min": 260
+        }
+      },
+      {
+        "Chest": {
+          "max": 270,
+          "min": 270
+        },
+        "Head": {
+          "max": 100,
+          "min": 100
+        },
+        "LeftArm": {
+          "max": 70,
+          "min": 70
+        },
+        "LeftLeg": {
+          "max": 70,
+          "min": 70
+        },
+        "RightArm": {
+          "max": 70,
+          "min": 70
+        },
+        "RightLeg": {
+          "max": 70,
+          "min": 70
+        },
+        "Stomach": {
+          "max": 170,
+          "min": 170
+        }
       }
     ],
     "Energy": {
@@ -2424,11 +2494,11 @@
         "579204f224597773d619e051": 1
       },
       "Scabbard": {
-        "670ad7f1ad195290cd00da7a": 269,
-        "5c07df7f0db834001b73588a": 27,
-        "5bead2e00db834001c062938": 8,
-        "601948682627df266209af05": 17,
-        "5c012ffc0db834001d23f03f": 9
+        "670ad7f1ad195290cd00da7a": 1456,
+        "5c07df7f0db834001b73588a": 129,
+        "5bead2e00db834001c062938": 70,
+        "601948682627df266209af05": 80,
+        "5c012ffc0db834001d23f03f": 71
       },
       "Pockets": {
         "557ffd194bdc2d28148b457f": 1
@@ -2473,7 +2543,7 @@
     "weaponBuilds": {
       "579204f224597773d619e051": [
         {
-          "weight": 248,
+          "weight": 1390,
           "items": [
             {
               "_id": "6ac663c59ab64b71d51292fe",
@@ -2506,7 +2576,7 @@
           ]
         },
         {
-          "weight": 82,
+          "weight": 416,
           "items": [
             {
               "_id": "6ac663c59ab64b71d5129331",
@@ -2537,6 +2607,11 @@
   },
   "lastName": [],
   "skills": {
-    "Common": {}
+    "Common": {
+      "Strength": {
+        "max": 5100,
+        "min": 5100
+      }
+    }
   }
 }

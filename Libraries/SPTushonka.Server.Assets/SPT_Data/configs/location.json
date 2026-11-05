@@ -24,7 +24,9 @@
     "lighthouse2": 1,
     "icebreaker": 1,
     "terminal_ui": 1,
-    "laboratory_dark": 1
+    "laboratory_dark": 1,
+    "factory_event": 1,
+    "laboratory_event": 1
   },
   "staticLootMultiplier": {
     "bigmap": 1,
@@ -51,7 +53,9 @@
     "lighthouse2": 1,
     "icebreaker": 1,
     "terminal_ui": 1,
-    "laboratory_dark": 1
+    "laboratory_dark": 1,
+    "factory_event": 1,
+    "laboratory_event": 1
   },
   "customWaves": {
     "boss": {},
@@ -160,6 +164,21 @@
       "6707cd70aab679420007e018": 1,
       "6707cc67cc1667e49e0f7232": 1,
       "6707cf827d279daad80fa95f": 1
+    },
+    "factory_event": {
+      "591093bb86f7747caa7bb2ee": 1,
+      "66c0b39ca1f68fcc1d0c0cc3": 1,
+      "66a0e523e749756c920d02d0": 1,
+      "593a87af86f774122f54a951": 1
+    },
+    "laboratory_event": {
+      "6398a4cfb5992f573c6562b3": 1,
+      "64e74a44c2b4f829615ec334": 1,
+      "6711039f9e648049e50b3307": 1,
+      "6707cef3571b50abc703b64f": 1,
+      "6707cd70aab679420007e018": 1,
+      "6707cc67cc1667e49e0f7232": 1,
+      "6707cf827d279daad80fa95f": 1
     }
   },
   "rogueLighthouseSpawnTimeSettings": {
@@ -187,7 +206,9 @@
       "sandbox": true,
       "sandbox_high": true,
       "labyrinth": true,
-      "laboratory_dark": true
+      "laboratory_dark": true,
+      "factory_event": true,
+      "laboratory_event": true
     },
     "containerTypesToNotRandomise": [
       "578f87b7245977356274f2cd",
@@ -216,10 +237,6 @@
       "mod_mount": 5,
       "mod_equipment": 5
     }
-  },
-  "reserveRaiderSpawnChanceOverrides": {
-    "nonTriggered": 80,
-    "triggered": 90
   },
   "tplsToStripChildItemsFrom": [
     "63a8970d7108f713591149f5",

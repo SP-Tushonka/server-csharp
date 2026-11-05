@@ -110,7 +110,6 @@
         "572b7fa524597762b747ce82": 18610,
         "5b432b6c5acfc4001a599bf0": 2842,
         "5b432f3d5acfc4704b4a1dfb": 8824,
-        "5e54f79686f7744022011103": 490,
         "5bd073a586f7747e6f135799": 863,
         "62a09e08de7ac81993580532": 557,
         "5b432b2f5acfc4771e1c6622": 1082,
@@ -2490,7 +2489,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -2581,7 +2581,8 @@
         "CHEAT_START_GRENADE_PLACE": false,
         "CAN_THROW_STRAIGHT_CONTACT": true,
         "STRAIGHT_CONTACT_DELTA_SEC": -1,
-        "ANG_TYPE": 4
+        "ANG_TYPE": 4,
+        "NO_RUN_FROM_GAS_GRENADES": false
       },
       "Hearing": {
         "BOT_CLOSE_PANIC_DIST": 2,
@@ -2630,7 +2631,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7.0,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -2655,7 +2656,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -2725,7 +2728,8 @@
         "SURGE_KIT_ONLY_SAFE_CONTAINER": false,
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
-        "CHECK_MARK_OF_UNKNOWS": true
+        "CHECK_MARK_OF_UNKNOWS": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -3009,7 +3013,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -3100,7 +3105,8 @@
         "CHEAT_START_GRENADE_PLACE": false,
         "CAN_THROW_STRAIGHT_CONTACT": true,
         "STRAIGHT_CONTACT_DELTA_SEC": -1,
-        "ANG_TYPE": 4
+        "ANG_TYPE": 4,
+        "NO_RUN_FROM_GAS_GRENADES": false
       },
       "Hearing": {
         "BOT_CLOSE_PANIC_DIST": 2,
@@ -3149,7 +3155,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7.0,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -3174,7 +3180,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -3244,7 +3252,8 @@
         "SURGE_KIT_ONLY_SAFE_CONTAINER": false,
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
-        "CHECK_MARK_OF_UNKNOWS": true
+        "CHECK_MARK_OF_UNKNOWS": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -3528,7 +3537,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -3619,7 +3629,8 @@
         "CHEAT_START_GRENADE_PLACE": false,
         "CAN_THROW_STRAIGHT_CONTACT": true,
         "STRAIGHT_CONTACT_DELTA_SEC": -1,
-        "ANG_TYPE": 4
+        "ANG_TYPE": 4,
+        "NO_RUN_FROM_GAS_GRENADES": false
       },
       "Hearing": {
         "BOT_CLOSE_PANIC_DIST": 2,
@@ -3668,7 +3679,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7.0,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -3693,7 +3704,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -3763,7 +3776,8 @@
         "SURGE_KIT_ONLY_SAFE_CONTAINER": false,
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
-        "CHECK_MARK_OF_UNKNOWS": true
+        "CHECK_MARK_OF_UNKNOWS": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,
@@ -4047,7 +4061,8 @@
         "ShotgunFireDistancePref": 50,
         "RifleFireDistancePref": 100,
         "AccuratySpeed": 0.3,
-        "WaitInCoverBetweenShotsSec": 1.5
+        "WaitInCoverBetweenShotsSec": 1.5,
+        "GainSightCoef": 2
       },
       "Cover": {
         "RETURN_TO_ATTACK_AFTER_AMBUSH_MIN": 20,
@@ -4138,7 +4153,8 @@
         "CHEAT_START_GRENADE_PLACE": false,
         "CAN_THROW_STRAIGHT_CONTACT": true,
         "STRAIGHT_CONTACT_DELTA_SEC": -1,
-        "ANG_TYPE": 4
+        "ANG_TYPE": 4,
+        "NO_RUN_FROM_GAS_GRENADES": false
       },
       "Hearing": {
         "BOT_CLOSE_PANIC_DIST": 2,
@@ -4187,7 +4203,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8,
         "LOOK_AROUND_DELTA": 1.1,
         "MAX_VISION_GRASS_METERS": 0.4,
-        "MAX_VISION_GRASS_METERS_FLARE": 0.001,
+        "MAX_VISION_GRASS_METERS_FLARE": 7.0,
         "LightOnVisionDistance": 30,
         "FAR_DISTANCE": 160,
         "FarDeltaTimeSec": 3,
@@ -4212,7 +4228,9 @@
         "NO_GREEN_DIST": 5,
         "NO_GRASS_DIST": 5,
         "CHECK_HEAD_ANY_DIST": false,
-        "ANGLE_FOR_GETUP": 30
+        "ANGLE_FOR_GETUP": 30,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true
       },
       "Mind": {
         "MIN_SHOOTS_TIME": 2,
@@ -4282,7 +4300,8 @@
         "SURGE_KIT_ONLY_SAFE_CONTAINER": false,
         "HOW_WORK_OVER_DEAD_BODY": 2,
         "MAY_BE_CALLED_FOR_HELP": true,
-        "CHECK_MARK_OF_UNKNOWS": true
+        "CHECK_MARK_OF_UNKNOWS": true,
+        "TIME_LEAVE_MAP": 23
       },
       "Move": {
         "BASE_ROTATE_SPEED": 270,

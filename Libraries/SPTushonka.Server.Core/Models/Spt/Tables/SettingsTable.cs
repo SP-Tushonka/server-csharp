@@ -82,8 +82,19 @@ public record Settings
     public required List<int> WsReconnectionDelays { get; set; } = [];
 }
 
+public record GameEventsAudioSettings
+{
+    /// <summary>
+    ///     Maps the event's sound is off on
+    /// </summary>
+    [JsonPropertyName("eventDisabled")]
+    public List<string>? EventDisabled { get; set; }
+}
+
 public record AudioSettings
 {
+    public GameEventsAudioSettings? GameEventsSettings { get; set; }
+
     public required List<AudioGroupPreset> AudioGroupPresets { get; set; } = [];
 
     public required Dictionary<string, CustomHeadphonesTemplate> CustomHeadphonesTemplates { get; set; } = [];
@@ -343,7 +354,7 @@ public record PlayerSettings
 
     public required PointOfViewSoundVolume SearchSoundVolume { get; set; }
 
-    public required TinnitusEffectConfig TinnitusEffectConfig { get; set; }
+    public TinnitusEffectConfig? TinnitusEffectConfig { get; set; }
 }
 
 public record MovementRolloffMultiplier

@@ -40,11 +40,11 @@
       "mod_mount_002": 46,
       "mod_muzzle": 100,
       "mod_mount": 0,
-      "mod_sight_front": 6,
+      "mod_sight_front": 5,
       "mod_mount_001": 0,
       "mod_tactical": 0,
       "mod_scope": 99,
-      "mod_foregrip": 97,
+      "mod_foregrip": 98,
       "mod_bipod": 100,
       "mod_charge": 2,
       "mod_reciever": 100,
@@ -2173,68 +2173,68 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "2": 293
+          "2": 751
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "magazines": {
         "weights": {
-          "1": 8,
-          "2": 285
+          "1": 17,
+          "2": 734
         },
         "whitelist": {}
       },
@@ -2247,26 +2247,26 @@
       },
       "secureLoot": {
         "weights": {
-          "0": 293
+          "0": 751
         },
         "whitelist": {}
       },
       "secureAmmoStacks": {
         "FirstPrimaryWeapon": {
           "weights": {
-            "30": 293
+            "30": 751
           },
           "whitelist": {}
         },
         "SecondPrimaryWeapon": {
           "weights": {
-            "10": 293
+            "10": 751
           },
           "whitelist": {}
         },
         "Holster": {
           "weights": {
-            "5": 293
+            "5": 751
           },
           "whitelist": {}
         }
@@ -2274,36 +2274,36 @@
       "chamberedRounds": {
         "FirstPrimaryWeapon": {
           "weights": {
-            "0": 293
+            "0": 751
           },
           "whitelist": {}
         },
         "SecondPrimaryWeapon": {
           "weights": {
-            "0": 293
+            "0": 751
           },
           "whitelist": {}
         },
         "Holster": {
           "weights": {
-            "0": 293
+            "0": 751
           },
           "whitelist": {}
         }
       },
       "placement": {
         "FirstPrimaryWeapon": {
-          "TacticalVest": 550,
-          "Pockets": 28
+          "TacticalVest": 1416,
+          "Pockets": 69
         },
         "healing": {
-          "Pockets": 586
+          "Pockets": 1502
         },
         "Holster": {
-          "Pockets": 586
+          "Pockets": 1502
         },
         "SecondPrimaryWeapon": {
-          "TacticalVest": 586
+          "TacticalVest": 1502
         }
       }
     }
@@ -2371,9 +2371,9 @@
       },
       "Backpack": {},
       "FirstPrimaryWeapon": {
-        "5c46fbd72e2216398b5a8c9c": 126,
-        "68aee763130c00663d08aea8": 8,
-        "67d0576f29f580ebc10efd08": 3
+        "5c46fbd72e2216398b5a8c9c": 690,
+        "68aee763130c00663d08aea8": 43,
+        "67d0576f29f580ebc10efd08": 18
       },
       "SecondPrimaryWeapon": {
         "57dc2fa62459775949412633": 1
@@ -2391,8 +2391,8 @@
     },
     "Ammo": {
       "Caliber762x54R": {
-        "5e023cf8186a883be655e54f": 23,
-        "5e023d48186a883be655e551": 229
+        "5e023cf8186a883be655e54f": 96,
+        "5e023d48186a883be655e551": 935
       },
       "Caliber545x39": {
         "56dff4a2d2720bbd668b456a": 1
@@ -2401,8 +2401,9 @@
         "5a26abfac4a28232980eabff": 1
       },
       "Caliber93x64": {
-        "68aeed8a8906b00bc800fdd6": 19,
-        "68bac6ca653ee6b1e406d978": 1
+        "68aeed8a8906b00bc800fdd6": 85,
+        "68bac6ca653ee6b1e406d978": 17,
+        "68bad8376cb22acf1107a586": 10
       },
       "Caliber127x99": {
         "67dc255ee3028a8b120efc48": 1
@@ -2411,25 +2412,26 @@
     "items": {
       "Backpack": {},
       "Pockets": {
-        "59f99a7d86f7745b134aa97b": 40,
-        "60098ad7c2240c0fe85c570a": 20,
-        "590c678286f77426c9660122": 20,
+        "59f99a7d86f7745b134aa97b": 120,
+        "60098ad7c2240c0fe85c570a": 60,
+        "590c678286f77426c9660122": 60,
         "68aef9bf4efeccb5220d25c6": 1
       },
       "SecuredContainer": {
-        "5e023cf8186a883be655e54f": 661,
-        "56dff4a2d2720bbd668b456a": 2722,
-        "5a26abfac4a28232980eabff": 1361,
-        "5e023d48186a883be655e551": 6845,
-        "68aeed8a8906b00bc800fdd6": 450,
-        "67dc255ee3028a8b120efc48": 180,
-        "68bac6ca653ee6b1e406d978": 30
+        "5e023cf8186a883be655e54f": 1891,
+        "56dff4a2d2720bbd668b456a": 7492,
+        "5a26abfac4a28232980eabff": 3746,
+        "5e023d48186a883be655e551": 18750,
+        "68aeed8a8906b00bc800fdd6": 960,
+        "67dc255ee3028a8b120efc48": 540,
+        "68bac6ca653ee6b1e406d978": 210,
+        "68bad8376cb22acf1107a586": 120
       },
       "SpecialLoot": {},
       "TacticalVest": {
-        "5c88f24b2e22160bc12c69a6": 205,
-        "55d482194bdc2d1d4e8b456b": 221,
-        "67d418d0ffb910d21f04720e": 4
+        "5c88f24b2e22160bc12c69a6": 253,
+        "55d482194bdc2d1d4e8b456b": 275,
+        "67d418d0ffb910d21f04720e": 8
       }
     },
     "mods": {
@@ -2666,14 +2668,15 @@
       "6567e751a715f85433025998": {
         "mod_scope": [
           "6567e7681265c8a131069b0f",
-          "617151c1d92c473c770214ab"
+          "617151c1d92c473c770214ab",
+          "618ba27d9008e4636a67f61d"
         ]
       }
     },
     "weaponBuilds": {
       "57dc2fa62459775949412633": [
         {
-          "weight": 274,
+          "weight": 751,
           "items": [
             {
               "_id": "6ac63c748a6ff8297f178692",
@@ -2744,7 +2747,7 @@
       ],
       "59f98b4986f7746f546d2cef": [
         {
-          "weight": 274,
+          "weight": 751,
           "items": [
             {
               "_id": "6ac63c748a6ff8297f17869e",
@@ -2761,7 +2764,7 @@
       ],
       "5c46fbd72e2216398b5a8c9c": [
         {
-          "weight": 252,
+          "weight": 690,
           "items": [
             {
               "_id": "6ac63c748a6ff8297f17867d",

@@ -370,7 +370,7 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "hard",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "1,2,1,1",
       "BossEscortDifficult": "hard",
       "BossEscortType": "pmcUSEC",
@@ -392,9 +392,9 @@
     },
     {
       "BossChance": 80,
-      "BossDifficult": "normal",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "1",
-      "BossEscortDifficult": "normal",
+      "BossEscortDifficult": "hard",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
@@ -414,7 +414,7 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "hard",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "1,2,1,1",
       "BossEscortDifficult": "hard",
       "BossEscortType": "pmcBEAR",
@@ -436,9 +436,9 @@
     },
     {
       "BossChance": 80,
-      "BossDifficult": "normal",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "1",
-      "BossEscortDifficult": "normal",
+      "BossEscortDifficult": "hard",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -6561,5 +6561,6 @@
   "users_gather_seconds": 0,
   "users_spawn_seconds_n": 15,
   "users_spawn_seconds_n2": 25,
-  "users_summon_seconds": 0
+  "users_summon_seconds": 0,
+  "EnableTraining": true
 }

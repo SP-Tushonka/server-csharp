@@ -53,6 +53,8 @@ public record BotBase
     [JsonPropertyName("Encyclopedia")]
     public Dictionary<MongoId, bool>? Encyclopedia { get; set; }
 
+    public MetaCustomization? MetaCustomization { get; set; }
+
     [JsonPropertyName("TaskConditionCounters")]
     public Dictionary<MongoId, TaskConditionCounter>? TaskConditionCounters { get; set; }
 
@@ -259,7 +261,7 @@ public record Info
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     [JsonPropertyName("lastWipeTimestamp")]
-    public LastCompleted? LastWipeTimestamp { get; set; }
+    public long? LastWipeTimestamp { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     [JsonPropertyName("lastCompletedEvent")]
@@ -474,6 +476,8 @@ public record MasterySkill
 
     [JsonConverter(typeof(SafeDoubleConverter))]
     public double Progress { get; set; }
+
+    public int? Kills { get; set; }
 }
 
 public record CommonSkill
@@ -516,8 +520,22 @@ public record Stats
     public EftStats? Eft { get; set; }
 }
 
+public record MetaCustomization
+{
+    public MongoId? Environment { get; set; }
+}
+
+public record GameEditionExperienceBonus
+{
+    public double? ExperienceBonus { get; set; }
+
+    public string? GameEdition { get; set; }
+}
+
 public record EftStats
 {
+    public GameEditionExperienceBonus? GameEditionExperienceBonus { get; set; }
+
     public IEnumerable<string>? CarriedQuestItems { get; set; }
 
     public IEnumerable<Victim>? Victims { get; set; }

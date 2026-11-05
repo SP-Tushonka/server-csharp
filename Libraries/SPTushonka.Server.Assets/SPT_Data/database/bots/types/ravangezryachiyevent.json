@@ -66,7 +66,7 @@
       "Aiming": {
         "AIMING_TYPE": 1,
         "ANYTIME_LIGHT_WHEN_AIM_100": -1,
-        "ANY_PART_SHOOT_TIME": 15,
+        "ANY_PART_SHOOT_TIME": 900,
         "BASE_HIT_AFFECTION_DELAY_SEC": 0.27,
         "BASE_HIT_AFFECTION_MAX_ANG": 8,
         "BASE_HIT_AFFECTION_MIN_ANG": 4,
@@ -106,7 +106,31 @@
         "SHPERE_FRIENDY_FIRE_SIZE": -1,
         "TIME_COEF_IF_MOVE": 1.1,
         "WEAPON_ROOT_OFFSET": 0.35,
-        "XZ_COEF": 0.2
+        "XZ_COEF": 0.2,
+        "UnderbarrelLauncherAiming": {
+          "MAX_AIM_PRECICING": 2.0,
+          "RECALC_SQR_DIST": 0.48999998,
+          "COEF_FROM_COVER": 0.85,
+          "PANIC_COEF": 1.2,
+          "PANIC_ACCURATY_COEF": 1.2,
+          "HARD_AIM": 0.75,
+          "PANIC_TIME": 6.0,
+          "MAX_AIMING_UPGRADE_BY_TIME": 0.25,
+          "DAMAGE_TO_DISCARD_AIM_0_100": 1.0,
+          "MIN_TIME_DISCARD_AIM_SEC": 0,
+          "MAX_TIME_DISCARD_AIM_SEC": 0,
+          "BOTTOM_COEF": 0.1,
+          "SCATTERING_DIST_MODIF": 0.45,
+          "SCATTERING_DIST_MODIF_CLOSE": 0.6,
+          "DIST_TO_SHOOT_NO_OFFSET": 3.0,
+          "COEF_IF_MOVE": 1.0,
+          "TIME_COEF_IF_MOVE": 1.1,
+          "BOT_MOVE_IF_DELTA": 3.01,
+          "NEXT_SHOT_MISS_Y_OFFSET": 1.0,
+          "ANYTIME_LIGHT_WHEN_AIM_100": -1.0,
+          "MAX_AIM_TIME": 1.5,
+          "OFFSET_RECAL_ANYWAY_TIME": 1.0
+        }
       },
       "Boss": {
         "BOSS_DIST_TO_SHOOT": 5,
@@ -168,14 +192,14 @@
       },
       "Change": {
         "FLASH_ACCURATY": 1.6,
-        "FLASH_GAIN_SIGHT": 1.8,
+        "FLASH_GAIN_SIGHT": 0.555,
         "FLASH_HEARING": 1,
         "FLASH_LAY_CHANCE": 1,
         "FLASH_PRECICING": 1.6,
         "FLASH_SCATTERING": 1.6,
         "FLASH_VISION_DIST": 0.05,
         "SMOKE_ACCURATY": 1.6,
-        "SMOKE_GAIN_SIGHT": 1.6,
+        "SMOKE_GAIN_SIGHT": 0.625,
         "SMOKE_HEARING": 1,
         "SMOKE_LAY_CHANCE": 1.6,
         "SMOKE_PRECICING": 1.6,
@@ -197,7 +221,9 @@
         "ShotgunFireDistancePref": 50,
         "VisibleAngle": 180,
         "VisibleDistance": 137,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "START_DIST_TO_COV": 50,
+        "GainSightCoef": 2
       },
       "Cover": {
         "CHANGE_RUN_TO_COVER_SEC": 5,
@@ -354,12 +380,17 @@
         "MIN_LOOK_AROUD_TIME": 20,
         "MiddleDeltaTimeSec": 1,
         "OLD_TIME_POINT": 11,
-
         "POSIBLE_VISION_SPACE": 1.2,
         "SELF_NIGHTVISION": true,
         "VISIBLE_DISNACE_WITH_LIGHT": 95,
         "WAIT_NEW_SENSOR": 2.1,
-        "WAIT_NEW__LOOK_SENSOR": 7.8
+        "WAIT_NEW__LOOK_SENSOR": 7.8,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true,
+        "NO_GREEN_DIST": 5,
+        "NO_GRASS_DIST": 5,
+        "GOAL_TO_FULL_DISSAPEAR_GREEN": 1.5,
+        "VISIBILITY_CHANGE_SPEED": 2
       },
       "Mind": {
         "AI_POWER_COEF": 120,
@@ -563,7 +594,7 @@
       "Aiming": {
         "AIMING_TYPE": 1,
         "ANYTIME_LIGHT_WHEN_AIM_100": -1,
-        "ANY_PART_SHOOT_TIME": 15,
+        "ANY_PART_SHOOT_TIME": 900,
         "BASE_HIT_AFFECTION_DELAY_SEC": 0.27,
         "BASE_HIT_AFFECTION_MAX_ANG": 8,
         "BASE_HIT_AFFECTION_MIN_ANG": 4,
@@ -603,7 +634,31 @@
         "SHPERE_FRIENDY_FIRE_SIZE": -1,
         "TIME_COEF_IF_MOVE": 1.1,
         "WEAPON_ROOT_OFFSET": 0.35,
-        "XZ_COEF": 0.2
+        "XZ_COEF": 0.2,
+        "UnderbarrelLauncherAiming": {
+          "MAX_AIM_PRECICING": 2.0,
+          "RECALC_SQR_DIST": 0.48999998,
+          "COEF_FROM_COVER": 0.85,
+          "PANIC_COEF": 1.2,
+          "PANIC_ACCURATY_COEF": 1.2,
+          "HARD_AIM": 0.75,
+          "PANIC_TIME": 6.0,
+          "MAX_AIMING_UPGRADE_BY_TIME": 0.25,
+          "DAMAGE_TO_DISCARD_AIM_0_100": 1.0,
+          "MIN_TIME_DISCARD_AIM_SEC": 0,
+          "MAX_TIME_DISCARD_AIM_SEC": 0,
+          "BOTTOM_COEF": 0.1,
+          "SCATTERING_DIST_MODIF": 0.45,
+          "SCATTERING_DIST_MODIF_CLOSE": 0.6,
+          "DIST_TO_SHOOT_NO_OFFSET": 3.0,
+          "COEF_IF_MOVE": 1.0,
+          "TIME_COEF_IF_MOVE": 1.1,
+          "BOT_MOVE_IF_DELTA": 3.01,
+          "NEXT_SHOT_MISS_Y_OFFSET": 1.0,
+          "ANYTIME_LIGHT_WHEN_AIM_100": -1.0,
+          "MAX_AIM_TIME": 1.5,
+          "OFFSET_RECAL_ANYWAY_TIME": 1.0
+        }
       },
       "Boss": {
         "BOSS_DIST_TO_SHOOT": 5,
@@ -665,14 +720,14 @@
       },
       "Change": {
         "FLASH_ACCURATY": 1.6,
-        "FLASH_GAIN_SIGHT": 1.8,
+        "FLASH_GAIN_SIGHT": 0.555,
         "FLASH_HEARING": 1,
         "FLASH_LAY_CHANCE": 1,
         "FLASH_PRECICING": 1.6,
         "FLASH_SCATTERING": 1.6,
         "FLASH_VISION_DIST": 0.05,
         "SMOKE_ACCURATY": 1.6,
-        "SMOKE_GAIN_SIGHT": 1.6,
+        "SMOKE_GAIN_SIGHT": 0.625,
         "SMOKE_HEARING": 1,
         "SMOKE_LAY_CHANCE": 1.6,
         "SMOKE_PRECICING": 1.6,
@@ -694,7 +749,9 @@
         "ShotgunFireDistancePref": 50,
         "VisibleAngle": 180,
         "VisibleDistance": 137,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "START_DIST_TO_COV": 50,
+        "GainSightCoef": 2
       },
       "Cover": {
         "CHANGE_RUN_TO_COVER_SEC": 5,
@@ -851,12 +908,17 @@
         "MIN_LOOK_AROUD_TIME": 20,
         "MiddleDeltaTimeSec": 1,
         "OLD_TIME_POINT": 11,
-
         "POSIBLE_VISION_SPACE": 1.2,
         "SELF_NIGHTVISION": true,
         "VISIBLE_DISNACE_WITH_LIGHT": 95,
         "WAIT_NEW_SENSOR": 2.1,
-        "WAIT_NEW__LOOK_SENSOR": 7.8
+        "WAIT_NEW__LOOK_SENSOR": 7.8,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true,
+        "NO_GREEN_DIST": 5,
+        "NO_GRASS_DIST": 5,
+        "GOAL_TO_FULL_DISSAPEAR_GREEN": 1.5,
+        "VISIBILITY_CHANGE_SPEED": 2
       },
       "Mind": {
         "AI_POWER_COEF": 120,
@@ -1060,7 +1122,7 @@
       "Aiming": {
         "AIMING_TYPE": 1,
         "ANYTIME_LIGHT_WHEN_AIM_100": -1,
-        "ANY_PART_SHOOT_TIME": 15,
+        "ANY_PART_SHOOT_TIME": 900,
         "BASE_HIT_AFFECTION_DELAY_SEC": 0.27,
         "BASE_HIT_AFFECTION_MAX_ANG": 8,
         "BASE_HIT_AFFECTION_MIN_ANG": 4,
@@ -1100,7 +1162,31 @@
         "SHPERE_FRIENDY_FIRE_SIZE": -1,
         "TIME_COEF_IF_MOVE": 1.1,
         "WEAPON_ROOT_OFFSET": 0.35,
-        "XZ_COEF": 0.2
+        "XZ_COEF": 0.2,
+        "UnderbarrelLauncherAiming": {
+          "MAX_AIM_PRECICING": 2.0,
+          "RECALC_SQR_DIST": 0.48999998,
+          "COEF_FROM_COVER": 0.85,
+          "PANIC_COEF": 1.2,
+          "PANIC_ACCURATY_COEF": 1.2,
+          "HARD_AIM": 0.75,
+          "PANIC_TIME": 6.0,
+          "MAX_AIMING_UPGRADE_BY_TIME": 0.25,
+          "DAMAGE_TO_DISCARD_AIM_0_100": 1.0,
+          "MIN_TIME_DISCARD_AIM_SEC": 0,
+          "MAX_TIME_DISCARD_AIM_SEC": 0,
+          "BOTTOM_COEF": 0.1,
+          "SCATTERING_DIST_MODIF": 0.45,
+          "SCATTERING_DIST_MODIF_CLOSE": 0.6,
+          "DIST_TO_SHOOT_NO_OFFSET": 3.0,
+          "COEF_IF_MOVE": 1.0,
+          "TIME_COEF_IF_MOVE": 1.1,
+          "BOT_MOVE_IF_DELTA": 3.01,
+          "NEXT_SHOT_MISS_Y_OFFSET": 1.0,
+          "ANYTIME_LIGHT_WHEN_AIM_100": -1.0,
+          "MAX_AIM_TIME": 1.5,
+          "OFFSET_RECAL_ANYWAY_TIME": 1.0
+        }
       },
       "Boss": {
         "BOSS_DIST_TO_SHOOT": 5,
@@ -1162,14 +1248,14 @@
       },
       "Change": {
         "FLASH_ACCURATY": 1.6,
-        "FLASH_GAIN_SIGHT": 1.8,
+        "FLASH_GAIN_SIGHT": 0.555,
         "FLASH_HEARING": 1,
         "FLASH_LAY_CHANCE": 1,
         "FLASH_PRECICING": 1.6,
         "FLASH_SCATTERING": 1.6,
         "FLASH_VISION_DIST": 0.05,
         "SMOKE_ACCURATY": 1.6,
-        "SMOKE_GAIN_SIGHT": 1.6,
+        "SMOKE_GAIN_SIGHT": 0.625,
         "SMOKE_HEARING": 1,
         "SMOKE_LAY_CHANCE": 1.6,
         "SMOKE_PRECICING": 1.6,
@@ -1191,7 +1277,9 @@
         "ShotgunFireDistancePref": 50,
         "VisibleAngle": 180,
         "VisibleDistance": 137,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "START_DIST_TO_COV": 50,
+        "GainSightCoef": 2
       },
       "Cover": {
         "CHANGE_RUN_TO_COVER_SEC": 5,
@@ -1348,12 +1436,17 @@
         "MIN_LOOK_AROUD_TIME": 20,
         "MiddleDeltaTimeSec": 1,
         "OLD_TIME_POINT": 11,
-
         "POSIBLE_VISION_SPACE": 1.2,
         "SELF_NIGHTVISION": true,
         "VISIBLE_DISNACE_WITH_LIGHT": 95,
         "WAIT_NEW_SENSOR": 2.1,
-        "WAIT_NEW__LOOK_SENSOR": 7.8
+        "WAIT_NEW__LOOK_SENSOR": 7.8,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true,
+        "NO_GREEN_DIST": 5,
+        "NO_GRASS_DIST": 5,
+        "GOAL_TO_FULL_DISSAPEAR_GREEN": 1.5,
+        "VISIBILITY_CHANGE_SPEED": 2
       },
       "Mind": {
         "AI_POWER_COEF": 120,
@@ -1557,7 +1650,7 @@
       "Aiming": {
         "AIMING_TYPE": 1,
         "ANYTIME_LIGHT_WHEN_AIM_100": -1,
-        "ANY_PART_SHOOT_TIME": 15,
+        "ANY_PART_SHOOT_TIME": 900,
         "BASE_HIT_AFFECTION_DELAY_SEC": 0.27,
         "BASE_HIT_AFFECTION_MAX_ANG": 8,
         "BASE_HIT_AFFECTION_MIN_ANG": 4,
@@ -1597,7 +1690,31 @@
         "SHPERE_FRIENDY_FIRE_SIZE": -1,
         "TIME_COEF_IF_MOVE": 1.1,
         "WEAPON_ROOT_OFFSET": 0.35,
-        "XZ_COEF": 0.2
+        "XZ_COEF": 0.2,
+        "UnderbarrelLauncherAiming": {
+          "MAX_AIM_PRECICING": 2.0,
+          "RECALC_SQR_DIST": 0.48999998,
+          "COEF_FROM_COVER": 0.85,
+          "PANIC_COEF": 1.2,
+          "PANIC_ACCURATY_COEF": 1.2,
+          "HARD_AIM": 0.75,
+          "PANIC_TIME": 6.0,
+          "MAX_AIMING_UPGRADE_BY_TIME": 0.25,
+          "DAMAGE_TO_DISCARD_AIM_0_100": 1.0,
+          "MIN_TIME_DISCARD_AIM_SEC": 0,
+          "MAX_TIME_DISCARD_AIM_SEC": 0,
+          "BOTTOM_COEF": 0.1,
+          "SCATTERING_DIST_MODIF": 0.45,
+          "SCATTERING_DIST_MODIF_CLOSE": 0.6,
+          "DIST_TO_SHOOT_NO_OFFSET": 3.0,
+          "COEF_IF_MOVE": 1.0,
+          "TIME_COEF_IF_MOVE": 1.1,
+          "BOT_MOVE_IF_DELTA": 3.01,
+          "NEXT_SHOT_MISS_Y_OFFSET": 1.0,
+          "ANYTIME_LIGHT_WHEN_AIM_100": -1.0,
+          "MAX_AIM_TIME": 1.5,
+          "OFFSET_RECAL_ANYWAY_TIME": 1.0
+        }
       },
       "Boss": {
         "BOSS_DIST_TO_SHOOT": 5,
@@ -1659,14 +1776,14 @@
       },
       "Change": {
         "FLASH_ACCURATY": 1.6,
-        "FLASH_GAIN_SIGHT": 1.8,
+        "FLASH_GAIN_SIGHT": 0.555,
         "FLASH_HEARING": 1,
         "FLASH_LAY_CHANCE": 1,
         "FLASH_PRECICING": 1.6,
         "FLASH_SCATTERING": 1.6,
         "FLASH_VISION_DIST": 0.05,
         "SMOKE_ACCURATY": 1.6,
-        "SMOKE_GAIN_SIGHT": 1.6,
+        "SMOKE_GAIN_SIGHT": 0.625,
         "SMOKE_HEARING": 1,
         "SMOKE_LAY_CHANCE": 1.6,
         "SMOKE_PRECICING": 1.6,
@@ -1688,7 +1805,9 @@
         "ShotgunFireDistancePref": 50,
         "VisibleAngle": 180,
         "VisibleDistance": 137,
-        "WaitInCoverBetweenShotsSec": 1
+        "WaitInCoverBetweenShotsSec": 1,
+        "START_DIST_TO_COV": 50,
+        "GainSightCoef": 2
       },
       "Cover": {
         "CHANGE_RUN_TO_COVER_SEC": 5,
@@ -1845,12 +1964,17 @@
         "MIN_LOOK_AROUD_TIME": 20,
         "MiddleDeltaTimeSec": 1,
         "OLD_TIME_POINT": 11,
-
         "POSIBLE_VISION_SPACE": 1.2,
         "SELF_NIGHTVISION": true,
         "VISIBLE_DISNACE_WITH_LIGHT": 95,
         "WAIT_NEW_SENSOR": 2.1,
-        "WAIT_NEW__LOOK_SENSOR": 7.8
+        "WAIT_NEW__LOOK_SENSOR": 7.8,
+        "CAN_LOOK_TO_WALL": false,
+        "OPTIMIZE_TO_ONLY_BODY": true,
+        "NO_GREEN_DIST": 5,
+        "NO_GRASS_DIST": 5,
+        "GOAL_TO_FULL_DISSAPEAR_GREEN": 1.5,
+        "VISIBILITY_CHANGE_SPEED": 2
       },
       "Mind": {
         "AI_POWER_COEF": 120,

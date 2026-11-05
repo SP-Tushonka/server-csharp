@@ -2065,10 +2065,10 @@
     {
       "BossChance": 100,
       "BossDifficult": "normal",
-      "BossEscortAmount": "0",
+      "BossEscortAmount": "3",
       "BossEscortDifficult": "normal",
-      "BossEscortType": "bossTagilla",
-      "BossName": "bossKilla",
+      "BossEscortType": "followerSanitar",
+      "BossName": "bossSanitar",
       "BossZone": "Zone2ScavPort29",
       "Delay": 40,
       "ForceSpawn": true,
@@ -2082,7 +2082,7 @@
         "pvp-season"
       ],
       "Supports": null,
-      "Time": 5790,
+      "Time": 5690,
       "TriggerId": "T4",
       "TriggerName": "botEvent"
     }
@@ -7024,5 +7024,6 @@
         "type": "banners"
       }
     }
-  ]
+  ],
+  "EnableTraining": true
 }

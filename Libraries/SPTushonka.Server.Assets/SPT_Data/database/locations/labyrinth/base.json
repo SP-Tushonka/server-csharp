@@ -286,7 +286,7 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "hard",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -311,7 +311,7 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "hard",
+      "BossDifficult": "impossible",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -1692,5 +1692,6 @@
         "type": "banners"
       }
     }
-  ]
+  ],
+  "EnableTraining": true
 }

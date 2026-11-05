@@ -246,6 +246,12 @@
       },
       "laboratory_dark": {
         "pmcBEAR": 10
+      },
+      "factory_event": {
+        "pmcBEAR": 10
+      },
+      "laboratory_event": {
+        "pmcBEAR": 10
       }
     },
     "pmcusec": {
@@ -290,6 +296,12 @@
       },
       "laboratory_dark": {
         "pmcUSEC": 1
+      },
+      "factory_event": {
+        "pmcUSEC": 10
+      },
+      "laboratory_event": {
+        "pmcUSEC": 1
       }
     }
   },
@@ -314,7 +326,8 @@
         "default": 1,
         "laboratory": 2,
         "labyrinth": 4,
-        "laboratory_dark": 2
+        "laboratory_dark": 2,
+        "laboratory_event": 2
       }
     },
     "vest": {
@@ -329,7 +342,8 @@
         "default": 1,
         "laboratory": 2,
         "labyrinth": 4,
-        "laboratory_dark": 2
+        "laboratory_dark": 2,
+        "laboratory_event": 2
       }
     },
     "backpack": {
@@ -364,7 +378,8 @@
         "default": 1,
         "laboratory": 2,
         "labyrinth": 4,
-        "laboratory_dark": 2
+        "laboratory_dark": 2,
+        "laboratory_event": 2
       }
     }
   },

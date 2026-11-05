@@ -1,4 +1,4 @@
-﻿{
+{
   "Lay": {
     "CHECK_SHOOT_WHEN_LAYING": false,
     "DELTA_LAY_CHECK": 2.0,
@@ -170,6 +170,7 @@
     "MELEE_STOP_MOVE_DISTANCE": 0.85
   },
   "Move": {
+    "LOCAL_AVOIDANCE_LIMIT": 0.25,
     "BASE_ROTATE_SPEED": 270.0,
     "REACH_DIST": 1.2,
     "REACH_DIST_RUN": 0.8,

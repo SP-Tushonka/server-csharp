@@ -1,26 +1,26 @@
 {
   "appearance": {
     "body": {
-      "671654b5f68df05790043128": 47,
-      "671654d56ccf4799d007d4b9": 43
+      "671654b5f68df05790043128": 499,
+      "671654d56ccf4799d007d4b9": 544
     },
     "feet": {
-      "670d1907b7a8f34fce07fdab": 1,
-      "670d18e2e002387b88029112": 1,
-      "670d18f87ca0004a2a022606": 1
+      "670d1907b7a8f34fce07fdab": 335,
+      "670d18e2e002387b88029112": 365,
+      "670d18f87ca0004a2a022606": 343
     },
     "hands": {
       "5cc2e68f14c02e28b47de290": 1
     },
     "head": {
-      "670d176bb7a8f34fce07fd9d": 16,
-      "670d17f9d2d5ce4514027e83": 12,
-      "670d17df032591157e0c3538": 17
+      "670d176bb7a8f34fce07fd9d": 332,
+      "670d17f9d2d5ce4514027e83": 342,
+      "670d17df032591157e0c3538": 369
     },
     "voice": {
-      "6720aa2d1c5e609cb70d5528": 30,
-      "67199b72b79a024c140a17b7": 52,
-      "670a57f082b46e0e55096b09": 53
+      "6720aa2d1c5e609cb70d5528": 224,
+      "67199b72b79a024c140a17b7": 411,
+      "670a57f082b46e0e55096b09": 408
     }
   },
   "chances": {
@@ -43,7 +43,7 @@
     "weaponMods": {
       "mod_magazine": 100,
       "mod_muzzle": 0,
-      "mod_sight_rear": 74
+      "mod_sight_rear": 75
     },
     "equipmentMods": {}
   },
@@ -485,7 +485,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -1035,7 +1036,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -1585,7 +1587,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -2129,7 +2132,8 @@
         "CHANCE_TO_RUN_IF_NO_AMMO_0_100": 100,
         "RUN_IF_CANT_SHOOT": false,
         "RUN_IF_GAOL_FAR_THEN": 10,
-        "SEC_TO_CHANGE_TO_RUN": 3
+        "SEC_TO_CHANGE_TO_RUN": 3,
+        "LOCAL_AVOIDANCE_LIMIT": 0.25
       },
       "Patrol": {
         "LOOK_TIME_BASE": 12,
@@ -2268,61 +2272,61 @@
     "items": {
       "grenades": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "healing": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "drugs": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "food": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "drink": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "currency": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "stims": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "backpackLoot": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "pocketLoot": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "vestLoot": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
@@ -2340,14 +2344,14 @@
       },
       "secureLoot": {
         "weights": {
-          "0": 270
+          "0": 1043
         },
         "whitelist": {}
       },
       "secureAmmoStacks": {
         "Holster": {
           "weights": {
-            "0": 270
+            "0": 1043
           },
           "whitelist": {}
         }
@@ -2355,7 +2359,7 @@
       "chamberedRounds": {
         "Holster": {
           "weights": {
-            "1": 270
+            "1": 1043
           },
           "whitelist": {}
         }
@@ -2423,6 +2427,36 @@
           "max": 260,
           "min": 260
         }
+      },
+      {
+        "Chest": {
+          "max": 270,
+          "min": 270
+        },
+        "Head": {
+          "max": 100,
+          "min": 100
+        },
+        "LeftArm": {
+          "max": 70,
+          "min": 70
+        },
+        "LeftLeg": {
+          "max": 70,
+          "min": 70
+        },
+        "RightArm": {
+          "max": 70,
+          "min": 70
+        },
+        "RightLeg": {
+          "max": 70,
+          "min": 70
+        },
+        "Stomach": {
+          "max": 170,
+          "min": 170
+        }
       }
     ],
     "Energy": {
@@ -2454,11 +2488,11 @@
         "579204f224597773d619e051": 1
       },
       "Scabbard": {
-        "670ad7f1ad195290cd00da7a": 220,
-        "601948682627df266209af05": 8,
-        "5c012ffc0db834001d23f03f": 19,
-        "5c07df7f0db834001b73588a": 17,
-        "5bead2e00db834001c062938": 6
+        "670ad7f1ad195290cd00da7a": 855,
+        "601948682627df266209af05": 25,
+        "5c012ffc0db834001d23f03f": 68,
+        "5c07df7f0db834001b73588a": 77,
+        "5bead2e00db834001c062938": 18
       },
       "Pockets": {
         "557ffd194bdc2d28148b457f": 1
@@ -2503,7 +2537,7 @@
     "weaponBuilds": {
       "579204f224597773d619e051": [
         {
-          "weight": 202,
+          "weight": 792,
           "items": [
             {
               "_id": "6ac663ba2d9fc82d861390c3",
@@ -2536,7 +2570,7 @@
           ]
         },
         {
-          "weight": 68,
+          "weight": 251,
           "items": [
             {
               "_id": "6ac663ba2d9fc82d8613915c",
@@ -2567,6 +2601,11 @@
   },
   "lastName": [],
   "skills": {
-    "Common": {}
+    "Common": {
+      "Strength": {
+        "max": 5100,
+        "min": 5100
+      }
+    }
   }
 }

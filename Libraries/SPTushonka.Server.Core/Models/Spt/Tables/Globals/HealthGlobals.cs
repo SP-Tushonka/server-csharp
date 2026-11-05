@@ -129,6 +129,32 @@ public record ProbabilitySettings
 public record DummyEffectSettings
 {
     public required double Dummy { get; set; }
+
+    public EffectHearingSettings? Hearing { get; set; }
+}
+
+/// <summary>
+///     How an effect muffles hearing while it is active
+/// </summary>
+public record EffectHearingSettings
+{
+    public double? ApplyTimeMultiplier { get; set; }
+
+    public double? CurveSpeedMultiplier { get; set; }
+
+    public double? DurationMultiplier { get; set; }
+
+    public double? FadeInTime { get; set; }
+
+    public string? FadeInType { get; set; }
+
+    public double? FadeOutTime { get; set; }
+
+    public string? FadeOutType { get; set; }
+
+    public double? Intensity { get; set; }
+
+    public double? MinDuration { get; set; }
 }
 
 public record ChronicStaminaFatigueSettings
@@ -336,6 +362,16 @@ public record StimulatorBuff
 
     public List<string> AppliesTo { get; set; } = [];
 
+    /// <summary>
+    ///     Bot roles the buff works on, empty when it works on every role
+    /// </summary>
+    public List<string>? ApplyToRole { get; set; }
+
+    /// <summary>
+    ///     Sides the buff works on, empty when it works on every side
+    /// </summary>
+    public List<string>? ApplyToSide { get; set; }
+
     public required string BuffType { get; set; }
 
     public required double Chance { get; set; }
@@ -351,6 +387,8 @@ public record StimulatorBuff
 
 public record TearGasSettings
 {
+    public EffectHearingSettings? Hearing { get; set; }
+
     public required List<TearGasBlockingItem> BlockingItems { get; set; }
 
     public required bool CancelHealingAndInteractions { get; set; }
@@ -393,7 +431,7 @@ public record ZombieInfectionSettings
 {
     public required double Dehydration { get; set; }
 
-    public required double HearingDebuffPercentage { get; set; }
+    public EffectHearingSettings? Hearing { get; set; }
 
     // The C on the Cumulatie down here is the russian C, its encoded differently, I THINK
     // Just in case, dont change it
