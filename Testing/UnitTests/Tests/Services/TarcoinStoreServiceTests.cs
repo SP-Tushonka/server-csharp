@@ -2,6 +2,7 @@ using NUnit.Framework;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Eft.Game;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Tables;
@@ -16,6 +17,7 @@ public class TarcoinStoreServiceTests
     private const string UsecDayOffBundle = "69c406ef12580b42af81a7ca";
     private const string UsecDayOffUpper = "69c2543d6a781e156fe07ef2";
     private const string UsecDayOffLower = "69c2545afb4c3b7b35c2da74";
+    private const string StashRowsX4 = "69c504e2f785a1a63dd307ee";
 
     private TarcoinStoreService _service = default!;
 
@@ -23,6 +25,16 @@ public class TarcoinStoreServiceTests
     public void Setup()
     {
         _service = DI.GetInstance().GetService<TarcoinStoreService>();
+    }
+
+    private static MongoId AddProfile(SptProfile profile)
+    {
+        var sessionId = new MongoId();
+        profile.ProfileInfo = new SPTarkov.Server.Core.Models.Eft.Profile.Info { ProfileId = sessionId };
+        profile.CharacterData = new Characters { PmcData = new PmcData { Id = sessionId, TarCoinBalance = 100000 } };
+        DI.GetInstance().GetService<SaveServer>().AddProfile(profile);
+
+        return sessionId;
     }
 
     [Test]
@@ -46,6 +58,38 @@ public class TarcoinStoreServiceTests
 
         Assert.That(deliverables.Select(entry => entry.CustomizationId?.ToString()), Is.EqualTo(new[] { "685d09b4029bc4c1190e819d" }));
         Assert.That(bought, Is.EquivalentTo(new[] { UsecDayOffUpper }));
+    }
+
+    [TestCase("69c511e281e467e8b07f2d4a", 20)]
+    [TestCase("69c5121e0709f5c2b37f6a65", 40)]
+    [TestCase("69c512738bd3e988e7ee0089", 60)]
+    [TestCase("6a2a879b62d8a4e121a50a86", 80)]
+    [TestCase(StashRowsX4, 4)]
+    public void CollectDeliverables_StashOffer_DeliversItsRows(string offerId, int rows)
+    {
+        var deliverables = _service.CollectDeliverables(_service.GetOffer(offerId)!, out _, out _);
+
+        Assert.That(deliverables.Sum(entry => entry.RowsCount), Is.EqualTo(rows));
+    }
+
+    [TestCase("69c512738bd3e988e7ee0089", false)]
+    [TestCase("6a2a879b62d8a4e121a50a86", true)]
+    public void HasPurchased_StashBundle_FollowsTheRowLimit(string offerId, bool purchased)
+    {
+        var sessionId = AddProfile(new SptProfile { PurchasedShopOffers = [StashRowsX4], PurchasedShopStashRows = 20 });
+
+        Assert.That(_service.HasPurchased(sessionId, _service.GetOffer(offerId)!), Is.EqualTo(purchased));
+    }
+
+    [Test]
+    public async Task TryPurchaseAsync_StashRowsPastTheLimit_IsRefusedUncharged()
+    {
+        var sessionId = AddProfile(new SptProfile { PurchasedShopStashRows = 4 });
+
+        var receipt = await _service.TryPurchaseAsync(sessionId, StashRowsX4, 20);
+
+        Assert.That(receipt.Outcome, Is.EqualTo(ShopPurchaseOutcome.PurchaseLimitExceeded));
+        Assert.That(_service.GetBalance(sessionId), Is.EqualTo(100000));
     }
 
     [Test]

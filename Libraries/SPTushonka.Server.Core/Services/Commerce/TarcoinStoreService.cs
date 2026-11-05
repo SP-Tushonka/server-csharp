@@ -26,6 +26,7 @@ public class TarcoinStoreService(
     ProfileHelper profileHelper,
     NotificationSendHelper notificationSendHelper,
     ItemHelper itemHelper,
+    GlobalTable globalTable,
     CoreConfig coreConfig
 )
 {
@@ -309,6 +310,14 @@ public class TarcoinStoreService(
             return new ShopPurchaseReceipt(ShopPurchaseOutcome.NotDeliverable);
         }
 
+        var profile = saveServer.GetProfile(sessionId);
+        if (ExceedsStashRowLimit(profile, StashRows(deliverables) * quantity))
+        {
+            logger.Warning($"TarCoin purchase refused, offer {offerId} x{quantity} would pass the stash row limit");
+
+            return new ShopPurchaseReceipt(ShopPurchaseOutcome.PurchaseLimitExceeded);
+        }
+
         if (!TrySpend(sessionId, price.AmountWithDiscount * quantity))
         {
             return new ShopPurchaseReceipt(ShopPurchaseOutcome.InsufficientBalance);
@@ -318,7 +327,6 @@ public class TarcoinStoreService(
         var bonusTypes = new List<BonusType>();
         var notifications = new List<Func<Task>>();
         var documentsChanged = false;
-        var profile = saveServer.GetProfile(sessionId);
 
         foreach (var entry in deliverables)
         {
@@ -558,48 +566,80 @@ public class TarcoinStoreService(
     /// <param name="offer">Offer being bought</param>
     /// <param name="visitedOfferIds">The offer and every offer inside it</param>
     /// <param name="missingOfferIds">Bundle parts the shop data does not have</param>
-    /// <returns>Entries to deliver</returns>
+    /// <returns>Entries to deliver, with amounts scaled by how many copies of them the offer holds</returns>
     public List<ShopOfferItem> CollectDeliverables(ShopOffer offer, out HashSet<string> visitedOfferIds, out List<string> missingOfferIds)
     {
         var deliverables = new List<ShopOfferItem>();
-        var seen = new HashSet<string>();
-        var missing = new List<string>();
-        var pending = new Queue<ShopOffer>();
-        pending.Enqueue(offer);
+        visitedOfferIds = [];
+        missingOfferIds = [];
+        Collect(offer, 1, deliverables, visitedOfferIds, missingOfferIds);
 
-        while (pending.Count > 0)
+        return deliverables;
+    }
+
+    private void Collect(ShopOffer offer, int copies, List<ShopOfferItem> deliverables, HashSet<string> seen, List<string> missing)
+    {
+        if (!seen.Add(offer.Id.ToString()))
         {
-            var current = pending.Dequeue();
-            if (!seen.Add(current.Id.ToString()))
+            return;
+        }
+
+        copies *= ItemCopies(offer);
+        foreach (var entry in offer.Items)
+        {
+            if (entry.OfferId is null)
             {
+                deliverables.Add(Scale(entry, copies));
+
                 continue;
             }
 
-            foreach (var entry in current.Items)
+            var part = GetOffer(entry.OfferId.Value.ToString());
+            if (part is null)
             {
-                if (entry.OfferId is null)
-                {
-                    deliverables.Add(entry);
+                missing.Add(entry.OfferId.Value.ToString());
 
-                    continue;
-                }
-
-                var part = GetOffer(entry.OfferId.Value.ToString());
-                if (part is null)
-                {
-                    missing.Add(entry.OfferId.Value.ToString());
-
-                    continue;
-                }
-
-                pending.Enqueue(part);
+                continue;
             }
+
+            Collect(part, copies, deliverables, seen, missing);
+        }
+    }
+
+    private int ItemCopies(ShopOffer offer)
+    {
+        // A bundle lists each offer it contains only once. The page tile's itemsCount holds the real total
+        var itemsCount = shopTable.Content.Pages.SelectMany(page => page.Blocks).FirstOrDefault(block => block.OfferId == offer.Id)?.ItemsCount ?? 1;
+
+        return offer.Items.Count > 0 && itemsCount > offer.Items.Count && itemsCount % offer.Items.Count == 0
+            ? itemsCount / offer.Items.Count
+            : 1;
+    }
+
+    private static ShopOfferItem Scale(ShopOfferItem entry, int copies)
+    {
+        if (copies == 1)
+        {
+            return entry;
         }
 
-        visitedOfferIds = seen;
-        missingOfferIds = missing;
+        return entry with
+        {
+            Count = entry.Count * copies,
+            Quantity = entry.Quantity * copies,
+            RowsCount = entry.RowsCount * copies,
+            GameReward = entry.GameReward is null ? null : entry.GameReward with { Value = entry.GameReward.Value * copies },
+        };
+    }
 
-        return deliverables;
+    private static int StashRows(IEnumerable<ShopOfferItem> deliverables)
+    {
+        return deliverables.Where(entry => entry.Type == ShopOfferItemType.StashRows).Sum(entry => entry.RowsCount);
+    }
+
+    private bool ExceedsStashRowLimit(SptProfile? profile, int rows)
+    {
+        return rows > 0 && (profile?.PurchasedShopStashRows ?? 0) + rows > globalTable.Configuration.ExtensionsSettings.MaxStashRows;
     }
 
     /// <summary>
@@ -687,6 +727,7 @@ public class TarcoinStoreService(
     ///     Check whether an offer is purchased, which it is once none of its units are left to buy. A bundle
     ///     whose parts were all bought on their own, or through another bundle, counts too
     /// </summary>
+    /// <remarks>A stash row offer counts as purchased once it no longer fits under the account row limit</remarks>
     /// <param name="sessionId">Session to check</param>
     /// <param name="offer">Offer to check</param>
     /// <returns>True when nothing of the offer is left to buy</returns>
@@ -702,7 +743,16 @@ public class TarcoinStoreService(
             return false;
         }
 
-        var (purchased, available) = GetStock(saveServer.GetProfile(sessionId), offer);
+        var profile = saveServer.GetProfile(sessionId);
+
+        // Every stash bundle contains the x4 offer, which would make one stash purchase mark them all as bought
+        var stashRows = StashRows(CollectDeliverables(offer, out _, out _));
+        if (stashRows > 0)
+        {
+            return ExceedsStashRowLimit(profile, stashRows);
+        }
+
+        var (purchased, available) = GetStock(profile, offer);
 
         return available == 0 && purchased > 0;
     }
