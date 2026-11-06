@@ -240,6 +240,10 @@ public class CustomizationController(
                 case "head":
                     pmcData.Customization.Head = customisation.Id;
                     break;
+                case CustomisationType.ENVIRONMENT:
+                    pmcData.MetaCustomization ??= new MetaCustomization();
+                    pmcData.MetaCustomization.Environment = customisation.Id;
+                    break;
                 default:
                     logger.Error($"Unhandled customisation type: {customisation.Type}");
                     break;
