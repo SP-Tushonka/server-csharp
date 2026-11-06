@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SPTarkov.Server.Core.Helpers.Ragfair;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
@@ -70,6 +71,23 @@ public class RagfairOfferServiceTests
     }
 
     [Test]
+    public async Task Update_ExpiredOfferWithPartialSale_ReturnsOnlyUnsoldItems()
+    {
+        var sessionId = await CreateUsec();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        var offer = CreateOffer(pmc.Id!.Value, _timeUtil.GetTimeStamp() + 3600, 10);
+        pmc.RagfairInfo!.Offers!.Add(offer);
+        _offerService.AddOffer(offer);
+
+        DI.GetInstance().GetService<RagfairOfferHelper>().CompleteOffer(sessionId, offer, 3);
+        offer.EndTime = _timeUtil.GetTimeStamp() - 10;
+        _ragfairServer.Update();
+
+        var returnedItems = ReturnedMessages(sessionId).SelectMany(message => message.Items!.Data!);
+        Assert.That(returnedItems.Sum(item => item.Upd?.StackObjectsCount ?? 1), Is.EqualTo(7));
+    }
+
+    [Test]
     public void Update_ExpiredOfferOfMissingProfile_IsDropped()
     {
         var offer = CreateOffer(new MongoId(), _timeUtil.GetTimeStamp() - 10);
@@ -88,7 +106,7 @@ public class RagfairOfferServiceTests
             .ToList();
     }
 
-    private static RagfairOffer CreateOffer(MongoId ownerId, long endTime)
+    private static RagfairOffer CreateOffer(MongoId ownerId, long endTime, int count = 1)
     {
         var rootItem = new Item
         {
@@ -96,7 +114,7 @@ public class RagfairOfferServiceTests
             Template = ItemTpl.BARTER_LEDX_SKIN_TRANSILLUMINATOR,
             ParentId = "hideout",
             SlotId = "hideout",
-            Upd = new Upd { StackObjectsCount = 1, OriginalStackObjectsCount = 1 },
+            Upd = new Upd { StackObjectsCount = count },
         };
 
         return new RagfairOffer
@@ -118,7 +136,7 @@ public class RagfairOfferServiceTests
             SummaryCost = 1000,
             StartTime = endTime - 3600,
             EndTime = endTime,
-            Quantity = 1,
+            Quantity = count,
         };
     }
 
