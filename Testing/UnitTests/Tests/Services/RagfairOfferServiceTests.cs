@@ -1,5 +1,7 @@
 using NUnit.Framework;
+using SPTarkov.Server.Core.Controllers;
 using SPTarkov.Server.Core.Helpers.Ragfair;
+using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Profile;
@@ -88,6 +90,36 @@ public class RagfairOfferServiceTests
     }
 
     [Test]
+    public async Task ExtendOffer_AfterPartialSale_ChargesTheRenewFeeForUnsoldItems()
+    {
+        var sessionId = await CreateUsec();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        var offer = CreateOffer(pmc.Id!.Value, _timeUtil.GetTimeStamp() + 3600, 10);
+        pmc.RagfairInfo!.Offers!.Add(offer);
+        _offerService.AddOffer(offer);
+        pmc.Inventory!.Items!.Add(
+            new Item
+            {
+                Id = new MongoId(),
+                Template = Money.ROUBLES,
+                ParentId = pmc.Inventory.Stash.ToString(),
+                SlotId = "hideout",
+                Upd = new Upd { StackObjectsCount = 100000 },
+            }
+        );
+
+        DI.GetInstance().GetService<RagfairOfferHelper>().CompleteOffer(sessionId, offer, 3);
+        var roublesBefore = Roubles(pmc);
+
+        DI.GetInstance()
+            .GetService<RagfairController>()
+            .ExtendOffer(new ExtendOfferRequestData { OfferId = offer.Id.ToString(), RenewalTime = 2 }, sessionId);
+
+        _offerHolder.RemoveOffer(offer.Id);
+        Assert.That(roublesBefore - Roubles(pmc), Is.EqualTo(210));
+    }
+
+    [Test]
     public void Update_ExpiredOfferOfMissingProfile_IsDropped()
     {
         var offer = CreateOffer(new MongoId(), _timeUtil.GetTimeStamp() - 10);
@@ -96,6 +128,11 @@ public class RagfairOfferServiceTests
         Assert.DoesNotThrow(() => _ragfairServer.Update());
 
         Assert.That(_offerHolder.GetOfferById(offer.Id), Is.Null);
+    }
+
+    private static double Roubles(PmcData pmc)
+    {
+        return pmc.Inventory!.Items!.Where(item => item.Template == Money.ROUBLES).Sum(item => item.Upd?.StackObjectsCount ?? 0);
     }
 
     private List<Message> ReturnedMessages(MongoId sessionId)
@@ -134,6 +171,8 @@ public class RagfairOfferServiceTests
                 },
             ],
             SummaryCost = 1000,
+            RequirementsCost = 1000,
+            ItemsCost = 2000,
             StartTime = endTime - 3600,
             EndTime = endTime,
             Quantity = count,
