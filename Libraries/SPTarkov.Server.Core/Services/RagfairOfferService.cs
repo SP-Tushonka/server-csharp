@@ -284,6 +284,12 @@ public class RagfairOfferService(
 
         firstOfferItem.Upd.OriginalStackObjectsCount = null;
 
+        // Partial sales only lower the offer's quantity. Without this the player also gets back the items they already sold
+        if (!playerOffer.SellInOnePiece.GetValueOrDefault(false))
+        {
+            firstOfferItem.Upd.StackObjectsCount = playerOffer.Quantity;
+        }
+
         // Send failed offer items to player in mail
         var unstackedItems = UnstackOfferItems(playerOffer.Items);
 
