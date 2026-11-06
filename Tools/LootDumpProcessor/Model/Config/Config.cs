@@ -34,6 +34,9 @@ public class Config
 
     [JsonPropertyName("containerIgnoreList")]
     public Dictionary<string, string[]> ContainerIgnoreList { get; set; }
+    
+    [JsonPropertyName("containerForceSpawnList")]
+    public Dictionary<string, string[]> ContainerForceSpawnList { get; set; } = [];
 
     [JsonPropertyName("mapsToProcess")]
     public List<string> MapsToProcess { get; set; }

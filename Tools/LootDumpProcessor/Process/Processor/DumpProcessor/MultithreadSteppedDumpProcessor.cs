@@ -156,13 +156,7 @@ public class MultithreadSteppedDumpProcessor : IDumpProcessor
         mapStaticContainersAggregated
             .ToDictionary(
                 kv => kv.Key,
-                kv =>
-                    kv.Value.Select(td => new StaticContainerData
-                        {
-                            Template = td.Key,
-                            Probability = (float)GetStaticContainerProbability(kv.Key, td, mapDumpCounter), // kv.Key = map name
-                        })
-                        .ToList()
+                kv => kv.Value.Select(td => CreateStaticContainerData(kv.Key, td, mapDumpCounter)).ToList()
             )
             .ToList()
             .ForEach(kv => staticContainers[kv.Key].StaticContainers = kv.Value); // Hydrate staticContainers.StaticContainers
@@ -214,6 +208,27 @@ public class MultithreadSteppedDumpProcessor : IDumpProcessor
             // Dict has map, increment count by 1
             mapDumpCounter[mapName] += 1;
         }
+    }
+
+    private static StaticContainerData CreateStaticContainerData(
+        string mapName,
+        KeyValuePair<SpawnpointTemplate, int> td,
+        Dictionary<string, int> mapDumpCounter
+    )
+    {
+        var forced =
+            LootDumpProcessorContext.GetConfig().ContainerForceSpawnList.TryGetValue(mapName, out var forcedIds)
+            && forcedIds.Contains(td.Key.Id);
+        if (forced)
+        {
+            td.Key.IsAlwaysSpawn = true;
+        }
+
+        return new StaticContainerData
+        {
+            Template = td.Key,
+            Probability = forced ? 1 : (float)GetStaticContainerProbability(mapName, td, mapDumpCounter),
+        };
     }
 
     private static double GetStaticContainerProbability(
