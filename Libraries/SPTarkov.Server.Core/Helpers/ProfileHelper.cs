@@ -160,7 +160,7 @@ public class ProfileHelper(
     /// <returns>PmcData</returns>
     public PmcData? GetProfileByPmcId(MongoId pmcId)
     {
-        return saveServer.GetProfiles().Values.First(p => p.CharacterData?.PmcData?.Id == pmcId).CharacterData?.PmcData;
+        return saveServer.GetProfiles().Values.FirstOrDefault(p => p.CharacterData?.PmcData?.Id == pmcId)?.CharacterData?.PmcData;
     }
 
     /// <summary>

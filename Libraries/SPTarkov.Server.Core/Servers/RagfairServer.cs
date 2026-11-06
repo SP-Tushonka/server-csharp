@@ -63,6 +63,9 @@ public class RagfairServer(
         // Regenerate expired offers when over timestamp threshold
         ragfairOfferHolder.FlagExpiredOffersAfterDate(timeUtil.GetTimeStamp());
 
+        // Give players their expired offers back straight away. Waiting for the threshold below can leave them stuck for a long time
+        ragfairOfferService.ReturnExpiredPlayerOffers();
+
         if (!ragfairOfferService.EnoughExpiredOffersExistToProcess())
         {
             // Not enough expired offers to process, exit

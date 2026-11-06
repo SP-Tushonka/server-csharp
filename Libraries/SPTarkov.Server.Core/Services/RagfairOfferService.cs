@@ -185,6 +185,20 @@ public class RagfairOfferService(
     }
 
     /// <summary>
+    ///     Send players their expired offers back right away instead of waiting for the expired offer threshold
+    /// </summary>
+    public void ReturnExpiredPlayerOffers()
+    {
+        foreach (var offerId in ragfairOfferHolder.GetStaleOfferIds())
+        {
+            if (ragfairOfferHolder.GetOfferById(offerId)?.IsPlayerOffer() == true)
+            {
+                ProcessStaleOffer(offerId, false);
+            }
+        }
+    }
+
+    /// <summary>
     /// Remove stale offer from flea
     /// Send offer items back when its player offer
     /// Skip trader offers - we want those to remain in 'expired' state until trader refresh
@@ -234,6 +248,9 @@ public class RagfairOfferService(
     /// <param name="playerOffer">Offer to process</param>
     protected void ReturnUnsoldPlayerOffer(RagfairOffer playerOffer)
     {
+        // Take the offer off the flea first. If sending it back fails, we don't want to retry it on every update
+        ragfairOfferHolder.RemoveOffer(playerOffer.Id, false);
+
         var offerCreatorId = playerOffer.User.Id;
         var offerCreatorProfile = profileHelper.GetProfileByPmcId(offerCreatorId);
         if (offerCreatorProfile == null)
@@ -266,9 +283,6 @@ public class RagfairOfferService(
         }
 
         firstOfferItem.Upd.OriginalStackObjectsCount = null;
-
-        // Remove player offer from flea
-        ragfairOfferHolder.RemoveOffer(playerOffer.Id, false);
 
         // Send failed offer items to player in mail
         var unstackedItems = UnstackOfferItems(playerOffer.Items);
