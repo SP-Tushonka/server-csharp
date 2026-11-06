@@ -210,6 +210,20 @@ public class RagfairOfferService(
     }
 
     /// <summary>
+    ///     Send players their expired offers back right away instead of waiting for the expired offer threshold
+    /// </summary>
+    public void ReturnExpiredPlayerOffers()
+    {
+        foreach (var offerId in ragfairOfferHolder.GetStaleOfferIds())
+        {
+            if (ragfairOfferHolder.GetOfferById(offerId)?.IsPlayerOffer() == true)
+            {
+                ProcessStaleOffer(offerId, false);
+            }
+        }
+    }
+
+    /// <summary>
     /// Remove stale offer from flea
     /// Send offer items back when its player offer
     /// Skip trader offers - we want those to remain in 'expired' state until trader refresh
@@ -259,6 +273,9 @@ public class RagfairOfferService(
     /// <param name="playerOffer">Offer to process</param>
     protected void ReturnUnsoldPlayerOffer(RagfairOffer playerOffer)
     {
+        // Take the offer off the flea first. If sending it back fails, we don't want to retry it on every update
+        ragfairOfferHolder.RemoveOffer(playerOffer.Id, false);
+
         var offerCreatorId = playerOffer.User.Id;
         var offerCreatorProfile = profileHelper.GetProfileByPmcId(offerCreatorId);
         if (offerCreatorProfile == null)
@@ -292,8 +309,11 @@ public class RagfairOfferService(
 
         firstOfferItem.Upd.OriginalStackObjectsCount = null;
 
-        // Remove player offer from flea
-        ragfairOfferHolder.RemoveOffer(playerOffer.Id, false);
+        // Partial sales only lower the offer's quantity. Without this the player also gets back the items they already sold
+        if (!playerOffer.SellInOnePiece.GetValueOrDefault(false))
+        {
+            firstOfferItem.Upd.StackObjectsCount = playerOffer.Quantity;
+        }
 
         // Send failed offer items to player in mail
         var unstackedItems = UnstackOfferItems(playerOffer.Items);
@@ -309,12 +329,7 @@ public class RagfairOfferService(
             }
         }
 
-        // Send toast notification to player
-        var notificationMessage = notifierHelper.CreateRagfairNewRatingNotification(
-            offerCreatorProfile.RagfairInfo.Rating.Value,
-            offerCreatorProfile.RagfairInfo.IsRatingGrowing.GetValueOrDefault(false)
-        );
-        _ = notificationSendHelper.SendMessageAsync(offerCreatorId, notificationMessage);
+        SendRatingChanged(offerCreatorId, offerCreatorProfile.RagfairInfo);
 
         ragfairServerHelper.ReturnItems(offerCreatorProfile.SessionId.Value, unstackedItems);
         offerCreatorProfile.RagfairInfo.Offers.Splice(indexOfOfferInProfile, 1);
@@ -323,6 +338,20 @@ public class RagfairOfferService(
         {
             logger.Debug($"Returned offer: {{playerOffer.Id}} items to player");
         }
+    }
+
+    /// <summary>
+    ///     Tell the player's game their flea rating changed
+    /// </summary>
+    /// <param name="sessionId">Player to tell</param>
+    /// <param name="ragfairInfo">The player's flea details holding the new rating</param>
+    public void SendRatingChanged(MongoId sessionId, RagfairInfo ragfairInfo)
+    {
+        var notification = notifierHelper.CreateRagfairNewRatingNotification(
+            ragfairInfo.Rating ?? 0,
+            ragfairInfo.IsRatingGrowing.GetValueOrDefault(false)
+        );
+        _ = notificationSendHelper.SendMessageAsync(sessionId, notification);
     }
 
     /// <summary>

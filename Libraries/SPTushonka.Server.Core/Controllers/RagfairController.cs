@@ -1083,22 +1083,16 @@ public class RagfairController(
         // MOD: Pay flea market fee
         if (ragfairConfig.Sell.Fees)
         {
-            var count = 1;
-            var sellInOncePiece = playerOffer.SellInOnePiece.GetValueOrDefault(false);
-            if (!sellInOncePiece)
-            {
-                count = (int)playerOffer.Items.Sum(offerItem => offerItem.Upd?.StackObjectsCount ?? 0);
-            }
-
-            var tax = ragfairTaxService.CalculateTax(
-                playerOffer.Items.First(),
-                pmcData,
-                playerOffer.RequirementsCost.Value,
-                count,
-                sellInOncePiece
+            // Charge what the client's renew window shows. It prices the items still for sale per hour added
+            var percentPerHour = globalTable.Configuration.RagFair.RenewPricePerHour / 100d;
+            var fee = Math.Round(
+                ((playerOffer.ItemsCost ?? 0) + (playerOffer.RequirementsCost ?? 0))
+                    * playerOffer.Quantity
+                    * percentPerHour
+                    * (extendRequest.RenewalTime ?? 0)
             );
 
-            var request = CreateBuyTradeRequestObject(CurrencyType.RUB, tax, pmcData.Id.Value);
+            var request = CreateBuyTradeRequestObject(CurrencyType.RUB, fee, pmcData.Id.Value);
             paymentService.PayMoney(pmcData, request, sessionId, output);
             if (output.Warnings.Count > 0)
             {

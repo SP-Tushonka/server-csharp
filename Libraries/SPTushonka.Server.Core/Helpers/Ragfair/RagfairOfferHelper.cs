@@ -529,7 +529,7 @@ public class RagfairOfferHelper(
             var offer = profileOffers[index];
             if (currentTimestamp > offer.EndTime)
             {
-                // Offer has expired before selling, skip as it will be processed in RemoveExpiredOffers()
+                // This offer ran out before it sold. ReturnExpiredPlayerOffers() sends it back to the player
                 continue;
             }
 
@@ -602,6 +602,8 @@ public class RagfairOfferHelper(
 
         profile.CharacterData.PmcData.RagfairInfo.Rating +=
             ragfairGlobalsConfig.RatingIncreaseCount / ragfairGlobalsConfig.RatingSumForIncrease * amountToIncrementBy;
+
+        ragfairOfferService.SendRatingChanged(profile.ProfileInfo.ProfileId.Value, profile.CharacterData.PmcData.RagfairInfo);
     }
 
     /// <summary>
