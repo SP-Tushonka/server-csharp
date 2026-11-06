@@ -66,10 +66,14 @@ public sealed class SptLoggerFilter
     [JsonPropertyName("matchingType")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public required MatchingType MatchingType { get; init; }
+    
+    [JsonPropertyName("maxLogLevel")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public LogLevel? MaxLogLevel { get; init; }
 
     private bool Equals(SptLoggerFilter other)
     {
-        return Type == other.Type && Name == other.Name && MatchingType == other.MatchingType;
+        return Type == other.Type && Name == other.Name && MatchingType == other.MatchingType && MaxLogLevel == other.MaxLogLevel;
     }
 
     public override bool Equals(object? obj)
@@ -94,7 +98,7 @@ public sealed class SptLoggerFilter
 
     public override int GetHashCode()
     {
-        return HashCode.Combine((int)Type, Name, (int)MatchingType);
+        return HashCode.Combine((int)Type, Name, (int)MatchingType, MaxLogLevel);
     }
 }
 
@@ -172,6 +176,11 @@ public static class SptLoggerFilterExtensions
         }
 
         if (string.IsNullOrEmpty(message.Logger))
+        {
+            return false;
+        }
+
+        if (message.LogLevel > filter.MaxLogLevel)
         {
             return false;
         }
