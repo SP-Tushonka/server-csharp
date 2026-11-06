@@ -100,19 +100,10 @@ public record PresetWeights
     public Dictionary<string, double>? Fog { get; set; }
 
     [JsonPropertyName("temp")]
-    public TempDayNight? Temp { get; set; }
+    public Dictionary<string, double>? Temp { get; set; }
 
     [JsonPropertyName("pressure")]
     public MinMax<double>? Pressure { get; set; }
-}
-
-public record TempDayNight
-{
-    [JsonPropertyName("day")]
-    public MinMax<double>? Day { get; set; }
-
-    [JsonPropertyName("night")]
-    public MinMax<double>? Night { get; set; }
 }
 
 public record WeatherSettings<T>

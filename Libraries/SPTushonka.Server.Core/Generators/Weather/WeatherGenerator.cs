@@ -1,3 +1,4 @@
+using System.Globalization;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Extensions;
@@ -17,7 +18,6 @@ public class WeatherGenerator(
     WeatherHelper weatherHelper,
     WeatherConfig weatherConfig,
     WeightedRandomHelper weightedRandomHelper,
-    RandomUtil randomUtil,
     IEnumerable<IWeatherPreset> weatherGenerators,
     ICloner cloner
 )
@@ -99,8 +99,7 @@ public class WeatherGenerator(
         // Set time values in result using now or passed in timestamp
         SetCurrentDateTime(result, timestamp);
 
-        // Must occur after SetCurrentDateTime(), temp depends on timestamp
-        result.Temperature = GetRaidTemperature(presetWeights, result.SptInRaidTimestamp ?? 0);
+        result.Temperature = GetRaidTemperature(presetWeights);
 
         // Needed by RaidWeatherService
         result.SptChosenPreset = chosenPreset;
@@ -121,18 +120,14 @@ public class WeatherGenerator(
     }
 
     /// <summary>
-    ///     Choose a temperature for the raid based on time of day
+    ///     Choose a temperature for the raid from the preset's weights
     /// </summary>
-    /// <param name="weather"> What season Tarkov is currently in </param>
-    /// <param name="inRaidTimestamp"> What time is the raid running at </param>
-    /// <returns> Timestamp </returns>
-    protected double GetRaidTemperature(PresetWeights weather, long inRaidTimestamp)
+    /// <param name="weather">Weights of the chosen preset</param>
+    /// <returns>Temperature in degrees Celsius</returns>
+    protected double GetRaidTemperature(PresetWeights weather)
     {
-        // Convert timestamp to date so we can get current hour and check if its day or night
-        var currentRaidTime = new DateTime(inRaidTimestamp);
-        var minMax = weatherHelper.IsHourAtNightTime(currentRaidTime.Hour) ? weather.Temp.Night : weather.Temp.Day;
-
-        return Math.Round(randomUtil.GetDouble(minMax.Min, minMax.Max), 2);
+        // Temperature follows the weather preset, not the hour. A clear morning can be 41 degrees
+        return double.Parse(weightedRandomHelper.GetWeightedValue(weather.Temp), CultureInfo.InvariantCulture);
     }
 
     /// <summary>
