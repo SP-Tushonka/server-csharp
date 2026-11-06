@@ -304,12 +304,7 @@ public class RagfairOfferService(
             }
         }
 
-        // Send toast notification to player
-        var notificationMessage = notifierHelper.CreateRagfairNewRatingNotification(
-            offerCreatorProfile.RagfairInfo.Rating.Value,
-            offerCreatorProfile.RagfairInfo.IsRatingGrowing.GetValueOrDefault(false)
-        );
-        notificationSendHelper.SendMessage(offerCreatorId, notificationMessage);
+        SendRatingChanged(offerCreatorId, offerCreatorProfile.RagfairInfo);
 
         ragfairServerHelper.ReturnItems(offerCreatorProfile.SessionId.Value, unstackedItems);
         offerCreatorProfile.RagfairInfo.Offers.Splice(indexOfOfferInProfile, 1);
@@ -318,6 +313,20 @@ public class RagfairOfferService(
         {
             logger.Debug($"Returned offer: {{playerOffer.Id}} items to player");
         }
+    }
+
+    /// <summary>
+    ///     Tell the player's game their flea rating changed
+    /// </summary>
+    /// <param name="sessionId">Player to tell</param>
+    /// <param name="ragfairInfo">The player's flea details holding the new rating</param>
+    public void SendRatingChanged(MongoId sessionId, RagfairInfo ragfairInfo)
+    {
+        var notification = notifierHelper.CreateRagfairNewRatingNotification(
+            ragfairInfo.Rating ?? 0,
+            ragfairInfo.IsRatingGrowing.GetValueOrDefault(false)
+        );
+        notificationSendHelper.SendMessage(sessionId, notification);
     }
 
     /// <summary>
