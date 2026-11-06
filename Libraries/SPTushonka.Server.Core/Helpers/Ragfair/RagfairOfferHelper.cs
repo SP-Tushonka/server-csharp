@@ -704,6 +704,8 @@ public class RagfairOfferHelper(
 
         profile.CharacterData.PmcData.RagfairInfo.Rating +=
             ragfairGlobalsConfig.RatingIncreaseCount / ragfairGlobalsConfig.RatingSumForIncrease * amountToIncrementBy;
+
+        ragfairOfferService.SendRatingChanged(profile.ProfileInfo.ProfileId.Value, profile.CharacterData.PmcData.RagfairInfo);
     }
 
     /// <summary>
