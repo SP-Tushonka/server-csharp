@@ -742,11 +742,17 @@ public class TarcoinStoreService(
         {
             return false;
         }
+        
+        var deliverables = CollectDeliverables(offer, out _, out _);
+        if (deliverables.Count > 0 && deliverables.All(IsConsumable))
+        {
+            return false;
+        }
 
         var profile = saveServer.GetProfile(sessionId);
 
         // Every stash bundle contains the x4 offer, which would make one stash purchase mark them all as bought
-        var stashRows = StashRows(CollectDeliverables(offer, out _, out _));
+        var stashRows = StashRows(deliverables);
         if (stashRows > 0)
         {
             return ExceedsStashRowLimit(profile, stashRows);
@@ -755,6 +761,11 @@ public class TarcoinStoreService(
         var (purchased, available) = GetStock(profile, offer);
 
         return available == 0 && purchased > 0;
+    }
+
+    private static bool IsConsumable(ShopOfferItem entry)
+    {
+        return entry.GameReward is not null || entry.Type == ShopOfferItemType.BattlePassUniversalDocument;
     }
 
     public HashSet<string> GetPurchasedOffers(MongoId sessionId)
