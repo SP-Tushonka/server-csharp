@@ -119,13 +119,23 @@ public static class SPTWeb
         app.MapGet("/profiles/{profileId}/download", HandleProfileDownload).RequireAuthorization(AuthService.AdministratorPolicy);
 
         var razorBuilder = app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+        var routableComponents = ModRouteValidator.GetRoutableComponents([typeof(SPTWeb).Assembly]);
 
         foreach (var mod in _sptWebMods)
         {
-            foreach (var assembly in mod.Assemblies)
+            var routeError = FindModRouteError(mod, routableComponents, app.Services, out var modComponents);
+            if (routeError is null)
             {
-                razorBuilder.AddAdditionalAssemblies(assembly);
-                _sptWebModsAssemblies.Add(assembly);
+                routableComponents.AddRange(modComponents);
+                foreach (var assembly in mod.Assemblies)
+                {
+                    razorBuilder.AddAdditionalAssemblies(assembly);
+                    _sptWebModsAssemblies.Add(assembly);
+                }
+            }
+            else
+            {
+                logger.LogError("SIC pages from mod {modName} were not loaded because of a bad page route. {routeError}", mod.ModMetadata.Name, routeError);
             }
 
             var webMetadata =
@@ -174,6 +184,27 @@ public static class SPTWeb
 
                 _wwwRootDirectories.Add(wwwrootDirectory);
             }
+        }
+    }
+
+    private static string? FindModRouteError(
+        SptMod mod,
+        List<Type> acceptedComponents,
+        IServiceProvider services,
+        out List<Type> modComponents
+    )
+    {
+        try
+        {
+            modComponents = ModRouteValidator.GetRoutableComponents(mod.Assemblies);
+
+            return ModRouteValidator.FindRouteError([.. acceptedComponents, .. modComponents], services);
+        }
+        catch (Exception exception)
+        {
+            modComponents = [];
+
+            return exception.Message;
         }
     }
 

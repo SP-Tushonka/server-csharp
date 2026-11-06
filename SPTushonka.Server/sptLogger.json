@@ -17,7 +17,8 @@
         {
           "type": "Exclude",
           "name": "Microsoft.*",
-          "matchingType": "Regex"
+          "matchingType": "Regex",
+          "maxLogLevel": "Warning"
         }
       ]
     },
@@ -45,7 +46,8 @@
         {
           "type": "Exclude",
           "name": "Microsoft.*",
-          "matchingType": "Regex"
+          "matchingType": "Regex",
+          "maxLogLevel": "Warning"
         },
         {
           "type": "Exclude",
