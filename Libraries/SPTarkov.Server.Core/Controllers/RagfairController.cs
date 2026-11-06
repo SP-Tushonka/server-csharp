@@ -1074,7 +1074,7 @@ public class RagfairController(
         if (RagfairConfig.Sell.Fees)
         {
             // Charge what the client's renew window shows. It prices the items still for sale per hour added
-            var percentPerHour = globalTable.Configuration.RagFair.RenewPricePerHour / 100d;
+            var percentPerHour = databaseService.GetGlobals().Configuration.RagFair.RenewPricePerHour / 100d;
             var fee = Math.Round(
                 ((playerOffer.ItemsCost ?? 0) + (playerOffer.RequirementsCost ?? 0))
                     * playerOffer.Quantity
