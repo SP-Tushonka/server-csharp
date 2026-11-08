@@ -638,7 +638,13 @@ public class QuestHelper(
         SendSuccessDialogMessageOnQuestComplete(sessionId, pmcData, completedQuestId, questRewards.ToList());
 
         // Add diff of quests before completion vs after for client response
-        var questDelta = GetDeltaQuests(clientQuestsClone!, GetClientQuests(sessionId));
+        var questDelta = GetDeltaQuests(clientQuestsClone!, GetClientQuests(sessionId)).ToList();
+
+        // The client only runs a quest from this response when its template already says Started
+        foreach (var startedQuest in questDelta.Where(quest => quest.SptStatus == QuestStatusEnum.Started))
+        {
+            startedQuest.Status = QuestStatusEnum.Started;
+        }
 
         // Check newly available + failed quests for timegates and add them to profile
         AddTimeLockedQuestsToProfile(pmcData, questDelta, request.QuestId);

@@ -541,6 +541,23 @@ public class QuestChapterStartTests
         Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == craftQuest), Is.True, "after the dialogue");
     }
 
+    [TestCase("656f0f98d80a697f855d34b1", "69c26c07683c9831020018c7", "69c27158e350f01390049e77", QuestStatusEnum.Started)]
+    [TestCase("5a7c2eca46aef81a7ca2145d", "6a880f5d9438980c42076efe", "6a88270efbd24b6243010e6d", QuestStatusEnum.Started)]
+    [TestCase("5a7c2eca46aef81a7ca2145d", "6a88270efbd24b6243010e6d", "6a8814d20d25ca7b2908e13e", QuestStatusEnum.AvailableForStart)]
+    public void GetClientQuests_UnlockedQuest_StartsOnlyWhenConfigured(string trader, string prerequisite, string quest, QuestStatusEnum expected)
+    {
+        var sessionId = AddProfile(new MongoId(prerequisite));
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.TradersInfo![new MongoId(trader)] = new TraderInfo
+        {
+            LoyaltyLevel = 1,
+            Standing = 0,
+            Unlocked = true,
+        };
+
+        Assert.That(_questHelper.GetClientQuests(sessionId).Single(q => q.Id == new MongoId(quest)).SptStatus, Is.EqualTo(expected));
+    }
+
     [Test]
     public void GetClientQuests_HiddenGate_OpensAfterThePrerequisiteQuest()
     {

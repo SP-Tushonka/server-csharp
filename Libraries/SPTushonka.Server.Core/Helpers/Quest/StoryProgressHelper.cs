@@ -91,7 +91,9 @@ public class StoryProgressHelper(
     public QuestStatusEnum? ResolveStorylineStatus(PmcData profile, Models.Eft.Common.Tables.Quest quest, bool unlockedByQuest)
     {
         var status = ResolveChapterStatus(profile, quest, unlockedByQuest);
-        if (status == QuestStatusEnum.AvailableForStart && quest.NotDisplayedQuest == true)
+        // A trader line that accepts a hidden quest only shows while the quest is on offer
+        var hiddenStart = quest.NotDisplayedQuest == true && !mainStoryChapterHelper.AcceptedInDialogue(quest.Id);
+        if (status == QuestStatusEnum.AvailableForStart && (hiddenStart || questConfig.StartedOnUnlockQuests.Contains(quest.Id)))
         {
             return StartStorylineQuest(profile, quest.Id);
         }

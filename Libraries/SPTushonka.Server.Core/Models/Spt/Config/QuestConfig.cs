@@ -55,6 +55,12 @@ public record QuestConfig : BaseConfig
     public required Dictionary<MongoId, HiddenVariableGate> HiddenVariableGates { get; set; }
 
     /// <summary>
+    ///     Visible quests that start the moment they unlock instead of waiting at their trader
+    /// </summary>
+    [JsonPropertyName("startedOnUnlockQuests")]
+    public HashSet<MongoId> StartedOnUnlockQuests { get; set; } = [];
+
+    /// <summary>
     ///     Quests that start the moment the player accepts another quest, keyed by the quest that starts
     /// </summary>
     [JsonPropertyName("startedWithQuests")]
