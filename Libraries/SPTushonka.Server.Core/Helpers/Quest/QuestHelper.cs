@@ -626,6 +626,15 @@ public class QuestHelper(
         questVariableHelper.RecordCompletion(pmcData, completedQuestId, profileChanges);
         var questRewards = questRewardHelper.ApplyQuestReward(pmcData, request.QuestId, newQuestState, sessionId, completeQuestResponse);
 
+        if (questConfig.QuestLocationUnlocks.TryGetValue(completedQuestId, out var unlockedLocation))
+        {
+            pmcData.UnlockedLocations ??= [];
+            if (!pmcData.UnlockedLocations.Contains(unlockedLocation))
+            {
+                pmcData.UnlockedLocations.Add(unlockedLocation);
+            }
+        }
+
         // Check for linked failed + unrestartable quests (only get quests not already failed
         var questsToFail = GetQuestsFromProfileFailedByCompletingQuest(completedQuestId, pmcData);
         questsToFail.AddRange(mainStoryChapterHelper.RunningAlternativesOf(completedQuestId, pmcData).Where(alternative => !questsToFail.Contains(alternative)));

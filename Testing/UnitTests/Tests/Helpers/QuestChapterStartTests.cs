@@ -747,6 +747,22 @@ public class QuestChapterStartTests
     }
 
     [Test]
+    public void CompleteQuest_Hangover_UnlocksIcebreaker()
+    {
+        var hangover = new MongoId("69c2a2d004de49c8f0055a3d");
+        var sessionId = AddProfile();
+        AddQuest(sessionId, hangover, QuestStatusEnum.AvailableForFinish);
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        pmc.Bonuses = [];
+        pmc.RepeatableQuests = [];
+        pmc.Achievements = [];
+
+        _questHelper.CompleteQuest(pmc, new CompleteQuestRequestData { QuestId = hangover }, sessionId);
+
+        Assert.That(pmc.UnlockedLocations, Does.Contain("Icebreaker"));
+    }
+
+    [Test]
     public void GetClientQuests_UnheardWaitForElektronik_OffersTheTechFilesTask()
     {
         // The wait ends when the tech files task starts, and Elektronik's line only shows while that task is on offer

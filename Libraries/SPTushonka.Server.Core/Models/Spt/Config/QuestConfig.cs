@@ -67,6 +67,12 @@ public record QuestConfig : BaseConfig
     public Dictionary<MongoId, MongoId> StartedWithQuests { get; set; } = [];
 
     /// <summary>
+    ///     Locations added to the location selection when a quest completes, keyed by the quest
+    /// </summary>
+    [JsonPropertyName("questLocationUnlocks")]
+    public Dictionary<MongoId, string> QuestLocationUnlocks { get; set; } = [];
+
+    /// <summary>
     ///     Holds repeatable quest template ids for pmc's and scav's
     /// </summary>
     [JsonPropertyName("repeatableQuestTemplateIds")]
