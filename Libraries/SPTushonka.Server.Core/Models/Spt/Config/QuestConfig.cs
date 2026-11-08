@@ -689,6 +689,10 @@ public record HiddenVariableGate
     [JsonPropertyName("quests")]
     public List<MongoId>? Quests { get; set; }
 
+    /// <summary>Quests that must be running, for a quest a dialogue only offers during another quest</summary>
+    [JsonPropertyName("started")]
+    public List<MongoId>? Started { get; set; }
+
     /// <summary>Quests of which at least one must be completed, for a quest reached by an old and a new route</summary>
     [JsonPropertyName("anyQuests")]
     public List<MongoId>? AnyQuests { get; set; }

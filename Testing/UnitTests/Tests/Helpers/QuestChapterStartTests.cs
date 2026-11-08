@@ -526,19 +526,20 @@ public class QuestChapterStartTests
     }
 
     [Test]
-    public void GetClientQuests_ArmoredCaseCraftQuest_OpensOnlyAfterMechanicsDialogue()
+    public void GetClientQuests_ArmoredCaseCraftQuest_OfferedWhileMechanicsQuestRuns()
     {
-        // Mechanic's dialogue reply sets 68dc0062 and accepts the quest, which unlocks the Armored case craft
+        // Mechanic only offers the line that accepts this quest while the quest is listed as available
         var craftQuest = new MongoId("68dbf539675bd8efd403ec10");
+        var mechanicQuest = new MongoId("67bc86024e7dbc3aa202431b");
         var sessionId = AddProfile();
         var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
         pmc.TradersInfo![Traders.MECHANIC].LoyaltyLevel = 4;
 
-        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == craftQuest), Is.False, "before the dialogue");
+        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == craftQuest), Is.False, "before Mechanic's quest");
 
-        pmc.Variables![new MongoId("68dc00620fae9d3ed5ae617e")] = 1;
+        AddQuest(sessionId, mechanicQuest, QuestStatusEnum.Started);
 
-        Assert.That(_questHelper.GetClientQuests(sessionId).Any(q => q.Id == craftQuest), Is.True, "after the dialogue");
+        Assert.That(_questHelper.GetClientQuests(sessionId).Single(q => q.Id == craftQuest).SptStatus, Is.EqualTo(QuestStatusEnum.AvailableForStart));
     }
 
     [TestCase("656f0f98d80a697f855d34b1", "69c26c07683c9831020018c7", "69c27158e350f01390049e77", QuestStatusEnum.Started)]

@@ -358,6 +358,7 @@ public class MainStoryChapterHelper(TemplateTable templateTable, TimeUtil timeUt
         var prerequisites = gate.Quests ?? [];
         if (
             !prerequisites.All(prerequisite => profile.GetQuestStatus(prerequisite) == QuestStatusEnum.Success)
+            || !(gate.Started ?? []).All(quest => profile.GetQuestStatus(quest) is QuestStatusEnum.Started or QuestStatusEnum.AvailableForFinish)
             || (gate.AnyQuests is not null && !gate.AnyQuests.Any(quest => profile.GetQuestStatus(quest) == QuestStatusEnum.Success))
             || !(gate.Failed ?? []).All(quest => profile.GetQuestStatus(quest) == QuestStatusEnum.Fail)
             || !(gate.NotFailed ?? []).All(quest => profile.GetQuestStatus(quest) != QuestStatusEnum.Fail)
