@@ -756,6 +756,7 @@ public class QuestHelper(
                     is QuestStatusEnum.Locked
                         or QuestStatusEnum.AvailableForStart
                         or QuestStatusEnum.AvailableAfter
+                    || mainStoryChapterHelper.FailConditionsMet(profile, quest)
                 )
                 {
                     continue;

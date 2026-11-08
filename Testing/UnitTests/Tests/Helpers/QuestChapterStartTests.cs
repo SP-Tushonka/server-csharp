@@ -572,6 +572,9 @@ public class QuestChapterStartTests
 
     [TestCase("6ac4c42976842fabb501d5b8", "6ac4c726a3ea5ab42a074d3a")]
     [TestCase("6752f6d83038f7df520c83e8", "673f348dd3346c21670217e7")]
+    [TestCase("5edab4b1218d181e29451435", "5edac34d0bb72a50635c2bfa")]
+    [TestCase("697878057aa1273126030fb0", "69788d4e963f08d9140bce19")]
+    [TestCase("683425dd8f5b18d29a05d9d1", "6834254f2f0e2a7eb90b62ef")]
     public void StartQuestsStartedWith_PartnerAccepted_StartsTheQuest(string accepted, string expected)
     {
         DI.GetInstance().GetService<SeasonalEventService>().ForceSeasonalEvent(SeasonalEventType.Scourge);
@@ -585,6 +588,32 @@ public class QuestChapterStartTests
         Assert.That(started.Single().Status, Is.EqualTo(QuestStatusEnum.Started));
         Assert.That(pmc.GetQuestStatus(new MongoId(expected)), Is.EqualTo(QuestStatusEnum.Started));
         Assert.That(_questHelper.GetNewlyAccessibleQuestsWhenStartingQuest(new MongoId(accepted), sessionId).Any(q => q.Id == new MongoId(expected)), Is.False);
+    }
+
+    [Test]
+    public void StartQuestsStartedWith_ChemicalPartFour_StartsBothBranches()
+    {
+        var chemicalFour = new MongoId("597a0f5686f774273b74f676");
+        var sessionId = AddProfile();
+        var pmc = _saveServer.GetProfile(sessionId).CharacterData!.PmcData!;
+        AddQuest(sessionId, chemicalFour, QuestStatusEnum.Started);
+
+        var started = DI.GetInstance().GetService<StoryProgressHelper>().StartQuestsStartedWith(pmc, chemicalFour);
+
+        Assert.That(
+            started.Select(quest => quest.Id),
+            Is.EquivalentTo(new[] { new MongoId("597a171586f77405ba6887d3"), new MongoId("597a160786f77477531d39d2") })
+        );
+    }
+
+    [TestCase("597a0f5686f774273b74f676", "597a171586f77405ba6887d3", false)]
+    [TestCase("683425dd8f5b18d29a05d9d1", "6834254f2f0e2a7eb90b62ef", false)]
+    [TestCase("5edab4b1218d181e29451435", "5edac34d0bb72a50635c2bfa", true)]
+    public void GetClientQuests_PartnerAlreadyFinished_StartsUnlessFailConditionMet(string partner, string questId, bool expected)
+    {
+        var quest = _questHelper.GetClientQuests(AddProfile(new MongoId(partner))).SingleOrDefault(q => q.Id == new MongoId(questId));
+
+        Assert.That(quest?.SptStatus == QuestStatusEnum.Started, Is.EqualTo(expected));
     }
 
     [TestCase(60, false)]
