@@ -23,6 +23,7 @@ public class PostDbLoadService(
     HideoutTable hideoutTable,
     LocaleTable localeTable,
     LocationTable locationTable,
+    SettingsTable settingsTable,
     ServerLocalisationService serverLocalisationService,
     SeasonalEventService seasonalEventService,
     CustomLocationWaveService customLocationWaveService,
@@ -104,6 +105,8 @@ public class PostDbLoadService(
         RemovePrestigeQuestRequirementsIfQuestNotFound();
 
         RemovePraporTestMessage();
+
+        KeepGarbageCollectorOnInRaid();
 
         ValidateQuestAssortUnlocksExist();
 
@@ -392,6 +395,11 @@ public class PostDbLoadService(
                 return lazyloadedData;
             });
         }
+    }
+
+    private void KeepGarbageCollectorOnInRaid()
+    {
+        settingsTable.Configuration.MemoryManagementSettings.GigabytesRequiredToDisableGCDuringRaid = int.MaxValue;
     }
 
     protected void CloneExistingCraftsAndAddNew()
