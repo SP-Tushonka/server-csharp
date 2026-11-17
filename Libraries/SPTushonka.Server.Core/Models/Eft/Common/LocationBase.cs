@@ -784,7 +784,7 @@ public record ColliderParams
     public string? Parent
     {
         get { return field; }
-        set { field = string.Intern(value); }
+        set { field = value == null ? null : string.Intern(value); }
     }
 
     [JsonPropertyName("_props")]
