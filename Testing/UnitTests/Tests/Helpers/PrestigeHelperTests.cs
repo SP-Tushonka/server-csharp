@@ -87,6 +87,34 @@ public class PrestigeHelperTests
     }
 
     [Test]
+    public void ProcessPendingPrestige_BattlePassProgress_IsKept()
+    {
+        var sessionId = new MongoId();
+        var oldProfile = CreateProfile(sessionId, tarcoins: 0);
+        var progress = new ProfileBattlePassProgress
+        {
+            BattlePassId = new MongoId(),
+            Completed = 2,
+            ObtainedRewardIds = [new MongoId(), new MongoId()],
+        };
+        oldProfile.CharacterData!.PmcData!.BattlePassProgress = [progress];
+        oldProfile.CharacterData.PmcData.BattlePassDocumentLimitData = new()
+        {
+            [progress.BattlePassId] = new ProfileBattlePassDocumentLimit { RemainingLimit = 3, TotalLimit = 10 },
+        };
+        var newProfile = CreateProfile(sessionId, tarcoins: 0);
+        DI.GetInstance().GetService<SaveServer>().AddProfile(newProfile);
+
+        DI.GetInstance()
+            .GetService<PrestigeHelper>()
+            .ProcessPendingPrestige(oldProfile, newProfile, new PendingPrestige { PrestigeLevel = 1, Items = [] });
+
+        var pmc = newProfile.CharacterData!.PmcData!;
+        Assert.That(pmc.BattlePassProgress, Is.EqualTo(new[] { progress }));
+        Assert.That(pmc.BattlePassDocumentLimitData![progress.BattlePassId].RemainingLimit, Is.EqualTo(3));
+    }
+
+    [Test]
     public void RestorePrestigeExtraRepeatables_ZeroedGrants_AreRebuiltFromClaimedLevels()
     {
         var levels = DI.GetInstance().GetService<TemplateTable>().Prestige.Elements!;

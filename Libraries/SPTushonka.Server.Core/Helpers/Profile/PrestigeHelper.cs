@@ -116,6 +116,10 @@ public class PrestigeHelper(
         // Copy profile stats
         CopyStats(newProfile, oldProfile);
 
+        var newPmc = newProfile.CharacterData.PmcData;
+        newPmc.BattlePassProgress = prePrestigePmc?.BattlePassProgress ?? newPmc.BattlePassProgress;
+        newPmc.BattlePassDocumentLimitData = prePrestigePmc?.BattlePassDocumentLimitData ?? newPmc.BattlePassDocumentLimitData;
+
         // Flag profile as having achieved this prestige level and any it skipped
         var prestigeFlags = newProfile.CharacterData?.PmcData?.Prestige;
         foreach (var obtainedLevel in obtainedLevels)
