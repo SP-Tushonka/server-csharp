@@ -201,6 +201,12 @@ public record ServerFeatures
     [JsonPropertyName("compressProfile")]
     public bool CompressProfile { get; set; }
 
+    /// <summary>
+    ///     Send the launcher no profile list, so players log in by typing their username
+    /// </summary>
+    [JsonPropertyName("hideLauncherProfiles")]
+    public bool HideLauncherProfiles { get; set; }
+
     [JsonPropertyName("chatbotFeatures")]
     public required ChatbotFeatures ChatbotFeatures { get; set; }
 

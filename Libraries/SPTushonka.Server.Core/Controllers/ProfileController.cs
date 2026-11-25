@@ -13,6 +13,7 @@ using SPTarkov.Server.Core.Models.Eft.Launcher;
 using SPTarkov.Server.Core.Models.Eft.Match;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Launcher;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Servers;
@@ -32,7 +33,8 @@ public class ProfileController(
     QuestHelper questHelper,
     ItemHelper itemHelper,
     TemplateTable templateTable,
-    ICloner cloner
+    ICloner cloner,
+    CoreConfig coreConfig
 )
 {
     private const string RegularGameMode = "regular";
@@ -48,6 +50,11 @@ public class ProfileController(
     /// <returns></returns>
     public List<MiniProfile> GetMiniProfiles()
     {
+        if (coreConfig.Features.HideLauncherProfiles)
+        {
+            return [];
+        }
+
         return saveServer.GetProfiles().Select(kvp => GetMiniProfile(kvp.Key)).ToList();
     }
 
