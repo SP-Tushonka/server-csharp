@@ -10,6 +10,7 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Launcher;
 using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Launcher;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -25,7 +26,8 @@ public class ProfileController(
     CreateProfileService createProfileService,
     ProfileFixerService profileFixerService,
     PlayerScavGenerator playerScavGenerator,
-    ProfileHelper profileHelper
+    ProfileHelper profileHelper,
+    CoreConfig coreConfig
 )
 {
     /// <summary>
@@ -34,6 +36,11 @@ public class ProfileController(
     /// <returns></returns>
     public List<MiniProfile> GetMiniProfiles()
     {
+        if (coreConfig.Features.HideLauncherProfiles)
+        {
+            return [];
+        }
+
         return saveServer.GetProfiles().Select(kvp => GetMiniProfile(kvp.Key)).ToList();
     }
 
