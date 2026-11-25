@@ -192,6 +192,24 @@ public class SeasonalEventEffects(
         }
     }
 
+    /// <summary>
+    ///     Show or hide the infected Factory and Labs variants on the map screen.
+    ///     Live dumps taken during Halloween ship them enabled, and without the event toggle the client shows them in place of the normal maps (#150)
+    /// </summary>
+    /// <param name="enabled">True while Halloween is active</param>
+    public void SetHalloweenEventLocationsEnabled(bool enabled)
+    {
+        foreach (var location in new[] { locationTable.FactoryEvent, locationTable.LaboratoryEvent })
+        {
+            if (location?.Base is null)
+            {
+                continue;
+            }
+
+            location.Base.Enabled = enabled;
+        }
+    }
+
     public void ConfigureZombies(ZombieSettings zombieSettings)
     {
         var infectionHalloween = globalTable.Configuration.SeasonActivity.InfectionHalloween;

@@ -20,6 +20,7 @@ public class HalloweenEventApplier(SeasonalEventEffects effects, SeasonalEventCo
     public void Apply(SeasonalEvent seasonalEvent, GlobalConfig globalConfig)
     {
         effects.AddClientEventTypes(globalConfig, EventType.Halloween, EventType.HalloweenIllumination);
+        effects.SetHalloweenEventLocationsEnabled(true);
 
         effects.AddEventGearToBots(Type);
         effects.ApplyEventLoadouts(Type);

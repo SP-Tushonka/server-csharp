@@ -113,6 +113,9 @@ public class PostDbLoadService(
 
         ValidateQuestAssortUnlocksExist();
 
+        // Runs before detection so the event maps stay hidden when detection is off
+        seasonalEventService.DisableEventOnlyLocations();
+
         if (seasonalEventService.IsAutomaticEventDetectionEnabled())
         {
             seasonalEventService.CacheActiveEvents();

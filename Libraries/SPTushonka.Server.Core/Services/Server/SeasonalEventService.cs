@@ -232,6 +232,14 @@ public class SeasonalEventService(
     }
 
     /// <summary>
+    ///     Hide maps that only exist for an event, the event's applier shows them again while it is active
+    /// </summary>
+    public void DisableEventOnlyLocations()
+    {
+        effects.SetHalloweenEventLocationsEnabled(false);
+    }
+
+    /// <summary>
     ///     Handle activating seasonal events
     /// </summary>
     public void EnableSeasonalEvents()
