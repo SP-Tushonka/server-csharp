@@ -454,9 +454,9 @@
         ],
         "SavagePlayerBehaviour": "Warn",
         "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 75,
+        "BearEnemyChance": 100,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 90
+        "UsecEnemyChance": 100
       },
       {
         "BotRole": "pmcUSEC",
@@ -528,9 +528,9 @@
         ],
         "SavagePlayerBehaviour": "Warn",
         "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 90,
+        "BearEnemyChance": 100,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 75
+        "UsecEnemyChance": 100
       },
       {
         "BotRole": "bossTagillaAgro",
@@ -1436,6 +1436,10 @@
     {
       "TemplateId": "6a3182dc6cd8de21cf0a3a7d",
       "Value": 7
+    },
+    {
+      "TemplateId": "634959225289190e5e773b3b",
+      "Value": 6
     }
   ],
   "secretExits": [

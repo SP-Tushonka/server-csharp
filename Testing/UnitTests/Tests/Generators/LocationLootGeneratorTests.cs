@@ -85,6 +85,8 @@ public class LocationLootGeneratorTests
                 "shoreline",
                 "tarkovstreets",
                 "woods",
+                "factory_event",
+                "laboratory_event",
             }
         )
         {
@@ -101,5 +103,42 @@ public class LocationLootGeneratorTests
         }
 
         Assert.That(missing, Is.Empty);
+    }
+
+    [TestCase("factory_event", "factory4_day", 1.0)]
+    [TestCase("laboratory_event", "laboratory", 0.05)]
+    public void LooseLoot_EventMaps_HaveTheirOwnPositions(string eventMap, string baseMap, double minimumOwnShare)
+    {
+        // Both event maps shipped as a copy of the base map's loot, which put every factory_event
+        // item at a position that map does not have
+        var eventPositions = LoosePositions(eventMap);
+        var basePositions = LoosePositions(baseMap);
+        var ownShare = (double)eventPositions.Except(basePositions).Count() / eventPositions.Count;
+
+        Assert.That(ownShare, Is.GreaterThanOrEqualTo(minimumOwnShare), $"{eventMap} positions not found on {baseMap}");
+    }
+
+    [TestCase("factory_event")]
+    [TestCase("laboratory_event")]
+    public void GenerateStaticContainers_EventMaps_ProduceLoot(string locationId)
+    {
+        var containers = _generator.GenerateStaticContainers(locationId, _cloner.Clone(_locations.GetLocation(locationId)!.StaticAmmo)!);
+
+        Assert.That(containers, Is.Not.Empty);
+        Assert.That(containers.Sum(container => container.Items!.Count()), Is.GreaterThan(0));
+    }
+
+    private HashSet<(double, double, double)> LoosePositions(string locationId)
+    {
+        var looseLoot = _locations.GetLocation(locationId)!.LooseLoot!.Value!;
+
+        return looseLoot
+            .Spawnpoints!.Concat(looseLoot.SpawnpointsForced!)
+            .Select(point => (
+                Math.Round(point.Template!.Position!.X, 2),
+                Math.Round(point.Template.Position.Y, 2),
+                Math.Round(point.Template.Position.Z, 2)
+            ))
+            .ToHashSet();
     }
 }

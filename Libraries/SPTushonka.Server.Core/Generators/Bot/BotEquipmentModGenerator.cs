@@ -1531,7 +1531,10 @@ public class BotEquipmentModGenerator(
     public bool WeaponModComboIsIncompatible(IEnumerable<Item> weapon, MongoId modTpl)
     {
         // STM-9 + AR-15 Lone Star Ion Lite handguard
-        if (weapon.First().Template == ItemTpl.SMG_SOYUZTM_STM9_GEN2_9X19_CARBINE && modTpl == ItemTpl.HANDGUARD_AR15_LONE_STAR_ION_LITE)
+        if (
+            weapon.First().Template == ItemTpl.ASSAULTCARBINE_SOYUZTM_STM9_GEN2_9X19_CARBINE
+            && modTpl == ItemTpl.HANDGUARD_AR15_LONE_STAR_ION_LITE
+        )
         {
             return true;
         }

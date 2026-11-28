@@ -1554,7 +1554,7 @@
   "events": [
     {
       "enabled": true,
-      "endDay": "17",
+      "endDay": "24",
       "endMonth": "11",
       "name": "halloween",
       "settings": {
@@ -5032,7 +5032,11 @@
               "bossPartisan"
             ]
           }
-        }
+        },
+        "eventLocations": [
+          "factory_event",
+          "laboratory_event"
+        ]
       },
       "startDay": "29",
       "startMonth": "10",

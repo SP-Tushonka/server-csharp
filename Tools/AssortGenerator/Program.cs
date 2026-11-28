@@ -323,9 +323,10 @@ public static class Program
         taken ??= [];
         var candidates = assort.Items.Where(item => item.ParentId == "hideout" && item.Template == root.Template).ToList();
         var free = candidates.Where(item => !taken.Contains(item.Id)).ToList();
+        // A taken offer at the reward's loyalty level is the same offer another unlock shares, so it beats a free one at the wrong level
         return free.FirstOrDefault(item => assort.LoyalLevelItems.GetValueOrDefault(item.Id) == reward.LoyaltyLevel)
-            ?? free.FirstOrDefault()
             ?? candidates.FirstOrDefault(item => assort.LoyalLevelItems.GetValueOrDefault(item.Id) == reward.LoyaltyLevel)
+            ?? free.FirstOrDefault()
             ?? candidates.FirstOrDefault();
     }
 

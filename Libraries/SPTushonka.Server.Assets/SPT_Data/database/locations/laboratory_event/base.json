@@ -1,7 +1,7 @@
 {
   "BossLocationSpawn": [
     {
-      "BossChance": 0,
+      "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
       "BossEscortDifficult": "normal",
@@ -23,7 +23,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 0,
+      "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
       "BossEscortDifficult": "normal",
@@ -45,7 +45,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 0,
+      "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
       "BossEscortDifficult": "normal",
@@ -67,7 +67,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 0,
+      "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
       "BossEscortDifficult": "normal",
@@ -89,7 +89,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 0,
+      "BossChance": 50,
       "BossDifficult": "normal",
       "BossEscortAmount": "0,0,0,0,2,2,2,1,1,1,1,1,0,2,3",
       "BossEscortDifficult": "normal",
@@ -8069,7 +8069,7 @@
   "BotStop": 1400,
   "DisabledScavExits": "",
   "EnableCoop": true,
-  "Enabled": true,
+  "Enabled": false,
   "EscapeTimeLimit": 25,
   "EscapeTimeLimitCoop": 30,
   "ForceOfflineRaidInPVE": false,

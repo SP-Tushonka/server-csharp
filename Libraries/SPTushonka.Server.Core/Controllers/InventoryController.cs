@@ -391,9 +391,9 @@ public class InventoryController(
         var rewards = new List<List<Item>>();
         var unlockedWeaponCrates = new HashSet<MongoId>
         {
-            ItemTpl.RANDOMLOOTCONTAINER_ARENA_WEAPONCRATE_VIOLET_OPEN,
-            ItemTpl.RANDOMLOOTCONTAINER_ARENA_WEAPONCRATE_BLUE_OPEN,
-            ItemTpl.RANDOMLOOTCONTAINER_ARENA_WEAPONCRATE_GREEN_OPEN,
+            ItemTpl.ARENACONTAINER_ARENA_WEAPONCRATE_VIOLET_OPEN,
+            ItemTpl.ARENACONTAINER_ARENA_WEAPONCRATE_BLUE_OPEN,
+            ItemTpl.ARENACONTAINER_ARENA_WEAPONCRATE_GREEN_OPEN,
         };
         // Temp fix for unlocked weapon crate hideout craft
         if (isSealedWeaponBox || unlockedWeaponCrates.Contains(containerDetailsDb.Value.Id))

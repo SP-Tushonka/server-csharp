@@ -5,12 +5,19 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Services.Locales;
+using SPTarkov.Server.Core.Services.Server;
 
 namespace SPTarkov.Server.Core.Helpers.Traders;
 
 [Injectable]
-public class AssortHelper(ISptLogger<AssortHelper> logger, ServerLocalisationService serverLocalisationService)
+public class AssortHelper(
+    ISptLogger<AssortHelper> logger,
+    ServerLocalisationService serverLocalisationService,
+    SeasonalEventService seasonalEventService,
+    QuestConfig questConfig
+)
 {
     /// <summary>
     ///     Remove assorts from a trader that have not been unlocked yet (via player completing corresponding quest or achievement)
@@ -61,9 +68,18 @@ public class AssortHelper(ISptLogger<AssortHelper> logger, ServerLocalisationSer
                 continue;
             }
 
-            // Remove assort if quest in profile does not have status that unlocks assort
-            var questStatusInProfile = pmcProfile.GetQuestStatus(unlockValues.Value.Key);
-            if (!unlockValues.Value.Value.Contains(questStatusInProfile))
+            var (questId, unlockingStatuses) = unlockValues.Value;
+            if (seasonalEventService.IsQuestOutOfSeason(questId))
+            {
+                strippedTraderAssorts = traderAssorts.RemoveItemFromAssort(assortId, isFlea);
+                continue;
+            }
+
+            // An offer is linked to one quest, a quest sharing its unlocks counts the same
+            var sharingQuests = questConfig.SharedAssortUnlocks.GetValueOrDefault(questId, []);
+            var unlocked = unlockingStatuses.Contains(pmcProfile.GetQuestStatus(questId))
+                || sharingQuests.Any(sharing => unlockingStatuses.Contains(pmcProfile.GetQuestStatus(sharing)));
+            if (!unlocked)
             {
                 strippedTraderAssorts = traderAssorts.RemoveItemFromAssort(assortId, isFlea);
             }

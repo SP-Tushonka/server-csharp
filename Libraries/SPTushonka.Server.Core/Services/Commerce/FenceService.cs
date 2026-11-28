@@ -1061,8 +1061,9 @@ public class FenceService(
 
             RemoveRandomModsOfItem(presetWithChildrenClone);
 
-            // Check chosen item is below price cap
-            var priceLimitRouble = traderConfig.Fence.ItemCategoryRoublePriceLimit[rootItemDb.Parent];
+            // Check chosen item is below price cap. Categories the config has no limit for are
+            // uncapped, and the client adds item nodes that no config can list ahead of time
+            traderConfig.Fence.ItemCategoryRoublePriceLimit.TryGetValue(rootItemDb.Parent, out var priceLimitRouble);
             var itemPrice =
                 handbookHelper.GetTemplatePriceForItems(presetWithChildrenClone)
                 * itemHelper.GetItemQualityModifierForItems(presetWithChildrenClone);

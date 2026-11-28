@@ -151,7 +151,8 @@
     "68fc085cef27fb1d220085d7": { "quests": ["625d700cc48e6c62a440fab5"] },
     "68f2e2738926b2d0ec025b8e": { "quests": ["625d700cc48e6c62a440fab5"] },
     "68f4d983469a22a0670b5c38": { "quests": ["625d700cc48e6c62a440fab5"] },
-    "6abf70a8e4732bc101051bf2": { "quests": ["6abd0ff5d383d797d602d6c4"] }
+    "6abf70a8e4732bc101051bf2": { "quests": ["6abd0ff5d383d797d602d6c4"] },
+    "6abb99516cdfa16e93028439": { "quests": ["6abb86cddcebb0efbc0fda8f"] }
   },
   "startedOnUnlockQuests": [
     "69c27158e350f01390049e77",
@@ -177,6 +178,10 @@
     "5edac34d0bb72a50635c2bfa": "5edab4b1218d181e29451435",
     "69788d4e963f08d9140bce19": "697878057aa1273126030fb0",
     "6834254f2f0e2a7eb90b62ef": "683425dd8f5b18d29a05d9d1"
+  },
+  "sharedAssortUnlocks": {
+    "6abfb582eac8c75de80bd930": ["6abbbde75f084d06ce014688"],
+    "6abbbde75f084d06ce014688": ["6abfb582eac8c75de80bd930"]
   },
   "questLocationUnlocks": {
     "69c2a2d004de49c8f0055a3d": "Icebreaker"
@@ -394,6 +399,13 @@
     },
     "6abb99516cdfa16e93028439": {
       "name": "Danger Zone",
+      "season": "Halloween",
+      "startTimestamp": 1341615600000,
+      "endTimestamp": "",
+      "yearly": true
+    },
+    "6abbae9ee591db528505e3e9": {
+      "name": "Prototyping",
       "season": "Halloween",
       "startTimestamp": 1341615600000,
       "endTimestamp": "",

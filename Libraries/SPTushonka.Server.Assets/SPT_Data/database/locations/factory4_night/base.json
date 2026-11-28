@@ -23,7 +23,7 @@
       "TriggerName": ""
     },
     {
-      "BossChance": 20,
+      "BossChance": 12,
       "BossDifficult": "normal",
       "BossEscortAmount": "2,3",
       "BossEscortDifficult": "normal",
@@ -46,9 +46,9 @@
     },
     {
       "BossChance": 100,
-      "BossDifficult": "easy",
+      "BossDifficult": "normal",
       "BossEscortAmount": "1",
-      "BossEscortDifficult": "normal",
+      "BossEscortDifficult": "hard",
       "BossEscortType": "pmcBEAR",
       "BossName": "pmcBEAR",
       "BossPlayer": false,
@@ -66,7 +66,7 @@
     },
     {
       "BossChance": 75,
-      "BossDifficult": "normal",
+      "BossDifficult": "hard",
       "BossEscortAmount": "1,1,0,0,0,0,0,0",
       "BossEscortDifficult": "impossible",
       "BossEscortType": "pmcBEAR",
@@ -108,7 +108,7 @@
       "BossChance": 75,
       "BossDifficult": "impossible",
       "BossEscortAmount": "1,1,0,0,0,0,0,0",
-      "BossEscortDifficult": "hard",
+      "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
       "BossName": "pmcUSEC",
       "BossPlayer": false,
@@ -159,7 +159,8 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "marksman"
+          "marksman",
+          "infectedTagilla"
         ],
         "ChancedEnemies": [
           {
@@ -180,7 +181,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "infectedScreamer"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -191,9 +193,9 @@
         ],
         "SavagePlayerBehaviour": "Warn",
         "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 75,
+        "BearEnemyChance": 100,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 90
+        "UsecEnemyChance": 100
       },
       {
         "BotRole": "pmcUSEC",
@@ -222,7 +224,8 @@
           "followerKolontaySecurity",
           "followerSanitar",
           "followerTagilla",
-          "marksman"
+          "marksman",
+          "infectedTagilla"
         ],
         "ChancedEnemies": [
           {
@@ -251,7 +254,8 @@
         ],
         "Neutral": [
           "sectantPriest",
-          "sectantWarrior"
+          "sectantWarrior",
+          "infectedScreamer"
         ],
         "AlwaysFriends": [
           "bossZryachiy",
@@ -262,9 +266,9 @@
         ],
         "SavagePlayerBehaviour": "Warn",
         "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 90,
+        "BearEnemyChance": 100,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 75
+        "UsecEnemyChance": 100
       },
       {
         "BotRole": "assault",
@@ -291,7 +295,9 @@
         ],
         "Neutral": [
           "pmcUSEC",
-          "pmcBEAR"
+          "pmcBEAR",
+          "infectedScreamer",
+          "infectedTagilla"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
@@ -320,9 +326,77 @@
         ],
         "Neutral": [
           "pmcUSEC",
-          "pmcBEAR"
+          "pmcBEAR",
+          "infectedScreamer",
+          "infectedTagilla"
         ],
         "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "infectedScreamer",
+        "AlwaysFriends": [
+          "infectedScreamer",
+          "infectedTagilla"
+        ],
+        "AlwaysEnemies": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "assault",
+          "assaultGroup",
+          "pmcUSEC",
+          "pmcBEAR"
+        ],
+        "SavagePlayerBehaviour": "AlwaysEnemies"
+      },
+      {
+        "BotRole": "infectedTagilla",
+        "AlwaysFriends": [
+          "infectedScreamer",
+          "infectedTagilla"
+        ],
+        "AlwaysEnemies": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "assault",
+          "assaultGroup",
+          "pmcUSEC",
+          "pmcBEAR"
+        ],
+        "SavagePlayerBehaviour": "AlwaysEnemies"
       }
     ],
     "DistToActivate": 100,
@@ -5434,6 +5508,10 @@
     {
       "TemplateId": "6a3181f178450ec91c0ea1aa",
       "Value": 5
+    },
+    {
+      "TemplateId": "634959225289190e5e773b3b",
+      "Value": 6
     }
   ],
   "secretExits": [
@@ -5734,6 +5812,42 @@
       }
     },
     {
+      "id": "5464e0404bdc2d2a708b4567",
+      "pic": {
+        "path": "banners/67e404de22d6081b78031de2.jpg",
+        "rcid": "",
+        "file": "67e404de22d6081b78031de2.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5464e0454bdc2d06708b4567",
+      "pic": {
+        "path": "banners/67e4045225a1aca9270117e7.jpg",
+        "rcid": "",
+        "file": "67e4045225a1aca9270117e7.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5803a58524597710ca36fcb2",
+      "pic": {
+        "path": "banners/67e404d9bec96f5d8e097331.jpg",
+        "rcid": "",
+        "file": "67e404d9bec96f5d8e097331.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5807bfe124597742a92e0a4c",
+      "pic": {
+        "path": "banners/67e404ffbec96f5d8e097333.jpg",
+        "rcid": "",
+        "file": "67e404ffbec96f5d8e097333.jpg",
+        "type": "banners"
+      }
+    },
+    {
       "id": "5807c3f124597746bf2db2ce",
       "pic": {
         "path": "banners/67e404c222d6081b78031ddf.jpg",
@@ -5743,20 +5857,29 @@
       }
     },
     {
-      "id": "6a609acf5cc248b1670be7aa",
+      "id": "5807be8924597742c603fa19",
       "pic": {
-        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
         "rcid": "",
-        "file": "6a60a0c7d6e55302580ed970.jpg",
+        "file": "67e4046dbec96f5d8e09732a.jpg",
         "type": "banners"
       }
     },
     {
-      "id": "6adf81dd808c62cd870ed353",
+      "id": "5805f617245977100b2c1f41",
       "pic": {
-        "path": "banners/6adf823565c5330efd035e5e.png",
+        "path": "banners/67e404d9bec96f5d8e097331.jpg",
         "rcid": "",
-        "file": "6adf823565c5330efd035e5e.png",
+        "file": "67e404d9bec96f5d8e097331.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "5c1b857086f77465f465faa4",
+      "pic": {
+        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
+        "rcid": "",
+        "file": "67e404c5bec96f5d8e09732f.jpg",
         "type": "banners"
       }
     },
@@ -5766,6 +5889,24 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

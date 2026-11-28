@@ -26,7 +26,7 @@
       "ForceSpawn": false,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": true,
+      "ShowOnTarkovMap": false,
       "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
@@ -512,8 +512,8 @@
       "ForceSpawn": true,
       "IgnoreMaxBots": true,
       "RandomTimeSpawn": false,
-      "ShowOnTarkovMap": true,
-      "ShowOnTarkovMapPvE": true,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
       "SpawnMode": [
         "regular",
         "pve",
@@ -2083,6 +2083,30 @@
       ],
       "Supports": null,
       "Time": 5790,
+      "TriggerId": "T4",
+      "TriggerName": "botEvent"
+    },
+    {
+      "BossChance": 100,
+      "BossDifficult": "normal",
+      "BossEscortAmount": "3",
+      "BossEscortDifficult": "normal",
+      "BossEscortType": "followerSanitar",
+      "BossName": "bossSanitar",
+      "BossZone": "Zone2ScavPort29",
+      "Delay": 40,
+      "ForceSpawn": true,
+      "IgnoreMaxBots": true,
+      "RandomTimeSpawn": false,
+      "ShowOnTarkovMap": false,
+      "ShowOnTarkovMapPvE": false,
+      "SpawnMode": [
+        "regular",
+        "pve",
+        "pvp-season"
+      ],
+      "Supports": null,
+      "Time": 5690,
       "TriggerId": "T4",
       "TriggerName": "botEvent"
     }

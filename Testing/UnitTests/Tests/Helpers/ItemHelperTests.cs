@@ -9,22 +9,29 @@ namespace UnitTests.Tests.Helpers;
 public class ItemHelperTests
 {
     private static readonly MongoId Makarov = new("5448bd6b4bdc2dfc2f8b4569");
-    private static readonly MongoId HelmetBuiltInArmor = new("64b11c08506a73f6a10f9364");
 
     private ItemHelper _itemHelper = default!;
     private TemplateTable _templateTable = default!;
+    private MongoId _itemWithoutHandbookEntry;
 
     [SetUp]
     public void Setup()
     {
         _itemHelper = DI.GetInstance().GetService<ItemHelper>();
         _templateTable = DI.GetInstance().GetService<TemplateTable>();
+
+        // Picked from the data rather than hardcoded, a client release can give any one item a
+        // handbook entry and that would silently void the premise of the test below
+        var listed = _templateTable.Handbook.Items.Select(item => item.Id).ToHashSet();
+        _itemWithoutHandbookEntry = _templateTable
+            .Items.First(entry => entry.Value.Type == "Item" && !listed.Contains(entry.Key))
+            .Key;
     }
 
     [TearDown]
     public void TearDown()
     {
-        _templateTable.Prices.Remove(HelmetBuiltInArmor);
+        _templateTable.Prices.Remove(_itemWithoutHandbookEntry);
     }
 
     [Test]
@@ -36,9 +43,9 @@ public class ItemHelperTests
     [Test]
     public void IsValidItem_FleaPriceWithoutHandbookEntry_IsInvalid()
     {
-        _templateTable.Prices[HelmetBuiltInArmor] = 10000;
+        _templateTable.Prices[_itemWithoutHandbookEntry] = 10000;
 
-        Assert.That(_itemHelper.IsValidItem(HelmetBuiltInArmor), Is.False);
+        Assert.That(_itemHelper.IsValidItem(_itemWithoutHandbookEntry), Is.False);
     }
 
     [Test]

@@ -167,6 +167,13 @@ public record SeasonalEventSettings
     /// </summary>
     [JsonPropertyName("locationOverrides")]
     public Dictionary<string, EventLocationOverride>? LocationOverrides { get; set; }
+
+    /// <summary>
+    ///     Maps that exist only for the event, by location id. They ship disabled and the client is
+    ///     offered them while the event runs
+    /// </summary>
+    [JsonPropertyName("eventLocations")]
+    public List<string>? EventLocations { get; set; }
 }
 
 public record EventBotLoadout

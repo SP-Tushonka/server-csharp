@@ -280,12 +280,12 @@ window.shopExit = function () {
 })();
 
 /**
- * Gridstack cell height, derived from the rendered width. Measured after every render because blazor
+ * Mosaic cell height, derived from the rendered width. Measured after every render because blazor
  * replaces the prerendered grid with its own node, and again on resize
  */
 (function () {
     /**
-     * Set a grid's cell height from its width
+     * Set a grid's cell height from its width and reveal it
      * @param {HTMLElement} grid Mosaic grid
      */
     function size(grid) {
@@ -299,12 +299,14 @@ window.shopExit = function () {
 
             var height = cell * (parseInt(grid.dataset.rows, 10) || 0);
             if (grid.style.height === height + 'px') {
-                return;
+                break;
             }
 
-            grid.style.setProperty('--gs-cell-height', cell + 'px');
+            grid.style.setProperty('--grid-cell-height', cell + 'px');
             grid.style.height = height + 'px';
         }
+
+        grid.classList.remove('grid-stack--pending');
     }
 
     var observer = new ResizeObserver(function (entries) {
@@ -317,7 +319,7 @@ window.shopExit = function () {
      * Size every mosaic grid and watch it for resizes
      */
     window.shopLayoutMosaic = function () {
-        document.querySelectorAll('.grid-stack.gs-4').forEach(function (grid) {
+        document.querySelectorAll('.grid-stack').forEach(function (grid) {
             size(grid);
 
             if (!watched.has(grid)) {

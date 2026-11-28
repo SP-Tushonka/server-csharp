@@ -3,30 +3,29 @@
 
 @inject TarcoinStoreService TarcoinStoreService
 
-@* The button is a three column grid of marker, label and state icons. All three must be
-   present for the label to land in the middle column. *@
-<div class="category-tree-node">
-    <button class="category-tree-node__button btn-grid-overlay @(Active ? "category-tree-node__button--active" : null)"
+@{
+    var name = TarcoinStoreService.Localise(Node.NameKey, Language);
+}
+
+@* The button is a grid of icon, label and an empty last column. The state markers are positioned
+   over the whole button, so they take no column of their own. *@
+<li class="category-tree-node">
+    <button type="button"
+            class="category-tree-node__button btn-grid-overlay @(Active ? "category-tree-node__button--active" : null)"
+            tabindex="-1"
             @onclick="() => OnSelect.InvokeAsync(Node)">
-        @if (!string.IsNullOrEmpty(Node.IconUrl))
-        {
-            <img class="category-tree__node-icon" src="@Node.IconUrl" alt=""/>
-        }
-        else
-        {
-            <span class="category-tree-node__marker">-</span>
-        }
-        <span class="category-tree-node__label">@TarcoinStoreService.Localise(Node.NameKey, Language)</span>
-        <span class="category-tree-node__state-icons" aria-hidden="true">
-            @* A sub menu entry only draws NEW and FREE. *@
-            @foreach (var label in Node.Labels.Where(label => label is "NEW" or "FREE"))
+        <span class="category-tree__node-icon">
+            @if (!string.IsNullOrEmpty(Node.IconUrl))
             {
-                <img class="textures-icon category-tree-node__state-icon category-tree-node__state-icon--@label.ToLowerInvariant()"
-                     src="@ShopFormat.MarkerTexture(label)" alt="" draggable="false"/>
+                <img class="object-contain"
+                     src="@(Active && !string.IsNullOrEmpty(Node.SelectedIconUrl) ? Node.SelectedIconUrl : Node.IconUrl)"
+                     alt="@name" draggable="false"/>
             }
         </span>
+        <span class="category-tree-node__label">@name</span>
+        <CategoryStateMarkers Markers="Node.Labels" BgGlow="false"/>
     </button>
-</div>
+</li>
 
 @code {
     [CascadingParameter(Name = "ShopLanguage")]

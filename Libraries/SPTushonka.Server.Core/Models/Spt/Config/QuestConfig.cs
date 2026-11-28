@@ -73,6 +73,13 @@ public record QuestConfig : BaseConfig
     public Dictionary<MongoId, string> QuestLocationUnlocks { get; set; } = [];
 
     /// <summary>
+    ///     Quests whose trader offers other quests also unlock, keyed by the quest an offer is linked to. List both
+    ///     directions, the offer can be linked to either quest
+    /// </summary>
+    [JsonPropertyName("sharedAssortUnlocks")]
+    public Dictionary<MongoId, List<MongoId>> SharedAssortUnlocks { get; set; } = [];
+
+    /// <summary>
     ///     Holds repeatable quest template ids for pmc's and scav's
     /// </summary>
     [JsonPropertyName("repeatableQuestTemplateIds")]

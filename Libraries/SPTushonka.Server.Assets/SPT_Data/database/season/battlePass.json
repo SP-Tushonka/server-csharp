@@ -976,7 +976,9 @@
                 {
                   "unknown": false,
                   "availableInGameEditions": [],
-                  "gameMode": [],
+                  "gameMode": [
+                    "arena"
+                  ],
                   "illustrationConfig": {
                     "image": "",
                     "bigImage": "",
@@ -2499,7 +2501,7 @@
         "limitsByGameMode": [
           {
             "gameMode": "regular",
-            "totalLimit": 20
+            "totalLimit": 25
           },
           {
             "gameMode": "pve",
@@ -2507,7 +2509,7 @@
           },
           {
             "gameMode": "pvp-season",
-            "totalLimit": 30
+            "totalLimit": 40
           }
         ]
       }

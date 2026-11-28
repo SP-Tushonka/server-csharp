@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SPTarkov.Server.Core.Helpers.Quest;
 using SPTarkov.Server.Core.Migration;
 using SPTarkov.Server.Core.Migration.Migrations._5._0;
+using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Utils;
 
@@ -63,6 +64,25 @@ public class ProfileRepairMigrationTests
         );
 
         Assert.That(CanMigrate(migration, Profile(Quest(BlueFireKeep, 4), Quest(BlueFireSell, sellStatus))), Is.EqualTo(expected));
+    }
+
+    [TestCase(4, true)]
+    [TestCase(2, false)]
+    public void UnlockQuestLocations_HangoverFinished_UnlocksIcebreaker(int status, bool expected)
+    {
+        var migration = new UnlockQuestLocations(DI.GetInstance().GetService<QuestConfig>(), DI.GetInstance().GetService<JsonUtil>());
+        var profile = Profile(Quest("69c2a2d004de49c8f0055a3d", status));
+
+        Assert.That(CanMigrate(migration, profile), Is.EqualTo(expected));
+        if (!expected)
+        {
+            return;
+        }
+
+        migration.Migrate(profile);
+
+        Assert.That(profile["characters"]!["pmc"]!["UnlockedLocations"]!.AsArray().Select(location => location!.GetValue<string>()), Is.EqualTo(new[] { "Icebreaker" }));
+        Assert.That(CanMigrate(migration, profile), Is.False);
     }
 
     [TestCase("67499b9b909d2013670a5029", true)]

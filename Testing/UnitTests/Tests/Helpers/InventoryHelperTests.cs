@@ -65,7 +65,7 @@ public class InventoryHelperTests
         var rootWeaponId = new MongoId();
 
         var weaponWithChildren = new List<Item>();
-        var root = new Item { Id = rootWeaponId, Template = ItemTpl.ASSAULTRIFLE_MOLOT_ARMS_VPO136_VEPRKM_762X39_CARBINE };
+        var root = new Item { Id = rootWeaponId, Template = ItemTpl.ASSAULTCARBINE_MOLOT_ARMS_VPO136_VEPRKM_762X39_CARBINE };
         weaponWithChildren.Add(root);
 
         var stock = new Item

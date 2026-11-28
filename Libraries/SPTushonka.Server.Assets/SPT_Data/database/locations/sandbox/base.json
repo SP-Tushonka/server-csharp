@@ -143,298 +143,7 @@
   ],
   "BotLocationModifier": {
     "AccuracySpeed": 1,
-    "AdditionalHostilitySettings": [
-      {
-        "BotRole": "pmcBEAR",
-        "AlwaysEnemies": [
-          "pmcBot",
-          "exUsec",
-          "bossBully",
-          "bossBoar",
-          "bossTagilla",
-          "bossKilla",
-          "bossKojaniy",
-          "bossSanitar",
-          "bossKolontay",
-          "bossGluhar",
-          "bossKnight",
-          "bossBoarSniper",
-          "bossPartisan",
-          "followerBigPipe",
-          "followerBirdEye",
-          "followerBoar",
-          "followerBoarClose1",
-          "followerBoarClose2",
-          "followerBully",
-          "followerGluharAssault",
-          "followerGluharScout",
-          "followerGluharSecurity",
-          "followerGluharSnipe",
-          "followerKojaniy",
-          "followerKolontayAssault",
-          "followerKolontaySecurity",
-          "followerSanitar",
-          "followerTagilla"
-        ],
-        "ChancedEnemies": [
-          {
-            "EnemyChance": 80,
-            "Role": "assault"
-          },
-          {
-            "EnemyChance": 80,
-            "Role": "assaultGroup"
-          },
-          {
-            "EnemyChance": 25,
-            "Role": "pmcUSEC"
-          }
-        ],
-        "Warn": [
-          "sectactPriestEvent"
-        ],
-        "Neutral": [
-          "sectantPriest",
-          "sectantWarrior",
-          "marksman"
-        ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "SavagePlayerBehaviour": "Warn",
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 75,
-        "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 90
-      },
-      {
-        "BotRole": "pmcUSEC",
-        "AlwaysEnemies": [
-          "pmcBot",
-          "bossBully",
-          "bossBoar",
-          "bossTagilla",
-          "bossKilla",
-          "bossKojaniy",
-          "bossSanitar",
-          "bossKolontay",
-          "bossGluhar",
-          "bossBoarSniper",
-          "bossPartisan",
-          "followerBoar",
-          "followerBoarClose1",
-          "followerBoarClose2",
-          "followerBully",
-          "followerGluharAssault",
-          "followerGluharScout",
-          "followerGluharSecurity",
-          "followerGluharSnipe",
-          "followerKojaniy",
-          "followerKolontayAssault",
-          "followerKolontaySecurity",
-          "followerSanitar",
-          "followerTagilla"
-        ],
-        "ChancedEnemies": [
-          {
-            "EnemyChance": 80,
-            "Role": "assault"
-          },
-          {
-            "EnemyChance": 80,
-            "Role": "assaultGroup"
-          },
-          {
-            "EnemyChance": 25,
-            "Role": "pmcBEAR"
-          },
-          {
-            "EnemyChance": 15,
-            "Role": "exUsec"
-          },
-          {
-            "EnemyChance": 15,
-            "Role": "bossKnight"
-          }
-        ],
-        "Warn": [
-          "sectactPriestEvent"
-        ],
-        "Neutral": [
-          "sectantPriest",
-          "sectantWarrior",
-          "marksman"
-        ],
-        "AlwaysFriends": [
-          "bossZryachiy",
-          "followerZryachiy",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter"
-        ],
-        "SavagePlayerBehaviour": "Warn",
-        "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 90,
-        "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 75
-      },
-      {
-        "BotRole": "pmcBotBlackDivSeason",
-        "AlwaysEnemies": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
-        "AlwaysFriends": [
-          "bossBullyBlackDiv",
-          "followerBullyBlackDiv",
-          "pmcBotBlackDiv",
-          "bossWedge",
-          "bossWedgeLab",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter",
-          "bossZryachiy",
-          "followerZryachiy",
-          "followerWedgeLab",
-          "shooterBTR"
-        ],
-        "Warn": [
-          "bossKilla",
-          "marksman",
-          "bossBoar",
-          "bossBoarSniper",
-          "bossBully",
-          "bossGluhar",
-          "bossKnight",
-          "bossKojaniy",
-          "bossKolontay",
-          "bossPartisan",
-          "bossSanitar",
-          "bossTagilla",
-          "followerGluharSecurity",
-          "followerGluharAssault",
-          "followerGluharScout",
-          "bossGluhar",
-          "exUsec",
-          "followerBigPipe",
-          "followerBirdEye",
-          "followerBully",
-          "followerBoar",
-          "followerBoarClose1",
-          "followerBoarClose2",
-          "followerKojaniy",
-          "followerKolontayAssault",
-          "followerKolontaySecurity",
-          "followerSanitar",
-          "followerTagilla",
-          "assault",
-          "assaultGroup"
-        ],
-        "Neutral": [
-          "sectantPriest",
-          "sectantWarrior",
-          "sentry"
-        ],
-        "SavagePlayerBehaviour": "AlwaysEnemies"
-      },
-      {
-        "BotRole": "marksman",
-        "AlwaysFriends": [
-          "bossKilla",
-          "assault",
-          "assaultGroup",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter",
-          "bossBoar",
-          "bossBully",
-          "bossGluhar",
-          "bossKnight",
-          "bossKojaniy",
-          "bossKolontay",
-          "bossPartisan",
-          "bossSanitar",
-          "bossTagilla",
-          "bossZryachiy",
-          "exUsec",
-          "followerBigPipe",
-          "followerBirdEye",
-          "followerBully",
-          "pmcBotBlackDivSeason"
-        ],
-        "Neutral": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
-        "SavagePlayerBehaviour": "Neutral"
-      },
-      {
-        "BotRole": "assault",
-        "AlwaysFriends": [
-          "bossKilla",
-          "assaultGroup",
-          "marksman",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter",
-          "bossBoar",
-          "bossBully",
-          "bossGluhar",
-          "bossKnight",
-          "bossKojaniy",
-          "bossKolontay",
-          "bossPartisan",
-          "bossSanitar",
-          "bossTagilla",
-          "bossZryachiy",
-          "exUsec",
-          "followerBigPipe",
-          "followerBirdEye",
-          "followerBully",
-          "pmcBotBlackDivSeason"
-        ],
-        "Neutral": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
-        "SavagePlayerBehaviour": "Neutral"
-      },
-      {
-        "BotRole": "assaultGroup",
-        "AlwaysFriends": [
-          "bossKilla",
-          "assault",
-          "marksman",
-          "peacefullZryachiyEvent",
-          "ravangeZryachiyEvent",
-          "gifter",
-          "bossBoar",
-          "bossBully",
-          "bossGluhar",
-          "bossKnight",
-          "bossKojaniy",
-          "bossKolontay",
-          "bossPartisan",
-          "bossSanitar",
-          "bossTagilla",
-          "bossZryachiy",
-          "exUsec",
-          "followerBigPipe",
-          "followerBirdEye",
-          "followerBully",
-          "pmcBotBlackDivSeason"
-        ],
-        "Neutral": [
-          "pmcBEAR",
-          "pmcUSEC"
-        ],
-        "SavagePlayerBehaviour": "Neutral"
-      }
-    ],
+    "AdditionalHostilitySettings": null,
     "DistToActivate": 260,
     "DistToActivatePvE": 260,
     "DistToSleep": 300,
@@ -7924,6 +7633,10 @@
     {
       "TemplateId": "6a3182dc6cd8de21cf0a3a7d",
       "Value": 5
+    },
+    {
+      "TemplateId": "634959225289190e5e773b3b",
+      "Value": 6
     }
   ],
   "secretExits": [
@@ -8165,20 +7878,29 @@
       }
     },
     {
+      "id": "63a9c1f5662a5b0a2c7fbde5",
+      "pic": {
+        "path": "banners/67e4046dbec96f5d8e09732a.jpg",
+        "rcid": "",
+        "file": "67e4046dbec96f5d8e09732a.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
       "id": "6a609acf5cc248b1670be7aa",
       "pic": {
         "path": "banners/6a60a0c7d6e55302580ed970.jpg",
         "rcid": "",
         "file": "6a60a0c7d6e55302580ed970.jpg",
-        "type": "banners"
-      }
-    },
-    {
-      "id": "6adf81dd808c62cd870ed353",
-      "pic": {
-        "path": "banners/6adf823565c5330efd035e5e.png",
-        "rcid": "",
-        "file": "6adf823565c5330efd035e5e.png",
         "type": "banners"
       }
     }

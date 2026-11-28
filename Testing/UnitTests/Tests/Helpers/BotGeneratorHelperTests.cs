@@ -63,7 +63,7 @@ public class BotGeneratorHelperTests
             botId,
             [EquipmentSlots.Backpack],
             rootWeaponId,
-            ItemTpl.SHOTGUN_MP18_762X54R_SINGLESHOT_RIFLE,
+            ItemTpl.SNIPERRIFLE_MP18_762X54R_SINGLESHOT_RIFLE,
             weaponWithChildren,
             botInventory
         );
@@ -79,7 +79,7 @@ public class BotGeneratorHelperTests
     private static List<Item> CreateMp18(MongoId rootWeaponId)
     {
         var weaponWithChildren = new List<Item>();
-        var weaponRoot = new Item { Id = rootWeaponId, Template = ItemTpl.SHOTGUN_MP18_762X54R_SINGLESHOT_RIFLE };
+        var weaponRoot = new Item { Id = rootWeaponId, Template = ItemTpl.SNIPERRIFLE_MP18_762X54R_SINGLESHOT_RIFLE };
         weaponWithChildren.Add(weaponRoot);
         var weaponStock = new Item
         {
@@ -132,7 +132,7 @@ public class BotGeneratorHelperTests
             botId,
             [EquipmentSlots.Backpack],
             rootWeaponId,
-            ItemTpl.SHOTGUN_MP18_762X54R_SINGLESHOT_RIFLE,
+            ItemTpl.SNIPERRIFLE_MP18_762X54R_SINGLESHOT_RIFLE,
             weaponWithChildren,
             botInventory
         );
@@ -202,7 +202,7 @@ public class BotGeneratorHelperTests
             botId,
             [EquipmentSlots.Backpack],
             rootWeaponId,
-            ItemTpl.SHOTGUN_MP18_762X54R_SINGLESHOT_RIFLE,
+            ItemTpl.SNIPERRIFLE_MP18_762X54R_SINGLESHOT_RIFLE,
             weaponWithChildren,
             botInventory
         );
@@ -275,7 +275,7 @@ public class BotGeneratorHelperTests
             botId,
             [EquipmentSlots.Backpack],
             rootWeaponId,
-            ItemTpl.SHOTGUN_MP18_762X54R_SINGLESHOT_RIFLE,
+            ItemTpl.SNIPERRIFLE_MP18_762X54R_SINGLESHOT_RIFLE,
             weaponWithChildren,
             botInventory
         );
@@ -351,7 +351,7 @@ public class BotGeneratorHelperTests
             botId,
             [EquipmentSlots.Backpack],
             rootWeaponId,
-            ItemTpl.SHOTGUN_MP18_762X54R_SINGLESHOT_RIFLE,
+            ItemTpl.SNIPERRIFLE_MP18_762X54R_SINGLESHOT_RIFLE,
             weaponWithChildren,
             botInventory
         );
@@ -434,7 +434,7 @@ public class BotGeneratorHelperTests
         var root = new Item
         {
             Id = rootWeaponId,
-            Template = ItemTpl.ASSAULTRIFLE_MOLOT_ARMS_VPO136_VEPRKM_762X39_CARBINE,
+            Template = ItemTpl.ASSAULTCARBINE_MOLOT_ARMS_VPO136_VEPRKM_762X39_CARBINE,
             ParentId = backpack.Id,
         };
         weaponWithChildren.Add(root);

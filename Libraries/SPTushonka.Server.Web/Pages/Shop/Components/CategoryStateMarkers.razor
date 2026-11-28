@@ -1,0 +1,32 @@
+@* The first two labels are drawn, the first in the top slot and the second in the bottom one. Root
+   tabs give each a coloured corner glow and tree nodes pass BgGlow false to draw the icons alone. *@
+@if (Markers.Count > 0)
+{
+    <span class="category-state-markers" aria-hidden="true">
+        <span class="category-state-markers__grid">
+            @for (var index = 0; index < Math.Min(2, Markers.Count); index++)
+            {
+                var label = Markers[index].ToLowerInvariant();
+                var slot = index == 0 ? "top" : "bottom";
+                var texture = ShopFormat.MarkerTexture(Markers[index]);
+                @if (BgGlow)
+                {
+                    <span class="category-state-markers__glow category-state-markers__glow--@label category-state-markers__glow--@slot"></span>
+                }
+                @if (texture is not null)
+                {
+                    <img class="textures-icon category-state-markers__icon category-state-markers__icon--@label category-state-markers__icon--@slot"
+                         src="@texture" alt="" draggable="false"/>
+                }
+            }
+        </span>
+    </span>
+}
+
+@code {
+    [Parameter]
+    public List<string> Markers { get; set; } = [];
+
+    [Parameter]
+    public bool BgGlow { get; set; } = true;
+}

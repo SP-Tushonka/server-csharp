@@ -381,6 +381,26 @@ public class SeasonalEventEffects(
     }
 
     /// <summary>
+    ///     Open the maps that belong to an event
+    /// </summary>
+    /// <param name="locationIds">Location ids the event adds</param>
+    public void EnableEventLocations(IEnumerable<string> locationIds)
+    {
+        foreach (var locationId in locationIds)
+        {
+            var location = locationTable.GetLocation(locationId)?.Base;
+            if (location is null)
+            {
+                logger.Warning($"Seasonal event wants location {locationId}, which the database does not have");
+                continue;
+            }
+
+            location.Enabled = true;
+            location.Locked = false;
+        }
+    }
+
+    /// <summary>
     ///     Apply what an event changes on individual maps
     /// </summary>
     /// <param name="overrides">Changes by location id</param>

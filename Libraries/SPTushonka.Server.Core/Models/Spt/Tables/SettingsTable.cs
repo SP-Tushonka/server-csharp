@@ -29,6 +29,8 @@ public record Settings
 
     public required FramerateLimit FramerateLimit { get; set; }
 
+    public required GraphicsSettings GraphicsSettings { get; set; }
+
     public required int GroupStatusButtonInterval { get; set; }
 
     public required int GroupStatusInterval { get; set; }
@@ -804,4 +806,9 @@ public record ReleaseProfiler
     public required int MaxRecords { get; set; }
 
     public required int RecordTriggerValue { get; set; }
+}
+
+public record GraphicsSettings
+{
+    public required bool HBAOShowMode { get; set; }
 }

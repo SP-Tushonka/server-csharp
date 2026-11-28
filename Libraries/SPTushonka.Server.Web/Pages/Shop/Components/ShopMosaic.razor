@@ -3,17 +3,17 @@
 @inject IJSRuntime JS
 
 <section class="p-2 h-full">
-    @* Laid out with gridstack. Items are positioned in multiples of two css variables, and
-       expansions-shop.js sets the cell height from the rendered width so the cells come out square. *@
-    <div class="grid-stack gs-4 grid-stack-static grid-stack-animate"
+    @* Items are positioned in multiples of two css variables. expansions-shop.js sets the cell
+       height from the rendered width so the cells come out square, then drops the pending class. *@
+    <div class="grid-stack grid-stack--pending"
          data-rows="@Rows"
-         style="--gs-item-margin-top: 10px; --gs-item-margin-bottom: 10px; --gs-item-margin-right: 10px; --gs-item-margin-left: 10px; --gs-column-width: 25%;">
+         style="--grid-column-width: 25%; --grid-margin-top: 10px; --grid-margin-right: 10px; --grid-margin-bottom: 10px; --grid-margin-left: 10px;">
     @foreach (var block in Blocks)
     {
         var price = Prices.GetValueOrDefault(block.OfferId.ToString());
 
-        <div class="grid-stack-item ui-draggable-disabled ui-resizable-disabled" style="@ItemStyle(block)">
-            <div class="grid-stack-item-content grid-stack-item-content--default">
+        <div class="grid-stack-item" style="@ItemStyle(block)">
+            <div class="grid-stack-item-content @ContentClass(block)">
                 @* The inner wrapper carries the card shadow, the hover lift and the orange accent
                    underneath it. Without it the tiles sit flat. *@
                 <div class="grid-stack-item-content__inner">
@@ -32,7 +32,7 @@
 
 @code {
     /// <summary>
-    ///     Retake the gridstack cell height, which comes from the rendered width. Blazor replaces the
+    ///     Retake the grid cell height, which comes from the rendered width. Blazor replaces the
     ///     prerendered grid with its own node
     /// </summary>
     /// <param name="firstRender">Whether this is the first render</param>
@@ -66,14 +66,21 @@
     private static string ItemStyle(ShopBlock block)
     {
         var (width, height) = Size(block);
-        var style = new List<string>();
 
-        if (block.Position.X > 0) style.Add($"left: calc({block.Position.X} * var(--gs-column-width));");
-        if (block.Position.Y > 0) style.Add($"top: calc({block.Position.Y} * var(--gs-cell-height));");
-        if (width > 1) style.Add($"width: calc({width} * var(--gs-column-width));");
-        if (height > 1) style.Add($"height: calc({height} * var(--gs-cell-height));");
+        return $"top: calc({block.Position.Y} * var(--grid-cell-height)); "
+            + $"left: calc({block.Position.X} * var(--grid-column-width)); "
+            + $"width: calc({width} * var(--grid-column-width)); "
+            + $"height: calc({height} * var(--grid-cell-height));";
+    }
 
-        return string.Join(" ", style);
+    /// <summary>
+    ///     Get the content class that picks the hover underline colour. Free offers use the free tag colour
+    /// </summary>
+    /// <param name="block">Tile to style</param>
+    /// <returns>Content modifier class</returns>
+    private static string ContentClass(ShopBlock block)
+    {
+        return block.Tags.Contains("FREE") ? "grid-stack-item-content--free" : "grid-stack-item-content--default";
     }
 
     /// <summary>

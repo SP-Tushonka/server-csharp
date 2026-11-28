@@ -49,7 +49,8 @@ public class RagfairAssortGenerator(
 
         // Store processed preset tpls so we don't add them when processing non-preset items
         HashSet<MongoId> processedArmorItems = [];
-        var skipOutOfSeasonItems = ragfairConfig.Dynamic.RemoveSeasonalItemsWhenNotInEvent && !seasonalEventService.SeasonalEventEnabled();
+        // The blacklist only holds items of inactive events, so Christmas running does not let Halloween items through
+        var skipOutOfSeasonItems = ragfairConfig.Dynamic.RemoveSeasonalItemsWhenNotInEvent;
         var seasonalItemTplBlacklist = seasonalEventService.GetInactiveSeasonalEventItems();
 
         foreach (var preset in GetPresetsToAdd())

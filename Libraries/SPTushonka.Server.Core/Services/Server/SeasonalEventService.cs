@@ -50,21 +50,21 @@ public class SeasonalEventService(
         ItemTpl.BARTER_JAR_OF_PICKLES,
         ItemTpl.FOOD_OLIVIER_SALAD_BOX,
         ItemTpl.BARTER_SPECIAL_40DEGREE_FUEL,
-        ItemTpl.HEADWEAR_DED_MOROZ_HAT,
-        ItemTpl.HEADWEAR_ELF_HAT,
-        ItemTpl.HEADWEAR_HAT_WITH_ANTLERS,
-        ItemTpl.HEADWEAR_MASKA1SCH_BULLETPROOF_HELMET_CHRISTMAS_EDITION,
-        ItemTpl.HEADWEAR_SANTA_HAT,
-        ItemTpl.RANDOMLOOTCONTAINER_NEW_YEAR_GIFT_BIG,
-        ItemTpl.RANDOMLOOTCONTAINER_NEW_YEAR_GIFT_MEDIUM,
-        ItemTpl.RANDOMLOOTCONTAINER_NEW_YEAR_GIFT_SMALL,
-        ItemTpl.FACECOVER_ASTRONOMER_MASK,
-        ItemTpl.FACECOVER_CIPOLLINO_MASK,
-        ItemTpl.FACECOVER_FAKE_WHITE_BEARD,
-        ItemTpl.FACECOVER_FOX_MASK,
-        ItemTpl.FACECOVER_GRINCH_MASK,
-        ItemTpl.FACECOVER_HARE_MASK,
-        ItemTpl.FACECOVER_ROOSTER_MASK,
+        ItemTpl.HAT_DED_MOROZ,
+        ItemTpl.HAT_ELF,
+        ItemTpl.HAT_WITH_ANTLERS,
+        ItemTpl.HELMET_MASKA1SCH_BULLETPROOF_HELMET_CHRISTMAS_EDITION,
+        ItemTpl.HAT_SANTA,
+        ItemTpl.LOCATIONCONTAINER_ITEM_LOCATION_CONTAINER_NEW_YEAR_GIFT_BIG,
+        ItemTpl.LOCATIONCONTAINER_ITEM_LOCATION_CONTAINER_NEW_YEAR_GIFT_MEDIUM,
+        ItemTpl.LOCATIONCONTAINER_ITEM_LOCATION_CONTAINER_NEW_YEAR_GIFT_SMALL,
+        ItemTpl.MASK_ASTRONOMER,
+        ItemTpl.MASK_CIPOLLINO,
+        ItemTpl.MASK_FAKE_WHITE_BEARD,
+        ItemTpl.MASK_FOX,
+        ItemTpl.MASK_GRINCH,
+        ItemTpl.MASK_HARE,
+        ItemTpl.MASK_ROOSTER,
         ItemTpl.FLARE_RSP30_REACTIVE_SIGNAL_CARTRIDGE_FIREWORK,
         ItemTpl.AMMO_26X75_SIGNAL_FLARE_NEW_YEAR,
         ItemTpl.BARTER_SHYSHKA_CHRISTMAS_TREE_LIFE_EXTENDER,
@@ -83,17 +83,19 @@ public class SeasonalEventService(
 
     protected readonly FrozenSet<MongoId> HalloweenEventItems =
     [
-        ItemTpl.HEADWEAR_JACKOLANTERN_TACTICAL_PUMPKIN_HELMET,
-        ItemTpl.FACECOVER_FACELESS_MASK,
-        ItemTpl.FACECOVER_GHOUL_MASK,
-        ItemTpl.FACECOVER_SPOOKY_SKULL_MASK,
-        ItemTpl.FACECOVER_SPOOKY_SKULL_MASK_2,
-        ItemTpl.FACECOVER_GHOUL_MASK_2,
-        ItemTpl.FACECOVER_JASON_MASK,
-        ItemTpl.FACECOVER_MISHA_MAYOROV_MASK,
-        ItemTpl.FACECOVER_SLENDER_MASK,
-        ItemTpl.FACECOVER_SLENDER_MASK_2,
-        ItemTpl.RANDOMLOOTCONTAINER_PUMPKIN_RAND_LOOT_CONTAINER,
+        ItemTpl.HELMET_JACKOLANTERN_TACTICAL_PUMPKIN,
+        ItemTpl.MASK_FACELESS,
+        ItemTpl.MASK_GHOUL,
+        ItemTpl.MASK_SPOOKY_SKULL,
+        ItemTpl.MASK_FACECOVER_SPOOKY_SKULL_MASK_2,
+        ItemTpl.MASK_FACECOVER_GHOUL_MASK_2,
+        ItemTpl.MASK_JASON,
+        ItemTpl.MASK_MISHA_MAYOROV,
+        ItemTpl.MASK_SLENDER,
+        ItemTpl.MASK_FACECOVER_SLENDER_MASK_2,
+        ItemTpl.LOCATIONCONTAINER_ITEM_LOCATION_CONTAINER_PUMPKIN,
+        // TG-Vi-24 vaccine prototype (B.1.2 strain)
+        new("6acc4c757587fb38c508c5fa"),
     ];
 
     /// <summary>
@@ -229,6 +231,18 @@ public class SeasonalEventService(
     {
         var eventQuestData = questConfig.EventQuests.GetValueOrDefault(questId, null);
         return eventQuestData?.Season == eventType;
+    }
+
+    /// <summary>
+    ///     Check whether a quest belongs to a Christmas, Halloween or Scourge event that is not running
+    /// </summary>
+    /// <param name="questId">Quest to check</param>
+    /// <returns>True when its event is off</returns>
+    public bool IsQuestOutOfSeason(MongoId questId)
+    {
+        return (!ChristmasEventEnabled() && IsQuestRelatedToEvent(questId, SeasonalEventType.Christmas))
+            || (!HalloweenEventEnabled() && IsQuestRelatedToEvent(questId, SeasonalEventType.Halloween))
+            || (!ScourgeEventEnabled() && IsQuestRelatedToEvent(questId, SeasonalEventType.Scourge));
     }
 
     /// <summary>

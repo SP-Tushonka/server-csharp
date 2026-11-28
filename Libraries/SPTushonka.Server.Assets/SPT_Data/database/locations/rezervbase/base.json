@@ -209,7 +209,7 @@
     },
     {
       "BossChance": 80,
-      "BossDifficult": "hard",
+      "BossDifficult": "normal",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -232,7 +232,7 @@
     },
     {
       "BossChance": 50,
-      "BossDifficult": "normal",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -255,7 +255,7 @@
     },
     {
       "BossChance": 50,
-      "BossDifficult": "easy",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcUSEC",
@@ -324,7 +324,7 @@
     },
     {
       "BossChance": 80,
-      "BossDifficult": "normal",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -370,7 +370,7 @@
     },
     {
       "BossChance": 50,
-      "BossDifficult": "easy",
+      "BossDifficult": "hard",
       "BossEscortAmount": "0",
       "BossEscortDifficult": "normal",
       "BossEscortType": "pmcBEAR",
@@ -425,7 +425,8 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "infectedScreamer"
         ],
         "ChancedEnemies": [
           {
@@ -458,9 +459,9 @@
         ],
         "SavagePlayerBehaviour": "Warn",
         "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 75,
+        "BearEnemyChance": 100,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 90
+        "UsecEnemyChance": 100
       },
       {
         "BotRole": "pmcUSEC",
@@ -488,7 +489,8 @@
           "followerKolontayAssault",
           "followerKolontaySecurity",
           "followerSanitar",
-          "followerTagilla"
+          "followerTagilla",
+          "infectedScreamer"
         ],
         "ChancedEnemies": [
           {
@@ -529,15 +531,16 @@
         ],
         "SavagePlayerBehaviour": "Warn",
         "BearPlayerBehaviour": "ChancedEnemies",
-        "BearEnemyChance": 90,
+        "BearEnemyChance": 100,
         "UsecPlayerBehaviour": "ChancedEnemies",
-        "UsecEnemyChance": 75
+        "UsecEnemyChance": 100
       },
       {
         "BotRole": "bossGluhar",
         "AlwaysEnemies": [
           "pmcBEAR",
-          "pmcUSEC"
+          "pmcUSEC",
+          "infectedScreamer"
         ],
         "AlwaysFriends": [
           "assault",
@@ -581,6 +584,9 @@
           "bossSanitar",
           "bossTagilla",
           "bossZryachiy"
+        ],
+        "Neutral": [
+          "infectedScreamer"
         ]
       },
       {
@@ -610,7 +616,8 @@
         ],
         "Neutral": [
           "pmcUSEC",
-          "pmcBEAR"
+          "pmcBEAR",
+          "infectedScreamer"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
@@ -639,7 +646,8 @@
         ],
         "Neutral": [
           "pmcUSEC",
-          "pmcBEAR"
+          "pmcBEAR",
+          "infectedScreamer"
         ],
         "SavagePlayerBehaviour": "Neutral"
       },
@@ -668,9 +676,44 @@
         ],
         "Neutral": [
           "pmcUSEC",
-          "pmcBEAR"
+          "pmcBEAR",
+          "infectedScreamer"
         ],
         "SavagePlayerBehaviour": "Neutral"
+      },
+      {
+        "BotRole": "infectedScreamer",
+        "AlwaysFriends": [
+          "infectedScreamer",
+          "infectedTagilla"
+        ],
+        "AlwaysEnemies": [
+          "bossKilla",
+          "marksman",
+          "peacefullZryachiyEvent",
+          "ravangeZryachiyEvent",
+          "gifter",
+          "bossBoar",
+          "bossBully",
+          "bossGluhar",
+          "bossKnight",
+          "bossKojaniy",
+          "bossKolontay",
+          "bossPartisan",
+          "bossSanitar",
+          "bossTagilla",
+          "bossZryachiy",
+          "exUsec",
+          "followerBigPipe",
+          "followerBirdEye",
+          "followerBully",
+          "assault",
+          "assaultGroup",
+          "pmcBot",
+          "pmcUSEC",
+          "pmcBEAR"
+        ],
+        "SavagePlayerBehaviour": "AlwaysEnemies"
       }
     ],
     "DistToActivate": 330,
@@ -7317,15 +7360,7 @@
       "RequirementTip": ""
     }
   ],
-  "limits": [
-    {
-      "items": [
-        "634959225289190e5e773b3b"
-      ],
-      "max": 8,
-      "min": 7
-    }
-  ],
+  "limits": [],
   "maxItemCountInLocation": [
     {
       "TemplateId": "634959225289190e5e773b3b",
@@ -7378,6 +7413,10 @@
     {
       "TemplateId": "6a3181f178450ec91c0ea1aa",
       "Value": 7
+    },
+    {
+      "TemplateId": "634959225289190e5e773b3b",
+      "Value": 6
     }
   ],
   "secretExits": [
@@ -7813,20 +7852,20 @@
       }
     },
     {
-      "id": "6a609acf5cc248b1670be7aa",
+      "id": "5807bfe124597742a92e0a4c",
       "pic": {
-        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "path": "banners/67e404ffbec96f5d8e097333.jpg",
         "rcid": "",
-        "file": "6a60a0c7d6e55302580ed970.jpg",
+        "file": "67e404ffbec96f5d8e097333.jpg",
         "type": "banners"
       }
     },
     {
-      "id": "6adf81dd808c62cd870ed353",
+      "id": "5c1b857086f77465f465faa4",
       "pic": {
-        "path": "banners/6adf823565c5330efd035e5e.png",
+        "path": "banners/67e404c5bec96f5d8e09732f.jpg",
         "rcid": "",
-        "file": "6adf823565c5330efd035e5e.png",
+        "file": "67e404c5bec96f5d8e09732f.jpg",
         "type": "banners"
       }
     },
@@ -7836,6 +7875,24 @@
         "path": "banners/67e4047d22d6081b78031ddb.jpg",
         "rcid": "",
         "file": "67e4047d22d6081b78031ddb.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609ac4f58fcc8978057b75",
+      "pic": {
+        "path": "banners/6a60a0bdeafa55f8a10ec1ae.jpg",
+        "rcid": "",
+        "file": "6a60a0bdeafa55f8a10ec1ae.jpg",
+        "type": "banners"
+      }
+    },
+    {
+      "id": "6a609acf5cc248b1670be7aa",
+      "pic": {
+        "path": "banners/6a60a0c7d6e55302580ed970.jpg",
+        "rcid": "",
+        "file": "6a60a0c7d6e55302580ed970.jpg",
         "type": "banners"
       }
     }

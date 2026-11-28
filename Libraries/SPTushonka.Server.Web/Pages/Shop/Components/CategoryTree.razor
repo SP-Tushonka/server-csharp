@@ -18,7 +18,7 @@
             <div class="panel-bg-with-grid"></div>
 
             <div class="panel-with-overlay__scroll">
-                    <div class="category-tree__content">
+                <div class="category-tree__content">
                     @if (Children.Count == 0)
                     {
                         <div class="category-tree__state-message-arrow">
@@ -30,11 +30,15 @@
                             </span>
                         </div>
                     }
-
-                    @foreach (var child in Children)
+                    else
                     {
-                        <CategoryTreeNode Node="child" Active="child.Id == Selected?.Id" OnSelect="OnSelect"/>
-                        }
+                        <ul class="category-tree__list">
+                            @foreach (var child in Children)
+                            {
+                                <CategoryTreeNode Node="child" Active="child.Id == Selected?.Id" OnSelect="OnSelect"/>
+                            }
+                        </ul>
+                    }
                 </div>
             </div>
         </div>
